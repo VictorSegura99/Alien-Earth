@@ -31,8 +31,7 @@ void j1Map::Draw()
 	if(map_loaded == false)
 		return;
 
-	// TODO 5: Prepare the loop to draw all tilesets + Blit
-
+	
 	map_layer* layer = data.layers.start->data;
 	TileSet* tileset = data.tilesets.start->data;
 	for (int y = 0; y < layer->height; y++) {
@@ -46,7 +45,7 @@ void j1Map::Draw()
 	}
 	
 
-		// TODO 9: Complete the draw function
+	
 
 }
 
@@ -90,11 +89,7 @@ bool j1Map::CleanUp()
 		itemm = itemm->next;
 	}
 	data.tilesets.clear();
-
-	// TODO 2: clean up all layer data
-	// Remove all layers
 	data.layers.clear();
-	// Clean up the pugui tree
 	map_file.reset();
 
 	return true;
