@@ -30,7 +30,7 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
-	App->map->Load("sin nombre.tmx");
+	App->map->Load("proba.tmx");
 	return true;
 }
 

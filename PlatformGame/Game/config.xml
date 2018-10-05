@@ -25,5 +25,10 @@
   <map>
     <folder>maps/</folder>
   </map>
+<scene>
+    <mapname name="MaidInAbyss.tmx"></mapname>
+    <mapname name="DepthsOfTheAbyss.tmx"></mapname>
+    <fadetime value="1"/>
+  </scene>
 
 </config>
