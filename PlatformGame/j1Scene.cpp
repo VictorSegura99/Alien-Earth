@@ -19,9 +19,23 @@ j1Scene::~j1Scene()
 {}
 
 // Called before render is available
-bool j1Scene::Awake()
+bool j1Scene::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Scene");
+
+	
+	for (pugi::xml_node map = config.child("mapname"); map; map = map.next_sibling("mapname"))
+	{
+		
+		p2SString* data = new p2SString;
+
+		data->create(map.attribute("name").as_string());
+		map_name.add(data);
+	}
+
+
+
+
 	bool ret = true;
 
 	return ret;
@@ -30,7 +44,9 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
-	App->map->Load("proba.tmx");
+
+	 App->map->Load(map_name.start->data->GetString());
+
 	return true;
 }
 
@@ -64,7 +80,7 @@ bool j1Scene::Update(float dt)
 	//App->render->Blit(img, 0, 0);
 	App->map->Draw();
 
-	// TODO 7: Set the window title like
+
 	// "Map:%dx%d Tiles:%dx%d Tilesets:%d"
 	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
 					App->map->data.width, App->map->data.height,
