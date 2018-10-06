@@ -26,8 +26,8 @@
     <folder>maps/</folder>
   </map>
 <scene>
-    <mapname name="hello2.tmx"></mapname>
     <mapname name="proba.tmx"></mapname>
+    <mapname name="hello2.tmx"></mapname>
   </scene>
 
 </config>

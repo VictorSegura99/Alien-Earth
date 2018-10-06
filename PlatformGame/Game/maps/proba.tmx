@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="150" height="15" tilewidth="70" tileheight="70" infinite="0" nextlayerid="4" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="150" height="15" tilewidth="70" tileheight="70" nextobjectid="1">
  <tileset firstgid="1" name="tiles_spritesheet" tilewidth="70" tileheight="70" spacing="2" tilecount="264" columns="12">
   <image source="tiles_spritesheet.png" width="862" height="1583"/>
  </tileset>
- <tileset firstgid="265" name="building_sheet" tilewidth="70" tileheight="70" tilecount="98" columns="14">
-  <image source="building_sheet.png" width="980" height="490"/>
- </tileset>
- <layer id="3" name="Capa de Patrones 1" width="150" height="15">
+ <layer name="Capa de Patrones 1" width="150" height="15">
   <data>
    <tile gid="144"/>
    <tile gid="181"/>
@@ -450,14 +447,14 @@
    <tile gid="144"/>
    <tile gid="144"/>
    <tile gid="144"/>
-   <tile gid="327"/>
-   <tile gid="314"/>
-   <tile gid="314"/>
-   <tile gid="314"/>
-   <tile gid="314"/>
-   <tile gid="314"/>
-   <tile gid="314"/>
-   <tile gid="314"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
    <tile gid="144"/>
    <tile gid="144"/>
    <tile gid="144"/>
@@ -599,15 +596,15 @@
    <tile gid="144"/>
    <tile gid="144"/>
    <tile gid="144"/>
-   <tile gid="144"/>
-   <tile gid="313"/>
-   <tile gid="314"/>
-   <tile gid="314"/>
-   <tile gid="314"/>
-   <tile gid="314"/>
-   <tile gid="314"/>
-   <tile gid="314"/>
-   <tile gid="314"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
    <tile gid="181"/>
    <tile gid="182"/>
    <tile gid="144"/>
@@ -749,15 +746,15 @@
    <tile gid="144"/>
    <tile gid="144"/>
    <tile gid="144"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
    <tile gid="144"/>
    <tile gid="144"/>
-   <tile gid="271"/>
-   <tile gid="272"/>
-   <tile gid="272"/>
-   <tile gid="272"/>
-   <tile gid="272"/>
-   <tile gid="272"/>
-   <tile gid="272"/>
+   <tile gid="144"/>
+   <tile gid="144"/>
+   <tile gid="144"/>
+   <tile gid="144"/>
    <tile gid="144"/>
    <tile gid="144"/>
    <tile gid="181"/>
@@ -898,16 +895,16 @@
    <tile gid="144"/>
    <tile gid="144"/>
    <tile gid="144"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
    <tile gid="144"/>
    <tile gid="144"/>
    <tile gid="144"/>
-   <tile gid="285"/>
-   <tile gid="286"/>
-   <tile gid="286"/>
-   <tile gid="286"/>
-   <tile gid="286"/>
-   <tile gid="286"/>
-   <tile gid="286"/>
+   <tile gid="144"/>
+   <tile gid="144"/>
    <tile gid="144"/>
    <tile gid="144"/>
    <tile gid="144"/>
@@ -1049,15 +1046,15 @@
    <tile gid="144"/>
    <tile gid="144"/>
    <tile gid="144"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
    <tile gid="144"/>
    <tile gid="144"/>
-   <tile gid="285"/>
-   <tile gid="286"/>
-   <tile gid="286"/>
-   <tile gid="286"/>
-   <tile gid="286"/>
-   <tile gid="286"/>
-   <tile gid="286"/>
+   <tile gid="144"/>
+   <tile gid="144"/>
+   <tile gid="144"/>
    <tile gid="104"/>
    <tile gid="104"/>
    <tile gid="104"/>
@@ -1200,14 +1197,14 @@
    <tile gid="144"/>
    <tile gid="144"/>
    <tile gid="144"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
    <tile gid="144"/>
-   <tile gid="285"/>
-   <tile gid="275"/>
-   <tile gid="286"/>
-   <tile gid="286"/>
-   <tile gid="286"/>
-   <tile gid="286"/>
-   <tile gid="286"/>
+   <tile gid="144"/>
+   <tile gid="144"/>
+   <tile gid="70"/>
+   <tile gid="144"/>
    <tile gid="153"/>
    <tile gid="153"/>
    <tile gid="153"/>
@@ -1350,14 +1347,14 @@
    <tile gid="244"/>
    <tile gid="144"/>
    <tile gid="144"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
+   <tile gid="191"/>
    <tile gid="144"/>
-   <tile gid="299"/>
-   <tile gid="289"/>
-   <tile gid="300"/>
-   <tile gid="300"/>
-   <tile gid="300"/>
-   <tile gid="300"/>
-   <tile gid="300"/>
+   <tile gid="144"/>
+   <tile gid="144"/>
+   <tile gid="82"/>
+   <tile gid="144"/>
    <tile gid="153"/>
    <tile gid="153"/>
    <tile gid="153"/>

@@ -25,12 +25,10 @@ bool j1Scene::Awake(pugi::xml_node& config)
 
 	
 	for (pugi::xml_node map = config.child("mapname"); map; map = map.next_sibling("mapname")) {
+		p2SString * data = new p2SString;
 		data->create(map.attribute("name").as_string());
 		map_name.add(data);
 	}
-
-
-	
 
 	bool ret = true;
 
@@ -72,8 +70,10 @@ bool j1Scene::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 		App->render->camera.x += 1;
+
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_REPEAT)
 		App->map->ChangeMap(map_name[0]);
+
 	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_REPEAT)
 		App->map->ChangeMap(map_name[1]);
 
