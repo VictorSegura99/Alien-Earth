@@ -62,6 +62,8 @@ iPoint j1Map::MapToWorld(int x, int y) const
 
 bool j1Map::ChangeMap(p2SString * map)
 {
+	CleanUp();
+	Load(map->GetString());
 	return true;
 }
 
