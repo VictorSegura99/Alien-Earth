@@ -33,7 +33,7 @@ public:
 	bool CleanUp();
 
 private:
-	
+	bool knowmap = true;
 	p2List<p2SString*> map_name;
 };
 

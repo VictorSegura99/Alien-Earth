@@ -25,9 +25,17 @@
   <map>
     <folder>maps/</folder>
   </map>
-<scene>
+  
+  <player>
+    <folder>textures/</folder>
+    <sprites name="Alien.png"></sprites>
+  </player>
+  
+  <scene>
     <mapname name="proba.tmx"></mapname>
     <mapname name="hello2.tmx"></mapname>
   </scene>
 
+  
+  
 </config>

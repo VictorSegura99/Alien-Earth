@@ -88,16 +88,24 @@ bool j1Map::CleanUp()
 	// Remove all tilesets
 	p2List_item<TileSet*>* item;
 	item = data.tilesets.start;
-	p2List_item<map_layer*> *itemm;
-	itemm = data.layers.start;
-	while(item != NULL)
+
+	while (item != NULL)
 	{
+		SDL_DestroyTexture(item->data->texture);
 		RELEASE(item->data);
 		item = item->next;
-		RELEASE(itemm->data);
-		itemm = itemm->next;
 	}
 	data.tilesets.clear();
+
+	//Remove all layers
+	p2List_item<map_layer*>* item2;
+	item2 = data.layers.start;
+
+	while (item2 != NULL)
+	{
+		RELEASE(item2->data);
+		item2 = item2->next;
+	}
 	data.layers.clear();
 	map_file.reset();
 
