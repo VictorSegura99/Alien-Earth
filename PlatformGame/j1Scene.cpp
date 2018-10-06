@@ -24,17 +24,13 @@ bool j1Scene::Awake(pugi::xml_node& config)
 	LOG("Loading Scene");
 
 	
-	for (pugi::xml_node map = config.child("mapname"); map; map = map.next_sibling("mapname"))
-	{
-		
-		p2SString* data = new p2SString;
-
+	for (pugi::xml_node map = config.child("mapname"); map; map = map.next_sibling("mapname")) {
 		data->create(map.attribute("name").as_string());
 		map_name.add(data);
 	}
 
 
-
+	
 
 	bool ret = true;
 
@@ -110,6 +106,6 @@ bool j1Scene::PostUpdate()
 bool j1Scene::CleanUp()
 {
 	LOG("Freeing scene");
-
+	delete[] data;
 	return true;
 }
