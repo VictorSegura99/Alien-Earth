@@ -106,6 +106,5 @@ bool j1Scene::PostUpdate()
 bool j1Scene::CleanUp()
 {
 	LOG("Freeing scene");
-	delete[] data;
 	return true;
 }
