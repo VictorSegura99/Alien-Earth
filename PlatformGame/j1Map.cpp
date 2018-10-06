@@ -60,6 +60,15 @@ iPoint j1Map::MapToWorld(int x, int y) const
 	return ret;
 }
 
+bool j1Map::ChangeMap(p2SString * map)
+{
+	CleanUp();
+	Load(map->GetString());
+	return true;
+}
+
+
+
 SDL_Rect TileSet::GetTileRect(int id) const
 {
 	int relative_id = id - firstgid;

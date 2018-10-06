@@ -26,9 +26,8 @@
     <folder>maps/</folder>
   </map>
 <scene>
-    <mapname name="MaidInAbyss.tmx"></mapname>
-    <mapname name="DepthsOfTheAbyss.tmx"></mapname>
-    <fadetime value="1"/>
+    <mapname name="hello2.tmx"></mapname>
+    <mapname name="proba.tmx"></mapname>
   </scene>
 
 </config>
