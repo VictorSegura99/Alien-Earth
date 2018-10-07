@@ -12,6 +12,7 @@
     <ClCompile Include="j1Textures.cpp" />
     <ClCompile Include="j1Window.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
+    <ClCompile Include="jPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Map.h" />
@@ -31,6 +32,8 @@
     <ClInclude Include="p2SString.h" />
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
+    <ClInclude Include="p2Animation.h" />
+    <ClInclude Include="jPlayer.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Game\config.xml" />

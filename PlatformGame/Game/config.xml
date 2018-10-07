@@ -25,9 +25,17 @@
   <map>
     <folder>maps/</folder>
   </map>
-<scene>
-    <mapname name="Map1.tmx"></mapname>
-    <mapname name="hello2.tmx"></mapname>
-  </scene>
+    <scene>
+      <mapname name="Map1.tmx"></mapname>
+      <mapname name="hello2.tmx"></mapname>
+    </scene>
+  
+  <player>
+    <folder>textures/</folder>
+    <sprites name="Alien.png"></sprites>
+  </player>
 
+
+  
+  
 </config>
