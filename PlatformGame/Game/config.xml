@@ -2,7 +2,7 @@
 
 <config>
   <app>
-    <title>Game Development Testbed</title>
+    <title>Game Development Game</title>
     <organization>UPC</organization>
   </app>
 	
@@ -26,7 +26,7 @@
     <folder>maps/</folder>
   </map>
 <scene>
-    <mapname name="proba.tmx"></mapname>
+    <mapname name="Map1.tmx"></mapname>
     <mapname name="hello2.tmx"></mapname>
   </scene>
 
