@@ -66,10 +66,14 @@ bool jPlayer::Update(float dt)
 		position.x -= 1.0f;
 		current_animation = &GoLeft;
 		anime = false;
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+			current_animation = &idle;
+		}
 	}
 	if (anime==false && App->input->GetKey(SDL_SCANCODE_A) == KEY_UP)
 	{
 			current_animation = &idle2;
+			
 	}
 	if(anime && App->input->GetKey(SDL_SCANCODE_D) == KEY_UP)
 	{
