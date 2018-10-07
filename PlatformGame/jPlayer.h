@@ -50,7 +50,7 @@ public:
 	p2SString * data = new p2SString;
 	bool NextMap = false;
 	bool anime = true;
-	
+	bool camerafollow = false;
 
 
 };
