@@ -66,6 +66,9 @@ bool jPlayer::Update(float dt)
 		position.x -= 1.0f;
 		current_animation = &GoLeft;
 		anime = false;
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+			current_animation = &idle;
+		}
 	}
 	if (anime==false && App->input->GetKey(SDL_SCANCODE_A) == KEY_UP)
 	{
@@ -77,8 +80,8 @@ bool jPlayer::Update(float dt)
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) 
 	{
-		position.x = 30;
-		position.y = 405;
+		position.x = initialX;
+		position.y = initialY;
 	}
 	if (position.x >= 10085) {
 		NextMap = true;
@@ -86,10 +89,9 @@ bool jPlayer::Update(float dt)
 	if (position.x >= 500) {
 		camerafollow = true;
 	}
-	if (camerafollow) {
 		App->render->camera.x = -position.x + (App->render->camera.w / 2);
-		App->render->camera.y = -position.y + (App->render->camera.h / 2)-46;
-	}
+		App->render->camera.y = -position.y + (App->render->camera.h / 2);
+
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	
 	
