@@ -8,6 +8,7 @@
 #include "j1Textures.h"
 #include "j1input.h"
 #include "j1Map.h"
+#include "j1Scene.h"
 
 jPlayer::jPlayer() : j1Module()
 {
@@ -70,23 +71,21 @@ bool jPlayer::Update(float dt)
 			current_animation = &idle;
 		}
 	}
-	if (anime==false && App->input->GetKey(SDL_SCANCODE_A) == KEY_UP)
-	{
+	if (anime==false && App->input->GetKey(SDL_SCANCODE_A) == KEY_UP) {
 			current_animation = &idle2;
 			
 	}
-	if(anime && App->input->GetKey(SDL_SCANCODE_D) == KEY_UP)
-	{
+	if(anime && App->input->GetKey(SDL_SCANCODE_D) == KEY_UP) {
 		current_animation = &idle;
 	}
-	if (position.x >= 10085) {
-		NextMap = true;
+	if (App->scene->KnowMap == 0) {
+		if (position.x >= positionWinMap1) {
+			NextMap = true;
+		}
 	}
-	
-	
+
 	App->render->camera.x = -position.x + (App->render->camera.w / 2);
 	App->render->camera.y = -position.y + (App->render->camera.h / 2);
-	
 	
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	

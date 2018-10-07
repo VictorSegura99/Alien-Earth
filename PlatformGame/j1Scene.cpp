@@ -72,45 +72,37 @@ bool j1Scene::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 		App->render->camera.x += 1;
 	if (App->player->NextMap) {
+		KnowMap = 1;
 		App->player->CleanUp();
-		App->map->ChangeMap(map_name[1]);
+		App->map->ChangeMap(map_name[KnowMap]);
 		App->player->Start();
-		KnowMap = 0;
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_REPEAT) {
-		if (KnowMap == 0) {
 			App->player->CleanUp();
 			App->map->ChangeMap(map_name[KnowMap]);
 			App->player->Start();
-			KnowMap = 1;
-		}
+			KnowMap = 0;
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
 	{
 		if (KnowMap == 0) {
-			KnowMap = 1;
 			App->player->CleanUp();
 			App->map->ChangeMap(map_name[KnowMap]);
 			App->player->Start();
-			KnowMap = 0;
 		}
 		else if (KnowMap == 1) {
-			KnowMap = 0;
 			App->player->CleanUp();
 			App->map->ChangeMap(map_name[KnowMap]);
 			App->player->Start();
-			KnowMap = 1;
 		}
 		
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_REPEAT) {
-		if (KnowMap == 1) {
 			App->player->CleanUp();
 			App->map->ChangeMap(map_name[KnowMap]);
 			App->player->Start();
-			KnowMap = 0;
-		}
+			KnowMap = 1;
 	}
 
 	//App->render->Blit(img, 0, 0);
