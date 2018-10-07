@@ -74,15 +74,14 @@ bool jPlayer::Update(float dt)
 	{
 		current_animation = &idle;
 	}
-<<<<<<< HEAD
-=======
+
 	
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) 
 	{
 		position.x = 30;
 		position.y = 405;
 	}
->>>>>>> 665f80a1658448b29a4d7b5fa753531de82af17c
+
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	if (position.x >= 10085) {
 		NextMap = true;
