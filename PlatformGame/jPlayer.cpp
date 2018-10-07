@@ -7,36 +7,24 @@
 #include "j1Render.h"
 #include "j1Textures.h"
 #include "j1input.h"
+#include "j1Map.h"
 
 jPlayer::jPlayer() : j1Module()
 {
 	name.create("player");
-
-	
-	
-
 }
 
-
-jPlayer::~jPlayer()
-{
-}
-
+jPlayer::~jPlayer() {}
 
 bool jPlayer::Awake(pugi::xml_node& config)
 {
 	LOG("Init SDL player");
-	//config = config.child("player");
-	
 	pugi::xml_node sprite = config.child("sprites");
 	data->create(sprite.attribute("name").as_string());
 	sprites_name.add(data);
 	initialX = config.child("positionX").attribute("x").as_float();
 	initialY = config.child("positionY").attribute("y").as_float();
-
 	bool ret = true;
-
-
 	return ret;
 }
 
@@ -47,7 +35,6 @@ bool jPlayer::Start()
 	position.x = initialX;
 	position.y = initialY;
 
-	
 	idle.PushBack({ 142,0,66,86 });
 	idle2.PushBack({ 353,0,66,86 });
 	
@@ -61,23 +48,12 @@ bool jPlayer::Start()
 
 	texture = App->tex->Load(sprites_name.start->data->GetString());
 
-	
-
 	if (texture == nullptr) {
 		LOG("Error loading player texture!");
 		ret = false;
 	}
 	return ret;
-
 }
-
-bool jPlayer::PreUpdate()
-{
-
-	
-	return true;
-}
-
 bool jPlayer::Update(float dt)
 {
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
@@ -92,24 +68,28 @@ bool jPlayer::Update(float dt)
 	}
 	else if (anime==false)
 	{
-		{
 			current_animation = &idle2;
-		}
 	}
 	else if(anime)
 	{
 		current_animation = &idle;
-
 	}
-	
-	
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
+	if (position.x >= 10085) {
+		NextMap = true;
+	}
 	return true;
 }
-
+bool jPlayer::PostUpdate()
+{
+	
+	return true;
+}
 bool jPlayer::CleanUp()
 {
 	App->tex->UnLoad(texture);
+	anime = true;
+	NextMap = false;
 	return true;
 }
 

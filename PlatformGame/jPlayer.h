@@ -24,7 +24,7 @@ public:
 	bool Start();
 
 	//// Called each loop iteration
-	bool PreUpdate();
+	bool PostUpdate();
 
 	//// Called each loop iteration
 	//bool PostUpdate();
@@ -48,7 +48,7 @@ public:
 	SDL_Texture* texture = nullptr;
 	p2List<p2SString*> sprites_name;
 	p2SString * data = new p2SString;
-
+	bool NextMap = false;
 	bool anime = true;
 
 

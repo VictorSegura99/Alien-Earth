@@ -8,6 +8,7 @@
 #include "j1Window.h"
 #include "j1Map.h"
 #include "j1Scene.h"
+#include "jPlayer.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -70,17 +71,29 @@ bool j1Scene::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 		App->render->camera.x += 1;
+	if (App->player->NextMap) {
+		knowmap = false;
+		App->player->CleanUp();
+		App->render->camera.x = 0;
+		App->render->camera.y = 0;
+		App->map->ChangeMap(map_name[1]);
+		App->player->Start();
+	}
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_REPEAT) {
 		if (knowmap == false) {
 			knowmap = true;
+			App->player->CleanUp();
 			App->map->ChangeMap(map_name[0]);
+			App->player->Start();
 		}
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_REPEAT) {
 		if (knowmap) {
 			knowmap = false;
+			App->player->CleanUp();
 			App->map->ChangeMap(map_name[1]);
+			App->player->Start();
 		}
 	}
 
