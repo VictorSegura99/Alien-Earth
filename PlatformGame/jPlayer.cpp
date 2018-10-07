@@ -68,6 +68,7 @@ bool jPlayer::Start()
 		ret = false;
 	}
 	return ret;
+
 }
 
 bool jPlayer::PreUpdate()
@@ -82,22 +83,25 @@ bool jPlayer::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 		position.x += 1.0f;
 		current_animation = &GoRight;
+		anime = true;
 	}
 	else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
 		position.x -= 1.0f;
 		current_animation = &GoLeft;
+		anime = false;
 	}
-	else {
-		if (current_animation == &GoRight)
+	else if (anime==false)
+	{
 		{
-			current_animation = &idle;
-		}
-		else if(current_animation==&GoLeft)
-		{ 
 			current_animation = &idle2;
 		}
 	}
+	else if(anime)
+	{
+		current_animation = &idle;
 
+	}
+	
 	
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	return true;

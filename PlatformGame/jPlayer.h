@@ -49,6 +49,8 @@ public:
 	p2List<p2SString*> sprites_name;
 	p2SString * data = new p2SString;
 
+	bool anime = true;
+
 
 };
 
