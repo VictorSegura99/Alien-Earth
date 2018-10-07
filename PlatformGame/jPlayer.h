@@ -42,8 +42,9 @@ public:
 	fPoint position;
 	p2SString		folder;
 	p2SString		texture_path;
+	const char*		tryy=nullptr;
 	SDL_Texture* texture;
-	const char* mapname = nullptr;
+	
 
 	bool LoadPushbacks();
 

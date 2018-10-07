@@ -26,10 +26,10 @@ jPlayer::~jPlayer()
 bool jPlayer::Awake(pugi::xml_node& config)
 {
 	LOG("Init SDL player");
-	config = config.child("player");
-	folder.create(config.child("folder").child_value());
-	texture_path = config.child("sprites").attribute("name").as_string();
-	texture = App->tex->Load(PATH(folder.GetString(), texture_path.GetString()));
+	//config = config.child("player");
+	tryy = config.child("sprites").attribute("name").as_string();
+	
+	texture = App->tex->Load(tryy);
 
 	bool ret = true;
 

@@ -31,7 +31,6 @@
     </scene>
   
   <player>
-    <folder>textures/</folder>
     <sprites name="Alien.png"></sprites>
   </player>
 
