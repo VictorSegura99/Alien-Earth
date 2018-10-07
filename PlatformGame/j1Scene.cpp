@@ -74,6 +74,8 @@ bool j1Scene::Update(float dt)
 	if (App->player->NextMap) {
 		knowmap = false;
 		App->player->CleanUp();
+		App->render->camera.x = 0;
+		App->render->camera.y = 0;
 		App->map->ChangeMap(map_name[1]);
 		App->player->Start();
 	}
