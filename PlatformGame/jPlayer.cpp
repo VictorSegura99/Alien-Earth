@@ -36,6 +36,7 @@ bool jPlayer::Start()
 	position.y = initialY;
 
 	idle.PushBack({ 142,0,66,86 });
+
 	idle2.PushBack({ 353,0,66,86 });
 	
 	GoRight.PushBack({ 0,0,67,86 });
@@ -47,7 +48,7 @@ bool jPlayer::Start()
 	GoLeft.speed = 0.03f;
 
 	texture = App->tex->Load(sprites_name.start->data->GetString());
-
+	current_animation = &idle;
 	if (texture == nullptr) {
 		LOG("Error loading player texture!");
 		ret = false;
@@ -66,38 +67,32 @@ bool jPlayer::Update(float dt)
 		current_animation = &GoLeft;
 		anime = false;
 	}
-	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
-		position.y += 1.0f;
-		current_animation = &GoRight;
-		anime = true;
-	}
-	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
-		position.y -= 1.0f;
-		current_animation = &GoRight;
-		anime = true;
-	}
-	if (anime==false)
+	if (anime==false && App->input->GetKey(SDL_SCANCODE_A) == KEY_UP)
 	{
 			current_animation = &idle2;
 	}
-	if(anime)
+	if(anime && App->input->GetKey(SDL_SCANCODE_D) == KEY_UP)
 	{
 		current_animation = &idle;
 	}
-
-	
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) 
 	{
 		position.x = 30;
 		position.y = 405;
 	}
-
-	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	if (position.x >= 10085) {
 		NextMap = true;
 	}
-	App->render->camera.x = -position.x + (App->render->camera.w / 2);
-	App->render->camera.y = -position.y + (App->render->camera.h / 2);
+	if (position.x >= 500) {
+		camerafollow = true;
+	}
+	if (camerafollow) {
+		App->render->camera.x = -position.x + (App->render->camera.w / 2);
+		App->render->camera.y = -position.y + (App->render->camera.h / 2)-46;
+	}
+	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
+	
+	
 	return true;
 }
 bool jPlayer::PostUpdate()
