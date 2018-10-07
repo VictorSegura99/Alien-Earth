@@ -39,6 +39,7 @@ public:
 	
 	Animation* current_animation = nullptr;
 	Animation idle;
+	Animation idle2;
 	Animation GoLeft;
 	Animation GoRight;
 	fPoint position;

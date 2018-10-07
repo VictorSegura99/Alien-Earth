@@ -48,14 +48,15 @@ bool jPlayer::Start()
 	position.y = initialY;
 
 	
-	idle.PushBack({ 147,0,65,82 });
+	idle.PushBack({ 142,0,66,86 });
+	idle2.PushBack({ 353,0,66,86 });
 	
-	GoRight.PushBack({ 0,0,67,83 });
-	GoRight.PushBack({ 72,0,70,86 });
+	GoRight.PushBack({ 0,0,67,86 });
+	GoRight.PushBack({ 69,0,70,86 });
 	GoRight.speed = 0.03f;
 
-	GoLeft.PushBack({ 292,0,67,83 });
-	GoLeft.PushBack({ 217,0,70,86 });
+	GoLeft.PushBack({ 285,0,67,86 });
+	GoLeft.PushBack({ 212,0,70,87 });
 	GoLeft.speed = 0.03f;
 
 	texture = App->tex->Load(sprites_name.start->data->GetString());
@@ -79,15 +80,23 @@ bool jPlayer::PreUpdate()
 bool jPlayer::Update(float dt)
 {
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-		position.x += 2.0f;
+		position.x += 1.0f;
 		current_animation = &GoRight;
 	}
 	else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-		position.x -= 2.0f;
+		position.x -= 1.0f;
 		current_animation = &GoLeft;
 	}
 	else {
-		current_animation = &idle;
+		if (current_animation == &GoRight)
+		{
+			current_animation = &idle;
+		}
+		else if(current_animation==&GoLeft)
+		{ 
+			current_animation = &idle2;
+		}
+		else(current_animation = nullptr);
 	}
 
 	
