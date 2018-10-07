@@ -96,7 +96,6 @@ bool jPlayer::Update(float dt)
 		{ 
 			current_animation = &idle2;
 		}
-		else(current_animation = nullptr);
 	}
 
 	
