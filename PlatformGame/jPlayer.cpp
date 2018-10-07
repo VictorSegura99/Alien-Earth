@@ -83,13 +83,12 @@ bool jPlayer::Update(float dt)
 	if (position.x >= 10085) {
 		NextMap = true;
 	}
-	if (position.x >= 500) {
-		camerafollow = true;
-	}
-	if (camerafollow) {
-		App->render->camera.x = -position.x + (App->render->camera.w / 2);
-		App->render->camera.y = -position.y + (App->render->camera.h / 2)-46;
-	}
+
+	
+
+	App->render->camera.x = -position.x + (App->render->camera.w / 2);
+	App->render->camera.y = -position.y + (App->render->camera.h / 2);
+	
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	
 	
