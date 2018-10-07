@@ -61,16 +61,26 @@ bool jPlayer::Update(float dt)
 		current_animation = &GoRight;
 		anime = true;
 	}
-	else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
 		position.x -= 1.0f;
 		current_animation = &GoLeft;
 		anime = false;
 	}
-	else if (anime==false)
+	if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
+		position.y += 1.0f;
+		current_animation = &GoRight;
+		anime = true;
+	}
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
+		position.y -= 1.0f;
+		current_animation = &GoRight;
+		anime = true;
+	}
+	if (anime==false)
 	{
 			current_animation = &idle2;
 	}
-	else if(anime)
+	if(anime)
 	{
 		current_animation = &idle;
 	}
@@ -86,6 +96,8 @@ bool jPlayer::Update(float dt)
 	if (position.x >= 10085) {
 		NextMap = true;
 	}
+	App->render->camera.x = -position.x + (App->render->camera.w / 2);
+	App->render->camera.y = -position.y + (App->render->camera.h / 2);
 	return true;
 }
 bool jPlayer::PostUpdate()
