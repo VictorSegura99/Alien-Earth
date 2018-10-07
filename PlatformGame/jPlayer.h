@@ -39,14 +39,15 @@ public:
 	
 	Animation* current_animation = nullptr;
 	Animation idle;
+	Animation GoLeft;
+	Animation GoRight;
 	fPoint position;
-	p2SString		folder;
-	p2SString		texture_path;
-	const char*		tryy=nullptr;
-	SDL_Texture* texture;
+	float initialX = 0.0f;
+	float initialY = 0.0f;
+	SDL_Texture* texture = nullptr;
 	p2List<p2SString*> sprites_name;
 	p2SString * data = new p2SString;
-	bool LoadPushbacks();
+
 
 };
 

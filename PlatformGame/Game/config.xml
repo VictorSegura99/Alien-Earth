@@ -32,6 +32,8 @@
   
   <player>
     <sprites name="Alien.png"></sprites>
+    <positionX x="30"></positionX>
+    <positionY y="408"></positionY>
   </player>
 
 
