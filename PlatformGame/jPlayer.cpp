@@ -27,9 +27,12 @@ bool jPlayer::Awake(pugi::xml_node& config)
 {
 	LOG("Init SDL player");
 	//config = config.child("player");
-	tryy = config.child("sprites").attribute("name").as_string();
 	
-	texture = App->tex->Load(tryy);
+	pugi::xml_node sprite = config.child("sprites");
+	data->create(sprite.attribute("name").as_string());
+	sprites_name.add(data);
+	
+
 
 	bool ret = true;
 
@@ -39,11 +42,19 @@ bool jPlayer::Awake(pugi::xml_node& config)
 
 bool jPlayer::Start()
 {
-	
+	bool ret = true;
+	texture = App->tex->Load(sprites_name.start->data->GetString());
+	idle.PushBack({ 147,0,65,82 });
+	current_animation = &idle;
 	position.x = 30;
 	position.y = 60;
-	bool ret = true;
-	LoadPushbacks();
+	
+	if (texture == nullptr) {
+		LOG("Error loading player texture!");
+		ret = false;
+	}
+
+	
 
 	return ret;
 }

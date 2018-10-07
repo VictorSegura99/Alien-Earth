@@ -35,6 +35,7 @@ public:
 private:
 	bool knowmap = true;
 	p2List<p2SString*> map_name;
+
 };
 
 #endif // __j1SCENE_H__

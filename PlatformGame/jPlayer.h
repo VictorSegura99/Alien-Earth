@@ -44,8 +44,8 @@ public:
 	p2SString		texture_path;
 	const char*		tryy=nullptr;
 	SDL_Texture* texture;
-	
-
+	p2List<p2SString*> sprites_name;
+	p2SString * data = new p2SString;
 	bool LoadPushbacks();
 
 };
