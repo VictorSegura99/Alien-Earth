@@ -33,9 +33,9 @@ public:
 	bool CleanUp();
 
 private:
-	bool knowmap = true;
+	int KnowMap = 1; // KnowMap == 1 Map2 is working  // KnowMap == 0 Map1 is working
 	p2List<p2SString*> map_name;
-
+	bool knowmap = true;
 };
 
 #endif // __j1SCENE_H__

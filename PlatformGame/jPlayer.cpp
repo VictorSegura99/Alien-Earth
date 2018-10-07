@@ -79,19 +79,14 @@ bool jPlayer::Update(float dt)
 	{
 		current_animation = &idle;
 	}
-	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) 
-	{
-		position.x = 30;
-		position.y = 405;
-	}
 	if (position.x >= 10085) {
 		NextMap = true;
 	}
-
 	
-
+	
 	App->render->camera.x = -position.x + (App->render->camera.w / 2);
 	App->render->camera.y = -position.y + (App->render->camera.h / 2);
+	
 	
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	
