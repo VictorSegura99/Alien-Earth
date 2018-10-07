@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="150" height="15" tilewidth="70" tileheight="70" infinite="0" nextlayerid="2" nextobjectid="1">
- <tileset firstgid="1" name="tiles_spritesheet" tilewidth="70" tileheight="70" spacing="2" tilecount="396" columns="18">
-  <image source="tiles_spritesheet.png" width="1294" height="1583"/>
+ <tileset firstgid="1" name="tiles_spritesheet" tilewidth="70" tileheight="70" spacing="2" tilecount="522" columns="18">
+  <image source="tiles_spritesheet.png" width="1294" height="2086"/>
  </tileset>
  <layer id="1" name="Capa de Patrones 1" width="150" height="15">
   <data>
