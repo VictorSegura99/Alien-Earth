@@ -102,7 +102,11 @@ bool jPlayer::Update(float dt)
 
 	}
 	
-	
+	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) 
+	{
+		position.x = 30;
+		position.y = 405;
+	}
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	return true;
 }
