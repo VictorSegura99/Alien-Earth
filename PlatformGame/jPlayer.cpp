@@ -89,7 +89,17 @@ bool jPlayer::Update(float dt)
 		}
 	}
 
-	App->render->camera.x = -position.x + (App->render->camera.w / 2);
+	if (App->scene->KnowMap == 1) {
+		if (position.x <= 560) {
+			App->render->camera.x = -60;
+		}
+		else {
+			App->render->camera.x = -position.x + (App->render->camera.w / 2);
+		}
+	}
+	else {
+		App->render->camera.x = -position.x + (App->render->camera.w / 2);
+	}
 	App->render->camera.y = -position.y + (App->render->camera.h / 2);
 	
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));

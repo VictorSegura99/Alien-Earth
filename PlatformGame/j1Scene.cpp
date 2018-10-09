@@ -31,6 +31,8 @@ bool j1Scene::Awake(pugi::xml_node& config)
 		map_name.add(data);
 	}
 
+	music = config.child("music").text().as_string();
+
 	bool ret = true;
 
 	return ret;
@@ -40,7 +42,8 @@ bool j1Scene::Awake(pugi::xml_node& config)
 bool j1Scene::Start()
 {
 
-	 App->map->Load(map_name.start->data->GetString());
+	App->map->Load(map_name.start->data->GetString());
+	App->audio->PlayMusic(music, 1.0f);
 	return true;
 }
 
