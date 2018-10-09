@@ -88,13 +88,9 @@ bool jPlayer::Update(float dt)
 			NextMap = true;
 		}
 	}
-
-	if (App->scene->KnowMap == 1) {
-		if (position.x <= 560) {
+	if (position.x <= 560) {
+		if (App->scene->KnowMap == 1) {
 			App->render->camera.x = -60;
-		}
-		else {
-			App->render->camera.x = -position.x + (App->render->camera.w / 2);
 		}
 	}
 	else {
