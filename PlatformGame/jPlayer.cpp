@@ -20,9 +20,7 @@ jPlayer::~jPlayer() {}
 bool jPlayer::Awake(pugi::xml_node& config)
 {
 	LOG("Init SDL player");
-	pugi::xml_node sprite = config.child("sprites");
-	data->create(sprite.attribute("name").as_string());
-	sprites_name.add(data);
+	sprites_name = config.child("sprites").text().as_string();
 	initialX = config.child("positionX").attribute("x").as_float();
 	initialY = config.child("positionY").attribute("y").as_float();
 	bool ret = true;
@@ -48,7 +46,7 @@ bool jPlayer::Start()
 	GoLeft.PushBack({ 212,0,70,87 });
 	GoLeft.speed = 0.03f;
 
-	texture = App->tex->Load(sprites_name.start->data->GetString());
+	texture = App->tex->Load(sprites_name.GetString());
 	current_animation = &idle;
 	if (texture == nullptr) {
 		LOG("Error loading player texture!");

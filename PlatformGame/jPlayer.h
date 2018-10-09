@@ -46,8 +46,7 @@ public:
 	float initialX = 0.0f;
 	float initialY = 0.0f;
 	SDL_Texture* texture = nullptr;
-	p2List<p2SString*> sprites_name;
-	p2SString * data = new p2SString;
+	p2SString sprites_name;
 	bool NextMap = false;
 	bool anime = true;
 	int positionWinMap1 = 10780;

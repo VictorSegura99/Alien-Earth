@@ -31,7 +31,7 @@
     </scene>
   
   <player>
-    <sprites name="Alien.png"></sprites>
+    <sprites>textures/Alien.png</sprites>
     <positionX x="600"></positionX>
     <positionY y="545"></positionY>
   </player>
