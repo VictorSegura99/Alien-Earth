@@ -52,7 +52,7 @@ public:
 	bool NextMap = false;
 	bool anime = true;
 	int positionWinMap1 = 10780;
-
+	int startpointcameramap2 = -60;
 
 };
 

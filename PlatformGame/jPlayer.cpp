@@ -90,7 +90,7 @@ bool jPlayer::Update(float dt)
 	}
 	if (position.x <= 560) {
 		if (App->scene->KnowMap == 1) {
-			App->render->camera.x = -60;
+			App->render->camera.x = startpointcameramap2;
 		}
 	}
 	else {
