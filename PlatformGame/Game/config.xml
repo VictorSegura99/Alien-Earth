@@ -27,7 +27,7 @@
   </map>
     <scene>
       <mapname name="Map1.tmx"></mapname>
-      <mapname name="hello2.tmx"></mapname>
+      <mapname name="Map2.tmx"></mapname>
     </scene>
   
   <player>
