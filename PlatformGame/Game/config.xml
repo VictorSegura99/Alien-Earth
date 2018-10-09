@@ -32,8 +32,10 @@
   
   <player>
     <sprites>textures/Alien.png</sprites>
-    <positionX x="600"></positionX>
-    <positionY y="545"></positionY>
+    <positionXmap1 x="600"></positionXmap1>
+    <positionYmap1 y="545"></positionYmap1>
+    <positionXmap2 x="145"></positionXmap2>
+    <positionYmap2 y="333"></positionYmap2>
   </player>
 
 

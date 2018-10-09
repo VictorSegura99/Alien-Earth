@@ -147,7 +147,7 @@ bool j1Map::Load(const char* file_name)
 		data.tilesets.add(set);
 	}
 
-	// TODO 4: Iterate all layers and load each of them
+
 	// Load layer info ----------------------------------------------
 	pugi::xml_node layers;
 	for (layers = map_file.child("map").child("layer"); layers && ret; layers = layers.next_sibling("layer"))
@@ -179,9 +179,6 @@ bool j1Map::Load(const char* file_name)
 			LOG("spacing: %d margin: %d", s->spacing, s->margin);
 			item = item->next;
 		}
-
-		// TODO 4: Add info here about your loaded layers
-		// Adapt this vcode with your own variables
 		
 		p2List_item<map_layer*>* item_layer = data.layers.start;
 		while(item_layer != NULL)
@@ -326,7 +323,6 @@ bool j1Map::LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set)
 	return ret;
 }
 
-// TODO 3: Create the definition for a function that loads a single layer
 bool j1Map::LoadLayer(pugi::xml_node& node, map_layer* layer) {
 	
 	bool ret = true;

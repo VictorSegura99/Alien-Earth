@@ -43,8 +43,10 @@ public:
 	Animation GoLeft;
 	Animation GoRight;
 	fPoint position;
-	float initialX = 0.0f;
-	float initialY = 0.0f;
+	float initialXmap1 = 0.0f;
+	float initialYmap1 = 0.0f;
+	float initialXmap2 = 0.0f;
+	float initialYmap2 = 0.0f;
 	SDL_Texture* texture = nullptr;
 	p2SString sprites_name;
 	bool NextMap = false;

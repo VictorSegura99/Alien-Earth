@@ -21,8 +21,10 @@ bool jPlayer::Awake(pugi::xml_node& config)
 {
 	LOG("Init SDL player");
 	sprites_name = config.child("sprites").text().as_string();
-	initialX = config.child("positionX").attribute("x").as_float();
-	initialY = config.child("positionY").attribute("y").as_float();
+	initialXmap1 = config.child("positionXmap1").attribute("x").as_float();
+	initialYmap1 = config.child("positionYmap1").attribute("y").as_float();
+	initialXmap2 = config.child("positionXmap2").attribute("x").as_float();
+	initialYmap2 = config.child("positionYmap2").attribute("y").as_float();
 	bool ret = true;
 	return ret;
 }
@@ -30,9 +32,14 @@ bool jPlayer::Awake(pugi::xml_node& config)
 bool jPlayer::Start()
 {
 	bool ret = true;
-
-	position.x = initialX;
-	position.y = initialY;
+	if (App->scene->KnowMap == 0) {
+		position.x = initialXmap1;
+		position.y = initialYmap1;
+	}
+	else if (App->scene->KnowMap == 1) {
+		position.x = initialXmap2;
+		position.y = initialYmap2;
+	}
 
 	idle.PushBack({ 142,0,66,86 });
 
