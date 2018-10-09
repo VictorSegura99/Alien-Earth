@@ -22,7 +22,7 @@ bool j1Map::Awake(pugi::xml_node& config)
 	bool ret = true;
 
 	folder.create(config.child("folder").child_value());
-	//folder.create(config.child("name").child_value());
+	
 	return ret;
 }
 
@@ -31,22 +31,18 @@ void j1Map::Draw()
 	if(map_loaded == false)
 		return;
 
-	
-	map_layer* layer = data.layers.start->data;
-	TileSet* tileset = data.tilesets.start->data;
-	for (int y = 0; y < layer->height; y++) {
-
-		for (int i = 0; i < layer->width; i++) {
-			uint id = layer->data[(layer->width*y)+i];	
-			SDL_Rect rect = tileset->GetTileRect(id);
-
-			App->render->Blit(tileset->texture, i*tileset->tile_width, y*tileset->tile_height, &rect);
+	for (layer = data.layers.start; layer != nullptr; layer = layer->next) {
+		for (tileset = data.tilesets.start; tileset != nullptr; tileset = tileset->next) {
+			for (uint i = 0; i < layer->data->width; ++i) {
+				for (uint j = 0; j < layer->data->height; ++j) {
+					uint gid = layer->data->Get(i, j);
+					iPoint pos = MapToWorld(i, j);
+					SDL_Rect rect = tileset->data->GetTileRect(gid);
+					App->render->Blit(tileset->data->texture, pos.x, pos.y, &rect);
+				}
+			}
 		}
 	}
-	
-
-	
-
 }
 
 

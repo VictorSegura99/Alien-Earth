@@ -111,6 +111,8 @@ private:
 	pugi::xml_document	map_file;
 	p2SString			folder;
 	bool				map_loaded;
+	p2List_item<map_layer*>* layer = nullptr;
+	p2List_item<TileSet*>* tileset = nullptr;
 };
 
 #endif // __j1MAP_H__
