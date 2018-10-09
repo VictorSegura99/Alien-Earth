@@ -41,7 +41,6 @@ bool j1Scene::Start()
 {
 
 	 App->map->Load(map_name.start->data->GetString());
-
 	return true;
 }
 
