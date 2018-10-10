@@ -13,7 +13,7 @@
  <imagelayer name="Capa de Imagen 1" visible="0">
   <image source="bg_shroom.png" width="12000" height="1190"/>
  </imagelayer>
- <layer name="Capa de patrones 4" width="160" height="21" offsetx="0" offsety="-279.788">
+ <layer name="Capa de patrones 4" width="160" height="21" offsetx="-0.130435" offsety="-280.005">
   <data>
    <tile gid="238"/>
    <tile gid="238"/>
