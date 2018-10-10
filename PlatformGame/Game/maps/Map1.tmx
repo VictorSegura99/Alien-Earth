@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="160" height="17" tilewidth="70" tileheight="70" infinite="0" nextlayerid="6" nextobjectid="1">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="160" height="17" tilewidth="70" tileheight="70" infinite="0" nextobjectid="1">
  <tileset firstgid="1" name="tiles_spritesheet" tilewidth="70" tileheight="70" spacing="2" tilecount="522" columns="18">
   <image source="tiles_spritesheet.png" width="1294" height="2086"/>
  </tileset>
- <imagelayer id="1" name="Capa de Imagen 1" visible="0">
+ <imagelayer name="Capa de Imagen 1" visible="0">
   <image source="bg_grasslands.png" width="12000" height="1190"/>
  </imagelayer>
- <layer id="5" name="Capa de patrones 4" width="160" height="17">
+ <layer name="Capa de patrones 4" width="160" height="17">
   <data>
    <tile gid="239"/>
    <tile gid="239"/>
@@ -2730,7 +2730,7 @@
    <tile gid="239"/>
   </data>
  </layer>
- <layer id="2" name="Capa de Patrones 1" width="160" height="17">
+ <layer name="Capa de Patrones 1" width="160" height="17">
   <data>
    <tile gid="225"/>
    <tile gid="225"/>
@@ -3334,8 +3334,8 @@
    <tile gid="240"/>
    <tile gid="210"/>
    <tile gid="210"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
    <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="210"/>
@@ -3359,7 +3359,7 @@
    <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="240"/>
-   <tile gid="238"/>
+   <tile gid="240"/>
    <tile gid="240"/>
    <tile gid="289"/>
    <tile gid="290"/>
@@ -3519,7 +3519,7 @@
    <tile gid="253"/>
    <tile gid="254"/>
    <tile gid="240"/>
-   <tile gid="210"/>
+   <tile gid="240"/>
    <tile gid="240"/>
    <tile gid="240"/>
    <tile gid="240"/>
@@ -4153,11 +4153,11 @@
    <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="210"/>
-   <tile gid="210"/>
-   <tile gid="117"/>
-   <tile gid="210"/>
-   <tile gid="210"/>
-   <tile gid="210"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
    <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="210"/>
@@ -4312,13 +4312,13 @@
    <tile gid="240"/>
    <tile gid="240"/>
    <tile gid="210"/>
-   <tile gid="210"/>
-   <tile gid="210"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
    <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="117"/>
-   <tile gid="210"/>
+   <tile gid="240"/>
    <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="210"/>
@@ -4472,9 +4472,9 @@
    <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="210"/>
+   <tile gid="240"/>
+   <tile gid="210"/>
    <tile gid="117"/>
-   <tile gid="210"/>
-   <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="210"/>
@@ -4639,7 +4639,7 @@
    <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="210"/>
-   <tile gid="152"/>
+   <tile gid="170"/>
    <tile gid="152"/>
    <tile gid="152"/>
    <tile gid="152"/>
@@ -4759,17 +4759,17 @@
    <tile gid="228"/>
    <tile gid="242"/>
    <tile gid="210"/>
-   <tile gid="210"/>
-   <tile gid="238"/>
-   <tile gid="210"/>
-   <tile gid="210"/>
-   <tile gid="210"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
    <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="210"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
+   <tile gid="210"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
    <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="210"/>
@@ -4919,8 +4919,8 @@
    <tile gid="228"/>
    <tile gid="210"/>
    <tile gid="210"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
    <tile gid="210"/>
    <tile gid="187"/>
    <tile gid="172"/>
@@ -4929,7 +4929,7 @@
    <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="210"/>
-   <tile gid="238"/>
+   <tile gid="240"/>
    <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="45"/>
@@ -4940,7 +4940,7 @@
    <tile gid="152"/>
    <tile gid="152"/>
    <tile gid="152"/>
-   <tile gid="210"/>
+   <tile gid="185"/>
    <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="210"/>
@@ -4958,7 +4958,7 @@
    <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="210"/>
-   <tile gid="238"/>
+   <tile gid="240"/>
    <tile gid="225"/>
    <tile gid="225"/>
    <tile gid="225"/>
@@ -5078,8 +5078,8 @@
    <tile gid="228"/>
    <tile gid="228"/>
    <tile gid="210"/>
-   <tile gid="210"/>
-   <tile gid="238"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
    <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="210"/>
@@ -5100,25 +5100,25 @@
    <tile gid="225"/>
    <tile gid="225"/>
    <tile gid="225"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
    <tile gid="225"/>
    <tile gid="225"/>
    <tile gid="225"/>
@@ -5238,8 +5238,8 @@
    <tile gid="228"/>
    <tile gid="228"/>
    <tile gid="210"/>
-   <tile gid="210"/>
-   <tile gid="210"/>
+   <tile gid="240"/>
+   <tile gid="240"/>
    <tile gid="210"/>
    <tile gid="210"/>
    <tile gid="210"/>
@@ -5260,25 +5260,25 @@
    <tile gid="225"/>
    <tile gid="225"/>
    <tile gid="225"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
    <tile gid="225"/>
    <tile gid="225"/>
    <tile gid="225"/>
@@ -5420,25 +5420,25 @@
    <tile gid="225"/>
    <tile gid="225"/>
    <tile gid="225"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
-   <tile gid="238"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
+   <tile gid="210"/>
    <tile gid="225"/>
    <tile gid="225"/>
    <tile gid="225"/>
@@ -5454,7 +5454,7 @@
    <tile gid="225"/>
   </data>
  </layer>
- <layer id="3" name="Capa de patrones 2" width="160" height="17">
+ <layer name="Capa de patrones 2" width="160" height="17">
   <data>
    <tile/>
    <tile/>
@@ -8178,7 +8178,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="4" name="Capa de patrones 3" width="160" height="17" opacity="0.8">
+ <layer name="Capa de patrones 3" width="160" height="17" opacity="0.8">
   <data>
    <tile/>
    <tile/>
