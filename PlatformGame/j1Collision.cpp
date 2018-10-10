@@ -69,18 +69,17 @@ bool j1Collision::PreUpdate()
 // Called before render is available
 bool j1Collision::Update(float dt)
 {
-
+	if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+		debug = !debug;
 	DebugDraw();
 
-	
 
 	return true;
 }
 
 void j1Collision::DebugDraw()
 {
-	if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
-		debug = !debug;
+
 	if (debug == false)
 		return;
 
@@ -95,11 +94,11 @@ void j1Collision::DebugDraw()
 		case COLLIDER_NONE: // white
 			App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 			break;
-		case COLLIDER_WALL: // blue
-			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
-			break;
-		case COLLIDER_PLAYER: // green
+		case COLLIDER_WALL: // GREEN
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
+			break;
+		case COLLIDER_PLAYER: // BLUE
+			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
 			break;
 		}
 	}

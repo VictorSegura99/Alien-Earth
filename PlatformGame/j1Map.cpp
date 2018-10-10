@@ -93,7 +93,7 @@ bool j1Map::CleanUp()
 		item = item->next;
 	}
 	data.tilesets.clear();
-
+	App->collision->CleanUp();
 	//Remove all layers
 	p2List_item<map_layer*>* item2;
 	item2 = data.layers.start;
@@ -162,7 +162,16 @@ bool j1Map::Load(const char* file_name)
 		data.layers.add(set);
 	}
 
+	pugi::xml_node colliders = map_file.child("map").child("objectgroup");
 
+	for (pugi::xml_node col = colliders.child("object"); col; col = col.next_sibling("object")) {
+		SDL_Rect rect;
+		rect.x = col.attribute("x").as_int();
+		rect.y = col.attribute("y").as_int();
+		rect.w = col.attribute("width").as_int();
+		rect.h = col.attribute("height").as_int();
+		App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WALL);
+	}
 
 	if(ret == true)
 	{
@@ -345,16 +354,4 @@ bool j1Map::LoadLayer(pugi::xml_node& node, map_layer* layer) {
 	return ret;
 }
 
-bool j1Map::LoadColliders(pugi::xml_node & node)
-{
-	for (pugi::xml_node col = node.child("object"); col; col = col.next_sibling("object")) {
-		SDL_Rect r;
-		r.x = col.attribute("x").as_int();
-		r.y = col.attribute("y").as_int();
-		r.w = col.attribute("width").as_int();
-		r.h = col.attribute("height").as_int();
-		App->collision->AddCollider(r, COLLIDER_TYPE::COLLIDER_WALL);
 
-	}
-	return true;
-}

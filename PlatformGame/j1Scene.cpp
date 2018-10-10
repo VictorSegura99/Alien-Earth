@@ -9,7 +9,6 @@
 #include "j1Map.h"
 #include "j1Scene.h"
 #include "jPlayer.h"
-
 j1Scene::j1Scene() : j1Module()
 {
 	name.create("scene");
@@ -43,7 +42,7 @@ bool j1Scene::Start()
 {
 
 	App->map->Load(map_name.start->data->GetString());
-	App->audio->PlayMusic(music, 1.0f);
+
 	return true;
 }
 
