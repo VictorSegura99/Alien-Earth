@@ -13,6 +13,7 @@
     <ClCompile Include="j1Window.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
     <ClCompile Include="jPlayer.cpp" />
+    <ClCompile Include="j1Collision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Map.h" />
@@ -34,6 +35,7 @@
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
     <ClInclude Include="p2Animation.h" />
     <ClInclude Include="jPlayer.h" />
+    <ClInclude Include="j1Collision.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Game\config.xml" />

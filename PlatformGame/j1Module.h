@@ -10,9 +10,12 @@
 #include "PugiXml\src\pugixml.hpp"
 
 class j1App;
-
+struct Collider;
 class j1Module
 {
+private:
+	bool enabled = true;
+
 public:
 
 	j1Module() : active(false)
@@ -68,6 +71,26 @@ public:
 	{
 		return true;
 	}
+	void Enable()
+	{
+		if (enabled == false)
+		{
+			enabled = true;
+			Start();
+		}
+	}
+
+	void Disable()
+	{
+		if (enabled == true)
+		{
+			enabled = false;
+			CleanUp();
+		}
+	}
+
+	// Callbacks ---
+	virtual void OnCollision(Collider*, Collider*) {}
 
 public:
 

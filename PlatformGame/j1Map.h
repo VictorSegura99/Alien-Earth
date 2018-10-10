@@ -6,6 +6,7 @@
 #include "p2Point.h"
 #include "j1Module.h"
 
+
 // TODO 1: Create a struct for the map layer
 // ----------------------------------------------------
 struct map_layer {
@@ -100,7 +101,7 @@ private:
 	bool LoadTilesetDetails(pugi::xml_node& tileset_node, TileSet* set);
 	bool LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set);
 	bool LoadLayer(pugi::xml_node& node, map_layer* layer);
-	
+	bool LoadColliders(pugi::xml_node& node);
 
 public:
 
