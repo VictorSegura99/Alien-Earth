@@ -9,6 +9,7 @@
 #include "j1input.h"
 #include "j1Map.h"
 #include "j1Scene.h"
+#include "j1Collision.h"
 
 jPlayer::jPlayer() : j1Module()
 {
@@ -59,17 +60,22 @@ bool jPlayer::Start()
 		LOG("Error loading player texture!");
 		ret = false;
 	}
+	coll = App->collision->AddCollider({ 0, 0, 70, 87 }, COLLIDER_PLAYER, this);
 	return ret;
 }
 bool jPlayer::Update(float dt)
 {
+	position.y -= gravity;
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) {
+		position.y -= 20.5f;
+	}
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-		position.x += 1.0f;
+		position.x += 5.0f;
 		current_animation = &GoRight;
 		anime = true;
 	}
 	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-		position.x -= 1.0f;
+		position.x -= 5.0f;
 		current_animation = &GoLeft;
 		anime = false;
 		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
@@ -96,7 +102,11 @@ bool jPlayer::Update(float dt)
 	}
 	App->render->camera.y = -position.y + (App->render->camera.h / 2);
 	
+
+	coll->SetPos(position.x, position.y);
+
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
+	
 	
 	
 	return true;
@@ -111,7 +121,14 @@ bool jPlayer::CleanUp()
 	App->tex->UnLoad(texture);
 	anime = true;
 	NextMap = false;
+	if (coll)
+		coll->to_delete = true;
 	return true;
+}
+
+void jPlayer::OnCollision(Collider * c1, Collider * c2)
+{
+	position.y -= 4.8f;
 }
 
 

@@ -4,7 +4,7 @@
 #include "j1Module.h"
 #include "p2Animation.h"
 #include "p2Point.h"
-
+#include "j1Collision.h"
 struct SDL_Texture;
 struct SDL_Rect;
 
@@ -34,7 +34,7 @@ public:
 
 	//Called before quitting
 	bool CleanUp();
-
+	void OnCollision(Collider* c1, Collider* c2);
 public:
 	
 	Animation* current_animation = nullptr;
@@ -43,6 +43,7 @@ public:
 	Animation GoLeft;
 	Animation GoRight;
 	fPoint position;
+	Collider* coll = nullptr;
 	float initialXmap1 = 0.0f;
 	float initialYmap1 = 0.0f;
 	float initialXmap2 = 0.0f;
@@ -53,7 +54,7 @@ public:
 	bool anime = true;
 	int positionWinMap1 = 10780;
 	int startpointcameramap2 = -60;
-
+	float gravity = -4.8f;
 };
 
 

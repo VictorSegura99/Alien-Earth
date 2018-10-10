@@ -34,7 +34,7 @@
   <player>
     <sprites>textures/Alien.png</sprites>
     <positionXmap1 x="600"></positionXmap1>
-    <positionYmap1 y="545"></positionYmap1>
+    <positionYmap1 y="245"></positionYmap1>
     <positionXmap2 x="145"></positionXmap2>
     <positionYmap2 y="333"></positionYmap2>
   </player>

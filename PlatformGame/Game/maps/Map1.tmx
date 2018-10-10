@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="160" height="17" tilewidth="70" tileheight="70" nextobjectid="48">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="160" height="17" tilewidth="70" tileheight="70" nextobjectid="84">
  <tileset firstgid="1" name="tiles_spritesheet" tilewidth="70" tileheight="70" spacing="2" tilecount="522" columns="18">
   <image source="tiles_spritesheet.png" width="1294" height="2086"/>
  </tileset>
@@ -10931,5 +10931,33 @@
   <object id="38" x="1445.5" y="889" width="7.5" height="20"/>
   <object id="39" x="1383.5" y="829" width="2.5" height="14"/>
   <object id="40" x="1367" y="810.5" width="5" height="8"/>
+  <object id="49" x="1960.18" y="910.091" width="629.818" height="47.9091"/>
+  <object id="50" x="2590" y="840" width="69.8182" height="70.1818"/>
+  <object id="51" x="2660" y="770" width="70.5" height="69.5"/>
+  <object id="52" x="2730" y="700.182" width="140" height="69.6364"/>
+  <object id="53" x="3010.25" y="629.5" width="139.5" height="12.5"/>
+  <object id="54" x="3290" y="700.25" width="69.5" height="17.75"/>
+  <object id="55" x="3430.18" y="699.818" width="69.4545" height="16.7273"/>
+  <object id="56" x="3710.25" y="700.25" width="280" height="70"/>
+  <object id="57" x="4130" y="700" width="70" height="70"/>
+  <object id="58" x="4200" y="630" width="70" height="70"/>
+  <object id="59" x="4270" y="560" width="70" height="70"/>
+  <object id="60" x="4480" y="560" width="70" height="70"/>
+  <object id="61" x="4550" y="630" width="70" height="70"/>
+  <object id="62" x="4620" y="700" width="70" height="70"/>
+  <object id="63" x="4270" y="630" width="70" height="70"/>
+  <object id="64" x="4270" y="700" width="70" height="70"/>
+  <object id="65" x="4550" y="630" height="70"/>
+  <object id="66" x="4480" y="700" width="70"/>
+  <object id="67" x="4550" y="700" height="70"/>
+  <object id="68" x="4480" y="700" width="70" height="70"/>
+  <object id="69" x="4480" y="700" width="70"/>
+  <object id="70" x="4480" y="630" width="70" height="70"/>
+  <object id="71" x="4060" y="770" width="70" height="70"/>
+  <object id="72" x="3990" y="770" width="70" height="70"/>
+  <object id="73" x="3990" y="733" width="31.5" height="37"/>
+  <object id="77" x="4690" y="770" width="560" height="70"/>
+  <object id="78" x="5250" y="770" width="70" height="70"/>
+  <object id="79" x="5320" y="770" width="140" height="70"/>
  </objectgroup>
 </map>

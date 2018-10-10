@@ -9,6 +9,7 @@
 #include "j1Map.h"
 #include "j1Scene.h"
 #include "jPlayer.h"
+
 j1Scene::j1Scene() : j1Module()
 {
 	name.create("scene");
