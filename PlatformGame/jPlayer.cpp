@@ -55,7 +55,7 @@ bool jPlayer::Start()
 	GoLeft.PushBack({ 212,0,70,87 });
 	GoLeft.speed = 0.03f;
 
-	jump.PushBack({ 420,0,67,86 });
+	Jump.PushBack({ 420,0,67,86 });
 
 	Climb.PushBack({ 488,0,64,86 });
 	Climb.PushBack({ 553,0,64,86 });
@@ -87,44 +87,49 @@ bool jPlayer::Start()
 }
 bool jPlayer::PreUpdate()
 {
-	WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
-	WalkRight = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
-	Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT;
-	if (!WalkLeft && !WalkRight)
-		Idle = true;
-	else
-		Idle = false;
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+		KnowState = GOLEFT;
+	}
+	else {
+		KnowState = IDLE;
+	}
 
 	return true;
 }
 bool jPlayer::Update(float dt)
 {
 	position.y -= gravity;
-	if (Jump) {
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) {
 		IsJumping = true;
 		position.y -= 20.5f;
 		App->audio->PlayFx(jumpfx);
-		current_animation = &jump;
+		current_animation = &Jump;
 	}
-	if (WalkRight) {
+	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 		position.x += 5.0f;
 		current_animation = &GoRight;
 		anime = true;
 	}
-	if (WalkLeft) {
-		position.x -= 5.0f;
-		current_animation = &GoLeft;
-		anime = false;
-	}
-	if (Idle) {
+	if (KnowState == IDLE) {
 		position.x += 0.0f;
 		position.y += 0.0f;
-
 		current_animation = &idle;
 	}
 	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
 		position.y -= 10.0f;
 		current_animation = &Climb;
+	}
+	if (KnowState == GOLEFT) {
+		position.x -= 5.0f;
+		current_animation = &GoLeft;
+		anime = false;
+	}
+	if (anime==false && App->input->GetKey(SDL_SCANCODE_A) == KEY_UP) {
+			current_animation = &idle2;
+			
+	}
+	if(anime && App->input->GetKey(SDL_SCANCODE_D) == KEY_UP) {
+		current_animation = &idle;
 	}
 	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {
 			NextMap = true;
@@ -170,13 +175,9 @@ bool jPlayer::CleanUp()
 
 void jPlayer::OnCollision(Collider * c1, Collider * c2)
 {
-		
-		if (c2->type == COLLIDER_WALL) {
-			Idle = true;
-			WalkLeft = false;
-		}
-		if (coll == c1 && c2->type == COLLIDER_GROUND) {
-			position.y += gravity;
+		position.y += gravity;
+		if (coll == c1 && c2->type == COLLIDER_WALL) {
+			KnowState = IDLE;
 		}
 }
 
