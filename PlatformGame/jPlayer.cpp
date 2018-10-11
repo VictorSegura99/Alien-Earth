@@ -94,7 +94,7 @@ bool jPlayer::Update(float dt)
 		App->audio->PlayFx(jumpfx);
 		current_animation = &Jump;
 	}
-	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && !InCollision) {
 		position.x += 5.0f;
 		current_animation = &GoRight;
 		anime = true;
@@ -103,7 +103,7 @@ bool jPlayer::Update(float dt)
 		position.y -= 10.0f;
 		current_animation = &Climb;
 	}
-	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && !InCollision) {
 		position.x -= 5.0f;
 		current_animation = &GoLeft;
 		anime = false;
@@ -139,7 +139,7 @@ bool jPlayer::Update(float dt)
 
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	
-	
+	InCollision = false;
 	
 	return true;
 }
@@ -160,9 +160,11 @@ bool jPlayer::CleanUp()
 
 void jPlayer::OnCollision(Collider * c1, Collider * c2)
 {
-	
 		position.y += gravity;
-
+		if (coll == c1 && c2->type == COLLIDER_WALL) {
+			InCollision = true;
+			position.x += 0.0f;
+		}
 }
 
 

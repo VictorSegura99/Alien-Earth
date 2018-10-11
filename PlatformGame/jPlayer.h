@@ -56,6 +56,7 @@ public:
 	SDL_Texture* texture = nullptr;
 	p2SString sprites_name;
 	bool NextMap = false;
+	bool InCollision = false;
 	bool anime = true;
 	int positionWinMap1 = 10780;
 	int startpointcameramap2 = -60;
