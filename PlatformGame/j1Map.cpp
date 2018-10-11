@@ -192,9 +192,6 @@ bool j1Map::Load(const char* file_name)
 		else if (i == 6) {
 			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WATER);
 		}
-		else if (i == 7) {
-			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_CLIMB);
-		}
 	
 		
 		
