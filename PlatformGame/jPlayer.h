@@ -8,6 +8,15 @@
 struct SDL_Texture;
 struct SDL_Rect;
 
+enum States {
+	IDLE,
+	GORIGHT,
+	GOLEFT,
+	CLIMBUP,
+	CLIMBDOWN,
+	SWIMRIGHT,
+	SWIMLEFT
+};
 
 class jPlayer : public j1Module
 {
@@ -24,10 +33,11 @@ public:
 	bool Start();
 
 	//// Called each loop iteration
+	bool PreUpdate();
+	
+	//// Called each loop iteration
 	bool PostUpdate();
 
-	//// Called each loop iteration
-	//bool PostUpdate();
 
 	//Called every loop iteration
 	bool Update(float dt);
@@ -48,6 +58,7 @@ public:
 	Animation Climb;
 	fPoint position;
 	bool IsJumping = false;
+	uint KnowState;
 	Collider* coll = nullptr;
 	float initialXmap1 = 0.0f;
 	float initialYmap1 = 0.0f;
@@ -56,7 +67,6 @@ public:
 	SDL_Texture* texture = nullptr;
 	p2SString sprites_name;
 	bool NextMap = false;
-	bool InCollision = false;
 	bool anime = true;
 	int positionWinMap1 = 10780;
 	int startpointcameramap2 = -60;
