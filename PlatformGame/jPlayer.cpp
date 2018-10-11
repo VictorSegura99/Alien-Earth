@@ -96,7 +96,7 @@ bool jPlayer::Update(float dt)
 	}
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 		position.x += 5.0f;
-		current_animation = &GoRight;
+		current_animation = &SwimRight;
 		anime = true;
 	}
 	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
@@ -105,7 +105,7 @@ bool jPlayer::Update(float dt)
 	}
 	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
 		position.x -= 5.0f;
-		current_animation = &GoLeft;
+		current_animation = &SwimLeft;
 		anime = false;
 		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 			current_animation = &idle;
