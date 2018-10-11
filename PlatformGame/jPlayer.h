@@ -52,7 +52,7 @@ public:
 	Animation idle2;
 	Animation GoLeft;
 	Animation GoRight;
-	Animation Jump;
+	Animation jump;
 	Animation SwimRight;
 	Animation SwimLeft;
 	Animation Climb;
@@ -72,6 +72,10 @@ public:
 	int startpointcameramap2 = -60;
 	float gravity = -4.8f;
 	int jumpfx;
+	bool WalkRight = false;
+	bool WalkLeft = false;
+	bool Idle = false;
+	bool Jump = false;
 };
 
 
