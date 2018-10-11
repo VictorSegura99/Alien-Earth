@@ -42,7 +42,12 @@ public:
 	Animation idle2;
 	Animation GoLeft;
 	Animation GoRight;
+	Animation Jump;
+	Animation SwimRight;
+	Animation SwimLeft;
+	Animation Climb;
 	fPoint position;
+	bool IsJumping = false;
 	Collider* coll = nullptr;
 	float initialXmap1 = 0.0f;
 	float initialYmap1 = 0.0f;
