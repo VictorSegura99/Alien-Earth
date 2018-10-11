@@ -170,7 +170,20 @@ bool j1Map::Load(const char* file_name)
 		rect.y = col.attribute("y").as_int();
 		rect.w = col.attribute("width").as_int();
 		rect.h = col.attribute("height").as_int();
-		App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WALL);
+		pugi::xml_node prop = col.child("properties").child("property");
+		int i; 
+		i = prop.attribute("value").as_int();
+
+		if (i == 1) {
+			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WALL);
+		}
+		else  {
+			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_GROUND);
+		}
+	
+		
+		
+		
 	}
 
 	if(ret == true)

@@ -11,8 +11,8 @@ j1Collision::j1Collision()
 
 	matrix[COLLIDER_PLAYER][COLLIDER_WALL] = true;
 	matrix[COLLIDER_WALL][COLLIDER_PLAYER] = true;
-
-
+	matrix[COLLIDER_GROUND][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_GROUND] = true;
 }
 
 // Destructor
@@ -99,6 +99,9 @@ void j1Collision::DebugDraw()
 			break;
 		case COLLIDER_PLAYER: // BLUE
 			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
+			break;
+		case COLLIDER_GROUND: // WHITE
+			App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 			break;
 		}
 	}

@@ -157,12 +157,9 @@ bool jPlayer::CleanUp()
 
 void jPlayer::OnCollision(Collider * c1, Collider * c2)
 {
-	if (position.y>= c2->rect.h)
+	
 		position.y += gravity;
-	if (position.x > c2->rect.w) {
-		current_animation = &idle;
-		position.x += 0.0f;
-	}
+
 }
 
 
