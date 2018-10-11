@@ -54,6 +54,8 @@ bool jPlayer::Start()
 	GoLeft.PushBack({ 212,0,70,87 });
 	GoLeft.speed = 0.03f;
 
+	Jump.PushBack({ 424,0,67,83 });
+
 	texture = App->tex->Load(sprites_name.GetString());
 	current_animation = &idle;
 	if (texture == nullptr) {
@@ -66,8 +68,10 @@ bool jPlayer::Start()
 bool jPlayer::Update(float dt)
 {
 	position.y -= gravity;
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) {
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && !IsJumping) {
+		IsJumping = true;
 		position.y -= 20.5f;
+		current_animation = &Jump;
 	}
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 		position.x += 5.0f;
@@ -128,7 +132,12 @@ bool jPlayer::CleanUp()
 
 void jPlayer::OnCollision(Collider * c1, Collider * c2)
 {
-	position.y -= 4.8f;
+	if (position.y>= c2->rect.h)
+		position.y += gravity;
+	if (position.x > c2->rect.w) {
+		current_animation = &idle;
+		position.x += 0.0f;
+	}
 }
 
 
