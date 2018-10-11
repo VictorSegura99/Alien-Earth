@@ -10,6 +10,7 @@
 #include "j1Map.h"
 #include "j1Scene.h"
 #include "j1Collision.h"
+#include "j1Audio.h"
 
 jPlayer::jPlayer() : j1Module()
 {
@@ -62,12 +63,16 @@ bool jPlayer::Start()
 	}
 	coll = App->collision->AddCollider({ 0, 0, 70, 87 }, COLLIDER_PLAYER, this);
 	return ret;
+
+	//audio
+	jumpfx=App->audio->LoadFx("audio/fx/Jump_fx.wav");
 }
 bool jPlayer::Update(float dt)
 {
 	position.y -= gravity;
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) {
 		position.y -= 20.5f;
+		App->audio->PlayFx(jumpfx);
 	}
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 		position.x += 5.0f;

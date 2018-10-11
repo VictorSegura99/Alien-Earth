@@ -35,7 +35,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(input);
 	AddModule(win);
 	AddModule(tex);
-	//AddModule(audio);
+	AddModule(audio);
 	AddModule(map);
 	AddModule(scene);
 	AddModule(player);

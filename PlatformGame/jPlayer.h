@@ -55,6 +55,7 @@ public:
 	int positionWinMap1 = 10780;
 	int startpointcameramap2 = -60;
 	float gravity = -4.8f;
+	int jumpfx;
 };
 
 
