@@ -177,8 +177,20 @@ bool j1Map::Load(const char* file_name)
 		if (i == 1) {
 			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WALL);
 		}
-		else  {
+		else if(i==2) {
 			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_GROUND);
+		}
+		else if (i == 3) {
+			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_SPIKES);
+		}
+		else if (i == 4) {
+			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_LAVA);
+		}
+		else if (i == 5) {
+			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WIN);
+		}
+		else if (i == 6) {
+			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WATER);
 		}
 	
 		

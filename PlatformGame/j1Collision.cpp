@@ -13,6 +13,14 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_WALL][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_GROUND][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_GROUND] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_LAVA] = true;
+	matrix[COLLIDER_LAVA][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_WATER] = true;
+	matrix[COLLIDER_WATER][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_SPIKES] = true;
+	matrix[COLLIDER_SPIKES][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_WIN][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_WIN] = true;
 }
 
 // Destructor
@@ -102,6 +110,18 @@ void j1Collision::DebugDraw()
 			break;
 		case COLLIDER_GROUND: // WHITE
 			App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
+			break;
+		case COLLIDER_SPIKES: // RED
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+			break;
+		case COLLIDER_WATER: // BLUEGREEn
+			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
+			break;
+		case COLLIDER_LAVA: // RED
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+			break;
+		case COLLIDER_WIN: // BLACK
+			App->render->DrawQuad(colliders[i]->rect, 0,0,0, alpha);
 			break;
 		}
 	}
