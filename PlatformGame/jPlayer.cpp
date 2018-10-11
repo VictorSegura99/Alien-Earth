@@ -85,31 +85,44 @@ bool jPlayer::Start()
 	//audio
 	jumpfx=App->audio->LoadFx("audio/fx/Jump_fx.wav");
 }
+bool jPlayer::PreUpdate()
+{
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+		KnowState = GOLEFT;
+	}
+	else {
+		KnowState = IDLE;
+	}
+
+	return true;
+}
 bool jPlayer::Update(float dt)
 {
 	position.y -= gravity;
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && !IsJumping) {
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) {
 		IsJumping = true;
 		position.y -= 20.5f;
 		App->audio->PlayFx(jumpfx);
 		current_animation = &Jump;
 	}
-	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT && !InCollision) {
+	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 		position.x += 5.0f;
 		current_animation = &GoRight;
 		anime = true;
+	}
+	if (KnowState == IDLE) {
+		position.x += 0.0f;
+		position.y += 0.0f;
+		current_animation = &idle;
 	}
 	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
 		position.y -= 10.0f;
 		current_animation = &Climb;
 	}
-	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT && !InCollision) {
+	if (KnowState == GOLEFT) {
 		position.x -= 5.0f;
 		current_animation = &GoLeft;
 		anime = false;
-		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-			current_animation = &idle;
-		}
 	}
 	if (anime==false && App->input->GetKey(SDL_SCANCODE_A) == KEY_UP) {
 			current_animation = &idle2;
@@ -139,7 +152,6 @@ bool jPlayer::Update(float dt)
 
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	
-	InCollision = false;
 	
 	return true;
 }
@@ -162,8 +174,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 {
 		position.y += gravity;
 		if (coll == c1 && c2->type == COLLIDER_WALL) {
-			InCollision = true;
-			position.x += 0.0f;
+			KnowState = IDLE;
 		}
 }
 
