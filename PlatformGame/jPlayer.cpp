@@ -118,18 +118,21 @@ bool jPlayer::Update(float dt)
 	if(anime && App->input->GetKey(SDL_SCANCODE_D) == KEY_UP) {
 		current_animation = &idle;
 	}
-	if (App->scene->KnowMap == 0) {
-		if (position.x >= positionWinMap1) {
+	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {
 			NextMap = true;
-		}
 	}
-	if (position.x <= 560&&App->scene->KnowMap == 1) {
+	if (position.x <= 560 && App->scene->KnowMap == 1) { //If player is in a position where the camera would print out of the map, camera stops
 			App->render->camera.x = startpointcameramap2;
 	}
 	else {
 		App->render->camera.x = -position.x + (App->render->camera.w / 2);
 	}
-	App->render->camera.y = -position.y + (App->render->camera.h / 2);
+	if (position.y <= 450) { //If player is in a position where the camera would print out of the map, camera stops
+		App->render->camera.y = 0;
+	}
+	else {
+		App->render->camera.y = -position.y + (App->render->camera.h / 2);
+	}
 	
 
 	coll->SetPos(position.x, position.y);
