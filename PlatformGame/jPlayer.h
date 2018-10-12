@@ -56,6 +56,7 @@ public:
 	Animation SwimRight;
 	Animation SwimLeft;
 	Animation Climb;
+	Animation Death;
 	fPoint position;
 	bool IsJumping = false;
 	uint KnowState;

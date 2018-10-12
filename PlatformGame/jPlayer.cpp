@@ -73,6 +73,10 @@ bool jPlayer::Start()
 	SwimLeft.PushBack({ 617,263,70,86 });
 	SwimLeft.speed = 0.03f;
 
+	Death.PushBack({ 0,94,68,81 });
+	Death.PushBack({ 73,105,70,70 });
+	Death.speed=0.03f;
+
 	texture = App->tex->Load(sprites_name.GetString());
 	current_animation = &idle;
 	if (texture == nullptr) {
@@ -149,7 +153,9 @@ bool jPlayer::Update(float dt)
 	else {
 		App->render->camera.y = -position.y + (App->render->camera.h / 2);
 	}
-	
+	if (App->input->GetKey(SDL_SCANCODE_H) == KEY_REPEAT) {
+		current_animation = &Death;
+	}
 
 	coll->SetPos(position.x, position.y);
 
