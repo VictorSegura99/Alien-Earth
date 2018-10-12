@@ -76,11 +76,20 @@ bool jPlayer::Start()
 	SwimLeft.speed = 0.03f;
 
 	Death.PushBack({ 0,94,68,81 });
-	Death.PushBack({ 73,105,70,70 });
+	Death.PushBack({ 73,94,68,81 });
+	Death.PushBack({ 142,94,68,81 });
+	Death.PushBack({ 213,94,68,81 });
+	Death.PushBack({ 283,94,68,81 });
+	Death.PushBack({ 351,94,68,81 });
+	Death.PushBack({ 0,175,68,81 });
+	Death.PushBack({ 69,175,68,81 });
+	Death.PushBack({ 139,175,68,81 });
+	Death.PushBack({ 206,175,68,81 });
+	Death.PushBack({ 272,175,68,81 });
 	Death.speed=0.03f;
 
 	texture = App->tex->Load(sprites_name.GetString());
-	current_animation = &idle;
+	current_animation = &idle;	
 	if (texture == nullptr) {
 		LOG("Error loading player texture!");
 		ret = false;
@@ -189,6 +198,10 @@ bool jPlayer::Update(float dt)
 		App->render->camera.y = -position.y + (App->render->camera.h / 2);
 	}
 
+
+	if (App->input->GetKey(SDL_SCANCODE_H) == KEY_REPEAT) {
+		current_animation = &Death;
+	}
 	coll->SetPos(position.x, position.y);
 
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
