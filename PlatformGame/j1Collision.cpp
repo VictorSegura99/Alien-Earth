@@ -23,6 +23,8 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_SPIKES][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_WIN][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_WIN] = true;
+	matrix[COLLIDER_CLIMB][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_CLIMB] = true;
 }
 
 // Destructor
@@ -127,6 +129,9 @@ void j1Collision::DebugDraw()
 			break;
 		case COLLIDER_WIN: // BLACK
 			App->render->DrawQuad(colliders[i]->rect, 0,0,0, alpha);
+			break;
+		case COLLIDER_CLIMB:
+			App->render->DrawQuad(colliders[i]->rect, 0, 130, 130, alpha);
 			break;
 		}
 	}
