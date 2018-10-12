@@ -55,7 +55,11 @@ bool jPlayer::Start()
 	GoLeft.PushBack({ 212,0,70,87 });
 	GoLeft.speed = 0.03f;
 
-	jump.PushBack({ 420,0,67,86 });
+	jumpR.PushBack({ 420,0,67,86 });
+
+
+	jumpL.PushBack({ 420,88,67,86 });
+
 
 	Climb.PushBack({ 488,0,64,86 });
 	Climb.PushBack({ 553,0,64,86 });
@@ -110,11 +114,21 @@ bool jPlayer::Update(float dt)
 		CanJump = false;
 		Jump = false;
 	}
-	if (IsJumping) {
+	if (IsJumping&&App->input->GetKey(SDL_SCANCODE_D)==KEY_REPEAT) {
 
 		JumpTime += 1;
 		if (JumpTime <= 30) {
-			current_animation = &jump;
+			current_animation = &jumpR;
+			position.y -= 10.0f;
+		}
+		else
+			IsJumping = false;
+	}
+	if (IsJumping&&App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+
+		JumpTime += 1;
+		if (JumpTime <= 30) {
+			current_animation = &jumpL;
 			position.y -= 10.0f;
 		}
 		else

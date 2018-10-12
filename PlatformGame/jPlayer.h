@@ -52,7 +52,8 @@ public:
 	Animation idle2;
 	Animation GoLeft;
 	Animation GoRight;
-	Animation jump;
+	Animation jumpR;
+	Animation jumpL;
 	Animation SwimRight;
 	Animation SwimLeft;
 	Animation Climb;
