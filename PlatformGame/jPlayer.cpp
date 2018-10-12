@@ -85,7 +85,7 @@ bool jPlayer::Start()
 		LOG("Error loading player texture!");
 		ret = false;
 	}
-	coll = App->collision->AddCollider({ 0, 0, 65, 87 }, COLLIDER_PLAYER, this);
+	coll = App->collision->AddCollider({ 0, 0, 65, 81 }, COLLIDER_PLAYER, this);
 	return ret;
 
 	//audio
@@ -212,39 +212,39 @@ bool jPlayer::CleanUp()
 
 void jPlayer::OnCollision(Collider * c1, Collider * c2)
 {
-		if (coll == c1 && c2->type == COLLIDER_WALL_LEFT) {
-			WalkLeft = false;
-		}
-		if (coll == c1 && c2->type == COLLIDER_GROUND && position.y + 79< c2->rect.y) {
+	switch (c2->type) {
+	case COLLIDER_GROUND:
+		if (position.y < c2->rect.y + c2->rect.h) {
 			position.y += gravity;
-			GoDown = false;
 			CanJump = true;
-			CanSwim = false;
-			CanClimb = false;
 			JumpTime = 0;
-		}
-		if (coll == c1 && c2->type == COLLIDER_WALL_RIGHT) {
+			CanSwim = false;
+		} break;
+	case COLLIDER_WALL:
+		if (position.x < c2->rect.x) {
 			WalkRight = false;
 		}
-		if (coll == c1 && c2->type == COLLIDER_CLIMB) {
-			CanClimb = true;
+		else if (position.x > c2->rect.x) {
+			WalkLeft = false;
+		}
+		break;
+	case COLLIDER_PLATFORM:
+		if (position.y + 81 <= c2->rect.y) {
+			position.y += gravity;
 			CanJump = true;
-			position.y += gravity;
-		}
-		if (coll == c1 && c2->type == COLLIDER_WALL_UP) {
-			GoUp = false;
-			CanClimb = false;
-		}
-		if (coll == c1 && c2->type == COLLIDER_WATER) {
-			CanSwim = true;
-			CanClimb = false;
-			position.y += gravity;
-		}
-		if (coll == c1 && c2->type == COLLIDER_NONE) {
-			CanClimb = false;
+			JumpTime = 0;
 			CanSwim = false;
+			IsJumping = false;
 		}
+		
+		break;
+	case COLLIDER_WATER:
+		CanSwim = true;
+		break;
+	}
+
 }
+
 
 
 
