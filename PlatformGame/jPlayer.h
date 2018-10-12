@@ -76,6 +76,8 @@ public:
 	int startpointcameramap2 = -60;
 	float gravity = -4.8f;
 	int jumpfx;
+	bool CanJump = true;
+	int JumpTime = 0;
 };
 
 

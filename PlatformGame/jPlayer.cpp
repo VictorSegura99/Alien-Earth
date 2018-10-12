@@ -95,7 +95,7 @@ bool jPlayer::PreUpdate()
 	WalkRight = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
 	Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
 	
-	if (!WalkLeft && !WalkRight)
+	if (!WalkLeft && !WalkRight && !IsJumping)
 		Idle = true;
 	else
 		Idle = false;
@@ -105,19 +105,25 @@ bool jPlayer::PreUpdate()
 bool jPlayer::Update(float dt)
 {
 	position.y -= gravity;
-	if (Jump) {
+	if (Jump && CanJump) {
 		IsJumping = true;
-		
-		App->audio->PlayFx(jumpfx);
-		current_animation = &jump;
+		CanJump = false;
+		Jump = false;
 	}
 	if (IsJumping) {
-		position.y -= 100.5f;
-		IsJumping = false;
+
+		JumpTime += 1;
+		if (JumpTime <= 30) {
+			current_animation = &jump;
+			position.y -= 10.0f;
+		}
+		else
+			IsJumping = false;
 	}
 	if (WalkRight) {
 		position.x += 5.0f;
-		current_animation = &GoRight;
+		if (!IsJumping)
+			current_animation = &GoRight;
 	}
 	if (Idle) {
 		position.x += 0.0f;
@@ -130,7 +136,8 @@ bool jPlayer::Update(float dt)
 	}
 	if (WalkLeft) {
 		position.x -= 5.0f;
-		current_animation = &GoLeft;
+		if (!IsJumping)
+			current_animation = &GoLeft;
 	}
 	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {
 			NextMap = true;
@@ -183,6 +190,8 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 		}
 		if (coll == c1 && c2->type == COLLIDER_GROUND && position.y + 50 < c2->rect.y) {
 			position.y += gravity;
+			CanJump = true;
+			JumpTime = 0;
 		}
 		if (coll == c1 && c2->type == COLLIDER_WALL_RIGHT) {
 			WalkRight = false;
