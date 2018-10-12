@@ -198,6 +198,9 @@ bool j1Map::Load(const char* file_name)
 		else if (i == 8) {
 			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_CLIMB);
 		}
+		else if (i == 9) {
+			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WALL_UP);
+		}
 	
 		
 		

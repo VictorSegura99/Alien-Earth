@@ -91,7 +91,7 @@ bool jPlayer::Start()
 	return ret;
 
 	//audio
-	jumpfx=App->audio->LoadFx("audio/fx/Jump_fx.wav");
+	App->audio->LoadFx("audio/fx/Jump_fx.wav");
 	
 }
 bool jPlayer::PreUpdate()
@@ -99,7 +99,8 @@ bool jPlayer::PreUpdate()
 	WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
 	WalkRight = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
 	Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
-	climb = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
+	GoUp = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
+	GoDown = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
 	if (!WalkLeft && !WalkRight && !IsJumping)
 		Idle = true;
 	else
@@ -110,15 +111,14 @@ bool jPlayer::PreUpdate()
 bool jPlayer::Update(float dt)
 {
 	position.y -= gravity;
-	if (Jump && CanJump) {
+	if (Jump && CanJump && !CanSwim) {
 		IsJumping = true;
 		CanJump = false;
 		Jump = false;
 	}
 	if (IsJumping) {
 		JumpTime += 1;
-		doublejump = true;
-		App->audio->PlayFx(jumpfx, 1);
+		App->audio->PlayFx(1, 1);
 		if (JumpTime <= 30 && WalkRight) {
 			current_animation = &jumpR;
 			position.y -= 10.0f;
@@ -133,29 +133,36 @@ bool jPlayer::Update(float dt)
 		}
 		else
 			IsJumping = false;
-		if (doublejump == true) {
-			CanJump = true;
-		}
 	}
-
+	if (CanSwim && GoUp) {
+		position.y -= 7.0f;
+	}
+	if (CanSwim && GoDown) {
+		position.y += 2.0f;
+	}
 	if (WalkRight) {
 		position.x += 5.0f;
-		if (!IsJumping)
+		if (!IsJumping && !CanSwim)
 			current_animation = &GoRight;
+		if(CanSwim)
+			current_animation = &SwimRight;
+
 	}
 	if (Idle) {
 		position.x += 0.0f;
 		position.y += 0.0f;
 		current_animation = &idle;
 	}
-	if (climb) {
+	if (CanClimb && GoUp) {
 		position.y -= 10.0f;
 		current_animation = &Climb;
 	}
 	if (WalkLeft) {
 		position.x -= 5.0f;
-		if (!IsJumping)
+		if (!IsJumping && !CanSwim)
 			current_animation = &GoLeft;
+		if (CanSwim)
+			current_animation = &SwimLeft;
 	}
 	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {
 			NextMap = true;
@@ -199,20 +206,27 @@ bool jPlayer::CleanUp()
 
 void jPlayer::OnCollision(Collider * c1, Collider * c2)
 {
-		
 		if (coll == c1 && c2->type == COLLIDER_WALL_LEFT) {
 			WalkLeft = false;
 		}
-		if (coll == c1 && c2->type == COLLIDER_GROUND && position.y + 50 < c2->rect.y) {
+		if (coll == c1 && c2->type == COLLIDER_GROUND && position.y + 79< c2->rect.y) {
 			position.y += gravity;
 			CanJump = true;
+			CanSwim = false;
+			CanClimb = false;
 			JumpTime = 0;
 		}
 		if (coll == c1 && c2->type == COLLIDER_WALL_RIGHT) {
 			WalkRight = false;
 		}
 		if (coll == c1 && c2->type == COLLIDER_CLIMB) {
-			climb = true;
+			CanClimb = true;
+		}
+		if (coll == c1 && c2->type == COLLIDER_WALL_UP) {
+			position.y -= gravity;
+		}
+		if (coll == c1 && c2->type == COLLIDER_WATER) {
+			CanSwim = true;
 		}
 }
 

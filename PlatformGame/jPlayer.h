@@ -61,7 +61,7 @@ public:
 	bool WalkRight = false;
 	bool Idle = false;
 	bool Jump = false;
-	bool climb = false;
+	bool CanClimb = false;
 	fPoint position;
 	bool IsJumping = false;
 	uint KnowState;
@@ -77,7 +77,10 @@ public:
 	int startpointcameramap2 = -60;
 	float gravity = -4.8f;
 	int jumpfx;
+	bool GoUp = false;
+	bool GoDown = false;
 	bool CanJump = true;
+	bool CanSwim = false;
 	int JumpTime = 0;
 	bool doublejump = false;
 };
