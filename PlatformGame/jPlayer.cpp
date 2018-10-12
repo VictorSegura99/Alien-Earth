@@ -219,6 +219,8 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 			CanJump = true;
 			JumpTime = 0;
 			CanSwim = false;
+			GoDown = false;
+			CanClimb = false;
 		} break;
 	case COLLIDER_WALL:
 		if (position.x < c2->rect.x) {
@@ -236,11 +238,21 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 			CanSwim = false;
 			IsJumping = false;
 		}
-		
+		break;
+	case COLLIDER_CLIMB:
+		CanClimb = true;
+		CanJump = true;
+		position.y += gravity;
 		break;
 	case COLLIDER_WATER:
 		CanSwim = true;
+		CanClimb = false;
+		position.y += gravity;
 		break;
+	case COLLIDER_NONE:
+		CanClimb = false;
+		CanSwim = false;
+		break; 
 	}
 
 }
