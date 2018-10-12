@@ -56,6 +56,7 @@ public:
 	Animation SwimRight;
 	Animation SwimLeft;
 	Animation Climb;
+	Animation ClimbIdle;
 	Animation Death;
 	bool WalkLeft = false;
 	bool WalkRight = false;

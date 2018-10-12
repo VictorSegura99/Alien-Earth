@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="160" height="21" tilewidth="70" tileheight="70" nextobjectid="67">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="160" height="21" tilewidth="70" tileheight="70" nextobjectid="74">
  <tileset firstgid="1" name="tiles_spritesheet" tilewidth="70" tileheight="70" spacing="2" tilecount="522" columns="18">
   <image source="tiles_spritesheet.png" width="1294" height="2086"/>
   <terraintypes>
@@ -4413,7 +4413,7 @@
    <tile gid="160"/>
    <tile gid="160"/>
    <tile gid="124"/>
-   <tile gid="124"/>
+   <tile gid="143"/>
    <tile gid="143"/>
    <tile gid="160"/>
    <tile gid="160"/>
@@ -4573,7 +4573,7 @@
    <tile gid="160"/>
    <tile gid="160"/>
    <tile gid="124"/>
-   <tile gid="124"/>
+   <tile gid="160"/>
    <tile gid="160"/>
    <tile gid="160"/>
    <tile gid="160"/>
@@ -4733,9 +4733,9 @@
    <tile gid="160"/>
    <tile gid="160"/>
    <tile gid="124"/>
-   <tile gid="124"/>
-   <tile gid="124"/>
-   <tile gid="124"/>
+   <tile gid="160"/>
+   <tile gid="160"/>
+   <tile gid="160"/>
    <tile gid="160"/>
    <tile gid="160"/>
    <tile gid="160"/>
@@ -4893,10 +4893,10 @@
    <tile gid="160"/>
    <tile gid="160"/>
    <tile gid="124"/>
-   <tile gid="124"/>
-   <tile gid="124"/>
-   <tile gid="124"/>
-   <tile gid="124"/>
+   <tile gid="160"/>
+   <tile gid="160"/>
+   <tile gid="160"/>
+   <tile gid="160"/>
    <tile gid="160"/>
    <tile gid="160"/>
    <tile gid="0"/>
@@ -5053,11 +5053,11 @@
    <tile gid="160"/>
    <tile gid="160"/>
    <tile gid="124"/>
-   <tile gid="124"/>
-   <tile gid="124"/>
-   <tile gid="124"/>
-   <tile gid="124"/>
-   <tile gid="124"/>
+   <tile gid="160"/>
+   <tile gid="160"/>
+   <tile gid="160"/>
+   <tile gid="160"/>
+   <tile gid="160"/>
    <tile gid="160"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -5213,11 +5213,11 @@
    <tile gid="160"/>
    <tile gid="160"/>
    <tile gid="124"/>
-   <tile gid="124"/>
-   <tile gid="124"/>
-   <tile gid="124"/>
-   <tile gid="124"/>
-   <tile gid="124"/>
+   <tile gid="160"/>
+   <tile gid="160"/>
+   <tile gid="160"/>
+   <tile gid="160"/>
+   <tile gid="160"/>
    <tile gid="160"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -5374,10 +5374,10 @@
    <tile gid="124"/>
    <tile gid="124"/>
    <tile gid="124"/>
-   <tile gid="143"/>
-   <tile gid="143"/>
-   <tile gid="143"/>
-   <tile gid="143"/>
+   <tile gid="160"/>
+   <tile gid="160"/>
+   <tile gid="160"/>
+   <tile gid="160"/>
    <tile gid="160"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -8420,7 +8420,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="38"/>
+   <tile gid="160"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -13550,37 +13550,22 @@
     <property name="Type" type="int" value="2"/>
    </properties>
   </object>
-  <object id="18" x="5248" y="841.333" width="287.333" height="212">
-   <properties>
-    <property name="Type" type="int" value="1"/>
-   </properties>
-  </object>
-  <object id="19" x="5246.67" y="420" width="177.333" height="65.3333">
+  <object id="18" x="5248" y="813.166" width="25.9997" height="240.167">
    <properties>
     <property name="Type" type="int" value="7"/>
    </properties>
   </object>
-  <object id="20" x="5249.33" y="482.667" width="58.6667" height="76">
+  <object id="22" x="5110" y="210.5" width="68" height="4.1667">
+   <properties>
+    <property name="Type" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="23" x="4620" y="223.5" width="16" height="606.5">
    <properties>
     <property name="Type" type="int" value="7"/>
    </properties>
   </object>
-  <object id="21" x="5560.67" y="697.333" width="39.1667" height="142.667">
-   <properties>
-    <property name="Type" type="int" value="1"/>
-   </properties>
-  </object>
-  <object id="22" x="5108" y="208" width="68" height="70.6667">
-   <properties>
-    <property name="Type" type="int" value="1"/>
-   </properties>
-  </object>
-  <object id="23" x="4620" y="223.5" width="16" height="616.5">
-   <properties>
-    <property name="Type" type="int" value="7"/>
-   </properties>
-  </object>
-  <object id="24" x="4624" y="758.667" width="485.333" height="81.3333">
+  <object id="24" x="4624" y="815.417" width="471.333" height="24.3333">
    <properties>
     <property name="Type" type="int" value="9"/>
    </properties>
@@ -13590,27 +13575,27 @@
     <property name="Type" type="int" value="7"/>
    </properties>
   </object>
-  <object id="26" x="5036" y="0" width="70.6667" height="757.333">
+  <object id="26" x="5052.5" y="435.667" width="56.5" height="396.5">
    <properties>
     <property name="Type" type="int" value="1"/>
    </properties>
   </object>
-  <object id="27" x="5522" y="482.667" width="77.3333" height="216">
+  <object id="27" x="5522" y="482.667" width="77.3333" height="708">
    <properties>
-    <property name="Type" type="int" value="7"/>
+    <property name="Type" type="int" value="1"/>
    </properties>
   </object>
-  <object id="28" x="4408" y="309.333" width="212" height="741.333">
-   <properties>
-    <property name="Type" type="int" value="6"/>
-   </properties>
-  </object>
-  <object id="29" x="4621.33" y="841.333" width="622.667" height="212">
+  <object id="28" x="4408" y="354.666" width="212" height="696.916">
    <properties>
     <property name="Type" type="int" value="6"/>
    </properties>
   </object>
-  <object id="30" x="5141.33" y="280" width="5.33333" height="560.667">
+  <object id="29" x="4617.33" y="840.083" width="626.667" height="213.25">
+   <properties>
+    <property name="Type" type="int" value="6"/>
+   </properties>
+  </object>
+  <object id="30" x="5142.76" y="278.938" width="5.33333" height="560.667">
    <properties>
     <property name="Type" type="int" value="8"/>
    </properties>
@@ -13730,34 +13715,9 @@
     <property name="Type" type="int" value="1"/>
    </properties>
   </object>
-  <object id="57" x="5532.67" y="841.167" width="66.6667" height="211.667">
+  <object id="59" x="5190" y="420.333" width="409.333" height="65.3333">
    <properties>
-    <property name="Type" type="int" value="1"/>
-   </properties>
-  </object>
-  <object id="58" x="5530.92" y="699.167" width="28.6667" height="142.667">
-   <properties>
-    <property name="Type" type="int" value="7"/>
-   </properties>
-  </object>
-  <object id="59" x="5422" y="420.333" width="177.333" height="65.3333">
-   <properties>
-    <property name="Type" type="int" value="1"/>
-   </properties>
-  </object>
-  <object id="60" x="5391.33" y="564.667" width="177.333" height="65.3333">
-   <properties>
-    <property name="Type" type="int" value="7"/>
-   </properties>
-  </object>
-  <object id="61" x="5462" y="631.333" width="101.333" height="65.3333">
-   <properties>
-    <property name="Type" type="int" value="7"/>
-   </properties>
-  </object>
-  <object id="62" x="5312.67" y="495.333" width="177.333" height="65.3333">
-   <properties>
-    <property name="Type" type="int" value="7"/>
+    <property name="Type" type="int" value="2"/>
    </properties>
   </object>
   <object id="63" x="7876.5" y="839.667" width="102.333" height="352">
@@ -13778,6 +13738,21 @@
   <object id="66" x="4620.83" y="209.75" width="138.833" height="14">
    <properties>
     <property name="Type" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="69" x="5181" y="435.167" width="60.4997" height="398.167">
+   <properties>
+    <property name="Type" type="int" value="7"/>
+   </properties>
+  </object>
+  <object id="70" x="5052" y="0.167" width="56" height="230.333">
+   <properties>
+    <property name="Type" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="71" x="5053.5" y="238.834" width="56" height="181.833">
+   <properties>
+    <property name="Type" type="int" value="1"/>
    </properties>
   </object>
  </objectgroup>

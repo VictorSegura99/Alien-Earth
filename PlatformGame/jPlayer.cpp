@@ -65,9 +65,7 @@ bool jPlayer::Start()
 	Climb.PushBack({ 553,0,64,86 });
 	Climb.speed = 0.03f;
 
-	Climb.PushBack({ 488,0,64,86 });
-	Climb.PushBack({ 553,0,64,86 });
-	Climb.speed = 0.03f;
+	ClimbIdle.PushBack({ 488,0,64,86 });
 
 	SwimRight.PushBack({ 617,0,70,86 });
 	SwimRight.PushBack({ 617,88,70,86 });
@@ -101,10 +99,12 @@ bool jPlayer::PreUpdate()
 	Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
 	GoUp = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
 	GoDown = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
-	if (!WalkLeft && !WalkRight && !IsJumping)
+
+	if (!WalkLeft && !WalkRight && !IsJumping && !CanSwim && !CanClimb)
 		Idle = true;
 	else
 		Idle = false;
+	
 
 	return true;
 }
@@ -154,9 +154,15 @@ bool jPlayer::Update(float dt)
 		current_animation = &idle;
 	}
 	if (CanClimb && GoUp) {
-		position.y -= 10.0f;
+		position.y -= 4.0f;
 		current_animation = &Climb;
 	}
+	if (CanClimb && GoDown) {
+		position.y += 4.0f;
+		current_animation = &Climb;
+	}
+	if (CanClimb && !GoUp && !GoDown)
+		current_animation = &ClimbIdle;
 	if (WalkLeft) {
 		position.x -= 5.0f;
 		if (!IsJumping && !CanSwim)
@@ -211,6 +217,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 		}
 		if (coll == c1 && c2->type == COLLIDER_GROUND && position.y + 79< c2->rect.y) {
 			position.y += gravity;
+			GoDown = false;
 			CanJump = true;
 			CanSwim = false;
 			CanClimb = false;
@@ -221,12 +228,17 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 		}
 		if (coll == c1 && c2->type == COLLIDER_CLIMB) {
 			CanClimb = true;
+
+			position.y += gravity;
 		}
 		if (coll == c1 && c2->type == COLLIDER_WALL_UP) {
-			position.y -= gravity;
+			GoUp = false;
+			CanClimb = false;
 		}
 		if (coll == c1 && c2->type == COLLIDER_WATER) {
 			CanSwim = true;
+			CanClimb = false;
+			position.y += gravity;
 		}
 }
 
