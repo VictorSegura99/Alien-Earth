@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="160" height="17" tilewidth="70" tileheight="70" nextobjectid="325">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="160" height="17" tilewidth="70" tileheight="70" nextobjectid="331">
  <tileset firstgid="1" name="tiles_spritesheet" tilewidth="70" tileheight="70" spacing="2" tilecount="522" columns="18">
   <image source="tiles_spritesheet.png" width="1294" height="2086"/>
  </tileset>
@@ -7085,77 +7085,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="26"/>
-<<<<<<< HEAD
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-=======
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="187"/>
+   <tile gid="44"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -7200,7 +7130,18 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
->>>>>>> ef806a3365bf74a09016316e8d8b3342aa2ca1f4
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="102"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -7304,67 +7245,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="26"/>
-<<<<<<< HEAD
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-=======
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="187"/>
+   <tile gid="44"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -7403,7 +7284,16 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
->>>>>>> ef806a3365bf74a09016316e8d8b3342aa2ca1f4
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="205"/>
    <tile gid="205"/>
    <tile gid="205"/>
@@ -7515,65 +7405,7 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="26"/>
-<<<<<<< HEAD
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-   <tile/>
-=======
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="187"/>
+   <tile gid="44"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -7614,7 +7446,14 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
->>>>>>> ef806a3365bf74a09016316e8d8b3342aa2ca1f4
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="8"/>
    <tile gid="8"/>
    <tile gid="8"/>
@@ -11161,7 +11000,7 @@
   </object>
   <object id="68" x="4480" y="700" width="70" height="70">
    <properties>
-    <property name="Type" type="int" value="7"/>
+    <property name="Type" type="int" value="1"/>
    </properties>
   </object>
   <object id="69" x="4480" y="700" width="70">
@@ -11171,7 +11010,7 @@
   </object>
   <object id="70" x="4480" y="630" width="57.75" height="70">
    <properties>
-    <property name="Type" type="int" value="7"/>
+    <property name="Type" type="int" value="1"/>
    </properties>
   </object>
   <object id="77" x="4690" y="770" width="769.667" height="70">
@@ -11915,21 +11754,6 @@
    </properties>
   </object>
   <object id="271" x="8469.88" y="911.065" width="3.5" height="3.75"/>
-  <object id="278" x="4130.25" y="767" width="2.5" height="2.75">
-   <properties>
-    <property name="Type" type="int" value="7"/>
-   </properties>
-  </object>
-  <object id="280" x="4200" y="696.875" width="2.5" height="2.75">
-   <properties>
-    <property name="Type" type="int" value="7"/>
-   </properties>
-  </object>
-  <object id="281" x="4270.5" y="626.625" width="2.5" height="2.75">
-   <properties>
-    <property name="Type" type="int" value="7"/>
-   </properties>
-  </object>
   <object id="285" x="4130.2" y="705.898" width="2.5" height="63.75">
    <properties>
     <property name="Type" type="int" value="1"/>
@@ -11950,44 +11774,29 @@
     <property name="Type" type="int" value="1"/>
    </properties>
   </object>
-  <object id="289" x="4337.5" y="617.375" width="2.5" height="2.75">
-   <properties>
-    <property name="Type" type="int" value="1"/>
-   </properties>
-  </object>
   <object id="290" x="4481.25" y="567.375" width="2.5" height="63.25">
    <properties>
-    <property name="Type" type="int" value="7"/>
+    <property name="Type" type="int" value="1"/>
    </properties>
   </object>
-  <object id="291" x="4481.25" y="620.125" width="2.5" height="2.75">
-   <properties>
-    <property name="Type" type="int" value="7"/>
-   </properties>
-  </object>
-  <object id="292" x="4546.25" y="619.125" width="2.5" height="2.75">
+  <object id="293" x="4547.7" y="563.716" width="2.5" height="66.2955">
    <properties>
     <property name="Type" type="int" value="1"/>
    </properties>
   </object>
-  <object id="293" x="4546.25" y="568.625" width="2.5" height="59.75">
+  <object id="294" x="4617.2" y="639" width="2.5" height="60.875">
    <properties>
     <property name="Type" type="int" value="1"/>
    </properties>
   </object>
-  <object id="294" x="4615.75" y="635.625" width="2.5" height="64.25">
-   <properties>
-    <property name="Type" type="int" value="1"/>
-   </properties>
-  </object>
-  <object id="296" x="4686.75" y="704.125" width="2.5" height="66.25">
+  <object id="296" x="4686.75" y="709.625" width="2.5" height="60.75">
    <properties>
     <property name="Type" type="int" value="1"/>
    </properties>
   </object>
   <object id="299" x="10290.5" y="778" width="14.1667" height="410.667">
    <properties>
-    <property name="Type" type="int" value="7"/>
+    <property name="Type" type="int" value="1"/>
    </properties>
   </object>
   <object id="301" x="8945.58" y="930" width="14.1667" height="260">
@@ -12007,7 +11816,7 @@
   </object>
   <object id="304" x="5740.58" y="776.5" width="2.83337" height="51.667">
    <properties>
-    <property name="Type" type="int" value="7"/>
+    <property name="Type" type="int" value="1"/>
    </properties>
   </object>
   <object id="305" x="5876.52" y="775.697" width="2.636" height="63.2727">
@@ -12017,12 +11826,12 @@
   </object>
   <object id="306" x="6579.68" y="775.03" width="2.636" height="63.2727">
    <properties>
-    <property name="Type" type="int" value="7"/>
+    <property name="Type" type="int" value="1"/>
    </properties>
   </object>
   <object id="307" x="8190.68" y="1054.7" width="2.636" height="26.606">
    <properties>
-    <property name="Type" type="int" value="7"/>
+    <property name="Type" type="int" value="1"/>
    </properties>
   </object>
   <object id="308" x="2940" y="748" width="350" height="21.5">
@@ -12055,9 +11864,9 @@
     <property name="Type" type="int" value="8"/>
    </properties>
   </object>
-  <object id="314" x="1956.91" y="649.28" width="70" height="258.69">
+  <object id="314" x="2126.91" y="683.28" width="90.6667" height="103.357">
    <properties>
-    <property name="Type" type="int" value="1"/>
+    <property name="Type" type="int" value="10"/>
    </properties>
   </object>
   <object id="315" x="1675.15" y="629.356" width="353.396" height="44.1444">
@@ -12091,6 +11900,36 @@
    </properties>
   </object>
   <object id="324" x="1674.21" y="608.151" width="4.66667" height="21.3334">
+   <properties>
+    <property name="Type" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="325" x="3290.75" y="707.33" width="2.5" height="62.25">
+   <properties>
+    <property name="Type" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="326" x="3357.3" y="707.42" width="2.5" height="62.25">
+   <properties>
+    <property name="Type" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="327" x="3430.57" y="706.875" width="2.5" height="62.25">
+   <properties>
+    <property name="Type" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="328" x="3496.93" y="707.239" width="2.5" height="62.25">
+   <properties>
+    <property name="Type" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="329" x="3710.39" y="708.693" width="2.5" height="62.25">
+   <properties>
+    <property name="Type" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="330" x="3987.3" y="707.784" width="2.5" height="62.25">
    <properties>
     <property name="Type" type="int" value="1"/>
    </properties>
