@@ -92,13 +92,14 @@ bool jPlayer::Start()
 
 	//audio
 	jumpfx=App->audio->LoadFx("audio/fx/Jump_fx.wav");
+	
 }
 bool jPlayer::PreUpdate()
 {
 	WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
 	WalkRight = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
 	Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
-	
+	climb = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
 	if (!WalkLeft && !WalkRight && !IsJumping)
 		Idle = true;
 	else
@@ -116,6 +117,8 @@ bool jPlayer::Update(float dt)
 	}
 	if (IsJumping) {
 		JumpTime += 1;
+		doublejump = true;
+		App->audio->PlayFx(jumpfx, 1);
 		if (JumpTime <= 30 && WalkRight) {
 			current_animation = &jumpR;
 			position.y -= 10.0f;
@@ -124,12 +127,15 @@ bool jPlayer::Update(float dt)
 			current_animation = &jumpL;
 			position.y -= 10.0f;
 		}
-		else if (JumpTime <= 30) {
+		else if (JumpTime <= 30) {	
 			current_animation = &jumpR;
 			position.y -= 10.0f;
 		}
 		else
 			IsJumping = false;
+		if (doublejump == true) {
+			CanJump = true;
+		}
 	}
 
 	if (WalkRight) {
@@ -142,7 +148,7 @@ bool jPlayer::Update(float dt)
 		position.y += 0.0f;
 		current_animation = &idle;
 	}
-	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
+	if (climb) {
 		position.y -= 10.0f;
 		current_animation = &Climb;
 	}
@@ -168,9 +174,6 @@ bool jPlayer::Update(float dt)
 	}
 	else {
 		App->render->camera.y = -position.y + (App->render->camera.h / 2);
-	}
-	if (App->input->GetKey(SDL_SCANCODE_H) == KEY_REPEAT) {
-		current_animation = &Death;
 	}
 
 	coll->SetPos(position.x, position.y);
@@ -207,6 +210,9 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 		}
 		if (coll == c1 && c2->type == COLLIDER_WALL_RIGHT) {
 			WalkRight = false;
+		}
+		if (coll == c1 && c2->type == COLLIDER_CLIMB) {
+			climb = true;
 		}
 }
 

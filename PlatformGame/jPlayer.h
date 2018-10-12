@@ -12,8 +12,7 @@ enum States {
 	IDLE,
 	GORIGHT,
 	GOLEFT,
-	CLIMBUP,
-	CLIMBDOWN,
+	CLIMB,
 	SWIMRIGHT,
 	SWIMLEFT
 };
@@ -62,6 +61,7 @@ public:
 	bool WalkRight = false;
 	bool Idle = false;
 	bool Jump = false;
+	bool climb = false;
 	fPoint position;
 	bool IsJumping = false;
 	uint KnowState;
@@ -79,6 +79,7 @@ public:
 	int jumpfx;
 	bool CanJump = true;
 	int JumpTime = 0;
+	bool doublejump = false;
 };
 
 
