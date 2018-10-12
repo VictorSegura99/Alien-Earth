@@ -175,7 +175,7 @@ bool j1Map::Load(const char* file_name)
 		i = prop.attribute("value").as_int();
 
 		if (i == 1) {
-			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WALL);
+			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WALL_LEFT);
 		}
 		else if(i==2) {
 			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_GROUND);
@@ -191,6 +191,9 @@ bool j1Map::Load(const char* file_name)
 		}
 		else if (i == 6) {
 			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WATER);
+		}
+		else if (i == 7) {
+			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WALL_RIGHT);
 		}
 	
 		
