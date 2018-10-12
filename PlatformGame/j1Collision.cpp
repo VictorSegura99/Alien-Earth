@@ -28,6 +28,8 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_PLAYER][COLLIDER_WIN] = true;
 	matrix[COLLIDER_CLIMB][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_CLIMB] = true;
+	matrix[COLLIDER_NONE][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_NONE] = true;
 }
 
 // Destructor

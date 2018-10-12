@@ -144,7 +144,7 @@ bool jPlayer::Update(float dt)
 		position.x += 5.0f;
 		if (!IsJumping && !CanSwim)
 			current_animation = &GoRight;
-		if(CanSwim)
+		if(CanSwim && !CanClimb)
 			current_animation = &SwimRight;
 
 	}
@@ -167,7 +167,7 @@ bool jPlayer::Update(float dt)
 		position.x -= 5.0f;
 		if (!IsJumping && !CanSwim)
 			current_animation = &GoLeft;
-		if (CanSwim)
+		if (CanSwim && !CanClimb)
 			current_animation = &SwimLeft;
 	}
 	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {
@@ -228,7 +228,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 		}
 		if (coll == c1 && c2->type == COLLIDER_CLIMB) {
 			CanClimb = true;
-
+			CanJump = true;
 			position.y += gravity;
 		}
 		if (coll == c1 && c2->type == COLLIDER_WALL_UP) {
@@ -239,6 +239,10 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 			CanSwim = true;
 			CanClimb = false;
 			position.y += gravity;
+		}
+		if (coll == c1 && c2->type == COLLIDER_NONE) {
+			CanClimb = false;
+			CanSwim = false;
 		}
 }
 
