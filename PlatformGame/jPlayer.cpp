@@ -85,7 +85,7 @@ bool jPlayer::Start()
 		LOG("Error loading player texture!");
 		ret = false;
 	}
-	coll = App->collision->AddCollider({ 0, 0, 65, 81 }, COLLIDER_PLAYER, this);
+	coll = App->collision->AddCollider({ 0, 0, 65, 87 }, COLLIDER_PLAYER, this);
 	return ret;
 
 	//audio
