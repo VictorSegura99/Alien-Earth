@@ -52,11 +52,15 @@ public:
 	Animation idle2;
 	Animation GoLeft;
 	Animation GoRight;
-	Animation Jump;
+	Animation jump;
 	Animation SwimRight;
 	Animation SwimLeft;
 	Animation Climb;
 	Animation Death;
+	bool WalkLeft = false;
+	bool WalkRight = false;
+	bool Idle = false;
+	bool Jump = false;
 	fPoint position;
 	bool IsJumping = false;
 	uint KnowState;
@@ -68,7 +72,6 @@ public:
 	SDL_Texture* texture = nullptr;
 	p2SString sprites_name;
 	bool NextMap = false;
-	bool anime = true;
 	int positionWinMap1 = 10780;
 	int startpointcameramap2 = -60;
 	float gravity = -4.8f;

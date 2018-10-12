@@ -1,14 +1,15 @@
 #ifndef __j1Collision_H__
 #define __j1Collision_H__
 
-#define MAX_COLLIDERS 200
+#define MAX_COLLIDERS 1000
 
 #include "j1Module.h"
 
 enum COLLIDER_TYPE
 {
 	COLLIDER_NONE = -1,
-	COLLIDER_WALL,
+	COLLIDER_WALL_LEFT,
+	COLLIDER_WALL_RIGHT,
 	COLLIDER_PLAYER,
 	COLLIDER_GROUND,
 	COLLIDER_LAVA,

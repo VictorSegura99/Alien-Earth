@@ -55,7 +55,7 @@ bool jPlayer::Start()
 	GoLeft.PushBack({ 212,0,70,87 });
 	GoLeft.speed = 0.03f;
 
-	Jump.PushBack({ 420,0,67,86 });
+	jump.PushBack({ 420,0,67,86 });
 
 	Climb.PushBack({ 488,0,64,86 });
 	Climb.PushBack({ 553,0,64,86 });
@@ -83,7 +83,7 @@ bool jPlayer::Start()
 		LOG("Error loading player texture!");
 		ret = false;
 	}
-	coll = App->collision->AddCollider({ 0, 0, 70, 87 }, COLLIDER_PLAYER, this);
+	coll = App->collision->AddCollider({ 0, 0, 65, 87 }, COLLIDER_PLAYER, this);
 	return ret;
 
 	//audio
@@ -91,30 +91,35 @@ bool jPlayer::Start()
 }
 bool jPlayer::PreUpdate()
 {
-	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-		KnowState = GOLEFT;
-	}
-	else {
-		KnowState = IDLE;
-	}
+	WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
+	WalkRight = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
+	Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
+	
+	if (!WalkLeft && !WalkRight)
+		Idle = true;
+	else
+		Idle = false;
 
 	return true;
 }
 bool jPlayer::Update(float dt)
 {
 	position.y -= gravity;
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT) {
+	if (Jump) {
 		IsJumping = true;
-		position.y -= 20.5f;
+		
 		App->audio->PlayFx(jumpfx);
-		current_animation = &Jump;
+		current_animation = &jump;
 	}
-	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+	if (IsJumping) {
+		position.y -= 100.5f;
+		IsJumping = false;
+	}
+	if (WalkRight) {
 		position.x += 5.0f;
 		current_animation = &GoRight;
-		anime = true;
 	}
-	if (KnowState == IDLE) {
+	if (Idle) {
 		position.x += 0.0f;
 		position.y += 0.0f;
 		current_animation = &idle;
@@ -123,17 +128,9 @@ bool jPlayer::Update(float dt)
 		position.y -= 10.0f;
 		current_animation = &Climb;
 	}
-	if (KnowState == GOLEFT) {
+	if (WalkLeft) {
 		position.x -= 5.0f;
 		current_animation = &GoLeft;
-		anime = false;
-	}
-	if (anime==false && App->input->GetKey(SDL_SCANCODE_A) == KEY_UP) {
-			current_animation = &idle2;
-			
-	}
-	if(anime && App->input->GetKey(SDL_SCANCODE_D) == KEY_UP) {
-		current_animation = &idle;
 	}
 	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {
 			NextMap = true;
@@ -172,7 +169,6 @@ bool jPlayer::PostUpdate()
 bool jPlayer::CleanUp()
 {
 	App->tex->UnLoad(texture);
-	anime = true;
 	NextMap = false;
 	if (coll)
 		coll->to_delete = true;
@@ -181,9 +177,15 @@ bool jPlayer::CleanUp()
 
 void jPlayer::OnCollision(Collider * c1, Collider * c2)
 {
-		position.y += gravity;
-		if (coll == c1 && c2->type == COLLIDER_WALL) {
-			KnowState = IDLE;
+		
+		if (coll == c1 && c2->type == COLLIDER_WALL_LEFT) {
+			WalkLeft = false;
+		}
+		if (coll == c1 && c2->type == COLLIDER_GROUND && position.y + 50 < c2->rect.y) {
+			position.y += gravity;
+		}
+		if (coll == c1 && c2->type == COLLIDER_WALL_RIGHT) {
+			WalkRight = false;
 		}
 }
 
