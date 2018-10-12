@@ -221,7 +221,11 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 			CanSwim = false;
 			GoDown = false;
 			CanClimb = false;
-		} break;
+		}
+		break;
+	case COLLIDER_WALL_UP:
+		GoUp = false;
+		break;
 	case COLLIDER_WALL:
 		if (position.x < c2->rect.x) {
 			WalkRight = false;
