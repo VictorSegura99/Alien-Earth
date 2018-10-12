@@ -114,26 +114,24 @@ bool jPlayer::Update(float dt)
 		CanJump = false;
 		Jump = false;
 	}
-	if (IsJumping&&App->input->GetKey(SDL_SCANCODE_D)==KEY_REPEAT) {
-
+	if (IsJumping) {
 		JumpTime += 1;
-		if (JumpTime <= 30) {
+		if (JumpTime <= 30 && WalkRight) {
+			current_animation = &jumpR;
+			position.y -= 10.0f;
+		}
+		else if (JumpTime <= 30 && WalkLeft) {
+			current_animation = &jumpL;
+			position.y -= 10.0f;
+		}
+		else if (JumpTime <= 30) {
 			current_animation = &jumpR;
 			position.y -= 10.0f;
 		}
 		else
 			IsJumping = false;
 	}
-	if (IsJumping&&App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
 
-		JumpTime += 1;
-		if (JumpTime <= 30) {
-			current_animation = &jumpL;
-			position.y -= 10.0f;
-		}
-		else
-			IsJumping = false;
-	}
 	if (WalkRight) {
 		position.x += 5.0f;
 		if (!IsJumping)
