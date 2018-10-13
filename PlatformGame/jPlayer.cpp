@@ -207,7 +207,7 @@ bool jPlayer::Update(float dt)
 	if (position.y <= 450) { //If player is in a position where the camera would print out of the map, camera stops
 		App->render->camera.y = 0;
 	}
-	else if (position.y >= 750) {
+	else if (position.y >= 740	) {
 		App->render->camera.y = -290;
 	}
 	else {
