@@ -90,7 +90,7 @@ bool jPlayer::Start()
 	Death.PushBack({ 272,175,68,81 });
 	Death.speed=0.1f;
 	Death.loop = false;
-	Death.Reset();
+	
 
 	texture = App->tex->Load(sprites_name.GetString());
 	current_animation = &idle;	
@@ -238,6 +238,7 @@ bool jPlayer::CleanUp()
 	NextMap = false;
 	death = false;
 	fall = false;
+	Death.Reset();
 	if (coll)
 		coll->to_delete = true;
 	return true;
