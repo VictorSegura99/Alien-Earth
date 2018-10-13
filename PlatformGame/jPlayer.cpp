@@ -27,6 +27,16 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	initialYmap1 = config.child("positionYmap1").attribute("y").as_float();
 	initialXmap2 = config.child("positionXmap2").attribute("x").as_float();
 	initialYmap2 = config.child("positionYmap2").attribute("y").as_float();
+	gravity = config.child("gravity").attribute("value").as_float();
+	positionWinMap1 = config.child("positionWinMap1").attribute("value").as_int();
+	startpointcameramap2 = config.child("startpointcameramap2").attribute("value").as_int();
+	SpeedSwimLeftRight = config.child("SpeedSwimLeftRight").attribute("value").as_float();
+	SpeedSwimUp = config.child("SpeedSwimUp").attribute("value").as_float();
+	SpeedClimb = config.child("SpeedClimb").attribute("value").as_float();
+	SpeedWalk = config.child("SpeedWalk").attribute("value").as_float();
+	SpeedSwimDown = config.child("SpeedSwimDown").attribute("value").as_float();
+	JumpTime = config.child("JumpTime").attribute("value").as_int();
+	JumpSpeed = config.child("JumpSpeed").attribute("value").as_float();
 	JumpFx = config.child("JumpFx").attribute("source").as_string();
 	DeathFx = config.child("DeathFx").attribute("source").as_string();
 	bool ret = true;
@@ -133,77 +143,77 @@ bool jPlayer::Update(float dt)
 		IsJumping = true;
 	}
 	if (IsJumping) {
-		JumpTime += 1;
+		Time += 1;
 		AddFx(1, 0);
-		if (JumpTime <= 20 && WalkRight) {
+		if (Time <= JumpTime && WalkRight) {
 			current_animation = &jumpR;
-			position.y -= 15.0f;
+			position.y -= JumpSpeed;
 		}
-		else if (JumpTime <= 20 && WalkLeft) {
+		else if (Time <= JumpTime && WalkLeft) {
 			current_animation = &jumpL;
-			position.y -= 15.0f;
+			position.y -= JumpSpeed;
 		}
-		else if (JumpTime <= 20) {	
+		else if (Time <= JumpTime) {
 			if (current_animation==&idle)
 				current_animation = &jumpR;
 			if (current_animation == &idle2)
 				current_animation = &jumpL;
-			position.y -= 15.0f;
+			position.y -= JumpSpeed;
 		}
 		else
 			IsJumping = false;
 	}
 	if (God && Jump) {
-		position.y -= 15.0f;
+		position.y -= JumpSpeed;
 	}
 	if (CanSwim && GoUp) {
-		position.y -= 7.0f;
+		position.y -= SpeedSwimUp;
 	}
 	if (CanSwim && GoDown) {
-		position.y += 2.0f;
+		position.y += SpeedSwimDown;
 	}
 	if (WalkRight) {
 		if (!IsJumping && !CanSwim) {
-			position.x += 8.0f;
+			position.x += SpeedWalk;
 			current_animation = &GoRight;
 		}
 		if (IsJumping) {
-			position.x += 8.0f;
+			position.x += SpeedWalk;
 		}
 		if (CanSwim && !CanClimb) {
-			position.x += 4.0f;
+			position.x += SpeedSwimLeftRight;
 			current_animation = &SwimRight;
 		}
 
 	}
 	if (Idle) {
-		position.x += 0.0f;
-		position.y += 0.0f;
+		//position.x += 0.0f;
+		//position.y += 0.0f;
 		if (current_animation == &GoRight)
 			current_animation = &idle;
 		if (current_animation == &GoLeft)
 			current_animation = &idle2;
 	}
 	if (CanClimb && GoUp) {
-		position.y -= 4.0f;
+		position.y -= SpeedClimb;
 		current_animation = &Climb;
 	}
 	if (CanClimb && GoDown) {
-		position.y += 4.0f;
+		position.y += SpeedClimb;
 		current_animation = &Climb;
 	}
 	if (CanClimb && !GoUp && !GoDown)
 		current_animation = &ClimbIdle;
 	if (WalkLeft) {
 		if (!IsJumping && !CanSwim) {
-			position.x -= 8.0f;
+			position.x -= SpeedWalk;
 			current_animation = &GoLeft;
 		}
 		if (IsJumping) {
-			position.x -= 8.0f;
+			position.x -= SpeedWalk;
 		}
 		if (CanSwim && !CanClimb) {
-			position.x -= 8.0f;	
+			position.x -= SpeedSwimLeftRight;
 			current_animation = &SwimLeft;
 		}
 	}
@@ -263,7 +273,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 		if (position.y < c2->rect.y + c2->rect.h) {
 			position.y += gravity;
 			CanJump = true;
-			JumpTime = 0;
+			Time = 0;
 			CanSwim = false;
 			GoDown = false;
 			CanClimb = false;
@@ -281,10 +291,10 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 		}
 		break;
 	case COLLIDER_PLATFORM:
-		if (position.y + 75 <= c2->rect.y) {
+		if (position.y+ 75<= c2->rect.y) {
 			position.y += gravity;
 			CanJump = true;
-			JumpTime = 0;
+			Time = 0;
 			CanSwim = false;
 			IsJumping = false;
 		}

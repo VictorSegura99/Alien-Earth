@@ -46,6 +46,16 @@
     <positionYmap1 y="245"></positionYmap1>
     <positionXmap2 x="145"></positionXmap2>
     <positionYmap2 y="333"></positionYmap2>
+    <gravity value="-7.8f"></gravity>
+    <startpointcameramap2 value="-60"></startpointcameramap2>
+    <positionWinMap1 value="10780"></positionWinMap1>
+    <JumpTime value="20"></JumpTime>
+    <JumpSpeed value="15.0f"></JumpSpeed>
+    <SpeedWalk value="8.0f"></SpeedWalk>
+    <SpeedSwimLeftRight value="4.0f"></SpeedSwimLeftRight>
+    <SpeedClimb value="4.0f"></SpeedClimb>
+    <SpeedSwimUp value="7.0f"></SpeedSwimUp>
+    <SpeedSwimDown value="3.0f"></SpeedSwimDown>
     <JumpFx source="Jump.wav"/>
     <DeathFx source="Death.wav"/>
   </player>

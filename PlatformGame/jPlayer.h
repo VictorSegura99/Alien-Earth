@@ -8,15 +8,6 @@
 struct SDL_Texture;
 struct SDL_Rect;
 
-enum States {
-	IDLE,
-	GORIGHT,
-	GOLEFT,
-	CLIMB,
-	SWIMRIGHT,
-	SWIMLEFT
-};
-
 class jPlayer : public j1Module
 {
 public:
@@ -63,41 +54,50 @@ public:
 	Animation ClimbIdle;
 	Animation Death;
 
+	SDL_Texture* texture = nullptr;
+
+	p2SString sprites_name;
+	p2SString	JumpFx;
+	p2SString	DeathFx;
+
+	Collider* coll = nullptr;
+
+	fPoint position;
+
 	bool WalkLeft = false;
 	bool WalkRight = false;
+	bool GoUp = false;
+	bool GoDown = false;
 	bool Idle = false;
 	bool Jump = false;
+	bool IsJumping = false;
+	bool CanJump = true;
 	bool CanClimb = false;
+	bool CanSwim = false;
 	bool death=false;
 	bool fall = false;
 	bool God = false;
-	fPoint position;
-	bool IsJumping = false;
-	uint KnowState;
-	Collider* coll = nullptr;
+	bool NextMap = false;
 
 	float initialXmap1 = 0.0f;
 	float initialYmap1 = 0.0f;
 	float initialXmap2 = 0.0f;
 	float initialYmap2 = 0.0f;
+	float gravity = 0.0f;
+	float JumpSpeed = 0.0f;
+	float SpeedWalk = 0.0f;
+	float SpeedClimb = 0.0f;
+	float SpeedSwimUp = 0.0f;
+	float SpeedSwimDown = 0.0f;
+	float SpeedSwimLeftRight = 0.0f;
 
-	SDL_Texture* texture = nullptr;
-	p2SString sprites_name;
-
-	bool NextMap = false;
-	int positionWinMap1 = 10780;
-	int startpointcameramap2 = -60;
-	float gravity = -7.8f;
+	int positionWinMap1 = 0;
+	int startpointcameramap2 = 0;
 	int jumpfx;
-	bool GoUp = false;
-	bool GoDown = false;
-	bool CanJump = true;
-	bool CanSwim = false;
 	int JumpTime = 0;
-	bool doublejump = false;
 
-	p2SString	JumpFx;
-	p2SString	DeathFx;
+	uint Time = 0;
+	
 };
 
 
