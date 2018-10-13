@@ -30,12 +30,24 @@
       <mapname name="Map2.tmx"></mapname>
     </scene>
   
+  <audio>
+    <music>
+      <folder>audio/music/</folder>
+    </music>
+    <sfx>
+      <folder>audio/fx/</folder>
+    </sfx>
+  </audio>
+  
+  
   <player>
     <sprites>textures/Alien.png</sprites>
     <positionXmap1 x="600"></positionXmap1>
     <positionYmap1 y="245"></positionYmap1>
     <positionXmap2 x="145"></positionXmap2>
     <positionYmap2 y="333"></positionYmap2>
+    <JumpFx source="Jump.wav"/>
+    <DeathFx source="Death-wav"/>
   </player>
 
 

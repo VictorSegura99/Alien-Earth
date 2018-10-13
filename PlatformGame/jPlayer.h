@@ -60,6 +60,7 @@ public:
 	Animation Climb;
 	Animation ClimbIdle;
 	Animation Death;
+
 	bool WalkLeft = false;
 	bool WalkRight = false;
 	bool Idle = false;
@@ -67,16 +68,20 @@ public:
 	bool CanClimb = false;
 	bool death=false;
 	bool fall = false;
+
 	fPoint position;
 	bool IsJumping = false;
 	uint KnowState;
 	Collider* coll = nullptr;
+
 	float initialXmap1 = 0.0f;
 	float initialYmap1 = 0.0f;
 	float initialXmap2 = 0.0f;
 	float initialYmap2 = 0.0f;
+
 	SDL_Texture* texture = nullptr;
 	p2SString sprites_name;
+
 	bool NextMap = false;
 	int positionWinMap1 = 10780;
 	int startpointcameramap2 = -60;
@@ -88,6 +93,9 @@ public:
 	bool CanSwim = false;
 	int JumpTime = 0;
 	bool doublejump = false;
+
+	p2SString	JumpFx;
+	p2SString	DeathFx;
 };
 
 

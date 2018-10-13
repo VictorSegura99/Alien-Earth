@@ -27,6 +27,8 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	initialYmap1 = config.child("positionYmap1").attribute("y").as_float();
 	initialXmap2 = config.child("positionXmap2").attribute("x").as_float();
 	initialYmap2 = config.child("positionYmap2").attribute("y").as_float();
+	JumpFx = config.child("JumpFx").attribute("source").as_string();
+	DeathFx = config.child("DeathFx").attribute("source").as_string();
 	bool ret = true;
 	return ret;
 }
@@ -49,11 +51,11 @@ bool jPlayer::Start()
 	
 	GoRight.PushBack({ 0,0,67,86 });
 	GoRight.PushBack({ 69,0,70,86 });
-	GoRight.speed = 0.03f;
+	GoRight.speed = 0.1f;
 
 	GoLeft.PushBack({ 285,0,67,86 });
 	GoLeft.PushBack({ 212,0,70,87 });
-	GoLeft.speed = 0.03f;
+	GoLeft.speed = 0.1f;
 
 	jumpR.PushBack({ 420,0,67,86 });
 
@@ -63,17 +65,17 @@ bool jPlayer::Start()
 
 	Climb.PushBack({ 488,0,64,86 });
 	Climb.PushBack({ 553,0,64,86 });
-	Climb.speed = 0.03f;
+	Climb.speed = 0.1f;
 
 	ClimbIdle.PushBack({ 488,0,64,86 });
 
 	SwimRight.PushBack({ 617,0,70,86 });
 	SwimRight.PushBack({ 617,88,70,86 });
-	SwimRight.speed = 0.03f;
+	SwimRight.speed = 0.1f;
 
 	SwimLeft.PushBack({ 617,176,70,86 });
 	SwimLeft.PushBack({ 617,263,70,86 });
-	SwimLeft.speed = 0.03f;
+	SwimLeft.speed = 0.1f;
 
 	Death.PushBack({ 0,94,68,81 });
 	Death.PushBack({ 73,94,68,81 });
@@ -86,8 +88,9 @@ bool jPlayer::Start()
 	Death.PushBack({ 139,175,68,81 });
 	Death.PushBack({ 206,175,68,81 });
 	Death.PushBack({ 272,175,68,81 });
-	Death.speed=0.03f;
+	Death.speed=0.1f;
 	Death.loop = false;
+	Death.Reset();
 
 	texture = App->tex->Load(sprites_name.GetString());
 	current_animation = &idle;	
@@ -99,7 +102,7 @@ bool jPlayer::Start()
 	return ret;
 
 	//audio
-	App->audio->LoadFx("audio/fx/Jump_fx.wav");
+	App->audio->LoadFx(JumpFx.GetString());
 	
 }
 bool jPlayer::PreUpdate()
@@ -128,6 +131,7 @@ bool jPlayer::Update(float dt)
 	}
 	if (IsJumping) {
 		JumpTime += 1;
+
 		App->audio->PlayFx(1, 1);
 		if (JumpTime <= 30 && WalkRight) {
 			current_animation = &jumpR;
