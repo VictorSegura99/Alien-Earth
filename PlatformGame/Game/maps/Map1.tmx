@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="160" height="17" tilewidth="70" tileheight="70" nextobjectid="366">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="160" height="17" tilewidth="70" tileheight="70" nextobjectid="367">
  <tileset firstgid="1" name="tiles_spritesheet" tilewidth="70" tileheight="70" spacing="2" tilecount="522" columns="18">
   <image source="tiles_spritesheet.png" width="1294" height="2086"/>
  </tileset>
@@ -10943,7 +10943,7 @@
     <property name="Type" type="int" value="12"/>
    </properties>
   </object>
-  <object id="77" x="4690" y="770" width="769.667" height="70">
+  <object id="77" x="4690" y="770.25" width="279.667" height="69.75">
    <properties>
     <property name="Type" type="int" value="12"/>
    </properties>
@@ -11048,22 +11048,22 @@
     <property name="Type" type="int" value="7"/>
    </properties>
   </object>
-  <object id="303" x="5456.92" y="770.25" width="2.83337" height="69.667">
+  <object id="303" x="5456.92" y="783" width="3.18754" height="56.917">
    <properties>
     <property name="Type" type="int" value="1"/>
    </properties>
   </object>
-  <object id="304" x="5740.58" y="770" width="2.83337" height="69.417">
+  <object id="304" x="5740.58" y="782.875" width="2.83337" height="56.542">
    <properties>
     <property name="Type" type="int" value="1"/>
    </properties>
   </object>
-  <object id="305" x="5876.52" y="775.697" width="2.636" height="63.2727">
+  <object id="305" x="5876.52" y="783.197" width="2.636" height="55.7727">
    <properties>
     <property name="Type" type="int" value="1"/>
    </properties>
   </object>
-  <object id="306" x="6579.68" y="775.03" width="2.636" height="63.2727">
+  <object id="306" x="6579.68" y="782.78" width="2.636" height="55.5227">
    <properties>
     <property name="Type" type="int" value="1"/>
    </properties>
@@ -11168,7 +11168,7 @@
     <property name="Type" type="int" value="1"/>
    </properties>
   </object>
-  <object id="333" x="5459.75" y="818.25" width="280" height="21.5">
+  <object id="333" x="5459.75" y="856.917" width="280" height="30.8333">
    <properties>
     <property name="Type" type="int" value="3"/>
    </properties>
@@ -11318,14 +11318,19 @@
     <property name="Type" type="int" value="4"/>
    </properties>
   </object>
-  <object id="364" x="4964.55" y="770.364" width="5.09091" height="69.4545">
+  <object id="364" x="4964.55" y="782.364" width="5.09091" height="61.7045">
    <properties>
     <property name="Type" type="int" value="1"/>
    </properties>
   </object>
-  <object id="365" x="5110.36" y="770.364" width="5.09091" height="69.4545">
+  <object id="365" x="5110.11" y="782.364" width="3.09091" height="57.4545">
    <properties>
     <property name="Type" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="366" x="5110.17" y="769.922" width="350.167" height="69.75">
+   <properties>
+    <property name="Type" type="int" value="12"/>
    </properties>
   </object>
  </objectgroup>
