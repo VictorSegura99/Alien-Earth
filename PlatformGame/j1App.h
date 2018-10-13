@@ -13,8 +13,8 @@ class j1Textures;
 class j1Audio;
 class j1Scene;
 class j1Map;
-class jPlayer;
 class j1Collision;
+class jPlayer;
 class j1App
 {
 public:
@@ -85,8 +85,9 @@ public:
 	j1Audio*			audio;
 	j1Scene*			scene;
 	j1Map*				map;
-	jPlayer*				player;
-	j1Collision* collision;
+	j1Collision*		collision;
+	jPlayer*			player;
+
 
 private:
 

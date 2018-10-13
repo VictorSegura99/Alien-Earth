@@ -120,6 +120,9 @@ void j1Collision::DebugDraw()
 		case COLLIDER_GROUND: // WHITE
 			App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 			break;
+		case COLLIDER_PLATFORM: // WHITE
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+			break;
 		case COLLIDER_SPIKES: // RED
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;

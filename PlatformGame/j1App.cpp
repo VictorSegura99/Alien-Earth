@@ -23,11 +23,11 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	input = new j1Input();
 	win = new j1Window();
 	render = new j1Render();
-	collision = new j1Collision();
 	tex = new j1Textures();
 	audio = new j1Audio();
 	scene = new j1Scene();
 	map = new j1Map();
+	collision = new j1Collision();
 	player = new jPlayer();
 	
 	// Ordered for awake / Start / Update
@@ -39,8 +39,9 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(map);
 	AddModule(scene);
-	AddModule(collision);
+	
 	AddModule(player);
+	AddModule(collision);
 	
 	
 	// render last to swap buffer

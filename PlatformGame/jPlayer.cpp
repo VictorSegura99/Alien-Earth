@@ -265,7 +265,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 		}
 		break;
 	case COLLIDER_PLATFORM:
-		if (position.y + 81 <= c2->rect.y) {
+		if (position.y + 75 <= c2->rect.y) {
 			position.y += gravity;
 			CanJump = true;
 			JumpTime = 0;
