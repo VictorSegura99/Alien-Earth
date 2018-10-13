@@ -59,6 +59,7 @@ public:
 	p2SString sprites_name;
 	p2SString	JumpFx;
 	p2SString	DeathFx;
+	p2SString	WaterFx;
 
 	Collider* coll = nullptr;
 

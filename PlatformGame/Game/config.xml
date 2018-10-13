@@ -43,6 +43,7 @@
   <player>
     <sprites>textures/Alien.png</sprites>
     <JumpFx>audio/fx/Jump_fx.wav</JumpFx>
+    <WaterFx>audio/fx/waterfx.wav</WaterFx>
     <positionXmap1 x="600"></positionXmap1>
     <positionYmap1 y="245"></positionYmap1>
     <positionXmap2 x="145"></positionXmap2>

@@ -24,6 +24,7 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	LOG("Init SDL player");
 	sprites_name = config.child("sprites").text().as_string();
 	JumpFx = config.child("JumpFx").text().as_string();
+	WaterFx = config.child("WaterFx").text().as_string();
 	initialXmap1 = config.child("positionXmap1").attribute("x").as_float();
 	initialYmap1 = config.child("positionYmap1").attribute("y").as_float();
 	initialXmap2 = config.child("positionXmap2").attribute("x").as_float();
@@ -58,7 +59,8 @@ bool jPlayer::Start()
 		position.y = initialYmap2;
 	}
 
-	jumpfx=App->audio->LoadFx(JumpFx.GetString());
+	jumpfx = App->audio->LoadFx(JumpFx.GetString());
+	waterfx = App->audio->LoadFx(WaterFx.GetString());
 
 	idle.PushBack({ 142,0,66,86 });
 
@@ -313,6 +315,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 		position.y += gravity;
 		break;
 	case COLLIDER_WATER:
+		App->audio->PlayFx(waterfx);
 		CanSwim = true;
 		CanClimb = false;
 		position.y += gravity;
