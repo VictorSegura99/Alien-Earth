@@ -308,16 +308,16 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 void jPlayer::Die()
 {
 	current_animation = &Death;
-	if (Death.Finished()) {
+	if (Death.SeeCurrentFrame()==10) {
 		if (App->scene->KnowMap == 0) {
 			CleanUp();
-			App->map->CleanUp();
+			Disable();
 			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 			Start();
 		}
 		if (App->scene->KnowMap == 1) {
 			CleanUp();
-			App->map->CleanUp();
+			Disable();
 			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 			Start();
 		}
@@ -328,13 +328,13 @@ void jPlayer::Fall()
 {
 	if (App->scene->KnowMap == 0) {
 		CleanUp();
-		App->map->CleanUp();
+		Disable();
 		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 		Start();
 	}
 	if (App->scene->KnowMap == 1) {
 		CleanUp();
-		App->map->CleanUp();
+		Disable();
 		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 		Start();
 	}	
