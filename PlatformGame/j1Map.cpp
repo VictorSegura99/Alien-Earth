@@ -184,7 +184,7 @@ bool j1Map::Load(const char* file_name)
 			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_SPIKES);
 		}
 		else if (i == 4) {
-			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_LAVA);
+			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_FALL);
 		}
 		else if (i == 5) {
 			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WIN);
@@ -204,10 +204,6 @@ bool j1Map::Load(const char* file_name)
 		else if (i == 10) {
 			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_NONE);
 		}
-	
-		
-		
-		
 	}
 
 	if(ret == true)

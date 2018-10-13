@@ -44,6 +44,8 @@ public:
 	//Called before quitting
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
+	void Die();
+	void Fall();
 public:
 	
 	Animation* current_animation = nullptr;
@@ -63,6 +65,8 @@ public:
 	bool Idle = false;
 	bool Jump = false;
 	bool CanClimb = false;
+	bool death=false;
+	bool fall = false;
 	fPoint position;
 	bool IsJumping = false;
 	uint KnowState;

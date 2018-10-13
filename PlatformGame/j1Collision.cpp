@@ -17,8 +17,8 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_PLATFORM][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_GROUND][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_GROUND] = true;
-	matrix[COLLIDER_PLAYER][COLLIDER_LAVA] = true;
-	matrix[COLLIDER_LAVA][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_FALL] = true;
+	matrix[COLLIDER_FALL][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_WATER] = true;
 	matrix[COLLIDER_WATER][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_WATER][COLLIDER_WATER] = true;
@@ -126,7 +126,7 @@ void j1Collision::DebugDraw()
 		case COLLIDER_WATER: // BLUEGREEn
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
 			break;
-		case COLLIDER_LAVA: // RED
+		case COLLIDER_FALL: // RED
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;
 		case COLLIDER_WIN: // BLACK
