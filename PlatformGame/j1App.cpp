@@ -30,7 +30,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	collision = new j1Collision();
 	player = new jPlayer();
 	
-	// Ordered for awake / Start / Update
+	// Ordered for awake / Start / Updated
 	// Reverse order of CleanUp
 	
 	AddModule(input);
