@@ -28,7 +28,7 @@
     <scene>
       <mapname name="Map1.tmx"></mapname>
       <mapname name="Map2.tmx"></mapname>
-    </scene>
+    </scene>  
   
   <audio>
     <music>
