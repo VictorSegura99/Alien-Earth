@@ -34,9 +34,9 @@
     <music>
       <folder>audio/music/</folder>
     </music>
-    <sfx>
+    <fx>
       <folder>audio/fx/</folder>
-    </sfx>
+    </fx>
   </audio>
   
   
@@ -47,7 +47,7 @@
     <positionXmap2 x="145"></positionXmap2>
     <positionYmap2 y="333"></positionYmap2>
     <JumpFx source="Jump.wav"/>
-    <DeathFx source="Death-wav"/>
+    <DeathFx source="Death.wav"/>
   </player>
 
 

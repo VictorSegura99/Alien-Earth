@@ -131,8 +131,7 @@ bool jPlayer::Update(float dt)
 	}
 	if (IsJumping) {
 		JumpTime += 1;
-
-		App->audio->PlayFx(1, 1);
+		AddFx(1, 0);
 		if (JumpTime <= 30 && WalkRight) {
 			current_animation = &jumpR;
 			position.y -= 10.0f;
@@ -155,11 +154,17 @@ bool jPlayer::Update(float dt)
 		position.y += 2.0f;
 	}
 	if (WalkRight) {
-		position.x += 5.0f;
-		if (!IsJumping && !CanSwim)
+		if (!IsJumping && !CanSwim) {
+			position.x += 8.0f;
 			current_animation = &GoRight;
-		if(CanSwim && !CanClimb)
+		}
+		if (IsJumping) {
+			position.x += 8.0f;
+		}
+		if (CanSwim && !CanClimb) {
+			position.x += 4.0f;
 			current_animation = &SwimRight;
+		}
 
 	}
 	if (Idle) {
@@ -178,11 +183,17 @@ bool jPlayer::Update(float dt)
 	if (CanClimb && !GoUp && !GoDown)
 		current_animation = &ClimbIdle;
 	if (WalkLeft) {
-		position.x -= 5.0f;
-		if (!IsJumping && !CanSwim)
+		if (!IsJumping && !CanSwim) {
+			position.x -= 8.0f;
 			current_animation = &GoLeft;
-		if (CanSwim && !CanClimb)
+		}
+		if (IsJumping) {
+			position.x -= 8.0f;
+		}
+		if (CanSwim && !CanClimb) {
+			position.x -= 8.0f;
 			current_animation = &SwimLeft;
+		}
 	}
 	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {
 			NextMap = true;
@@ -293,9 +304,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 		fall = true;
 		break;
 	}
-
 }
-
 void jPlayer::Die()
 {
 	current_animation = &Death;
@@ -328,10 +337,12 @@ void jPlayer::Fall()
 		App->map->CleanUp();
 		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 		Start();
-	}
+	}	
 }
 
-
+void jPlayer::AddFx(int fx, int repeat) {
+	App->audio->PlayFx(fx, repeat);
+}
 
 
 

@@ -34,6 +34,9 @@ public:
 	// Play a previously loaded WAV
 	bool PlayFx(unsigned int fx, int repeat = 0);
 
+	p2SString			Folder_music;
+	p2SString			Folder_fx;
+
 private:
 
 	_Mix_Music*			music;
