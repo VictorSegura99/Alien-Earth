@@ -87,7 +87,7 @@ public:
 	bool NextMap = false;
 	int positionWinMap1 = 10780;
 	int startpointcameramap2 = -60;
-	float gravity = -4.8f;
+	float gravity = -7.8f;
 	int jumpfx;
 	bool GoUp = false;
 	bool GoDown = false;

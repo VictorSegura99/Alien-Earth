@@ -23,12 +23,13 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	input = new j1Input();
 	win = new j1Window();
 	render = new j1Render();
+	collision = new j1Collision();
 	tex = new j1Textures();
 	audio = new j1Audio();
 	scene = new j1Scene();
 	map = new j1Map();
 	player = new jPlayer();
-	collision = new j1Collision();
+	
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
 	
@@ -38,8 +39,10 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(map);
 	AddModule(scene);
-	AddModule(player);
 	AddModule(collision);
+	AddModule(player);
+	
+	
 	// render last to swap buffer
 	AddModule(render);
 }

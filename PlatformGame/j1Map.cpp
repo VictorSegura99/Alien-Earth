@@ -386,7 +386,3 @@ bool j1Map::LoadLayer(pugi::xml_node& node, map_layer* layer) {
 
 	return ret;
 }
-
-
-
-

@@ -132,17 +132,17 @@ bool jPlayer::Update(float dt)
 	if (IsJumping) {
 		JumpTime += 1;
 		AddFx(1, 0);
-		if (JumpTime <= 30 && WalkRight) {
+		if (JumpTime <= 20 && WalkRight) {
 			current_animation = &jumpR;
-			position.y -= 10.0f;
+			position.y -= 15.0f;
 		}
-		else if (JumpTime <= 30 && WalkLeft) {
+		else if (JumpTime <= 20 && WalkLeft) {
 			current_animation = &jumpL;
-			position.y -= 10.0f;
+			position.y -= 15.0f;
 		}
-		else if (JumpTime <= 30) {	
+		else if (JumpTime <= 20) {	
 			current_animation = &jumpR;
-			position.y -= 10.0f;
+			position.y -= 15.0f;
 		}
 		else
 			IsJumping = false;
@@ -191,7 +191,7 @@ bool jPlayer::Update(float dt)
 			position.x -= 8.0f;
 		}
 		if (CanSwim && !CanClimb) {
-			position.x -= 8.0f;
+			position.x -= 8.0f;	
 			current_animation = &SwimLeft;
 		}
 	}
