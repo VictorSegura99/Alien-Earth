@@ -11048,12 +11048,12 @@
     <property name="Type" type="int" value="7"/>
    </properties>
   </object>
-  <object id="303" x="5456.92" y="770.25" width="2.83337" height="69.667">
+  <object id="303" x="5456.92" y="791" width="2.83337" height="48.917">
    <properties>
     <property name="Type" type="int" value="1"/>
    </properties>
   </object>
-  <object id="304" x="5740.58" y="770" width="2.83337" height="69.417">
+  <object id="304" x="5740.58" y="789.75" width="2.83337" height="49.667">
    <properties>
     <property name="Type" type="int" value="1"/>
    </properties>
@@ -11323,12 +11323,12 @@
     <property name="Type" type="int" value="4"/>
    </properties>
   </object>
-  <object id="364" x="4964.55" y="770.364" width="5.09091" height="69.4545">
+  <object id="364" x="4964.55" y="782.114" width="5.09091" height="57.7045">
    <properties>
     <property name="Type" type="int" value="1"/>
    </properties>
   </object>
-  <object id="365" x="5110.36" y="770.364" width="5.09091" height="69.4545">
+  <object id="365" x="5110.36" y="781.114" width="5.09091" height="58.7045">
    <properties>
     <property name="Type" type="int" value="1"/>
    </properties>
