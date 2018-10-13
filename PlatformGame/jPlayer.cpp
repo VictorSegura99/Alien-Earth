@@ -170,7 +170,10 @@ bool jPlayer::Update(float dt)
 	if (Idle) {
 		position.x += 0.0f;
 		position.y += 0.0f;
-		current_animation = &idle;
+		if (current_animation==&GoRight)
+			current_animation = &idle;
+		if (current_animation == &GoLeft)
+			current_animation = &idle2;
 	}
 	if (CanClimb && GoUp) {
 		position.y -= 4.0f;
