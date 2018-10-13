@@ -11028,11 +11028,6 @@
     <property name="Type" type="int" value="2"/>
    </properties>
   </object>
-  <object id="106" x="10790" y="671.25" width="50" height="99.25">
-   <properties>
-    <property name="Type" type="int" value="5"/>
-   </properties>
-  </object>
   <object id="299" x="10289.5" y="778" width="14.1667" height="410.667">
    <properties>
     <property name="Type" type="int" value="1"/>
@@ -11073,7 +11068,7 @@
     <property name="Type" type="int" value="1"/>
    </properties>
   </object>
-  <object id="308" x="2940" y="748" width="350" height="21.5">
+  <object id="308" x="2948" y="748" width="342" height="21.5">
    <properties>
     <property name="Type" type="int" value="3"/>
    </properties>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="160" height="21" tilewidth="70" tileheight="70" nextobjectid="128">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="160" height="21" tilewidth="70" tileheight="70" nextobjectid="129">
  <tileset firstgid="1" name="tiles_spritesheet" tilewidth="70" tileheight="70" spacing="2" tilecount="522" columns="18">
   <image source="tiles_spritesheet.png" width="1294" height="2086"/>
   <terraintypes>
@@ -13883,6 +13883,11 @@
   <object id="124" x="5133.83" y="1006" width="25.6667" height="20.0007">
    <properties>
     <property name="Type" type="int" value="10"/>
+   </properties>
+  </object>
+  <object id="128" x="11125.9" y="491.5" width="70.25" height="69">
+   <properties>
+    <property name="Type" type="int" value="5"/>
    </properties>
   </object>
  </objectgroup>

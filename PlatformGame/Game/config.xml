@@ -53,9 +53,12 @@
     <JumpSpeed value="15.0f"></JumpSpeed>
     <SpeedWalk value="8.0f"></SpeedWalk>
     <SpeedSwimLeftRight value="4.0f"></SpeedSwimLeftRight>
+    <playerHeight value="78"></playerHeight>
     <SpeedClimb value="4.0f"></SpeedClimb>
     <SpeedSwimUp value="7.0f"></SpeedSwimUp>
     <SpeedSwimDown value="3.0f"></SpeedSwimDown>
+    <playerwidth value="65"></playerwidth>
+    <playerheight value="87"></playerheight>
     <JumpFx source="Jump.wav"/>
     <DeathFx source="Death.wav"/>
   </player>

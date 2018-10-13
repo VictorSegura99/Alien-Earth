@@ -95,6 +95,9 @@ public:
 	int startpointcameramap2 = 0;
 	int jumpfx;
 	int JumpTime = 0;
+	int playerwidth = 0;
+	int playerHeight = 0;
+	int playerheight = 0;
 
 	uint Time = 0;
 	

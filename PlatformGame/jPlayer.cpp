@@ -34,9 +34,12 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	SpeedSwimUp = config.child("SpeedSwimUp").attribute("value").as_float();
 	SpeedClimb = config.child("SpeedClimb").attribute("value").as_float();
 	SpeedWalk = config.child("SpeedWalk").attribute("value").as_float();
+	playerHeight = config.child("playerHeight").attribute("value").as_int();
 	SpeedSwimDown = config.child("SpeedSwimDown").attribute("value").as_float();
 	JumpTime = config.child("JumpTime").attribute("value").as_int();
 	JumpSpeed = config.child("JumpSpeed").attribute("value").as_float();
+	playerwidth = config.child("playerwidth").attribute("value").as_int();
+	playerheight = config.child("playerheight").attribute("value").as_int();
 	JumpFx = config.child("JumpFx").attribute("source").as_string();
 	DeathFx = config.child("DeathFx").attribute("source").as_string();
 	bool ret = true;
@@ -108,7 +111,7 @@ bool jPlayer::Start()
 		LOG("Error loading player texture!");
 		ret = false;
 	}
-	coll = App->collision->AddCollider({ 0, 0, 65, 87 }, COLLIDER_PLAYER, this);
+	coll = App->collision->AddCollider({ 0, 0, playerwidth, playerheight }, COLLIDER_PLAYER, this);
 	return ret;
 
 	//audio
@@ -187,8 +190,6 @@ bool jPlayer::Update(float dt)
 
 	}
 	if (Idle) {
-		//position.x += 0.0f;
-		//position.y += 0.0f;
 		if (current_animation == &GoRight)
 			current_animation = &idle;
 		if (current_animation == &GoLeft)
@@ -291,7 +292,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 		}
 		break;
 	case COLLIDER_PLATFORM:
-		if (position.y+ 75<= c2->rect.y) {
+		if (position.y + playerHeight  < c2->rect.y) {
 			position.y += gravity;
 			CanJump = true;
 			Time = 0;
