@@ -109,21 +109,27 @@ bool jPlayer::PreUpdate()
 {
 	WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
 	WalkRight = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
-	Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
 	GoUp = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
 	GoDown = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
-
+	if (!God) 
+		Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
+	else Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT;
 	if (!WalkLeft && !WalkRight && !CanSwim && !CanClimb)
 		Idle = true;
 	else
 		Idle = false;
-
-	return true;
+	if (WalkRight && WalkLeft) {
+		WalkRight = false;
+		WalkLeft = false;
+	}
+	if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+		God = !God;
+		return true;
 }
 bool jPlayer::Update(float dt)
 {
 	position.y -= gravity;
-	if (Jump && CanJump && !CanSwim) {
+	if (Jump && CanJump && !CanSwim && !God) {
 		IsJumping = true;
 	}
 	if (IsJumping) {
@@ -146,6 +152,9 @@ bool jPlayer::Update(float dt)
 		}
 		else
 			IsJumping = false;
+	}
+	if (God && Jump) {
+		position.y -= 15.0f;
 	}
 	if (CanSwim && GoUp) {
 		position.y -= 7.0f;
@@ -170,7 +179,7 @@ bool jPlayer::Update(float dt)
 	if (Idle) {
 		position.x += 0.0f;
 		position.y += 0.0f;
-		if (current_animation==&GoRight)
+		if (current_animation == &GoRight)
 			current_animation = &idle;
 		if (current_animation == &GoLeft)
 			current_animation = &idle2;
@@ -216,10 +225,12 @@ bool jPlayer::Update(float dt)
 	else {
 		App->render->camera.y = -position.y + (App->render->camera.h / 2);
 	}
-	if (death) 
+	if (death && !God) 
 		Die();
-	if (fall)
+	if (fall && !God)
 		Fall();
+	if (God)
+		CanJump = true;
 	coll->SetPos(position.x, position.y);
 
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
@@ -238,6 +249,7 @@ bool jPlayer::CleanUp()
 	NextMap = false;
 	death = false;
 	fall = false;
+	God = false;
 	Death.Reset();
 	if (coll)
 		coll->to_delete = true;

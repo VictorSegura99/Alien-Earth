@@ -70,7 +70,7 @@ public:
 	bool CanClimb = false;
 	bool death=false;
 	bool fall = false;
-
+	bool God = false;
 	fPoint position;
 	bool IsJumping = false;
 	uint KnowState;

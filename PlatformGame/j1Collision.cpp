@@ -86,7 +86,7 @@ bool j1Collision::PreUpdate()
 // Called before render is available
 bool j1Collision::Update(float dt)
 {
-	if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN)
 		debug = !debug;
 	DebugDraw();
 
