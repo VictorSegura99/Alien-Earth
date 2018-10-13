@@ -137,6 +137,7 @@ bool j1Scene::PostUpdate()
 // Called before quitting
 bool j1Scene::CleanUp()
 {
+	App->collision->Disable();
 	LOG("Freeing scene");
 	return true;
 }

@@ -1,7 +1,7 @@
 #ifndef __j1Collision_H__
 #define __j1Collision_H__
 
-#define MAX_COLLIDERS 1000
+#define MAX_COLLIDERS 300
 
 #include "j1Module.h"
 
@@ -13,7 +13,7 @@ enum COLLIDER_TYPE
 	COLLIDER_GROUND,
 	COLLIDER_PLATFORM,
 	COLLIDER_WALL_UP,
-	COLLIDER_LAVA,
+	COLLIDER_FALL,
 	COLLIDER_WATER,
 	COLLIDER_SPIKES,
 	COLLIDER_WIN,

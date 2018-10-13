@@ -87,6 +87,7 @@ bool jPlayer::Start()
 	Death.PushBack({ 206,175,68,81 });
 	Death.PushBack({ 272,175,68,81 });
 	Death.speed=0.03f;
+	Death.loop = false;
 
 	texture = App->tex->Load(sprites_name.GetString());
 	current_animation = &idle;	
@@ -197,11 +198,10 @@ bool jPlayer::Update(float dt)
 	else {
 		App->render->camera.y = -position.y + (App->render->camera.h / 2);
 	}
-
-
-	if (App->input->GetKey(SDL_SCANCODE_H) == KEY_REPEAT) {
-		current_animation = &Death;
-	}
+	if (death) 
+		Die();
+	if (fall)
+		Fall();
 	coll->SetPos(position.x, position.y);
 
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
@@ -218,6 +218,8 @@ bool jPlayer::CleanUp()
 {
 	App->tex->UnLoad(texture);
 	NextMap = false;
+	death = false;
+	fall = false;
 	if (coll)
 		coll->to_delete = true;
 	return true;
@@ -270,9 +272,62 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 		CanClimb = false;
 		CanSwim = false;
 		break; 
+	case COLLIDER_SPIKES:
+		position.y += gravity;
+		WalkLeft = false;
+		WalkRight = false;
+		GoUp = false;
+		GoDown = false;
+		CanJump = false;
+		death = true;
+		break;
+	case COLLIDER_FALL:
+		WalkLeft = false;
+		WalkRight = false;
+		GoUp = false;
+		GoDown = false;
+		fall = true;
+		break;
 	}
 
 }
+
+void jPlayer::Die()
+{
+	current_animation = &Death;
+	if (Death.Finished()) {
+		if (App->scene->KnowMap == 0) {
+			CleanUp();
+			App->map->CleanUp();
+			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
+			Start();
+		}
+		if (App->scene->KnowMap == 1) {
+			CleanUp();
+			App->map->CleanUp();
+			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
+			Start();
+		}
+	}
+}
+
+void jPlayer::Fall()
+{
+	if (App->scene->KnowMap == 0) {
+		CleanUp();
+		App->map->CleanUp();
+		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
+		Start();
+	}
+	if (App->scene->KnowMap == 1) {
+		CleanUp();
+		App->map->CleanUp();
+		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
+		Start();
+	}
+}
+
+
 
 
 
