@@ -23,6 +23,7 @@ bool jPlayer::Awake(pugi::xml_node& config)
 {
 	LOG("Init SDL player");
 	sprites_name = config.child("sprites").text().as_string();
+	JumpFx = config.child("JumpFx").text().as_string();
 	initialXmap1 = config.child("positionXmap1").attribute("x").as_float();
 	initialYmap1 = config.child("positionYmap1").attribute("y").as_float();
 	initialXmap2 = config.child("positionXmap2").attribute("x").as_float();
@@ -40,7 +41,6 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	JumpSpeed = config.child("JumpSpeed").attribute("value").as_float();
 	playerwidth = config.child("playerwidth").attribute("value").as_int();
 	playerheight = config.child("playerheight").attribute("value").as_int();
-	JumpFx = config.child("JumpFx").attribute("source").as_string();
 	DeathFx = config.child("DeathFx").attribute("source").as_string();
 	bool ret = true;
 	return ret;
@@ -57,6 +57,8 @@ bool jPlayer::Start()
 		position.x = initialXmap2;
 		position.y = initialYmap2;
 	}
+
+	jumpfx=App->audio->LoadFx(JumpFx.GetString());
 
 	idle.PushBack({ 142,0,66,86 });
 
@@ -114,8 +116,8 @@ bool jPlayer::Start()
 	coll = App->collision->AddCollider({ 0, 0, playerwidth, playerheight }, COLLIDER_PLAYER, this);
 	return ret;
 
-	//audio
-	App->audio->LoadFx(JumpFx.GetString());
+
+	
 	
 }
 bool jPlayer::PreUpdate()
@@ -131,13 +133,10 @@ bool jPlayer::PreUpdate()
 		Idle = true;
 	else
 		Idle = false;
-	if (WalkRight && WalkLeft) {
-		WalkRight = false;
-		WalkLeft = false;
-	}
 	if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
 		God = !God;
-		return true;
+
+	return true;
 }
 bool jPlayer::Update(float dt)
 {
@@ -147,7 +146,7 @@ bool jPlayer::Update(float dt)
 	}
 	if (IsJumping) {
 		Time += 1;
-		AddFx(1, 0);
+		App->audio->PlayFx(jumpfx);
 		if (Time <= JumpTime && WalkRight) {
 			current_animation = &jumpR;
 			position.y -= JumpSpeed;
@@ -167,6 +166,7 @@ bool jPlayer::Update(float dt)
 			IsJumping = false;
 	}
 	if (God && Jump) {
+		App->audio->PlayFx(jumpfx);
 		position.y -= JumpSpeed;
 	}
 	if (CanSwim && GoUp) {
@@ -195,6 +195,7 @@ bool jPlayer::Update(float dt)
 		if (current_animation == &GoLeft)
 			current_animation = &idle2;
 	}
+
 	if (CanClimb && GoUp) {
 		position.y -= SpeedClimb;
 		current_animation = &Climb;
@@ -217,6 +218,12 @@ bool jPlayer::Update(float dt)
 			position.x -= SpeedSwimLeftRight;
 			current_animation = &SwimLeft;
 		}
+	}
+	if (WalkRight && WalkLeft) {
+		if (!CanSwim)
+			current_animation = &idle;
+		if (CanSwim)
+			current_animation = &SwimRight;
 	}
 	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {
 			NextMap = true;
@@ -246,7 +253,7 @@ bool jPlayer::Update(float dt)
 
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	
-	
+
 	return true;
 }
 bool jPlayer::PostUpdate()
@@ -292,7 +299,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 		}
 		break;
 	case COLLIDER_PLATFORM:
-		if (position.y + playerHeight  < c2->rect.y) {
+		if (position.y + playerHeight < c2->rect.y) {
 			position.y += gravity;
 			CanJump = true;
 			Time = 0;
@@ -313,7 +320,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 	case COLLIDER_NONE:
 		CanClimb = false;
 		CanSwim = false;
-		break; 
+		break;
 	case COLLIDER_SPIKES:
 		position.y += gravity;
 		WalkLeft = false;

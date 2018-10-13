@@ -42,6 +42,7 @@
   
   <player>
     <sprites>textures/Alien.png</sprites>
+    <JumpFx>audio/fx/Jump_fx.wav</JumpFx>
     <positionXmap1 x="600"></positionXmap1>
     <positionYmap1 y="245"></positionYmap1>
     <positionXmap2 x="145"></positionXmap2>
@@ -59,7 +60,6 @@
     <SpeedSwimDown value="3.0f"></SpeedSwimDown>
     <playerwidth value="65"></playerwidth>
     <playerheight value="87"></playerheight>
-    <JumpFx source="Jump.wav"/>
     <DeathFx source="Death.wav"/>
   </player>
 

@@ -40,7 +40,7 @@ bool j1Scene::Start()
 {
 
 	App->map->Load(map_name.start->data->GetString());
-	App->audio->PlayMusic("audio/music/Level1.ogg", 0.0f);
+	//App->audio->PlayMusic("audio/music/Level1.ogg", 0.0f);
 
 	return true;
 }

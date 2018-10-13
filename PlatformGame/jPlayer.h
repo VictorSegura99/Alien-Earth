@@ -93,12 +93,13 @@ public:
 
 	int positionWinMap1 = 0;
 	int startpointcameramap2 = 0;
-	int jumpfx;
 	int JumpTime = 0;
 	int playerwidth = 0;
 	int playerHeight = 0;
 	int playerheight = 0;
 
+	unsigned int jumpfx;
+	unsigned int waterfx;
 	uint Time = 0;
 	
 };
