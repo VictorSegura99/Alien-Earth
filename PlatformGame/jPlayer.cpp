@@ -113,11 +113,10 @@ bool jPlayer::PreUpdate()
 	GoUp = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
 	GoDown = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
 
-	if (!WalkLeft && !WalkRight && !IsJumping && !CanSwim && !CanClimb)
+	if (!WalkLeft && !WalkRight && !CanSwim && !CanClimb)
 		Idle = true;
 	else
 		Idle = false;
-	
 
 	return true;
 }
@@ -126,8 +125,6 @@ bool jPlayer::Update(float dt)
 	position.y -= gravity;
 	if (Jump && CanJump && !CanSwim) {
 		IsJumping = true;
-		CanJump = false;
-		Jump = false;
 	}
 	if (IsJumping) {
 		JumpTime += 1;
@@ -141,7 +138,10 @@ bool jPlayer::Update(float dt)
 			position.y -= 15.0f;
 		}
 		else if (JumpTime <= 20) {	
-			current_animation = &jumpR;
+			if (current_animation==&idle)
+				current_animation = &jumpR;
+			if (current_animation == &idle2)
+				current_animation = &jumpL;
 			position.y -= 15.0f;
 		}
 		else
