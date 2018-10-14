@@ -27,7 +27,7 @@ public:
 
 	// Play a music file
 	bool PlayMusic(const char* path, float fade_time = DEFAULT_MUSIC_FADE_TIME);
-
+	bool Update(float dt);
 	// Load a WAV in memory
 	unsigned int LoadFx(const char* path);
 
@@ -38,7 +38,7 @@ public:
 	p2SString			Folder_fx;
 
 private:
-
+	int volume = 0;
 	_Mix_Music*			music;
 	p2List<Mix_Chunk*>	fx;
 };
