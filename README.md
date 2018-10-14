@@ -4,17 +4,9 @@ Made by:
 -Oriol Capdevila
 
 
-
-
-
-
-
-
-
-
-
-
 Sprites from: https://opengameart.org/content/platformer-art-complete-pack-often-updated
+Death sFx: https://www.zapsplat.com/music/balloon-pop/
+Jump sFx: http://soundbible.com/1601-Mario-Jumping.html
 
 
 MIT License

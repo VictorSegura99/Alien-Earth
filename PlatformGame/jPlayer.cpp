@@ -26,6 +26,7 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	JumpFx = config.child("JumpFx").text().as_string();
 	WaterFx = config.child("WaterFx").text().as_string();
 	DeathFx = config.child("DeathFx").text().as_string();
+	DeathFx2 = config.child("DeathFx2").text().as_string();
 	initialXmap1 = config.child("positionXmap1").attribute("x").as_float();
 	initialYmap1 = config.child("positionYmap1").attribute("y").as_float();
 	initialXmap2 = config.child("positionXmap2").attribute("x").as_float();
@@ -66,6 +67,7 @@ bool jPlayer::Start()
 	jumpfx = App->audio->LoadFx(JumpFx.GetString());
 	waterfx = App->audio->LoadFx(WaterFx.GetString());
 	deathfx = App->audio->LoadFx(DeathFx.GetString());
+	deathfx2 = App->audio->LoadFx(DeathFx2.GetString());
 
 	idle.PushBack({ 142,0,66,86 });
 
@@ -254,10 +256,14 @@ bool jPlayer::Update(float dt)
 	else {
 		App->render->camera.y = -position.y + (App->render->camera.h / 2);
 	}
-	if (death && !God) 
+	if (death && !God) {
+		App->audio->PlayFx(deathfx2);
 		Die();
-	if (fall && !God)
+	}
+	if (fall && !God) {
+		App->audio->PlayFx(deathfx2);
 		Fall();
+	}
 	if (God)
 		CanJump = true;
 	coll->SetPos(position.x, position.y);
@@ -353,6 +359,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 }
 void jPlayer::Die()
 {
+	death = false;
 	current_animation = &Death;
 	App->audio->PlayFx(deathfx);
 	if (Death.SeeCurrentFrame()==10) {
