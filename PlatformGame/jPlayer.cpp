@@ -187,9 +187,11 @@ bool jPlayer::Update(float dt)
 	}
 	if (CanSwim && GoUp) { //Can Swim determine if you are in a water collider, if you are, it's true
 		position.y -= SpeedSwimUp;
+		current_animation == &SwimRight;
 	}
 	if (CanSwim && GoDown) {
 		position.y += SpeedSwimDown;
+		current_animation == &SwimRight;
 	}
 	if (WalkRight) { //This determine the movement to the right, depending on the state of the player
 		if (!IsJumping && !CanSwim) {
@@ -199,7 +201,7 @@ bool jPlayer::Update(float dt)
 		if (IsJumping) {
 			position.x += SpeedWalk;
 		}
-		if (CanSwim && !CanClimb) {//Can Climb determine if you are in a climb collider, if you are, it's true
+		if (CanSwim && !CanClimb) { //Can Climb determine if you are in a climb collider, if you are, it's true
 			position.x += SpeedSwimLeftRight;
 			current_animation = &SwimRight;
 		}
@@ -222,7 +224,7 @@ bool jPlayer::Update(float dt)
 	}
 	if (CanClimb && !GoUp && !GoDown)
 		current_animation = &ClimbIdle;
-	if (WalkLeft) {//This determine the movement to the left, depending on the state of the player
+	if (WalkLeft) { //This determine the movement to the left, depending on the state of the player
 		if (!IsJumping && !CanSwim) {
 			position.x -= SpeedWalk;
 			current_animation = &GoLeft;
@@ -389,6 +391,16 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		CanClimb = true;
 		CanJump = true;
 		position.y += gravity;
+		break;
+	case COLLIDER_WIN:
+		CanClimb = false;
+		CanSwim = false;
+		App->player->CleanUp();
+		App->player->Disable();
+		App->scene->KnowMap = 0;
+		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
+		App->player->Start();
+		break;
 	}
 }
 void jPlayer::Die()//What happens when the player die
