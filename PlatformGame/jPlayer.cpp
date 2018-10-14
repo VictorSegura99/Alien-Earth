@@ -188,6 +188,9 @@ bool jPlayer::Update(float dt)
 		//App->audio->PlayFx(jumpfx);
 		position.y -= JumpSpeed;
 	}
+	if (CanSwim) {
+		current_animation = &SwimRight;
+	}
 	if (CanSwim && GoUp) { //Can Swim determine if you are in a water collider, if you are, it's true
 		position.y -= SpeedSwimUp;
 	}
