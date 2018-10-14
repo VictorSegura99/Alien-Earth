@@ -104,8 +104,8 @@ public:
 	int playerwidth = 0;
 	int playerHeight = 0;
 	int playerheight = 0;
-	int finalmap2player = 0;
-	int finalmap2 = 0;
+	int finalmapplayer = 0;
+	int finalmap = 0;
 
 	unsigned int jumpfx;
 	unsigned int waterfx;
