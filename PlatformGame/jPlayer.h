@@ -32,7 +32,9 @@ public:
 	//Called every loop iteration
 	bool Update(float dt);
 
-	//Called before quitting
+	bool Load(pugi::xml_node&);
+	bool Save(pugi::xml_node&) const;
+
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 	void Die();
