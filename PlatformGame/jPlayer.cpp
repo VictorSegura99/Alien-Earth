@@ -257,7 +257,7 @@ bool jPlayer::Update(float dt)
 		App->render->camera.y = -position.y + (App->render->camera.h / 2);
 	}
 	if (death && !God) {
-		App->audio->PlayFx(deathfx2);
+		//App->audio->PlayFx(deathfx2);
 		Die();
 	}
 	if (fall && !God) {

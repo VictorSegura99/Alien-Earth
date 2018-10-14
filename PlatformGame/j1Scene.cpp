@@ -40,7 +40,7 @@ bool j1Scene::Start()
 {
 
 	App->map->Load(map_name.start->data->GetString());
-	//App->audio->PlayMusic("audio/music/Level1.ogg", 0.0f);
+	App->audio->PlayMusic("audio/music/Level1.ogg", 0.0f);
 
 	return true;
 }
@@ -55,10 +55,10 @@ bool j1Scene::PreUpdate()
 bool j1Scene::Update(float dt)
 {
 	if(App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
-		App->LoadGame();
+		App->LoadGame("save_game.xml");
 
 	if(App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
-		App->SaveGame();
+		App->SaveGame("save_game.xml");
 
 	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
 		App->render->camera.y -= 1;
