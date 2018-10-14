@@ -144,12 +144,13 @@ bool jPlayer::PreUpdate()
 bool jPlayer::Update(float dt)
 {
 	position.y -= gravity;
-	if (Jump && CanJump && !CanSwim && !God) {
+	if (Jump && CanJump && !CanSwim && !God && !IsJumping) {
 		IsJumping = true;
 		App->audio->PlayFx(jumpfx);
 	}
 	if (IsJumping) {
 		Time += 1;
+		CanJump = false;
 		if (Time <= JumpTime && WalkRight) {
 			current_animation = &jumpR;
 			position.y -= JumpSpeed;
@@ -169,7 +170,7 @@ bool jPlayer::Update(float dt)
 			IsJumping = false;
 	}
 	if (God && Jump) {
-		App->audio->PlayFx(jumpfx);
+		//App->audio->PlayFx(jumpfx);
 		position.y -= JumpSpeed;
 	}
 	if (CanSwim && GoUp) {
