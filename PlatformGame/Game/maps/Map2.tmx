@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="160" height="21" tilewidth="70" tileheight="70" infinite="0" nextlayerid="7" nextobjectid="136">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="160" height="21" tilewidth="70" tileheight="70" infinite="0" nextlayerid="7" nextobjectid="138">
  <tileset firstgid="1" name="tiles_spritesheet" tilewidth="70" tileheight="70" spacing="2" tilecount="522" columns="18">
   <image source="tiles_spritesheet.png" width="1294" height="2086"/>
   <terraintypes>
@@ -4491,13 +4491,13 @@
    <tile gid="471"/>
    <tile/>
    <tile/>
-   <tile gid="473"/>
-   <tile gid="464"/>
    <tile/>
-   <tile gid="474"/>
+   <tile gid="463"/>
+   <tile/>
+   <tile/>
    <tile/>
    <tile gid="462"/>
-   <tile gid="463"/>
+   <tile/>
    <tile/>
    <tile gid="225"/>
    <tile gid="225"/>
@@ -4651,14 +4651,14 @@
    <tile gid="471"/>
    <tile/>
    <tile/>
-   <tile gid="491"/>
-   <tile gid="482"/>
-   <tile/>
-   <tile gid="492"/>
    <tile/>
    <tile gid="480"/>
-   <tile gid="481"/>
-   <tile gid="257"/>
+   <tile/>
+   <tile gid="364"/>
+   <tile/>
+   <tile gid="480"/>
+   <tile/>
+   <tile/>
    <tile gid="225"/>
    <tile gid="225"/>
    <tile gid="225"/>
@@ -13880,11 +13880,6 @@
     <property name="Type" type="int" value="10"/>
    </properties>
   </object>
-  <object id="128" x="11125.9" y="491.5" width="70.25" height="69">
-   <properties>
-    <property name="Type" type="int" value="5"/>
-   </properties>
-  </object>
   <object id="129" x="10039.2" y="314" width="25.6667" height="490.001">
    <properties>
     <property name="Type" type="int" value="10"/>
@@ -13898,6 +13893,11 @@
   <object id="132" x="-5.33333" y="0" width="13.3333" height="421.333">
    <properties>
     <property name="Type" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="136" x="10854.7" y="490.667" width="57.3333" height="68">
+   <properties>
+    <property name="Type" type="int" value="5"/>
    </properties>
   </object>
  </objectgroup>

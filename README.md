@@ -11,13 +11,12 @@ CONTROLS:
 
 DEBUG KEYS:
 -F1: Return to the begining of the first level.
--F2: 
+-F2: Start from the begining of the current level.
 -F3: Begining of the second level
 -F5: Save.
 -F6: Load.
 -F9: Show Colliders.
 -F10: Godmode.
--F11: 
 
 INNOVATIONS:
 -Climb ladders and ropes.
