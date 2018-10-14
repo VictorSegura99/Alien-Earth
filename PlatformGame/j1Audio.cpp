@@ -2,6 +2,8 @@
 #include "p2Log.h"
 #include "j1Audio.h"
 #include "p2List.h"
+#include "j1Input.h"
+#include "j1App.h"
 
 #include "SDL/include/SDL.h"
 #include "SDL_mixer\include\SDL_mixer.h"
@@ -134,6 +136,21 @@ bool j1Audio::PlayMusic(const char* path, float fade_time)
 
 	LOG("Successfully playing %s", path);
 	return ret;
+}
+
+bool j1Audio::Update(float dt)
+{
+	if (App->input->GetKey(SDL_SCANCODE_KP_PLUS) == KEY_REPEAT)
+	{
+		volume += 10;
+	}
+	else if (App->input->GetKey(SDL_SCANCODE_KP_MINUS) == KEY_REPEAT)
+	{
+		volume -= 10;
+	}
+
+	Mix_VolumeMusic(volume);
+	return true;
 }
 
 // Load WAV
