@@ -6,7 +6,8 @@ CONTROLS:
 -D: Move to the right
 -A: Move to the left
 -SPACE: Jump
--W and S: While Climbing, to move up and down.
+-W: Go Up while Climbing/Swimming.
+-S: Go Down while Climbing/Swimming.
 
 DEBUG KEYS:
 -F1: Return to the begining of the first level.
@@ -19,7 +20,8 @@ DEBUG KEYS:
 -F11: 
 
 INNOVATIONS:
-
+-Climb ladders and ropes.
+-Swim through water.
 _____________
 AUTHORS
 -Víctor Segura Blanco (Github: https://github.com/VictorSegura99)
