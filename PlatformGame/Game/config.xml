@@ -28,6 +28,7 @@
     <scene>
       <mapname name="Map1.tmx"></mapname>
       <mapname name="Map2.tmx"></mapname>
+      <song>audio/music/Level1.ogg</song>
     </scene>  
   
   <audio>
