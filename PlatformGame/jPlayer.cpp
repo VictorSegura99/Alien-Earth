@@ -95,7 +95,7 @@ bool jPlayer::Start()
 	Climb.PushBack({ 556,0,65,86 });
 	Climb.speed = 0.1f;
 
-	ClimbIdle.PushBack({ 488,0,64,86 });
+	ClimbIdle.PushBack({ 488,0,65,86 });
 
 	SwimRight.PushBack({ 621,0,70,86 });
 	SwimRight.PushBack({ 617,88,70,86 });
@@ -133,7 +133,7 @@ bool jPlayer::Start()
 	
 	
 }
-bool jPlayer::PreUpdate()
+bool jPlayer::PreUpdate() //Here we preload the input functions to determine the state of the player
 {
 	WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
 	WalkRight = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
@@ -154,11 +154,11 @@ bool jPlayer::PreUpdate()
 bool jPlayer::Update(float dt)
 {
 	position.y -= gravity;
-	if (Jump && CanJump && !CanSwim && !God && !IsJumping) {
+	if (Jump && CanJump && !CanSwim && !God && !IsJumping) { //If you clicked the jump button and you are able to jump(always except you just jumpt) you can jump
 		IsJumping = true;
 		App->audio->PlayFx(jumpfx);
 	}
-	if (IsJumping) {
+	if (IsJumping) { //if you are able to jump, determine the animation and direction of the jump
 		Time += 1;
 		CanJump = false;
 		if (Time <= JumpTime && WalkRight) {
@@ -176,20 +176,22 @@ bool jPlayer::Update(float dt)
 				current_animation = &jumpL;
 			position.y -= JumpSpeed;
 		}
-		else
+		else {
 			IsJumping = false;
+			current_animation = &idle;
+		}
 	}
-	if (God && Jump) {
+	if (God && Jump) { //if you are in god mode and jump, you can fly
 		//App->audio->PlayFx(jumpfx);
 		position.y -= JumpSpeed;
 	}
-	if (CanSwim && GoUp) {
+	if (CanSwim && GoUp) { //Can Swim determine if you are in a water collider, if you are, it's true
 		position.y -= SpeedSwimUp;
 	}
 	if (CanSwim && GoDown) {
 		position.y += SpeedSwimDown;
 	}
-	if (WalkRight) {
+	if (WalkRight) { //This determine the movement to the right, depending on the state of the player
 		if (!IsJumping && !CanSwim) {
 			position.x += SpeedWalk;
 			current_animation = &GoRight;
@@ -197,7 +199,7 @@ bool jPlayer::Update(float dt)
 		if (IsJumping) {
 			position.x += SpeedWalk;
 		}
-		if (CanSwim && !CanClimb) {
+		if (CanSwim && !CanClimb) {//Can Climb determine if you are in a climb collider, if you are, it's true
 			position.x += SpeedSwimLeftRight;
 			current_animation = &SwimRight;
 		}
@@ -220,7 +222,7 @@ bool jPlayer::Update(float dt)
 	}
 	if (CanClimb && !GoUp && !GoDown)
 		current_animation = &ClimbIdle;
-	if (WalkLeft) {
+	if (WalkLeft) {//This determine the movement to the left, depending on the state of the player
 		if (!IsJumping && !CanSwim) {
 			position.x -= SpeedWalk;
 			current_animation = &GoLeft;
@@ -242,7 +244,7 @@ bool jPlayer::Update(float dt)
 			current_animation = &Climb;
 		}
 	}
-	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {
+	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {//knowmap it's a varibable that let us know in which map we are. //Knowmap=0, level 1 //knowmap=2, level 2
 			NextMap = true;
 	}
 	if (position.x <= startmap2 && App->scene->KnowMap == 1) { //If player is in a position where the camera would print out of the map, camera stops
@@ -318,7 +320,7 @@ bool jPlayer::CleanUp()
 	return true;
 }
 
-void jPlayer::OnCollision(Collider * c1, Collider * c2)
+void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what happens when the player touch a type of collider
 {
 	switch (c2->type) {
 	case COLLIDER_GROUND:
@@ -389,7 +391,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 		position.y += gravity;
 	}
 }
-void jPlayer::Die()
+void jPlayer::Die()//What happens when the player die
 {
 	current_animation = &Death;
 	App->audio->PlayFx(deathfx);
@@ -409,7 +411,7 @@ void jPlayer::Die()
 	}
 }
 
-void jPlayer::Fall()
+void jPlayer::Fall()//What happens when the player falls
 {
 	if (App->scene->KnowMap == 0) {
 		CleanUp();
