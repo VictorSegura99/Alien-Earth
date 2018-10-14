@@ -364,7 +364,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 		CanSwim = true;
 		CanClimb = false;
 		position.y += gravity;
-		break;
+		break;	
 	case COLLIDER_NONE:
 		CanClimb = false;
 		CanSwim = false;
@@ -385,6 +385,10 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 		GoDown = false;
 		fall = true;
 		break;	
+	case COLLIDER_ROPE:
+		CanClimb = true;
+		CanJump = true;
+		position.y += gravity;
 	}
 }
 void jPlayer::Die()

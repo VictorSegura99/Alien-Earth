@@ -192,17 +192,21 @@ bool j1Map::Load(const char* file_name)
 		else if (i == 6) {
 			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WATER);
 		}
-		else if (i == 8) {
+		else if (i == 7) {
 			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_CLIMB);
 		}
-		else if (i == 12) {
-			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_PLATFORM);
+		else if (i == 8) {
+			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_ROPE);
+		}
+		else if (i == 10) {
+			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_NONE);
 		}
 		else if (i == 11) {
 			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WALL_UP);
 		}
-		else if (i == 10) {
-			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_NONE);
+	
+		else if (i == 12) {
+			App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_PLATFORM);
 		}
 	}
 

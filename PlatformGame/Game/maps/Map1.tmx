@@ -11095,7 +11095,7 @@
   </object>
   <object id="313" x="2030.08" y="642.363" width="70.25" height="265.606">
    <properties>
-    <property name="Type" type="int" value="8"/>
+    <property name="Type" type="int" value="7"/>
    </properties>
   </object>
   <object id="314" x="2126.91" y="683.28" width="90.6667" height="103.357">
