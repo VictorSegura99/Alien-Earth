@@ -62,6 +62,7 @@ public:
 	p2SString	JumpFx;
 	p2SString	WaterFx;
 	p2SString DeathFx;
+	p2SString DeathFx2;
 	Collider* coll = nullptr;
 
 	fPoint position;
@@ -93,6 +94,10 @@ public:
 	float SpeedSwimDown = 0.0f;
 	float SpeedSwimLeftRight = 0.0f;
 
+	int startmap2 = 0;
+	int maxYcam = 0;
+	int minYcam = 0;
+	int lowcam = 0;
 	int positionWinMap1 = 0;
 	int startpointcameramap2 = 0;
 	int JumpTime = 0;
@@ -103,6 +108,7 @@ public:
 	unsigned int jumpfx;
 	unsigned int waterfx;
 	unsigned int deathfx;
+	unsigned int deathfx2;
 	uint Time = 0;
 	
 };

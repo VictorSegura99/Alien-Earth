@@ -26,10 +26,15 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	JumpFx = config.child("JumpFx").text().as_string();
 	WaterFx = config.child("WaterFx").text().as_string();
 	DeathFx = config.child("DeathFx").text().as_string();
+	DeathFx2 = config.child("DeathFx2").text().as_string();
 	initialXmap1 = config.child("positionXmap1").attribute("x").as_float();
 	initialYmap1 = config.child("positionYmap1").attribute("y").as_float();
 	initialXmap2 = config.child("positionXmap2").attribute("x").as_float();
 	initialYmap2 = config.child("positionYmap2").attribute("y").as_float();
+	startmap2 = config.child("startmap2").attribute("value").as_int();
+	maxYcam = config.child("maxYcam").attribute("value").as_int();
+	minYcam = config.child("minYcam").attribute("value").as_int();
+	lowcam = config.child("lowcam").attribute("value").as_int();
 	gravity = config.child("gravity").attribute("value").as_float();
 	positionWinMap1 = config.child("positionWinMap1").attribute("value").as_int();
 	startpointcameramap2 = config.child("startpointcameramap2").attribute("value").as_int();
@@ -62,6 +67,7 @@ bool jPlayer::Start()
 	jumpfx = App->audio->LoadFx(JumpFx.GetString());
 	waterfx = App->audio->LoadFx(WaterFx.GetString());
 	deathfx = App->audio->LoadFx(DeathFx.GetString());
+	deathfx2 = App->audio->LoadFx(DeathFx2.GetString());
 
 	idle.PushBack({ 142,0,66,86 });
 
@@ -228,29 +234,36 @@ bool jPlayer::Update(float dt)
 			current_animation = &idle;
 		if (CanSwim)
 			current_animation = &SwimRight;
+		if (CanClimb) {
+			current_animation = &Climb;
+		}
 	}
 	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {
 			NextMap = true;
 	}
-	if (position.x <= 560 && App->scene->KnowMap == 1) { //If player is in a position where the camera would print out of the map, camera stops
+	if (position.x <= startmap2 && App->scene->KnowMap == 1) { //If player is in a position where the camera would print out of the map, camera stops
 			App->render->camera.x = startpointcameramap2;
 	}
 	else {
 		App->render->camera.x = -position.x + (App->render->camera.w / 2);
 	}
-	if (position.y <= 450) { //If player is in a position where the camera would print out of the map, camera stops
+	if (position.y <= minYcam) { //If player is in a position where the camera would print out of the map, camera stops
 		App->render->camera.y = 0;
 	}
-	else if (position.y >= 740	) {
-		App->render->camera.y = -290;
+	else if (position.y >= maxYcam) {
+		App->render->camera.y = lowcam;
 	}
 	else {
 		App->render->camera.y = -position.y + (App->render->camera.h / 2);
 	}
-	if (death && !God) 
+	if (death && !God) {
+		App->audio->PlayFx(deathfx2);
 		Die();
-	if (fall && !God)
+	}
+	if (fall && !God) {
+		App->audio->PlayFx(deathfx2);
 		Fall();
+	}
 	if (God)
 		CanJump = true;
 	coll->SetPos(position.x, position.y);
@@ -347,6 +360,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 }
 void jPlayer::Die()
 {
+	death = false;
 	current_animation = &Death;
 	App->audio->PlayFx(deathfx);
 	if (Death.SeeCurrentFrame()==10) {
