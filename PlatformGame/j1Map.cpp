@@ -39,7 +39,7 @@ void j1Map::Draw()
 					uint gid = layer->data->Get(i, j);
 					iPoint pos = MapToWorld(i, j);
 					SDL_Rect rect = tileset->data->GetTileRect(gid);
-					App->render->Blit(tileset->data->texture, pos.x, pos.y, &rect);
+					App->render->Blit(tileset->data->texture, pos.x, pos.y, &rect,layer->data->ParallaxSpeed);
 				}
 			}
 		}
@@ -378,6 +378,8 @@ bool j1Map::LoadLayer(pugi::xml_node& node, map_layer* layer) {
 	layer->name.create(node.attribute("name").as_string());
 	layer->width = node.attribute("width").as_int();
 	layer->height = node.attribute("height").as_int();
+	pugi::xml_node prop = node.child("properties");
+	layer->ParallaxSpeed = prop.child("property").attribute("value").as_float();
 	pugi::xml_node data = node.child("data");
 	layer->data = new uint[layer->width*layer->height];
 	memset(layer->data, 0, sizeof(uint)*layer->height*layer->width);
