@@ -33,12 +33,6 @@
   
   <audio>
     <volume value="50"></volume>
-    <music>
-      <folder>audio/music/</folder>
-    </music>
-    <fx>
-      <folder>audio/fx/</folder>
-    </fx>
   </audio>
   
   

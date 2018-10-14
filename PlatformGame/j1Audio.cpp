@@ -28,9 +28,6 @@ bool j1Audio::Awake(pugi::xml_node& config)
 
 	volume = config.child("volume").attribute("value").as_int();
 
-	Folder_music = config.child("music").child_value("folder");
-	Folder_fx = config.child("fx").child_value("folder");
-
 	if(SDL_InitSubSystem(SDL_INIT_AUDIO) < 0)
 	{
 		LOG("SDL_INIT_AUDIO could not initialize! SDL_Error: %s\n", SDL_GetError());
