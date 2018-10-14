@@ -99,12 +99,11 @@ bool j1Scene::Update(float dt)
 			KnowMap = 1;
 	}
 
-	//App->render->Blit(img, 0, 0);
 	App->map->Draw();
 
 
 	// "Map:%dx%d Tiles:%dx%d Tilesets:%d"
-	p2SString title("Alien Earth");
+	p2SString title("Alien Earth v0.1");
 					
 
 	App->win->SetTitle(title.GetString());
