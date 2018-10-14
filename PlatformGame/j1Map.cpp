@@ -93,7 +93,7 @@ bool j1Map::CleanUp()
 		item = item->next;
 	}
 	data.tilesets.clear();
-	App->collision->CleanUp();
+	App->collision->ColliderCleanUp();
 	//Remove all layers
 	p2List_item<map_layer*>* item2;
 	item2 = data.layers.start;
@@ -242,6 +242,8 @@ bool j1Map::Load(const char* file_name)
 
 	return ret;
 }
+
+
 
 // Load map general properties
 bool j1Map::LoadMap()

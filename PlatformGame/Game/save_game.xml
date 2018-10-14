@@ -4,13 +4,15 @@
 	<window />
 	<textures />
 	<audio />
-	<scene />
+	<scene>
+		<KnowMap value="1" />
+	</scene>
 	<map />
 	<player>
-		<position x="2865" y="896.99646" />
+		<position x="145" y="337.799988" />
 	</player>
 	<:anonymous />
 	<renderer>
-		<camera x="-2365" y="-290" />
+		<camera x="-60" y="0" />
 	</renderer>
 </game_state>
