@@ -91,6 +91,10 @@ public:
 	float SpeedSwimDown = 0.0f;
 	float SpeedSwimLeftRight = 0.0f;
 
+	int startmap2 = 0;
+	int maxYcam = 0;
+	int minYcam = 0;
+	int lowcam = 0;
 	int positionWinMap1 = 0;
 	int startpointcameramap2 = 0;
 	int JumpTime = 0;
