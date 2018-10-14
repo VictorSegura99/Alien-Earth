@@ -7,13 +7,13 @@
 #include "j1Module.h"
 
 
-// TODO 1: Create a struct for the map layer
-// ----------------------------------------------------
+
 struct map_layer {
 	p2SString name;
 	uint width = 0u;
 	uint height = 0u;
 	uint* data = nullptr;
+	float ParallaxSpeed = 10.0f;
 	~map_layer() {
 		if (data != nullptr)
 			delete data;
@@ -23,11 +23,8 @@ struct map_layer {
 	}
 
 };
-	// TODO 6: Short function to get the value of x,y
 
 
-
-// ----------------------------------------------------
 struct TileSet
 {
 	// TODO 7: Create a method that receives a tile id and returns it's Rectfind the Rect associated with a specific tile id
