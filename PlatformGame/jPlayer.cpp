@@ -178,7 +178,10 @@ bool jPlayer::Update(float dt)
 		}
 		else {
 			IsJumping = false;
-			current_animation = &idle;
+			if (current_animation == &jumpR) {
+				current_animation = &idle;
+			}
+			else current_animation = &idle2;
 		}
 	}
 	if (God && Jump) { //if you are in god mode and jump, you can fly
