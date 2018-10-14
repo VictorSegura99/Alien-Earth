@@ -39,7 +39,6 @@ public:
 	void OnCollision(Collider* c1, Collider* c2);
 	void Die();
 	void Fall();
-	void AddFx(int fx, int repeat);
 
 public:
 	
@@ -63,6 +62,8 @@ public:
 	p2SString	WaterFx;
 	p2SString DeathFx;
 	p2SString DeathFx2;
+	p2SString LadderFx;
+
 	Collider* coll = nullptr;
 
 	fPoint position;
@@ -111,6 +112,7 @@ public:
 	unsigned int waterfx;
 	unsigned int deathfx;
 	unsigned int deathfx2;
+	unsigned int ladderfx;
 	uint Time = 0;
 	
 };

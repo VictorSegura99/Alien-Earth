@@ -46,6 +46,7 @@
     <WaterFx>audio/fx/waterfx.wav</WaterFx>
     <DeathFx>audio/fx/deathfx.wav</DeathFx>
     <DeathFx2>audio/fx/deathfx2.wav</DeathFx2>
+    <LadderFx>audio/fx/Ladder.wav</LadderFx>
     <positionXmap1 x="600"></positionXmap1>
     <positionYmap1 y="532"></positionYmap1>
     <positionXmap2 x="145"></positionXmap2>

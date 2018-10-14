@@ -27,6 +27,7 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	WaterFx = config.child("WaterFx").text().as_string();
 	DeathFx = config.child("DeathFx").text().as_string();
 	DeathFx2 = config.child("DeathFx2").text().as_string();
+	LadderFx = config.child("LadderFx").text().as_string();
 	initialXmap1 = config.child("positionXmap1").attribute("x").as_float();
 	initialYmap1 = config.child("positionYmap1").attribute("y").as_float();
 	initialXmap2 = config.child("positionXmap2").attribute("x").as_float();
@@ -70,6 +71,7 @@ bool jPlayer::Start()
 	waterfx = App->audio->LoadFx(WaterFx.GetString());
 	deathfx = App->audio->LoadFx(DeathFx.GetString());
 	deathfx2 = App->audio->LoadFx(DeathFx2.GetString());
+	ladderfx = App->audio->LoadFx(LadderFx.GetString());
 
 	idle.PushBack({ 142,0,66,86 });
 
@@ -352,6 +354,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 		}
 		break;
 	case COLLIDER_CLIMB:
+		App->audio->PlayFx(ladderfx);
 		CanClimb = true;
 		CanJump = true;
 		position.y += gravity;
