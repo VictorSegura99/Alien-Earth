@@ -32,6 +32,8 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	bool Load(pugi::xml_node&);
+	bool Save(pugi::xml_node&) const;
 public:
 	int KnowMap = 0; // KnowMap == 0 Map1 is working // KnowMap == 1 Map2 is working  
 	p2List<p2SString*> map_name;

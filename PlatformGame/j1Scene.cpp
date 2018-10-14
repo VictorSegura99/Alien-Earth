@@ -141,3 +141,18 @@ bool j1Scene::CleanUp()
 	LOG("Freeing scene");
 	return true;
 }
+
+bool j1Scene::Load(pugi::xml_node & scene)
+{
+	KnowMap = scene.child("KnowMap").attribute("value").as_int();
+
+	return true;
+}
+
+bool j1Scene::Save(pugi::xml_node & scene) const
+{
+	scene.append_child("KnowMap").append_attribute("value") = KnowMap;
+
+
+	return true;
+}

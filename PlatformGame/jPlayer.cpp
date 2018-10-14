@@ -127,7 +127,7 @@ bool jPlayer::Start()
 	coll = App->collision->AddCollider({ 0, 0, playerwidth, playerheight }, COLLIDER_PLAYER, this);
 	return ret;
 
-
+	
 	
 	
 }
@@ -290,18 +290,16 @@ bool jPlayer::Load(pugi::xml_node& player)
 	position.x = player.child("position").attribute("x").as_float();
 	position.y = player.child("position").attribute("y").as_float();
 
-
+	
+	App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 
 	return true;
 }
 bool jPlayer::Save(pugi::xml_node& player) const
 {
-	pugi::xml_node position = player.append_child("position");
-
-	position.append_attribute("x") = this->position.x;
-	position.append_attribute("y") = this->position.y;
-
-
+	player.append_child("position").append_attribute("x") = position.x;
+	player.child("position").append_attribute("y") = position.y;
+	
 
 	return true;
 }

@@ -39,7 +39,7 @@ public:
 	void OnCollision(Collider* c1, Collider* c2);
 	void Die();
 	void Fall();
-	void AddFx(int fx, int repeat);
+
 
 public:
 	
