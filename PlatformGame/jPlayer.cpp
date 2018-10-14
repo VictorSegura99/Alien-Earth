@@ -414,11 +414,6 @@ void jPlayer::Fall()
 	}	
 }
 
-void jPlayer::AddFx(int fx, int repeat) {
-	App->audio->PlayFx(fx, repeat);
-}
-
-
 
 
 

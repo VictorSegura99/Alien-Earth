@@ -1,14 +1,43 @@
 # Development Platform Game
-Made by:
--Víctor Segura
--Oriol Capdevila
 
+_____________
+GAME
+
+CONTROLS:
+-D: Move to the right
+-A: Move to the left
+-SPACE: Jump
+-W and S: While Climbing, to move up and down.
+
+DEBUG KEYS:
+-F1: Return to the begining of the first level.
+-F2: 
+-F3: Begining of the second level
+-F5: Save.
+-F6: Load.
+-F9: Show Colliders.
+-F10: Godmode.
+-F11: 
+
+INNOVATIONS:
+
+_____________
+AUTHORS
+-Víctor Segura Blanco (Github: https://github.com/VictorSegura99)
+-Oriol Capdevila Salinas (Github: https://github.com/OriolCS2)
+
+Our Repository: https://github.com/VictorSegura99/Development-Platform-Game
+_____________
+CREDITS
 
 Sprites from: https://opengameart.org/content/platformer-art-complete-pack-often-updated
-Death sFx: https://www.zapsplat.com/music/balloon-pop/
+Death sfx: https://www.zapsplat.com/music/balloon-pop/
 Death sfx 2: http://soundbible.com/1454-Pain.html
-Jump sFx: http://soundbible.com/1601-Mario-Jumping.html
+Jump sfx: http://soundbible.com/1601-Mario-Jumping.html
+Water sfx: http://soundbible.com/1148-Bubbling.html
 
+_____________
+LICENSE:
 
 MIT License
 
