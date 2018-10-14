@@ -279,6 +279,26 @@ bool jPlayer::PostUpdate()
 	
 	return true;
 }
+bool jPlayer::Load(pugi::xml_node& player)
+{
+	position.x = player.child("position").attribute("x").as_float();
+	position.y = player.child("position").attribute("y").as_float();
+
+
+
+	return true;
+}
+bool jPlayer::Save(pugi::xml_node& player) const
+{
+	pugi::xml_node position = player.append_child("position");
+
+	position.append_attribute("x") = this->position.x;
+	position.append_attribute("y") = this->position.y;
+
+
+
+	return true;
+}
 bool jPlayer::CleanUp()
 {
 	App->tex->UnLoad(texture);
