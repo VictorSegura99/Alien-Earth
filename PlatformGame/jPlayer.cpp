@@ -187,11 +187,9 @@ bool jPlayer::Update(float dt)
 	}
 	if (CanSwim && GoUp) { //Can Swim determine if you are in a water collider, if you are, it's true
 		position.y -= SpeedSwimUp;
-		current_animation == &SwimRight;
 	}
 	if (CanSwim && GoDown) {
 		position.y += SpeedSwimDown;
-		current_animation == &SwimRight;
 	}
 	if (WalkRight) { //This determine the movement to the right, depending on the state of the player
 		if (!IsJumping && !CanSwim) {

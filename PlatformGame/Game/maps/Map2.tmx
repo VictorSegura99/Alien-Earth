@@ -14,6 +14,9 @@
   <image source="bg_shroom.png" width="12000" height="1190"/>
  </imagelayer>
  <layer id="2" name="Capa de patrones 4" width="160" height="21" offsetx="-0.130435" offsety="-280.005">
+  <properties>
+   <property name="speed" type="float" value="1"/>
+  </properties>
   <data>
    <tile gid="238"/>
    <tile gid="238"/>
@@ -3378,6 +3381,9 @@
   </data>
  </layer>
  <layer id="3" name="Capa de Patrones 1" width="160" height="21">
+  <properties>
+   <property name="speed" type="float" value="1"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -6742,6 +6748,9 @@
   </data>
  </layer>
  <layer id="4" name="Capa de patrones 2" width="160" height="21">
+  <properties>
+   <property name="speed" type="float" value="1"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
@@ -10106,6 +10115,9 @@
   </data>
  </layer>
  <layer id="5" name="Capa de patrones 3" width="160" height="21" opacity="0.6">
+  <properties>
+   <property name="speed" type="float" value="1"/>
+  </properties>
   <data>
    <tile/>
    <tile/>
