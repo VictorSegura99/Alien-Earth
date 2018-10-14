@@ -31,6 +31,8 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	initialYmap1 = config.child("positionYmap1").attribute("y").as_float();
 	initialXmap2 = config.child("positionXmap2").attribute("x").as_float();
 	initialYmap2 = config.child("positionYmap2").attribute("y").as_float();
+	finalmap2player = config.child("finalmap2player").attribute("value").as_int();
+	finalmap2 = config.child("finalmap2").attribute("value").as_int();
 	startmap2 = config.child("startmap2").attribute("value").as_int();
 	maxYcam = config.child("maxYcam").attribute("value").as_int();
 	minYcam = config.child("minYcam").attribute("value").as_int();
@@ -243,6 +245,10 @@ bool jPlayer::Update(float dt)
 	}
 	if (position.x <= startmap2 && App->scene->KnowMap == 1) { //If player is in a position where the camera would print out of the map, camera stops
 			App->render->camera.x = startpointcameramap2;
+
+	}
+	else if (position.x >= finalmap2player && App->scene->KnowMap == 1) {
+		App->render->camera.x = finalmap2;
 	}
 	else {
 		App->render->camera.x = -position.x + (App->render->camera.w / 2);

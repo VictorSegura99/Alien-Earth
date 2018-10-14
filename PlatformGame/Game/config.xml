@@ -50,6 +50,8 @@
     <positionYmap1 y="245"></positionYmap1>
     <positionXmap2 x="145"></positionXmap2>
     <positionYmap2 y="333"></positionYmap2>
+    <finalmap2player value="10700"></finalmap2player>
+    <finalmap2 value="-10200"></finalmap2>
     <startmap2 value="560"></startmap2>
     <maxYcam value="740"></maxYcam>
     <minYcam value="450"></minYcam>
