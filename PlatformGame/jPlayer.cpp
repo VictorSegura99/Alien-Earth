@@ -407,7 +407,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 void jPlayer::Die()//What happens when the player die
 {
 	current_animation = &Death;
-	App->audio->PlayFx(deathfx);
+	//App->audio->PlayFx(deathfx);
 	if (Death.SeeCurrentFrame()==10) {
 		if (App->scene->KnowMap == 0) {
 			CleanUp();
@@ -422,6 +422,7 @@ void jPlayer::Die()//What happens when the player die
 			Start();
 		}
 	}
+	
 }
 
 void jPlayer::Fall()//What happens when the player falls
