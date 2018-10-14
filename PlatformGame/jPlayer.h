@@ -58,9 +58,8 @@ public:
 
 	p2SString sprites_name;
 	p2SString	JumpFx;
-	p2SString	DeathFx;
 	p2SString	WaterFx;
-
+	p2SString DeathFx;
 	Collider* coll = nullptr;
 
 	fPoint position;
@@ -101,6 +100,7 @@ public:
 
 	unsigned int jumpfx;
 	unsigned int waterfx;
+	unsigned int deathfx;
 	uint Time = 0;
 	
 };

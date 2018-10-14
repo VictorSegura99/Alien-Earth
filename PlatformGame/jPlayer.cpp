@@ -25,6 +25,7 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	sprites_name = config.child("sprites").text().as_string();
 	JumpFx = config.child("JumpFx").text().as_string();
 	WaterFx = config.child("WaterFx").text().as_string();
+	DeathFx = config.child("DeathFx").text().as_string();
 	initialXmap1 = config.child("positionXmap1").attribute("x").as_float();
 	initialYmap1 = config.child("positionYmap1").attribute("y").as_float();
 	initialXmap2 = config.child("positionXmap2").attribute("x").as_float();
@@ -42,7 +43,6 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	JumpSpeed = config.child("JumpSpeed").attribute("value").as_float();
 	playerwidth = config.child("playerwidth").attribute("value").as_int();
 	playerheight = config.child("playerheight").attribute("value").as_int();
-	DeathFx = config.child("DeathFx").attribute("source").as_string();
 	bool ret = true;
 	return ret;
 }
@@ -61,6 +61,7 @@ bool jPlayer::Start()
 
 	jumpfx = App->audio->LoadFx(JumpFx.GetString());
 	waterfx = App->audio->LoadFx(WaterFx.GetString());
+	deathfx = App->audio->LoadFx(DeathFx.GetString());
 
 	idle.PushBack({ 142,0,66,86 });
 
@@ -145,10 +146,10 @@ bool jPlayer::Update(float dt)
 	position.y -= gravity;
 	if (Jump && CanJump && !CanSwim && !God) {
 		IsJumping = true;
+		App->audio->PlayFx(jumpfx);
 	}
 	if (IsJumping) {
 		Time += 1;
-		App->audio->PlayFx(jumpfx);
 		if (Time <= JumpTime && WalkRight) {
 			current_animation = &jumpR;
 			position.y -= JumpSpeed;
@@ -339,12 +340,13 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 		GoUp = false;
 		GoDown = false;
 		fall = true;
-		break;
+		break;	
 	}
 }
 void jPlayer::Die()
 {
 	current_animation = &Death;
+	App->audio->PlayFx(deathfx);
 	if (Death.SeeCurrentFrame()==10) {
 		if (App->scene->KnowMap == 0) {
 			CleanUp();
