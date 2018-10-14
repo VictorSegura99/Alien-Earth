@@ -6,6 +6,7 @@ Made by:
 
 Sprites from: https://opengameart.org/content/platformer-art-complete-pack-often-updated
 Death sFx: https://www.zapsplat.com/music/balloon-pop/
+Death sfx 2: http://soundbible.com/1454-Pain.html
 Jump sFx: http://soundbible.com/1601-Mario-Jumping.html
 
 

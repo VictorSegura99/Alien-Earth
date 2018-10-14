@@ -359,7 +359,6 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 }
 void jPlayer::Die()
 {
-	death = false;
 	current_animation = &Death;
 	App->audio->PlayFx(deathfx);
 	if (Death.SeeCurrentFrame()==10) {
