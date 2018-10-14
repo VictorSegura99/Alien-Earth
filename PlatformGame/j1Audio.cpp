@@ -26,8 +26,7 @@ bool j1Audio::Awake(pugi::xml_node& config)
 	bool ret = true;
 	SDL_Init(0);
 
-	Folder_music = config.child("music").child_value("folder");
-	Folder_fx = config.child("fx").child_value("folder");
+	volume = config.child("volume").attribute("value").as_int();
 
 	if(SDL_InitSubSystem(SDL_INIT_AUDIO) < 0)
 	{

@@ -32,12 +32,7 @@
     </scene>  
   
   <audio>
-    <music>
-      <folder>audio/music/</folder>
-    </music>
-    <fx>
-      <folder>audio/fx/</folder>
-    </fx>
+    <volume value="50"></volume>
   </audio>
   
   
