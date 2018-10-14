@@ -8,6 +8,8 @@ CONTROLS:
 -SPACE: Jump
 -W: Go Up while Climbing/Swimming.
 -S: Go Down while Climbing/Swimming.
+-+: Level audio up
+- -: Level audio down
 
 DEBUG KEYS:
 -F1: Return to the begining of the first level.
