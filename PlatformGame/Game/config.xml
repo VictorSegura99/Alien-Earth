@@ -32,6 +32,7 @@
     </scene>  
   
   <audio>
+    <volume value="50"></volume>
     <music>
       <folder>audio/music/</folder>
     </music>

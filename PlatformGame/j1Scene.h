@@ -38,7 +38,7 @@ public:
 	int KnowMap = 0; // KnowMap == 0 Map1 is working // KnowMap == 1 Map2 is working  
 	p2List<p2SString*> map_name;
 	p2SString Song;
-	const char* music=nullptr;
+	
 };
 
 #endif // __j1SCENE_H__
