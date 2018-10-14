@@ -40,7 +40,6 @@ public:
 	void Die();
 	void Fall();
 
-
 public:
 	
 	Animation* current_animation = nullptr;
@@ -63,6 +62,8 @@ public:
 	p2SString	WaterFx;
 	p2SString DeathFx;
 	p2SString DeathFx2;
+	p2SString LadderFx;
+
 	Collider* coll = nullptr;
 
 	fPoint position;
@@ -104,13 +105,14 @@ public:
 	int playerwidth = 0;
 	int playerHeight = 0;
 	int playerheight = 0;
-	int finalmap2player = 0;
-	int finalmap2 = 0;
+	int finalmapplayer = 0;
+	int finalmap = 0;
 
 	unsigned int jumpfx;
 	unsigned int waterfx;
 	unsigned int deathfx;
 	unsigned int deathfx2;
+	unsigned int ladderfx;
 	uint Time = 0;
 	
 };

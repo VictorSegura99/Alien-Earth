@@ -5,14 +5,14 @@
 	<textures />
 	<audio />
 	<scene>
-		<KnowMap value="0" />
+		<KnowMap value="1" />
 	</scene>
 	<map />
 	<player>
-		<position x="680" y="549.199585" />
+		<position x="145" y="337.799988" />
 	</player>
 	<:anonymous />
 	<renderer>
-		<camera x="-180" y="-99" />
+		<camera x="-60" y="0" />
 	</renderer>
 </game_state>

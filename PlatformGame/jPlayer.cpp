@@ -27,12 +27,13 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	WaterFx = config.child("WaterFx").text().as_string();
 	DeathFx = config.child("DeathFx").text().as_string();
 	DeathFx2 = config.child("DeathFx2").text().as_string();
+	LadderFx = config.child("LadderFx").text().as_string();
 	initialXmap1 = config.child("positionXmap1").attribute("x").as_float();
 	initialYmap1 = config.child("positionYmap1").attribute("y").as_float();
 	initialXmap2 = config.child("positionXmap2").attribute("x").as_float();
 	initialYmap2 = config.child("positionYmap2").attribute("y").as_float();
-	finalmap2player = config.child("finalmap2player").attribute("value").as_int();
-	finalmap2 = config.child("finalmap2").attribute("value").as_int();
+	finalmapplayer = config.child("finalmapplayer").attribute("value").as_int();
+	finalmap = config.child("finalmap").attribute("value").as_int();
 	startmap2 = config.child("startmap2").attribute("value").as_int();
 	maxYcam = config.child("maxYcam").attribute("value").as_int();
 	minYcam = config.child("minYcam").attribute("value").as_int();
@@ -70,6 +71,7 @@ bool jPlayer::Start()
 	waterfx = App->audio->LoadFx(WaterFx.GetString());
 	deathfx = App->audio->LoadFx(DeathFx.GetString());
 	deathfx2 = App->audio->LoadFx(DeathFx2.GetString());
+	ladderfx = App->audio->LoadFx(LadderFx.GetString());
 
 	idle.PushBack({ 142,0,66,86 });
 
@@ -86,16 +88,16 @@ bool jPlayer::Start()
 	jumpR.PushBack({ 420,0,67,86 });
 
 
-	jumpL.PushBack({ 420,88,67,86 });
+	jumpL.PushBack({ 420,86,67,86 });
 
 
-	Climb.PushBack({ 488,0,64,86 });
-	Climb.PushBack({ 553,0,64,86 });
+	Climb.PushBack({ 488,0,65,86 });
+	Climb.PushBack({ 556,0,65,86 });
 	Climb.speed = 0.1f;
 
 	ClimbIdle.PushBack({ 488,0,64,86 });
 
-	SwimRight.PushBack({ 617,0,70,86 });
+	SwimRight.PushBack({ 621,0,70,86 });
 	SwimRight.PushBack({ 617,88,70,86 });
 	SwimRight.speed = 0.1f;
 
@@ -247,8 +249,8 @@ bool jPlayer::Update(float dt)
 			App->render->camera.x = startpointcameramap2;
 
 	}
-	else if (position.x >= finalmap2player && App->scene->KnowMap == 1) {
-		App->render->camera.x = finalmap2;
+	else if (position.x >= finalmapplayer) {
+		App->render->camera.x = finalmap;
 	}
 	else {
 		App->render->camera.x = -position.x + (App->render->camera.w / 2);
@@ -257,7 +259,7 @@ bool jPlayer::Update(float dt)
 		App->render->camera.y = 0;
 	}
 	else if (position.y >= maxYcam) {
-		App->render->camera.y = lowcam;
+		App->render->camera.y = lowcam;//lowcam is the bottom part of the map, when the player is too low, the camera follows a constant height to don't get out of the map
 	}
 	else {
 		App->render->camera.y = -position.y + (App->render->camera.h / 2);
@@ -350,6 +352,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2)
 		}
 		break;
 	case COLLIDER_CLIMB:
+		App->audio->PlayFx(ladderfx);
 		CanClimb = true;
 		CanJump = true;
 		position.y += gravity;
