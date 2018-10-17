@@ -141,11 +141,11 @@ bool j1Audio::Update(float dt)
 {
 	if (App->input->GetKey(SDL_SCANCODE_KP_PLUS) == KEY_REPEAT)
 	{
-		volume += 10;
+		volume ++;
 	}
 	else if (App->input->GetKey(SDL_SCANCODE_KP_MINUS) == KEY_REPEAT)
 	{
-		volume -= 10;
+		volume --;
 	}
 
 	Mix_VolumeMusic(volume);
@@ -189,4 +189,20 @@ bool j1Audio::PlayFx(unsigned int id, int repeat)
 	}
 
 	return ret;
+}
+
+bool j1Audio::Load(pugi::xml_node & node)
+{
+	volume = node.child("volume").attribute("value").as_int();
+
+
+	return true;
+}
+
+bool j1Audio::Save(pugi::xml_node & node) const
+{
+
+	node.append_child("volume").append_attribute("value") = volume;
+
+	return true;
 }

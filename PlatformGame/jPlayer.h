@@ -39,6 +39,7 @@ public:
 	void OnCollision(Collider* c1, Collider* c2);
 	void Die();
 	void Fall();
+	void Spawn();
 
 public:
 	
@@ -78,7 +79,7 @@ public:
 	bool CanJump = true;
 	bool CanClimb = false;
 	bool CanSwim = false;
-	bool death=false;
+	bool death = false;
 	bool fall = false;
 	bool God = false;
 	bool NextMap = false;

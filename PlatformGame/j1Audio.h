@@ -34,8 +34,10 @@ public:
 	// Play a previously loaded WAV
 	bool PlayFx(unsigned int fx, int repeat = 0);
 
-	p2SString			Folder_music;
-	p2SString			Folder_fx;
+	bool Load(pugi::xml_node&);
+	bool Save(pugi::xml_node&) const;
+
+
 
 private:
 	int volume = 0;

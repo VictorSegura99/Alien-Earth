@@ -3,13 +3,15 @@
 	<input />
 	<window />
 	<textures />
-	<audio />
+	<audio>
+		<volume value="50" />
+	</audio>
 	<scene>
 		<KnowMap value="1" />
 	</scene>
 	<map />
 	<player>
-		<position x="145" y="337.799988" />
+		<position x="409" y="337.799988" />
 	</player>
 	<:anonymous />
 	<renderer>

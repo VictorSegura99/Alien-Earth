@@ -10,27 +10,15 @@ j1Collision::j1Collision()
 		colliders[i] = nullptr;
 
 	matrix[COLLIDER_PLAYER][COLLIDER_WALL] = true;
-	matrix[COLLIDER_WALL][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_WALL_UP] = true;
-	matrix[COLLIDER_WALL_UP][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_PLATFORM] = true;
-	matrix[COLLIDER_PLATFORM][COLLIDER_PLAYER] = true;
-	matrix[COLLIDER_GROUND][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_GROUND] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_FALL] = true;
-	matrix[COLLIDER_FALL][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_WATER] = true;
-	matrix[COLLIDER_WATER][COLLIDER_PLAYER] = true;
-	matrix[COLLIDER_WATER][COLLIDER_WATER] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_SPIKES] = true;
-	matrix[COLLIDER_SPIKES][COLLIDER_PLAYER] = true;
-	matrix[COLLIDER_WIN][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_WIN] = true;
-	matrix[COLLIDER_CLIMB][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_CLIMB] = true;
-	matrix[COLLIDER_ROPE][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_ROPE] = true;
-	matrix[COLLIDER_NONE][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_NONE] = true;
 }
 
@@ -117,7 +105,7 @@ void j1Collision::DebugDraw()
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
 			break;
 		case COLLIDER_PLAYER: // BLUE
-			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
+			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha,true);
 			break;
 		case COLLIDER_GROUND: // WHITE
 			App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);

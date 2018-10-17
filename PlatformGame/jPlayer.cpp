@@ -117,7 +117,7 @@ bool jPlayer::Start()
 	Death.PushBack({ 206,175,68,81 });
 	Death.PushBack({ 272,175,68,81 });
 	Death.speed=0.1f;
-	Death.loop = false;
+	//eath.loop = false;
 	
 
 	texture = App->tex->Load(sprites_name.GetString());
@@ -278,10 +278,12 @@ bool jPlayer::Update(float dt)
 		App->render->camera.y = -position.y + (App->render->camera.h / 2);
 	}
 	if (death && !God) {
+		death = false;
 		App->audio->PlayFx(deathfx2);
 		Die();
 	}
 	if (fall && !God) {
+		fall = false;
 		App->audio->PlayFx(deathfx2);
 		Fall();
 	}
@@ -404,11 +406,9 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 	case COLLIDER_WIN:
 		CanClimb = false;
 		CanSwim = false;
-		App->player->CleanUp();
-		App->player->Disable();
 		App->scene->KnowMap = 0;
 		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-		App->player->Start();
+		Spawn();
 		break;
 	}
 }
@@ -418,16 +418,12 @@ void jPlayer::Die()//What happens when the player die
 	//App->audio->PlayFx(deathfx);
 	if (Death.SeeCurrentFrame()==10) {
 		if (App->scene->KnowMap == 0) {
-			CleanUp();
-			Disable();
 			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-			Start();
+			Spawn();
 		}
 		if (App->scene->KnowMap == 1) {
-			CleanUp();
-			Disable();
 			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-			Start();
+			Spawn();
 		}
 	}
 	
@@ -436,17 +432,33 @@ void jPlayer::Die()//What happens when the player die
 void jPlayer::Fall()//What happens when the player falls
 {
 	if (App->scene->KnowMap == 0) {
-		CleanUp();
-		Disable();
 		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-		Start();
+		Spawn();
 	}
 	if (App->scene->KnowMap == 1) {
-		CleanUp();
-		Disable();
 		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-		Start();
+		Spawn();
 	}	
+}
+
+void jPlayer::Spawn()
+{
+	CanJump = true;
+	CanClimb = false;
+	CanSwim = false;
+	current_animation = &idle;
+	if (App->scene->KnowMap == 0) {
+		position.x = initialXmap1;
+		position.y = initialYmap1;
+	}
+	if (App->scene->KnowMap == 1) {
+		position.x = initialXmap2;
+		position.y = initialYmap2;
+	}
+	Death.Reset();
+	
+
+
 }
 
 
