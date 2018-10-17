@@ -62,14 +62,16 @@ bool j1Scene::Update(float dt)
 		App->SaveGame("save_game.xml");
 
 	if (App->player->NextMap) {
+		App->player->NextMap = false;
 		KnowMap = 1;
 		App->map->ChangeMap(map_name[KnowMap]);
+		App->player->Spawn();
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_REPEAT) {
-			App->map->ChangeMap(map_name[KnowMap]);
-			App->player->Spawn();
-			KnowMap = 0;
+		App->map->ChangeMap(map_name[KnowMap]);
+		App->player->Spawn();
+		KnowMap = 0;
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
 		if (KnowMap == 0) {

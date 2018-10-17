@@ -456,9 +456,6 @@ void jPlayer::Spawn()
 		position.y = initialYmap2;
 	}
 	Death.Reset();
-	
-
-
 }
 
 
