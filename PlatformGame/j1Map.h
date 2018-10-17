@@ -27,7 +27,6 @@ struct map_layer {
 
 struct TileSet
 {
-	// TODO 7: Create a method that receives a tile id and returns it's Rectfind the Rect associated with a specific tile id
 	SDL_Rect GetTileRect(int id) const;
 
 	p2SString			name;
@@ -63,7 +62,6 @@ struct MapData
 	MapTypes			type;
 	p2List<TileSet*>	tilesets;
 	p2List<map_layer*>  layers;
-	// TODO 2: Add a list/array of layers to the map!
 };
 
 // ----------------------------------------------------
@@ -88,9 +86,6 @@ public:
 	// Load new map
 	bool Load(const char* path);
 
-	
-
-	// TODO 8: Create a method that translates x,y coordinates from map positions to world positions
 	iPoint MapToWorld(int x, int y) const;
 	bool ChangeMap(p2SString* map);
 
