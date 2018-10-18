@@ -83,6 +83,8 @@ public:
 	bool fall = false;
 	bool God = false;
 	bool NextMap = false;
+	bool NoRight = false;
+	bool NoLeft = false;
 
 	float initialXmap1 = 0.0f;
 	float initialYmap1 = 0.0f;

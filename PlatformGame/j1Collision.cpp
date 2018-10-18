@@ -9,7 +9,8 @@ j1Collision::j1Collision()
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 		colliders[i] = nullptr;
 
-	matrix[COLLIDER_PLAYER][COLLIDER_WALL] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_WALL_RIGHT] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_WALL_LEFT] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_WALL_UP] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_PLATFORM] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_GROUND] = true;
@@ -101,7 +102,10 @@ void j1Collision::DebugDraw()
 		case COLLIDER_NONE: // white
 			App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 			break;
-		case COLLIDER_WALL: // GREEN
+		case COLLIDER_WALL_RIGHT: // GREEN
+			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
+			break;
+		case COLLIDER_WALL_LEFT: // GREEN
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
 			break;
 		case COLLIDER_PLAYER: // BLUE

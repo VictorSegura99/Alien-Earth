@@ -7,14 +7,14 @@
 		<volume value="50" />
 	</audio>
 	<scene>
-		<KnowMap value="1" />
+		<KnowMap value="0" />
 	</scene>
 	<map />
-	<player>
-		<position x="409" y="337.799988" />
-	</player>
 	<:anonymous />
+	<player>
+		<position x="552" y="2856.41064" />
+	</player>
 	<renderer>
-		<camera x="-60" y="0" />
+		<camera x="-52" y="-290" />
 	</renderer>
 </game_state>

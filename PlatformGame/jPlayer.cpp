@@ -117,7 +117,7 @@ bool jPlayer::Start()
 	Death.PushBack({ 206,175,68,81 });
 	Death.PushBack({ 272,175,68,81 });
 	Death.speed=0.1f;
-	//eath.loop = false;
+	//Death.loop = false;
 	
 
 	texture = App->tex->Load(sprites_name.GetString());
@@ -135,8 +135,10 @@ bool jPlayer::Start()
 }
 bool jPlayer::PreUpdate() //Here we preload the input functions to determine the state of the player
 {
-	WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
-	WalkRight = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
+	if (!NoLeft)
+		WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
+	if (!NoRight)
+		WalkRight = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
 	GoUp = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
 	GoDown = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
 	if (!God) 
@@ -349,13 +351,21 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 	case COLLIDER_WALL_UP:
 		GoUp = false;
 		break;
-	case COLLIDER_WALL:
-		if (position.x < c2->rect.x) {
-			WalkRight = false;
-		}
-		else if (position.x > c2->rect.x) {
-			WalkLeft = false;
-		}
+	case COLLIDER_WALL_LEFT:
+		if (!CanSwim && !CanClimb)
+			position.x += SpeedWalk;
+		if (CanSwim)
+			position.x += SpeedSwimLeftRight;
+		if (CanClimb)
+			position.x += SpeedWalk;
+		break;
+	case COLLIDER_WALL_RIGHT:
+		if (!CanSwim && !CanClimb)
+			position.x -= SpeedWalk;
+		if (CanSwim)
+			position.x += SpeedSwimLeftRight;
+		if (CanClimb) 
+			position.x -= SpeedWalk;
 		break;
 	case COLLIDER_PLATFORM:
 		if (position.y + playerHeight < c2->rect.y) {
