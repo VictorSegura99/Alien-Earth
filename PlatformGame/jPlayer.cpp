@@ -205,7 +205,7 @@ bool jPlayer::Update(float dt)
 		position.y += SpeedSwimDown;
 	}
 	if (WalkRight) { //This determine the movement to the right, depending on the state of the player
-		if (!IsJumping && !CanSwim) {
+		if (!IsJumping && !CanSwim && !CanClimb) {
 			position.x += SpeedWalk;
 			current_animation = &GoRight;
 		}
@@ -216,8 +216,10 @@ bool jPlayer::Update(float dt)
 			position.x += SpeedSwimLeftRight;
 			current_animation = &SwimRight;
 		}
-
+		if (CanClimb)
+			position.x += SpeedWalk;
 	}
+
 	if (Idle) {
 		if (current_animation == &GoRight)
 			current_animation = &idle;
@@ -236,7 +238,7 @@ bool jPlayer::Update(float dt)
 	if (CanClimb && !GoUp && !GoDown)
 		current_animation = &ClimbIdle;
 	if (WalkLeft) { //This determine the movement to the left, depending on the state of the player
-		if (!IsJumping && !CanSwim) {
+		if (!IsJumping && !CanSwim && !CanClimb) {
 			position.x -= SpeedWalk;
 			current_animation = &GoLeft;
 		}
@@ -247,6 +249,8 @@ bool jPlayer::Update(float dt)
 			position.x -= SpeedSwimLeftRight;
 			current_animation = &SwimLeft;
 		}
+		if (CanClimb)
+			position.x -= SpeedWalk;
 	}
 	if (WalkRight && WalkLeft) {
 		if (!CanSwim)
@@ -256,6 +260,7 @@ bool jPlayer::Update(float dt)
 		if (CanClimb) {
 			current_animation = &Climb;
 		}
+
 	}
 	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {//knowmap it's a varibable that let us know in which map we are. //Knowmap=0, level 1 //knowmap=2, level 2
 			NextMap = true;
