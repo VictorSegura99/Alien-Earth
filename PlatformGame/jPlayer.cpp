@@ -407,7 +407,8 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		GoDown = false;
 		CanJump = false;
 		death = true;
-		NoInput = true;
+		if (!God)
+			NoInput = true;
 		break;
 	case COLLIDER_FALL:
 		WalkLeft = false;
@@ -415,7 +416,8 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		GoUp = false;
 		GoDown = false;
 		fall = true;
-		NoInput = true;
+		if (!God)
+			NoInput = true;
 		break;	
 	case COLLIDER_ROPE:
 		CanClimb = true;
