@@ -135,22 +135,21 @@ bool jPlayer::Start()
 }
 bool jPlayer::PreUpdate() //Here we preload the input functions to determine the state of the player
 {
-	if (!NoLeft)
+	if (!NoInput) {
 		WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
-	if (!NoRight)
 		WalkRight = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
-	GoUp = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
-	GoDown = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
-	if (!God) 
-		Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
-	else Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT;
-	if (!WalkLeft && !WalkRight && !CanSwim && !CanClimb)
-		Idle = true;
-	else
-		Idle = false;
-	if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
-		God = !God;
-
+		GoUp = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
+		GoDown = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
+		if (!God)
+			Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
+		else Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT;
+		if (!WalkLeft && !WalkRight && !CanSwim && !CanClimb)
+			Idle = true;
+		else
+			Idle = false;
+		if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+			God = !God;
+	}
 	return true;
 }
 bool jPlayer::Update(float dt)
@@ -158,11 +157,12 @@ bool jPlayer::Update(float dt)
 	position.y -= gravity;
 	if (Jump && CanJump && !CanSwim && !God && !IsJumping) { //If you clicked the jump button and you are able to jump(always except you just jumpt) you can jump
 		IsJumping = true;
-		App->audio->PlayFx(jumpfx);
 	}
 	if (IsJumping) { //if you are able to jump, determine the animation and direction of the jump
 		Time += 1;
 		CanJump = false;
+		if (Time < 2) 
+			App->audio->PlayFx(jumpfx);
 		if (Time <= JumpTime && WalkRight) {
 			current_animation = &jumpR;
 			position.y -= JumpSpeed;
@@ -379,12 +379,14 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			Time = 0;
 			CanSwim = false;
 			IsJumping = false;
+			current_animation = &idle;
 		}
 		break;
 	case COLLIDER_CLIMB:
 		App->audio->PlayFx(ladderfx);
 		CanClimb = true;
 		CanJump = true;
+		Time = 50;
 		position.y += gravity;
 		break;
 	case COLLIDER_WATER:
@@ -405,6 +407,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		GoDown = false;
 		CanJump = false;
 		death = true;
+		NoInput = true;
 		break;
 	case COLLIDER_FALL:
 		WalkLeft = false;
@@ -412,6 +415,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		GoUp = false;
 		GoDown = false;
 		fall = true;
+		NoInput = true;
 		break;	
 	case COLLIDER_ROPE:
 		CanClimb = true;
@@ -458,6 +462,7 @@ void jPlayer::Fall()//What happens when the player falls
 
 void jPlayer::Spawn()
 {
+	NoInput = false;
 	CanJump = true;
 	CanClimb = false;
 	CanSwim = false;
