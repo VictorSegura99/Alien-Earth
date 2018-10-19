@@ -3,30 +3,30 @@ _____________
 GAME
 
 CONTROLS:
--D: Move to the right
--A: Move to the left
--SPACE: Jump
--W: Go Up while Climbing/Swimming.
--S: Go Down while Climbing/Swimming.
--+: Level audio up
+- D: Move to the right
+- A: Move to the left
+- SPACE: Jump
+- W: Go Up while Climbing/Swimming.
+- S: Go Down while Climbing/Swimming.
+- +: Level audio up
 - -: Level audio down
 
 DEBUG KEYS:
--F1: Return to the begining of the first level.
--F2: Start from the begining of the current level.
--F3: Begining of the second level
--F5: Save.
--F6: Load.
--F9: Show Colliders.
--F10: Godmode.
+- F1: Return to the begining of the first level.
+- F2: Start from the begining of the current level.
+- F3: Begining of the second level
+- F5: Save.
+- F6: Load.
+- F9: Show Colliders.
+- F10: Godmode.
 
 INNOVATIONS:
--Climb ladders and ropes.
--Swim through water.
+- Climb ladders and ropes.
+- Swim through water.
 _____________
 AUTHORS
--Víctor Segura Blanco (Github: https://github.com/VictorSegura99)
--Oriol Capdevila Salinas (Github: https://github.com/OriolCS2)
+- Víctor Segura Blanco (Github: https://github.com/VictorSegura99)
+- Oriol Capdevila Salinas (Github: https://github.com/OriolCS2)
 
 Our Repository: https://github.com/VictorSegura99/Development-Platform-Game
 _____________
