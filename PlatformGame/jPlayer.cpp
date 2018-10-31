@@ -15,6 +15,7 @@
 jPlayer::jPlayer() : j1Module()
 {
 	name.create("player");
+
 }
 
 jPlayer::~jPlayer() {}
@@ -57,6 +58,7 @@ bool jPlayer::Awake(pugi::xml_node& config)
 
 bool jPlayer::Start()
 {
+	
 	bool ret = true;
 	if (App->scene->KnowMap == 0) {
 		position.x = initialXmap1;
@@ -154,6 +156,7 @@ bool jPlayer::PreUpdate() //Here we preload the input functions to determine the
 }
 bool jPlayer::Update(float dt)
 {
+	
 	position.y -= gravity;
 	if (Jump && CanJump && !CanSwim && !God && !IsJumping) { //If you clicked the jump button and you are able to jump(always except you just jumpt) you can jump
 		IsJumping = true;

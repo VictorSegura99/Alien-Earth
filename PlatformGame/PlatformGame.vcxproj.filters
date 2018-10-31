@@ -40,6 +40,9 @@
     <ClCompile Include="jPlayer.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="j1Choose.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PugiXml\src\pugixml.hpp">
@@ -97,6 +100,9 @@
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="j1Map.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Choose.h">
       <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>

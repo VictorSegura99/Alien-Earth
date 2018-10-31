@@ -12,6 +12,7 @@
 
 j1Scene::j1Scene() : j1Module()
 {
+	//App->scene->Disable();
 	name.create("scene");
 }
 
@@ -42,7 +43,7 @@ bool j1Scene::Start()
 
 	App->map->Load(map_name.start->data->GetString());
 	App->audio->PlayMusic(Song.GetString());
-
+	//active = false;
 	return true;
 }
 
