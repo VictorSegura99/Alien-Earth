@@ -25,7 +25,7 @@ bool jPlayer::Awake(pugi::xml_node& config)
 {
 	LOG("Init SDL player");
 	sprites_name[0] = config.child("sprites").text().as_string();
-	//sprites_name[1] = config.child("sprites2").text().as_string();
+	sprites_name[1] = config.child("sprites2").text().as_string();
 	//sprites_name[2] = config.child("sprites3").text().as_string();
 	JumpFx = config.child("JumpFx").text().as_string();
 	WaterFx = config.child("WaterFx").text().as_string();
@@ -465,43 +465,43 @@ void jPlayer::Spawn()
 	Death.Reset();
 }
 
-void jPlayer::LoadPushbakcs(int playernumber)
+void jPlayer::LoadPushbacks(int playernumber)
 {
 	texture = App->tex->Load(sprites_name[playernumber].GetString());
 	current_animation = &idle;
-	idle.PushBack({ 142,0,66,86 });
+	idle.PushBack({ 142,0,66,86 });//idle.PushBack({ 143,0,65,92 });
 
-	idle2.PushBack({ 353,0,66,86 });
+	idle2.PushBack({ 353,0,66,86 });//idle2.PushBack({ 354,0,65,92 });
 
-	GoRight.PushBack({ 0,0,67,86 });
-	GoRight.PushBack({ 69,0,70,86 });
+	GoRight.PushBack({ 0,0,67,86 });//GoRight.PushBack({ 0,0,67,93 });
+	GoRight.PushBack({ 69,0,70,86 });//GoRight.PushBack({ 69,0,70,95 });
 	GoRight.speed = 0.1f;
 
-	GoLeft.PushBack({ 285,0,67,86 });
-	GoLeft.PushBack({ 212,0,70,87 });
+	GoLeft.PushBack({ 285,0,67,86 });//GoLeft.PushBack({ 285,0,67,93 });	
+	GoLeft.PushBack({ 212,0,70,87 });//GoLeft.PushBack({ 212,0,70,98 });
 	GoLeft.speed = 0.1f;
 
-	jumpR.PushBack({ 420,0,67,86 });
+	jumpR.PushBack({ 420,0,67,86 });//jumpR.PushBack({ 420,0,67,93 });
 
 
-	jumpL.PushBack({ 420,86,67,86 });
+	jumpL.PushBack({ 420,86,67,86 });//	jumpL.PushBack({ 420,96,67,93 });
 
 
-	Climb.PushBack({ 488,0,65,86 });
-	Climb.PushBack({ 556,0,65,86 });
+	Climb.PushBack({ 488,0,65,86 });//Climb.PushBack({ 488,0,65,92 });
+	Climb.PushBack({ 556,0,65,86 });//Climb.PushBack({ 556,0,65,92 });
 	Climb.speed = 0.1f;
 
-	ClimbIdle.PushBack({ 488,0,65,86 });
+	ClimbIdle.PushBack({ 488,0,65,86 });//ClimbIdle.PushBack({ 488,0,65,92 });
 
-	SwimRight.PushBack({ 621,0,70,86 });
-	SwimRight.PushBack({ 617,88,70,86 });
+	SwimRight.PushBack({ 621,0,70,86 });//SwimRight.PushBack({ 622,0,69,97 });
+	SwimRight.PushBack({ 617,88,70,86 });// SwimRight.PushBack({ 622,96,70,97 });
 	SwimRight.speed = 0.1f;
 
-	SwimLeft.PushBack({ 617,176,70,86 });
-	SwimLeft.PushBack({ 617,263,70,86 });
+	SwimLeft.PushBack({ 617,176,70,86 });//SwimLeft.PushBack({ 622,193,69,95 });
+	SwimLeft.PushBack({ 617,263,70,86 });//SwimLeft.PushBack({ 622,289,70,97 });	
 	SwimLeft.speed = 0.1f;
 
-	Death.PushBack({ 0,94,68,81 });
+	Death.PushBack({ 0,94,68,81 }); //	Death.PushBack({ 0,94,68,92 });
 	Death.PushBack({ 73,94,68,81 });
 	Death.PushBack({ 142,94,68,81 });
 	Death.PushBack({ 213,94,68,81 });
