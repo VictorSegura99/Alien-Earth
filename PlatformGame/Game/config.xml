@@ -34,7 +34,9 @@
   <audio>
     <volume value="50"></volume>
   </audio>
-  
+  <choose>
+    <tex>textures/Choose.png</tex>
+  </choose>
   
   <player>
     <sprites>textures/Alien.png</sprites>

@@ -24,7 +24,7 @@ j1Choose::~j1Choose()
 bool j1Choose::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Scene");
-
+	file_texture = config.child("tex").text().as_string();
 
 	bool ret = true;
 
@@ -40,22 +40,36 @@ bool j1Choose::Start()
 	App->map->active = false;
 
 
-
+	texture = App->tex->Load(file_texture.GetString());
 	return true;
 }
 
 // Called each loop iteration
 bool j1Choose::PreUpdate()
 {
+	App->input->GetMousePosition(mouse.x, mouse.y);
+	
 	return true;
 }
 
 // Called each loop iteration
 bool j1Choose::Update(float dt)
 {
+	if (!GameOn) {
+		if (mouse.x >= 50 && mouse.x <= 350 && mouse.y >= 50 && mouse.y <= 850) {
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+				playernumber = 0;
+				App->scene->active = !App->scene->active;
+				App->player->active = !App->player->active;
+				App->collision->active = !App->collision->active;
+				App->map->active = !App->map->active;
+				GameOn = true;
+			}
+		}
 
-
-
+		App->render->Blit(texture, 0, 0, NULL, 1.0f);
+	}
+	
 
 	return true;
 }
@@ -64,9 +78,18 @@ bool j1Choose::Update(float dt)
 bool j1Choose::PostUpdate()
 {
 	bool ret = true;
-
-	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		ret = false;
+	if (!GameOn) {
+		if (App->input->GetKey(SDL_SCANCODE_T) == KEY_DOWN) {
+			App->scene->active = !App->scene->active;
+			App->player->active = !App->player->active;
+			App->collision->active = !App->collision->active;
+			App->map->active = !App->map->active;
+			GameOn = true;
+		}
+		if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+			ret = false;
+	}
+	
 	return ret;
 }
 

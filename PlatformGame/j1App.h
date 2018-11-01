@@ -15,6 +15,7 @@ class j1Scene;
 class j1Map;
 class j1Collision;
 class jPlayer;
+class j1Choose;
 class j1App
 {
 public:
@@ -87,6 +88,7 @@ public:
 	j1Map*				map;
 	j1Collision*		collision;
 	jPlayer*			player;
+	j1Choose*			choose;
 
 
 private:

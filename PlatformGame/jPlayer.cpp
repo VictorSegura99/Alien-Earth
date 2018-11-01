@@ -11,6 +11,7 @@
 #include "j1Scene.h"
 #include "j1Collision.h"
 #include "j1Audio.h"
+#include "j1Choose.h"
 
 jPlayer::jPlayer() : j1Module()
 {
@@ -156,7 +157,6 @@ bool jPlayer::PreUpdate() //Here we preload the input functions to determine the
 }
 bool jPlayer::Update(float dt)
 {
-	
 	position.y -= gravity;
 	if (Jump && CanJump && !CanSwim && !God && !IsJumping) { //If you clicked the jump button and you are able to jump(always except you just jumpt) you can jump
 		IsJumping = true;
@@ -309,7 +309,15 @@ bool jPlayer::Update(float dt)
 
 bool jPlayer::PostUpdate()
 {
-	
+	if (App->input->GetKey(SDL_SCANCODE_Y) == KEY_DOWN) {
+		App->scene->active = !App->scene->active;
+		App->player->active = !App->player->active;
+		App->collision->active = !App->collision->active;
+		App->map->active = !App->map->active;
+		App->render->camera.x = 0;
+		App->render->camera.y = 0;
+		App->choose->GameOn = false;
+	}
 	return true;
 }
 bool jPlayer::Load(pugi::xml_node& player)
