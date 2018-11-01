@@ -24,7 +24,9 @@ jPlayer::~jPlayer() {}
 bool jPlayer::Awake(pugi::xml_node& config)
 {
 	LOG("Init SDL player");
-	sprites_name = config.child("sprites").text().as_string();
+	sprites_name[0] = config.child("sprites").text().as_string();
+	//sprites_name[1] = config.child("sprites2").text().as_string();
+	//sprites_name[2] = config.child("sprites3").text().as_string();
 	JumpFx = config.child("JumpFx").text().as_string();
 	WaterFx = config.child("WaterFx").text().as_string();
 	DeathFx = config.child("DeathFx").text().as_string();
@@ -76,59 +78,22 @@ bool jPlayer::Start()
 	deathfx2 = App->audio->LoadFx(DeathFx2.GetString());
 	ladderfx = App->audio->LoadFx(LadderFx.GetString());
 
-	idle.PushBack({ 142,0,66,86 });
-
-	idle2.PushBack({ 353,0,66,86 });
+	/*switch (App->choose->playernumber) {
+	case 1:
+		LoadPushbakcs1();
+		break;
+	case 2:
+		LoadPushbakcs2();
+		break;
+	case 3:
+		LoadPushbakcs3();
+		break;
+	}*/
 	
-	GoRight.PushBack({ 0,0,67,86 });
-	GoRight.PushBack({ 69,0,70,86 });
-	GoRight.speed = 0.1f;
-
-	GoLeft.PushBack({ 285,0,67,86 });
-	GoLeft.PushBack({ 212,0,70,87 });
-	GoLeft.speed = 0.1f;
-
-	jumpR.PushBack({ 420,0,67,86 });
-
-
-	jumpL.PushBack({ 420,86,67,86 });
-
-
-	Climb.PushBack({ 488,0,65,86 });
-	Climb.PushBack({ 556,0,65,86 });
-	Climb.speed = 0.1f;
-
-	ClimbIdle.PushBack({ 488,0,65,86 });
-
-	SwimRight.PushBack({ 621,0,70,86 });
-	SwimRight.PushBack({ 617,88,70,86 });
-	SwimRight.speed = 0.1f;
-
-	SwimLeft.PushBack({ 617,176,70,86 });
-	SwimLeft.PushBack({ 617,263,70,86 });
-	SwimLeft.speed = 0.1f;
-
-	Death.PushBack({ 0,94,68,81 });
-	Death.PushBack({ 73,94,68,81 });
-	Death.PushBack({ 142,94,68,81 });
-	Death.PushBack({ 213,94,68,81 });
-	Death.PushBack({ 283,94,68,81 });
-	Death.PushBack({ 351,94,68,81 });
-	Death.PushBack({ 0,175,68,81 });
-	Death.PushBack({ 69,175,68,81 });
-	Death.PushBack({ 139,175,68,81 });
-	Death.PushBack({ 206,175,68,81 });
-	Death.PushBack({ 272,175,68,81 });
-	Death.speed=0.1f;
-	//Death.loop = false;
 	
 
-	texture = App->tex->Load(sprites_name.GetString());
-	current_animation = &idle;	
-	if (texture == nullptr) {
-		LOG("Error loading player texture!");
-		ret = false;
-	}
+	
+
 	coll = App->collision->AddCollider({ 0, 0, playerwidth, playerheight }, COLLIDER_PLAYER, this);
 	return ret;
 
@@ -490,6 +455,61 @@ void jPlayer::Spawn()
 	}
 	Death.Reset();
 }
+
+void jPlayer::LoadPushbakcs()
+{
+	texture = App->tex->Load(sprites_name[App->choose->playernumber].GetString());
+	current_animation = &idle;
+	idle.PushBack({ 142,0,66,86 });
+
+	idle2.PushBack({ 353,0,66,86 });
+
+	GoRight.PushBack({ 0,0,67,86 });
+	GoRight.PushBack({ 69,0,70,86 });
+	GoRight.speed = 0.1f;
+
+	GoLeft.PushBack({ 285,0,67,86 });
+	GoLeft.PushBack({ 212,0,70,87 });
+	GoLeft.speed = 0.1f;
+
+	jumpR.PushBack({ 420,0,67,86 });
+
+
+	jumpL.PushBack({ 420,86,67,86 });
+
+
+	Climb.PushBack({ 488,0,65,86 });
+	Climb.PushBack({ 556,0,65,86 });
+	Climb.speed = 0.1f;
+
+	ClimbIdle.PushBack({ 488,0,65,86 });
+
+	SwimRight.PushBack({ 621,0,70,86 });
+	SwimRight.PushBack({ 617,88,70,86 });
+	SwimRight.speed = 0.1f;
+
+	SwimLeft.PushBack({ 617,176,70,86 });
+	SwimLeft.PushBack({ 617,263,70,86 });
+	SwimLeft.speed = 0.1f;
+
+	Death.PushBack({ 0,94,68,81 });
+	Death.PushBack({ 73,94,68,81 });
+	Death.PushBack({ 142,94,68,81 });
+	Death.PushBack({ 213,94,68,81 });
+	Death.PushBack({ 283,94,68,81 });
+	Death.PushBack({ 351,94,68,81 });
+	Death.PushBack({ 0,175,68,81 });
+	Death.PushBack({ 69,175,68,81 });
+	Death.PushBack({ 139,175,68,81 });
+	Death.PushBack({ 206,175,68,81 });
+	Death.PushBack({ 272,175,68,81 });
+	Death.speed = 0.1f;
+	//Death.loop = false;
+
+
+}
+
+
 
 
 

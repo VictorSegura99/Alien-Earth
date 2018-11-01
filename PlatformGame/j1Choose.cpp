@@ -63,10 +63,32 @@ bool j1Choose::Update(float dt)
 				App->player->active = !App->player->active;
 				App->collision->active = !App->collision->active;
 				App->map->active = !App->map->active;
+				App->player->LoadPushbakcs();
 				GameOn = true;
 			}
 		}
-
+		else if (mouse.x >= 351 && mouse.x <= 650 && mouse.y >= 50 && mouse.y <= 850) {
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+				playernumber = 1;
+				App->scene->active = !App->scene->active;
+				App->player->active = !App->player->active;
+				App->collision->active = !App->collision->active;
+				App->map->active = !App->map->active;
+				App->player->LoadPushbakcs();
+				GameOn = true;
+			}
+		}
+		else if (mouse.x >= 651 && mouse.x <= 950 && mouse.y >= 50 && mouse.y <= 850) {
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+				playernumber = 2;
+				App->scene->active = !App->scene->active;
+				App->player->active = !App->player->active;
+				App->collision->active = !App->collision->active;
+				App->map->active = !App->map->active;
+				App->player->LoadPushbakcs();
+				GameOn = true;
+			}
+		}
 		App->render->Blit(texture, 0, 0, NULL, 1.0f);
 	}
 	

@@ -40,6 +40,9 @@ public:
 	void Die();
 	void Fall();
 	void Spawn();
+	void LoadPushbakcs(); 
+
+
 
 public:
 	
@@ -56,9 +59,10 @@ public:
 	Animation ClimbIdle;
 	Animation Death;
 
-	SDL_Texture* texture = nullptr;
+	SDL_Texture* texture; 
 
-	p2SString sprites_name;
+
+	p2SString sprites_name[3];
 	p2SString	JumpFx;
 	p2SString	WaterFx;
 	p2SString DeathFx;
