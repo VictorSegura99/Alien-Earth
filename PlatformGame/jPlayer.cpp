@@ -484,7 +484,7 @@ void jPlayer::LoadPushbacks(int playernumber)
 	jumpR.PushBack({ 420,0,67,86 });//jumpR.PushBack({ 420,0,67,93 });
 
 
-	jumpL.PushBack({ 420,86,67,86 });//	jumpL.PushBack({ 420,96,67,93 });
+	jumpL.PushBack({ 420,86,67,86 });//	jumpL.PushBack({ 420,95,67,93 });
 
 
 	Climb.PushBack({ 488,0,65,86 });//Climb.PushBack({ 488,0,65,92 });
