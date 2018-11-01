@@ -274,7 +274,7 @@ bool jPlayer::Update(float dt)
 
 bool jPlayer::PostUpdate()
 {
-	if (App->input->GetKey(SDL_SCANCODE_Y) == KEY_DOWN) {
+	/*if (App->input->GetKey(SDL_SCANCODE_Y) == KEY_DOWN) {
 		App->scene->active = !App->scene->active;
 		App->player->active = !App->player->active;
 		App->collision->active = !App->collision->active;
@@ -282,6 +282,15 @@ bool jPlayer::PostUpdate()
 		App->render->camera.x = 0;
 		App->render->camera.y = 0;
 		App->choose->GameOn = false;
+	}*/
+	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) {
+		LoadPushbakcs(0);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) {
+		LoadPushbakcs(1);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) {
+		LoadPushbakcs(2);
 	}
 	return true;
 }
@@ -456,9 +465,9 @@ void jPlayer::Spawn()
 	Death.Reset();
 }
 
-void jPlayer::LoadPushbakcs()
+void jPlayer::LoadPushbakcs(int playernumber)
 {
-	texture = App->tex->Load(sprites_name[App->choose->playernumber].GetString());
+	texture = App->tex->Load(sprites_name[playernumber].GetString());
 	current_animation = &idle;
 	idle.PushBack({ 142,0,66,86 });
 

@@ -40,7 +40,7 @@ public:
 	void Die();
 	void Fall();
 	void Spawn();
-	void LoadPushbakcs(); 
+	void LoadPushbakcs(int playernumber); 
 
 
 

@@ -63,7 +63,7 @@ bool j1Choose::Update(float dt)
 				App->player->active = !App->player->active;
 				App->collision->active = !App->collision->active;
 				App->map->active = !App->map->active;
-				App->player->LoadPushbakcs();
+				App->player->LoadPushbakcs(playernumber);
 				GameOn = true;
 			}
 		}
@@ -74,7 +74,7 @@ bool j1Choose::Update(float dt)
 				App->player->active = !App->player->active;
 				App->collision->active = !App->collision->active;
 				App->map->active = !App->map->active;
-				App->player->LoadPushbakcs();
+				App->player->LoadPushbakcs(playernumber);
 				GameOn = true;
 			}
 		}
@@ -85,7 +85,7 @@ bool j1Choose::Update(float dt)
 				App->player->active = !App->player->active;
 				App->collision->active = !App->collision->active;
 				App->map->active = !App->map->active;
-				App->player->LoadPushbakcs();
+				App->player->LoadPushbakcs(playernumber);
 				GameOn = true;
 			}
 		}
@@ -101,13 +101,13 @@ bool j1Choose::PostUpdate()
 {
 	bool ret = true;
 	if (!GameOn) {
-		if (App->input->GetKey(SDL_SCANCODE_T) == KEY_DOWN) {
+		/*if (App->input->GetKey(SDL_SCANCODE_T) == KEY_DOWN) {
 			App->scene->active = !App->scene->active;
 			App->player->active = !App->player->active;
 			App->collision->active = !App->collision->active;
 			App->map->active = !App->map->active;
 			GameOn = true;
-		}
+		}*/
 		if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 			ret = false;
 	}
