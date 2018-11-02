@@ -42,7 +42,11 @@ public:
 	void Spawn();
 	void LoadPushbacks(); 
 	void ChangePlayer(int playernumber);
-
+	void GoJump();
+	void GoSwim();
+	void GoClimb();
+	void Move_Left_Right();
+	void Camera();
 
 public:
 	

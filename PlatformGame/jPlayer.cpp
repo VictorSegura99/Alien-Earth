@@ -101,135 +101,12 @@ bool jPlayer::PreUpdate() //Here we preload the input functions to determine the
 bool jPlayer::Update(float dt)
 {
 	position.y -= gravity;
-	if (Jump && CanJump && !CanSwim && !God && !IsJumping) { //If you clicked the jump button and you are able to jump(always except you just jumpt) you can jump
-		IsJumping = true;
-	}
-	if (IsJumping) { //if you are able to jump, determine the animation and direction of the jump
-		Time += 1;
-		CanJump = false;
-		if (Time < 2) 
-			App->audio->PlayFx(jumpfx);
-		if (Time <= JumpTime && WalkRight) {
-			current_animation = &jumpR[NumPlayer];
-			position.y -= JumpSpeed;
-		}
-		else if (Time <= JumpTime && WalkLeft) {
-			current_animation = &jumpL[NumPlayer];
-			position.y -= JumpSpeed;
-		}
-		else if (Time <= JumpTime) {
-			if (current_animation==&idle[NumPlayer])
-				current_animation = &jumpR[NumPlayer];
-			if (current_animation == &idle2[NumPlayer])
-				current_animation = &jumpL[NumPlayer];
-			position.y -= JumpSpeed;
-		}
-		else {
-			IsJumping = false;
-			if (current_animation == &jumpR[NumPlayer]) {
-				current_animation = &idle[NumPlayer];
-			}
-			else current_animation = &idle2[NumPlayer];
-		}
-	}
-	if (God && Jump) { //if you are in god mode and jump, you can fly
-		//App->audio->PlayFx(jumpfx);
-		position.y -= JumpSpeed;
-	}
-	if (CanSwim) {
-		if (current_animation == &SwimLeft[NumPlayer]) {
-			current_animation = &SwimLeft[NumPlayer];
-		}
-		else {
-			current_animation = &SwimRight[NumPlayer];
-		}
-	}
-	if (CanSwim && GoUp) { //Can Swim determine if you are in a water collider, if you are, it's true
-		position.y -= SpeedSwimUp;
-	}
-	if (CanSwim && GoDown) {
-		position.y += SpeedSwimDown;
-	}
-	if (WalkRight) { //This determine the movement to the right, depending on the state of the player
-		if (!IsJumping && !CanSwim && !CanClimb) {
-			position.x += SpeedWalk;
-			current_animation = &GoRight[NumPlayer];
-		}
-		if (IsJumping) {
-			position.x += SpeedWalk;
-		}
-		if (CanSwim && !CanClimb) { //Can Climb determine if you are in a climb collider, if you are, it's true
-			position.x += SpeedSwimLeftRight;
-			current_animation = &SwimRight[NumPlayer];
-		}
-		if (CanClimb)
-			position.x += SpeedWalk;
-	}
+	GoJump();
+	GoSwim();
+	GoClimb();
+	Move_Left_Right();
+	Camera();
 
-	if (Idle) {
-		if (current_animation == &GoRight[NumPlayer])
-			current_animation = &idle[NumPlayer];
-		if (current_animation == &GoLeft[NumPlayer])
-			current_animation = &idle2[NumPlayer];
-	}
-
-	if (CanClimb && GoUp) {
-		position.y -= SpeedClimb;
-		current_animation = &Climb[NumPlayer];
-	}
-	if (CanClimb && GoDown) {
-		position.y += SpeedClimb;
-		current_animation = &Climb[NumPlayer];
-	}
-	if (CanClimb && !GoUp && !GoDown)
-		current_animation = &ClimbIdle[NumPlayer];
-	if (WalkLeft) { //This determine the movement to the left, depending on the state of the player
-		if (!IsJumping && !CanSwim && !CanClimb) {
-			position.x -= SpeedWalk;
-			current_animation = &GoLeft[NumPlayer];
-		}
-		if (IsJumping) {
-			position.x -= SpeedWalk;
-		}
-		if (CanSwim && !CanClimb) {
-			position.x -= SpeedSwimLeftRight;
-			current_animation = &SwimLeft[NumPlayer];
-		}
-		if (CanClimb)
-			position.x -= SpeedWalk;
-	}
-	if (WalkRight && WalkLeft) {
-		if (!CanSwim)
-			current_animation = &idle[NumPlayer];
-		if (CanSwim)
-			current_animation = &SwimRight[NumPlayer];
-		if (CanClimb) {
-			current_animation = &Climb[NumPlayer];
-		}
-
-	}
-	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {//knowmap it's a varibable that let us know in which map we are. //Knowmap=0, level 1 //knowmap=2, level 2
-			NextMap = true;
-	}
-	if (position.x <= startmap2 && App->scene->KnowMap == 1) { //If player is in a position where the camera would print out of the map, camera stops
-			App->render->camera.x = startpointcameramap2;
-
-	}
-	else if (position.x >= finalmapplayer) {
-		App->render->camera.x = finalmap;
-	}
-	else {
-		App->render->camera.x = -position.x + (App->render->camera.w / 2);
-	}
-	if (position.y <= minYcam) { //If player is in a position where the camera would print out of the map, camera stops
-		App->render->camera.y = 0;
-	}
-	else if (position.y >= maxYcam) {
-		App->render->camera.y = lowcam;//lowcam is the bottom part of the map, when the player is too low, the camera follows a constant height to don't get out of the map
-	}
-	else {
-		App->render->camera.y = -position.y + (App->render->camera.h / 2);
-	}
 	if (death && !God) {
 		death = false;
 		App->audio->PlayFx(deathfx2);
@@ -242,11 +119,11 @@ bool jPlayer::Update(float dt)
 	}
 	if (God)
 		CanJump = true;
+	
 	coll->SetPos(position.x, position.y);
 
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	
-
 	return true;
 }
 
@@ -559,6 +436,156 @@ void jPlayer::ChangePlayer(int playernumber)
 	
 
 }
+
+void jPlayer::GoJump()
+{
+	if (Jump && CanJump && !CanSwim && !God && !IsJumping) { //If you clicked the jump button and you are able to jump(always except you just jumpt) you can jump
+		IsJumping = true;
+	}
+	if (IsJumping) { //if you are able to jump, determine the animation and direction of the jump
+		Time += 1;
+		CanJump = false;
+		if (Time < 2)
+			App->audio->PlayFx(jumpfx);
+		if (Time <= JumpTime && WalkRight) {
+			current_animation = &jumpR[NumPlayer];
+			position.y -= JumpSpeed;
+		}
+		else if (Time <= JumpTime && WalkLeft) {
+			current_animation = &jumpL[NumPlayer];
+			position.y -= JumpSpeed;
+		}
+		else if (Time <= JumpTime) {
+			if (current_animation == &idle[NumPlayer])
+				current_animation = &jumpR[NumPlayer];
+			if (current_animation == &idle2[NumPlayer])
+				current_animation = &jumpL[NumPlayer];
+			position.y -= JumpSpeed;
+		}
+		else {
+			IsJumping = false;
+			if (current_animation == &jumpR[NumPlayer]) {
+				current_animation = &idle[NumPlayer];
+			}
+			else current_animation = &idle2[NumPlayer];
+		}
+	}
+	if (God && Jump) { //if you are in god mode and jump, you can fly
+					   //App->audio->PlayFx(jumpfx);
+		position.y -= JumpSpeed;
+	}
+}
+
+void jPlayer::GoSwim()
+{
+	if (CanSwim) {
+		if (current_animation == &SwimLeft[NumPlayer]) {
+			current_animation = &SwimLeft[NumPlayer];
+		}
+		else {
+			current_animation = &SwimRight[NumPlayer];
+		}
+	}
+	if (CanSwim && GoUp) { //Can Swim determine if you are in a water collider, if you are, it's true
+		position.y -= SpeedSwimUp;
+	}
+	if (CanSwim && GoDown) {
+		position.y += SpeedSwimDown;
+	}
+
+}
+
+void jPlayer::GoClimb()
+{
+	if (CanClimb && GoUp) {
+		position.y -= SpeedClimb;
+		current_animation = &Climb[NumPlayer];
+	}
+	if (CanClimb && GoDown) {
+		position.y += SpeedClimb;
+		current_animation = &Climb[NumPlayer];
+	}
+	if (CanClimb && !GoUp && !GoDown)
+		current_animation = &ClimbIdle[NumPlayer];
+
+}
+
+void jPlayer::Move_Left_Right()
+{
+	if (WalkRight) { //This determine the movement to the right, depending on the state of the player
+		if (!IsJumping && !CanSwim && !CanClimb) {
+			position.x += SpeedWalk;
+			current_animation = &GoRight[NumPlayer];
+		}
+		if (IsJumping) {
+			position.x += SpeedWalk;
+		}
+		if (CanSwim && !CanClimb) { //Can Climb determine if you are in a climb collider, if you are, it's true
+			position.x += SpeedSwimLeftRight;
+			current_animation = &SwimRight[NumPlayer];
+		}
+		if (CanClimb)
+			position.x += SpeedWalk;
+	}
+	if (WalkLeft) { //This determine the movement to the left, depending on the state of the player
+		if (!IsJumping && !CanSwim && !CanClimb) {
+			position.x -= SpeedWalk;
+			current_animation = &GoLeft[NumPlayer];
+		}
+		if (IsJumping) {
+			position.x -= SpeedWalk;
+		}
+		if (CanSwim && !CanClimb) {
+			position.x -= SpeedSwimLeftRight;
+			current_animation = &SwimLeft[NumPlayer];
+		}
+		if (CanClimb)
+			position.x -= SpeedWalk;
+	}
+	if (WalkRight && WalkLeft) {
+		if (!CanSwim)
+			current_animation = &idle[NumPlayer];
+		if (CanSwim)
+			current_animation = &SwimRight[NumPlayer];
+		if (CanClimb) {
+			current_animation = &Climb[NumPlayer];
+		}
+
+	}
+	if (Idle) {
+		if (current_animation == &GoRight[NumPlayer])
+			current_animation = &idle[NumPlayer];
+		if (current_animation == &GoLeft[NumPlayer])
+			current_animation = &idle2[NumPlayer];
+	}
+}
+
+void jPlayer::Camera()
+{
+	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {//knowmap it's a varibable that let us know in which map we are. //Knowmap=0, level 1 //knowmap=2, level 2
+		NextMap = true;
+	}
+	if (position.x <= startmap2 && App->scene->KnowMap == 1) { //If player is in a position where the camera would print out of the map, camera stops
+		App->render->camera.x = startpointcameramap2;
+
+	}
+	else if (position.x >= finalmapplayer) {
+		App->render->camera.x = finalmap;
+	}
+	else {
+		App->render->camera.x = -position.x + (App->render->camera.w / 2);
+	}
+	if (position.y <= minYcam) { //If player is in a position where the camera would print out of the map, camera stops
+		App->render->camera.y = 0;
+	}
+	else if (position.y >= maxYcam) {
+		App->render->camera.y = lowcam;//lowcam is the bottom part of the map, when the player is too low, the camera follows a constant height to don't get out of the map
+	}
+	else {
+		App->render->camera.y = -position.y + (App->render->camera.h / 2);
+	}
+}
+
 
 
 

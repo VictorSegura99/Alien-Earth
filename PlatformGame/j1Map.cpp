@@ -392,7 +392,6 @@ bool j1Map::LoadObjects(pugi::xml_node & node, ObjectGroup* obj)
 		for (pugi::xml_node& object = node.child("object"); object && ret; object = object.next_sibling("object"))
 		{
 			if (obj->name == "Collider") {
-				
 				SDL_Rect rect;
 				rect.x = object.attribute("x").as_int();
 				rect.y = object.attribute("y").as_int();
