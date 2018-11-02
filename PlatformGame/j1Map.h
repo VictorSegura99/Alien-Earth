@@ -6,6 +6,22 @@
 #include "p2Point.h"
 #include "j1Module.h"
 
+struct ObjectData
+{
+	p2SString	name;
+	int			x;
+	int			y;
+	int		width;
+	int		height;
+
+};
+
+struct ObjectGroup
+{
+	p2SString				name;
+	p2List<ObjectData*>	objects;
+	~ObjectGroup();
+};
 
 
 struct map_layer {
@@ -62,6 +78,7 @@ struct MapData
 	MapTypes			type;
 	p2List<TileSet*>	tilesets;
 	p2List<map_layer*>  layers;
+	p2List<ObjectGroup*>object_layers;
 };
 
 // ----------------------------------------------------
@@ -95,7 +112,7 @@ private:
 	bool LoadTilesetDetails(pugi::xml_node& tileset_node, TileSet* set);
 	bool LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set);
 	bool LoadLayer(pugi::xml_node& node, map_layer* layer);
-	bool LoadColliders(pugi::xml_node& node);
+	bool LoadObjects(pugi::xml_node& node, ObjectGroup* Obj);
 
 public:
 

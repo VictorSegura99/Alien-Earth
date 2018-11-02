@@ -12,6 +12,7 @@
 #include "j1Collision.h"
 #include "j1Audio.h"
 #include "j1Choose.h"
+#include "j1Map.h"
 
 jPlayer::jPlayer() : j1Module()
 {
@@ -63,14 +64,25 @@ bool jPlayer::Start()
 {
 	
 	bool ret = true;
-	if (App->scene->KnowMap == 0) {
-		position.x = initialXmap1;
-		position.y = initialYmap1;
+	//if (App->scene->KnowMap == 0) {
+	p2List_item<ObjectGroup*>* item = App->map->data.object_layers.end;
+	p2List_item<ObjectData*>* item2 = App->map->data.object_layers.start->data->objects.start;
+	while (item != nullptr) {
+		item2 = item->data->objects.end;
+		if (item2->data->name == "Position_Player_Start_Map1") {
+			position.x = item2->data->x;
+			position.y = item2->data->y;
+			break;
+		}
+		item->next;
+		item2->next;
 	}
-	else if (App->scene->KnowMap == 1) {
+	
+	//}
+/*	else if (App->scene->KnowMap == 1) {
 		position.x = initialXmap2;
 		position.y = initialYmap2;
-	}
+	}*/
 
 	jumpfx = App->audio->LoadFx(JumpFx.GetString());
 	waterfx = App->audio->LoadFx(WaterFx.GetString());

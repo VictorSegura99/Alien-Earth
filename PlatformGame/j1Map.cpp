@@ -104,6 +104,19 @@ bool j1Map::CleanUp()
 		item2 = item2->next;
 	}
 	data.layers.clear();
+	//Remove objects
+	p2List_item<ObjectGroup*>* item3;
+	item3 = data.object_layers.start;
+
+	while (item3 != NULL)
+	{
+		RELEASE(item3->data);
+		item3 = item3->next;
+	}
+	data.object_layers.clear();
+
+
+
 	map_file.reset();
 
 	return true;
@@ -162,13 +175,16 @@ bool j1Map::Load(const char* file_name)
 		data.layers.add(set);
 	}
 
-	pugi::xml_node colliders = map_file.child("map").child("objectgroup");
+	pugi::xml_node ObjGrouop;
+	for (ObjGrouop = map_file.child("map").child("objectgroup"); ObjGrouop && ret; ObjGrouop = ObjGrouop.next_sibling("objectgroup"))
+	{
+		ObjectGroup* set = new ObjectGroup();
 
-	for (pugi::xml_node col = colliders.child("object"); col; col = col.next_sibling("object")) {
 		if (ret == true)
 		{
-			ret = LoadColliders(col);
+			ret = LoadObjects(ObjGrouop, set);
 		}
+		data.object_layers.add(set);
 	}
 
 	if(ret == true)
@@ -356,55 +372,84 @@ bool j1Map::LoadLayer(pugi::xml_node& node, map_layer* layer) {
 	return ret;
 }
 
-bool j1Map::LoadColliders(pugi::xml_node & node)
+bool j1Map::LoadObjects(pugi::xml_node & node, ObjectGroup* obj)
 {
+	bool ret = true;
 
-	SDL_Rect rect;
-	rect.x = node.attribute("x").as_int();
-	rect.y = node.attribute("y").as_int();
-	rect.w = node.attribute("width").as_int();
-	rect.h = node.attribute("height").as_int();
-	pugi::xml_node prop = node.child("properties").child("property");
-	int i;
-	i = prop.attribute("value").as_int();
+	obj->name = node.attribute("name").as_string();
 
-	if (i == 1) {
-		App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WALL_LEFT);
-	}
-	else if (i == 2) {
-		App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_GROUND);
-	}
-	else if (i == 3) {
-		App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_SPIKES);
-	}
-	else if (i == 4) {
-		App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_FALL);
-	}
-	else if (i == 5) {
-		App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WIN);
-	}
-	else if (i == 6) {
-		App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WATER);
-	}
-	else if (i == 7) {
-		App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_CLIMB);
-	}
-	else if (i == 8) {
-		App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_ROPE);
-	}
-	else if (i == 10) {
-		App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_NONE);
-	}
-	else if (i == 11) {
-		App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WALL_UP);
-	}
+		for (pugi::xml_node& object = node.child("object"); object && ret; object = object.next_sibling("object"))
+		{
+			if (obj->name == "Collider") {
+				SDL_Rect rect;
+				rect.x = object.attribute("x").as_int();
+				rect.y = object.attribute("y").as_int();
+				rect.w = object.attribute("width").as_int();
+				rect.h = object.attribute("height").as_int();
+				pugi::xml_node prop = object.child("properties").child("property");
+				int i;
+				i = prop.attribute("value").as_int();
 
-	else if (i == 12) {
-		App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_PLATFORM);
-	}
-	else if (i == 13) {
-		App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WALL_RIGHT);
-	}
+				if (i == 1) {
+					App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WALL_LEFT);
+				}
+				else if (i == 2) {
+					App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_GROUND);
+				}
+				else if (i == 3) {
+					App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_SPIKES);
+				}
+				else if (i == 4) {
+					App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_FALL);
+				}
+				else if (i == 5) {
+					App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WIN);
+				}
+				else if (i == 6) {
+					App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WATER);
+				}
+				else if (i == 7) {
+					App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_CLIMB);
+				}
+				else if (i == 8) {
+					App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_ROPE);
+				}
+				else if (i == 10) {
+					App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_NONE);
+				}
+				else if (i == 11) {
+					App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WALL_UP);
+				}
 
-	return true;
+				else if (i == 12) {
+					App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_PLATFORM);
+				}
+				else if (i == 13) {
+					App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_WALL_RIGHT);
+				}
+			}
+			else {
+				ObjectData* data = new ObjectData;
+
+				data->height = object.attribute("height").as_uint();
+				data->width = object.attribute("width").as_uint();
+				data->x = object.attribute("x").as_uint();
+				data->y = object.attribute("y").as_uint();
+			
+				pugi::xml_node prop = object.child("properties").child("property");
+				data->name = prop.attribute("value").as_string();
+				obj->objects.add(data);
+			}
+			
+		}
+
+	//}
+	
+	return ret;
+}
+
+ObjectGroup::~ObjectGroup()
+{
+	objects.clear();
+
 }
