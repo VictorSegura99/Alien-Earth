@@ -47,9 +47,12 @@ public:
 	void GoClimb();
 	void Move_Left_Right();
 	void Camera();
+	void SetPositionRect();
 
 public:
 	
+	SDL_Rect rect;
+
 	Animation* current_animation = nullptr;
 	Animation idle[3];
 	Animation idle2[3];

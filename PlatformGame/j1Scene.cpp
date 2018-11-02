@@ -65,6 +65,7 @@ bool j1Scene::Update(float dt)
 	if (App->player->NextMap) {
 		App->player->NextMap = false;
 		KnowMap = 1;
+		App->player->SetPositionRect();
 		App->map->ChangeMap(map_name[KnowMap]);
 		App->player->Spawn();
 	}
@@ -73,6 +74,7 @@ bool j1Scene::Update(float dt)
 		App->map->ChangeMap(map_name[KnowMap]);
 		App->player->Spawn();
 		KnowMap = 0;
+		App->player->SetPositionRect();
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
 		if (KnowMap == 0) {
@@ -89,6 +91,7 @@ bool j1Scene::Update(float dt)
 			App->map->ChangeMap(map_name[KnowMap]);
 			App->player->Spawn();
 			KnowMap = 1;
+			App->player->SetPositionRect();
 	}
 
 	App->map->Draw();

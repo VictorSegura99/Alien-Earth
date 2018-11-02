@@ -13,6 +13,7 @@
 #include "j1Audio.h"
 #include "j1Choose.h"
 #include "j1Map.h"
+#include "j1Window.h"
 
 jPlayer::jPlayer() : j1Module()
 {
@@ -123,7 +124,7 @@ bool jPlayer::Update(float dt)
 	coll->SetPos(position.x, position.y);
 
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
-	
+	App->render->DrawQuad(rect, 150, 150, 150, 255, true, false);
 	return true;
 }
 
@@ -425,13 +426,15 @@ void jPlayer::ChangePlayer(int playernumber)
 		switch (playernumber) {
 		case 0:
 			coll = App->collision->AddCollider({ 0, 0, playerwidth, playerheight }, COLLIDER_PLAYER, this);
+			SetPositionRect();
 			break;
 		case 1:
 			position.y -= 17;
 			coll = App->collision->AddCollider({ 0, 0, 67, 93 }, COLLIDER_PLAYER, this);
+			SetPositionRect();
 			break;
-
 		}
+
 	}
 	
 
@@ -562,30 +565,44 @@ void jPlayer::Move_Left_Right()
 
 void jPlayer::Camera()
 {
-	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {//knowmap it's a varibable that let us know in which map we are. //Knowmap=0, level 1 //knowmap=2, level 2
+	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {//knowmap it's a varibable that let us know in which map we are. //Knowmap=0, level 1 //knowmap=1, level 2
 		NextMap = true;
 	}
-	if (position.x <= startmap2 && App->scene->KnowMap == 1) { //If player is in a position where the camera would print out of the map, camera stops
-		App->render->camera.x = startpointcameramap2;
-
-	}
-	else if (position.x >= finalmapplayer) {
-		App->render->camera.x = finalmap;
+	if (App->scene->KnowMap == 0) {
+		if (App->render->camera.x <= 0) {
+			App->render->camera.x = -300;
+		}
 	}
 	else {
-		App->render->camera.x = -position.x + (App->render->camera.w / 2);
+		if (App->render->camera.x <= 0) {
+			App->render->camera.x = -45;
+		}
 	}
-	if (position.y <= minYcam) { //If player is in a position where the camera would print out of the map, camera stops
-		App->render->camera.y = 0;
-	}
-	else if (position.y >= maxYcam) {
-		App->render->camera.y = lowcam;//lowcam is the bottom part of the map, when the player is too low, the camera follows a constant height to don't get out of the map
-	}
-	else {
-		App->render->camera.y = -position.y + (App->render->camera.h / 2);
+	if (rect.x + rect.w == position.x + position.x + playerwidth) {
+		App->render->camera.x = position.x + App->render->camera.w;
 	}
 }
 
+void jPlayer::SetPositionRect()
+{
+	if (App->scene->KnowMap == 0) {
+		rect.x = 200;
+		rect.y = 300;
+		rect.h = 500;
+		rect.w = 500;
+	}
+	if (App->scene->KnowMap == 1) {
+		rect.x = 20;
+		rect.y = 100;
+		rect.h = 500;
+		rect.w = 500;
+	}
+
+		
+
+
+
+}
 
 
 
