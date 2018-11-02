@@ -17302,7 +17302,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Player2">
+ <objectgroup name="Player">
   <properties>
    <property name="speed" type="float" value="1"/>
   </properties>

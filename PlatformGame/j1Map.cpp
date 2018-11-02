@@ -483,12 +483,6 @@ bool j1Map::LoadPlayerProperties()
 					App->player->initialmap1.x = item2->data->x;
 					App->player->initialmap1.y = item2->data->y;
 				}
-				item2 = item2->next;
-			}
-		}
-		if (item->data->name == "Player2") {
-			item2 = item->data->objects.start;
-			while (item2 != NULL) {
 				if (item2->data->name == "Position_Player_Start_Map2") {
 					App->player->initialmap2.x = item2->data->x;
 					App->player->initialmap2.y = item2->data->y;
