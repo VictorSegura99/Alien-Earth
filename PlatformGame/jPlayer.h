@@ -40,24 +40,24 @@ public:
 	void Die();
 	void Fall();
 	void Spawn();
-	void LoadPushbacks(int playernumber); 
-
+	void LoadPushbacks(); 
+	void ChangePlayer(int playernumber);
 
 
 public:
 	
 	Animation* current_animation = nullptr;
-	Animation idle;
-	Animation idle2;
-	Animation GoLeft;
-	Animation GoRight;
-	Animation jumpR;
-	Animation jumpL;
-	Animation SwimRight;
-	Animation SwimLeft;
-	Animation Climb;
-	Animation ClimbIdle;
-	Animation Death;
+	Animation idle[3];
+	Animation idle2[3];
+	Animation GoLeft[3];
+	Animation GoRight[3];
+	Animation jumpR[3];
+	Animation jumpL[3];
+	Animation SwimRight[3];
+	Animation SwimLeft[3];
+	Animation Climb[3];
+	Animation ClimbIdle[3];
+	Animation Death[3];
 
 	SDL_Texture* texture; 
 
@@ -113,6 +113,7 @@ public:
 	int playerheight = 0;
 	int finalmapplayer = 0;
 	int finalmap = 0;
+	int NumPlayer = 900;
 
 	unsigned int jumpfx;
 	unsigned int waterfx;

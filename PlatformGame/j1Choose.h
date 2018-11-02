@@ -38,7 +38,7 @@ public:
 	SDL_Texture * texture = nullptr;
 	p2SString file_texture;
 	iPoint mouse;
-	int playernumber = 0;
+	int playernumber = 1;
 	bool GameOn = false;
 };
 

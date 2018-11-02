@@ -78,28 +78,10 @@ bool jPlayer::Start()
 	deathfx2 = App->audio->LoadFx(DeathFx2.GetString());
 	ladderfx = App->audio->LoadFx(LadderFx.GetString());
 
-	/*switch (App->choose->playernumber) {
-	case 1:
-		LoadPushbakcs1();
-		break;
-	case 2:
-		LoadPushbakcs2();
-		break;
-	case 3:
-		LoadPushbakcs3();
-		break;
-	}*/
-	
-	
+	LoadPushbacks();
 
 	
-
-
 	return ret;
-
-	
-	
-	
 }
 bool jPlayer::PreUpdate() //Here we preload the input functions to determine the state of the player
 {
@@ -132,26 +114,26 @@ bool jPlayer::Update(float dt)
 		if (Time < 2) 
 			App->audio->PlayFx(jumpfx);
 		if (Time <= JumpTime && WalkRight) {
-			current_animation = &jumpR;
+			current_animation = &jumpR[NumPlayer];
 			position.y -= JumpSpeed;
 		}
 		else if (Time <= JumpTime && WalkLeft) {
-			current_animation = &jumpL;
+			current_animation = &jumpL[NumPlayer];
 			position.y -= JumpSpeed;
 		}
 		else if (Time <= JumpTime) {
-			if (current_animation==&idle)
-				current_animation = &jumpR;
-			if (current_animation == &idle2)
-				current_animation = &jumpL;
+			if (current_animation==&idle[NumPlayer])
+				current_animation = &jumpR[NumPlayer];
+			if (current_animation == &idle2[NumPlayer])
+				current_animation = &jumpL[NumPlayer];
 			position.y -= JumpSpeed;
 		}
 		else {
 			IsJumping = false;
-			if (current_animation == &jumpR) {
-				current_animation = &idle;
+			if (current_animation == &jumpR[NumPlayer]) {
+				current_animation = &idle[NumPlayer];
 			}
-			else current_animation = &idle2;
+			else current_animation = &idle2[NumPlayer];
 		}
 	}
 	if (God && Jump) { //if you are in god mode and jump, you can fly
@@ -159,11 +141,11 @@ bool jPlayer::Update(float dt)
 		position.y -= JumpSpeed;
 	}
 	if (CanSwim) {
-		if (current_animation == &SwimLeft) {
-			current_animation = &SwimLeft;
+		if (current_animation == &SwimLeft[NumPlayer]) {
+			current_animation = &SwimLeft[NumPlayer];
 		}
 		else {
-			current_animation = &SwimRight;
+			current_animation = &SwimRight[NumPlayer];
 		}
 	}
 	if (CanSwim && GoUp) { //Can Swim determine if you are in a water collider, if you are, it's true
@@ -175,58 +157,58 @@ bool jPlayer::Update(float dt)
 	if (WalkRight) { //This determine the movement to the right, depending on the state of the player
 		if (!IsJumping && !CanSwim && !CanClimb) {
 			position.x += SpeedWalk;
-			current_animation = &GoRight;
+			current_animation = &GoRight[NumPlayer];
 		}
 		if (IsJumping) {
 			position.x += SpeedWalk;
 		}
 		if (CanSwim && !CanClimb) { //Can Climb determine if you are in a climb collider, if you are, it's true
 			position.x += SpeedSwimLeftRight;
-			current_animation = &SwimRight;
+			current_animation = &SwimRight[NumPlayer];
 		}
 		if (CanClimb)
 			position.x += SpeedWalk;
 	}
 
 	if (Idle) {
-		if (current_animation == &GoRight)
-			current_animation = &idle;
-		if (current_animation == &GoLeft)
-			current_animation = &idle2;
+		if (current_animation == &GoRight[NumPlayer])
+			current_animation = &idle[NumPlayer];
+		if (current_animation == &GoLeft[NumPlayer])
+			current_animation = &idle2[NumPlayer];
 	}
 
 	if (CanClimb && GoUp) {
 		position.y -= SpeedClimb;
-		current_animation = &Climb;
+		current_animation = &Climb[NumPlayer];
 	}
 	if (CanClimb && GoDown) {
 		position.y += SpeedClimb;
-		current_animation = &Climb;
+		current_animation = &Climb[NumPlayer];
 	}
 	if (CanClimb && !GoUp && !GoDown)
-		current_animation = &ClimbIdle;
+		current_animation = &ClimbIdle[NumPlayer];
 	if (WalkLeft) { //This determine the movement to the left, depending on the state of the player
 		if (!IsJumping && !CanSwim && !CanClimb) {
 			position.x -= SpeedWalk;
-			current_animation = &GoLeft;
+			current_animation = &GoLeft[NumPlayer];
 		}
 		if (IsJumping) {
 			position.x -= SpeedWalk;
 		}
 		if (CanSwim && !CanClimb) {
 			position.x -= SpeedSwimLeftRight;
-			current_animation = &SwimLeft;
+			current_animation = &SwimLeft[NumPlayer];
 		}
 		if (CanClimb)
 			position.x -= SpeedWalk;
 	}
 	if (WalkRight && WalkLeft) {
 		if (!CanSwim)
-			current_animation = &idle;
+			current_animation = &idle[NumPlayer];
 		if (CanSwim)
-			current_animation = &SwimRight;
+			current_animation = &SwimRight[NumPlayer];
 		if (CanClimb) {
-			current_animation = &Climb;
+			current_animation = &Climb[NumPlayer];
 		}
 
 	}
@@ -284,13 +266,13 @@ bool jPlayer::PostUpdate()
 		App->choose->GameOn = false;
 	}*/
 	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) {
-		LoadPushbacks(0);
+		ChangePlayer(0);
 	}
 	if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) {
-		LoadPushbacks(1);
+		ChangePlayer(1);
 	}
 	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) {
-		LoadPushbacks(2);
+		ChangePlayer(2);
 	}
 	return true;
 }
@@ -319,7 +301,7 @@ bool jPlayer::CleanUp()
 	death = false;
 	fall = false;
 	God = false;
-	Death.Reset();
+	Death[NumPlayer].Reset();
 	if (coll)
 		coll->to_delete = true;
 	return true;
@@ -364,7 +346,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			Time = 0;
 			CanSwim = false;
 			IsJumping = false;
-			current_animation = &idle;
+			current_animation = &idle[NumPlayer];
 		}
 		break;
 	case COLLIDER_CLIMB:
@@ -420,9 +402,9 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 }
 void jPlayer::Die()//What happens when the player die
 {
-	current_animation = &Death;
+	current_animation = &Death[NumPlayer];
 	//App->audio->PlayFx(deathfx);
-	if (Death.SeeCurrentFrame()==10) {
+	if (Death[NumPlayer].SeeCurrentFrame()==10) {
 		if (App->scene->KnowMap == 0) {
 			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 			Spawn();
@@ -453,7 +435,7 @@ void jPlayer::Spawn()
 	CanJump = true;
 	CanClimb = false;
 	CanSwim = false;
-	current_animation = &idle;
+	current_animation = &idle[NumPlayer];
 	if (App->scene->KnowMap == 0) {
 		position.x = initialXmap1;
 		position.y = initialYmap1;
@@ -462,108 +444,124 @@ void jPlayer::Spawn()
 		position.x = initialXmap2;
 		position.y = initialYmap2;
 	}
-	Death.Reset();
+	Death[NumPlayer].Reset();
 }
 
-void jPlayer::LoadPushbacks(int playernumber)
+void jPlayer::LoadPushbacks()
 {
-	App->tex->UnLoad(texture);
-	texture = App->tex->Load(sprites_name[playernumber].GetString());
-	App->collision->ColliderCleanUpPlayer();
-	switch (playernumber) {
-	case 0:
-		idle.PushBack({ 142,0,66,86 });
+	// player yellow
 
-		idle2.PushBack({ 353,0,66,86 });
+	idle[0].PushBack({ 142,0,66,86 });
 
-		GoRight.PushBack({ 0,0,67,86 });
-		GoRight.PushBack({ 69,0,70,86 });
-		GoRight.speed = 0.1f;
+	idle2[0].PushBack({ 353,0,66,86 });
 
-		GoLeft.PushBack({ 285,0,67,86 });
-		GoLeft.PushBack({ 212,0,70,87 });
-		GoLeft.speed = 0.1f;
+	GoRight[0].PushBack({ 0,0,67,86 });
+	GoRight[0].PushBack({ 69,0,70,86 });
+	GoRight[0].speed = 0.1f;
 
-		jumpR.PushBack({ 420,0,67,86 });
+	GoLeft[0].PushBack({ 285,0,67,86 });
+	GoLeft[0].PushBack({ 212,0,70,87 });
+	GoLeft[0].speed = 0.1f;
+
+	jumpR[0].PushBack({ 420,0,67,86 });
 
 
-		jumpL.PushBack({ 420,86,67,86 });
+	jumpL[0].PushBack({ 420,86,67,86 });
 
 
-		Climb.PushBack({ 488,0,65,86 });
-		Climb.PushBack({ 556,0,65,86 });
-		Climb.speed = 0.1f;
+	Climb[0].PushBack({ 488,0,65,86 });
+	Climb[0].PushBack({ 556,0,65,86 });
+	Climb[0].speed = 0.1f;
 
-		ClimbIdle.PushBack({ 488,0,65,86 });
+	ClimbIdle[0].PushBack({ 488,0,65,86 });
 
-		SwimRight.PushBack({ 621,0,70,86 });
-		SwimRight.PushBack({ 617,88,70,86 });
-		SwimRight.speed = 0.1f;
+	SwimRight[0].PushBack({ 621,0,70,86 });
+	SwimRight[0].PushBack({ 617,88,70,86 });
+	SwimRight[0].speed = 0.1f;
 
-		SwimLeft.PushBack({ 617,176,70,86 });
-		SwimLeft.PushBack({ 617,263,70,86 });
-		SwimLeft.speed = 0.1f;
+	SwimLeft[0].PushBack({ 617,176,70,86 });
+	SwimLeft[0].PushBack({ 617,263,70,86 });
+	SwimLeft[0].speed = 0.1f;
 
-		Death.PushBack({ 0,94,68,81 }); 
-		Death.PushBack({ 73,94,68,81 });
-		Death.PushBack({ 142,94,68,81 });
-		Death.PushBack({ 213,94,68,81 });
-		Death.PushBack({ 283,94,68,81 });
-		Death.PushBack({ 351,94,68,81 });
-		Death.PushBack({ 0,175,68,81 });
-		Death.PushBack({ 69,175,68,81 });
-		Death.PushBack({ 139,175,68,81 });
-		Death.PushBack({ 206,175,68,81 });
-		Death.PushBack({ 272,175,68,81 });
-		Death.speed = 0.1f;
-		//Death.loop = false;
+	Death[0].PushBack({ 0,94,68,81 });
+	Death[0].PushBack({ 73,94,68,81 });
+	Death[0].PushBack({ 142,94,68,81 });
+	Death[0].PushBack({ 213,94,68,81 });
+	Death[0].PushBack({ 283,94,68,81 });
+	Death[0].PushBack({ 351,94,68,81 });
+	Death[0].PushBack({ 0,175,68,81 });
+	Death[0].PushBack({ 69,175,68,81 });
+	Death[0].PushBack({ 139,175,68,81 });
+	Death[0].PushBack({ 206,175,68,81 });
+	Death[0].PushBack({ 272,175,68,81 });
+	Death[0].speed = 0.1f;
+	//Death.loop = false;
 
-		coll = App->collision->AddCollider({ 0, 0, playerwidth, playerheight }, COLLIDER_PLAYER, this);
-		break;
-	case 1:
-		idle.PushBack({ 143,0,65,92 });
+	//player pink
 
-		idle2.PushBack({ 354,0,65,92 });
+	idle[1].PushBack({ 143,0,65,92 });
 
-		GoRight.PushBack({ 0,0,67,93 });
-		GoRight.PushBack({ 69,0,70,95 });
-		GoRight.speed = 0.1f;
+	idle2[1].PushBack({ 354,0,65,92 });
 
-		GoLeft.PushBack({ 285,0,67,93 });	
-		GoLeft.PushBack({ 212,0,70,98 });
-		GoLeft.speed = 0.1f;
+	GoRight[1].PushBack({ 0,0,67,93 });
+	GoRight[1].PushBack({ 69,0,70,95 });
+	GoRight[1].speed = 0.1f;
 
-		jumpR.PushBack({ 420,0,67,93 });
+	GoLeft[1].PushBack({ 285,0,67,93 });
+	GoLeft[1].PushBack({ 212,0,70,98 });
+	GoLeft[1].speed = 0.1f;
 
-
-		jumpL.PushBack({ 420,95,67,93 });
+	jumpR[1].PushBack({ 420,0,67,93 });
 
 
-		Climb.PushBack({ 488,0,65,92 });
-		Climb.PushBack({ 556,0,65,92 });
-		Climb.speed = 0.1f;
+	jumpL[1].PushBack({ 420,95,67,93 });
 
-		ClimbIdle.PushBack({ 488,0,65,92 });
 
-		SwimRight.PushBack({ 622,0,69,97 });
-		SwimRight.PushBack({ 622,96,70,97 });
-		SwimRight.speed = 0.1f;
+	Climb[1].PushBack({ 488,0,65,92 });
+	Climb[1].PushBack({ 556,0,65,92 });
+	Climb[1].speed = 0.1f;
 
-		SwimLeft.PushBack({ 622,193,69,95 });
-		SwimLeft.PushBack({ 622,289,70,97 });	
-		SwimLeft.speed = 0.1f;
+	ClimbIdle[1].PushBack({ 488,0,65,92 });
 
-		Death.PushBack({ 0,94,68,92 });
+	SwimRight[1].PushBack({ 622,0,69,97 });
+	SwimRight[1].PushBack({ 622,96,70,97 });
+	SwimRight[1].speed = 0.1f;
+
+	SwimLeft[1].PushBack({ 622,193,69,95 });
+	SwimLeft[1].PushBack({ 622,289,70,97 });
+	SwimLeft[1].speed = 0.1f;
+
+	Death[1].PushBack({ 0,94,68,92 });
 	
-		Death.speed = 0.1f;
-		//Death.loop = false;
+	Death[1].speed = 0.1f;
+	//Death.loop = false;
 
-		coll = App->collision->AddCollider({ 0, 0, 67, 95 }, COLLIDER_PLAYER, this);
-		break;
+	//player blue
+
+	
+}
+
+void jPlayer::ChangePlayer(int playernumber)
+{
+	if (NumPlayer != playernumber) {
+		App->tex->UnLoad(texture);
+		texture = App->tex->Load(sprites_name[playernumber].GetString());
+		App->collision->ColliderCleanUpPlayer();
+		NumPlayer = playernumber;
+		current_animation = &idle[NumPlayer];
+		switch (playernumber) {
+		case 0:
+			coll = App->collision->AddCollider({ 0, 0, playerwidth, playerheight }, COLLIDER_PLAYER, this);
+			break;
+		case 1:
+			position.y -= 17;
+			coll = App->collision->AddCollider({ 0, 0, 67, 93 }, COLLIDER_PLAYER, this);
+			break;
+
+		}
 	}
 	
 
-	current_animation = &idle;
 }
 
 
