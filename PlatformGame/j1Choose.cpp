@@ -63,7 +63,7 @@ bool j1Choose::Update(float dt)
 				App->player->active = !App->player->active;
 				App->collision->active = !App->collision->active;
 				App->map->active = !App->map->active;
-				App->player->LoadPushbakcs(playernumber);
+				App->player->LoadPushbacks(playernumber);
 				GameOn = true;
 			}
 		}
@@ -74,7 +74,7 @@ bool j1Choose::Update(float dt)
 				App->player->active = !App->player->active;
 				App->collision->active = !App->collision->active;
 				App->map->active = !App->map->active;
-				App->player->LoadPushbakcs(playernumber);
+				App->player->LoadPushbacks(playernumber);
 				GameOn = true;
 			}
 		}
@@ -85,7 +85,7 @@ bool j1Choose::Update(float dt)
 				App->player->active = !App->player->active;
 				App->collision->active = !App->collision->active;
 				App->map->active = !App->map->active;
-				App->player->LoadPushbakcs(playernumber);
+				App->player->LoadPushbacks(playernumber);
 				GameOn = true;
 			}
 		}

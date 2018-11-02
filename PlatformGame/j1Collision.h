@@ -67,6 +67,7 @@ public:
 	bool Update(float dt);
 	bool CleanUp();
 	bool ColliderCleanUp();
+	bool ColliderCleanUpPlayer();
 	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type, j1Module* callback = nullptr);
 	void DebugDraw();
 	bool god = false, god_used = false;

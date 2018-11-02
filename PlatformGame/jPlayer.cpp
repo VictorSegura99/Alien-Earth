@@ -94,7 +94,7 @@ bool jPlayer::Start()
 
 	
 
-	coll = App->collision->AddCollider({ 0, 0, playerwidth, playerheight }, COLLIDER_PLAYER, this);
+
 	return ret;
 
 	
@@ -284,13 +284,13 @@ bool jPlayer::PostUpdate()
 		App->choose->GameOn = false;
 	}*/
 	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) {
-		LoadPushbakcs(0);
+		LoadPushbacks(0);
 	}
 	if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) {
-		LoadPushbakcs(1);
+		LoadPushbacks(1);
 	}
 	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) {
-		LoadPushbakcs(2);
+		LoadPushbacks(2);
 	}
 	return true;
 }
@@ -467,55 +467,103 @@ void jPlayer::Spawn()
 
 void jPlayer::LoadPushbacks(int playernumber)
 {
+	App->tex->UnLoad(texture);
 	texture = App->tex->Load(sprites_name[playernumber].GetString());
+	App->collision->ColliderCleanUpPlayer();
+	switch (playernumber) {
+	case 0:
+		idle.PushBack({ 142,0,66,86 });
+
+		idle2.PushBack({ 353,0,66,86 });
+
+		GoRight.PushBack({ 0,0,67,86 });
+		GoRight.PushBack({ 69,0,70,86 });
+		GoRight.speed = 0.1f;
+
+		GoLeft.PushBack({ 285,0,67,86 });
+		GoLeft.PushBack({ 212,0,70,87 });
+		GoLeft.speed = 0.1f;
+
+		jumpR.PushBack({ 420,0,67,86 });
+
+
+		jumpL.PushBack({ 420,86,67,86 });
+
+
+		Climb.PushBack({ 488,0,65,86 });
+		Climb.PushBack({ 556,0,65,86 });
+		Climb.speed = 0.1f;
+
+		ClimbIdle.PushBack({ 488,0,65,86 });
+
+		SwimRight.PushBack({ 621,0,70,86 });
+		SwimRight.PushBack({ 617,88,70,86 });
+		SwimRight.speed = 0.1f;
+
+		SwimLeft.PushBack({ 617,176,70,86 });
+		SwimLeft.PushBack({ 617,263,70,86 });
+		SwimLeft.speed = 0.1f;
+
+		Death.PushBack({ 0,94,68,81 }); 
+		Death.PushBack({ 73,94,68,81 });
+		Death.PushBack({ 142,94,68,81 });
+		Death.PushBack({ 213,94,68,81 });
+		Death.PushBack({ 283,94,68,81 });
+		Death.PushBack({ 351,94,68,81 });
+		Death.PushBack({ 0,175,68,81 });
+		Death.PushBack({ 69,175,68,81 });
+		Death.PushBack({ 139,175,68,81 });
+		Death.PushBack({ 206,175,68,81 });
+		Death.PushBack({ 272,175,68,81 });
+		Death.speed = 0.1f;
+		//Death.loop = false;
+
+		coll = App->collision->AddCollider({ 0, 0, playerwidth, playerheight }, COLLIDER_PLAYER, this);
+		break;
+	case 1:
+		idle.PushBack({ 143,0,65,92 });
+
+		idle2.PushBack({ 354,0,65,92 });
+
+		GoRight.PushBack({ 0,0,67,93 });
+		GoRight.PushBack({ 69,0,70,95 });
+		GoRight.speed = 0.1f;
+
+		GoLeft.PushBack({ 285,0,67,93 });	
+		GoLeft.PushBack({ 212,0,70,98 });
+		GoLeft.speed = 0.1f;
+
+		jumpR.PushBack({ 420,0,67,93 });
+
+
+		jumpL.PushBack({ 420,95,67,93 });
+
+
+		Climb.PushBack({ 488,0,65,92 });
+		Climb.PushBack({ 556,0,65,92 });
+		Climb.speed = 0.1f;
+
+		ClimbIdle.PushBack({ 488,0,65,92 });
+
+		SwimRight.PushBack({ 622,0,69,97 });
+		SwimRight.PushBack({ 622,96,70,97 });
+		SwimRight.speed = 0.1f;
+
+		SwimLeft.PushBack({ 622,193,69,95 });
+		SwimLeft.PushBack({ 622,289,70,97 });	
+		SwimLeft.speed = 0.1f;
+
+		Death.PushBack({ 0,94,68,92 });
+	
+		Death.speed = 0.1f;
+		//Death.loop = false;
+
+		coll = App->collision->AddCollider({ 0, 0, 67, 95 }, COLLIDER_PLAYER, this);
+		break;
+	}
+	
+
 	current_animation = &idle;
-	idle.PushBack({ 142,0,66,86 });//idle.PushBack({ 143,0,65,92 });
-
-	idle2.PushBack({ 353,0,66,86 });//idle2.PushBack({ 354,0,65,92 });
-
-	GoRight.PushBack({ 0,0,67,86 });//GoRight.PushBack({ 0,0,67,93 });
-	GoRight.PushBack({ 69,0,70,86 });//GoRight.PushBack({ 69,0,70,95 });
-	GoRight.speed = 0.1f;
-
-	GoLeft.PushBack({ 285,0,67,86 });//GoLeft.PushBack({ 285,0,67,93 });	
-	GoLeft.PushBack({ 212,0,70,87 });//GoLeft.PushBack({ 212,0,70,98 });
-	GoLeft.speed = 0.1f;
-
-	jumpR.PushBack({ 420,0,67,86 });//jumpR.PushBack({ 420,0,67,93 });
-
-
-	jumpL.PushBack({ 420,86,67,86 });//	jumpL.PushBack({ 420,95,67,93 });
-
-
-	Climb.PushBack({ 488,0,65,86 });//Climb.PushBack({ 488,0,65,92 });
-	Climb.PushBack({ 556,0,65,86 });//Climb.PushBack({ 556,0,65,92 });
-	Climb.speed = 0.1f;
-
-	ClimbIdle.PushBack({ 488,0,65,86 });//ClimbIdle.PushBack({ 488,0,65,92 });
-
-	SwimRight.PushBack({ 621,0,70,86 });//SwimRight.PushBack({ 622,0,69,97 });
-	SwimRight.PushBack({ 617,88,70,86 });// SwimRight.PushBack({ 622,96,70,97 });
-	SwimRight.speed = 0.1f;
-
-	SwimLeft.PushBack({ 617,176,70,86 });//SwimLeft.PushBack({ 622,193,69,95 });
-	SwimLeft.PushBack({ 617,263,70,86 });//SwimLeft.PushBack({ 622,289,70,97 });	
-	SwimLeft.speed = 0.1f;
-
-	Death.PushBack({ 0,94,68,81 }); //	Death.PushBack({ 0,94,68,92 });
-	Death.PushBack({ 73,94,68,81 });
-	Death.PushBack({ 142,94,68,81 });
-	Death.PushBack({ 213,94,68,81 });
-	Death.PushBack({ 283,94,68,81 });
-	Death.PushBack({ 351,94,68,81 });
-	Death.PushBack({ 0,175,68,81 });
-	Death.PushBack({ 69,175,68,81 });
-	Death.PushBack({ 139,175,68,81 });
-	Death.PushBack({ 206,175,68,81 });
-	Death.PushBack({ 272,175,68,81 });
-	Death.speed = 0.1f;
-	//Death.loop = false;
-
-
 }
 
 
