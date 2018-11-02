@@ -113,6 +113,7 @@ private:
 	bool LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set);
 	bool LoadLayer(pugi::xml_node& node, map_layer* layer);
 	bool LoadObjects(pugi::xml_node& node, ObjectGroup* Obj);
+	bool LoadPlayerProperties();
 
 public:
 

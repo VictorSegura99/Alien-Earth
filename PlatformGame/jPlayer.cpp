@@ -33,10 +33,6 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	DeathFx = config.child("DeathFx").text().as_string();
 	DeathFx2 = config.child("DeathFx2").text().as_string();
 	LadderFx = config.child("LadderFx").text().as_string();
-	initialXmap1 = config.child("positionXmap1").attribute("x").as_float();
-	initialYmap1 = config.child("positionYmap1").attribute("y").as_float();
-	initialXmap2 = config.child("positionXmap2").attribute("x").as_float();
-	initialYmap2 = config.child("positionYmap2").attribute("y").as_float();
 	finalmapplayer = config.child("finalmapplayer").attribute("value").as_int();
 	finalmap = config.child("finalmap").attribute("value").as_int();
 	startmap2 = config.child("startmap2").attribute("value").as_int();
@@ -65,19 +61,7 @@ bool jPlayer::Start()
 	
 	bool ret = true;
 	//if (App->scene->KnowMap == 0) {
-	p2List_item<ObjectGroup*>* item = App->map->data.object_layers.end;
-	p2List_item<ObjectData*>* item2 = App->map->data.object_layers.start->data->objects.start;
-	while (item != nullptr) {
-		item2 = item->data->objects.end;
-		if (item2->data->name == "Position_Player_Start_Map1") {
-			position.x = item2->data->x;
-			position.y = item2->data->y;
-			break;
-		}
-		item->next;
-		item2->next;
-	}
-	
+
 	//}
 /*	else if (App->scene->KnowMap == 1) {
 		position.x = initialXmap2;
@@ -449,12 +433,12 @@ void jPlayer::Spawn()
 	CanSwim = false;
 	current_animation = &idle[NumPlayer];
 	if (App->scene->KnowMap == 0) {
-		position.x = initialXmap1;
-		position.y = initialYmap1;
+		position.x = initialmap1.x;
+		position.y = initialmap1.y;
 	}
 	if (App->scene->KnowMap == 1) {
-		position.x = initialXmap2;
-		position.y = initialYmap2;
+		position.x = initialmap2.x;
+		position.y = initialmap2.y;
 	}
 	Death[NumPlayer].Reset();
 }

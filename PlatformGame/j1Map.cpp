@@ -5,6 +5,7 @@
 #include "j1Textures.h"
 #include "j1Map.h"
 #include "j1Collision.h"
+#include "jPlayer.h"
 #include <math.h>
 
 j1Map::j1Map() : j1Module(), map_loaded(false)
@@ -186,7 +187,7 @@ bool j1Map::Load(const char* file_name)
 		}
 		data.object_layers.add(set);
 	}
-
+	LoadPlayerProperties();
 	if(ret == true)
 	{
 		LOG("Successfully parsed map XML file: %s", file_name);
@@ -212,6 +213,16 @@ bool j1Map::Load(const char* file_name)
 			LOG("name: %s", l->name.GetString());
 			LOG("tile width: %d tile height: %d", l->width, l->height);
 			item_layer = item_layer->next;
+		}
+
+		p2List_item<ObjectGroup*>* obj_layer = data.object_layers.start;
+		while (obj_layer != NULL)
+		{
+			ObjectGroup* o = obj_layer->data;
+			LOG("Group ----");
+			LOG("Gname: %s", o->name.GetString());
+
+			obj_layer = obj_layer->next;
 		}
 	}
 
@@ -381,12 +392,22 @@ bool j1Map::LoadObjects(pugi::xml_node & node, ObjectGroup* obj)
 		for (pugi::xml_node& object = node.child("object"); object && ret; object = object.next_sibling("object"))
 		{
 			if (obj->name == "Collider") {
+				ObjectData* data = new ObjectData;
+				data->height = object.attribute("height").as_uint();
+				data->width = object.attribute("width").as_uint();
+				data->x = object.attribute("x").as_uint();
+				data->y = object.attribute("y").as_uint();
+
+				pugi::xml_node prop = object.child("properties").child("property");
+				data->name = prop.attribute("value").as_string();
+
+				obj->objects.add(data);
 				SDL_Rect rect;
 				rect.x = object.attribute("x").as_int();
 				rect.y = object.attribute("y").as_int();
 				rect.w = object.attribute("width").as_int();
 				rect.h = object.attribute("height").as_int();
-				pugi::xml_node prop = object.child("properties").child("property");
+				//pugi::xml_node prop = object.child("properties").child("property");
 				int i;
 				i = prop.attribute("value").as_int();
 
@@ -446,6 +467,41 @@ bool j1Map::LoadObjects(pugi::xml_node & node, ObjectGroup* obj)
 	//}
 	
 	return ret;
+}
+
+bool j1Map::LoadPlayerProperties()
+{
+	
+	p2List_item<ObjectGroup*>* item = data.object_layers.start;
+	p2List_item<ObjectData*>* item2;
+
+	while (item != NULL) {
+		if (item->data->name == "Player") {
+			item2 = item->data->objects.start;
+			while (item2 != NULL) {
+				if (item2->data->name == "Position_Player_Start_Map1") {
+					App->player->initialmap1.x = item2->data->x;
+					App->player->initialmap1.y = item2->data->y;
+				}
+				item2 = item2->next;
+			}
+		}
+		if (item->data->name == "Player2") {
+			item2 = item->data->objects.start;
+			while (item2 != NULL) {
+				if (item2->data->name == "Position_Player_Start_Map2") {
+					App->player->initialmap2.x = item2->data->x;
+					App->player->initialmap2.y = item2->data->y;
+				}
+				item2 = item2->next;
+			}
+		}
+		item = item->next;
+	}
+	App->player->position.x = App->player->initialmap1.x;
+	App->player->position.y = App->player->initialmap1.y;
+
+	return true;
 }
 
 ObjectGroup::~ObjectGroup()

@@ -72,6 +72,8 @@ public:
 	Collider* coll = nullptr;
 
 	fPoint position;
+	iPoint initialmap1;
+	iPoint initialmap2;
 
 	bool WalkLeft = false;
 	bool WalkRight = false;
@@ -89,10 +91,6 @@ public:
 	bool NextMap = false;
 	bool NoInput = false;
 
-	float initialXmap1 = 0.0f;
-	float initialYmap1 = 0.0f;
-	float initialXmap2 = 0.0f;
-	float initialYmap2 = 0.0f;
 	float gravity = 0.0f;
 	float JumpSpeed = 0.0f;
 	float SpeedWalk = 0.0f;
