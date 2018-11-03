@@ -245,3 +245,19 @@ bool j1Render::DrawCircle(int x, int y, int radius, Uint8 r, Uint8 g, Uint8 b, U
 
 	return ret;
 }
+
+bool j1Render::DrawParticle(SDL_Texture * texture, const Particle & particle, int x, int y, COLLIDER_TYPE type)
+{
+	bool ret = true;
+
+	Particle* p = new Particle(particle);
+
+	App->collision->AddCollider(p->anim.GetCurrentFrame(), type, this);
+	Blit(texture, x, y);
+
+	
+	return ret;
+
+
+
+}

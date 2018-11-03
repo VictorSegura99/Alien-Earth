@@ -14,7 +14,7 @@
 #include "j1Choose.h"
 #include "j1Map.h"
 #include "j1Window.h"
-#include "j1Particles.h"
+
 
 jPlayer::jPlayer() : j1Module()
 {
@@ -78,6 +78,12 @@ bool jPlayer::Start()
 
 	LoadPushbacks();
 
+	laser.anim.PushBack({ 142,0,66,86 });
+	laser.anim.speed = 0.2f;
+	laser.anim.loop = true;
+	laser.life = 1000;
+	
+	
 	
 	return ret;
 }
@@ -130,7 +136,26 @@ bool jPlayer::Update(float dt)
 	//App->render->DrawQuad(rect, 150, 150, 150, 255, true, false);
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) {
-		App->particles->AddParticle(App->particles->laser, position.x, position.y, COLLIDER_PARTICLE);
+		//App->particles->AddParticle(App->particles->laser, position.x, position.y, COLLIDER_PARTICLE);
+		//App->particles->AddParticle(App->particles->laser, position.x - 7, position.y + 7, COLLIDER_PARTICLE);
+		shoot = true;
+	}
+	if (shoot) {
+		shoot = false;
+		shoot2 = true;
+		laser.position.x = position.x;
+		laser.position.y = position.y;
+		
+		
+	}
+	if (shoot2) {
+		if (cont > 100) {
+			cont = 0;
+			shoot2 = false;
+		}
+		cont++;
+		laser.position.x += 10;
+		App->render->DrawParticle(texture, laser, laser.position.x, laser.position.y, COLLIDER_PARTICLE);
 	}
 	return true;
 }

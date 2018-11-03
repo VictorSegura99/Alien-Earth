@@ -8,7 +8,14 @@
 struct SDL_Texture;
 struct SDL_Rect;
 
+struct Particle {
+	fPoint position;
+	fPoint velocity;
+	Animation anim;
+	uint life;
+	Collider* coll;
 
+};
 
 class jPlayer : public j1Module
 {
@@ -69,7 +76,7 @@ public:
 	Animation Death[3];
 
 	SDL_Texture* texture; 
-
+	SDL_Texture* ParticlesTex;
 
 	p2SString sprites_name[3];
 	p2SString	JumpFx;
@@ -128,8 +135,10 @@ public:
 	unsigned int deathfx2;
 	unsigned int ladderfx;
 	uint Time = 0;
-	
-
+	bool shoot = false;
+	bool shoot2 = false;
+	int cont = 0;
+	Particle laser;
 };
 
 

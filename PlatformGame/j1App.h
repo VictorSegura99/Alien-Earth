@@ -16,7 +16,7 @@ class j1Map;
 class j1Collision;
 class jPlayer;
 class j1Choose;
-class j1Particles;
+
 class j1App
 {
 public:
@@ -90,7 +90,6 @@ public:
 	j1Collision*		collision;
 	jPlayer*			player;
 	j1Choose*			choose;
-	j1Particles*		particles;
 
 private:
 
