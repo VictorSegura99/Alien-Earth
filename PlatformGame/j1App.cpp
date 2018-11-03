@@ -14,6 +14,7 @@
 #include"jPlayer.h"
 #include "j1Collision.h"
 #include "j1Choose.h"
+#include "j1Particles.h"
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -31,6 +32,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	collision = new j1Collision();
 	player = new jPlayer();
 	choose = new j1Choose();
+	particles = new j1Particles();
 	
 	// Ordered for awake / Start / Updated
 	// Reverse order of CleanUp
@@ -38,11 +40,11 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(input);
 	AddModule(win);
 	AddModule(tex);
-	AddModule(audio);
+	//AddModule(audio);
 	AddModule(scene);
 	AddModule(map);
 	AddModule(choose);
-	
+	AddModule(particles);
 	AddModule(collision);
 	
 	AddModule(player);

@@ -8,6 +8,8 @@
 struct SDL_Texture;
 struct SDL_Rect;
 
+
+
 class jPlayer : public j1Module
 {
 public:
@@ -127,6 +129,7 @@ public:
 	unsigned int ladderfx;
 	uint Time = 0;
 	
+
 };
 
 
