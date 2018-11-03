@@ -12,8 +12,8 @@ struct Particle {
 	fPoint position;
 	fPoint velocity;
 	Animation anim;
-	uint life;
-	Collider* coll;
+	int life;
+	Collider* coll = nullptr;
 
 };
 

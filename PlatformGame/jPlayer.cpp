@@ -81,7 +81,8 @@ bool jPlayer::Start()
 	laser.anim.PushBack({ 142,0,66,86 });
 	laser.anim.speed = 0.2f;
 	laser.anim.loop = true;
-	laser.life = 1000;
+	laser.velocity.x = 10.0f;
+	laser.life = 0;
 	
 	
 	
@@ -143,19 +144,31 @@ bool jPlayer::Update(float dt)
 	if (shoot) {
 		shoot = false;
 		shoot2 = true;
+		if (laser.coll != nullptr) {
+			laser.coll->to_delete = true;
+		}
+
 		laser.position.x = position.x;
 		laser.position.y = position.y;
 		
-		
+		rect.w = 100;
+		rect.h = 30;
+		rect.x = laser.position.x;
+		rect.y = laser.position.y;
+		laser.coll = App->collision->AddCollider(laser.anim.GetCurrentFrame(), COLLIDER_PARTICLE);
 	}
 	if (shoot2) {
-		if (cont > 100) {
-			cont = 0;
+		if (laser.life > 100) {
+			laser.life = 0;
 			shoot2 = false;
+			laser.coll->to_delete = true;
 		}
-		cont++;
-		laser.position.x += 10;
-		App->render->DrawParticle(texture, laser, laser.position.x, laser.position.y, COLLIDER_PARTICLE);
+		laser.life++;
+		laser.position.x += laser.velocity.x;
+		laser.coll->SetPos(laser.position.x, laser.position.y);
+		//App->render->Blit(texture, laser.position.x, laser.position.y, &(laser.anim.GetCurrentFrame()));
+		
+
 	}
 	return true;
 }

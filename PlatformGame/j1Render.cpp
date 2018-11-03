@@ -250,9 +250,7 @@ bool j1Render::DrawParticle(SDL_Texture * texture, const Particle & particle, in
 {
 	bool ret = true;
 
-	Particle* p = new Particle(particle);
-
-	App->collision->AddCollider(p->anim.GetCurrentFrame(), type, this);
+	
 	Blit(texture, x, y);
 
 	
