@@ -14,6 +14,9 @@ struct Particle {
 	Animation anim;
 	int life;
 	Collider* coll = nullptr;
+	int time = 100;
+	bool StartShooting = false;
+	bool IsShooting = false;
 
 };
 
@@ -57,6 +60,7 @@ public:
 	void Move_Left_Right();
 	void Camera();
 	void SetPositionRect();
+	void ShootLaser();
 
 public:
 	
@@ -96,6 +100,7 @@ public:
 	bool GoUp = false;
 	bool GoDown = false;
 	bool Idle = false;
+	bool Laser = false;
 	bool Jump = false;
 	bool IsJumping = false;
 	bool CanJump = true;
@@ -135,8 +140,7 @@ public:
 	unsigned int deathfx2;
 	unsigned int ladderfx;
 	uint Time = 0;
-	bool shoot = false;
-	bool shoot2 = false;
+
 	int cont = 0;
 	Particle laser;
 };

@@ -95,6 +95,7 @@ bool jPlayer::PreUpdate() //Here we preload the input functions to determine the
 		WalkRight = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
 		GoUp = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
 		GoDown = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
+		Laser = App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN;
 		if (!God)
 			Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
 		else Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT;
@@ -116,7 +117,7 @@ bool jPlayer::Update(float dt)
 	GoClimb();
 	Move_Left_Right();
 	Camera();
-	
+	ShootLaser();
 	
 
 
@@ -136,40 +137,7 @@ bool jPlayer::Update(float dt)
 	coll->SetPos(position.x, position.y);
 	//App->render->DrawQuad(rect, 150, 150, 150, 255, true, false);
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
-	if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) {
-		//App->particles->AddParticle(App->particles->laser, position.x, position.y, COLLIDER_PARTICLE);
-		//App->particles->AddParticle(App->particles->laser, position.x - 7, position.y + 7, COLLIDER_PARTICLE);
-		shoot = true;
-	}
-	if (shoot) {
-		shoot = false;
-		shoot2 = true;
-		if (laser.coll != nullptr) {
-			laser.coll->to_delete = true;
-		}
-
-		laser.position.x = position.x;
-		laser.position.y = position.y;
-		
-		rect.w = 100;
-		rect.h = 30;
-		rect.x = laser.position.x;
-		rect.y = laser.position.y;
-		laser.coll = App->collision->AddCollider(laser.anim.GetCurrentFrame(), COLLIDER_PARTICLE);
-	}
-	if (shoot2) {
-		if (laser.life > 100) {
-			laser.life = 0;
-			shoot2 = false;
-			laser.coll->to_delete = true;
-		}
-		laser.life++;
-		laser.position.x += laser.velocity.x;
-		laser.coll->SetPos(laser.position.x, laser.position.y);
-		//App->render->Blit(texture, laser.position.x, laser.position.y, &(laser.anim.GetCurrentFrame()));
-		
-
-	}
+	
 	return true;
 }
 
@@ -676,6 +644,37 @@ void jPlayer::SetPositionRect()
 
 
 
+}
+
+void jPlayer::ShootLaser()
+{
+
+	if (Laser && !laser.IsShooting) {
+		laser.StartShooting = true;
+	}
+	if (laser.StartShooting) {
+		laser.StartShooting = false;
+		laser.IsShooting = true;
+		if (laser.coll != nullptr) {
+			laser.coll->to_delete = true;
+		}
+
+		laser.position.x = position.x;
+		laser.position.y = position.y;
+
+		laser.coll = App->collision->AddCollider(laser.anim.GetCurrentFrame(), COLLIDER_PARTICLE);
+	}
+	if (laser.IsShooting) {
+		if (laser.life > laser.time) {
+			laser.life = 0;
+			laser.IsShooting = false;
+			laser.coll->to_delete = true;
+		}
+		laser.life++;
+		laser.position.x += laser.velocity.x;
+		laser.coll->SetPos(laser.position.x, laser.position.y);
+		App->render->Blit(texture, laser.position.x, laser.position.y, &(laser.anim.GetCurrentFrame()));
+	}
 }
 
 
