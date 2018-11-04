@@ -125,7 +125,7 @@ bool jPlayer::Update(float dt)
 
 	if (death && !God) {
 		death = false;
-		App->audio->PlayFx(deathfx2);
+		//App->audio->PlayFx(deathfx2);
 		Die();
 	}
 	if (fall && !God) {
@@ -292,8 +292,11 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 }
 void jPlayer::Die()//What happens when the player die
 {
+	
 	current_animation = &Death[NumPlayer];
 	//App->audio->PlayFx(deathfx);
+	if (Death[NumPlayer].SeeCurrentFrame() == 1) 
+		App->audio->PlayFx(deathfx2);
 	if (Death[NumPlayer].SeeCurrentFrame()==10) {
 		if (App->scene->KnowMap == 0) {
 			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
@@ -304,7 +307,6 @@ void jPlayer::Die()//What happens when the player die
 			Spawn();
 		}
 	}
-	
 }
 
 void jPlayer::Fall()//What happens when the player falls
