@@ -56,7 +56,7 @@
   <player>
     <sprites>textures/Alien.png</sprites>
     <sprites2>textures/AlienPink.png</sprites2>
-    <sprites3>textures/Alien.png</sprites3>
+    <sprites3>textures/AlienBlue.png</sprites3>
     <JumpFx>audio/fx/Jump_fx.wav</JumpFx>
     <WaterFx>audio/fx/waterfx.wav</WaterFx>
     <DeathFx>audio/fx/deathfx.wav</DeathFx>

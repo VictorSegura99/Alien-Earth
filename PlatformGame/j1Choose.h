@@ -48,7 +48,7 @@ public:
 
 	SDL_Texture * blue = nullptr;
 	Animation BlueStand;
-	Animation BluewWalk;
+	Animation BlueWalk;
 
 	bool start = false;
 	SDL_Texture * ScreenStart = nullptr;

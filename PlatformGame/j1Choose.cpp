@@ -65,7 +65,8 @@ bool j1Choose::Start()
 
 	YellowWalk.PushBack({ 216,261,191,236 });
 	YellowWalk.PushBack({ 411,254,199,243 });
-	YellowWalk.speed = 0.05f;
+	YellowWalk.speed = 0.1f;
+
 
 	yellow = App->tex->Load(App->player->sprites_name[0].GetString());
 
@@ -73,8 +74,13 @@ bool j1Choose::Start()
 	PinkStand.PushBack({ 26,261,169,236 });
 	pink = App->tex->Load(App->player->sprites_name[1].GetString());
 
-	//BlueStand.PushBack({});
-	//blue = App->tex->Load(App->player->sprites_name[2].GetString());
+	BlueStand.PushBack({0,261,168,236});
+
+	BlueWalk.PushBack({ 193,260,162,236 });
+	BlueWalk.PushBack({ 368,261,163,237 });
+	BlueWalk.speed = 0.1f;
+
+	blue = App->tex->Load(App->player->sprites_name[2].GetString());
 
 	return true;
 }
@@ -99,7 +105,7 @@ bool j1Choose::Update(float dt)
 				App->render->Blit(choose1, 0, 0, NULL, 1.0f);
 				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame()), 1.0f);
 				App->render->Blit(yellow, 150, 350, &(YellowWalk.GetCurrentFrame()), 1.0f);
-				//App->render->Blit(blue, 600, 600, &(BlueStand.GetCurrentFrame()), 1.0f);
+				App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame()), 1.0f);
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 					playernumber = PlayerNumber1;
 					App->scene->active = !App->scene->active;
@@ -113,7 +119,7 @@ bool j1Choose::Update(float dt)
 			else if (mouse.x >= MinX_RectChoosePlayer2 && mouse.x <= MaxX_RectChoosePlayer2 && mouse.y >= MinY_ChooseRect && mouse.y <= MaxY_ChooseRect) {
 				App->render->Blit(choose2, 0, 0, NULL, 1.0f);
 				App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame()), 1.0f);
-				//App->render->Blit(blue, 600, 600, &(BlueStand.GetCurrentFrame()), 1.0f);
+				App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame()), 1.0f);
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 					playernumber = PlayerNumber2;
 					App->scene->active = !App->scene->active;
@@ -128,6 +134,7 @@ bool j1Choose::Update(float dt)
 				App->render->Blit(choose3, 0, 0, NULL, 1.0f);
 				App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame()), 1.0f);
 				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame()), 1.0f);
+				App->render->Blit(blue, 665, 350, &(BlueWalk.GetCurrentFrame()), 1.0f);
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 					playernumber = PlayerNumber3;
 					App->scene->active = !App->scene->active;
@@ -142,7 +149,7 @@ bool j1Choose::Update(float dt)
 				App->render->Blit(NoChoose, 0, 0, NULL, 1.0f);
 				App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame()), 1.0f);
 				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame()), 1.0f);
-				//App->render->Blit(blue, 600, 600, &(BlueStand.GetCurrentFrame()), 1.0f);
+				App->render->Blit(blue, 665,350, &(BlueStand.GetCurrentFrame()), 1.0f);
 			}
 		}
 	}

@@ -38,6 +38,7 @@ Death sfx 2: http://soundbible.com/1454-Pain.html
 Jump sfx: http://soundbible.com/1601-Mario-Jumping.html
 Water sfx: http://soundbible.com/1148-Bubbling.html
 Background Music: https://www.bensound.com/royalty-free-music/track/retro-soul
+Menu Font: https://www.dafont.com/es/sunday-afternoon.font
 
 _____________
 LICENSE:

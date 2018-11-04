@@ -28,7 +28,7 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	LOG("Init SDL player");
 	sprites_name[0] = config.child("sprites").text().as_string();
 	sprites_name[1] = config.child("sprites2").text().as_string();
-	//sprites_name[2] = config.child("sprites3").text().as_string();
+	sprites_name[2] = config.child("sprites3").text().as_string();
 	JumpFx = config.child("JumpFx").text().as_string();
 	WaterFx = config.child("WaterFx").text().as_string();
 	DeathFx = config.child("DeathFx").text().as_string();
