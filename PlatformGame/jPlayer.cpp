@@ -98,6 +98,7 @@ bool jPlayer::PreUpdate() //Here we preload the input functions to determine the
 		GoUp = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
 		GoDown = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
 		Laser = App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN;
+		DoDash = App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN;
 		if (!God)
 			Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
 		else Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT;
@@ -123,7 +124,7 @@ bool jPlayer::Update(float dt)
 
 	}
 	Camera();
-	if (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN) {
+	if (DoDash) {
 		dashing = true;
 		dash.ResetDashAnims();
 	}
@@ -668,6 +669,8 @@ void jPlayer::Move_Left_Right()
 			current_animation = &idle[NumPlayer];
 		if (current_animation == &GoLeft[NumPlayer])
 			current_animation = &idle2[NumPlayer];
+		if (dash.FinishDash.Finished())
+			current_animation = &idle[NumPlayer];
 	}
 }
 

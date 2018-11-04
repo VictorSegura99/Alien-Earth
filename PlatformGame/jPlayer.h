@@ -120,6 +120,7 @@ public:
 	bool God = false;
 	bool NextMap = false;
 	bool NoInput = false;
+	bool DoDash = false;
 	bool dashing = false;
 
 	float gravity = 0.0f;
