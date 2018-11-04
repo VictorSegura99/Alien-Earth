@@ -5,7 +5,6 @@
 #include "jPlayer.h"
 #include "j1Textures.h"
 #include "j1Render.h"
-#include "j1Textures.h"
 #include "j1input.h"
 #include "j1Map.h"
 #include "j1Scene.h"
@@ -639,11 +638,6 @@ void jPlayer::SetPositionRect()
 		rect.h = 500;
 		rect.w = 500;
 	}
-
-		
-
-
-
 }
 
 void jPlayer::ShootLaser()
