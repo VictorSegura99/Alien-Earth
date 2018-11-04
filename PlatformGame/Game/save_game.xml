@@ -3,6 +3,9 @@
 	<input />
 	<window />
 	<textures />
+	<audio>
+		<volume value="50" />
+	</audio>
 	<scene>
 		<KnowMap value="0" />
 	</scene>
@@ -10,9 +13,9 @@
 	<choose />
 	<:anonymous />
 	<player>
-		<position x="689" y="544.799805" />
+		<position x="873" y="545.398315" />
 	</player>
 	<renderer>
-		<camera x="-189" y="-94" />
+		<camera x="-373" y="-95" />
 	</renderer>
 </game_state>

@@ -75,6 +75,9 @@ bool jPlayer::Start()
 	deathfx2 = App->audio->LoadFx(DeathFx2.GetString());
 	ladderfx = App->audio->LoadFx(LadderFx.GetString());
 
+	position.x = initialmap1.x;
+	position.y = initialmap1.y;
+
 	LoadPushbacks();
 
 	laser.anim.PushBack({ 142,0,66,86 });
@@ -166,9 +169,10 @@ bool jPlayer::Load(pugi::xml_node& player)
 {
 	position.x = player.child("position").attribute("x").as_float();
 	position.y = player.child("position").attribute("y").as_float();
-
+	
 	
 	App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
+
 
 	return true;
 }
@@ -176,7 +180,7 @@ bool jPlayer::Save(pugi::xml_node& player) const
 {
 	player.append_child("position").append_attribute("x") = position.x;
 	player.child("position").append_attribute("y") = position.y;
-	
+
 
 	return true;
 }
@@ -482,22 +486,19 @@ void jPlayer::ChangePlayer(int playernumber)
 		switch (playernumber) {
 		case 0:
 			coll = App->collision->AddCollider({ 0, 0, playerwidth, playerheight }, COLLIDER_PLAYER, this);
-			SetPositionRect();
 			break;
 		case 1:
 			position.y -= 17;
 			coll = App->collision->AddCollider({ 0, 0, 67, 93 }, COLLIDER_PLAYER, this);
-			SetPositionRect();
 			break;
 		case 2:
 			position.y -= 17;
 			coll = App->collision->AddCollider({ 0, 0, 67, 93 }, COLLIDER_PLAYER, this);
-			SetPositionRect();
 			break;
 		}
 
 	}
-	
+
 
 }
 
@@ -673,21 +674,6 @@ void jPlayer::Camera()
 	*/
 }
 
-void jPlayer::SetPositionRect()
-{
-	if (App->scene->KnowMap == 0) {
-		rect.x = 500;
-		rect.y = 300;
-		rect.h = 500;
-		rect.w = 500;
-	}
-	if (App->scene->KnowMap == 1) {
-		rect.x = 20;
-		rect.y = 100;
-		rect.h = 500;
-		rect.w = 500;
-	}
-}
 
 void jPlayer::ShootLaser()
 {

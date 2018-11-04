@@ -482,8 +482,6 @@ bool j1Map::LoadPlayerProperties()
 		}
 		item = item->next;
 	}
-	App->player->position.x = App->player->initialmap1.x;
-	App->player->position.y = App->player->initialmap1.y;
 
 	return true;
 }

@@ -59,7 +59,6 @@ public:
 	void GoClimb();
 	void Move_Left_Right();
 	void Camera();
-	void SetPositionRect();
 	void ShootLaser();
 
 public:
