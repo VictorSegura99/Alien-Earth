@@ -419,11 +419,11 @@ void jPlayer::LoadPushbacks()
 
 	Death[1].PushBack({ 0,94,68,92 });
 	
-	Death[1].PushBack({ 0,180,68,81 });
-	Death[1].PushBack({ 69,180,68,81 });
-	Death[1].PushBack({ 139,180,68,81 });
-	Death[1].PushBack({ 206,180,68,81 });
-	Death[1].PushBack({ 272,180,68,81 });
+	Death[1].PushBack({ 0,186,68,81 });
+	Death[1].PushBack({ 69,186,68,81 });
+	Death[1].PushBack({ 139,186,68,81 });
+	Death[1].PushBack({ 206,186,68,81 });
+	Death[1].PushBack({ 272,186,68,81 });
 	Death[1].speed = 0.1f;
 	//Death.loop = false;
 

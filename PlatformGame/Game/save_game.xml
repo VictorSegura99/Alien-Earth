@@ -3,18 +3,16 @@
 	<input />
 	<window />
 	<textures />
-	<audio>
-		<volume value="50" />
-	</audio>
 	<scene>
 		<KnowMap value="0" />
 	</scene>
 	<map />
+	<choose />
 	<:anonymous />
 	<player>
-		<position x="552" y="2856.41064" />
+		<position x="689" y="544.799805" />
 	</player>
 	<renderer>
-		<camera x="-52" y="-290" />
+		<camera x="-189" y="-94" />
 	</renderer>
 </game_state>
