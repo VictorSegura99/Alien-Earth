@@ -48,13 +48,24 @@ public:
 
 	bool start = false;
 	SDL_Texture * ScreenStart = nullptr;
-	SDL_Texture * texture = nullptr;
+	SDL_Texture * NoChoose = nullptr;
 	SDL_Texture * choose1 = nullptr;
 	SDL_Texture * choose2 = nullptr;
 	SDL_Texture * choose3 = nullptr;
-	p2SString file_texture;
+	p2SString file_texture[5];
 	iPoint mouse;
-	int playernumber = 1;
+	int playernumber = -1;
+	int MinY_ChooseRect = 0;
+	int MaxY_ChooseRect = 0;
+	int MinX_RectChoosePlayer1 = 0;
+	int MaxX_RectChoosePlayer1 = 0;
+	int MinX_RectChoosePlayer2 = 0;
+	int MaxX_RectChoosePlayer2 = 0;
+	int MinX_RectChoosePlayer3 = 0;
+	int MaxX_RectChoosePlayer3 = 0;
+	int PlayerNumber1 = 0;
+	int PlayerNumber2 = 0;
+	int PlayerNumber3 = 0;
 	bool GameOn = false;
 };
 

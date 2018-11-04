@@ -24,8 +24,22 @@ j1Choose::~j1Choose()
 bool j1Choose::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Scene");
-	file_texture = config.child("tex").text().as_string();
-
+	file_texture[0] = config.child("Start").text().as_string();
+	file_texture[1] = config.child("NoChoose").text().as_string();
+	file_texture[2] = config.child("Choose1").text().as_string();
+	file_texture[3] = config.child("Choose2").text().as_string();
+	file_texture[4] = config.child("Choose3").text().as_string();
+	MinY_ChooseRect = config.child("MinY_ChooseRect").attribute("value").as_int();
+	MaxY_ChooseRect = config.child("MaxY_ChooseRect").attribute("value").as_int();
+	MinX_RectChoosePlayer1 = config.child("MinX_RectChoosePlayer1").attribute("value").as_int();
+	MaxX_RectChoosePlayer1 = config.child("MaxX_RectChoosePlayer1").attribute("value").as_int();
+	MinX_RectChoosePlayer2 = config.child("MinX_RectChoosePlayer2").attribute("value").as_int();
+	MaxX_RectChoosePlayer2 = config.child("MaxX_RectChoosePlayer2").attribute("value").as_int();
+	MinX_RectChoosePlayer3 = config.child("MinX_RectChoosePlayer3").attribute("value").as_int();
+	MaxX_RectChoosePlayer3 = config.child("MaxX_RectChoosePlayer3").attribute("value").as_int();
+	PlayerNumber1 = config.child("PlayerNumber1").attribute("value").as_int();
+	PlayerNumber2 = config.child("PlayerNumber2").attribute("value").as_int();
+	PlayerNumber3 = config.child("PlayerNumber3").attribute("value").as_int();
 	bool ret = true;
 
 	return ret;
@@ -40,11 +54,11 @@ bool j1Choose::Start()
 	App->map->active = false;
 	GameOn = false;
 
-	ScreenStart = App->tex->Load("textures/Start.png");
-	texture = App->tex->Load(file_texture.GetString());
-	choose1 = App->tex->Load("textures/Choose1.png");
-	choose2 = App->tex->Load("textures/Choose2.png");
-	choose3 = App->tex->Load("textures/Choose3.png");
+	ScreenStart = App->tex->Load(file_texture[0].GetString());
+	NoChoose = App->tex->Load(file_texture[1].GetString());
+	choose1 = App->tex->Load(file_texture[2].GetString());
+	choose2 = App->tex->Load(file_texture[3].GetString());
+	choose3 = App->tex->Load(file_texture[4].GetString());
 
 	YellowStand.PushBack({ 500,93,65,82 });
 	yellow = App->tex->Load(App->player->sprites_name[0].GetString());
@@ -52,7 +66,8 @@ bool j1Choose::Start()
 	PinkStand.PushBack({ 520,101,65,92 });
 	pink = App->tex->Load(App->player->sprites_name[1].GetString());
 
-	
+	//BlueStand.PushBack({});
+	//blue = App->tex->Load(App->player->sprites_name[2].GetString());
 
 	return true;
 }
@@ -73,11 +88,12 @@ bool j1Choose::Update(float dt)
 {
 	if (start) {
 		if (!GameOn) {
-			if (mouse.x >= 50 && mouse.x <= 350 && mouse.y >= 50 && mouse.y <= 850) {
+			if (mouse.x >= MinX_RectChoosePlayer1 && mouse.x <= MaxX_RectChoosePlayer1 && mouse.y >= MinY_ChooseRect && mouse.y <= MaxY_ChooseRect) {
 				App->render->Blit(choose1, 0, 0, NULL, 1.0f);
 				App->render->Blit(pink, 450, 600, &(PinkStand.GetCurrentFrame()), 1.0f);
+				//App->render->Blit(blue, 600, 600, &(BlueStand.GetCurrentFrame()), 1.0f);
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
-					playernumber = 0;
+					playernumber = PlayerNumber1;
 					App->scene->active = !App->scene->active;
 					App->player->active = !App->player->active;
 					App->collision->active = !App->collision->active;
@@ -86,11 +102,12 @@ bool j1Choose::Update(float dt)
 					GameOn = true;
 				}
 			}
-			else if (mouse.x >= 351 && mouse.x <= 650 && mouse.y >= 50 && mouse.y <= 850) {
+			else if (mouse.x >= MinX_RectChoosePlayer2 && mouse.x <= MaxX_RectChoosePlayer2 && mouse.y >= MinY_ChooseRect && mouse.y <= MaxY_ChooseRect) {
 				App->render->Blit(choose2, 0, 0, NULL, 1.0f);
 				App->render->Blit(yellow, 200, 600, &(YellowStand.GetCurrentFrame()), 1.0f);
+				//App->render->Blit(blue, 600, 600, &(BlueStand.GetCurrentFrame()), 1.0f);
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
-					playernumber = 1;
+					playernumber = PlayerNumber2;
 					App->scene->active = !App->scene->active;
 					App->player->active = !App->player->active;
 					App->collision->active = !App->collision->active;
@@ -99,10 +116,12 @@ bool j1Choose::Update(float dt)
 					GameOn = true;
 				}
 			}
-			else if (mouse.x >= 651 && mouse.x <= 950 && mouse.y >= 50 && mouse.y <= 850) {
+			else if (mouse.x >= MinX_RectChoosePlayer3 && mouse.x <= MaxX_RectChoosePlayer3 && mouse.y >= MinY_ChooseRect && mouse.y <= MaxY_ChooseRect) {
 				App->render->Blit(choose3, 0, 0, NULL, 1.0f);
+				App->render->Blit(yellow, 200, 600, &(YellowStand.GetCurrentFrame()), 1.0f);
+				App->render->Blit(pink, 450, 600, &(PinkStand.GetCurrentFrame()), 1.0f);
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
-					playernumber = 2;
+					playernumber = PlayerNumber3;
 					App->scene->active = !App->scene->active;
 					App->player->active = !App->player->active;
 					App->collision->active = !App->collision->active;
@@ -112,9 +131,10 @@ bool j1Choose::Update(float dt)
 				}
 			}
 			else {
-				App->render->Blit(texture, 0, 0, NULL, 1.0f);
+				App->render->Blit(NoChoose, 0, 0, NULL, 1.0f);
 				App->render->Blit(yellow, 200, 600, &(YellowStand.GetCurrentFrame()), 1.0f);
 				App->render->Blit(pink, 450, 600, &(PinkStand.GetCurrentFrame()), 1.0f);
+				//App->render->Blit(blue, 600, 600, &(BlueStand.GetCurrentFrame()), 1.0f);
 			}
 		}
 	}
@@ -147,7 +167,7 @@ bool j1Choose::PostUpdate()
 bool j1Choose::CleanUp()
 {
 	App->tex->UnLoad(ScreenStart);
-	App->tex->UnLoad(texture);
+	App->tex->UnLoad(NoChoose);
 	App->tex->UnLoad(choose1);
 	App->tex->UnLoad(choose2);
 	App->tex->UnLoad(choose3);

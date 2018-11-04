@@ -35,7 +35,22 @@
     <volume value="50"></volume>
   </audio>
   <choose>
-    <tex>textures/choose.png</tex>
+    <Start>textures/Start.png</Start>
+    <NoChoose>textures/choose.png</NoChoose>
+    <Choose1>textures/Choose1.png</Choose1>
+    <Choose2>textures/Choose2.png</Choose2>
+    <Choose3>textures/Choose3.png</Choose3>
+    <MinY_ChooseRect value="228"></MinY_ChooseRect>
+    <MaxY_ChooseRect value="671"></MaxY_ChooseRect>
+    <MinX_RectChoosePlayer1 value="138"></MinX_RectChoosePlayer1>
+    <MaxX_RectChoosePlayer1 value="363"></MaxX_RectChoosePlayer1>
+    <MinX_RectChoosePlayer2 value="388"></MinX_RectChoosePlayer2>
+    <MaxX_RectChoosePlayer2 value="613"></MaxX_RectChoosePlayer2>
+    <MinX_RectChoosePlayer3 value="638"></MinX_RectChoosePlayer3>
+    <MaxX_RectChoosePlayer3 value="863"></MaxX_RectChoosePlayer3>
+    <PlayerNumber1 value="0"></PlayerNumber1>
+    <PlayerNumber2 value="1"></PlayerNumber2>
+    <PlayerNumber3 value="2"></PlayerNumber3>
   </choose>
   
   <player>
