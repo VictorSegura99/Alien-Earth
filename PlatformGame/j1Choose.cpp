@@ -72,6 +72,11 @@ bool j1Choose::Start()
 
 	//PinkStand.PushBack({ 520,101,65,92 });
 	PinkStand.PushBack({ 26,261,169,236 });
+
+	PinkWalk.PushBack({ 199,261,165,236 });
+	PinkWalk.PushBack({ 371,261,171,236 });
+	PinkWalk.speed = 0.1f;
+
 	pink = App->tex->Load(App->player->sprites_name[1].GetString());
 
 	BlueStand.PushBack({0,261,168,236});
@@ -120,6 +125,7 @@ bool j1Choose::Update(float dt)
 				App->render->Blit(choose2, 0, 0, NULL, 1.0f);
 				App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame()), 1.0f);
 				App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame()), 1.0f);
+				App->render->Blit(pink, 418, 350, &(PinkWalk.GetCurrentFrame()), 1.0f);
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 					playernumber = PlayerNumber2;
 					App->scene->active = !App->scene->active;
