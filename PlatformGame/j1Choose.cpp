@@ -38,15 +38,19 @@ bool j1Choose::Start()
 	App->player->active = false;
 	App->collision->active = false;
 	App->map->active = false;
-
+	GameOn = false;
 
 	texture = App->tex->Load(file_texture.GetString());
+	choose1 = App->tex->Load("textures/Choose1.png");
+	choose2 = App->tex->Load("textures/Choose2.png");
+	choose3 = App->tex->Load("textures/Choose3.png");
 	return true;
 }
 
 // Called each loop iteration
 bool j1Choose::PreUpdate()
 {
+
 	App->input->GetMousePosition(mouse.x, mouse.y);
 	
 	return true;
@@ -56,7 +60,9 @@ bool j1Choose::PreUpdate()
 bool j1Choose::Update(float dt)
 {
 	if (!GameOn) {
+
 		if (mouse.x >= 50 && mouse.x <= 350 && mouse.y >= 50 && mouse.y <= 850) {
+			App->render->Blit(choose1, 0, 0, NULL, 1.0f);
 			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 				playernumber = 0;
 				App->scene->active = !App->scene->active;
@@ -68,6 +74,7 @@ bool j1Choose::Update(float dt)
 			}
 		}
 		else if (mouse.x >= 351 && mouse.x <= 650 && mouse.y >= 50 && mouse.y <= 850) {
+			App->render->Blit(choose2, 0, 0, NULL, 1.0f);
 			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 				playernumber = 1;
 				App->scene->active = !App->scene->active;
@@ -79,6 +86,7 @@ bool j1Choose::Update(float dt)
 			}
 		}
 		else if (mouse.x >= 651 && mouse.x <= 950 && mouse.y >= 50 && mouse.y <= 850) {
+			App->render->Blit(choose3, 0, 0, NULL, 1.0f);
 			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 				playernumber = 2;
 				App->scene->active = !App->scene->active;
@@ -89,7 +97,10 @@ bool j1Choose::Update(float dt)
 				GameOn = true;
 			}
 		}
-		App->render->Blit(texture, 0, 0, NULL, 1.0f);
+		else {
+			App->render->Blit(texture, 0, 0, NULL, 1.0f);
+		}
+		
 	}
 	
 
@@ -118,7 +129,10 @@ bool j1Choose::PostUpdate()
 // Called before quitting
 bool j1Choose::CleanUp()
 {
-
+	App->tex->UnLoad(texture);
+	App->tex->UnLoad(choose1);
+	App->tex->UnLoad(choose2);
+	App->tex->UnLoad(choose3);
 	LOG("Freeing scene");
 	return true;
 }

@@ -36,6 +36,9 @@ public:
 public:
 
 	SDL_Texture * texture = nullptr;
+	SDL_Texture * choose1 = nullptr;
+	SDL_Texture * choose2 = nullptr;
+	SDL_Texture * choose3 = nullptr;
 	p2SString file_texture;
 	iPoint mouse;
 	int playernumber = 1;
