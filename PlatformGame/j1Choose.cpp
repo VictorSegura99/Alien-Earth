@@ -71,18 +71,18 @@ bool j1Choose::Start()
 	yellow = App->tex->Load(App->player->sprites_name[0].GetString());
 
 	//PinkStand.PushBack({ 520,101,65,92 });
-	PinkStand.PushBack({ 26,261,169,236 });
+	PinkStand.PushBack({ 26,281,169,236 });
 
-	PinkWalk.PushBack({ 199,261,165,236 });
-	PinkWalk.PushBack({ 371,261,171,236 });
+	PinkWalk.PushBack({ 199,281,165,236 });
+	PinkWalk.PushBack({ 371,281,171,236 });
 	PinkWalk.speed = 0.1f;
 
 	pink = App->tex->Load(App->player->sprites_name[1].GetString());
 
-	BlueStand.PushBack({0,261,168,236});
+	BlueStand.PushBack({0,281,168,236});
 
-	BlueWalk.PushBack({ 193,260,162,236 });
-	BlueWalk.PushBack({ 368,261,163,237 });
+	BlueWalk.PushBack({ 193,280,162,236 });
+	BlueWalk.PushBack({ 368,281,163,237 });
 	BlueWalk.speed = 0.1f;
 
 	blue = App->tex->Load(App->player->sprites_name[2].GetString());
