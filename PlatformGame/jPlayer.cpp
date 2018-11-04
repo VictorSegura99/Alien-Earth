@@ -428,7 +428,46 @@ void jPlayer::LoadPushbacks()
 	//Death.loop = false;
 
 	//player blue
+	idle[2].PushBack({ 143,0,65,92 });
 
+	idle2[2].PushBack({ 354,0,65,92 });
+
+	GoRight[2].PushBack({ 0,0,67,93 });
+	GoRight[2].PushBack({ 69,0,70,95 });
+	GoRight[2].speed = 0.1f;
+
+	GoLeft[2].PushBack({ 285,0,67,93 });
+	GoLeft[2].PushBack({ 212,0,70,98 });
+	GoLeft[2].speed = 0.1f;
+
+	jumpR[2].PushBack({ 420,0,67,93 });
+
+
+	jumpL[2].PushBack({ 420,95,67,93 });
+
+
+	Climb[2].PushBack({ 488,0,65,92 });
+	Climb[2].PushBack({ 556,0,65,92 });
+	Climb[2].speed = 0.1f;
+
+	ClimbIdle[2].PushBack({ 488,0,65,92 });
+
+	SwimRight[2].PushBack({ 622,0,69,97 });
+	SwimRight[2].PushBack({ 622,96,70,97 });
+	SwimRight[2].speed = 0.1f;
+
+	SwimLeft[2].PushBack({ 622,193,69,95 });
+	SwimLeft[2].PushBack({ 622,289,70,97 });
+	SwimLeft[2].speed = 0.1f;
+
+	Death[2].PushBack({ 0,94,68,92 });
+
+	Death[2].PushBack({ 0,186,68,81 });
+	Death[2].PushBack({ 69,186,68,81 });
+	Death[2].PushBack({ 139,186,68,81 });
+	Death[2].PushBack({ 206,186,68,81 });
+	Death[2].PushBack({ 272,186,68,81 });
+	Death[2].speed = 0.1f;
 	
 }
 
@@ -446,6 +485,11 @@ void jPlayer::ChangePlayer(int playernumber)
 			SetPositionRect();
 			break;
 		case 1:
+			position.y -= 17;
+			coll = App->collision->AddCollider({ 0, 0, 67, 93 }, COLLIDER_PLAYER, this);
+			SetPositionRect();
+			break;
+		case 2:
 			position.y -= 17;
 			coll = App->collision->AddCollider({ 0, 0, 67, 93 }, COLLIDER_PLAYER, this);
 			SetPositionRect();
