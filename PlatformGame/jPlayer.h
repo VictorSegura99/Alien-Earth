@@ -53,7 +53,7 @@ public:
 	void Fall();
 	void Spawn();
 	void LoadPushbacks(); 
-	void ChangePlayer(int playernumber);
+	void ChangePlayer(const int playernumber);
 	void GoJump();
 	void GoSwim();
 	void GoClimb();

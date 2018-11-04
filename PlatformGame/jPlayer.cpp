@@ -191,7 +191,8 @@ bool jPlayer::CleanUp()
 	death = false;
 	fall = false;
 	God = false;
-	Death[NumPlayer].Reset();
+	Death[NumPlayer].current_frame = 0.0f;
+	Death[NumPlayer].loops = 0;
 	if (coll)
 		coll->to_delete = true;
 	return true;
@@ -292,7 +293,6 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 }
 void jPlayer::Die()//What happens when the player die
 {
-	
 	current_animation = &Death[NumPlayer];
 	//App->audio->PlayFx(deathfx);
 	if (Death[NumPlayer].SeeCurrentFrame() == 1) 
@@ -336,7 +336,8 @@ void jPlayer::Spawn()
 		position.x = initialmap2.x;
 		position.y = initialmap2.y;
 	}
-	Death[NumPlayer].Reset();
+	Death[NumPlayer].current_frame = 0.0f;
+	Death[NumPlayer].loops = 0;
 }
 
 void jPlayer::LoadPushbacks()
@@ -477,7 +478,7 @@ void jPlayer::LoadPushbacks()
 	
 }
 
-void jPlayer::ChangePlayer(int playernumber)
+void jPlayer::ChangePlayer(const int playernumber) 
 {
 	if (NumPlayer != playernumber) {
 		App->tex->UnLoad(texture);
