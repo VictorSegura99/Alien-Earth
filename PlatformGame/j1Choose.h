@@ -2,8 +2,11 @@
 #define __J1CHOOSE_H__
 
 #include "j1Module.h"
+#include "p2Animation.h"
+#include "p2Point.h"
 
 struct SDL_Texture;
+struct SDL_Rect;
 
 class j1Choose : public j1Module
 {
@@ -34,7 +37,17 @@ public:
 
 
 public:
+	SDL_Texture * yellow = nullptr;
+	Animation YellowStand;
 
+	SDL_Texture * pink = nullptr;
+	Animation PinkStand;
+
+	SDL_Texture * blue = nullptr;
+	Animation BlueStand;
+
+	bool start = false;
+	SDL_Texture * ScreenStart = nullptr;
 	SDL_Texture * texture = nullptr;
 	SDL_Texture * choose1 = nullptr;
 	SDL_Texture * choose2 = nullptr;

@@ -40,10 +40,18 @@ bool j1Choose::Start()
 	App->map->active = false;
 	GameOn = false;
 
+	ScreenStart = App->tex->Load("textures/Start.png");
 	texture = App->tex->Load(file_texture.GetString());
 	choose1 = App->tex->Load("textures/Choose1.png");
 	choose2 = App->tex->Load("textures/Choose2.png");
 	choose3 = App->tex->Load("textures/Choose3.png");
+
+	YellowStand.PushBack({ 500,93,65,82 });
+	yellow = App->tex->Load(App->player->sprites_name[0].GetString());
+
+	PinkStand.PushBack({ 520,101,65,92 });
+	pink = App->tex->Load(App->player->sprites_name[1].GetString());
+
 	return true;
 }
 
@@ -52,58 +60,65 @@ bool j1Choose::PreUpdate()
 {
 
 	App->input->GetMousePosition(mouse.x, mouse.y);
-	
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
+		start = true;
+	}
 	return true;
 }
 
 // Called each loop iteration
 bool j1Choose::Update(float dt)
 {
-	if (!GameOn) {
-
-		if (mouse.x >= 50 && mouse.x <= 350 && mouse.y >= 50 && mouse.y <= 850) {
-			App->render->Blit(choose1, 0, 0, NULL, 1.0f);
-			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
-				playernumber = 0;
-				App->scene->active = !App->scene->active;
-				App->player->active = !App->player->active;
-				App->collision->active = !App->collision->active;
-				App->map->active = !App->map->active;
-				App->player->ChangePlayer(playernumber);
-				GameOn = true;
+	if (start) {
+		if (!GameOn) {
+			if (mouse.x >= 50 && mouse.x <= 350 && mouse.y >= 50 && mouse.y <= 850) {
+				App->render->Blit(choose1, 0, 0, NULL, 1.0f);
+				App->render->Blit(pink, 450, 600, &(PinkStand.GetCurrentFrame()), 1.0f);
+				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+					playernumber = 0;
+					App->scene->active = !App->scene->active;
+					App->player->active = !App->player->active;
+					App->collision->active = !App->collision->active;
+					App->map->active = !App->map->active;
+					App->player->ChangePlayer(playernumber);
+					GameOn = true;
+				}
+			}
+			else if (mouse.x >= 351 && mouse.x <= 650 && mouse.y >= 50 && mouse.y <= 850) {
+				App->render->Blit(choose2, 0, 0, NULL, 1.0f);
+				App->render->Blit(yellow, 200, 600, &(YellowStand.GetCurrentFrame()), 1.0f);
+				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+					playernumber = 1;
+					App->scene->active = !App->scene->active;
+					App->player->active = !App->player->active;
+					App->collision->active = !App->collision->active;
+					App->map->active = !App->map->active;
+					App->player->ChangePlayer(playernumber);
+					GameOn = true;
+				}
+			}
+			else if (mouse.x >= 651 && mouse.x <= 950 && mouse.y >= 50 && mouse.y <= 850) {
+				App->render->Blit(choose3, 0, 0, NULL, 1.0f);
+				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+					playernumber = 2;
+					App->scene->active = !App->scene->active;
+					App->player->active = !App->player->active;
+					App->collision->active = !App->collision->active;
+					App->map->active = !App->map->active;
+					App->player->ChangePlayer(playernumber);
+					GameOn = true;
+				}
+			}
+			else {
+				App->render->Blit(texture, 0, 0, NULL, 1.0f);
+				App->render->Blit(yellow, 200, 600, &(YellowStand.GetCurrentFrame()), 1.0f);
+				App->render->Blit(pink, 450, 600, &(PinkStand.GetCurrentFrame()), 1.0f);
 			}
 		}
-		else if (mouse.x >= 351 && mouse.x <= 650 && mouse.y >= 50 && mouse.y <= 850) {
-			App->render->Blit(choose2, 0, 0, NULL, 1.0f);
-			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
-				playernumber = 1;
-				App->scene->active = !App->scene->active;
-				App->player->active = !App->player->active;
-				App->collision->active = !App->collision->active;
-				App->map->active = !App->map->active;
-				App->player->ChangePlayer(playernumber);
-				GameOn = true;
-			}
-		}
-		else if (mouse.x >= 651 && mouse.x <= 950 && mouse.y >= 50 && mouse.y <= 850) {
-			App->render->Blit(choose3, 0, 0, NULL, 1.0f);
-			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
-				playernumber = 2;
-				App->scene->active = !App->scene->active;
-				App->player->active = !App->player->active;
-				App->collision->active = !App->collision->active;
-				App->map->active = !App->map->active;
-				App->player->ChangePlayer(playernumber);
-				GameOn = true;
-			}
-		}
-		else {
-			App->render->Blit(texture, 0, 0, NULL, 1.0f);
-		}
-		
 	}
-	
-
+	else {
+		App->render->Blit(ScreenStart, 0, 0, NULL, 1.0f);
+	}
 	return true;
 }
 
@@ -129,6 +144,7 @@ bool j1Choose::PostUpdate()
 // Called before quitting
 bool j1Choose::CleanUp()
 {
+	App->tex->UnLoad(ScreenStart);
 	App->tex->UnLoad(texture);
 	App->tex->UnLoad(choose1);
 	App->tex->UnLoad(choose2);
