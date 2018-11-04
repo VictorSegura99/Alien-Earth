@@ -60,10 +60,12 @@ bool j1Choose::Start()
 	choose2 = App->tex->Load(file_texture[3].GetString());
 	choose3 = App->tex->Load(file_texture[4].GetString());
 
-	YellowStand.PushBack({ 500,93,65,82 });
+	//YellowStand.PushBack({ 500,93,65,82 });
+	YellowStand.PushBack({ 26,261,189,236 });
 	yellow = App->tex->Load(App->player->sprites_name[0].GetString());
 
-	PinkStand.PushBack({ 520,101,65,92 });
+	//PinkStand.PushBack({ 520,101,65,92 });
+	PinkStand.PushBack({ 26,261,169,236 });
 	pink = App->tex->Load(App->player->sprites_name[1].GetString());
 
 	//BlueStand.PushBack({});
@@ -90,7 +92,7 @@ bool j1Choose::Update(float dt)
 		if (!GameOn) {
 			if (mouse.x >= MinX_RectChoosePlayer1 && mouse.x <= MaxX_RectChoosePlayer1 && mouse.y >= MinY_ChooseRect && mouse.y <= MaxY_ChooseRect) {
 				App->render->Blit(choose1, 0, 0, NULL, 1.0f);
-				App->render->Blit(pink, 450, 600, &(PinkStand.GetCurrentFrame()), 1.0f);
+				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame()), 1.0f);
 				//App->render->Blit(blue, 600, 600, &(BlueStand.GetCurrentFrame()), 1.0f);
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 					playernumber = PlayerNumber1;
@@ -104,7 +106,7 @@ bool j1Choose::Update(float dt)
 			}
 			else if (mouse.x >= MinX_RectChoosePlayer2 && mouse.x <= MaxX_RectChoosePlayer2 && mouse.y >= MinY_ChooseRect && mouse.y <= MaxY_ChooseRect) {
 				App->render->Blit(choose2, 0, 0, NULL, 1.0f);
-				App->render->Blit(yellow, 200, 600, &(YellowStand.GetCurrentFrame()), 1.0f);
+				App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame()), 1.0f);
 				//App->render->Blit(blue, 600, 600, &(BlueStand.GetCurrentFrame()), 1.0f);
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 					playernumber = PlayerNumber2;
@@ -118,8 +120,8 @@ bool j1Choose::Update(float dt)
 			}
 			else if (mouse.x >= MinX_RectChoosePlayer3 && mouse.x <= MaxX_RectChoosePlayer3 && mouse.y >= MinY_ChooseRect && mouse.y <= MaxY_ChooseRect) {
 				App->render->Blit(choose3, 0, 0, NULL, 1.0f);
-				App->render->Blit(yellow, 200, 600, &(YellowStand.GetCurrentFrame()), 1.0f);
-				App->render->Blit(pink, 450, 600, &(PinkStand.GetCurrentFrame()), 1.0f);
+				App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame()), 1.0f);
+				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame()), 1.0f);
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 					playernumber = PlayerNumber3;
 					App->scene->active = !App->scene->active;
@@ -132,8 +134,8 @@ bool j1Choose::Update(float dt)
 			}
 			else {
 				App->render->Blit(NoChoose, 0, 0, NULL, 1.0f);
-				App->render->Blit(yellow, 200, 600, &(YellowStand.GetCurrentFrame()), 1.0f);
-				App->render->Blit(pink, 450, 600, &(PinkStand.GetCurrentFrame()), 1.0f);
+				App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame()), 1.0f);
+				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame()), 1.0f);
 				//App->render->Blit(blue, 600, 600, &(BlueStand.GetCurrentFrame()), 1.0f);
 			}
 		}
