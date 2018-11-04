@@ -114,20 +114,22 @@ bool jPlayer::Update(float dt)
 {
 	
 	position.y -= gravity;
-	GoJump();
-	GoSwim();
-	GoClimb();
-	Move_Left_Right();
+	if (!dashing) {
+		GoJump();
+		GoSwim();
+		GoClimb();
+		Move_Left_Right();
+		ShootLaser();
+
+	}
 	Camera();
-	ShootLaser();
-	
 	if (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN) {
 		dashing = true;
 		dash.ResetDashAnims();
 	}
 	if (dashing) {
 		if (dash.StartDash.current_frame == 0) {
-			position.x -= 120;
+		//	position.x -= 60;
 			current_animation = &dash.StartDash;
 		}
 		if (dash.StartDash.SeeCurrentFrame() == 3) {
