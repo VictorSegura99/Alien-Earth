@@ -123,19 +123,20 @@ bool jPlayer::Update(float dt)
 	
 	if (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN) {
 		dashing = true;
-		
+		dash.ResetDashAnims();
 	}
 	if (dashing) {
-		if (StartDash.current_frame == 0) {
-			current_animation = &StartDash;
+		if (dash.StartDash.current_frame == 0) {
+			position.x -= 120;
+			current_animation = &dash.StartDash;
 		}
-		if (StartDash.SeeCurrentFrame() == 3) {
-			++DashCont;
-			current_animation = &Dashing;
+		if (dash.StartDash.SeeCurrentFrame() == 3) {
+			++dash.DashCont;
+			current_animation = &dash.Dashing;
 			position.x += 20;
-			if (DashCont >= DashTime) {
-				current_animation = &FinishDash;
-				DashCont = 0;
+			if (dash.DashCont >= dash.DashTime) {
+				current_animation = &dash.FinishDash;
+				dash.DashCont = 0;
 				dashing = false;
 			}
 		}
@@ -494,30 +495,30 @@ void jPlayer::LoadPushbacks()
 	Death[2].PushBack({ 272,186,68,81 });
 	Death[2].speed = 0.1f;
 
-	StartDash.PushBack({ 55,553,67,71 });
-	StartDash.PushBack({ 125,553,67,71 });
-	StartDash.PushBack({ 195,553,67,71 });
-	StartDash.PushBack({ 265,553,67,71 });
-	StartDash.speed = 0.05;
-	StartDash.loop = false;
+	dash.StartDash.PushBack({ 55,553,67,71 });
+	dash.StartDash.PushBack({ 125,553,67,71 });
+	dash.StartDash.PushBack({ 195,553,67,71 });
+	dash.StartDash.PushBack({ 265,553,67,71 });
+	dash.StartDash.speed = 0.05;
+	dash.StartDash.loop = false;
 
-	FinishDash.PushBack({ 545,553,67,71 });
-	FinishDash.PushBack({ 475,553,67,71 });
-	FinishDash.PushBack({ 405,553,67,71 });
-	FinishDash.PushBack({ 335,553,67,71 });
-	FinishDash.PushBack({ 265,553,67,71 });
-	FinishDash.PushBack({ 195,553,67,71 });
-	FinishDash.PushBack({ 125,553,67,71 });
-	FinishDash.PushBack({ 55,553,67,71 });
-	FinishDash.speed = 0.05;
-	FinishDash.loop = false;
+	dash.FinishDash.PushBack({ 545,553,67,71 });
+	dash.FinishDash.PushBack({ 475,553,67,71 });
+	dash.FinishDash.PushBack({ 405,553,67,71 });
+	dash.FinishDash.PushBack({ 335,553,67,71 });
+	dash.FinishDash.PushBack({ 265,553,67,71 });
+	dash.FinishDash.PushBack({ 195,553,67,71 });
+	dash.FinishDash.PushBack({ 125,553,67,71 });
+	dash.FinishDash.PushBack({ 55,553,67,71 });
+	dash.FinishDash.speed = 0.05;
+	dash.FinishDash.loop = false;
 	
-	Dashing.PushBack({ 335,553,67,71 });
-	Dashing.PushBack({ 405,553,67,71 });
-	Dashing.PushBack({ 475,553,67,71 });
-	Dashing.PushBack({ 545,553,67,71 });
-	Dashing.speed = 0.05;
-	Dashing.loop = false;
+	dash.Dashing.PushBack({ 335,553,67,71 });
+	dash.Dashing.PushBack({ 405,553,67,71 });
+	dash.Dashing.PushBack({ 475,553,67,71 });
+	dash.Dashing.PushBack({ 545,553,67,71 });
+	dash.Dashing.speed = 0.05;
+	dash.Dashing.loop = false;
 	
 }
 
@@ -748,9 +749,16 @@ void jPlayer::ShootLaser()
 	}
 }
 
+void Dash::ResetDashAnims()
+{
+	Dashing.current_frame = 0.0f;
+	Dashing.loops = 0;
+
+	StartDash.current_frame = 0.0f;
+	StartDash.loops = 0;
+
+	FinishDash.current_frame = 0.0f;
+	FinishDash.loops = 0;
 
 
-
-
-
-
+}

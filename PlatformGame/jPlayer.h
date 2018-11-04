@@ -20,6 +20,15 @@ struct Particle {
 
 };
 
+struct Dash {
+	Animation StartDash;
+	Animation Dashing;
+	Animation FinishDash;
+	int DashTime = 50;
+	int DashCont = 0;
+	void ResetDashAnims();
+};
+
 class jPlayer : public j1Module
 {
 public:
@@ -77,9 +86,7 @@ public:
 	Animation Climb[3];
 	Animation ClimbIdle[3];
 	Animation Death[3];
-	Animation StartDash;
-	Animation Dashing;
-	Animation FinishDash;
+	
 
 	SDL_Texture* texture; 
 	SDL_Texture* ParticlesTex;
@@ -136,8 +143,7 @@ public:
 	int finalmapplayer = 0;
 	int finalmap = 0;
 	int NumPlayer = 900;
-	int DashTime = 50;
-	int DashCont = 0;
+
 
 	unsigned int jumpfx;
 	unsigned int waterfx;
@@ -148,6 +154,7 @@ public:
 
 	int cont = 0;
 	Particle laser;
+	Dash dash;
 };
 
 
