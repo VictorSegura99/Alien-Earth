@@ -52,6 +52,8 @@ bool j1Choose::Start()
 	PinkStand.PushBack({ 520,101,65,92 });
 	pink = App->tex->Load(App->player->sprites_name[1].GetString());
 
+	
+
 	return true;
 }
 
