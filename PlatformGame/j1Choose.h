@@ -37,14 +37,18 @@ public:
 
 
 public:
+
 	SDL_Texture * yellow = nullptr;
 	Animation YellowStand;
+	Animation YellowWalk;
 
 	SDL_Texture * pink = nullptr;
 	Animation PinkStand;
+	Animation PinkWalk;
 
 	SDL_Texture * blue = nullptr;
 	Animation BlueStand;
+	Animation BluewWalk;
 
 	bool start = false;
 	SDL_Texture * ScreenStart = nullptr;

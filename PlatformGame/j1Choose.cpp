@@ -62,6 +62,11 @@ bool j1Choose::Start()
 
 	//YellowStand.PushBack({ 500,93,65,82 });
 	YellowStand.PushBack({ 26,261,189,236 });
+
+	YellowWalk.PushBack({ 216,261,191,236 });
+	YellowWalk.PushBack({ 411,254,199,243 });
+	YellowWalk.speed = 0.05f;
+
 	yellow = App->tex->Load(App->player->sprites_name[0].GetString());
 
 	//PinkStand.PushBack({ 520,101,65,92 });
@@ -93,6 +98,7 @@ bool j1Choose::Update(float dt)
 			if (mouse.x >= MinX_RectChoosePlayer1 && mouse.x <= MaxX_RectChoosePlayer1 && mouse.y >= MinY_ChooseRect && mouse.y <= MaxY_ChooseRect) {
 				App->render->Blit(choose1, 0, 0, NULL, 1.0f);
 				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame()), 1.0f);
+				App->render->Blit(yellow, 150, 350, &(YellowWalk.GetCurrentFrame()), 1.0f);
 				//App->render->Blit(blue, 600, 600, &(BlueStand.GetCurrentFrame()), 1.0f);
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 					playernumber = PlayerNumber1;
