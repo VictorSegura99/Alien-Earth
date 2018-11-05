@@ -114,7 +114,6 @@ bool jPlayer::PreUpdate() //Here we preload the input functions to determine the
 }
 bool jPlayer::Update(float dt)
 {
-	
 	position.y -= gravity;
 	if (!dashing) {
 		GoJump();
@@ -144,7 +143,7 @@ bool jPlayer::Update(float dt)
 	coll->SetPos(position.x, position.y);
 	//App->render->DrawQuad(rect, 150, 150, 150, 255, true, false);
 	if (current_animation == &dash.FinishDash) {
-		App->render->Blit(texture, position.x - 65, position.y, &(current_animation->GetCurrentFrame()));
+		App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame()));
 	}
 	else App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	
@@ -720,7 +719,7 @@ void jPlayer::DoDash()
 			//	position.x -= 60;
 			current_animation = &dash.StartDash;
 		}
-		if (dash.StartDash.SeeCurrentFrame() == 2) {
+		if (dash.StartDash.Finished()) {
 			++dash.DashCont;
 			current_animation = &dash.Dashing;
 			position.x += 30;
