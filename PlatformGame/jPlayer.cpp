@@ -228,6 +228,10 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			position.x += SpeedSwimLeftRight;
 		if (CanClimb)
 			position.x += SpeedWalk;
+		if (dashing) {
+			dashing = false;
+			current_animation = &GoLeft[NumPlayer];
+		}
 		break;
 	case COLLIDER_WALL_RIGHT:
 		if (!CanSwim && !CanClimb)
@@ -236,6 +240,11 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			position.x += SpeedSwimLeftRight;
 		if (CanClimb) 
 			position.x -= SpeedWalk;
+		if (dashing) {
+			dashing = false;
+			current_animation = &GoRight[NumPlayer];
+		}
+		
 		break;
 	case COLLIDER_PLATFORM:
 		if (position.y + playerHeight < c2->rect.y) {
@@ -829,5 +838,5 @@ void Dash::ResetDashAnims()
 
 	DashLeft = false;
 	DashRight = false;
-
+	DashCont = 0;
 }
