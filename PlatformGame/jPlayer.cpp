@@ -194,6 +194,7 @@ bool jPlayer::Save(pugi::xml_node& player) const
 bool jPlayer::CleanUp()
 {
 	App->tex->UnLoad(texture);
+	App->tex->UnLoad(ParticlesTex);
 	NextMap = false;
 	death = false;
 	fall = false;
