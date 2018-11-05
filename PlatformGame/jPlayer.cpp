@@ -129,6 +129,7 @@ bool jPlayer::Update(float dt)
 		dash.ResetDashAnims();
 	}
 	if (dashing) {
+		position.y+=gravity;
 		if (dash.StartDash.current_frame == 0) {
 		//	position.x -= 60;
 			current_animation = &dash.StartDash;
@@ -136,7 +137,7 @@ bool jPlayer::Update(float dt)
 		if (dash.StartDash.SeeCurrentFrame() == 3) {
 			++dash.DashCont;
 			current_animation = &dash.Dashing;
-			position.x += 20;
+			position.x += 30;
 			if (dash.DashCont >= dash.DashTime) {
 				current_animation = &dash.FinishDash;
 				dash.DashCont = 0;
@@ -498,29 +499,25 @@ void jPlayer::LoadPushbacks()
 	Death[2].PushBack({ 272,186,68,81 });
 	Death[2].speed = 0.1f;
 
-	dash.StartDash.PushBack({ 55,553,67,71 });
-	dash.StartDash.PushBack({ 125,553,67,71 });
-	dash.StartDash.PushBack({ 195,553,67,71 });
-	dash.StartDash.PushBack({ 265,553,67,71 });
-	dash.StartDash.speed = 0.05;
+	dash.StartDash.PushBack({ 0,532,67,92 });
+	dash.StartDash.PushBack({ 70,532,67,92 });
+	dash.StartDash.PushBack({ 140,532,67,92 });
+	dash.StartDash.PushBack({ 210,532,67,92 });
+	dash.StartDash.speed = 0.5f;
 	dash.StartDash.loop = false;
 
-	dash.FinishDash.PushBack({ 545,553,67,71 });
-	dash.FinishDash.PushBack({ 475,553,67,71 });
-	dash.FinishDash.PushBack({ 405,553,67,71 });
-	dash.FinishDash.PushBack({ 335,553,67,71 });
-	dash.FinishDash.PushBack({ 265,553,67,71 });
-	dash.FinishDash.PushBack({ 195,553,67,71 });
-	dash.FinishDash.PushBack({ 125,553,67,71 });
-	dash.FinishDash.PushBack({ 55,553,67,71 });
-	dash.FinishDash.speed = 0.05;
+	dash.FinishDash.PushBack({ 564,532,115,92 });
+	dash.FinishDash.PushBack({ 564,625,130,92 });
+	dash.FinishDash.PushBack({ 430,625,130,92 });
+	dash.FinishDash.PushBack({ 143,0,65,92 });
+	dash.FinishDash.speed = 0.2f;
 	dash.FinishDash.loop = false;
 	
-	dash.Dashing.PushBack({ 335,553,67,71 });
-	dash.Dashing.PushBack({ 405,553,67,71 });
-	dash.Dashing.PushBack({ 475,553,67,71 });
-	dash.Dashing.PushBack({ 545,553,67,71 });
-	dash.Dashing.speed = 0.05;
+	dash.Dashing.PushBack({ 280,532,67,92 });
+	dash.Dashing.PushBack({ 350,532,67,92 });
+	dash.Dashing.PushBack({ 420,532,67,92 });
+	dash.Dashing.PushBack({ 490,532,67,92 });
+	dash.Dashing.speed = 0.5f;
 	dash.Dashing.loop = false;
 	
 }

@@ -16,6 +16,6 @@
 		<position x="1553" y="514.999329" />
 	</player>
 	<renderer>
-		<camera x="-1053" y="-64" />
+		<camera x="-1053" y="-76" />
 	</renderer>
 </game_state>

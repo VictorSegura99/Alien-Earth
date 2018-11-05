@@ -24,7 +24,7 @@ struct Dash {
 	Animation StartDash;
 	Animation Dashing;
 	Animation FinishDash;
-	int DashTime = 50;
+	int DashTime = 15;
 	int DashCont = 0;
 	void ResetDashAnims();
 };
