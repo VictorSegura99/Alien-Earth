@@ -708,12 +708,17 @@ void jPlayer::Camera()
 
 void jPlayer::DoDash()
 {
-
-	if (Hability) {
+	if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && Hability) {
 		dashing = true;
 		dash.ResetDashAnims();
+		dash.DashRight = true;
 	}
-	if (dashing) {
+	if ((current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) && Hability) {
+		dashing = true;
+		dash.ResetDashAnims();
+		dash.DashLeft = true;
+	}
+	if (dashing && dash.DashRight) {
 		position.y += gravity;
 		if (dash.StartDash.current_frame == 0) {
 			//	position.x -= 60;
@@ -734,7 +739,27 @@ void jPlayer::DoDash()
 			}
 		}
 	}
+	if (dashing && dash.DashLeft) {
+		position.y += gravity;
+		if (dash.StartDash.current_frame == 0) {
+			//	position.x -= 60;
+			current_animation = &dash.StartDash;
+		}
+		if (dash.StartDash.Finished()) {
+			++dash.DashCont;
+			current_animation = &dash.Dashing;
+			position.x -= 30;
+			if (dash.DashCont >= dash.DashTime) {
+				position.x += 20;
+				current_animation = &dash.FinishDash;
+				if (dash.FinishDash.Finished()) {
+					dash.DashCont = 0;
+					dashing = false;
+				}
 
+			}
+		}
+	}
 
 }
 
@@ -776,5 +801,8 @@ void Dash::ResetDashAnims()
 
 	FinishDash.current_frame = 0.0f;
 	FinishDash.loops = 0;
+
+	DashLeft = false;
+	DashRight = false;
 
 }

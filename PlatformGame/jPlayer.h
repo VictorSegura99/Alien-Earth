@@ -26,6 +26,8 @@ struct Dash {
 	Animation FinishDash;
 	int DashTime = 15;
 	int DashCont = 0;
+	bool DashLeft = false;
+	bool DashRight = false;
 	void ResetDashAnims();
 };
 
@@ -122,6 +124,7 @@ public:
 	bool NextMap = false;
 	bool NoInput = false;
 	bool dashing = false;
+	bool dashright = false;
 
 	float gravity = 0.0f;
 	float JumpSpeed = 0.0f;
