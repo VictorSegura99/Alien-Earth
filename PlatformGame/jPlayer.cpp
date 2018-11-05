@@ -93,8 +93,10 @@ bool jPlayer::Start()
 bool jPlayer::PreUpdate() //Here we preload the input functions to determine the state of the player
 {
 	if (!NoInput) {
-		WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
-		WalkRight = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
+		if (!dashing) {
+			WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
+			WalkRight = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
+		}
 		GoUp = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
 		GoDown = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
 		Laser = App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN;
@@ -511,7 +513,7 @@ void jPlayer::LoadPushbacks()
 	dash.FinishDash.PushBack({ 564,532,115,92 });
 	dash.FinishDash.PushBack({ 564,625,130,92 });
 	dash.FinishDash.PushBack({ 430,625,130,92 });
-	dash.FinishDash.PushBack({ 143,0,65,92 });
+	//dash.FinishDash.PushBack({ 288,625,130,92 });
 	dash.FinishDash.speed = 0.2f;
 	dash.FinishDash.loop = false;
 	
