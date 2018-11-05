@@ -14067,7 +14067,7 @@
     <property name="Type" type="int" value="12"/>
    </properties>
   </object>
-  <object id="367" x="2044.67" y="491.322" width="44.6667" height="61.357">
+  <object id="367" x="2044.67" y="491.322" width="44.6667" height="53.357">
    <properties>
     <property name="Type" type="int" value="10"/>
    </properties>
