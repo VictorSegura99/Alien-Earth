@@ -99,8 +99,7 @@ bool jPlayer::PreUpdate() //Here we preload the input functions to determine the
 		}
 		GoUp = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
 		GoDown = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
-		Laser = App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN;
-		Dodash = App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN;
+		Hability = App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN;
 		if (!God)
 			Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
 		else Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT;
@@ -122,10 +121,11 @@ bool jPlayer::Update(float dt)
 		GoSwim();
 		GoClimb();
 		Move_Left_Right();
-		ShootLaser();
-
+		if (NumPlayer == 1) 
+			ShootLaser();
 	}
-	DoDash();
+	if (NumPlayer == 2)
+		DoDash();
 	Camera();
 	
 	if (death && !God) {
@@ -710,7 +710,7 @@ void jPlayer::Camera()
 void jPlayer::DoDash()
 {
 
-	if (Dodash) {
+	if (Hability) {
 		dashing = true;
 		dash.ResetDashAnims();
 	}
@@ -742,7 +742,7 @@ void jPlayer::DoDash()
 
 void jPlayer::ShootLaser()
 {
-	if (Laser && !laser.IsShooting) {
+	if (Hability && !laser.IsShooting) {
 		laser.StartShooting = true;
 	}
 	if (laser.StartShooting) {
@@ -772,14 +772,10 @@ void jPlayer::ShootLaser()
 
 void Dash::ResetDashAnims()
 {
-	Dashing.current_frame = 0.0f;
-	Dashing.loops = 0;
-
 	StartDash.current_frame = 0.0f;
 	StartDash.loops = 0;
 
 	FinishDash.current_frame = 0.0f;
 	FinishDash.loops = 0;
-
 
 }

@@ -110,7 +110,7 @@ public:
 	bool GoUp = false;
 	bool GoDown = false;
 	bool Idle = false;
-	bool Laser = false;
+	bool Hability = false;
 	bool Jump = false;
 	bool IsJumping = false;
 	bool CanJump = true;
@@ -121,7 +121,6 @@ public:
 	bool God = false;
 	bool NextMap = false;
 	bool NoInput = false;
-	bool Dodash = false;
 	bool dashing = false;
 
 	float gravity = 0.0f;
