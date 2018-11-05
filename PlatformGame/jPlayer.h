@@ -24,7 +24,7 @@ struct Dash {
 	Animation StartDash;
 	Animation Dashing;
 	Animation FinishDash;
-	int DashTime = 15;
+	int DashTime = 8;
 	int DashCont = 0;
 	bool DashLeft = false;
 	bool DashRight = false;
@@ -158,7 +158,8 @@ public:
 
 	int cont = 0;
 	Particle laser;
-	Dash dash;
+	Dash dashR;
+	Dash dashL;
 };
 
 

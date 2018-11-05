@@ -142,7 +142,7 @@ bool jPlayer::Update(float dt)
 	
 	coll->SetPos(position.x, position.y);
 	//App->render->DrawQuad(rect, 150, 150, 150, 255, true, false);
-	if (current_animation == &dash.FinishDash) {
+	if (current_animation == &dashR.FinishDash || &dashL.FinishDash) {
 		App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame()));
 	}
 	else App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
@@ -483,28 +483,41 @@ void jPlayer::LoadPushbacks()
 	Death[2].PushBack({ 272,186,68,81 });
 	Death[2].speed = 0.1f;
 
-	dash.StartDash.PushBack({ 0,532,67,92 });
+	dashR.StartDash.PushBack({ 0,532,67,92 });
 	/*dash.StartDash.PushBack({ 70,532,67,92 });
 	dash.StartDash.PushBack({ 140,532,67,92 });
 	dash.StartDash.PushBack({ 210,532,67,92 });*/
-	dash.StartDash.PushBack({ 0,658,84,92 });
-	dash.StartDash.PushBack({ 85,658,84,92 });
-	dash.StartDash.speed = 0.5f;
-	dash.StartDash.loop = false;
+	dashR.StartDash.PushBack({ 0,658,84,92 });
+	dashR.StartDash.PushBack({ 85,658,84,92 });
+	dashR.StartDash.speed = 0.5f;
+	dashR.StartDash.loop = false;
 
-	dash.FinishDash.PushBack({ 564,532,115,92 });
-	dash.FinishDash.PushBack({ 564,625,130,92 });
-	dash.FinishDash.PushBack({ 430,625,130,92 });
+	dashR.FinishDash.PushBack({ 564,532,115,92 });
+	dashR.FinishDash.PushBack({ 564,625,130,92 });
+	dashR.FinishDash.PushBack({ 430,625,130,92 });
 	//dash.FinishDash.PushBack({ 288,625,130,92 });
-	dash.FinishDash.speed = 0.2f;
-	dash.FinishDash.loop = false;
+	dashR.FinishDash.speed = 0.2f;
+	dashR.FinishDash.loop = false;
 	
 	/*dash.Dashing.PushBack({ 280,532,67,92 });
 	dash.Dashing.PushBack({ 350,532,67,92 });
 	dash.Dashing.PushBack({ 420,532,67,92 });
 	dash.Dashing.PushBack({ 490,532,67,92 });*/
-	dash.Dashing.PushBack({ 85,658,84,92 });
+	dashR.Dashing.PushBack({ 85,658,84,92 });
 
+	dashL.StartDash.PushBack({ 84,806,67,92 });
+	dashL.StartDash.PushBack({ 84,806,67,92 });
+	dashL.StartDash.PushBack({ 0,806,83,92 });
+	dashL.StartDash.speed = 0.5f;
+	dashL.StartDash.loop = false;
+
+	dashL.Dashing.PushBack({ 0,806,83,92 });
+
+	dashL.FinishDash.PushBack({ 564,771,107,92 });
+	dashL.FinishDash.PushBack({ 564,844,130,92 });
+	dashL.FinishDash.PushBack({ 430,725,130,92 });
+	dashL.FinishDash.speed = 0.2f;
+	dashL.FinishDash.loop = false;
 	
 }
 
@@ -652,7 +665,7 @@ void jPlayer::Move_Left_Right()
 			current_animation = &idle[NumPlayer];
 		if (current_animation == &GoLeft[NumPlayer])
 			current_animation = &idle2[NumPlayer];
-		if (dash.FinishDash.Finished())
+		if (dashR.FinishDash.Finished())
 			current_animation = &idle[NumPlayer];
 	}
 }
@@ -710,50 +723,50 @@ void jPlayer::DoDash()
 {
 	if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && Hability) {
 		dashing = true;
-		dash.ResetDashAnims();
-		dash.DashRight = true;
+		dashR.ResetDashAnims();
+		dashR.DashRight = true;
 	}
 	if ((current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) && Hability) {
 		dashing = true;
-		dash.ResetDashAnims();
-		dash.DashLeft = true;
+		dashR.ResetDashAnims();
+		dashL.DashLeft = true;
 	}
-	if (dashing && dash.DashRight) {
+	if (dashing && dashR.DashRight) {
 		position.y += gravity;
-		if (dash.StartDash.current_frame == 0) {
+		if (dashR.StartDash.current_frame == 0) {
 			//	position.x -= 60;
-			current_animation = &dash.StartDash;
+			current_animation = &dashR.StartDash;
 		}
-		if (dash.StartDash.Finished()) {
-			++dash.DashCont;
-			current_animation = &dash.Dashing;
+		if (dashR.StartDash.Finished()) {
+			++dashR.DashCont;
+			current_animation = &dashR.Dashing;
 			position.x += 30;
-			if (dash.DashCont >= dash.DashTime) {
+			if (dashR.DashCont >= dashR.DashTime) {
 				position.x -= 20;
-				current_animation = &dash.FinishDash;
-				if (dash.FinishDash.Finished()) {
-					dash.DashCont = 0;
+				current_animation = &dashR.FinishDash;
+				if (dashR.FinishDash.Finished()) {
+					dashR.DashCont = 0;
 					dashing = false;
 				}
 
 			}
 		}
 	}
-	if (dashing && dash.DashLeft) {
+	if (dashing && dashL.DashLeft) {
 		position.y += gravity;
-		if (dash.StartDash.current_frame == 0) {
+		if (dashL.StartDash.current_frame == 0) {
 			//	position.x -= 60;
-			current_animation = &dash.StartDash;
+			current_animation = &dashL.StartDash;
 		}
-		if (dash.StartDash.Finished()) {
-			++dash.DashCont;
-			current_animation = &dash.Dashing;
+		if (dashR.StartDash.Finished()) {
+			++dashL.DashCont;
+			current_animation = &dashL.Dashing;
 			position.x -= 30;
-			if (dash.DashCont >= dash.DashTime) {
-				position.x += 20;
-				current_animation = &dash.FinishDash;
-				if (dash.FinishDash.Finished()) {
-					dash.DashCont = 0;
+			if (dashR.DashCont >= dashL.DashTime) {
+				position.x +=20;
+				current_animation = &dashL.FinishDash;
+				if (dashR.FinishDash.Finished()) {
+					dashR.DashCont = 0;
 					dashing = false;
 				}
 
