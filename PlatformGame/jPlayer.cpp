@@ -100,7 +100,7 @@ bool jPlayer::PreUpdate() //Here we preload the input functions to determine the
 		GoUp = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
 		GoDown = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
 		Laser = App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN;
-		DoDash = App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN;
+		Dodash = App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN;
 		if (!God)
 			Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
 		else Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT;
@@ -125,29 +125,9 @@ bool jPlayer::Update(float dt)
 		ShootLaser();
 
 	}
+	DoDash();
 	Camera();
-	if (DoDash) {
-		dashing = true;
-		dash.ResetDashAnims();
-	}
-	if (dashing) {
-		position.y+=gravity;
-		if (dash.StartDash.current_frame == 0) {
-		//	position.x -= 60;
-			current_animation = &dash.StartDash;
-		}
-		if (dash.StartDash.SeeCurrentFrame() == 2) {
-			++dash.DashCont;
-			current_animation = &dash.Dashing;
-			position.x += 30;
-			if (dash.DashCont >= dash.DashTime) {
-				current_animation = &dash.FinishDash;
-				dash.DashCont = 0;
-				dashing = false;
-			}
-		}
-	}
-
+	
 	if (death && !God) {
 		death = false;
 		//App->audio->PlayFx(deathfx2);
@@ -163,7 +143,10 @@ bool jPlayer::Update(float dt)
 	
 	coll->SetPos(position.x, position.y);
 	//App->render->DrawQuad(rect, 150, 150, 150, 255, true, false);
-	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
+	if (current_animation == &dash.FinishDash) {
+		App->render->Blit(texture, position.x - 65, position.y, &(current_animation->GetCurrentFrame()));
+	}
+	else App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
 	
 	return true;
 }
@@ -522,8 +505,7 @@ void jPlayer::LoadPushbacks()
 	dash.Dashing.PushBack({ 420,532,67,92 });
 	dash.Dashing.PushBack({ 490,532,67,92 });*/
 	dash.Dashing.PushBack({ 85,658,84,92 });
-	dash.Dashing.speed = 0.5f;
-	dash.Dashing.loop = false;
+
 	
 }
 
@@ -723,6 +705,38 @@ void jPlayer::Camera()
 		App->render->camera.x -= SpeedWalk;
 	}
 	*/
+}
+
+void jPlayer::DoDash()
+{
+
+	if (Dodash) {
+		dashing = true;
+		dash.ResetDashAnims();
+	}
+	if (dashing) {
+		position.y += gravity;
+		if (dash.StartDash.current_frame == 0) {
+			//	position.x -= 60;
+			current_animation = &dash.StartDash;
+		}
+		if (dash.StartDash.SeeCurrentFrame() == 2) {
+			++dash.DashCont;
+			current_animation = &dash.Dashing;
+			position.x += 30;
+			if (dash.DashCont >= dash.DashTime) {
+				position.x -= 20;
+				current_animation = &dash.FinishDash;
+				if (dash.FinishDash.Finished()) {
+					dash.DashCont = 0;
+					dashing = false;
+				}
+
+			}
+		}
+	}
+
+
 }
 
 

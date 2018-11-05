@@ -68,6 +68,7 @@ public:
 	void GoClimb();
 	void Move_Left_Right();
 	void Camera();
+	void DoDash();
 	void ShootLaser();
 
 public:
@@ -120,7 +121,7 @@ public:
 	bool God = false;
 	bool NextMap = false;
 	bool NoInput = false;
-	bool DoDash = false;
+	bool Dodash = false;
 	bool dashing = false;
 
 	float gravity = 0.0f;
