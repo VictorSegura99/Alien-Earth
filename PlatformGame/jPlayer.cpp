@@ -134,7 +134,7 @@ bool jPlayer::Update(float dt)
 		//	position.x -= 60;
 			current_animation = &dash.StartDash;
 		}
-		if (dash.StartDash.SeeCurrentFrame() == 3) {
+		if (dash.StartDash.SeeCurrentFrame() == 2) {
 			++dash.DashCont;
 			current_animation = &dash.Dashing;
 			position.x += 30;
@@ -500,9 +500,11 @@ void jPlayer::LoadPushbacks()
 	Death[2].speed = 0.1f;
 
 	dash.StartDash.PushBack({ 0,532,67,92 });
-	dash.StartDash.PushBack({ 70,532,67,92 });
+	/*dash.StartDash.PushBack({ 70,532,67,92 });
 	dash.StartDash.PushBack({ 140,532,67,92 });
-	dash.StartDash.PushBack({ 210,532,67,92 });
+	dash.StartDash.PushBack({ 210,532,67,92 });*/
+	dash.StartDash.PushBack({ 0,658,84,92 });
+	dash.StartDash.PushBack({ 85,658,84,92 });
 	dash.StartDash.speed = 0.5f;
 	dash.StartDash.loop = false;
 
@@ -513,10 +515,11 @@ void jPlayer::LoadPushbacks()
 	dash.FinishDash.speed = 0.2f;
 	dash.FinishDash.loop = false;
 	
-	dash.Dashing.PushBack({ 280,532,67,92 });
+	/*dash.Dashing.PushBack({ 280,532,67,92 });
 	dash.Dashing.PushBack({ 350,532,67,92 });
 	dash.Dashing.PushBack({ 420,532,67,92 });
-	dash.Dashing.PushBack({ 490,532,67,92 });
+	dash.Dashing.PushBack({ 490,532,67,92 });*/
+	dash.Dashing.PushBack({ 85,658,84,92 });
 	dash.Dashing.speed = 0.5f;
 	dash.Dashing.loop = false;
 	
