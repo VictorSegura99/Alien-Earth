@@ -142,7 +142,7 @@ bool jPlayer::Update(float dt)
 	
 	coll->SetPos(position.x, position.y);
 	//App->render->DrawQuad(rect, 150, 150, 150, 255, true, false);
-	if (current_animation == &dashR.FinishDash || &dashL.FinishDash) {
+	if (current_animation == &dashR.FinishDash) {
 		App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame()));
 	}
 	else App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
@@ -490,12 +490,12 @@ void jPlayer::LoadPushbacks()
 	dashR.StartDash.PushBack({ 0,658,84,92 });
 	dashR.StartDash.PushBack({ 85,658,84,92 });
 	dashR.StartDash.speed = 0.5f;
-	dashR.StartDash.loop = false;
+	//dashR.StartDash.loop = false;
 
 	dashR.FinishDash.PushBack({ 564,532,115,92 });
 	dashR.FinishDash.PushBack({ 564,625,130,92 });
 	dashR.FinishDash.PushBack({ 430,625,130,92 });
-	//dash.FinishDash.PushBack({ 288,625,130,92 });
+	dashR.FinishDash.PushBack({ 288,625,130,92 });
 	dashR.FinishDash.speed = 0.2f;
 	dashR.FinishDash.loop = false;
 	
@@ -622,6 +622,8 @@ void jPlayer::Move_Left_Right()
 {
 	if (WalkRight) { //This determine the movement to the right, depending on the state of the player
 		if (!IsJumping && !CanSwim && !CanClimb) {
+			dashR.ResetDashAnims();
+			dashL.ResetDashAnims();
 			position.x += SpeedWalk;
 			current_animation = &GoRight[NumPlayer];
 		}
@@ -637,6 +639,8 @@ void jPlayer::Move_Left_Right()
 	}
 	if (WalkLeft) { //This determine the movement to the left, depending on the state of the player
 		if (!IsJumping && !CanSwim && !CanClimb) {
+			dashR.ResetDashAnims();
+			dashL.ResetDashAnims();
 			position.x -= SpeedWalk;
 			current_animation = &GoLeft[NumPlayer];
 		}
@@ -665,8 +669,18 @@ void jPlayer::Move_Left_Right()
 			current_animation = &idle[NumPlayer];
 		if (current_animation == &GoLeft[NumPlayer])
 			current_animation = &idle2[NumPlayer];
-		if (dashR.FinishDash.Finished())
+		if (dashL.FinishDash.Finished()) {
+			current_animation = &idle2[NumPlayer];
+			dashL.ResetDashAnims();
+			dashR.ResetDashAnims();
+		}
+		if (dashR.FinishDash.Finished()) {
 			current_animation = &idle[NumPlayer];
+			dashR.ResetDashAnims();
+			dashL.ResetDashAnims();
+		}
+			
+		
 	}
 }
 
@@ -723,12 +737,10 @@ void jPlayer::DoDash()
 {
 	if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && Hability) {
 		dashing = true;
-		dashR.ResetDashAnims();
 		dashR.DashRight = true;
 	}
 	if ((current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) && Hability) {
 		dashing = true;
-		dashR.ResetDashAnims();
 		dashL.DashLeft = true;
 	}
 	if (dashing && dashR.DashRight) {
@@ -758,15 +770,15 @@ void jPlayer::DoDash()
 			//	position.x -= 60;
 			current_animation = &dashL.StartDash;
 		}
-		if (dashR.StartDash.Finished()) {
+		if (dashL.StartDash.Finished()) {
 			++dashL.DashCont;
 			current_animation = &dashL.Dashing;
 			position.x -= 30;
-			if (dashR.DashCont >= dashL.DashTime) {
-				position.x +=20;
+			if (dashL.DashCont >= dashL.DashTime) {
+				position.x += 20;
 				current_animation = &dashL.FinishDash;
-				if (dashR.FinishDash.Finished()) {
-					dashR.DashCont = 0;
+				if (dashL.FinishDash.Finished()) {
+					dashL.DashCont = 0;
 					dashing = false;
 				}
 

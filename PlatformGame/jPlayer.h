@@ -125,6 +125,7 @@ public:
 	bool NoInput = false;
 	bool dashing = false;
 	bool dashright = false;
+	bool StopDash = false;
 
 	float gravity = 0.0f;
 	float JumpSpeed = 0.0f;
