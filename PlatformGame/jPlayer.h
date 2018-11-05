@@ -14,7 +14,7 @@ struct Particle {
 	Animation anim;
 	int life;
 	Collider* coll = nullptr;
-	int time = 100;
+	int time = 0;
 	bool StartShooting = false;
 	bool IsShooting = false;
 
@@ -158,7 +158,9 @@ public:
 	uint Time = 0;
 
 	int cont = 0;
-	Particle laser;
+	Particle laserR;
+	Particle laserL;
+
 	Dash dashR;
 	Dash dashL;
 };

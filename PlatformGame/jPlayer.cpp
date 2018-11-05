@@ -80,11 +80,13 @@ bool jPlayer::Start()
 
 	LoadPushbacks();
 
-	laser.anim.PushBack({ 142,0,66,86 });
-	laser.anim.speed = 0.2f;
-	laser.anim.loop = true;
-	laser.velocity.x = 10.0f;
-	laser.life = 0;
+	laserR.anim.PushBack({ 96,117,81,22 });
+	laserR.velocity.x = 10.0f;
+	laserR.life = 100;
+
+	laserL.anim.PushBack({ 96,148,81,22 });
+	laserL.velocity.x = -10.0f;
+	laserL.life = 100;
 	
 	
 	
@@ -801,31 +803,58 @@ void jPlayer::DoDash()
 
 void jPlayer::ShootLaser()
 {
-	if (Hability && !laser.IsShooting) {
-		laser.StartShooting = true;
+	if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && (Hability && !laserR.IsShooting)) {
+		laserR.StartShooting = true;
 	}
-	if (laser.StartShooting) {
-		laser.StartShooting = false;
-		laser.IsShooting = true;
-		if (laser.coll != nullptr) {
-			laser.coll->to_delete = true;
+	if (laserR.StartShooting) {
+		laserR.StartShooting = false;
+		laserR.IsShooting = true;
+		if (laserR.coll != nullptr) {
+			laserR.coll->to_delete = true;
 		}
 
-		laser.position.x = position.x;
-		laser.position.y = position.y;
+		laserR.position.x = position.x;
+		laserR.position.y = position.y;
 
-		laser.coll = App->collision->AddCollider(laser.anim.GetCurrentFrame(), COLLIDER_PARTICLE);
+		laserR.coll = App->collision->AddCollider(laserR.anim.GetCurrentFrame(), COLLIDER_PARTICLE);
 	}
-	if (laser.IsShooting) {
-		if (laser.life > laser.time) {
-			laser.life = 0;
-			laser.IsShooting = false;
-			laser.coll->to_delete = true;
+	if (laserR.IsShooting) {
+		if (laserR.life < laserR.time) {
+			laserR.life = 100;
+			laserR.IsShooting = false;
+			laserR.coll->to_delete = true;
 		}
-		laser.life++;
-		laser.position.x += laser.velocity.x;
-		laser.coll->SetPos(laser.position.x, laser.position.y);
-		App->render->Blit(texture, laser.position.x, laser.position.y, &(laser.anim.GetCurrentFrame()));
+		laserR.life--;
+		laserR.position.x += laserR.velocity.x;
+		laserR.coll->SetPos(laserR.position.x - 10, laserR.position.y + 22);
+		App->render->Blit(texture, laserR.position.x - 10, laserR.position.y + 22, &(laserR.anim.GetCurrentFrame()));
+	}
+
+	if ((current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) && (Hability && !laserL.IsShooting)) {
+		laserL.StartShooting = true;
+	}
+	if (laserL.StartShooting) {
+		laserL.StartShooting = false;
+		laserL.IsShooting = true;
+		if (laserL.coll != nullptr) {
+			laserL.coll->to_delete = true;
+		}
+
+		laserL.position.x = position.x;
+		laserL.position.y = position.y;
+
+		laserL.coll = App->collision->AddCollider(laserL.anim.GetCurrentFrame(), COLLIDER_PARTICLE);
+	}
+	if (laserL.IsShooting) {
+		if (laserL.life < laserL.time) {
+			laserL.life = 100;
+			laserL.IsShooting = false;
+			laserL.coll->to_delete = true;
+		}
+		laserL.life--;
+		laserL.position.x += laserL.velocity.x;
+		laserL.coll->SetPos(laserL.position.x - 10, laserL.position.y + 22);
+		App->render->Blit(texture, laserL.position.x - 10, laserL.position.y + 22, &(laserL.anim.GetCurrentFrame()));
 	}
 }
 
