@@ -264,8 +264,10 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			CanSwim = false;
 			IsJumping = false;
 			CanDash = true;
-			current_animation = &idle[NumPlayer];
+			if (!dashing)
+				current_animation = &idle[NumPlayer];
 		}
+		
 		break;
 	case COLLIDER_CLIMB:
 		App->audio->PlayFx(ladderfx);
@@ -324,43 +326,16 @@ void jPlayer::Die()//What happens when the player die
 	//App->audio->PlayFx(deathfx);
 	if (Death[NumPlayer].SeeCurrentFrame() == 1) 
 		App->audio->PlayFx(deathfx2);
-	if (NumPlayer == 0) {
-		if (Death[NumPlayer].SeeCurrentFrame() == 10) {
-			if (App->scene->KnowMap == 0) {
-				App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-				Spawn();
-			}
-			if (App->scene->KnowMap == 1) {
-				App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-				Spawn();
-			}
+	if (Death[NumPlayer].Finished()) {
+		if (App->scene->KnowMap == 0) {
+			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
+			Spawn();
+		}
+		if (App->scene->KnowMap == 1) {
+			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
+			Spawn();
 		}
 	}
-	if (NumPlayer == 1) {
-		if (Death[NumPlayer].SeeCurrentFrame() == 9) {
-			if (App->scene->KnowMap == 0) {
-				App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-				Spawn();
-			}
-			if (App->scene->KnowMap == 1) {
-				App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-				Spawn();
-			}
-		}
-	}
-	if (NumPlayer == 2) {
-		if (Death[NumPlayer].SeeCurrentFrame() == 10) {
-			if (App->scene->KnowMap == 0) {
-				App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-				Spawn();
-			}
-			if (App->scene->KnowMap == 1) {
-				App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-				Spawn();
-			}
-		}
-	}
-	
 }
 
 void jPlayer::Fall()//What happens when the player falls
@@ -441,6 +416,7 @@ void jPlayer::LoadPushbacks()
 	Death[0].PushBack({ 139,175,68,81 });
 	Death[0].PushBack({ 206,175,68,81 });
 	Death[0].PushBack({ 272,175,68,81 });
+	Death[0].PushBack({ 272,175,68,81 });
 	Death[0].speed = 0.1f;
 	//Death.loop = false;
 
@@ -488,6 +464,7 @@ void jPlayer::LoadPushbacks()
 	Death[1].PushBack({ 69,196,68,81 });
 	Death[1].PushBack({ 139,196,68,81 });
 	Death[1].PushBack({ 206,196,68,81 });
+	Death[1].PushBack({ 272,196,68,81 });
 	Death[1].PushBack({ 272,196,68,81 });
 	Death[1].speed = 0.1f;
 	//Death.loop = false;
