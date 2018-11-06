@@ -80,15 +80,15 @@ bool jPlayer::Start()
 
 	LoadPushbacks();
 
-	laserR.anim.PushBack({ 94,117,83,22 });
-	laserR.anim.PushBack({ 188,117,83,22 });
+	laserR.anim.PushBack({ 34,554,83,27 });
+	laserR.anim.PushBack({ 124,554,83,27 });
 	laserR.anim.speed = 0.2f;
 	laserR.velocity.x = 18.0f;
 	laserR.timelife = 50;
 	laserR.life = laserR.timelife;
 
-	laserL.anim.PushBack({ 94,148,83,22 });
-	laserL.anim.PushBack({ 185,148,83,22 });
+	laserL.anim.PushBack({ 34,582,83,27 });
+	laserL.anim.PushBack({ 124,582,83,27 });
 	laserL.anim.speed = 0.2f;
 	laserL.velocity.x = -18.0f;
 	laserL.timelife = 50;
