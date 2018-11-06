@@ -13,6 +13,7 @@ struct Particle {
 	fPoint velocity;
 	Animation anim;
 	int life;
+	int timelife;
 	Collider* coll = nullptr;
 	int time = 0;
 	bool StartShooting = false;
@@ -126,6 +127,7 @@ public:
 	bool dashing = false;
 	bool dashright = false;
 	bool StopDash = false;
+	bool CanDash = false;
 
 	float gravity = 0.0f;
 	float JumpSpeed = 0.0f;

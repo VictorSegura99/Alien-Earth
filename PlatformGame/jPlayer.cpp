@@ -84,13 +84,15 @@ bool jPlayer::Start()
 	laserR.anim.PushBack({ 188,117,83,22 });
 	laserR.anim.speed = 0.2f;
 	laserR.velocity.x = 18.0f;
-	laserR.life = 100;
+	laserR.timelife = 50;
+	laserR.life = laserR.timelife;
 
 	laserL.anim.PushBack({ 94,148,83,22 });
 	laserL.anim.PushBack({ 185,148,83,22 });
 	laserL.anim.speed = 0.2f;
 	laserL.velocity.x = -18.0f;
-	laserL.life = 100;
+	laserL.timelife = 50;
+	laserL.life = laserL.timelife;
 	
 	
 	
@@ -223,6 +225,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			CanSwim = false;
 			GoDown = false;
 			CanClimb = false;
+			CanDash = true;
 		}
 		break;
 	case COLLIDER_WALL_UP:
@@ -260,6 +263,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			Time = 0;
 			CanSwim = false;
 			IsJumping = false;
+			CanDash = true;
 			current_animation = &idle[NumPlayer];
 		}
 		break;
@@ -751,11 +755,11 @@ void jPlayer::Camera()
 
 void jPlayer::DoDash()
 {
-	if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && Hability) {
+	if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && Hability && CanDash) {
 		dashing = true;
 		dashR.DashRight = true;
 	}
-	if ((current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) && Hability) {
+	if ((current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) && Hability && CanDash) {
 		dashing = true;
 		dashL.DashLeft = true;
 	}
@@ -775,6 +779,9 @@ void jPlayer::DoDash()
 				if (dashR.FinishDash.Finished()) {
 					dashR.DashCont = 0;
 					dashing = false;
+					IsJumping = false;
+					CanJump = false;
+					CanDash = false;
 				}
 
 			}
@@ -796,6 +803,9 @@ void jPlayer::DoDash()
 				if (dashL.FinishDash.Finished()) {
 					dashL.DashCont = 0;
 					dashing = false;
+					IsJumping = false;
+					CanJump = false;
+					CanDash = false;
 				}
 
 			}
@@ -824,7 +834,7 @@ void jPlayer::ShootLaser()
 	}
 	if (laserR.IsShooting) {
 		if (laserR.life < laserR.time) {
-			laserR.life = 100;
+			laserR.life = laserR.timelife;
 			laserR.IsShooting = false;
 			laserR.coll->to_delete = true;
 		}
@@ -851,7 +861,7 @@ void jPlayer::ShootLaser()
 	}
 	if (laserL.IsShooting) {
 		if (laserL.life < laserL.time) {
-			laserL.life = 100;
+			laserL.life = laserL.timelife;
 			laserL.IsShooting = false;
 			laserL.coll->to_delete = true;
 		}
