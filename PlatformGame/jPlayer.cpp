@@ -324,16 +324,43 @@ void jPlayer::Die()//What happens when the player die
 	//App->audio->PlayFx(deathfx);
 	if (Death[NumPlayer].SeeCurrentFrame() == 1) 
 		App->audio->PlayFx(deathfx2);
-	if (Death[NumPlayer].SeeCurrentFrame()==10) {
-		if (App->scene->KnowMap == 0) {
-			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-			Spawn();
-		}
-		if (App->scene->KnowMap == 1) {
-			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-			Spawn();
+	if (NumPlayer == 0) {
+		if (Death[NumPlayer].SeeCurrentFrame() == 10) {
+			if (App->scene->KnowMap == 0) {
+				App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
+				Spawn();
+			}
+			if (App->scene->KnowMap == 1) {
+				App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
+				Spawn();
+			}
 		}
 	}
+	if (NumPlayer == 1) {
+		if (Death[NumPlayer].SeeCurrentFrame() == 9) {
+			if (App->scene->KnowMap == 0) {
+				App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
+				Spawn();
+			}
+			if (App->scene->KnowMap == 1) {
+				App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
+				Spawn();
+			}
+		}
+	}
+	if (NumPlayer == 2) {
+		if (Death[NumPlayer].SeeCurrentFrame() == 10) {
+			if (App->scene->KnowMap == 0) {
+				App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
+				Spawn();
+			}
+			if (App->scene->KnowMap == 1) {
+				App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
+				Spawn();
+			}
+		}
+	}
+	
 }
 
 void jPlayer::Fall()//What happens when the player falls
@@ -451,13 +478,17 @@ void jPlayer::LoadPushbacks()
 	SwimLeft[1].PushBack({ 622,289,70,97 });
 	SwimLeft[1].speed = 0.1f;
 
-	Death[1].PushBack({ 0,94,68,92 });
+	Death[1].PushBack({ 0,105,68,92 });
+	Death[1].PushBack({ 69,105,68,92 });
+	Death[1].PushBack({ 138,105,68,92 });
+	Death[1].PushBack({ 207,105,68,92 });
+	Death[1].PushBack({ 276,105,68,92 });
 	
-	Death[1].PushBack({ 0,186,68,81 });
-	Death[1].PushBack({ 69,186,68,81 });
-	Death[1].PushBack({ 139,186,68,81 });
-	Death[1].PushBack({ 206,186,68,81 });
-	Death[1].PushBack({ 272,186,68,81 });
+	Death[1].PushBack({ 0,196,68,81 });
+	Death[1].PushBack({ 69,196,68,81 });
+	Death[1].PushBack({ 139,196,68,81 });
+	Death[1].PushBack({ 206,196,68,81 });
+	Death[1].PushBack({ 272,196,68,81 });
 	Death[1].speed = 0.1f;
 	//Death.loop = false;
 
