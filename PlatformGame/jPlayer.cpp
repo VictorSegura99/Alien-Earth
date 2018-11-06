@@ -207,8 +207,8 @@ bool jPlayer::CleanUp()
 	death = false;
 	fall = false;
 	God = false;
-	Death[NumPlayer].current_frame = 0.0f;
-	Death[NumPlayer].loops = 0;
+	//Death[NumPlayer].current_frame = 0.0f;
+	//Death[NumPlayer].loops = 0;
 	if (coll)
 		coll->to_delete = true;
 	return true;

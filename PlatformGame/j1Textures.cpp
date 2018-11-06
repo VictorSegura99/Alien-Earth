@@ -58,6 +58,7 @@ bool j1Textures::CleanUp()
 	return true;
 }
 
+
 // Load new texture from file path
 SDL_Texture* const j1Textures::Load(const char* path)
 {
@@ -117,3 +118,4 @@ void j1Textures::GetSize(const SDL_Texture* texture, uint& width, uint& height) 
 {
 	SDL_QueryTexture((SDL_Texture*)texture, NULL, NULL, (int*) &width, (int*) &height);
 }
+

@@ -24,7 +24,7 @@ public:
 
 	// Called before quitting
 	bool CleanUp();
-
+	
 	// Load Texture
 	SDL_Texture* const	Load(const char* path);
 	bool				UnLoad(SDL_Texture* texture);
