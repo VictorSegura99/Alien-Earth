@@ -73,11 +73,10 @@ public:
 	void Camera();
 	void DoDash();
 	void ShootLaser();
+	void DoubleJump();
 
 public:
 	
-	SDL_Rect rect;
-
 	Animation* current_animation = nullptr;
 	Animation idle[3];
 	Animation idle2[3];
@@ -128,6 +127,8 @@ public:
 	bool dashright = false;
 	bool StopDash = false;
 	bool CanDash = false;
+	bool CanJump2 = false;
+	bool IsJumping2 = false;
 
 	float gravity = 0.0f;
 	float JumpSpeed = 0.0f;

@@ -128,6 +128,8 @@ bool jPlayer::Update(float dt)
 		GoSwim();
 		GoClimb();
 		Move_Left_Right();
+		if (NumPlayer == 0)
+			DoubleJump();
 		if (NumPlayer == 1) 
 			ShootLaser();
 	}
@@ -221,6 +223,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		if (position.y < c2->rect.y + c2->rect.h) {
 			position.y += gravity;
 			CanJump = true;
+			CanJump2 = false;
 			Time = 0;
 			CanSwim = false;
 			GoDown = false;
@@ -260,6 +263,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		if (position.y + playerHeight < c2->rect.y) {
 			position.y += gravity;
 			CanJump = true;
+			CanJump2 = false;
 			Time = 0;
 			CanSwim = false;
 			IsJumping = false;
@@ -273,6 +277,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		App->audio->PlayFx(ladderfx);
 		CanClimb = true;
 		CanJump = true;
+		CanJump2 = false;
 		Time = 50;
 		position.y += gravity;
 		break;
@@ -293,6 +298,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		GoUp = false;
 		GoDown = false;
 		CanJump = false;
+		CanJump2 = false;
 		death = true;
 		if (!God)
 			NoInput = true;
@@ -309,6 +315,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 	case COLLIDER_ROPE:
 		CanClimb = true;
 		CanJump = true;
+		CanJump2 = false;
 		position.y += gravity;
 		break;
 	case COLLIDER_WIN:
@@ -320,6 +327,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		break;
 	}
 }
+
 void jPlayer::Die()//What happens when the player die
 {
 	current_animation = &Death[NumPlayer];
@@ -600,6 +608,8 @@ void jPlayer::GoJump()
 		}
 		else {
 			IsJumping = false;
+			CanJump2 = true;
+			Time = 0;
 			if (current_animation == &jumpR[NumPlayer]) {
 				current_animation = &idle[NumPlayer];
 			}
@@ -878,6 +888,45 @@ void jPlayer::ShootLaser()
 		laserL.coll->SetPos(laserL.position.x - 10, laserL.position.y + 22);
 		App->render->Blit(texture, laserL.position.x - 10, laserL.position.y + 22, &(laserL.anim.GetCurrentFrame()));
 	}
+}
+
+void jPlayer::DoubleJump()
+{
+	if (CanJump2 && !IsJumping && Jump) {
+		IsJumping = true;
+	}
+	
+	if (IsJumping2) { //if you are able to jump, determine the animation and direction of the jump
+		Time += 1;
+		CanJump2 = false;
+		if (Time < 2)
+			App->audio->PlayFx(jumpfx);
+		if (Time <= JumpTime && WalkRight) {
+			current_animation = &jumpR[NumPlayer];
+			position.y -= JumpSpeed;
+		}
+		else if (Time <= JumpTime && WalkLeft) {
+			current_animation = &jumpL[NumPlayer];
+			position.y -= JumpSpeed;
+		}
+		else if (Time <= JumpTime) {
+			if (current_animation == &idle[NumPlayer])
+				current_animation = &jumpR[NumPlayer];
+			if (current_animation == &idle2[NumPlayer])
+				current_animation = &jumpL[NumPlayer];
+			position.y -= JumpSpeed;
+		}
+		else {
+			IsJumping2 = false;
+			CanJump2 = false;
+			if (current_animation == &jumpR[NumPlayer]) {
+				current_animation = &idle[NumPlayer];
+			}
+			else current_animation = &idle2[NumPlayer];
+		}
+	}
+
+
 }
 
 void Dash::ResetDashAnims()
