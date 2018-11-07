@@ -124,12 +124,13 @@ bool jPlayer::Update(float dt)
 {
 	position.y -= gravity;
 	if (!dashing) {
+		if (NumPlayer == 0)
+			DoubleJump();
 		GoJump();
 		GoSwim();
 		GoClimb();
 		Move_Left_Right();
-		if (NumPlayer == 0)
-			DoubleJump();
+		
 		if (NumPlayer == 1) 
 			ShootLaser();
 	}
@@ -893,7 +894,14 @@ void jPlayer::ShootLaser()
 
 void jPlayer::DoubleJump()
 {
-  	if (CanJump2 && Jump) {
+  	if (CanJump2 && Jump && !IsJumping) {
+		IsJumping2 = true;
+	}
+	if (Jump && IsJumping && !CanJump2) {
+		IsJumping = false;
+		CanJump2 = true;
+ 		CanJump = false;
+		Time = 0;
 		IsJumping2 = true;
 	}
 	if (IsJumping2) { //if you are able to jump, determine the animation and direction of the jump
