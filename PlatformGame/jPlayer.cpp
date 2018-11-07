@@ -595,6 +595,9 @@ void jPlayer::GoJump()
 		CanJump = false;
 		if (Time < 2)
 			App->audio->PlayFx(jumpfx);
+		if (Time >= 5) {
+			JumpSpeed -= 2.2f;
+		}
 		if (Time <= JumpTime && WalkRight) {
 			current_animation = &jumpR[NumPlayer];
 			position.y -= JumpSpeed;
@@ -610,10 +613,11 @@ void jPlayer::GoJump()
 				current_animation = &jumpL[NumPlayer];
 			position.y -= JumpSpeed;
 		}
-		else {
+		if (Time >= JumpTime) {
 			IsJumping = false;
 			CanJump2 = true;
 			CanJump = false;
+			JumpSpeed = 30;
 			Time = 0;
 			if (current_animation == &jumpR[NumPlayer]) {
 				current_animation = &idle[NumPlayer];
@@ -905,12 +909,16 @@ void jPlayer::DoubleJump()
 		CanJump2 = true;
  		CanJump = false;
 		Time = 0;
+		JumpSpeed = 30.0f;
 		IsJumping2 = true;
 	}
 	if (IsJumping2) { //if you are able to jump, determine the animation and direction of the jump
 		Time += 1;
 		if (Time < 2)
 			App->audio->PlayFx(jumpfx);
+		if (Time >= 5) {
+			JumpSpeed -= 2.2f;
+		}
 		if (Time <= JumpTime && WalkRight) {
 			current_animation = &jumpR[NumPlayer];
 			position.y -= JumpSpeed;
@@ -929,6 +937,7 @@ void jPlayer::DoubleJump()
 		else {
 			IsJumping2 = false;
 			CanJump2 = false;
+			JumpSpeed = 30.0f;
 			if (current_animation == &jumpR[NumPlayer]) {
 				current_animation = &idle[NumPlayer];
 			}
