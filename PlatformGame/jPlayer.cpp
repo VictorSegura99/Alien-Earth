@@ -609,6 +609,7 @@ void jPlayer::GoJump()
 		else {
 			IsJumping = false;
 			CanJump2 = true;
+			CanJump = false;
 			Time = 0;
 			if (current_animation == &jumpR[NumPlayer]) {
 				current_animation = &idle[NumPlayer];
@@ -892,13 +893,11 @@ void jPlayer::ShootLaser()
 
 void jPlayer::DoubleJump()
 {
-	if (CanJump2 && !IsJumping && Jump) {
-		IsJumping = true;
+  	if (CanJump2 && Jump) {
+		IsJumping2 = true;
 	}
-	
 	if (IsJumping2) { //if you are able to jump, determine the animation and direction of the jump
 		Time += 1;
-		CanJump2 = false;
 		if (Time < 2)
 			App->audio->PlayFx(jumpfx);
 		if (Time <= JumpTime && WalkRight) {
