@@ -783,10 +783,12 @@ void jPlayer::Camera()
 void jPlayer::DoDash()
 {
 	if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && Hability && CanDash) {
+		JumpSpeed = 30.0f;
 		dashing = true;
 		dashR.DashRight = true;
 	}
 	if ((current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) && Hability && CanDash) {
+		JumpSpeed = 30.0f;
 		dashing = true;
 		dashL.DashLeft = true;
 	}
@@ -934,7 +936,7 @@ void jPlayer::DoubleJump()
 				current_animation = &jumpL[NumPlayer];
 			position.y -= JumpSpeed;
 		}
-		else {
+		if (Time >= JumpTime) {
 			IsJumping2 = false;
 			CanJump2 = false;
 			JumpSpeed = 30.0f;
