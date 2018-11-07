@@ -365,6 +365,8 @@ void jPlayer::Spawn()
 	CanJump = true;
 	CanClimb = false;
 	CanSwim = false;
+	Death[NumPlayer].current_frame = 0.0f;
+	Death[NumPlayer].loops = 0;
 	current_animation = &idle[NumPlayer];
 	if (App->scene->KnowMap == 0) {
 		position.x = initialmap1.x;
@@ -425,8 +427,8 @@ void jPlayer::LoadPushbacks()
 	Death[0].PushBack({ 139,175,68,81 });
 	Death[0].PushBack({ 206,175,68,81 });
 	Death[0].PushBack({ 272,175,68,81 });
-	Death[0].PushBack({ 272,175,68,81 });
-	Death[0].speed = 0.1f;
+	Death[0].speed = 0.2f;
+	Death[0].loop = false;
 	//Death.loop = false;
 
 	//player pink
@@ -474,8 +476,8 @@ void jPlayer::LoadPushbacks()
 	Death[1].PushBack({ 139,196,68,81 });
 	Death[1].PushBack({ 206,196,68,81 });
 	Death[1].PushBack({ 272,196,68,81 });
-	Death[1].PushBack({ 272,196,68,81 });
-	Death[1].speed = 0.1f;
+	Death[1].speed = 0.2f;
+	Death[1].loop = false;
 	//Death.loop = false;
 
 	//player blue
@@ -518,7 +520,8 @@ void jPlayer::LoadPushbacks()
 	Death[2].PushBack({ 139,186,68,81 });
 	Death[2].PushBack({ 206,186,68,81 });
 	Death[2].PushBack({ 272,186,68,81 });
-	Death[2].speed = 0.1f;
+	Death[2].speed = 0.2f;
+	Death[2].loop = false;
 
 	dashR.StartDash.PushBack({ 0,532,67,92 });
 	/*dash.StartDash.PushBack({ 70,532,67,92 });
