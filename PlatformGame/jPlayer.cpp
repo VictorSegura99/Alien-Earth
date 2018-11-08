@@ -461,27 +461,27 @@ void jPlayer::LoadPushbacks()
 	GoLeft[1].PushBack({ 212,0,70,98 });
 	GoLeft[1].speed = 0.1f;*/
 
-	jumpR[1].PushBack({ 420,0,67,93 });
+	//jumpR[1].PushBack({ 420,0,67,93 });
 
 
-	jumpL[1].PushBack({ 420,95,67,93 });
+	//jumpL[1].PushBack({ 420,95,67,93 });
 
 
-	Climb[1].PushBack({ 488,0,65,92 });
+	/*Climb[1].PushBack({ 488,0,65,92 });
 	Climb[1].PushBack({ 556,0,65,92 });
-	Climb[1].speed = 0.1f;
+	Climb[1].speed = 0.1f;*/
 
-	ClimbIdle[1].PushBack({ 488,0,65,92 });
+	//	ClimbIdle[1].PushBack({ 488,0,65,92 });
 
-	SwimRight[1].PushBack({ 622,0,69,97 });
+	/*SwimRight[1].PushBack({ 622,0,69,97 });
 	SwimRight[1].PushBack({ 622,96,70,97 });
 	SwimRight[1].speed = 0.1f;
 
-	SwimLeft[1].PushBack({ 622,193,69,95 });
+	SwimLeft[1].PushBack({ 622,193,69,97 });
 	SwimLeft[1].PushBack({ 622,289,70,97 });
-	SwimLeft[1].speed = 0.1f;
+	SwimLeft[1].speed = 0.1f;*/
 
-	Death[1].PushBack({ 0,105,68,92 });
+	/*Death[1].PushBack({ 0,105,68,92 });
 	Death[1].PushBack({ 69,105,68,92 });
 	Death[1].PushBack({ 138,105,68,92 });
 	Death[1].PushBack({ 207,105,68,92 });
@@ -493,8 +493,7 @@ void jPlayer::LoadPushbacks()
 	Death[1].PushBack({ 206,196,68,81 });
 	Death[1].PushBack({ 272,196,68,81 });
 	Death[1].speed = 0.2f;
-	Death[1].loop = false;
-	//Death.loop = false;
+	Death[1].loop = false;*/
 
 	//player blue
 	idle[2].PushBack({ 143,0,65,92 });
