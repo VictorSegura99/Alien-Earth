@@ -54,10 +54,10 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	playerwidth = config.child("playerwidth").attribute("value").as_int();
 	playerheight = config.child("playerheight").attribute("value").as_int();
 
-	/*for (uint numplayer = 0; numplayer > 2; ++numplayer) {
-		idle[numplayer] = LoadPushbacks(numplayer, config, "GoRight");
-	}*/
-	GoRight[0] = LoadPushbacks(0, config, "GoRight");
+	for (int numplayer = 0; numplayer < 3; ++numplayer) {
+		GoRight[numplayer] = LoadPushbacks(numplayer, config, "GoRight");
+	}
+
 	bool ret = true;
 	return ret;
 }
@@ -443,9 +443,9 @@ void jPlayer::LoadPushbacks()
 
 	idle2[1].PushBack({ 354,0,65,92 });
 
-	GoRight[1].PushBack({ 0,0,67,93 });
+	/*GoRight[1].PushBack({ 0,0,67,93 });
 	GoRight[1].PushBack({ 69,0,70,95 });
-	GoRight[1].speed = 0.1f;
+	GoRight[1].speed = 0.1f;*/
 
 	GoLeft[1].PushBack({ 285,0,67,93 });
 	GoLeft[1].PushBack({ 212,0,70,98 });
@@ -491,9 +491,9 @@ void jPlayer::LoadPushbacks()
 
 	idle2[2].PushBack({ 354,0,65,92 });
 
-	GoRight[2].PushBack({ 0,0,67,93 });
+	/*GoRight[2].PushBack({ 0,0,67,93 });
 	GoRight[2].PushBack({ 69,0,70,95 });
-	GoRight[2].speed = 0.1f;
+	GoRight[2].speed = 0.1f;*/
 
 	GoLeft[2].PushBack({ 285,0,67,93 });
 	GoLeft[2].PushBack({ 212,0,70,98 });
@@ -563,24 +563,31 @@ void jPlayer::LoadPushbacks()
 	
 }
 
-Animation jPlayer::LoadPushbacks(uint playernumber, pugi::xml_node& config, p2SString NameAnim)
+Animation jPlayer::LoadPushbacks(int playernumber, pugi::xml_node& config, p2SString NameAnim)
 {
+	p2SString XML_Name_Player_Anims;
 	SDL_Rect rect;
 	Animation anim;
 	switch (playernumber) {
 	case 0: 
-		for (pugi::xml_node frames = config.child("AnimationsPlayerYellow").child(NameAnim.GetString()).child("frame"); frames; frames = frames.next_sibling("frame")) {
-			rect.x = frames.attribute("x").as_int();
-			rect.y = frames.attribute("y").as_int();
-			rect.w = frames.attribute("w").as_int();
-			rect.h = frames.attribute("h").as_int();
-			anim.PushBack({ rect.x,rect.y,rect.w,rect.h });
-		}
-		anim.speed = config.child("AnimationsPlayerYellow").child(NameAnim.GetString()).attribute("speed").as_float();
-		anim.loop = config.child("AnimationsPlayerYellow").child(NameAnim.GetString()).attribute("loop").as_bool();
+		XML_Name_Player_Anims = "AnimationsPlayerYellow";
+		break;
+	case 1:
+		XML_Name_Player_Anims = "AnimationsPlayerPink";
+		break;
+	case 2:
+		XML_Name_Player_Anims = "AnimationsPlayerBlue";
 		break;
 	}
-	
+	for (pugi::xml_node frames = config.child(XML_Name_Player_Anims.GetString()).child(NameAnim.GetString()).child("frame"); frames; frames = frames.next_sibling("frame")) {
+		rect.x = frames.attribute("x").as_int();
+		rect.y = frames.attribute("y").as_int();
+		rect.w = frames.attribute("w").as_int();
+		rect.h = frames.attribute("h").as_int();
+		anim.PushBack({ rect.x,rect.y,rect.w,rect.h });
+	}
+	anim.speed = config.child(XML_Name_Player_Anims.GetString()).child(NameAnim.GetString()).attribute("speed").as_float();
+	anim.loop = config.child(XML_Name_Player_Anims.GetString()).child(NameAnim.GetString()).attribute("loop").as_bool();
 
 	return anim;
 }
