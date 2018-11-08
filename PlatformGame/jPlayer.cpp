@@ -53,6 +53,11 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	JumpSpeed = config.child("JumpSpeed").attribute("value").as_float();
 	playerwidth = config.child("playerwidth").attribute("value").as_int();
 	playerheight = config.child("playerheight").attribute("value").as_int();
+
+	/*for (uint numplayer = 0; numplayer > 2; ++numplayer) {
+		idle[numplayer] = LoadPushbacks(numplayer, config, "GoRight");
+	}*/
+	GoRight[0] = LoadPushbacks(0, config, "GoRight");
 	bool ret = true;
 	return ret;
 }
@@ -79,6 +84,7 @@ bool jPlayer::Start()
 	position.y = initialmap1.y;
 
 	LoadPushbacks();
+	
 
 	laserR.anim.PushBack({ 34,554,83,27 });
 	laserR.anim.PushBack({ 124,554,83,27 });
@@ -388,9 +394,9 @@ void jPlayer::LoadPushbacks()
 
 	idle2[0].PushBack({ 353,0,66,86 });
 
-	GoRight[0].PushBack({ 0,0,67,86 });
+/*	GoRight[0].PushBack({ 0,0,67,86 });
 	GoRight[0].PushBack({ 69,0,70,86 });
-	GoRight[0].speed = 0.1f;
+	GoRight[0].speed = 0.1f;*/
 
 	GoLeft[0].PushBack({ 285,0,67,86 });
 	GoLeft[0].PushBack({ 212,0,70,87 });
@@ -559,6 +565,28 @@ void jPlayer::LoadPushbacks()
 	dashL.FinishDash.speed = 0.2f;
 	dashL.FinishDash.loop = false;
 	
+}
+
+Animation jPlayer::LoadPushbacks(uint playernumber, pugi::xml_node& config, p2SString NameAnim)
+{
+	SDL_Rect rect;
+	Animation anim;
+	switch (playernumber) {
+	case 0: 
+		for (pugi::xml_node frames = config.child("AnimationsPlayerYellow").child(NameAnim.GetString()).child("frame"); frames; frames = frames.next_sibling("frame")) {
+			rect.x = frames.attribute("x").as_int();
+			rect.y = frames.attribute("y").as_int();
+			rect.w = frames.attribute("w").as_int();
+			rect.h = frames.attribute("h").as_int();
+			anim.PushBack({ rect.x,rect.y,rect.w,rect.h });
+		}
+		anim.speed = config.child("AnimationsPlayerYellow").child(NameAnim.GetString()).attribute("speed").as_float();
+		anim.loop = config.child("AnimationsPlayerYellow").child(NameAnim.GetString()).attribute("loop").as_bool();
+		break;
+	}
+	
+
+	return anim;
 }
 
 void jPlayer::ChangePlayer(const int playernumber) 

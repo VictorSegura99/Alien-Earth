@@ -81,7 +81,15 @@
     <SpeedSwimDown value="3.0f"></SpeedSwimDown>
     <playerwidth value="65"></playerwidth>
     <playerheight value="87"></playerheight>
-  </player>
+    <AnimationsPlayerYellow>
+      <GoRight name="GoRight" speed="0.1f" loop="true">
+        <frame  x="0" y="0" w="67" h="86"/>
+        <frame x="69" y="0" w="70" h="86"/>
+      </GoRight>
+    </AnimationsPlayerYellow>
+   
+  
+</player>
 
 
   
