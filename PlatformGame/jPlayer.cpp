@@ -620,7 +620,7 @@ void jPlayer::GoJump()
 		if (Time < 2)
 			App->audio->PlayFx(jumpfx);
 		if (Time >= 5) {
-			JumpSpeed -= 3.0f;
+			JumpSpeed -= 2.2f;
 		}
 		if (Time <= JumpTime && WalkRight) {
 			current_animation = &jumpR[NumPlayer];
@@ -641,7 +641,7 @@ void jPlayer::GoJump()
 			IsJumping = false;
 			CanJump2 = true;
 			CanJump = false;
-			JumpSpeed = 22.0f;
+			JumpSpeed = 30.0f;
 			Time = 0;
 			if (current_animation == &jumpR[NumPlayer]) {
 				current_animation = &idle[NumPlayer];
