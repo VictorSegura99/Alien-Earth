@@ -519,24 +519,24 @@ void jPlayer::LoadPushbacks()
 	SwimLeft[2].PushBack({ 622,289,70,97 });
 	SwimLeft[2].speed = 0.1f;
 
-	Death[2].PushBack({ 0,94,68,92 });
+	Death[2].PushBack({ 0,104,68,92 });
+	Death[2].PushBack({ 68,104,68,92 });
+	Death[2].PushBack({ 136,104,68,92 });
+	Death[2].PushBack({ 203,104,68,92 });
+	Death[2].PushBack({ 272,104,68,92 });
 
-	Death[2].PushBack({ 0,186,68,81 });
-	Death[2].PushBack({ 69,186,68,81 });
-	Death[2].PushBack({ 139,186,68,81 });
-	Death[2].PushBack({ 206,186,68,81 });
-	Death[2].PushBack({ 272,186,68,81 });
+	Death[2].PushBack({ 0,196,68,81 });
+	Death[2].PushBack({ 69,196,68,81 });
+	Death[2].PushBack({ 139,196,68,81 });
+	Death[2].PushBack({ 206,196,68,81 });
+	Death[2].PushBack({ 272,196,68,81 });
 	Death[2].speed = 0.2f;
 	Death[2].loop = false;
 
 	dashR.StartDash.PushBack({ 0,532,67,92 });
-	/*dash.StartDash.PushBack({ 70,532,67,92 });
-	dash.StartDash.PushBack({ 140,532,67,92 });
-	dash.StartDash.PushBack({ 210,532,67,92 });*/
 	dashR.StartDash.PushBack({ 0,658,84,92 });
 	dashR.StartDash.PushBack({ 85,658,84,92 });
 	dashR.StartDash.speed = 0.5f;
-	//dashR.StartDash.loop = false;
 
 	dashR.FinishDash.PushBack({ 564,532,115,92 });
 	dashR.FinishDash.PushBack({ 564,625,130,92 });
@@ -545,10 +545,6 @@ void jPlayer::LoadPushbacks()
 	dashR.FinishDash.speed = 0.2f;
 	dashR.FinishDash.loop = false;
 	
-	/*dash.Dashing.PushBack({ 280,532,67,92 });
-	dash.Dashing.PushBack({ 350,532,67,92 });
-	dash.Dashing.PushBack({ 420,532,67,92 });
-	dash.Dashing.PushBack({ 490,532,67,92 });*/
 	dashR.Dashing.PushBack({ 85,658,84,92 });
 
 	dashL.StartDash.PushBack({ 84,806,67,92 });
@@ -624,7 +620,7 @@ void jPlayer::GoJump()
 		if (Time < 2)
 			App->audio->PlayFx(jumpfx);
 		if (Time >= 5) {
-			JumpSpeed -= 2.2f;
+			JumpSpeed -= 3.0f;
 		}
 		if (Time <= JumpTime && WalkRight) {
 			current_animation = &jumpR[NumPlayer];
@@ -645,7 +641,7 @@ void jPlayer::GoJump()
 			IsJumping = false;
 			CanJump2 = true;
 			CanJump = false;
-			JumpSpeed = 30;
+			JumpSpeed = 22.0f;
 			Time = 0;
 			if (current_animation == &jumpR[NumPlayer]) {
 				current_animation = &idle[NumPlayer];
