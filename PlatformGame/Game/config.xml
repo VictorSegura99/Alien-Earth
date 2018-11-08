@@ -162,12 +162,12 @@
         <frame x="556" y="0" w="65" h="92"/>
       </Climb>
       <SwimRight speed="0.1f" loop="true">
-        <frame  x="622" y="0" w="69" h="97"/>
-        <frame x="622" y="96" w="70" h="97"/>
+        <frame  x="622" y="0" w="69" h="95"/>
+        <frame x="622" y="96" w="70" h="96"/>
       </SwimRight>
       <SwimLeft speed="0.1f" loop="true">
-        <frame  x="622" y="193" w="69" h="97"/>
-        <frame x="622" y="289" w="70" h="97"/>
+        <frame  x="622" y="193" w="69" h="95"/>
+        <frame x="622" y="289" w="70" h="96"/>
       </SwimLeft>
       <Death speed="0.2f" loop="false">
         <frame  x="0" y="105" w="68" h="92"/>
@@ -188,6 +188,49 @@
         <frame  x="0" y="0" w="67" h="93"/>
         <frame x="69" y="0" w="70" h="95"/>
       </GoRight>
+      <idle speed="1.0f" loop="true">
+        <frame  x="143" y="0" w="65" h="92"/>
+      </idle>
+      <idle2 speed="1.0f" loop="true">
+        <frame  x="354" y="0" w="65" h="92"/>
+      </idle2>
+      <GoLeft speed="0.1f" loop="true">
+        <frame  x="285" y="0" w="67" h="93"/>
+        <frame x="212" y="0" w="70" h="98"/>
+      </GoLeft>
+      <jumpR speed="1.0f" loop="true">
+        <frame  x="420" y="0" w="67" h="93"/>
+      </jumpR>
+      <jumpL speed="1.0f" loop="true">
+        <frame  x="420" y="95" w="67" h="93"/>
+      </jumpL>
+      <ClimbIdle speed="1.0f" loop="true">
+        <frame  x="488" y="0" w="65" h="92"/>
+      </ClimbIdle>
+      <Climb speed="0.1f" loop="true">
+        <frame  x="488" y="0" w="65" h="92"/>
+        <frame x="556" y="0" w="65" h="92"/>
+      </Climb>
+      <SwimRight speed="0.1f" loop="true">
+        <frame  x="622" y="0" w="69" h="95"/>
+        <frame x="622" y="96" w="70" h="96"/>
+      </SwimRight>
+      <SwimLeft speed="0.1f" loop="true">
+        <frame  x="622" y="193" w="69" h="95"/>
+        <frame x="622" y="289" w="70" h="96"/>
+      </SwimLeft>
+      <Death speed="0.2f" loop="false">
+        <frame  x="0" y="105" w="68" h="92"/>
+        <frame x="69" y="105" w="68" h="92"/>
+        <frame  x="138" y="105" w="68" h="92"/>
+        <frame  x="207" y="105" w="68" h="92"/>
+        <frame  x="276"  y="105" w="68" h="92"/>
+        <frame  x="0" y="196" w="68" h="81"/>
+        <frame  x="69" y="196" w="68" h="81"/>
+        <frame  x="139"  y="196" w="68" h="81"/>
+        <frame  x="206" y="196" w="68" h="81"/>
+        <frame  x="272" y="196" w="68" h="81"/>
+      </Death>
     </AnimationsPlayerBlue>
    
   
