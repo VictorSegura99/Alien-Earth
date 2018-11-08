@@ -66,6 +66,14 @@ bool jPlayer::Awake(pugi::xml_node& config)
 		SwimRight[numplayer] = LoadPushbacks(numplayer, config, "SwimRight");
 		SwimLeft[numplayer] = LoadPushbacks(numplayer, config, "SwimLeft");
 		Death[numplayer] = LoadPushbacks(numplayer, config, "Death");
+		if (numplayer == 2) {
+			dashR.StartDash = LoadPushbacks(numplayer, config, "StartDashRight");
+			dashR.FinishDash = LoadPushbacks(numplayer, config, "FinishDashRight");
+			dashR.Dashing = LoadPushbacks(numplayer, config, "DashingRight");
+			dashL.StartDash = LoadPushbacks(numplayer, config, "StartDashLeft");
+			dashL.FinishDash = LoadPushbacks(numplayer, config, "FinishDashLeft");
+			dashL.Dashing = LoadPushbacks(numplayer, config, "DashingLeft");
+		}
 	}
 
 	bool ret = true;
@@ -543,37 +551,37 @@ void jPlayer::LoadPushbacks()
 	Death[2].speed = 0.2f;
 	Death[2].loop = false;
 
-	dashR.StartDash.PushBack({ 0,532,67,92 });
+	/*dashR.StartDash.PushBack({ 0,532,67,92 });
 	dashR.StartDash.PushBack({ 0,658,84,92 });
 	dashR.StartDash.PushBack({ 85,658,84,92 });
-	dashR.StartDash.speed = 0.5f;
+	dashR.StartDash.speed = 0.5f;*/
 
-	dashR.FinishDash.PushBack({ 564,532,115,92 });
+	/*dashR.FinishDash.PushBack({ 564,532,115,92 });
 	dashR.FinishDash.PushBack({ 564,625,130,92 });
 	dashR.FinishDash.PushBack({ 430,625,130,92 });
 	dashR.FinishDash.PushBack({ 288,625,130,92 });
 	dashR.FinishDash.speed = 0.2f;
-	dashR.FinishDash.loop = false;
+	dashR.FinishDash.loop = false;*/
 	
-	dashR.Dashing.PushBack({ 85,658,84,92 });
+//	dashR.Dashing.PushBack({ 85,658,84,92 });
 
-	dashL.StartDash.PushBack({ 84,806,67,92 });
+	/*dashL.StartDash.PushBack({ 84,806,67,92 });
 	dashL.StartDash.PushBack({ 84,806,67,92 });
 	dashL.StartDash.PushBack({ 0,806,83,92 });
 	dashL.StartDash.speed = 0.5f;
-	dashL.StartDash.loop = false;
+	dashL.StartDash.loop = false;*/
 
-	dashL.Dashing.PushBack({ 0,806,83,92 });
+	//dashL.Dashing.PushBack({ 0,806,83,92 });
 
-	dashL.FinishDash.PushBack({ 564,771,107,92 });
+	/*dashL.FinishDash.PushBack({ 564,771,107,92 });
 	dashL.FinishDash.PushBack({ 564,844,130,92 });
 	dashL.FinishDash.PushBack({ 430,725,130,92 });
 	dashL.FinishDash.speed = 0.2f;
-	dashL.FinishDash.loop = false;
+	dashL.FinishDash.loop = false;*/
 	
 }
 
-Animation jPlayer::LoadPushbacks(int playernumber, pugi::xml_node& config, p2SString NameAnim)
+Animation jPlayer::LoadPushbacks(int playernumber, pugi::xml_node& config, p2SString NameAnim) const
 {
 	p2SString XML_Name_Player_Anims;
 	SDL_Rect rect;
@@ -603,7 +611,7 @@ Animation jPlayer::LoadPushbacks(int playernumber, pugi::xml_node& config, p2SSt
 	return anim;
 }
 
-void jPlayer::ChangePlayer(const int playernumber) 
+void jPlayer::ChangePlayer(const int playernumber)
 {
 	if (NumPlayer != playernumber) {
 		App->tex->UnLoad(texture);

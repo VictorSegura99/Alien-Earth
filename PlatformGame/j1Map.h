@@ -104,7 +104,7 @@ public:
 	bool Load(const char* path);
 
 	iPoint MapToWorld(int x, int y) const;
-	bool ChangeMap(p2SString* map);
+	bool ChangeMap(const p2SString* map);
 
 private:
 
