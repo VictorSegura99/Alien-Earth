@@ -83,14 +83,58 @@
     <playerheight value="87"></playerheight>
     
     <AnimationsPlayerYellow>
-      <GoRight name="GoRight" speed="0.1f" loop="true">
+      <GoRight speed="0.1f" loop="true">
         <frame  x="0" y="0" w="67" h="86"/>
         <frame x="69" y="0" w="70" h="86"/>
       </GoRight>
+      <idle speed="1.0f" loop="true">
+        <frame  x="142" y="0" w="66" h="86"/>
+      </idle>
+      <idle2 speed="1.0f" loop="true">
+        <frame  x="353" y="0" w="66" h="86"/>
+      </idle2>
+      <GoLeft speed="0.1f" loop="true">
+        <frame  x="285" y="0" w="67" h="86"/>
+        <frame  x="212" y="0" w="70" h="87"/>
+      </GoLeft>
+      <jumpR speed="1.0f" loop="true">
+        <frame  x="420" y="0" w="67" h="86"/>
+      </jumpR>
+      <jumpL speed="1.0f" loop="true">
+        <frame  x="420" y="86" w="67" h="86"/>
+      </jumpL>
+      <Climb speed="0.1f" loop="true">
+        <frame  x="488" y="0" w="65" h="86"/>
+        <frame  x="556" y="0" w="65" h="86"/>
+      </Climb>
+      <ClimbIdle speed="1.0f" loop="true">
+        <frame  x="488" y="0" w="65" h="86"/>
+      </ClimbIdle>
+      <SwimRight speed="0.1f" loop="true">
+        <frame  x="621" y="0" w="70" h="86"/>
+        <frame  x="617" y="88" w="70" h="86"/>
+      </SwimRight>
+      <SwimLeft speed="0.1f" loop="true">
+        <frame  x="617" y="176" w="70" h="86"/>
+        <frame  x="617" y="263" w="70" h="86"/>
+      </SwimLeft>
+      <Death speed="0.2f" loop="false">
+        <frame  x="0" y="94" w="68" h="81"/>
+        <frame  x="73" y="94" w="68" h="81"/>
+        <frame  x="142" y="94" w="68" h="81"/>
+        <frame  x="213" y="94" w="68" h="81"/>
+        <frame  x="283" y="94" w="68" h="81"/>
+        <frame  x="351" y="94" w="68" h="81"/>
+        <frame  x="0" y="175" w="68" h="81"/>
+        <frame  x="69" y="175" w="68" h="81"/>
+        <frame  x="139" y="175" w="68" h="81"/>
+        <frame  x="206" y="175" w="68" h="81"/>
+        <frame  x="272" y="175" w="68" h="81"/>
+      </Death>
     </AnimationsPlayerYellow>
-    
+   
     <AnimationsPlayerPink>
-      <GoRight name="GoRight" speed="0.1f" loop="true">
+      <GoRight speed="0.1f" loop="true">
         <frame  x="0" y="0" w="67" h="93"/>
         <frame x="69" y="0" w="70" h="95"/>
       </GoRight>
@@ -98,7 +142,7 @@
     </AnimationsPlayerPink>
     
     <AnimationsPlayerBlue>
-      <GoRight name="GoRight" speed="0.1f" loop="true">
+      <GoRight speed="0.1f" loop="true">
         <frame  x="0" y="0" w="67" h="93"/>
         <frame x="69" y="0" w="70" h="95"/>
       </GoRight>

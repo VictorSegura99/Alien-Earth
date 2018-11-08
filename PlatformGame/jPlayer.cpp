@@ -400,39 +400,39 @@ void jPlayer::LoadPushbacks()
 {
 	// player yellow
 
-	idle[0].PushBack({ 142,0,66,86 });
+	//idle[0].PushBack({ 142,0,66,86 });
 
-	idle2[0].PushBack({ 353,0,66,86 });
+	//idle2[0].PushBack({ 353,0,66,86 });
 
 /*	GoRight[0].PushBack({ 0,0,67,86 });
 	GoRight[0].PushBack({ 69,0,70,86 });
 	GoRight[0].speed = 0.1f;*/
 
-	GoLeft[0].PushBack({ 285,0,67,86 });
+	/*GoLeft[0].PushBack({ 285,0,67,86 });
 	GoLeft[0].PushBack({ 212,0,70,87 });
-	GoLeft[0].speed = 0.1f;
+	GoLeft[0].speed = 0.1f;*/
 
-	jumpR[0].PushBack({ 420,0,67,86 });
-
-
-	jumpL[0].PushBack({ 420,86,67,86 });
+//	jumpR[0].PushBack({ 420,0,67,86 });
 
 
-	Climb[0].PushBack({ 488,0,65,86 });
+	//jumpL[0].PushBack({ 420,86,67,86 });
+
+
+	/*Climb[0].PushBack({ 488,0,65,86 });
 	Climb[0].PushBack({ 556,0,65,86 });
-	Climb[0].speed = 0.1f;
+	Climb[0].speed = 0.1f;*/
 
-	ClimbIdle[0].PushBack({ 488,0,65,86 });
+	//ClimbIdle[0].PushBack({ 488,0,65,86 });
 
-	SwimRight[0].PushBack({ 621,0,70,86 });
+	/*SwimRight[0].PushBack({ 621,0,70,86 });
 	SwimRight[0].PushBack({ 617,88,70,86 });
-	SwimRight[0].speed = 0.1f;
+	SwimRight[0].speed = 0.1f;*/
 
-	SwimLeft[0].PushBack({ 617,176,70,86 });
+	/*SwimLeft[0].PushBack({ 617,176,70,86 });
 	SwimLeft[0].PushBack({ 617,263,70,86 });
 	SwimLeft[0].speed = 0.1f;
-
-	Death[0].PushBack({ 0,94,68,81 });
+	*/
+	/*Death[0].PushBack({ 0,94,68,81 });
 	Death[0].PushBack({ 73,94,68,81 });
 	Death[0].PushBack({ 142,94,68,81 });
 	Death[0].PushBack({ 213,94,68,81 });
@@ -446,7 +446,7 @@ void jPlayer::LoadPushbacks()
 	Death[0].speed = 0.2f;
 	Death[0].loop = false;
 	//Death.loop = false;
-
+	*/
 	//player pink
 
 	idle[1].PushBack({ 143,0,65,92 });
