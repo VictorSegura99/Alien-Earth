@@ -55,7 +55,17 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	playerheight = config.child("playerheight").attribute("value").as_int();
 
 	for (int numplayer = 0; numplayer < 3; ++numplayer) {
+		idle[numplayer] = LoadPushbacks(numplayer, config, "idle");
+		idle2[numplayer] = LoadPushbacks(numplayer, config, "idle2");
 		GoRight[numplayer] = LoadPushbacks(numplayer, config, "GoRight");
+		GoLeft[numplayer] = LoadPushbacks(numplayer, config, "GoLeft");
+		jumpR[numplayer] = LoadPushbacks(numplayer, config, "jumpR");
+		jumpL[numplayer] = LoadPushbacks(numplayer, config, "jumpL");
+		Climb[numplayer] = LoadPushbacks(numplayer, config, "Climb");
+		ClimbIdle[numplayer] = LoadPushbacks(numplayer, config, "ClimbIdle");
+		SwimRight[numplayer] = LoadPushbacks(numplayer, config, "SwimRight");
+		SwimLeft[numplayer] = LoadPushbacks(numplayer, config, "SwimLeft");
+		Death[numplayer] = LoadPushbacks(numplayer, config, "Death");
 	}
 
 	bool ret = true;
@@ -579,6 +589,7 @@ Animation jPlayer::LoadPushbacks(int playernumber, pugi::xml_node& config, p2SSt
 		XML_Name_Player_Anims = "AnimationsPlayerBlue";
 		break;
 	}
+
 	for (pugi::xml_node frames = config.child(XML_Name_Player_Anims.GetString()).child(NameAnim.GetString()).child("frame"); frames; frames = frames.next_sibling("frame")) {
 		rect.x = frames.attribute("x").as_int();
 		rect.y = frames.attribute("y").as_int();
