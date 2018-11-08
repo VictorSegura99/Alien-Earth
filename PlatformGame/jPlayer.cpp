@@ -439,17 +439,17 @@ void jPlayer::LoadPushbacks()
 
 	//player pink
 
-	idle[1].PushBack({ 143,0,65,92 });
+	//idle[1].PushBack({ 143,0,65,92 });
 
-	idle2[1].PushBack({ 354,0,65,92 });
+	//idle2[1].PushBack({ 354,0,65,92 });
 
 	/*GoRight[1].PushBack({ 0,0,67,93 });
 	GoRight[1].PushBack({ 69,0,70,95 });
 	GoRight[1].speed = 0.1f;*/
 
-	GoLeft[1].PushBack({ 285,0,67,93 });
+	/*GoLeft[1].PushBack({ 285,0,67,93 });
 	GoLeft[1].PushBack({ 212,0,70,98 });
-	GoLeft[1].speed = 0.1f;
+	GoLeft[1].speed = 0.1f;*/
 
 	jumpR[1].PushBack({ 420,0,67,93 });
 

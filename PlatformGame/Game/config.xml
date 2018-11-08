@@ -94,6 +94,17 @@
         <frame  x="0" y="0" w="67" h="93"/>
         <frame x="69" y="0" w="70" h="95"/>
       </GoRight>
+      <idle name="idle" speed="1.0f" loop="true">
+        <frame  x="143" y="0" w="65" h="92"/>
+      </idle>
+      <idle2 name="idle2" speed="1.0f" loop="true">
+        <frame  x="354" y="0" w="65" h="92"/>
+      </idle2>
+      <GoLeft name="GoLeft" speed="0.1f" loop="true">
+        <frame  x="285" y="0" w="67" h="93"/>
+        <frame x="212" y="0" w="70" h="98"/>
+      </GoLeft>
+      <frame  x="" y="" w="" h=""/>
     </AnimationsPlayerPink>
     
     <AnimationsPlayerBlue>
