@@ -176,9 +176,9 @@ bool jPlayer::Update(float dt)
 	coll->SetPos(position.x, position.y);
 	//App->render->DrawQuad(rect, 150, 150, 150, 255, true, false);
 	if (current_animation == &dashR.FinishDash) {
-		App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame()));
+		App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame()), 1.0f);
 	}
-	else App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()));
+	else App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()),1.0f);
 	
 	return true;
 }

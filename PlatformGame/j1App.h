@@ -3,9 +3,10 @@
 
 #include "p2List.h"
 #include "j1Module.h"
-#include "PugiXml\src\pugixml.hpp"
 #include "j1PerfTimer.h"
 #include "j1Timer.h"
+#include "PugiXml\src\pugixml.hpp"
+
 // Modules
 class j1Window;
 class j1Input;
@@ -51,7 +52,7 @@ public:
 
 	void LoadGame(const char* file);
 	void SaveGame(const char* file) const;
-	void GetSaveGames(p2List<p2SString>& list_to_fill) const;
+	
 	pugi::xml_node LoadConfig(pugi::xml_document&) const;
 
 private:
@@ -95,16 +96,14 @@ public:
 private:
 
 	p2List<j1Module*>	modules;
-	uint				frames;
-	float				dt;
 	int					argc;
-	char**				args;
+	char**				args = nullptr;
 
 	p2SString			title;
 	p2SString			organization;
 
-	mutable bool		want_to_save;
-	bool				want_to_load;
+	mutable bool		want_to_save = false;
+	bool				want_to_load = false;
 	p2SString			load_game;
 	mutable p2SString	save_game;
 
@@ -115,9 +114,8 @@ private:
 	j1Timer				last_sec_frame_time;
 	uint32				last_sec_frame_count = 0;
 	uint32				prev_last_sec_frame_count = 0;
-	j1PerfTimer			delay;
-	uint32				framerate_cap;
-	
+	uint16_t			framerate_cap;
+	float				dt;
 };
 
 extern j1App* App; // No student is asking me about that ... odd :-S
