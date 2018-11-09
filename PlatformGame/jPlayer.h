@@ -66,14 +66,14 @@ public:
 	void Spawn();
 	Animation LoadPushbacks(int playernumber, pugi::xml_node&, p2SString NameAnim) const;
 	void ChangePlayer(const int playernumber);
-	void GoJump();
-	void GoSwim();
-	void GoClimb();
-	void Move_Left_Right();
-	void Camera();
-	void DoDash();
-	void ShootLaser();
-	void DoubleJump();
+	void GoJump(float dt);
+	void GoSwim(float dt);
+	void GoClimb(float dt);
+	void Move_Left_Right(float dt);
+	void Camera(float dt);
+	void DoDash(float dt);
+	void ShootLaser(float dt);
+	void DoubleJump(float dt);
 
 public:
 	

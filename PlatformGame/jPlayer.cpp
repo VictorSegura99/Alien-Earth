@@ -144,21 +144,21 @@ bool jPlayer::PreUpdate() //Here we preload the input functions to determine the
 }
 bool jPlayer::Update(float dt)
 {
-	position.y -= gravity;
+	position.y -= gravity * dt;
 	if (!dashing) {
 		if (NumPlayer == 0)
-			DoubleJump();
-		GoJump();
-		GoSwim();
-		GoClimb();
-		Move_Left_Right();
+			DoubleJump(dt);
+		GoJump(dt);
+		GoSwim(dt);
+		GoClimb(dt);
+		Move_Left_Right(dt);
 		
 		if (NumPlayer == 1) 
-			ShootLaser();
+			ShootLaser(dt);
 	}
 	if (NumPlayer == 2)
-		DoDash();
-	Camera();
+		DoDash(dt);
+	Camera(dt);
 	
 	if (death && !God) {
 		death = false;
@@ -455,7 +455,7 @@ void jPlayer::ChangePlayer(const int playernumber)
 	}
 }
 
-void jPlayer::GoJump()
+void jPlayer::GoJump(float dt)
 {
 	if (Jump && CanJump && !CanSwim && !God && !IsJumping) { //If you clicked the jump button and you are able to jump(always except you just jumpt) you can jump
 		IsJumping = true;
@@ -466,28 +466,28 @@ void jPlayer::GoJump()
 		if (Time < 2)
 			App->audio->PlayFx(jumpfx);
 		if (Time >= 5) {
-			JumpSpeed -= 2.2f;
+			JumpSpeed -= 2.2f *dt;
 		}
 		if (Time <= JumpTime && WalkRight) {
 			current_animation = &jumpR[NumPlayer];
-			position.y -= JumpSpeed;
+			position.y -= JumpSpeed * dt;
 		}
 		else if (Time <= JumpTime && WalkLeft) {
 			current_animation = &jumpL[NumPlayer];
-			position.y -= JumpSpeed;
+			position.y -= JumpSpeed * dt;
 		}
 		else if (Time <= JumpTime) {
 			if (current_animation == &idle[NumPlayer])
 				current_animation = &jumpR[NumPlayer];
 			if (current_animation == &idle2[NumPlayer])
 				current_animation = &jumpL[NumPlayer];
-			position.y -= JumpSpeed;
+			position.y -= JumpSpeed * dt;
 		}
 		if (Time >= JumpTime) {
 			IsJumping = false;
 			CanJump2 = true;
 			CanJump = false;
-			JumpSpeed = 30.0f;
+			JumpSpeed = 30.0f*dt;
 			Time = 0;
 			if (current_animation == &jumpR[NumPlayer]) {
 				current_animation = &idle[NumPlayer];
@@ -501,7 +501,7 @@ void jPlayer::GoJump()
 	}
 }
 
-void jPlayer::GoSwim()
+void jPlayer::GoSwim(float dt)
 {
 	if (CanSwim) {
 		if (current_animation == &SwimLeft[NumPlayer]) {
@@ -512,22 +512,22 @@ void jPlayer::GoSwim()
 		}
 	}
 	if (CanSwim && GoUp) { //Can Swim determine if you are in a water collider, if you are, it's true
-		position.y -= SpeedSwimUp;
+		position.y -= SpeedSwimUp * dt;
 	}
 	if (CanSwim && GoDown) {
-		position.y += SpeedSwimDown;
+		position.y += SpeedSwimDown * dt;
 	}
 
 }
 
-void jPlayer::GoClimb()
+void jPlayer::GoClimb(float dt)
 {
 	if (CanClimb && GoUp) {
-		position.y -= SpeedClimb;
+		position.y -= SpeedClimb * dt;
 		current_animation = &Climb[NumPlayer];
 	}
 	if (CanClimb && GoDown) {
-		position.y += SpeedClimb;
+		position.y += SpeedClimb * dt;
 		current_animation = &Climb[NumPlayer];
 	}
 	if (CanClimb && !GoUp && !GoDown)
@@ -535,41 +535,41 @@ void jPlayer::GoClimb()
 
 }
 
-void jPlayer::Move_Left_Right()
+void jPlayer::Move_Left_Right(float dt)
 {
 	if (WalkRight) { //This determine the movement to the right, depending on the state of the player
 		if (!IsJumping && !CanSwim && !CanClimb) {
 			dashR.ResetDashAnims();
 			dashL.ResetDashAnims();
-			position.x += SpeedWalk;
+			position.x += SpeedWalk * dt;
 			current_animation = &GoRight[NumPlayer];
 		}
 		if (IsJumping) {
-			position.x += SpeedWalk;
+			position.x += SpeedWalk * dt;
 		}
 		if (CanSwim && !CanClimb) { //Can Climb determine if you are in a climb collider, if you are, it's true
-			position.x += SpeedSwimLeftRight;
+			position.x += SpeedSwimLeftRight * dt;
 			current_animation = &SwimRight[NumPlayer];
 		}
 		if (CanClimb)
-			position.x += SpeedWalk;
+			position.x += SpeedWalk * dt;
 	}
 	if (WalkLeft) { //This determine the movement to the left, depending on the state of the player
 		if (!IsJumping && !CanSwim && !CanClimb) {
 			dashR.ResetDashAnims();
 			dashL.ResetDashAnims();
-			position.x -= SpeedWalk;
+			position.x -= SpeedWalk * dt;
 			current_animation = &GoLeft[NumPlayer];
 		}
 		if (IsJumping) {
-			position.x -= SpeedWalk;
+			position.x -= SpeedWalk * dt;
 		}
 		if (CanSwim && !CanClimb) {
-			position.x -= SpeedSwimLeftRight;
+			position.x -= SpeedSwimLeftRight * dt;
 			current_animation = &SwimLeft[NumPlayer];
 		}
 		if (CanClimb)
-			position.x -= SpeedWalk;
+			position.x -= SpeedWalk * dt;
 	}
 	if (WalkRight && WalkLeft) {
 		if (!CanSwim)
@@ -601,7 +601,7 @@ void jPlayer::Move_Left_Right()
 	}
 }
 
-void jPlayer::Camera()
+void jPlayer::Camera(float dt)
 {
 	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {//knowmap it's a varibable that let us know in which map we are. //Knowmap=0, level 1 //knowmap=2, level 2
 		NextMap = true;
@@ -650,20 +650,20 @@ void jPlayer::Camera()
 	*/
 }
 
-void jPlayer::DoDash()
+void jPlayer::DoDash(float dt)
 {
 	if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && Hability && CanDash) {
-		JumpSpeed = 30.0f;
+		JumpSpeed = 30.0f*dt;
 		dashing = true;
 		dashR.DashRight = true;
 	}
 	if ((current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) && Hability && CanDash) {
-		JumpSpeed = 30.0f;
+		JumpSpeed = 30.0f*dt;
 		dashing = true;
 		dashL.DashLeft = true;
 	}
 	if (dashing && dashR.DashRight) {
-		position.y += gravity;
+		position.y += gravity * dt;
 		if (dashR.StartDash.current_frame == 0) {
 			//	position.x -= 60;
 			current_animation = &dashR.StartDash;
@@ -671,9 +671,9 @@ void jPlayer::DoDash()
 		if (dashR.StartDash.Finished()) {
 			++dashR.DashCont;
 			current_animation = &dashR.Dashing;
-			position.x += 30;
+			position.x += 30 * dt;
 			if (dashR.DashCont >= dashR.DashTime) {
-				position.x -= 20;
+				position.x -= 20 * dt;
 				current_animation = &dashR.FinishDash;
 				if (dashR.FinishDash.Finished()) {
 					dashR.DashCont = 0;
@@ -687,7 +687,7 @@ void jPlayer::DoDash()
 		}
 	}
 	if (dashing && dashL.DashLeft) {
-		position.y += gravity;
+		position.y += gravity * dt;
 		if (dashL.StartDash.current_frame == 0) {
 			//	position.x -= 60;
 			current_animation = &dashL.StartDash;
@@ -695,9 +695,9 @@ void jPlayer::DoDash()
 		if (dashL.StartDash.Finished()) {
 			++dashL.DashCont;
 			current_animation = &dashL.Dashing;
-			position.x -= 30;
+			position.x -= 30 * dt;
 			if (dashL.DashCont >= dashL.DashTime) {
-				position.x += 20;
+				position.x += 20 * dt;
 				current_animation = &dashL.FinishDash;
 				if (dashL.FinishDash.Finished()) {
 					dashL.DashCont = 0;
@@ -714,7 +714,7 @@ void jPlayer::DoDash()
 }
 
 
-void jPlayer::ShootLaser()
+void jPlayer::ShootLaser(float dt)
 {
 	if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && (Hability && !laserR.IsShooting)) {
 		laserR.StartShooting = true;
@@ -738,7 +738,7 @@ void jPlayer::ShootLaser()
 			laserR.coll->to_delete = true;
 		}
 		laserR.life--;
-		laserR.position.x += laserR.velocity.x;
+		laserR.position.x += laserR.velocity.x*dt;
 		laserR.coll->SetPos(laserR.position.x - 10, laserR.position.y + 22);
 		App->render->Blit(texture, laserR.position.x - 10, laserR.position.y + 22, &(laserR.anim.GetCurrentFrame()));
 	}
@@ -765,13 +765,13 @@ void jPlayer::ShootLaser()
 			laserL.coll->to_delete = true;
 		}
 		laserL.life--;
-		laserL.position.x += laserL.velocity.x;
+		laserL.position.x += laserL.velocity.x*dt;
 		laserL.coll->SetPos(laserL.position.x - 10, laserL.position.y + 22);
 		App->render->Blit(texture, laserL.position.x - 10, laserL.position.y + 22, &(laserL.anim.GetCurrentFrame()));
 	}
 }
 
-void jPlayer::DoubleJump()
+void jPlayer::DoubleJump(float dt)
 {
   	if (CanJump2 && Jump && !IsJumping) {
 		IsJumping2 = true;
@@ -781,7 +781,7 @@ void jPlayer::DoubleJump()
 		CanJump2 = true;
  		CanJump = false;
 		Time = 0;
-		JumpSpeed = 30.0f;
+		JumpSpeed = 30.0f*dt;
 		IsJumping2 = true;
 	}
 	if (IsJumping2) { //if you are able to jump, determine the animation and direction of the jump
@@ -789,27 +789,27 @@ void jPlayer::DoubleJump()
 		if (Time < 2)
 			App->audio->PlayFx(jumpfx);
 		if (Time >= 5) {
-			JumpSpeed -= 2.2f;
+			JumpSpeed -= 2.2f*dt;
 		}
 		if (Time <= JumpTime && WalkRight) {
 			current_animation = &jumpR[NumPlayer];
-			position.y -= JumpSpeed;
+			position.y -= JumpSpeed * dt;
 		}
 		else if (Time <= JumpTime && WalkLeft) {
 			current_animation = &jumpL[NumPlayer];
-			position.y -= JumpSpeed;
+			position.y -= JumpSpeed * dt;
 		}
 		else if (Time <= JumpTime) {
 			if (current_animation == &idle[NumPlayer])
 				current_animation = &jumpR[NumPlayer];
 			if (current_animation == &idle2[NumPlayer])
 				current_animation = &jumpL[NumPlayer];
-			position.y -= JumpSpeed;
+			position.y -= JumpSpeed * dt;
 		}
 		if (Time >= JumpTime) {
 			IsJumping2 = false;
 			CanJump2 = false;
-			JumpSpeed = 30.0f;
+			JumpSpeed = 30.0f*dt;
 			if (current_animation == &jumpR[NumPlayer]) {
 				current_animation = &idle[NumPlayer];
 			}

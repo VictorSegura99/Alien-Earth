@@ -43,6 +43,12 @@
     <ClCompile Include="j1Choose.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="j1PerfTimer.cpp">
+      <Filter>Modules\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Timer.cpp">
+      <Filter>Modules\timer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PugiXml\src\pugixml.hpp">
@@ -105,6 +111,12 @@
     <ClInclude Include="j1Choose.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="j1PerfTimer.h">
+      <Filter>Modules\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Timer.h">
+      <Filter>Modules\timer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Game\config.xml">
@@ -123,6 +135,9 @@
     </Filter>
     <Filter Include="Modules">
       <UniqueIdentifier>{509c4530-4547-46d7-88d5-7ac0cfbdd485}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\timer">
+      <UniqueIdentifier>{f3a04546-ef7a-4c22-a762-f1a269ee05ea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
