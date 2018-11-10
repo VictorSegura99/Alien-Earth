@@ -88,9 +88,7 @@ bool j1App::Awake()
 
 		// TODO 1: Read from config file your framerate cap
 
-		framerate_cap = app_config.attribute("framerate_cap").as_uint();
-		
-
+		capTime = 1000 / app_config.attribute("framerate_cap").as_int();
 
 	}
 
@@ -175,17 +173,15 @@ void j1App::PrepareUpdate()
 	last_sec_frame_count++;
 
 	// TODO 4: Calculate the dt: differential time since last frame
-
 	dt = frame_time.ReadSec();
 	frame_time.Start();
-	ptimer.Start();
-
-	
 }
 
 // ---------------------------------------------
 void j1App::FinishUpdate()
 {
+	frame_count++;
+
 	if(want_to_save == true)
 		SavegameNow();
 
@@ -194,7 +190,7 @@ void j1App::FinishUpdate()
 
 	// Framerate calculations --
 
-	if(last_sec_frame_time.Read() > 1000)
+	if (last_sec_frame_time.Read() > 1000)
 	{
 		last_sec_frame_time.Start();
 		prev_last_sec_frame_count = last_sec_frame_count;
@@ -208,19 +204,17 @@ void j1App::FinishUpdate()
 
 	static char title[256];
 	sprintf_s(title, 256, "Av.FPS: %.2f Last Frame Ms: %02u Last sec frames: %i  Time since startup: %.3f Frame Count: %lu ",
-			  avg_fps, last_frame_ms, frames_on_last_update, seconds_since_startup, frame_count);
+		avg_fps, last_frame_ms, frames_on_last_update, seconds_since_startup, frame_count);
 	App->win->SetTitle(title);
-	double delaytimestart = delay.ReadMs();
+
+
 	// TODO 2: Use SDL_Delay to make sure you get your capped framerate
+	uint32 delay = MAX(0, capTime - last_frame_ms);
+	//LOG("Should wait: %i", delay);
+	j1PerfTimer delayTimer;
+	SDL_Delay(delay);
+
 	
-	SDL_Delay(1000 / framerate_cap - last_frame_ms);
-
-	// TODO3: Measure accurately the amount of time it SDL_Delay actually waits compared to what was expected
-
-	double delaytimefinish = delay.ReadMs();
-
-	LOG("We waited for %i milliseconds and got back in %.6f", framerate_cap - last_frame_ms, delaytimefinish - delaytimestart);
-
 }
 
 // Call modules before each loop iteration

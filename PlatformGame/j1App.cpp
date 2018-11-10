@@ -188,8 +188,6 @@ void j1App::PrepareUpdate()
 	dt = frame_time.ReadSec();
 	frame_time.Start();
 	ptimer.Start();
-
-
 }
 
 // ---------------------------------------------
