@@ -144,6 +144,7 @@ bool jPlayer::PreUpdate() //Here we preload the input functions to determine the
 }
 bool jPlayer::Update(float dt)
 {
+	DT = dt;
 	position.y -= gravity * dt;
 	if (!dashing) {
 		if (NumPlayer == 0)
@@ -244,7 +245,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 	switch (c2->type) {
 	case COLLIDER_GROUND:
 		if (position.y < c2->rect.y + c2->rect.h) {
-			position.y += gravity;
+			position.y += gravity * DT;
 			CanJump = true;
 			CanJump2 = false;
 			Time = 0;
@@ -259,11 +260,11 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		break;
 	case COLLIDER_WALL_LEFT:
 		if (!CanSwim && !CanClimb)
-			position.x += SpeedWalk;
+			position.x += SpeedWalk * DT;
 		if (CanSwim)
-			position.x += SpeedSwimLeftRight;
+			position.x += SpeedSwimLeftRight * DT;
 		if (CanClimb)
-			position.x += SpeedWalk;
+			position.x += SpeedWalk * DT;
 		if (dashing) {
 			dashing = false;
 			current_animation = &GoLeft[NumPlayer];
@@ -271,11 +272,11 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		break;
 	case COLLIDER_WALL_RIGHT:
 		if (!CanSwim && !CanClimb)
-			position.x -= SpeedWalk;
+			position.x -= SpeedWalk * DT;
 		if (CanSwim)
-			position.x += SpeedSwimLeftRight;
+			position.x += SpeedSwimLeftRight * DT;
 		if (CanClimb) 
-			position.x -= SpeedWalk;
+			position.x -= SpeedWalk * DT;
 		if (dashing) {
 			dashing = false;
 			current_animation = &GoRight[NumPlayer];
@@ -284,7 +285,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		break;
 	case COLLIDER_PLATFORM:
 		if (position.y + playerHeight < c2->rect.y) {
-			position.y += gravity;
+			position.y += gravity * DT;
 			CanJump = true;
 			CanJump2 = false;
 			Time = 0;
@@ -301,21 +302,21 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		CanClimb = true;
 		CanJump = true;
 		CanJump2 = false;
-		Time = 50;
-		position.y += gravity;
+		Time = 50 * DT;
+		position.y += gravity * DT;
 		break;
 	case COLLIDER_WATER:
 		App->audio->PlayFx(waterfx);
 		CanSwim = true;
 		CanClimb = false;
-		position.y += gravity;
+		position.y += gravity * DT;
 		break;	
 	case COLLIDER_NONE:
 		CanClimb = false;
 		CanSwim = false;
 		break;
 	case COLLIDER_SPIKES:
-		position.y += gravity;
+		position.y += gravity * DT;
 		WalkLeft = false;
 		WalkRight = false;
 		GoUp = false;
@@ -339,7 +340,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		CanClimb = true;
 		CanJump = true;
 		CanJump2 = false;
-		position.y += gravity;
+		position.y += gravity * DT;
 		break;
 	case COLLIDER_WIN:
 		CanClimb = false;
@@ -461,33 +462,34 @@ void jPlayer::GoJump(float dt)
 		IsJumping = true;
 	}
 	if (IsJumping) { //if you are able to jump, determine the animation and direction of the jump
-		Time += 1;
+		//Time = Time * dt;
+		Time+= 100 * dt;
 		CanJump = false;
-		if (Time < 2)
+		if (Time * dt < 2 * dt)
 			App->audio->PlayFx(jumpfx);
-		if (Time >= 5) {
+		if (Time * dt >= 5 * dt) {
 			JumpSpeed -= 2.2f *dt;
 		}
-		if (Time <= JumpTime && WalkRight) {
+		if (Time * dt <= JumpTime * dt && WalkRight) {
 			current_animation = &jumpR[NumPlayer];
 			position.y -= JumpSpeed * dt;
 		}
-		else if (Time <= JumpTime && WalkLeft) {
+		else if (Time * dt <= JumpTime * dt && WalkLeft) {
 			current_animation = &jumpL[NumPlayer];
 			position.y -= JumpSpeed * dt;
 		}
-		else if (Time <= JumpTime) {
+		else if (Time * dt <= JumpTime * dt) {
 			if (current_animation == &idle[NumPlayer])
 				current_animation = &jumpR[NumPlayer];
 			if (current_animation == &idle2[NumPlayer])
 				current_animation = &jumpL[NumPlayer];
 			position.y -= JumpSpeed * dt;
 		}
-		if (Time >= JumpTime) {
+		if (Time * dt >= JumpTime * dt) {
 			IsJumping = false;
 			CanJump2 = true;
 			CanJump = false;
-			JumpSpeed = 30.0f*dt;
+			//JumpSpeed = 750.0f;
 			Time = 0;
 			if (current_animation == &jumpR[NumPlayer]) {
 				current_animation = &idle[NumPlayer];
@@ -497,7 +499,7 @@ void jPlayer::GoJump(float dt)
 	}
 	if (God && Jump) { //if you are in god mode and jump, you can fly
 					   //App->audio->PlayFx(jumpfx);
-		position.y -= JumpSpeed;
+		position.y -= JumpSpeed * dt;
 	}
 }
 
