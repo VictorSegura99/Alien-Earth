@@ -188,6 +188,7 @@ void j1App::PrepareUpdate()
 	dt = frame_time.ReadSec();
 	frame_time.Start();
 	ptimer.Start();
+	LOG("dt is: %.6f", dt);
 }
 
 // ---------------------------------------------
