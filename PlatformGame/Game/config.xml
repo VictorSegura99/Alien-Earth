@@ -259,11 +259,38 @@
         <frame  x="272" y="196" w="68" h="81"/>
       </Death>
     </AnimationsPlayerBlue>
-    
-
   </player>
 
-
+  <enemies>
+    <sprite>textures/enemies.png</sprite>
+    <AnimationsBat>
+      <GoLeft speed="0.1f" loop="true">
+        <frame x="0" y="0" w="70" h="47"/>
+        <frame x="70" y="0" w="88" h="47"/>
+      </GoLeft>
+      <GoRight speed="0.1f" loop="true">
+        <frame x="0" y="100" w="70" h="47"/>
+        <frame x="70" y="100" w="88" h="47"/>
+      </GoRight>
+      <Idle>
+        <frame x="164" y="0" w="37" h="48"/>
+      </Idle>
+      <HitLeft speed="0.1f" loop="true">
+        <frame x="203" y="0" w="70" h="47"/>
+        <frame x="198" y="53" w="85 " h="47"/>
+      </HitLeft>
+      <DieLeft speed="1.0f" loop="true">
+        <frame x="280" y="0" w="70" h="47"/>
+      </DieLeft>
+      <HitRight speed="0.1f" loop="true">
+        <frame x="203" y="100" w="70" h="47"/>
+        <frame x="198" y="153" w="85 " h="47"/>
+      </HitRight>
+      <DieRight speed="1.0f" loop="true">
+        <frame x="280" y="100" w="70" h="47"/>
+      </DieRight>
+    </AnimationsBat>
+  </enemies>
   
   
 </config>
