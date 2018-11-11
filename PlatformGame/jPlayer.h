@@ -175,6 +175,7 @@ public:
 	Laser laserL;
 
 	BottomHit BottomLeft;
+	BottomHit BottomRight;
 
 	Dash dashR;
 	Dash dashL;

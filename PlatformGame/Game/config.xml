@@ -116,6 +116,9 @@
       <BottomLeft speed="1.0f" loop="true">
         <frame  x="0" y="528" w="67" h="80"/>
       </BottomLeft>
+      <BottomRight speed="1.0f" loop="true">
+        <frame x="85" y="528" w="67" h="80"/>
+      </BottomRight>
       <GoRight speed="0.1f" loop="true">
         <frame  x="0" y="0" w="67" h="86"/>
         <frame x="69" y="0" w="70" h="86"/>

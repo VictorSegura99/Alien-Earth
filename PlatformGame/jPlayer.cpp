@@ -68,6 +68,7 @@ bool jPlayer::Awake(pugi::xml_node& config)
 		Death[numplayer] = LoadPushbacks(numplayer, config, "Death");
 		if (numplayer == 0) {
 			BottomLeft.anim = LoadPushbacks(numplayer, config, "BottomLeft");
+			BottomRight.anim = LoadPushbacks(numplayer, config, "BottomRight");
 		}
 		if (numplayer == 2) {
 			dashR.StartDash = LoadPushbacks(numplayer, config, "StartDashRight");
@@ -835,17 +836,27 @@ void jPlayer::DoubleJump(float dt)
 void jPlayer::BottomFall(float dt)
 {
 	if (Hability && IsJumping2) {
-		BottomLeft.IsFalling = true;
+		if (WalkRight) {
+			BottomRight.IsFalling = true;
+		}
+		else BottomLeft.IsFalling = true;
 		IsJumping2 = false;
 		CanJump2 = false;
 	}
 	if (Hability && Falling) {
-		BottomLeft.IsFalling = true;
+		if (WalkRight) {
+			BottomRight.IsFalling = true;
+		}
+		else BottomLeft.IsFalling = true;
 		IsJumping2 = false;
 	}
 	if (BottomLeft.IsFalling) {
 		current_animation = &BottomLeft.anim;
 		position.y += BottomLeft.speed * dt;
+	}
+	if (BottomRight.IsFalling) {
+		current_animation = &BottomRight.anim;
+		position.y += BottomRight.speed * dt;
 	}
 
 }
