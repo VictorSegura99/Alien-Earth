@@ -40,6 +40,12 @@ bool j1Choose::Awake(pugi::xml_node& config)
 	PlayerNumber1 = config.child("PlayerNumber1").attribute("value").as_int();
 	PlayerNumber2 = config.child("PlayerNumber2").attribute("value").as_int();
 	PlayerNumber3 = config.child("PlayerNumber3").attribute("value").as_int();
+	YellowStand = LoadGigantAliensAnimations(0, config, "Stand");
+	PinkStand = LoadGigantAliensAnimations(1, config, "Stand");
+	BlueStand = LoadGigantAliensAnimations(2, config, "Stand");
+	YellowWalk = LoadGigantAliensAnimations(0, config, "Walk");
+	PinkWalk = LoadGigantAliensAnimations(1, config, "Walk");
+	BlueWalk = LoadGigantAliensAnimations(2, config, "Walk");
 	bool ret = true;
 
 	return ret;
@@ -60,30 +66,15 @@ bool j1Choose::Start()
 	choose2 = App->tex->Load(file_texture[3].GetString());
 	choose3 = App->tex->Load(file_texture[4].GetString());
 
-	//YellowStand.PushBack({ 500,93,65,82 });
-	YellowStand.PushBack({ 26,261,189,236 });
-
-	YellowWalk.PushBack({ 216,261,191,236 });
-	YellowWalk.PushBack({ 411,254,199,243 });
-	YellowWalk.speed = 0.1f;
+	
 
 
 	yellow = App->tex->Load(App->player->sprites_name[0].GetString());
 
-	//PinkStand.PushBack({ 520,101,65,92 });
-	PinkStand.PushBack({ 26,281,169,236 });
-
-	PinkWalk.PushBack({ 199,281,165,236 });
-	PinkWalk.PushBack({ 371,281,171,236 });
-	PinkWalk.speed = 0.1f;
+	
 
 	pink = App->tex->Load(App->player->sprites_name[1].GetString());
 
-	BlueStand.PushBack({0,281,168,236});
-
-	BlueWalk.PushBack({ 193,280,162,236 });
-	BlueWalk.PushBack({ 368,281,163,237 });
-	BlueWalk.speed = 0.1f;
 
 	blue = App->tex->Load(App->player->sprites_name[2].GetString());
 
@@ -194,6 +185,36 @@ bool j1Choose::CleanUp()
 	App->tex->UnLoad(choose3);
 	LOG("Freeing scene");
 	return true;
+}
+
+Animation j1Choose::LoadGigantAliensAnimations(int playernumber, pugi::xml_node& config, p2SString NameAnim) const
+{
+	p2SString XML_Name_Player_Anims;
+	SDL_Rect rect;
+	Animation anim;
+	switch (playernumber) {
+	case 0:
+		XML_Name_Player_Anims = "AnimationsPlayerYellow";
+		break;
+	case 1:
+		XML_Name_Player_Anims = "AnimationsPlayerPink";
+		break;
+	case 2:
+		XML_Name_Player_Anims = "AnimationsPlayerBlue";
+		break;
+	}
+
+	for (pugi::xml_node frames = config.child(XML_Name_Player_Anims.GetString()).child(NameAnim.GetString()).child("frame"); frames; frames = frames.next_sibling("frame")) {
+		rect.x = frames.attribute("x").as_int();
+		rect.y = frames.attribute("y").as_int();
+		rect.w = frames.attribute("w").as_int();
+		rect.h = frames.attribute("h").as_int();
+		anim.PushBack({ rect.x,rect.y,rect.w,rect.h });
+	}
+	anim.speed = config.child(XML_Name_Player_Anims.GetString()).child(NameAnim.GetString()).attribute("speed").as_float();
+	anim.loop = config.child(XML_Name_Player_Anims.GetString()).child(NameAnim.GetString()).attribute("loop").as_bool();
+
+	return anim;
 }
 
 
