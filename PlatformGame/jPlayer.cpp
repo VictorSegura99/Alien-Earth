@@ -260,6 +260,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			CanClimb = false;
 			CanDash = true;
 			BottomLeft.IsFalling = false;
+			BottomRight.IsFalling = false;
 			Falling = false;
 		}
 		break;
@@ -302,6 +303,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			CanDash = true;
 			Falling = false;
 			BottomLeft.IsFalling = false;
+			BottomRight.IsFalling = false;
 			if (!dashing)
 				current_animation = &idle[NumPlayer];
 		}
@@ -594,6 +596,10 @@ void jPlayer::Move_Left_Right(float dt)
 
 	}
 	if (Idle) {
+		if (!BottomLeft.IsFalling && NumPlayer == 0 && current_animation == &BottomLeft.anim)
+			current_animation = &idle2[NumPlayer]; 
+		if (!BottomRight.IsFalling && NumPlayer == 0 && current_animation == &BottomRight.anim)
+			current_animation = &idle[NumPlayer];
 		if (current_animation == &GoRight[NumPlayer])
 			current_animation = &idle[NumPlayer];
 		if (current_animation == &GoLeft[NumPlayer])
@@ -608,8 +614,7 @@ void jPlayer::Move_Left_Right(float dt)
 			dashR.ResetDashAnims();
 			dashL.ResetDashAnims();
 		}
-		if (!BottomLeft.IsFalling && NumPlayer == 0)
-			current_animation = &idle2[NumPlayer];
+		
 		
 	}
 }
@@ -844,7 +849,7 @@ void jPlayer::BottomFall(float dt)
 		CanJump2 = false;
 	}
 	if (Hability && Falling) {
-		if (WalkRight) {
+		if (WalkLeft) {
 			BottomRight.IsFalling = true;
 		}
 		else BottomLeft.IsFalling = true;
