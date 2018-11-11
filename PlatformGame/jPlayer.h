@@ -8,7 +8,7 @@
 struct SDL_Texture;
 struct SDL_Rect;
 
-struct Particle {
+struct Laser {
 	fPoint position;
 	fPoint velocity;
 	Animation anim;
@@ -19,6 +19,12 @@ struct Particle {
 	bool StartShooting = false;
 	bool IsShooting = false;
 
+};
+
+struct BottomHit {
+	Animation anim;
+	float speed = 450.0f;
+	bool IsFalling = false;
 };
 
 struct Dash {
@@ -74,6 +80,7 @@ public:
 	void DoDash(float dt);
 	void ShootLaser(float dt);
 	void DoubleJump(float dt);
+	void BottomFall(float dt);
 
 public:
 	
@@ -117,6 +124,7 @@ public:
 	bool IsJumping = false;
 	bool CanJump = true;
 	bool CanClimb = false;
+	bool Falling = false;
 	bool CanSwim = false;
 	bool death = false;
 	bool fall = false;
@@ -162,8 +170,11 @@ public:
 	uint Time = 0;
 
 	int cont = 0;
-	Particle laserR;
-	Particle laserL;
+
+	Laser laserR;
+	Laser laserL;
+
+	BottomHit BottomLeft;
 
 	Dash dashR;
 	Dash dashL;

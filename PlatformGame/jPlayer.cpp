@@ -66,6 +66,9 @@ bool jPlayer::Awake(pugi::xml_node& config)
 		SwimRight[numplayer] = LoadPushbacks(numplayer, config, "SwimRight");
 		SwimLeft[numplayer] = LoadPushbacks(numplayer, config, "SwimLeft");
 		Death[numplayer] = LoadPushbacks(numplayer, config, "Death");
+		if (numplayer == 0) {
+			BottomLeft.anim = LoadPushbacks(numplayer, config, "BottomLeft");
+		}
 		if (numplayer == 2) {
 			dashR.StartDash = LoadPushbacks(numplayer, config, "StartDashRight");
 			dashR.FinishDash = LoadPushbacks(numplayer, config, "FinishDashRight");
@@ -146,6 +149,7 @@ bool jPlayer::Update(float dt)
 {
 	DT = dt;
 	position.y -= gravity * dt;
+	LOG("Gravity: %.6f", gravity*dt);
 	if (!dashing) {
 		if (NumPlayer == 0)
 			DoubleJump(dt);
@@ -153,7 +157,8 @@ bool jPlayer::Update(float dt)
 		GoSwim(dt);
 		GoClimb(dt);
 		Move_Left_Right(dt);
-		
+		if (NumPlayer == 0)
+			BottomFall(dt);
 		if (NumPlayer == 1) 
 			ShootLaser(dt);
 	}
@@ -253,6 +258,8 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			GoDown = false;
 			CanClimb = false;
 			CanDash = true;
+			BottomLeft.IsFalling = false;
+			Falling = false;
 		}
 		break;
 	case COLLIDER_WALL_UP:
@@ -292,6 +299,8 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			CanSwim = false;
 			IsJumping = false;
 			CanDash = true;
+			Falling = false;
+			BottomLeft.IsFalling = false;
 			if (!dashing)
 				current_animation = &idle[NumPlayer];
 		}
@@ -598,7 +607,8 @@ void jPlayer::Move_Left_Right(float dt)
 			dashR.ResetDashAnims();
 			dashL.ResetDashAnims();
 		}
-			
+		if (!BottomLeft.IsFalling && NumPlayer == 0)
+			current_animation = &idle2[NumPlayer];
 		
 	}
 }
@@ -777,48 +787,66 @@ void jPlayer::DoubleJump(float dt)
 {
   	if (CanJump2 && Jump && !IsJumping) {
 		IsJumping2 = true;
+		Time = 0;
 	}
 	if (Jump && IsJumping && !CanJump2) {
 		IsJumping = false;
 		CanJump2 = true;
  		CanJump = false;
 		Time = 0;
-		JumpSpeed = 30.0f*dt;
+		//JumpSpeed = 30.0f*dt;
 		IsJumping2 = true;
 	}
 	if (IsJumping2) { //if you are able to jump, determine the animation and direction of the jump
-		Time += 1;
-		if (Time < 2)
+		Time += 100 * dt;
+		if (Time * dt < 2 * dt)
 			App->audio->PlayFx(jumpfx);
-		if (Time >= 5) {
+		if (Time * dt >= 5 * dt) {
 			JumpSpeed -= 2.2f*dt;
 		}
-		if (Time <= JumpTime && WalkRight) {
+		if (Time * dt <= JumpTime * dt && WalkRight) {
 			current_animation = &jumpR[NumPlayer];
 			position.y -= JumpSpeed * dt;
 		}
-		else if (Time <= JumpTime && WalkLeft) {
+		else if (Time * dt <= JumpTime * dt && WalkLeft) {
 			current_animation = &jumpL[NumPlayer];
 			position.y -= JumpSpeed * dt;
 		}
-		else if (Time <= JumpTime) {
+		else if (Time * dt <= JumpTime * dt) {
 			if (current_animation == &idle[NumPlayer])
 				current_animation = &jumpR[NumPlayer];
 			if (current_animation == &idle2[NumPlayer])
 				current_animation = &jumpL[NumPlayer];
 			position.y -= JumpSpeed * dt;
 		}
-		if (Time >= JumpTime) {
+		if (Time * dt >= JumpTime * dt) {
 			IsJumping2 = false;
 			CanJump2 = false;
-			JumpSpeed = 30.0f*dt;
+			Falling = true;
+			//JumpSpeed = 30.0f*dt;
 			if (current_animation == &jumpR[NumPlayer]) {
 				current_animation = &idle[NumPlayer];
 			}
 			else current_animation = &idle2[NumPlayer];
 		}
 	}
+}
 
+void jPlayer::BottomFall(float dt)
+{
+	if (Hability && IsJumping2) {
+		BottomLeft.IsFalling = true;
+		IsJumping2 = false;
+		CanJump2 = false;
+	}
+	if (Hability && Falling) {
+		BottomLeft.IsFalling = true;
+		IsJumping2 = false;
+	}
+	if (BottomLeft.IsFalling) {
+		current_animation = &BottomLeft.anim;
+		position.y += BottomLeft.speed * dt;
+	}
 
 }
 

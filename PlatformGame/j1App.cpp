@@ -96,7 +96,7 @@ bool j1App::Awake()
 
 		// TODO 1: Read from config file your framerate cap
 
-		int cap = app_config.attribute("framerate_cap").as_int(-1);
+		int cap = app_config.attribute("framerate_cap").as_int();
 		if (cap > 0)
 		{
 			framerate_cap = 1000 / cap;
@@ -188,6 +188,7 @@ void j1App::PrepareUpdate()
 	dt = frame_time.ReadSec();
 	frame_time.Start();
 	ptimer.Start();
+	LOG("dt is: %.6f", dt);
 }
 
 // ---------------------------------------------

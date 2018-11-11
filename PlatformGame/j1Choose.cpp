@@ -66,16 +66,8 @@ bool j1Choose::Start()
 	choose2 = App->tex->Load(file_texture[3].GetString());
 	choose3 = App->tex->Load(file_texture[4].GetString());
 
-	
-
-
 	yellow = App->tex->Load(App->player->sprites_name[0].GetString());
-
-	
-
 	pink = App->tex->Load(App->player->sprites_name[1].GetString());
-
-
 	blue = App->tex->Load(App->player->sprites_name[2].GetString());
 
 	return true;
