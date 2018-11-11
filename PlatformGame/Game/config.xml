@@ -51,6 +51,36 @@
     <PlayerNumber1 value="0"></PlayerNumber1>
     <PlayerNumber2 value="1"></PlayerNumber2>
     <PlayerNumber3 value="2"></PlayerNumber3>
+    <AnimationsPlayerYellow>
+      <Stand speed="1.0f" loop="true">
+        <frame  x="26" y="261" w="189" h="236"/>
+      </Stand>
+     <Walk speed="0.1f" loop="true">
+        <frame  x="216" y="261" w="191" h="236"/>
+        <frame  x="411" y="254" w="199" h="243"/>
+      </Walk>
+    </AnimationsPlayerYellow>
+    
+    <AnimationsPlayerPink>
+      <Stand speed="1.0f" loop="true">
+        <frame  x="26" y="281" w="169" h="236"/>
+      </Stand>
+     <Walk speed="0.1f" loop="true">
+        <frame  x="199" y="281" w="165" h="236"/>
+        <frame  x="371" y="281" w="171" h="236"/>
+      </Walk>
+    </AnimationsPlayerPink>
+      
+     <AnimationsPlayerBlue>
+      <Stand speed="1.0f" loop="true">
+        <frame  x="0" y="281" w="168" h="236"/>
+      </Stand>
+     <Walk speed="0.1f" loop="true">
+        <frame  x="193" y="280" w="162" h="236"/>
+        <frame  x="368" y="281" w="163" h="237"/>
+      </Walk>
+    </AnimationsPlayerBlue>
+  
   </choose>
   
   <player>

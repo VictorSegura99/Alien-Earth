@@ -35,6 +35,7 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	Animation LoadGigantAliensAnimations(int playernumber, pugi::xml_node&, p2SString NameAnim) const;
 
 public:
 
