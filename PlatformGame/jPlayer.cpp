@@ -841,19 +841,25 @@ void jPlayer::DoubleJump(float dt)
 void jPlayer::BottomFall(float dt)
 {
 	if (Hability && IsJumping2) {
-		if (WalkRight) {
+		if (current_animation == &GoRight[NumPlayer] || current_animation==&idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) {
 			BottomRight.IsFalling = true;
 		}
-		else BottomLeft.IsFalling = true;
+		else if (current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) {
+			BottomLeft.IsFalling = true;
+		}
+
 		IsJumping2 = false;
 		CanJump2 = false;
 	}
 	if (Hability && Falling) {
-		if (WalkRight) {
+		if (current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) {
 			BottomRight.IsFalling = true;
 		}
-		else BottomLeft.IsFalling = true;
+		else if (current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) {
+			BottomLeft.IsFalling = true;
+		}
 		IsJumping2 = false;
+		CanJump2 = false;
 	}
 	if (BottomLeft.IsFalling) {
 		current_animation = &BottomLeft.anim;
