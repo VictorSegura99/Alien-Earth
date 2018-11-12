@@ -674,12 +674,12 @@ void jPlayer::Camera(float dt)
 void jPlayer::DoDash(float dt)
 {
 	if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && Hability && CanDash) {
-		JumpSpeed = 30.0f*dt;
+		//JumpSpeed = 30.0f*dt;
 		dashing = true;
 		dashR.DashRight = true;
 	}
 	if ((current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) && Hability && CanDash) {
-		JumpSpeed = 30.0f*dt;
+		//JumpSpeed = 30.0f*dt;
 		dashing = true;
 		dashL.DashLeft = true;
 	}
