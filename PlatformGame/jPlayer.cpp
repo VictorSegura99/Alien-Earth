@@ -149,7 +149,7 @@ bool jPlayer::PreUpdate() //Here we preload the input functions to determine the
 bool jPlayer::Update(float dt)
 {
 	DT = dt;
-	position.y -= gravity * dt;
+	position.y -= (gravity * dt);
 	LOG("Gravity: %.6f", gravity*dt);
 	if (!dashing) {
 		if (NumPlayer == 0)
@@ -183,9 +183,9 @@ bool jPlayer::Update(float dt)
 	coll->SetPos(position.x, position.y);
 	//App->render->DrawQuad(rect, 150, 150, 150, 255, true, false);
 	if (current_animation == &dashR.FinishDash) {
-		App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame()), 1.0f);
+		App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame(dt)), 1.0f);
 	}
-	else App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame()),1.0f);
+	else App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)),1.0f);
 	
 	return true;
 }
@@ -747,7 +747,7 @@ void jPlayer::ShootLaser(float dt)
 		laserR.position.x = position.x;
 		laserR.position.y = position.y;
 
-		laserR.coll = App->collision->AddCollider(laserR.anim.GetCurrentFrame(), COLLIDER_PARTICLE);
+		laserR.coll = App->collision->AddCollider(laserR.anim.GetCurrentFrame(dt), COLLIDER_PARTICLE);
 	}
 	if (laserR.IsShooting) {
 		if (laserR.life < laserR.time) {
@@ -758,7 +758,7 @@ void jPlayer::ShootLaser(float dt)
 		laserR.life--;
 		laserR.position.x += laserR.velocity.x*dt;
 		laserR.coll->SetPos(laserR.position.x - 10, laserR.position.y + 22);
-		App->render->Blit(texture, laserR.position.x - 10, laserR.position.y + 22, &(laserR.anim.GetCurrentFrame()));
+		App->render->Blit(texture, laserR.position.x - 10, laserR.position.y + 22, &(laserR.anim.GetCurrentFrame(dt)));
 	}
 
 	if ((current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) && (Hability && !laserL.IsShooting)) {
@@ -774,7 +774,7 @@ void jPlayer::ShootLaser(float dt)
 		laserL.position.x = position.x;
 		laserL.position.y = position.y;
 
-		laserL.coll = App->collision->AddCollider(laserL.anim.GetCurrentFrame(), COLLIDER_PARTICLE);
+		laserL.coll = App->collision->AddCollider(laserL.anim.GetCurrentFrame(dt), COLLIDER_PARTICLE);
 	}
 	if (laserL.IsShooting) {
 		if (laserL.life < laserL.time) {
@@ -785,7 +785,7 @@ void jPlayer::ShootLaser(float dt)
 		laserL.life--;
 		laserL.position.x += laserL.velocity.x*dt;
 		laserL.coll->SetPos(laserL.position.x - 10, laserL.position.y + 22);
-		App->render->Blit(texture, laserL.position.x - 10, laserL.position.y + 22, &(laserL.anim.GetCurrentFrame()));
+		App->render->Blit(texture, laserL.position.x - 10, laserL.position.y + 22, &(laserL.anim.GetCurrentFrame(dt)));
 	}
 }
 
