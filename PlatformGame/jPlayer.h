@@ -81,6 +81,10 @@ public:
 	void ShootLaser(float dt);
 	void DoubleJump(float dt);
 	void BottomFall(float dt);
+	float Gravity(float dt) {
+		position.y -= (gravity * dt);
+		return position.y;
+	}
 
 public:
 	
