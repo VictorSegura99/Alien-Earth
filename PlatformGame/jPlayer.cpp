@@ -502,6 +502,7 @@ void jPlayer::GoJump(float dt)
 			IsJumping = false;
 			CanJump2 = true;
 			CanJump = false;
+			Falling = true;
 			//JumpSpeed = 750.0f;
 			Time = 0;
 			if (current_animation == &jumpR[NumPlayer]) {
@@ -510,6 +511,7 @@ void jPlayer::GoJump(float dt)
 			else current_animation = &idle2[NumPlayer];
 		}
 	}
+	
 	if (God && Jump) { //if you are in god mode and jump, you can fly
 					   //App->audio->PlayFx(jumpfx);
 		position.y -= JumpSpeed * dt;
@@ -690,9 +692,9 @@ void jPlayer::DoDash(float dt)
 		if (dashR.StartDash.Finished()) {
 			++dashR.DashCont;
 			current_animation = &dashR.Dashing;
-			position.x += 30 * dt;
+			position.x += 1800 * dt;
 			if (dashR.DashCont >= dashR.DashTime) {
-				position.x -= 20 * dt;
+				position.x -= 1600 * dt;
 				current_animation = &dashR.FinishDash;
 				if (dashR.FinishDash.Finished()) {
 					dashR.DashCont = 0;
@@ -714,9 +716,9 @@ void jPlayer::DoDash(float dt)
 		if (dashL.StartDash.Finished()) {
 			++dashL.DashCont;
 			current_animation = &dashL.Dashing;
-			position.x -= 30 * dt;
+			position.x -= 1800 * dt;
 			if (dashL.DashCont >= dashL.DashTime) {
-				position.x += 20 * dt;
+				position.x += 1500 * dt;
 				current_animation = &dashL.FinishDash;
 				if (dashL.FinishDash.Finished()) {
 					dashL.DashCont = 0;
@@ -794,11 +796,13 @@ void jPlayer::DoubleJump(float dt)
 {
   	if (CanJump2 && Jump && !IsJumping) {
 		IsJumping2 = true;
+		Falling = false;
 		Time = 0;
 	}
 	if (Jump && IsJumping && !CanJump2) {
 		IsJumping = false;
 		CanJump2 = true;
+		Falling = false;
  		CanJump = false;
 		Time = 0;
 		//JumpSpeed = 30.0f*dt;

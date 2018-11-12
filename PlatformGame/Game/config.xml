@@ -104,11 +104,11 @@
     <JumpTime value="20"></JumpTime>
     <JumpSpeed value="1050.0f"></JumpSpeed>
     <SpeedWalk value="350.0f"></SpeedWalk>
-    <SpeedSwimLeftRight value="4.0f"></SpeedSwimLeftRight>
+    <SpeedSwimLeftRight value="450.0f"></SpeedSwimLeftRight>
     <playerHeight value="78"></playerHeight>
-    <SpeedClimb value="4.0f"></SpeedClimb>
-    <SpeedSwimUp value="7.0f"></SpeedSwimUp>
-    <SpeedSwimDown value="3.0f"></SpeedSwimDown>
+    <SpeedClimb value="300.0f"></SpeedClimb>
+    <SpeedSwimUp value="450.0f"></SpeedSwimUp>
+    <SpeedSwimDown value="350.0f"></SpeedSwimDown>
     <playerwidth value="65"></playerwidth>
     <playerheight value="87"></playerheight>
     
@@ -119,7 +119,7 @@
       <BottomRight speed="1.0f" loop="true">
         <frame x="85" y="528" w="67" h="80"/>
       </BottomRight>
-      <GoRight speed="0.1f" loop="true">
+      <GoRight speed="5.0f" loop="true">
         <frame  x="0" y="0" w="67" h="86"/>
         <frame x="69" y="0" w="70" h="86"/>
       </GoRight>
@@ -129,7 +129,7 @@
       <idle2 speed="1.0f" loop="true">
         <frame  x="353" y="0" w="66" h="86"/>
       </idle2>
-      <GoLeft speed="0.1f" loop="true">
+      <GoLeft speed="5.0f" loop="true">
         <frame  x="285" y="0" w="67" h="86"/>
         <frame  x="212" y="0" w="70" h="87"/>
       </GoLeft>
@@ -139,22 +139,22 @@
       <jumpL speed="1.0f" loop="true">
         <frame  x="420" y="86" w="67" h="86"/>
       </jumpL>
-      <Climb speed="0.1f" loop="true">
+      <Climb speed="5.0f" loop="true">
         <frame  x="488" y="0" w="65" h="86"/>
         <frame  x="556" y="0" w="65" h="86"/>
       </Climb>
       <ClimbIdle speed="1.0f" loop="true">
         <frame  x="488" y="0" w="65" h="86"/>
       </ClimbIdle>
-      <SwimRight speed="0.1f" loop="true">
+      <SwimRight speed="5.0f" loop="true">
         <frame  x="621" y="0" w="70" h="86"/>
         <frame  x="617" y="88" w="70" h="86"/>
       </SwimRight>
-      <SwimLeft speed="0.1f" loop="true">
+      <SwimLeft speed="5.0f" loop="true">
         <frame  x="617" y="176" w="70" h="86"/>
         <frame  x="617" y="263" w="70" h="86"/>
       </SwimLeft>
-      <Death speed="0.2f" loop="false">
+      <Death speed="7.0f" loop="false">
         <frame  x="0" y="94" w="68" h="81"/>
         <frame  x="73" y="94" w="68" h="81"/>
         <frame  x="142" y="94" w="68" h="81"/>
@@ -170,7 +170,7 @@
     </AnimationsPlayerYellow>
    
     <AnimationsPlayerPink>
-      <GoRight speed="0.1f" loop="true">
+      <GoRight speed="5.0f" loop="true">
         <frame  x="0" y="0" w="67" h="93"/>
         <frame x="69" y="0" w="70" h="95"/>
       </GoRight>
@@ -180,7 +180,7 @@
       <idle2 speed="1.0f" loop="true">
         <frame  x="354" y="0" w="65" h="92"/>
       </idle2>
-      <GoLeft speed="0.1f" loop="true">
+      <GoLeft speed="5.0f" loop="true">
         <frame  x="285" y="0" w="67" h="93"/>
         <frame x="212" y="0" w="70" h="98"/>
       </GoLeft>
@@ -193,19 +193,19 @@
       <ClimbIdle speed="1.0f" loop="true">
         <frame  x="488" y="0" w="65" h="92"/>
       </ClimbIdle>
-      <Climb speed="0.1f" loop="true">
+      <Climb speed="5.0f" loop="true">
         <frame  x="488" y="0" w="65" h="92"/>
         <frame x="556" y="0" w="65" h="92"/>
       </Climb>
-      <SwimRight speed="0.1f" loop="true">
+      <SwimRight speed="5.0f" loop="true">
         <frame  x="622" y="0" w="69" h="95"/>
         <frame x="622" y="96" w="70" h="96"/>
       </SwimRight>
-      <SwimLeft speed="0.1f" loop="true">
+      <SwimLeft speed="5.0f" loop="true">
         <frame  x="622" y="193" w="69" h="95"/>
         <frame x="622" y="289" w="70" h="96"/>
       </SwimLeft>
-      <Death speed="0.2f" loop="false">
+      <Death speed="7.0f" loop="false">
         <frame  x="0" y="105" w="68" h="92"/>
         <frame x="69" y="105" w="68" h="92"/>
         <frame  x="138" y="105" w="68" h="92"/>
@@ -220,16 +220,16 @@
     </AnimationsPlayerPink>
     
     <AnimationsPlayerBlue>
-      <GoRight speed="0.1f" loop="true">
+      <GoRight speed="5.0f" loop="true">
         <frame  x="0" y="0" w="67" h="93"/>
         <frame x="69" y="0" w="70" h="95"/>
       </GoRight>
-      <StartDashRight speed="0.5f" loop="false">
+      <StartDashRight speed="10.0f" loop="false">
         <frame  x="0" y="532" w="67" h="97"/>
         <frame  x="0" y="658" w="84" h="92"/>
         <frame  x="85" y="658" w="84" h="92"/>
       </StartDashRight>
-      <FinishDashRight speed="0.2f" loop="false">
+      <FinishDashRight speed="7.0f" loop="false">
         <frame  x="564" y="532" w="115" h="92"/>
         <frame  x="564" y="625" w="130" h="92"/>
         <frame  x="430" y="625" w="130" h="92"/>
@@ -238,12 +238,12 @@
       <DashingRight speed="1.0f" loop="true">
         <frame  x="85" y="658" w="84" h="92"/>
       </DashingRight>
-      <StartDashLeft speed="0.5f" loop="false">
+      <StartDashLeft speed="25.0f" loop="false">
         <frame  x="84" y="806" w="67" h="92"/>
         <frame  x="84" y="806" w="67" h="92"/>
         <frame  x="0" y="806" w="83" h="92"/>
       </StartDashLeft>
-      <FinishDashLeft speed="0.2f" loop="false">
+      <FinishDashLeft speed="20.0f" loop="false">
         <frame  x="564" y="771" w="107" h="92"/>
         <frame  x="564" y="844" w="130" h="92"/>
         <frame  x="430" y="725" w="130" h="92"/>
@@ -257,7 +257,7 @@
       <idle2 speed="1.0f" loop="true">
         <frame  x="354" y="0" w="65" h="92"/>
       </idle2>
-      <GoLeft speed="0.1f" loop="true">
+      <GoLeft speed="5.0f" loop="true">
         <frame  x="285" y="0" w="67" h="93"/>
         <frame x="212" y="0" w="70" h="98"/>
       </GoLeft>
@@ -270,19 +270,19 @@
       <ClimbIdle speed="1.0f" loop="true">
         <frame  x="488" y="0" w="65" h="92"/>
       </ClimbIdle>
-      <Climb speed="0.1f" loop="true">
+      <Climb speed="5.0f" loop="true">
         <frame  x="488" y="0" w="65" h="92"/>
         <frame x="556" y="0" w="65" h="92"/>
       </Climb>
-      <SwimRight speed="0.1f" loop="true">
+      <SwimRight speed="5.0f" loop="true">
         <frame  x="622" y="0" w="69" h="95"/>
         <frame x="622" y="96" w="70" h="96"/>
       </SwimRight>
-      <SwimLeft speed="0.1f" loop="true">
+      <SwimLeft speed="5.0f" loop="true">
         <frame  x="622" y="193" w="69" h="95"/>
         <frame x="622" y="289" w="70" h="96"/>
       </SwimLeft>
-      <Death speed="0.2f" loop="false">
+      <Death speed="7.0f" loop="false">
         <frame  x="0" y="105" w="68" h="92"/>
         <frame x="69" y="105" w="68" h="92"/>
         <frame  x="138" y="105" w="68" h="92"/>
