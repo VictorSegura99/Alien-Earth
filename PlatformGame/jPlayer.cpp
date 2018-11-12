@@ -95,7 +95,7 @@ bool jPlayer::Start()
 		position.x = initialXmap2;
 		position.y = initialYmap2;
 	}*/
-
+	auxGravity = gravity;
 	jumpfx = App->audio->LoadFx(JumpFx.GetString());
 	waterfx = App->audio->LoadFx(WaterFx.GetString());
 	deathfx = App->audio->LoadFx(DeathFx.GetString());
@@ -148,9 +148,9 @@ bool jPlayer::PreUpdate() //Here we preload the input functions to determine the
 }
 bool jPlayer::Update(float dt)
 {
-	DT = dt;
+	//DT = dt;
 	Gravity(dt);
-	LOG("Gravity: %.6f", gravity*dt);
+	LOG("Gravity: %.6f", gravity);
 	if (!dashing) {
 		if (NumPlayer == 0)
 			DoubleJump(dt);
@@ -251,7 +251,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 	switch (c2->type) {
 	case COLLIDER_GROUND:
 		if (position.y < c2->rect.y + c2->rect.h) {
-			position.y += gravity * DT;
+			position.y += gravity;
 			CanJump = true;
 			CanJump2 = false;
 			Time = 0;
@@ -294,7 +294,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		break;
 	case COLLIDER_PLATFORM:
 		if (position.y + playerHeight < c2->rect.y) {
-			position.y += gravity * DT;
+			position.y += gravity;
 			CanJump = true;
 			CanJump2 = false;
 			Time = 0;
@@ -315,20 +315,20 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		CanJump = true;
 		CanJump2 = false;
 		Time = 50 * DT;
-		position.y += gravity * DT;
+		position.y += gravity;
 		break;
 	case COLLIDER_WATER:
 		App->audio->PlayFx(waterfx);
 		CanSwim = true;
 		CanClimb = false;
-		position.y += gravity * DT;
+		position.y += gravity;
 		break;	
 	case COLLIDER_NONE:
 		CanClimb = false;
 		CanSwim = false;
 		break;
 	case COLLIDER_SPIKES:
-		position.y += gravity * DT;
+		position.y += gravity;
 		WalkLeft = false;
 		WalkRight = false;
 		GoUp = false;
@@ -352,7 +352,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		CanClimb = true;
 		CanJump = true;
 		CanJump2 = false;
-		position.y += gravity * DT;
+		position.y += gravity;
 		break;
 	case COLLIDER_WIN:
 		CanClimb = false;
@@ -681,7 +681,7 @@ void jPlayer::DoDash(float dt)
 		dashL.DashLeft = true;
 	}
 	if (dashing && dashR.DashRight) {
-		position.y += gravity * dt;
+		position.y += gravity;
 		if (dashR.StartDash.current_frame == 0) {
 			//	position.x -= 60;
 			current_animation = &dashR.StartDash;
@@ -705,7 +705,7 @@ void jPlayer::DoDash(float dt)
 		}
 	}
 	if (dashing && dashL.DashLeft) {
-		position.y += gravity * dt;
+		position.y += gravity;
 		if (dashL.StartDash.current_frame == 0) {
 			//	position.x -= 60;
 			current_animation = &dashL.StartDash;
@@ -870,6 +870,13 @@ void jPlayer::BottomFall(float dt)
 		position.y += BottomRight.speed * dt;
 	}
 
+}
+
+void jPlayer::Gravity(float dt)
+{
+	gravity = auxGravity;
+	gravity = gravity * dt;
+	position.y -= gravity;
 }
 
 void Dash::ResetDashAnims()

@@ -81,13 +81,13 @@ public:
 	void ShootLaser(float dt);
 	void DoubleJump(float dt);
 	void BottomFall(float dt);
-	float Gravity(float dt) {
-		position.y -= (gravity * dt);
-		return position.y;
-	}
+	void Gravity(float dt);
 
 public:
+
+	float auxGravity;
 	
+
 	Animation* current_animation = nullptr;
 	Animation idle[3];
 	Animation idle2[3];
