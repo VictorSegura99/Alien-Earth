@@ -849,7 +849,7 @@ void jPlayer::BottomFall(float dt)
 		CanJump2 = false;
 	}
 	if (Hability && Falling) {
-		if (WalkLeft) {
+		if (WalkRight) {
 			BottomRight.IsFalling = true;
 		}
 		else BottomLeft.IsFalling = true;
