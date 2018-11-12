@@ -148,7 +148,7 @@ bool jPlayer::PreUpdate() //Here we preload the input functions to determine the
 }
 bool jPlayer::Update(float dt)
 {
-	//DT = dt;
+	DT = dt;
 	Gravity(dt);
 	LOG("Gravity: %.6f", gravity);
 	if (!dashing) {
@@ -278,6 +278,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			dashing = false;
 			current_animation = &GoLeft[NumPlayer];
 		}
+
 		break;
 	case COLLIDER_WALL_RIGHT:
 		if (!CanSwim && !CanClimb)
