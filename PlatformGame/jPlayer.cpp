@@ -149,7 +149,8 @@ bool jPlayer::PreUpdate() //Here we preload the input functions to determine the
 bool jPlayer::Update(float dt)
 {
 	DT = dt;
-	Gravity(dt);
+	position.y -=gravity;
+	//Gravity(dt);
 	LOG("Gravity: %.6f", gravity);
 	if (!dashing) {
 		if (NumPlayer == 0)

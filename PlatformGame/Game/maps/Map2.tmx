@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="160" height="21" tilewidth="70" tileheight="70" infinite="0" nextlayerid="8" nextobjectid="154">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="160" height="21" tilewidth="70" tileheight="70" infinite="0" nextobjectid="157">
  <tileset firstgid="1" name="tiles_spritesheet" tilewidth="70" tileheight="70" spacing="2" tilecount="522" columns="18">
   <image source="tiles_spritesheet.png" width="1294" height="2086"/>
   <terraintypes>
@@ -10,7 +10,7 @@
   <tile id="375" terrain="0,0,0,0"/>
   <tile id="393" terrain="0,0,0,0"/>
  </tileset>
- <layer id="1" name="Capa de patrones 4" width="160" height="21" offsetx="-0.130435" offsety="-280.005">
+ <layer name="Capa de patrones 4" width="160" height="21" offsetx="-0.130435" offsety="-280.005">
   <properties>
    <property name="speed" type="float" value="1"/>
   </properties>
@@ -3377,7 +3377,7 @@
    <tile gid="238"/>
   </data>
  </layer>
- <layer id="2" name="Paralax" width="160" height="21">
+ <layer name="Paralax" width="160" height="21">
   <properties>
    <property name="speed" type="float" value="0.2"/>
   </properties>
@@ -6744,7 +6744,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="3" name="Capa de Patrones 1" width="160" height="21">
+ <layer name="Capa de Patrones 1" width="160" height="21">
   <properties>
    <property name="speed" type="float" value="1"/>
   </properties>
@@ -10111,7 +10111,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="4" name="Capa de patrones 2" width="160" height="21">
+ <layer name="Capa de patrones 2" width="160" height="21">
   <properties>
    <property name="speed" type="float" value="1"/>
   </properties>
@@ -13478,7 +13478,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="5" name="Capa de patrones 3" width="160" height="21" opacity="0.6">
+ <layer name="Capa de patrones 3" width="160" height="21" opacity="0.6">
   <properties>
    <property name="speed" type="float" value="1"/>
   </properties>
@@ -16845,7 +16845,7 @@
    <tile/>
   </data>
  </layer>
- <objectgroup id="6" name="Collider">
+ <objectgroup name="Collider">
   <object id="2" x="-3.66667" y="420.333" width="843" height="66.6667">
    <properties>
     <property name="Type" type="int" value="2"/>
@@ -16936,12 +16936,12 @@
     <property name="Type" type="int" value="11"/>
    </properties>
   </object>
-  <object id="25" x="4759.83" y="0.3333" width="69.3333" height="126">
+  <object id="25" x="4759.83" y="-311.333" width="69.3333" height="437.667">
    <properties>
     <property name="Type" type="int" value="13"/>
    </properties>
   </object>
-  <object id="26" x="5052.5" y="0.000333333" width="56.5" height="825.499">
+  <object id="26" x="5052.5" y="-356" width="56.5" height="1181.5">
    <properties>
     <property name="Type" type="int" value="1"/>
    </properties>
@@ -17208,7 +17208,7 @@
   </object>
   <object id="117" x="5937.5" y="1061" width="11.6663" height="129.334">
    <properties>
-    <property name="Type" type="int" value="7"/>
+    <property name="Type" type="int" value="1"/>
    </properties>
   </object>
   <object id="118" x="6160.17" y="1060" width="11.6663" height="129.334">
@@ -17321,8 +17321,23 @@
     <property name="Type" type="int" value="2"/>
    </properties>
   </object>
+  <object id="154" x="11189.5" y="-1.46212" width="69.5" height="560.5">
+   <properties>
+    <property name="Type" type="int" value="13"/>
+   </properties>
+  </object>
+  <object id="155" x="10080.3" y="787.75" width="6.5" height="19.5">
+   <properties>
+    <property name="Type" type="int" value="13"/>
+   </properties>
+  </object>
+  <object id="156" x="10081.1" y="280.068" width="67.72" height="10.8641">
+   <properties>
+    <property name="Type" type="int" value="2"/>
+   </properties>
+  </object>
  </objectgroup>
- <objectgroup id="7" name="Player">
+ <objectgroup name="Player">
   <properties>
    <property name="speed" type="float" value="1"/>
   </properties>

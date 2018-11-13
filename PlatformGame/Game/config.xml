@@ -98,7 +98,7 @@
     <maxYcam value="740"></maxYcam>
     <minYcam value="450"></minYcam>
     <lowcam value="-290"></lowcam>
-    <gravity value="-500.0f"></gravity>
+    <gravity value="-7.8f"></gravity>
     <startpointcameramap2 value="-60"></startpointcameramap2>
     <positionWinMap1 value="10780"></positionWinMap1>
     <JumpTime value="20"></JumpTime>
