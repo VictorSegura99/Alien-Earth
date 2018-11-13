@@ -83,7 +83,7 @@ bool j1Choose::PreUpdate()
 {
 
 	App->input->GetMousePosition(mouse.x, mouse.y);
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && !GameOn) {
 		start = true;
 		App->audio->PlayFx(introfx);
 	}
