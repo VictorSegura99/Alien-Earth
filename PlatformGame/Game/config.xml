@@ -227,12 +227,12 @@
         <frame  x="0" y="0" w="67" h="93"/>
         <frame x="69" y="0" w="70" h="95"/>
       </GoRight>
-      <StartDashRight speed="10.0f" loop="false">
+      <StartDashRight speed="15.0f" loop="false">
         <frame  x="0" y="532" w="67" h="97"/>
         <frame  x="0" y="658" w="84" h="92"/>
         <frame  x="85" y="658" w="84" h="92"/>
       </StartDashRight>
-      <FinishDashRight speed="7.0f" loop="false">
+      <FinishDashRight speed="10.0f" loop="false">
         <frame  x="564" y="532" w="115" h="92"/>
         <frame  x="564" y="625" w="130" h="92"/>
         <frame  x="430" y="625" w="130" h="92"/>
@@ -241,12 +241,12 @@
       <DashingRight speed="1.0f" loop="true">
         <frame  x="85" y="658" w="84" h="92"/>
       </DashingRight>
-      <StartDashLeft speed="25.0f" loop="false">
+      <StartDashLeft speed="15.0f" loop="false">
         <frame  x="84" y="806" w="67" h="92"/>
         <frame  x="84" y="806" w="67" h="92"/>
         <frame  x="0" y="806" w="83" h="92"/>
       </StartDashLeft>
-      <FinishDashLeft speed="20.0f" loop="false">
+      <FinishDashLeft speed="10.0f" loop="false">
         <frame  x="564" y="771" w="107" h="92"/>
         <frame  x="564" y="844" w="130" h="92"/>
         <frame  x="430" y="725" w="130" h="92"/>

@@ -110,15 +110,15 @@ bool jPlayer::Start()
 	laserR.anim.PushBack({ 34,554,83,27 });
 	laserR.anim.PushBack({ 124,554,83,27 });
 	laserR.anim.speed = 0.2f;
-	laserR.velocity.x = 18.0f;
-	laserR.timelife = 50;
+	laserR.velocity.x = 650.0f;
+	laserR.timelife = 75;
 	laserR.life = laserR.timelife;
 
 	laserL.anim.PushBack({ 34,582,83,27 });
 	laserL.anim.PushBack({ 124,582,83,27 });
 	laserL.anim.speed = 0.2f;
-	laserL.velocity.x = -18.0f;
-	laserL.timelife = 50;
+	laserL.velocity.x = -650.0f;
+	laserL.timelife = 75;
 	laserL.life = laserL.timelife;
 	
 	
@@ -768,7 +768,7 @@ void jPlayer::DoDash(float dt)
 			current_animation = &dashL.Dashing;
 			position.x -= 1800 * dt;
 			if (dashL.DashCont >= dashL.DashTime) {
-				position.x += 1500 * dt;
+				position.x += 1600 * dt;
 				current_animation = &dashL.FinishDash;
 				if (dashL.FinishDash.Finished()) {
 					dashL.DashCont = 0;
