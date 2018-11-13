@@ -52,6 +52,7 @@ public:
 	Animation BlueWalk;
 
 	p2SString ChooseFx;
+	p2SString IntroFx;
 
 	bool start = false;
 	SDL_Texture * ScreenStart = nullptr;
@@ -79,6 +80,7 @@ public:
 	bool repeat3 = false;
 
 	unsigned int choosefx;
+	unsigned int introfx;
 };
 
 #endif //

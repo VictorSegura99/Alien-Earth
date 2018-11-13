@@ -41,6 +41,7 @@ bool j1Choose::Awake(pugi::xml_node& config)
 	PlayerNumber2 = config.child("PlayerNumber2").attribute("value").as_int();
 	PlayerNumber3 = config.child("PlayerNumber3").attribute("value").as_int();
 	ChooseFx= config.child("ChooseFx").text().as_string();
+	IntroFx = config.child("IntroFx").text().as_string();
 	YellowStand = LoadGigantAliensAnimations(0, config, "Stand");
 	PinkStand = LoadGigantAliensAnimations(1, config, "Stand");
 	BlueStand = LoadGigantAliensAnimations(2, config, "Stand");
@@ -72,6 +73,7 @@ bool j1Choose::Start()
 	blue = App->tex->Load(App->player->sprites_name[2].GetString());
 
 	choosefx = App->audio->LoadFx(ChooseFx.GetString());
+	introfx = App->audio->LoadFx(IntroFx.GetString());
 
 	return true;
 }
@@ -83,6 +85,7 @@ bool j1Choose::PreUpdate()
 	App->input->GetMousePosition(mouse.x, mouse.y);
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
 		start = true;
+		App->audio->PlayFx(introfx);
 	}
 	return true;
 }
@@ -97,8 +100,6 @@ bool j1Choose::Update(float dt)
 				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
 				App->render->Blit(yellow, 150, 350, &(YellowWalk.GetCurrentFrame(dt)));
 				App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
-				repeat2 = false;
-				repeat3 = false;
 				if (!repeat) {
 					App->audio->PlayFx(choosefx);
 					repeat = true;
@@ -121,11 +122,9 @@ bool j1Choose::Update(float dt)
 				App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
 				App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
 				App->render->Blit(pink, 418, 350, &(PinkWalk.GetCurrentFrame(dt)));
-				repeat = false;
-				repeat3 = false;
-				if (!repeat2) {
+				if (!repeat) {
 					App->audio->PlayFx(choosefx);
-					repeat2 = true;
+					repeat = true;
 				}
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 					playernumber = PlayerNumber2;
@@ -144,11 +143,9 @@ bool j1Choose::Update(float dt)
 				App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
 				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
 				App->render->Blit(blue, 665, 350, &(BlueWalk.GetCurrentFrame(dt)));
-				repeat = false;
-				repeat2 = false;
-				if (!repeat3) {
+				if (!repeat) {
 					App->audio->PlayFx(choosefx);
-					repeat3 = true;
+					repeat = true;
 				}
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 					playernumber = PlayerNumber3;
@@ -168,8 +165,6 @@ bool j1Choose::Update(float dt)
 				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
 				App->render->Blit(blue, 665,350, &(BlueStand.GetCurrentFrame(dt)));
 				repeat = false;
-				repeat2 = false;
-				repeat3 = false;
 			}
 		}
 	}

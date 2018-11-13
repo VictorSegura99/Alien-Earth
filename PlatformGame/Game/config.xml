@@ -41,6 +41,7 @@
     <Choose2>textures/Choose2.png</Choose2>
     <Choose3>textures/Choose3.png</Choose3>
     <ChooseFx>audio/fx/Menu.wav</ChooseFx>
+    <IntroFx>audio/fx/Intro.wav</IntroFx>
     <MinY_ChooseRect value="228"></MinY_ChooseRect>
     <MaxY_ChooseRect value="671"></MaxY_ChooseRect>
     <MinX_RectChoosePlayer1 value="138"></MinX_RectChoosePlayer1>
