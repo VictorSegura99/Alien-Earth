@@ -165,13 +165,13 @@ bool jPlayer::Update(float dt)
 		GoSwim(dt);
 		GoClimb(dt);
 		Move_Left_Right(dt);
-		if (NumPlayer == 0)
-			BottomFall(dt);
 		if (NumPlayer == 1) 
 			ShootLaser(dt);
 	}
 	if (NumPlayer == 2)
 		DoDash(dt);
+	if (NumPlayer == 0)
+		BottomFall(dt);
 	Camera(dt);
 	
 	if (death && !God) {
@@ -273,6 +273,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			BottomLeft.IsFalling = false;
 			BottomRight.IsFalling = false;
 			Falling = false;
+			FallingJump2 = false;
 			cameraon = true;
 			CanDoAnotherJump = true;
 			if(current_animation==&jumpR[NumPlayer])
@@ -332,6 +333,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			CanDoAnotherJump = true;
 			CanJump = true;
 			CanClimb = false;
+			FallingJump2 = false;
 			CanJump2 = false;
 			GoDown = false;
 			CanSwim = false;
@@ -597,55 +599,58 @@ void jPlayer::GoClimb(float dt)
 
 void jPlayer::Move_Left_Right(float dt)
 {
-	if (WalkRight) { //This determine the movement to the right, depending on the state of the player
-		if (!IsJumping && !CanSwim && !CanClimb) {
-			dashR.ResetDashAnims();
-			dashL.ResetDashAnims();
-			position.x += SpeedWalk * dt;
-			current_animation = &GoRight[NumPlayer];
+	if (!BottomLeft.IsFalling && !BottomRight.IsFalling) {
+		if (WalkRight) { //This determine the movement to the right, depending on the state of the player
+			if (!IsJumping && !CanSwim && !CanClimb) {
+				dashR.ResetDashAnims();
+				dashL.ResetDashAnims();
+				position.x += SpeedWalk * dt;
+				current_animation = &GoRight[NumPlayer];
+			}
+			if (IsJumping) {
+				position.x += SpeedWalk * dt;
+			}
+			if (CanSwim && !CanClimb) { //Can Climb determine if you are in a climb collider, if you are, it's true
+				position.x += SpeedSwimLeftRight * dt;
+				current_animation = &SwimRight[NumPlayer];
+			}
+			if (CanClimb)
+				position.x += SpeedWalk * dt;
+			if (Falling)
+				current_animation = &jumpR[NumPlayer];
 		}
-		if (IsJumping) {
-			position.x += SpeedWalk * dt;
+		if (WalkLeft) { //This determine the movement to the left, depending on the state of the player
+			if (!IsJumping && !CanSwim && !CanClimb) {
+				dashR.ResetDashAnims();
+				dashL.ResetDashAnims();
+				position.x -= SpeedWalk * dt;
+				current_animation = &GoLeft[NumPlayer];
+			}
+			if (IsJumping) {
+				position.x -= SpeedWalk * dt;
+			}
+			if (CanSwim && !CanClimb) {
+				position.x -= SpeedSwimLeftRight * dt;
+				current_animation = &SwimLeft[NumPlayer];
+			}
+			if (CanClimb)
+				position.x -= SpeedWalk * dt;
+			if (Falling)
+				current_animation = &jumpL[NumPlayer];
 		}
-		if (CanSwim && !CanClimb) { //Can Climb determine if you are in a climb collider, if you are, it's true
-			position.x += SpeedSwimLeftRight * dt;
-			current_animation = &SwimRight[NumPlayer];
+		if (WalkRight && WalkLeft) {
+			if (!CanSwim)
+				current_animation = &idle[NumPlayer];
+			if (CanSwim)
+				current_animation = &SwimRight[NumPlayer];
+			if (CanClimb) {
+				current_animation = &Climb[NumPlayer];
+			}
+			if (Falling)
+				current_animation = &jumpR[NumPlayer];
 		}
-		if (CanClimb)
-			position.x += SpeedWalk * dt;
-		if (Falling)
-			current_animation = &jumpR[NumPlayer];
 	}
-	if (WalkLeft) { //This determine the movement to the left, depending on the state of the player
-		if (!IsJumping && !CanSwim && !CanClimb) {
-			dashR.ResetDashAnims();
-			dashL.ResetDashAnims();
-			position.x -= SpeedWalk * dt;
-			current_animation = &GoLeft[NumPlayer];
-		}
-		if (IsJumping) {
-			position.x -= SpeedWalk * dt;
-		}
-		if (CanSwim && !CanClimb) {
-			position.x -= SpeedSwimLeftRight * dt;
-			current_animation = &SwimLeft[NumPlayer];
-		}
-		if (CanClimb)
-			position.x -= SpeedWalk * dt;
-		if (Falling)
-			current_animation = &jumpL[NumPlayer];
-	}
-	if (WalkRight && WalkLeft) {
-		if (!CanSwim)
-			current_animation = &idle[NumPlayer];
-		if (CanSwim)
-			current_animation = &SwimRight[NumPlayer];
-		if (CanClimb) {
-			current_animation = &Climb[NumPlayer];
-		}
-		if (Falling)
-			current_animation = &jumpR[NumPlayer];
-	}
+	
 	if (Idle) {
 		if (!BottomLeft.IsFalling && NumPlayer == 0 && current_animation == &BottomLeft.anim)
 			current_animation = &idle2[NumPlayer]; 
@@ -914,6 +919,7 @@ void jPlayer::DoubleJump(float dt)
 			position.y -= JumpSpeed * dt;
 		}
 		if (Time * dt >= JumpTime * dt) {
+			FallingJump2 = true;
 			AnimDoubleJump = false;
 			IsJumping2 = false;
 			CanJump2 = false;
@@ -928,16 +934,18 @@ void jPlayer::BottomFall(float dt)
 {
 	if (Hability && IsJumping2) {
 		if (current_animation == &GoRight[NumPlayer] || current_animation==&idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) {
+			AnimDoubleJump = false;
 			BottomRight.IsFalling = true;
 		}
 		else if (current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) {
+			AnimDoubleJump = false;
 			BottomLeft.IsFalling = true;
 		}
 
 		IsJumping2 = false;
 		CanJump2 = false;
 	}
-	if (Hability && Falling) {
+	if (Hability && FallingJump2) {
 		if (current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) {
 			BottomRight.IsFalling = true;
 		}
