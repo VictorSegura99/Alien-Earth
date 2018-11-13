@@ -23,7 +23,7 @@ struct Laser {
 
 struct BottomHit {
 	Animation anim;
-	float speed = 450.0f;
+	float speed = 0.0f;
 	bool IsFalling = false;
 };
 

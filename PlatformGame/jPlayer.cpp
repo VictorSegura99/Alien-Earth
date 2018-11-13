@@ -58,8 +58,10 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	playerheight = config.child("playerheight").attribute("value").as_int();
 	laserR.velocity.x = config.child("laservelocityR").attribute("value").as_float();
 	laserL.velocity.x = config.child("laservelocityL").attribute("value").as_float();
-	laserL.timelife =config.child("lasertimelife").attribute("value").as_int();
+	laserL.timelife = config.child("lasertimelife").attribute("value").as_int();
 	laserR.timelife = config.child("lasertimelife").attribute("value").as_int();
+	BottomLeft.speed = config.child("BottomSpeed").attribute("value").as_float();
+	BottomRight.speed = config.child("BottomSpeed").attribute("value").as_float();
 
 	for (int numplayer = 0; numplayer < 3; ++numplayer) {
 		idle[numplayer] = LoadPushbacks(numplayer, config, "idle");
