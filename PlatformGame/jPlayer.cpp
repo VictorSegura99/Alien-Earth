@@ -266,6 +266,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			BottomRight.IsFalling = false;
 			Falling = false;
 			cameraon = true;
+			CanDoAnotherJump = true;
 			if(current_animation==&jumpR[NumPlayer])
 				current_animation = &idle[NumPlayer];
 			if (current_animation == &jumpL[NumPlayer])
@@ -313,6 +314,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 	case COLLIDER_PLATFORM:
 		if (position.y + playerHeight < c2->rect.y) {
 			position.y += gravity;
+			CanDoAnotherJump = true;
 			CanJump = true;
 			CanJump2 = false;
 			Time = 0;
@@ -834,13 +836,13 @@ void jPlayer::ShootLaser(float dt)
 
 void jPlayer::DoubleJump(float dt)
 {
-  	if (CanJump2 && Jump && !IsJumping) {
+  	if (CanJump2 && Jump && !IsJumping && CanDoAnotherJump) {
 		IsJumping2 = true;
 		Falling = false;
 		Jump2Complete = true;
 		Time = 0;
 	}
-	if (Jump && IsJumping && !CanJump2) {
+	if (Jump && IsJumping && !CanJump2 && CanDoAnotherJump) {
 		IsJumping = false;
 		CanJump2 = true;
 		Falling = false;
@@ -851,6 +853,7 @@ void jPlayer::DoubleJump(float dt)
 		IsJumping2 = true;
 	}
 	if (IsJumping2) { //if you are able to jump, determine the animation and direction of the jump
+		CanDoAnotherJump = false;
 		Time += 100 * dt;
 		if (Time * dt < 2 * dt)
 			App->audio->PlayFx(jumpfx);
