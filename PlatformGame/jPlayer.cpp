@@ -374,12 +374,11 @@ void jPlayer::Die()//What happens when the player die
 	if (Death[NumPlayer].Finished()) {
 		if (App->scene->KnowMap == 0) {
 			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-			Spawn();
 		}
 		if (App->scene->KnowMap == 1) {
 			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-			Spawn();
 		}
+		Spawn();
 	}
 }
 
@@ -387,12 +386,11 @@ void jPlayer::Fall()//What happens when the player falls
 {
 	if (App->scene->KnowMap == 0) {
 		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-		Spawn();
 	}
 	if (App->scene->KnowMap == 1) {
 		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-		Spawn();
 	}	
+	Spawn();
 }
 
 void jPlayer::Spawn()
