@@ -69,6 +69,7 @@ bool jPlayer::Awake(pugi::xml_node& config)
 		if (numplayer == 0) {
 			BottomLeft.anim = LoadPushbacks(numplayer, config, "BottomLeft");
 			BottomRight.anim = LoadPushbacks(numplayer, config, "BottomRight");
+			doubleJump = LoadPushbacks(numplayer, config, "doubleJump");
 		}
 		if (numplayer == 2) {
 			dashR.StartDash = LoadPushbacks(numplayer, config, "StartDashRight");
@@ -186,10 +187,10 @@ bool jPlayer::Update(float dt)
 	if (App->collision->debug)
 		App->render->DrawQuad(CamRect, 150, 150, 150);
 	if (current_animation == &dashR.FinishDash) {
-		App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame(dt)), 1.0f);
+		App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame(dt)));
 	}
-	else App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)),1.0f);
-	
+	else App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
+
 	return true;
 }
 
@@ -837,12 +838,14 @@ void jPlayer::ShootLaser(float dt)
 void jPlayer::DoubleJump(float dt)
 {
   	if (CanJump2 && Jump && !IsJumping && CanDoAnotherJump) {
+		AnimDoubleJump = true;
 		IsJumping2 = true;
 		Falling = false;
 		Jump2Complete = true;
 		Time = 0;
 	}
 	if (Jump && IsJumping && !CanJump2 && CanDoAnotherJump) {
+		AnimDoubleJump = true;
 		IsJumping = false;
 		CanJump2 = true;
 		Falling = false;
@@ -852,11 +855,18 @@ void jPlayer::DoubleJump(float dt)
 		//JumpSpeed = 30.0f*dt;
 		IsJumping2 = true;
 	}
+	if (AnimDoubleJump) {
+		if (current_animation == &jumpL[NumPlayer] || current_animation == &GoLeft[NumPlayer])
+			App->render->Blit(texture, position.x + 13, position.y + playerHeight, &(doubleJump.GetCurrentFrame(dt)));
+		if (current_animation == &jumpR[NumPlayer] || current_animation == &GoRight[NumPlayer])
+			App->render->Blit(texture, position.x + 13, position.y + playerHeight, &(doubleJump.GetCurrentFrame(dt)), SDL_FLIP_HORIZONTAL);
+	}
 	if (IsJumping2) { //if you are able to jump, determine the animation and direction of the jump
 		CanDoAnotherJump = false;
 		Time += 100 * dt;
-		if (Time * dt < 2 * dt)
+		if (Time * dt < 2 * dt) {
 			App->audio->PlayFx(jumpfx);
+		}
 		if (Time * dt >= 5 * dt) {
 			JumpSpeed -= 2.2f*dt;
 		}
@@ -876,6 +886,7 @@ void jPlayer::DoubleJump(float dt)
 			position.y -= JumpSpeed * dt;
 		}
 		if (Time * dt >= JumpTime * dt) {
+			AnimDoubleJump = false;
 			IsJumping2 = false;
 			CanJump2 = false;
 			Falling = true;

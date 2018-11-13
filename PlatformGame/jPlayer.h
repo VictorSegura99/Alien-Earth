@@ -101,6 +101,7 @@ public:
 	Animation Climb[3];
 	Animation ClimbIdle[3];
 	Animation Death[3];
+	Animation doubleJump;
 	
 
 	SDL_Texture* texture; 
@@ -119,6 +120,7 @@ public:
 	iPoint initialmap1;
 	iPoint initialmap2;
 
+	bool AnimDoubleJump = false;
 	bool WalkLeft = false;
 	bool WalkRight = false;
 	bool GoUp = false;

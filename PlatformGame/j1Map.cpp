@@ -40,7 +40,7 @@ void j1Map::Draw()
 					uint gid = layer->data->Get(i, j);
 					iPoint pos = MapToWorld(i, j);
 					SDL_Rect rect = tileset->data->GetTileRect(gid);
-					App->render->Blit(tileset->data->texture, pos.x, pos.y, &rect,layer->data->ParallaxSpeed);
+					App->render->Blit(tileset->data->texture, pos.x, pos.y, &rect, SDL_FLIP_NONE, layer->data->ParallaxSpeed);
 				}
 			}
 		}

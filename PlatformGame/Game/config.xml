@@ -113,6 +113,9 @@
     <playerheight value="87"></playerheight>
     
     <AnimationsPlayerYellow>
+      <doubleJump speed="1.0f" loop="true">
+        <frame  x="430" y="180" w="45" h="12"/>
+      </doubleJump>
       <BottomLeft speed="1.0f" loop="true">
         <frame  x="0" y="528" w="67" h="80"/>
       </BottomLeft>
