@@ -258,7 +258,6 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			position.y += gravity;
 			CanJump = true;
 			CanJump2 = false;
-			Time = 0;
 			CanSwim = false;
 			GoDown = false;
 			CanClimb = false;
@@ -275,6 +274,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		}
 		break;
 	case COLLIDER_WALL_UP:
+	
 		if (CanClimb)
 			position.y += SpeedClimb * DT;
 		else {
@@ -287,6 +287,12 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		GoUp = false;
 		break;
 	case COLLIDER_WALL_LEFT:
+
+		CanJump = false;
+		CanJump2 = false;
+		CanSwim = false;
+		CanClimb = false;
+		CanDoAnotherJump = false;
 		if (!CanSwim && !CanClimb)
 			position.x += SpeedWalk * DT;
 		if (CanSwim)
@@ -317,10 +323,10 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			position.y += gravity;
 			CanDoAnotherJump = true;
 			CanJump = true;
+			CanClimb = false;
 			CanJump2 = false;
-			Time = 0;
+			GoDown = false;
 			CanSwim = false;
-			IsJumping = false;
 			CanDash = true;
 			Falling = false;
 			BottomLeft.IsFalling = false;
@@ -340,11 +346,9 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		CanDoAnotherJump = false;
 		Falling = false;
 		AnimDoubleJump = false;
-		Time = 0;
 		CanClimb = true;
 		CanJump = true;
 		CanJump2 = false;
-		Time = 50 * DT;
 		position.y += gravity;
 		if (current_animation == &jumpR[NumPlayer] || current_animation == &jumpL[NumPlayer])
 			current_animation = &ClimbIdle[NumPlayer];
@@ -502,6 +506,8 @@ void jPlayer::GoJump(float dt)
 {
 	if (Jump && CanJump && !CanSwim && !God && !IsJumping) { //If you clicked the jump button and you are able to jump(always except you just jumpt) you can jump
 		IsJumping = true;
+		Time = 0;
+		JumpSpeed = 1050.0f;
 	}
 	if (IsJumping) { //if you are able to jump, determine the animation and direction of the jump
 		//Time = Time * dt;
@@ -850,6 +856,7 @@ void jPlayer::DoubleJump(float dt)
 		Falling = false;
 		Jump2Complete = true;
 		Time = 0;
+		JumpSpeed = 1050.0f;
 	}
 	if (Jump && IsJumping && !CanJump2 && CanDoAnotherJump) {
 		AnimDoubleJump = true;
@@ -951,6 +958,13 @@ void jPlayer::SetCamera()
 	CamRect.y = 480;
 	CamRect.w = 300;
 	CamRect.h = playerHeight + playerHeight;
+}
+
+void jPlayer::ResetJumpValues()
+{
+	Time = 0;
+
+
 }
 
 void Dash::ResetDashAnims()

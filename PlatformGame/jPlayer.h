@@ -83,6 +83,7 @@ public:
 	void BottomFall(float dt);
 	void Gravity(float dt);
 	void SetCamera();
+	void ResetJumpValues();
 
 public:
 	bool cameraon = false;
