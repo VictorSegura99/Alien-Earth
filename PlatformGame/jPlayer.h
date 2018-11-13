@@ -115,6 +115,7 @@ public:
 	p2SString DeathFx2;
 	p2SString LadderFx;
 	p2SString LaserFx;
+	p2SString DashFx;
 
 	Collider* coll = nullptr;
 
@@ -180,6 +181,7 @@ public:
 	unsigned int deathfx2;
 	unsigned int ladderfx;
 	unsigned int laserfx;
+	unsigned int dashfx;
 	uint Time = 0;
 
 	int cont = 0;
