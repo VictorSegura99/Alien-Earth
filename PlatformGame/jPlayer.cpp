@@ -260,10 +260,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 	switch (c2->type) {
 	case COLLIDER_GROUND:
 		if (position.y < c2->rect.y + c2->rect.h) {
-			if (!CanSwim && !CanClimb)
-				position.y += gravity;
-			if (CanSwim)
-				//position.y -= SpeedSwimDown;
+			position.y += gravity;
 			CanJump = true;
 			CanJump2 = false;
 			CanSwim = false;
@@ -295,8 +292,10 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		GoUp = false;
 		break;
 	case COLLIDER_WALL_LEFT:
+
 		CanJump = false;
 		CanJump2 = false;
+		CanSwim = false;
 		CanClimb = false;
 		CanDoAnotherJump = false;
 		if (!CanSwim && !CanClimb)
@@ -309,16 +308,13 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			dashing = false;
 			current_animation = &GoLeft[NumPlayer];
 		}
+
 		break;
 	case COLLIDER_WALL_RIGHT:
-		CanJump = false;
-		CanJump2 = false;
-		CanClimb = false;
-		CanDoAnotherJump = false;
 		if (!CanSwim && !CanClimb)
 			position.x -= SpeedWalk * DT;
-		if (CanSwim) 
-			position.x -= SpeedSwimLeftRight * DT;
+		if (CanSwim)
+			position.x += SpeedSwimLeftRight * DT;
 		if (CanClimb) 
 			position.x -= SpeedWalk * DT;
 		if (dashing) {
@@ -608,7 +604,7 @@ void jPlayer::Move_Left_Right(float dt)
 		if (IsJumping) {
 			position.x += SpeedWalk * dt;
 		}
-		if (CanSwim) { //Can Climb determine if you are in a climb collider, if you are, it's true
+		if (CanSwim && !CanClimb) { //Can Climb determine if you are in a climb collider, if you are, it's true
 			position.x += SpeedSwimLeftRight * dt;
 			current_animation = &SwimRight[NumPlayer];
 		}
@@ -627,7 +623,7 @@ void jPlayer::Move_Left_Right(float dt)
 		if (IsJumping) {
 			position.x -= SpeedWalk * dt;
 		}
-		if (CanSwim) {
+		if (CanSwim && !CanClimb) {
 			position.x -= SpeedSwimLeftRight * dt;
 			current_animation = &SwimLeft[NumPlayer];
 		}
@@ -753,11 +749,11 @@ void jPlayer::DoDash(float dt)
 		if (dashR.StartDash.current_frame == 0) {
 			//	position.x -= 60;
 			current_animation = &dashR.StartDash;
+			App->audio->PlayFx(dashfx);
 		}
 		if (dashR.StartDash.Finished()) {
 			++dashR.DashCont;
 			current_animation = &dashR.Dashing;
-			App->audio->PlayFx(dashfx);
 			position.x += 1800 * dt;
 			if (dashR.DashCont >= dashR.DashTime) {
 				position.x -= 1600 * dt;
@@ -778,11 +774,12 @@ void jPlayer::DoDash(float dt)
 		if (dashL.StartDash.current_frame == 0) {
 			//	position.x -= 60;
 			current_animation = &dashL.StartDash;
+			App->audio->PlayFx(dashfx);
 		}
 		if (dashL.StartDash.Finished()) {
 			++dashL.DashCont;
 			current_animation = &dashL.Dashing;
-			App->audio->PlayFx(dashfx);
+			
 			position.x -= 1800 * dt;
 			if (dashL.DashCont >= dashL.DashTime) {
 				position.x += 1600 * dt;
