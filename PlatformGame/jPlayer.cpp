@@ -501,8 +501,8 @@ void jPlayer::GoJump(float dt)
 		CanJump = false;
 		if (Time * dt < 2 * dt)
 			App->audio->PlayFx(jumpfx);
-		if (Time * dt >= 5 * dt) {
-			JumpSpeed -= 2.2f *dt;
+		if (Time * dt >= 3 * dt) {
+			JumpSpeed -= 2150.0f *dt;
 		}
 		if (Time * dt <= JumpTime * dt && WalkRight) {
 			current_animation = &jumpR[NumPlayer];
@@ -524,7 +524,7 @@ void jPlayer::GoJump(float dt)
 			CanJump2 = true;
 			CanJump = false;
 			Falling = true;
-			//JumpSpeed = 750.0f;
+			JumpSpeed = 1050.0f;
 			Time = 0;
 			if (current_animation == &jumpR[NumPlayer]) {
 				current_animation = &idle[NumPlayer];
@@ -647,7 +647,6 @@ void jPlayer::Move_Left_Right(float dt)
 			current_animation = &jumpR[NumPlayer];
 		if (Falling&&current_animation == &idle2[NumPlayer])
 			current_animation = &jumpL[NumPlayer];
-		
 	}
 }
 
@@ -802,7 +801,7 @@ void jPlayer::ShootLaser(float dt)
 			laserR.coll->to_delete = true;
 		}
 		laserR.life--;
-		laserR.position.x += laserR.velocity.x*dt;
+		laserR.position.x += laserR.velocity.x * dt;
 		laserR.coll->SetPos(laserR.position.x - 10, laserR.position.y + 22);
 		App->render->Blit(texture, laserR.position.x - 10, laserR.position.y + 22, &(laserR.anim.GetCurrentFrame(dt)));
 	}
@@ -829,7 +828,7 @@ void jPlayer::ShootLaser(float dt)
 			laserL.coll->to_delete = true;
 		}
 		laserL.life--;
-		laserL.position.x += laserL.velocity.x*dt;
+		laserL.position.x += laserL.velocity.x * dt;
 		laserL.coll->SetPos(laserL.position.x - 10, laserL.position.y + 22);
 		App->render->Blit(texture, laserL.position.x - 10, laserL.position.y + 22, &(laserL.anim.GetCurrentFrame(dt)));
 	}
@@ -852,7 +851,7 @@ void jPlayer::DoubleJump(float dt)
  		CanJump = false;
 		Jump2Complete = true;
 		Time = 0;
-		//JumpSpeed = 30.0f*dt;
+		JumpSpeed = 1050.0f;
 		IsJumping2 = true;
 	}
 	if (AnimDoubleJump) {
@@ -868,7 +867,7 @@ void jPlayer::DoubleJump(float dt)
 			App->audio->PlayFx(jumpfx);
 		}
 		if (Time * dt >= 5 * dt) {
-			JumpSpeed -= 2.2f*dt;
+			JumpSpeed -= 2150.0f*dt;
 		}
 		if (Time * dt <= JumpTime * dt && WalkRight) {
 			current_animation = &jumpR[NumPlayer];
@@ -890,7 +889,7 @@ void jPlayer::DoubleJump(float dt)
 			IsJumping2 = false;
 			CanJump2 = false;
 			Falling = true;
-			//JumpSpeed = 30.0f*dt;
+			JumpSpeed = 1050.0f;
 			Jump2Complete = false;
 		}
 	}
