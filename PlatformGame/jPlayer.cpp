@@ -396,7 +396,6 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		App->collision->active = false;
 		App->map->active = false;
 		App->choose->start = false;
-		App->scene->KnowMap = 0;
 		App->render->camera.x = 0;
 		App->render->camera.y = 0;
 		App->choose->GameOn = false;
