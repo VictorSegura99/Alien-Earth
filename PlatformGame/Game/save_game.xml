@@ -13,9 +13,9 @@
 	<choose />
 	<:anonymous />
 	<player>
-		<position x="1553" y="514.999329" />
+		<position x="775.250427" y="544.822449" />
 	</player>
 	<renderer>
-		<camera x="-1053" y="-76" />
+		<camera x="-525" y="-354" />
 	</renderer>
 </game_state>

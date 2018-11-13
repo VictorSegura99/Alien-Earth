@@ -269,6 +269,15 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		}
 		break;
 	case COLLIDER_WALL_UP:
+		if (CanClimb)
+			position.y += SpeedClimb * DT;
+		else {
+			position.y += JumpSpeed * DT;
+			IsJumping = false;
+			if (Jump2Complete)
+				IsJumping2 = false;
+		}
+		Jump2Complete = false;
 		GoUp = false;
 		break;
 	case COLLIDER_WALL_LEFT:
@@ -632,7 +641,7 @@ void jPlayer::Camera(float dt)
 	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {//knowmap it's a varibable that let us know in which map we are. //Knowmap=0, level 1 //knowmap=2, level 2
 		NextMap = true;
 	}
-	/*if (position.x <= startmap2 && App->scene->KnowMap == 1) { //If player is in a position where the camera would print out of the map, camera stops
+	if (position.x <= startmap2 && App->scene->KnowMap == 1) { //If player is in a position where the camera would print out of the map, camera stops
 		App->render->camera.x = startpointcameramap2;
 
 	}
@@ -650,27 +659,31 @@ void jPlayer::Camera(float dt)
 	}
 	else {
 		App->render->camera.y = -position.y + (App->render->camera.h / 2);
-	}*/
+	}
 
-	if (CamRect.x + CamRect.w <= position.x + playerwidth) { //WHEN THE PLAYER MOVES RIGHT
+	/*if (CamRect.x + CamRect.w <= position.x + playerwidth) { //WHEN THE PLAYER MOVES RIGHT
 		CamRect.x += (SpeedWalk + 1000*dt) * dt;
+		App->render->camera.x -= (SpeedWalk + 2000 * dt) * dt;
 		//App->render->camera.x = -position.x + (App->render->camera.w / 2);
 	}
 	if (CamRect.x >= position.x) { //WHEN THE PLAYER MOVES LEFT
 		CamRect.x -= (SpeedWalk + 1000 * dt) * dt;
+		App->render->camera.x += (SpeedWalk + 1000 * dt) * dt;
 		//App->render->camera.x = -position.x + (App->render->camera.w / 2);
 	}
 	if (position.y <= CamRect.y && cameraon) { //WHEN THE PLAYER GOES UP
 		CamRect.y -= (JumpSpeed + 1000 * dt) * dt;
 		//App->render->camera.y += 100 * dt;
+		App->render->camera.y += (SpeedWalk + 1000 * dt) * dt;
 	}
 	if (position.y + playerHeight >= CamRect.y + CamRect.h) { //WHEN THE PLAYER GOES DOWN
 		//App->render->camera.y = -position.y + (App->render->camera.h / 2);
 		if (CanClimb)
 			CamRect.y += SpeedClimb * dt;
 		else CamRect.y -= gravity;
+		App->render->camera.y += (gravity);
 		
-	}
+	}*/
 	if (-App->render->camera.x >= position.x) //PLAYER CAN NOT GO BACK
 		position.x += SpeedWalk * dt;
 
@@ -812,6 +825,7 @@ void jPlayer::DoubleJump(float dt)
   	if (CanJump2 && Jump && !IsJumping) {
 		IsJumping2 = true;
 		Falling = false;
+		Jump2Complete = true;
 		Time = 0;
 	}
 	if (Jump && IsJumping && !CanJump2) {
@@ -819,6 +833,7 @@ void jPlayer::DoubleJump(float dt)
 		CanJump2 = true;
 		Falling = false;
  		CanJump = false;
+		Jump2Complete = true;
 		Time = 0;
 		//JumpSpeed = 30.0f*dt;
 		IsJumping2 = true;
@@ -854,6 +869,7 @@ void jPlayer::DoubleJump(float dt)
 				current_animation = &idle[NumPlayer];
 			}
 			else current_animation = &idle2[NumPlayer];
+			Jump2Complete = false;
 		}
 	}
 }

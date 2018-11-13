@@ -142,6 +142,7 @@ public:
 	bool CanDash = false;
 	bool CanJump2 = false;
 	bool IsJumping2 = false;
+	bool Jump2Complete = false;
 
 	float gravity = 0.0f;
 	float JumpSpeed = 0.0f;
