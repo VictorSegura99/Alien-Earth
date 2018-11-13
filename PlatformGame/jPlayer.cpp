@@ -35,6 +35,7 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	DeathFx2 = config.child("DeathFx2").text().as_string();
 	LadderFx = config.child("LadderFx").text().as_string();
 	LaserFx = config.child("LaserFx").text().as_string();
+	DashFx = config.child("DashFx").text().as_string();
 	finalmapplayer = config.child("finalmapplayer").attribute("value").as_int();
 	finalmap = config.child("finalmap").attribute("value").as_int();
 	startmap2 = config.child("startmap2").attribute("value").as_int();
@@ -105,6 +106,7 @@ bool jPlayer::Start()
 	deathfx2 = App->audio->LoadFx(DeathFx2.GetString());
 	ladderfx = App->audio->LoadFx(LadderFx.GetString());
 	laserfx = App->audio->LoadFx(LaserFx.GetString());
+	dashfx = App->audio->LoadFx(DashFx.GetString());
 
 	position.x = initialmap1.x;
 	position.y = initialmap1.y;
@@ -751,6 +753,7 @@ void jPlayer::DoDash(float dt)
 		if (dashR.StartDash.Finished()) {
 			++dashR.DashCont;
 			current_animation = &dashR.Dashing;
+			App->audio->PlayFx(dashfx);
 			position.x += 1800 * dt;
 			if (dashR.DashCont >= dashR.DashTime) {
 				position.x -= 1600 * dt;
@@ -775,6 +778,7 @@ void jPlayer::DoDash(float dt)
 		if (dashL.StartDash.Finished()) {
 			++dashL.DashCont;
 			current_animation = &dashL.Dashing;
+			App->audio->PlayFx(dashfx);
 			position.x -= 1800 * dt;
 			if (dashL.DashCont >= dashL.DashTime) {
 				position.x += 1600 * dt;
