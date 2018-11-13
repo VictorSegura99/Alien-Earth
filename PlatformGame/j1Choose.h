@@ -74,6 +74,7 @@ public:
 	int PlayerNumber2 = 0;
 	int PlayerNumber3 = 0;
 	bool GameOn = false;
+	bool repeat = false;
 
 	unsigned int choosefx;
 };
