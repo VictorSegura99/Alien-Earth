@@ -56,6 +56,10 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	AuxJumpSpeed = config.child("AuxJumpSpeed").attribute("value").as_float();
 	playerwidth = config.child("playerwidth").attribute("value").as_int();
 	playerheight = config.child("playerheight").attribute("value").as_int();
+	laserR.velocity.x = config.child("laservelocityR").attribute("value").as_float();
+	laserL.velocity.x = config.child("laservelocityL").attribute("value").as_float();
+	laserL.timelife=config.child("timelife").attribute("value").as_int();
+	laserR.timelife = config.child("timelife").attribute("value").as_int();
 
 	for (int numplayer = 0; numplayer < 3; ++numplayer) {
 		idle[numplayer] = LoadPushbacks(numplayer, config, "idle");
@@ -73,6 +77,10 @@ bool jPlayer::Awake(pugi::xml_node& config)
 			BottomLeft.anim = LoadPushbacks(numplayer, config, "BottomLeft");
 			BottomRight.anim = LoadPushbacks(numplayer, config, "BottomRight");
 			doubleJump = LoadPushbacks(numplayer, config, "doubleJump");
+		}
+		if (numplayer == 1) {
+			laserR.anim = LoadPushbacks(numplayer, config, "LaserRight");
+			laserL.anim = LoadPushbacks(numplayer, config, "LaserLeft");
 		}
 		if (numplayer == 2) {
 			dashR.StartDash = LoadPushbacks(numplayer, config, "StartDashRight");
@@ -111,23 +119,9 @@ bool jPlayer::Start()
 	position.x = initialmap1.x;
 	position.y = initialmap1.y;
 	
-
-	laserR.anim.PushBack({ 34,554,83,27 });
-	laserR.anim.PushBack({ 124,554,83,27 });
-	laserR.anim.speed = 0.2f;
-	laserR.velocity.x = 650.0f;
-	laserR.timelife = 75;
 	laserR.life = laserR.timelife;
-
-	laserL.anim.PushBack({ 34,582,83,27 });
-	laserL.anim.PushBack({ 124,582,83,27 });
-	laserL.anim.speed = 0.2f;
-	laserL.velocity.x = -650.0f;
-	laserL.timelife = 75;
 	laserL.life = laserL.timelife;
-	
-	
-	
+
 	return ret;
 }
 bool jPlayer::PreUpdate() //Here we preload the input functions to determine the state of the player
