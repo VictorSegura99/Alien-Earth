@@ -34,6 +34,7 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	DeathFx = config.child("DeathFx").text().as_string();
 	DeathFx2 = config.child("DeathFx2").text().as_string();
 	LadderFx = config.child("LadderFx").text().as_string();
+	LaserFx = config.child("LaserFx").text().as_string();
 	finalmapplayer = config.child("finalmapplayer").attribute("value").as_int();
 	finalmap = config.child("finalmap").attribute("value").as_int();
 	startmap2 = config.child("startmap2").attribute("value").as_int();
@@ -801,6 +802,7 @@ void jPlayer::ShootLaser(float dt)
 		laserR.position.y = position.y;
 
 		laserR.coll = App->collision->AddCollider(laserR.anim.GetCurrentFrame(dt), COLLIDER_PARTICLE);
+		App->audio->PlayFx(laserfx);
 	}
 	if (laserR.IsShooting) {
 		if (laserR.life < laserR.time) {

@@ -92,6 +92,7 @@
     <DeathFx>audio/fx/deathfx.wav</DeathFx> 
     <DeathFx2>audio/fx/deathfx2.wav</DeathFx2>
     <LadderFx>audio/fx/Ladder.wav</LadderFx>
+    <LaserFx>audio/fx/Laser.wav</LaserFx>
     <finalmapplayer value="10700"></finalmapplayer>
     <finalmap value="-10200"></finalmap>
     <startmap2 value="560"></startmap2>
@@ -241,12 +242,12 @@
       <DashingRight speed="1.0f" loop="true">
         <frame  x="85" y="658" w="84" h="92"/>
       </DashingRight>
-      <StartDashLeft speed="15.0f" loop="false">
+      <StartDashLeft speed="30.0f" loop="false">
         <frame  x="84" y="806" w="67" h="92"/>
         <frame  x="84" y="806" w="67" h="92"/>
         <frame  x="0" y="806" w="83" h="92"/>
       </StartDashLeft>
-      <FinishDashLeft speed="10.0f" loop="false">
+      <FinishDashLeft speed="20.0f" loop="false">
         <frame  x="564" y="771" w="107" h="92"/>
         <frame  x="564" y="844" w="130" h="92"/>
         <frame  x="430" y="725" w="130" h="92"/>
