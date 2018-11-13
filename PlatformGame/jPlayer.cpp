@@ -260,7 +260,6 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 	switch (c2->type) {
 	case COLLIDER_GROUND:
 		if (position.y < c2->rect.y + c2->rect.h) {
-			position.y += gravity;
 			if (!CanSwim && !CanClimb)
 				position.y += gravity;
 			if (CanSwim)
@@ -739,11 +738,13 @@ void jPlayer::Camera(float dt)
 void jPlayer::DoDash(float dt)
 {
 	if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && Hability && CanDash) {
+		App->audio->PlayFx(dashfx);
 		JumpSpeed = AuxJumpSpeed;
 		dashing = true;
 		dashR.DashRight = true;
 	}
 	if ((current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) && Hability && CanDash) {
+		App->audio->PlayFx(dashfx);
 		JumpSpeed = AuxJumpSpeed;
 		dashing = true;
 		dashL.DashLeft = true;
@@ -753,7 +754,6 @@ void jPlayer::DoDash(float dt)
 		if (dashR.StartDash.current_frame == 0) {
 			//	position.x -= 60;
 			current_animation = &dashR.StartDash;
-			App->audio->PlayFx(dashfx);
 		}
 		if (dashR.StartDash.Finished()) {
 			++dashR.DashCont;
@@ -778,7 +778,6 @@ void jPlayer::DoDash(float dt)
 		if (dashL.StartDash.current_frame == 0) {
 			//	position.x -= 60;
 			current_animation = &dashL.StartDash;
-			App->audio->PlayFx(dashfx);
 		}
 		if (dashL.StartDash.Finished()) {
 			++dashL.DashCont;
