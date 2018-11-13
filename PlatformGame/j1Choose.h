@@ -51,6 +51,8 @@ public:
 	Animation BlueStand;
 	Animation BlueWalk;
 
+	p2SString ChooseFx;
+
 	bool start = false;
 	SDL_Texture * ScreenStart = nullptr;
 	SDL_Texture * NoChoose = nullptr;
@@ -72,6 +74,8 @@ public:
 	int PlayerNumber2 = 0;
 	int PlayerNumber3 = 0;
 	bool GameOn = false;
+
+	unsigned int choosefx;
 };
 
 #endif //

@@ -40,6 +40,7 @@ bool j1Choose::Awake(pugi::xml_node& config)
 	PlayerNumber1 = config.child("PlayerNumber1").attribute("value").as_int();
 	PlayerNumber2 = config.child("PlayerNumber2").attribute("value").as_int();
 	PlayerNumber3 = config.child("PlayerNumber3").attribute("value").as_int();
+	ChooseFx= config.child("ChooseFx").text().as_string();
 	YellowStand = LoadGigantAliensAnimations(0, config, "Stand");
 	PinkStand = LoadGigantAliensAnimations(1, config, "Stand");
 	BlueStand = LoadGigantAliensAnimations(2, config, "Stand");
@@ -70,6 +71,8 @@ bool j1Choose::Start()
 	pink = App->tex->Load(App->player->sprites_name[1].GetString());
 	blue = App->tex->Load(App->player->sprites_name[2].GetString());
 
+	choosefx = App->audio->LoadFx(ChooseFx.GetString());
+
 	return true;
 }
 
@@ -94,6 +97,7 @@ bool j1Choose::Update(float dt)
 				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
 				App->render->Blit(yellow, 150, 350, &(YellowWalk.GetCurrentFrame(dt)));
 				App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
+				App->audio->PlayFx(choosefx);
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 					playernumber = PlayerNumber1;
 					App->scene->active = !App->scene->active;
@@ -110,6 +114,7 @@ bool j1Choose::Update(float dt)
 				App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
 				App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
 				App->render->Blit(pink, 418, 350, &(PinkWalk.GetCurrentFrame(dt)));
+				App->audio->PlayFx(choosefx,1);
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 					playernumber = PlayerNumber2;
 					App->scene->active = !App->scene->active;
@@ -126,6 +131,7 @@ bool j1Choose::Update(float dt)
 				App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
 				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
 				App->render->Blit(blue, 665, 350, &(BlueWalk.GetCurrentFrame(dt)));
+				App->audio->PlayFx(choosefx);
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 					playernumber = PlayerNumber3;
 					App->scene->active = !App->scene->active;
