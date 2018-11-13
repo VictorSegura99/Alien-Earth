@@ -183,6 +183,8 @@ bool jPlayer::Update(float dt)
 	
 	coll->SetPos(position.x, position.y);
 	//App->render->DrawQuad(rect, 150, 150, 150, 255, true, false);
+	if (App->collision->debug)
+		App->render->DrawQuad(CamRect, 150, 150, 150);
 	if (current_animation == &dashR.FinishDash) {
 		App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame(dt)), 1.0f);
 	}
@@ -263,6 +265,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			BottomLeft.IsFalling = false;
 			BottomRight.IsFalling = false;
 			Falling = false;
+			cameraon = true;
 		}
 		break;
 	case COLLIDER_WALL_UP:
@@ -307,7 +310,10 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			BottomLeft.IsFalling = false;
 			BottomRight.IsFalling = false;
 			if (!dashing)
-				current_animation = &idle[NumPlayer];
+				if (current_animation == &GoRight[NumPlayer] || current_animation == &jumpR[NumPlayer])
+					current_animation = &idle[NumPlayer];
+				else if (current_animation == &GoLeft[NumPlayer] || current_animation == &jumpL[NumPlayer])
+					current_animation = &idle2[NumPlayer];
 		}
 		
 		break;
@@ -626,7 +632,7 @@ void jPlayer::Camera(float dt)
 	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {//knowmap it's a varibable that let us know in which map we are. //Knowmap=0, level 1 //knowmap=2, level 2
 		NextMap = true;
 	}
-	if (position.x <= startmap2 && App->scene->KnowMap == 1) { //If player is in a position where the camera would print out of the map, camera stops
+	/*if (position.x <= startmap2 && App->scene->KnowMap == 1) { //If player is in a position where the camera would print out of the map, camera stops
 		App->render->camera.x = startpointcameramap2;
 
 	}
@@ -644,30 +650,33 @@ void jPlayer::Camera(float dt)
 	}
 	else {
 		App->render->camera.y = -position.y + (App->render->camera.h / 2);
-	}
-	/*if (App->scene->KnowMap == 0) {
-		if (App->render->camera.x <= 0) {
-			App->render->camera.x = -300;
-		}
-	}
-	else {
-		if (App->render->camera.x <= 0) {
-			App->render->camera.x = -45;
-		}
 	}*/
-	/*bool PlayerInside = false;
-	int Right = rect.x + rect.w;
-	int PRight = coll->rect.x + coll->rect.w;
-	int Left = rect.x;
-	int PLeft = coll->rect.x;
- 
-	if (PLeft >= Left && Right >= PRight) {
-		PlayerInside = true;
+
+	if (CamRect.x + CamRect.w <= position.x + playerwidth) {
+		CamRect.x += (SpeedWalk + 1000*dt) * dt;
+		App->render->camera.x = -position.x + (App->render->camera.w / 2);
 	}
-	if (!PlayerInside) {
-		App->render->camera.x -= SpeedWalk;
+	if (position.y <= CamRect.y && cameraon) {
+		CamRect.y -= (JumpSpeed + 1000 * dt) * dt;
+		App->render->camera.y += 100 * dt;
 	}
-	*/
+	if (position.y + playerHeight >= CamRect.y + CamRect.h) {
+
+	}
+	if (-App->render->camera.x >= position.x)
+		position.x += SpeedWalk * dt;
+	LOG("Position.y = %f", position.y);
+	float Cam = CamRect.y;
+	LOG("CamRect.y = %f", Cam);
+	/*if (CamRect.x >= position.x) {
+		CamRect.x -= SpeedWalk * dt;
+		App->render->camera.x = -position.x + (App->render->camera.w / 2);
+	}*/
+
+	if (App->input->GetKey(SDL_SCANCODE_G) == KEY_REPEAT) {
+		CamRect.x += 20;
+	}
+
 }
 
 void jPlayer::DoDash(float dt)
@@ -881,6 +890,15 @@ void jPlayer::Gravity(float dt)
 	gravity = auxGravity;
 	gravity = gravity * dt;
 	position.y -= gravity;
+}
+
+void jPlayer::SetCamera()
+{
+	App->render->camera.x = -300;
+	CamRect.x = 580;
+	CamRect.y = 480;
+	CamRect.w = 300;
+	CamRect.h = playerHeight + playerHeight;
 }
 
 void Dash::ResetDashAnims()

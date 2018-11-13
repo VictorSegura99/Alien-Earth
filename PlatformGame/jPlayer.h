@@ -82,11 +82,12 @@ public:
 	void DoubleJump(float dt);
 	void BottomFall(float dt);
 	void Gravity(float dt);
+	void SetCamera();
 
 public:
-
+	bool cameraon = false;
 	float auxGravity;
-	
+	SDL_Rect CamRect;
 
 	Animation* current_animation = nullptr;
 	Animation idle[3];

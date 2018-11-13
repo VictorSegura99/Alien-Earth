@@ -101,6 +101,7 @@ bool j1Choose::Update(float dt)
 					App->collision->active = !App->collision->active;
 					App->map->active = !App->map->active;
 					App->player->ChangePlayer(playernumber);
+					App->player->SetCamera();
 					GameOn = true;
 				}
 			}
@@ -116,6 +117,7 @@ bool j1Choose::Update(float dt)
 					App->collision->active = !App->collision->active;
 					App->map->active = !App->map->active;
 					App->player->ChangePlayer(playernumber);
+					App->player->SetCamera();
 					GameOn = true;
 				}
 			}
@@ -131,6 +133,7 @@ bool j1Choose::Update(float dt)
 					App->collision->active = !App->collision->active;
 					App->map->active = !App->map->active;
 					App->player->ChangePlayer(playernumber);
+					App->player->SetCamera();
 					GameOn = true;
 				}
 			}
