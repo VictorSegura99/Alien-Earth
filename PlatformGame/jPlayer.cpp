@@ -297,11 +297,6 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		break;
 	case COLLIDER_WALL_LEFT:
 
-		CanJump = false;
-		CanJump2 = false;
-		CanSwim = false;
-		CanClimb = false;
-		CanDoAnotherJump = false;
 		if (!CanSwim && !CanClimb)
 			position.x += SpeedWalk * DT;
 		if (CanSwim)
@@ -312,14 +307,13 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			dashing = false;
 			current_animation = &GoLeft[NumPlayer];
 		}
-
 		break;
 	case COLLIDER_WALL_RIGHT:
 		if (!CanSwim && !CanClimb)
 			position.x -= SpeedWalk * DT;
 		if (CanSwim)
-			position.x += SpeedSwimLeftRight * DT;
-		if (CanClimb) 
+			position.x -= SpeedSwimLeftRight * DT;
+		if (CanClimb)
 			position.x -= SpeedWalk * DT;
 		if (dashing) {
 			dashing = false;
