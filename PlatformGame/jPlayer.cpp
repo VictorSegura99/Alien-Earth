@@ -266,6 +266,10 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			BottomRight.IsFalling = false;
 			Falling = false;
 			cameraon = true;
+			if(current_animation==&jumpR[NumPlayer])
+				current_animation = &idle[NumPlayer];
+			if (current_animation == &jumpL[NumPlayer])
+				current_animation = &idle2[NumPlayer];
 		}
 		break;
 	case COLLIDER_WALL_UP:
@@ -584,6 +588,8 @@ void jPlayer::Move_Left_Right(float dt)
 		}
 		if (CanClimb)
 			position.x += SpeedWalk * dt;
+		if (Falling)
+			current_animation = &jumpR[NumPlayer];
 	}
 	if (WalkLeft) { //This determine the movement to the left, depending on the state of the player
 		if (!IsJumping && !CanSwim && !CanClimb) {
@@ -601,6 +607,8 @@ void jPlayer::Move_Left_Right(float dt)
 		}
 		if (CanClimb)
 			position.x -= SpeedWalk * dt;
+		if (Falling)
+			current_animation = &jumpL[NumPlayer];
 	}
 	if (WalkRight && WalkLeft) {
 		if (!CanSwim)
@@ -610,7 +618,8 @@ void jPlayer::Move_Left_Right(float dt)
 		if (CanClimb) {
 			current_animation = &Climb[NumPlayer];
 		}
-
+		if (Falling)
+			current_animation = &jumpR[NumPlayer];
 	}
 	if (Idle) {
 		if (!BottomLeft.IsFalling && NumPlayer == 0 && current_animation == &BottomLeft.anim)
@@ -631,7 +640,10 @@ void jPlayer::Move_Left_Right(float dt)
 			dashR.ResetDashAnims();
 			dashL.ResetDashAnims();
 		}
-		
+		if (Falling&&current_animation==&idle[NumPlayer])
+			current_animation = &jumpR[NumPlayer];
+		if (Falling&&current_animation == &idle2[NumPlayer])
+			current_animation = &jumpL[NumPlayer];
 		
 	}
 }
@@ -865,10 +877,6 @@ void jPlayer::DoubleJump(float dt)
 			CanJump2 = false;
 			Falling = true;
 			//JumpSpeed = 30.0f*dt;
-			if (current_animation == &jumpR[NumPlayer]) {
-				current_animation = &idle[NumPlayer];
-			}
-			else current_animation = &idle2[NumPlayer];
 			Jump2Complete = false;
 		}
 	}
