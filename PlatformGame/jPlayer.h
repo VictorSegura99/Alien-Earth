@@ -83,7 +83,7 @@ public:
 	void BottomFall(float dt);
 	void Gravity(float dt);
 	void SetCamera();
-	void ResetJumpValues();
+
 
 public:
 	bool cameraon = false;
@@ -156,6 +156,7 @@ public:
 	float SpeedSwimDown = 0.0f;
 	float SpeedSwimLeftRight = 0.0f;
 	float DT = 0.0f;
+	float AuxJumpSpeed = 0.0f;
 
 	int startmap2 = 0;
 	int maxYcam = 0;
