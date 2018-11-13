@@ -103,7 +103,8 @@
     <startpointcameramap2 value="-60"></startpointcameramap2>
     <positionWinMap1 value="10780"></positionWinMap1>
     <JumpTime value="20"></JumpTime>
-    <JumpSpeed value="1050.0f"></JumpSpeed>
+    <JumpSpeed value="1250.0f"></JumpSpeed>
+    <AuxJumpSpeed value="1250.0f"></AuxJumpSpeed>
     <SpeedWalk value="350.0f"></SpeedWalk>
     <SpeedSwimLeftRight value="450.0f"></SpeedSwimLeftRight>
     <playerHeight value="78"></playerHeight>

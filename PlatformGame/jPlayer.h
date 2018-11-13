@@ -84,6 +84,7 @@ public:
 	void Gravity(float dt);
 	void SetCamera();
 
+
 public:
 	bool cameraon = false;
 	float auxGravity;
@@ -156,6 +157,7 @@ public:
 	float SpeedSwimDown = 0.0f;
 	float SpeedSwimLeftRight = 0.0f;
 	float DT = 0.0f;
+	float AuxJumpSpeed = 0.0f;
 
 	int startmap2 = 0;
 	int maxYcam = 0;
