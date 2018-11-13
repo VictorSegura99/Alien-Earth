@@ -261,6 +261,10 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 	case COLLIDER_GROUND:
 		if (position.y < c2->rect.y + c2->rect.h) {
 			position.y += gravity;
+			if (!CanSwim && !CanClimb)
+				position.y += gravity;
+			if (CanSwim)
+				position.y -= SpeedSwimDown * DT;
 			CanJump = true;
 			CanJump2 = false;
 			CanSwim = false;
