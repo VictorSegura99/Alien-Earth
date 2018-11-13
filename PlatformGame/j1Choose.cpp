@@ -100,6 +100,8 @@ bool j1Choose::Update(float dt)
 					App->player->active = !App->player->active;
 					App->collision->active = !App->collision->active;
 					App->map->active = !App->map->active;
+				//	App->scene->Start();
+					App->player->Start();
 					App->player->ChangePlayer(playernumber);
 					App->player->SetCamera();
 					GameOn = true;
@@ -116,6 +118,7 @@ bool j1Choose::Update(float dt)
 					App->player->active = !App->player->active;
 					App->collision->active = !App->collision->active;
 					App->map->active = !App->map->active;
+					App->player->Start();
 					App->player->ChangePlayer(playernumber);
 					App->player->SetCamera();
 					GameOn = true;
@@ -132,6 +135,7 @@ bool j1Choose::Update(float dt)
 					App->player->active = !App->player->active;
 					App->collision->active = !App->collision->active;
 					App->map->active = !App->map->active;
+					App->player->Start();
 					App->player->ChangePlayer(playernumber);
 					App->player->SetCamera();
 					GameOn = true;

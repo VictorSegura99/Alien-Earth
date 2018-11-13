@@ -391,11 +391,15 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		position.y += gravity;
 		break;
 	case COLLIDER_WIN:
-		CanClimb = false;
-		CanSwim = false;
+		App->scene->active = false;
+		App->player->active = false;
+		App->collision->active = false;
+		App->map->active = false;
+		App->choose->start = false;
 		App->scene->KnowMap = 0;
-		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-		Spawn();
+		App->render->camera.x = 0;
+		App->render->camera.y = 0;
+		App->choose->GameOn = false;
 		break;
 	}
 }
