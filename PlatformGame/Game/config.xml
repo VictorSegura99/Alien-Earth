@@ -116,7 +116,7 @@
     <playerheight value="87"></playerheight>
     <laservelocityR value="650.0f" ></laservelocityR>
     <laservelocityL value="-650.0f" ></laservelocityL>
-    <lasertimelife timelife="75"></lasertimelife>
+    <lasertimelife value="75"></lasertimelife>
     
     <AnimationsPlayerYellow>
       <doubleJump speed="1.0f" loop="true">
