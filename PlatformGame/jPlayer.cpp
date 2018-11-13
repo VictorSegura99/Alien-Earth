@@ -335,11 +335,19 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		break;
 	case COLLIDER_CLIMB:
 		App->audio->PlayFx(ladderfx);
+		IsJumping = false;
+		IsJumping2 = false;
+		CanDoAnotherJump = false;
+		Falling = false;
+		AnimDoubleJump = false;
+		Time = 0;
 		CanClimb = true;
 		CanJump = true;
 		CanJump2 = false;
 		Time = 50 * DT;
 		position.y += gravity;
+		if (current_animation == &jumpR[NumPlayer] || current_animation == &jumpL[NumPlayer])
+			current_animation = &ClimbIdle[NumPlayer];
 		break;
 	case COLLIDER_WATER:
 		App->audio->PlayFx(waterfx);
