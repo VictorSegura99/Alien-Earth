@@ -652,37 +652,37 @@ void jPlayer::Camera(float dt)
 		App->render->camera.y = -position.y + (App->render->camera.h / 2);
 	}*/
 
-	if (CamRect.x + CamRect.w <= position.x + playerwidth) {
+	if (CamRect.x + CamRect.w <= position.x + playerwidth) { //WHEN THE PLAYER MOVES RIGHT
 		CamRect.x += (SpeedWalk + 1000*dt) * dt;
 		//App->render->camera.x = -position.x + (App->render->camera.w / 2);
 	}
-	if (CamRect.x >= position.x) {
+	if (CamRect.x >= position.x) { //WHEN THE PLAYER MOVES LEFT
 		CamRect.x -= (SpeedWalk + 1000 * dt) * dt;
 		//App->render->camera.x = -position.x + (App->render->camera.w / 2);
 	}
-	if (position.y <= CamRect.y && cameraon) {
+	if (position.y <= CamRect.y && cameraon) { //WHEN THE PLAYER GOES UP
 		CamRect.y -= (JumpSpeed + 1000 * dt) * dt;
 		//App->render->camera.y += 100 * dt;
 	}
-	if (position.y + playerHeight >= CamRect.y + CamRect.h) {
+	if (position.y + playerHeight >= CamRect.y + CamRect.h) { //WHEN THE PLAYER GOES DOWN
+		//App->render->camera.y = -position.y + (App->render->camera.h / 2);
 		if (CanClimb)
 			CamRect.y += SpeedClimb * dt;
 		else CamRect.y -= gravity;
-		//App->render->camera.y = -position.y + (App->render->camera.h / 2);
+		
 	}
-	if (-App->render->camera.x >= position.x)
+	if (-App->render->camera.x >= position.x) //PLAYER CAN NOT GO BACK
 		position.x += SpeedWalk * dt;
+
+
+
+
+
+
 	LOG("Position.y = %f", position.y);
 	float Cam = CamRect.y;
 	LOG("CamRect.y = %f", Cam);
-	/*if (CamRect.x >= position.x) {
-		CamRect.x -= SpeedWalk * dt;
-		App->render->camera.x = -position.x + (App->render->camera.w / 2);
-	}*/
-
-	if (App->input->GetKey(SDL_SCANCODE_G) == KEY_REPEAT) {
-		CamRect.x += 20;
-	}
+	
 
 }
 
