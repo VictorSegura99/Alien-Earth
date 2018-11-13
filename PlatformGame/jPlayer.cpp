@@ -104,6 +104,7 @@ bool jPlayer::Start()
 	deathfx = App->audio->LoadFx(DeathFx.GetString());
 	deathfx2 = App->audio->LoadFx(DeathFx2.GetString());
 	ladderfx = App->audio->LoadFx(LadderFx.GetString());
+	laserfx = App->audio->LoadFx(LaserFx.GetString());
 
 	position.x = initialmap1.x;
 	position.y = initialmap1.y;
@@ -797,6 +798,7 @@ void jPlayer::ShootLaser(float dt)
 {
 	if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && (Hability && !laserR.IsShooting)) {
 		laserR.StartShooting = true;
+		App->audio->PlayFx(laserfx);
 	}
 	if (laserR.StartShooting) {
 		laserR.StartShooting = false;
@@ -809,7 +811,7 @@ void jPlayer::ShootLaser(float dt)
 		laserR.position.y = position.y;
 
 		laserR.coll = App->collision->AddCollider(laserR.anim.GetCurrentFrame(dt), COLLIDER_PARTICLE);
-		App->audio->PlayFx(laserfx);
+		
 	}
 	if (laserR.IsShooting) {
 		if (laserR.life < laserR.time) {
@@ -825,6 +827,7 @@ void jPlayer::ShootLaser(float dt)
 
 	if ((current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) && (Hability && !laserL.IsShooting)) {
 		laserL.StartShooting = true;
+		App->audio->PlayFx(laserfx);
 	}
 	if (laserL.StartShooting) {
 		laserL.StartShooting = false;
