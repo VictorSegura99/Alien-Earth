@@ -125,11 +125,17 @@
       <doubleJump speed="1.0f" loop="true">
         <frame  x="430" y="180" w="45" h="12"/>
       </doubleJump>
-      <BottomLeft speed="1.0f" loop="true">
-        <frame  x="0" y="528" w="67" h="80"/>
+      <BottomLeft speed="11.0f" loop="false">
+        <frame  x="656" y="533" w="75" h="93"/>
+        <frame  x="450" y="533" w="75" h="93"/>
+        <frame  x="355" y="533" w="75" h="93"/>
+        <frame  x="270" y="533" w="75" h="93"/>
       </BottomLeft>
-      <BottomRight speed="1.0f" loop="true">
-        <frame x="85" y="528" w="67" h="80"/>
+      <BottomRight speed="11.0f" loop="false">
+        <frame  x="539" y="533" w="75" h="93"/>
+        <frame  x="0" y="533" w="75" h="93"/>
+        <frame  x="95" y="533" w="75" h="93"/>
+        <frame  x="180" y="533" w="75" h="93"/>
       </BottomRight>
       <GoRight speed="5.0f" loop="true">
         <frame  x="0" y="0" w="67" h="86"/>

@@ -928,10 +928,14 @@ void jPlayer::BottomFall(float dt)
 	if (Hability && IsJumping2) {
 		if (current_animation == &GoRight[NumPlayer] || current_animation==&idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) {
 			AnimDoubleJump = false;
+			BottomRight.anim.loops = 0;
+			BottomRight.anim.current_frame = 0.0f;
 			BottomRight.IsFalling = true;
 		}
 		else if (current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) {
 			AnimDoubleJump = false;
+			BottomLeft.anim.loops = 0;
+			BottomLeft.anim.current_frame = 0.0f;
 			BottomLeft.IsFalling = true;
 		}
 
@@ -940,9 +944,13 @@ void jPlayer::BottomFall(float dt)
 	}
 	if (Hability && FallingJump2) {
 		if (current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) {
+			BottomRight.anim.loops = 0;
+			BottomRight.anim.current_frame = 0.0f;
 			BottomRight.IsFalling = true;
 		}
 		else if (current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) {
+			BottomLeft.anim.loops = 0;
+			BottomLeft.anim.current_frame = 0.0f;
 			BottomLeft.IsFalling = true;
 		}
 		IsJumping2 = false;
