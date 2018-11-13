@@ -263,7 +263,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			if (!CanSwim && !CanClimb)
 				position.y += gravity;
 			if (CanSwim)
-				//position.y -= SpeedSwimDown;
+				position.y -= SpeedSwimDown * DT;
 			CanJump = true;
 			CanJump2 = false;
 			CanSwim = false;
@@ -295,10 +295,6 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		GoUp = false;
 		break;
 	case COLLIDER_WALL_LEFT:
-		CanJump = false;
-		CanJump2 = false;
-		CanClimb = false;
-		CanDoAnotherJump = false;
 		if (!CanSwim && !CanClimb)
 			position.x += SpeedWalk * DT;
 		if (CanSwim)
@@ -311,10 +307,6 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		}
 		break;
 	case COLLIDER_WALL_RIGHT:
-		CanJump = false;
-		CanJump2 = false;
-		CanClimb = false;
-		CanDoAnotherJump = false;
 		if (!CanSwim && !CanClimb)
 			position.x -= SpeedWalk * DT;
 		if (CanSwim) 
