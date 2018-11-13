@@ -258,7 +258,10 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 	switch (c2->type) {
 	case COLLIDER_GROUND:
 		if (position.y < c2->rect.y + c2->rect.h) {
-			position.y += gravity;
+			if (!CanSwim && !CanClimb)
+				position.y += gravity;
+			if (CanSwim)
+				//position.y -= SpeedSwimDown;
 			CanJump = true;
 			CanJump2 = false;
 			CanSwim = false;
@@ -290,10 +293,8 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		GoUp = false;
 		break;
 	case COLLIDER_WALL_LEFT:
-
 		CanJump = false;
 		CanJump2 = false;
-		CanSwim = false;
 		CanClimb = false;
 		CanDoAnotherJump = false;
 		if (!CanSwim && !CanClimb)
@@ -306,13 +307,16 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			dashing = false;
 			current_animation = &GoLeft[NumPlayer];
 		}
-
 		break;
 	case COLLIDER_WALL_RIGHT:
+		CanJump = false;
+		CanJump2 = false;
+		CanClimb = false;
+		CanDoAnotherJump = false;
 		if (!CanSwim && !CanClimb)
 			position.x -= SpeedWalk * DT;
-		if (CanSwim)
-			position.x += SpeedSwimLeftRight * DT;
+		if (CanSwim) 
+			position.x -= SpeedSwimLeftRight * DT;
 		if (CanClimb) 
 			position.x -= SpeedWalk * DT;
 		if (dashing) {
@@ -602,7 +606,7 @@ void jPlayer::Move_Left_Right(float dt)
 		if (IsJumping) {
 			position.x += SpeedWalk * dt;
 		}
-		if (CanSwim && !CanClimb) { //Can Climb determine if you are in a climb collider, if you are, it's true
+		if (CanSwim) { //Can Climb determine if you are in a climb collider, if you are, it's true
 			position.x += SpeedSwimLeftRight * dt;
 			current_animation = &SwimRight[NumPlayer];
 		}
@@ -621,7 +625,7 @@ void jPlayer::Move_Left_Right(float dt)
 		if (IsJumping) {
 			position.x -= SpeedWalk * dt;
 		}
-		if (CanSwim && !CanClimb) {
+		if (CanSwim) {
 			position.x -= SpeedSwimLeftRight * dt;
 			current_animation = &SwimLeft[NumPlayer];
 		}
