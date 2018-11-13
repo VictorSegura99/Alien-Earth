@@ -111,6 +111,7 @@
     <SpeedSwimLeftRight value="450.0f"></SpeedSwimLeftRight>
     <playerHeight value="78"></playerHeight>
     <SpeedClimb value="300.0f"></SpeedClimb>
+    <BottomSpeed value="450.0f"></BottomSpeed>
     <SpeedSwimUp value="450.0f"></SpeedSwimUp>
     <SpeedSwimDown value="350.0f"></SpeedSwimDown>
     <playerwidth value="65"></playerwidth>
