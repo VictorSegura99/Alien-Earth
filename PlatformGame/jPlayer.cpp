@@ -654,14 +654,21 @@ void jPlayer::Camera(float dt)
 
 	if (CamRect.x + CamRect.w <= position.x + playerwidth) {
 		CamRect.x += (SpeedWalk + 1000*dt) * dt;
-		App->render->camera.x = -position.x + (App->render->camera.w / 2);
+		//App->render->camera.x = -position.x + (App->render->camera.w / 2);
+	}
+	if (CamRect.x >= position.x) {
+		CamRect.x -= (SpeedWalk + 1000 * dt) * dt;
+		//App->render->camera.x = -position.x + (App->render->camera.w / 2);
 	}
 	if (position.y <= CamRect.y && cameraon) {
 		CamRect.y -= (JumpSpeed + 1000 * dt) * dt;
-		App->render->camera.y += 100 * dt;
+		//App->render->camera.y += 100 * dt;
 	}
 	if (position.y + playerHeight >= CamRect.y + CamRect.h) {
-
+		if (CanClimb)
+			CamRect.y += SpeedClimb * dt;
+		else CamRect.y -= gravity;
+		//App->render->camera.y = -position.y + (App->render->camera.h / 2);
 	}
 	if (-App->render->camera.x >= position.x)
 		position.x += SpeedWalk * dt;
