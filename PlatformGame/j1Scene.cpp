@@ -93,12 +93,6 @@ bool j1Scene::Update(float dt)
 
 	App->map->Draw();
 
-
-	// "Map:%dx%d Tiles:%dx%d Tilesets:%d"
-	p2SString title("Alien Earth v0.5");
-					
-
-	App->win->SetTitle(title.GetString());
 	return true;
 }
 
