@@ -5,6 +5,7 @@
 #include "p2Animation.h"
 #include "p2Point.h"
 #include "j1Collision.h"
+#include "j1Timer.h"
 struct SDL_Texture;
 struct SDL_Rect;
 
@@ -88,6 +89,9 @@ public:
 public:
 	bool cameraon = false;
 	float auxGravity;
+	//float TIME;
+	j1Timer time;
+	float starttime;
 	SDL_Rect CamRect;
 
 	Animation* current_animation = nullptr;
