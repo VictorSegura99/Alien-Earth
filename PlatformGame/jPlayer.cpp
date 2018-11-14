@@ -274,7 +274,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			FallingJump2 = false;
 			cameraon = true;
 			CanDoAnotherJump = true;
-			if(current_animation==&jumpR[NumPlayer])
+			if (current_animation == &jumpR[NumPlayer])
 				current_animation = &idle[NumPlayer];
 			if (current_animation == &jumpL[NumPlayer])
 				current_animation = &idle2[NumPlayer];
@@ -282,7 +282,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		break;
 	case COLLIDER_WALL_UP:
 		AnimDoubleJump = false;
-		velocity.y = 0;			
+		velocity.y = 0;
 		IsJumping = false;
 		if (Jump2Complete)
 			IsJumping2 = false;
@@ -313,29 +313,32 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 			dashing = false;
 			current_animation = &GoRight[NumPlayer];
 		}
-		
+
 		break;
 	case COLLIDER_PLATFORM:
-		if (position.y + playerHeight < c2->rect.y) {
-			velocity.y = 0;
-			TouchingGround = true;
-			CanDoAnotherJump = true;
-			CanJump = true;
-			CanClimb = false;
-			FallingJump2 = false;
-			CanJump2 = false;
-			GoDown = false;
-			CanSwim = false;
-			CanDash = true;
-			Falling = false;
-			BottomLeft.IsFalling = false;
-			BottomRight.IsFalling = false;
-			if (!dashing)
-				if (current_animation == &GoRight[NumPlayer] || current_animation == &jumpR[NumPlayer])
-					current_animation = &idle[NumPlayer];
-				else if (current_animation == &GoLeft[NumPlayer] || current_animation == &jumpL[NumPlayer])
-					current_animation = &idle2[NumPlayer];
-		}
+		if (position.y + 70 < c2->rect.y)
+		{
+		velocity.y = 0;
+		//IsJumping = false;
+		//IsJumping2 = false;
+		TouchingGround = true;
+		CanDoAnotherJump = true;
+		CanJump = true;
+		CanClimb = false;
+		FallingJump2 = false;
+		CanJump2 = false;
+		GoDown = false;
+		CanSwim = false;
+		CanDash = true;
+		Falling = false;
+		BottomLeft.IsFalling = false;
+		BottomRight.IsFalling = false;
+		if (!dashing)
+			if (current_animation == &GoRight[NumPlayer] || current_animation == &jumpR[NumPlayer])
+				current_animation = &idle[NumPlayer];
+			else if (current_animation == &GoLeft[NumPlayer] || current_animation == &jumpL[NumPlayer])
+				current_animation = &idle2[NumPlayer];
+	}
 		
 		break;
 	case COLLIDER_CLIMB:
