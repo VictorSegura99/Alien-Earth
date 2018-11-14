@@ -291,11 +291,11 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		break;
 	case COLLIDER_WALL_LEFT:
 
-		if (!CanSwim && !CanClimb)
+		if (!CanSwim && !CanClimb && WalkLeft)
 			position.x += SpeedWalk * DT;
-		if (CanSwim)
+		if (CanSwim && WalkLeft)
 			position.x += SpeedSwimLeftRight * DT;
-		if (CanClimb)
+		if (CanClimb && WalkLeft)
 			position.x += SpeedWalk * DT;
 		if (dashing) {
 			dashing = false;
@@ -303,11 +303,11 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		}
 		break;
 	case COLLIDER_WALL_RIGHT:
-		if (!CanSwim && !CanClimb)
+		if (!CanSwim && !CanClimb && WalkRight)
 			position.x -= SpeedWalk * DT;
-		if (CanSwim)
+		if (CanSwim && WalkRight)
 			position.x -= SpeedSwimLeftRight * DT;
-		if (CanClimb)
+		if (CanClimb && WalkRight)
 			position.x -= SpeedWalk * DT;
 		if (dashing) {
 			dashing = false;
@@ -704,7 +704,7 @@ void jPlayer::Camera(float dt)
 		App->render->camera.y = lowcam;//lowcam is the bottom part of the map, when the player is too low, the camera follows a constant height to don't get out of the map
 	}
 	else {
-		//App->render->camera.y = -position.y + (App->render->camera.h / 2);
+		App->render->camera.y = -position.y + (App->render->camera.h / 2);
 	}
 
 	/*if (CamRect.x + CamRect.w <= position.x + playerwidth) { //WHEN THE PLAYER MOVES RIGHT
