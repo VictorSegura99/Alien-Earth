@@ -1,7 +1,7 @@
 <!-- Config file for the game -->
 
 <config>
-  <app framerate_cap="60">
+  <app framerate_cap="30">
     <title>Alien Earth</title>
     <organization>UPC</organization>
   </app>
@@ -102,7 +102,7 @@
     <maxYcam value="740"></maxYcam>
     <minYcam value="450"></minYcam>
     <lowcam value="-290"></lowcam>
-    <gravity value="-7.8f"></gravity>
+    <gravity value="-433.33333f"></gravity>
     <startpointcameramap2 value="-60"></startpointcameramap2>
     <positionWinMap1 value="10780"></positionWinMap1>
     <JumpTime value="20"></JumpTime>

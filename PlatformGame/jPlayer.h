@@ -120,6 +120,8 @@ public:
 	Collider* coll = nullptr;
 
 	fPoint position;
+	fPoint velocity;
+	fPoint acceleration;
 	iPoint initialmap1;
 	iPoint initialmap2;
 
@@ -150,6 +152,7 @@ public:
 	bool Jump2Complete = false;
 	bool CanDoAnotherJump = true;
 	bool FallingJump2 = false;
+	bool TouchingGround = false;
 
 	float gravity = 0.0f;
 	float JumpSpeed = 0.0f;

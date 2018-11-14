@@ -102,13 +102,7 @@ bool jPlayer::Start()
 {
 	
 	bool ret = true;
-	//if (App->scene->KnowMap == 0) {
 
-	//}
-/*	else if (App->scene->KnowMap == 1) {
-		position.x = initialXmap2;
-		position.y = initialYmap2;
-	}*/
 	auxGravity = gravity;
 	jumpfx = App->audio->LoadFx(JumpFx.GetString());
 	waterfx = App->audio->LoadFx(WaterFx.GetString());
@@ -153,6 +147,14 @@ bool jPlayer::Update(float dt)
 	DT = dt;
 	//position.y -=gravity;
 	//Gravity(dt);
+	if (!TouchingGround) {
+		acceleration.y = gravity*dt;
+		LOG("Acceleration %f", acceleration.y);
+	}
+	else
+		acceleration.y = 0;
+	position.x += velocity.x;
+	position.y -= velocity.y+acceleration.y;
 	LOG("Gravity: %.6f", gravity);
 	if (!dashing) {
 		if (NumPlayer == 0)
@@ -191,6 +193,8 @@ bool jPlayer::Update(float dt)
 		App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame(dt)));
 	}
 	else App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
+
+	TouchingGround = false;
 
 	return true;
 }
@@ -256,10 +260,8 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 	switch (c2->type) {
 	case COLLIDER_GROUND:
 		if (position.y < c2->rect.y + c2->rect.h) {
-			if (!CanSwim && !CanClimb)
-				position.y += gravity;
-			if (CanSwim)
-				position.y -= SpeedSwimDown * DT;
+			velocity.y = 0;
+			TouchingGround = true;
 			CanJump = true;
 			CanJump2 = false;
 			CanSwim = false;
@@ -280,14 +282,10 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		break;
 	case COLLIDER_WALL_UP:
 		AnimDoubleJump = false;
-		if (CanClimb)
-			position.y += SpeedClimb * DT;
-		else {
-			position.y += JumpSpeed * DT;
-			IsJumping = false;
-			if (Jump2Complete)
-				IsJumping2 = false;
-		}
+		velocity.y = 0;			
+		IsJumping = false;
+		if (Jump2Complete)
+			IsJumping2 = false;
 		Jump2Complete = false;
 		GoUp = false;
 		break;
@@ -319,7 +317,8 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		break;
 	case COLLIDER_PLATFORM:
 		if (position.y + playerHeight < c2->rect.y) {
-			position.y += gravity;
+			velocity.y = 0;
+			TouchingGround = true;
 			CanDoAnotherJump = true;
 			CanJump = true;
 			CanClimb = false;
@@ -349,7 +348,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		CanClimb = true;
 		CanJump = true;
 		CanJump2 = false;
-		position.y += gravity;
+		velocity.y = 0;
 		if (current_animation == &jumpR[NumPlayer] || current_animation == &jumpL[NumPlayer])
 			current_animation = &ClimbIdle[NumPlayer];
 		break;
@@ -357,14 +356,14 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		App->audio->PlayFx(waterfx);
 		CanSwim = true;
 		CanClimb = false;
-		position.y += gravity;
+		velocity.y = 0;
 		break;	
 	case COLLIDER_NONE:
 		CanClimb = false;
 		CanSwim = false;
 		break;
 	case COLLIDER_SPIKES:
-		position.y += gravity;
+		velocity.y = 0;
 		WalkLeft = false;
 		WalkRight = false;
 		GoUp = false;
@@ -388,7 +387,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		CanClimb = true;
 		CanJump = true;
 		CanJump2 = false;
-		position.y += gravity;
+		velocity.y = 0;
 		break;
 	case COLLIDER_WIN:
 		App->scene->active = false;
@@ -509,34 +508,35 @@ void jPlayer::GoJump(float dt)
 {
 	if (Jump && CanJump && !CanSwim && !God && !IsJumping) { //If you clicked the jump button and you are able to jump(always except you just jumpt) you can jump
 		IsJumping = true;
+		TouchingGround = false;
 		Time = 0;
 		JumpSpeed = AuxJumpSpeed;
 	}
 	if (IsJumping) { //if you are able to jump, determine the animation and direction of the jump
 		//Time = Time * dt;
-		Time+= 100 * dt;
+		Time+= 1;
 		CanJump = false;
-		if (Time * dt < 2 * dt)
+		if (Time < 2 )
 			App->audio->PlayFx(jumpfx);
-		if (Time * dt >= 3 * dt) {
+		if (Time  >= 3 ) {
 			JumpSpeed -= 2150.0f *dt;
 		}
-		if (Time * dt <= JumpTime * dt && WalkRight) {
+		if (Time  <= JumpTime && WalkRight) {
 			current_animation = &jumpR[NumPlayer];
 			position.y -= JumpSpeed * dt;
 		}
-		else if (Time * dt <= JumpTime * dt && WalkLeft) {
+		else if (Time  <= JumpTime && WalkLeft) {
 			current_animation = &jumpL[NumPlayer];
 			position.y -= JumpSpeed * dt;
 		}
-		else if (Time * dt <= JumpTime * dt) {
+		else if (Time <= JumpTime) {
 			if (current_animation == &idle[NumPlayer])
 				current_animation = &jumpR[NumPlayer];
 			if (current_animation == &idle2[NumPlayer])
 				current_animation = &jumpL[NumPlayer];
 			position.y -= JumpSpeed * dt;
 		}
-		if (Time * dt >= JumpTime * dt) {
+		if (Time >= JumpTime) {
 			IsJumping = false;
 			CanJump2 = true;
 			CanJump = false;
@@ -567,10 +567,10 @@ void jPlayer::GoSwim(float dt)
 		}
 	}
 	if (CanSwim && GoUp) { //Can Swim determine if you are in a water collider, if you are, it's true
-		position.y -= SpeedSwimUp * dt;
+		velocity.y = SpeedSwimUp * dt;
 	}
 	if (CanSwim && GoDown) {
-		position.y += SpeedSwimDown * dt;
+		velocity.y = -SpeedSwimDown * dt;
 	}
 
 }
@@ -578,11 +578,11 @@ void jPlayer::GoSwim(float dt)
 void jPlayer::GoClimb(float dt)
 {
 	if (CanClimb && GoUp) {
-		position.y -= SpeedClimb * dt;
+		velocity.y = SpeedClimb * dt;
 		current_animation = &Climb[NumPlayer];
 	}
 	if (CanClimb && GoDown) {
-		position.y += SpeedClimb * dt;
+		velocity.y = -SpeedClimb * dt;
 		current_animation = &Climb[NumPlayer];
 	}
 	if (CanClimb && !GoUp && !GoDown)
@@ -894,22 +894,22 @@ void jPlayer::DoubleJump(float dt)
 			App->audio->PlayFx(jumpfx);
 		}
 		if (Time * dt >= 5 * dt) {
-			JumpSpeed -= 2150.0f*dt;
+			JumpSpeed -=AuxJumpSpeed;
 		}
 		if (Time * dt <= JumpTime * dt && WalkRight) {
 			current_animation = &jumpR[NumPlayer];
-			position.y -= JumpSpeed * dt;
+			velocity.y = JumpSpeed * dt;
 		}
 		else if (Time * dt <= JumpTime * dt && WalkLeft) {
 			current_animation = &jumpL[NumPlayer];
-			position.y -= JumpSpeed * dt;
+			velocity.y = JumpSpeed * dt;
 		}
 		else if (Time * dt <= JumpTime * dt) {
 			if (current_animation == &idle[NumPlayer])
 				current_animation = &jumpR[NumPlayer];
 			if (current_animation == &idle2[NumPlayer])
 				current_animation = &jumpL[NumPlayer];
-			position.y -= JumpSpeed * dt;
+			velocity.y = JumpSpeed * dt;
 		}
 		if (Time * dt >= JumpTime * dt) {
 			FallingJump2 = true;
