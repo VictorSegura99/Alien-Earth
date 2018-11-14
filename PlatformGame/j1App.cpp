@@ -219,7 +219,7 @@ void j1App::FinishUpdate()
 	sprintf_s(title, 256, "Alien Earth v0.5: FPS: %i Avg.FPS: %.2f Ms last Frame %02u", frames_on_last_update, avg_fps, last_frame_ms);
 	App->win->SetTitle(title);
 
-	if (framerate_cap > 0 && last_frame_ms < framerate_cap)
+	if (framerate_cap > 0 && last_frame_ms < framerate_cap&&capactivated)
 	{
 		j1PerfTimer time;
 		float delaytimestart = time.ReadMs();

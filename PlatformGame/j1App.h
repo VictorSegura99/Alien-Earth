@@ -53,6 +53,8 @@ public:
 	void LoadGame(const char* file);
 	void SaveGame(const char* file) const;
 	
+	bool capactivated = true;
+
 	pugi::xml_node LoadConfig(pugi::xml_document&) const;
 
 private:

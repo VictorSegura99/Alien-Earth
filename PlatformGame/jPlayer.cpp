@@ -145,9 +145,7 @@ bool jPlayer::PreUpdate() //Here we preload the input functions to determine the
 bool jPlayer::Update(float dt)
 {
 	DT = dt;
-	//position.y -=gravity;
-	//Gravity(dt);
-	if (!TouchingGround) {
+	if (!TouchingGround&&!dashing) {
 		acceleration.y = gravity*dt;
 		LOG("Acceleration %f", acceleration.y);
 	}
@@ -760,7 +758,7 @@ void jPlayer::DoDash(float dt)
 		dashL.DashLeft = true;
 	}
 	if (dashing && dashR.DashRight) {
-		position.y += gravity;
+		velocity.y = 0;
 		if (dashR.StartDash.current_frame == 0) {
 			//	position.x -= 60;
 			current_animation = &dashR.StartDash;
@@ -784,9 +782,8 @@ void jPlayer::DoDash(float dt)
 		}
 	}
 	if (dashing && dashL.DashLeft) {
-		position.y += gravity;
+		velocity.y = 0;
 		if (dashL.StartDash.current_frame == 0) {
-			//	position.x -= 60;
 			current_animation = &dashL.StartDash;
 		}
 		if (dashL.StartDash.Finished()) {
