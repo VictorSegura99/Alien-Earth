@@ -58,6 +58,9 @@
     <ClCompile Include="Spider.cpp">
       <Filter>Modules\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="j1Particles.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PugiXml\src\pugixml.hpp">
@@ -134,6 +137,9 @@
     </ClInclude>
     <ClInclude Include="Spider.h">
       <Filter>Modules\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Particles.h">
+      <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

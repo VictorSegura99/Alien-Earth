@@ -14,6 +14,7 @@
 #include "EntityManager.h"
 #include "j1Collision.h"
 #include "j1Choose.h"
+#include "j1Particles.h"
 
 
 // Constructor
@@ -31,6 +32,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	collision = new j1Collision();
 	entitymanager = new EntityManager();
 	choose = new j1Choose();
+	particles = new j1Particles();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -41,7 +43,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(choose);
 	AddModule(map);
 	AddModule(scene);
-	
+	AddModule(particles);
 	
 
 	AddModule(collision);
