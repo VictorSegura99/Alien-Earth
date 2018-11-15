@@ -18,6 +18,7 @@ class j1Map;
 class j1Collision;
 class EntityManager;
 class j1Choose;
+class j1Particles;
 
 class j1App
 {
@@ -95,6 +96,7 @@ public:
 	j1Collision*		collision;
 	EntityManager*		entitymanager;
 	j1Choose*			choose;
+	j1Particles*		particles;
 
 private:
 
