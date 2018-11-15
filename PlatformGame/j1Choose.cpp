@@ -113,7 +113,7 @@ bool j1Choose::Update(float dt)
 					App->map->active = !App->map->active;
 					App->scene->KnowMap = 0;
 					App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-					App->entitymanager->ActivePlayer = true;
+					App->entitymanager->ActiveGame = true;
 					App->entitymanager->GetPlayerData()->Start();
 					App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
 					App->entitymanager->GetPlayerData()->SetCamera();
@@ -136,7 +136,7 @@ bool j1Choose::Update(float dt)
 					App->map->active = !App->map->active;
 					App->scene->KnowMap = 0;
 					App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-					App->entitymanager->ActivePlayer = true;
+					App->entitymanager->ActiveGame = true;
 					App->entitymanager->GetPlayerData()->Start();
 					App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
 					App->entitymanager->GetPlayerData()->SetCamera();
@@ -159,7 +159,7 @@ bool j1Choose::Update(float dt)
 					App->map->active = !App->map->active;
 					App->scene->KnowMap = 0;
 					App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-					App->entitymanager->ActivePlayer = true;
+					App->entitymanager->ActiveGame = true;
 					App->entitymanager->GetPlayerData()->Start();
 					App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
 					App->entitymanager->GetPlayerData()->SetCamera();

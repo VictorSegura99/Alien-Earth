@@ -3,6 +3,7 @@
 
 #include "p2Point.h"
 #include "p2Animation.h"
+#include "PugiXml\src\pugixml.hpp"
 
 struct SDL_Texture;
 struct Collider;
@@ -20,6 +21,7 @@ public:
 	virtual bool PreUpdate() { return true; };
 	virtual bool Update(float dt) { return true; };
 	virtual bool PostUpdate() { return true; };
+	virtual bool CleanUp() { return true; };
 	virtual bool Awake(pugi::xml_node&) { return true; };
 	virtual void Draw(float dt);
 	virtual bool Load(pugi::xml_node&) { return true; };
@@ -36,6 +38,7 @@ public:
 
 	Animation* current_animation = nullptr;
 	SDL_Texture* texture;
+	
 
 	Collider* coll = nullptr;
 

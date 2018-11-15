@@ -42,7 +42,8 @@ public:
 
 	void OnCollision(Collider* c1, Collider* c2);
 
-	Entity* CreateEntity(EntityType type);
+	Entity* CreateEntity(EntityType type, int x = 0, int y = 0);
+	void DeleteEntities();
 
 	Player* GetPlayerData() const;
 
@@ -53,7 +54,10 @@ private:
 public:
 
 	Entity* player;
-	bool ActivePlayer = false;
+	Entity* spider;
+
+
+	bool ActiveGame = false;
 	fPoint positionStartMap1;
 	fPoint positionStartMap2;
 };
