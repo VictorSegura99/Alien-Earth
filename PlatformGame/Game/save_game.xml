@@ -6,16 +6,14 @@
 	<audio>
 		<volume value="50" />
 	</audio>
-	<scene>
-		<KnowMap value="1" />
-	</scene>
-	<map />
 	<choose />
+	<map />
+	<scene>
+		<KnowMap value="0" />
+	</scene>
 	<:anonymous />
-	<player>
-		<position x="641.05011" y="160.092453" />
-	</player>
+	<entity_manager />
 	<renderer>
-		<camera x="-141" y="0" />
+		<camera x="-307" y="-97" />
 	</renderer>
 </game_state>

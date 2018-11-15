@@ -29,7 +29,6 @@ public:
 
 public:
 
-
 	int type = 0;
 	fPoint position;
 	
@@ -42,10 +41,6 @@ public:
 
 	float auxGravity = 0.0f;
 	float gravity = 0.0f;
-
-	
-
-
 
 };
 

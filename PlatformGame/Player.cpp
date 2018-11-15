@@ -197,10 +197,6 @@ bool Player::Update(float dt)
 	if (App->collision->debug)
 		App->render->DrawQuad(CamRect, 150, 150, 150);
 
-
-
-	
-
 	TouchingGround = false;
 
 	return true;
@@ -250,7 +246,7 @@ bool Player::Save(pugi::xml_node& player) const
 void Player::Draw(float dt)
 {
 
-	switch (App->entitymanager->GetPlayerData()->NumPlayer) {
+	switch (NumPlayer) {
 	case 0:
 		App->render->Blit(App->scene->TutorialJeff, TutorialX, TutorialY1, NULL, SDL_FLIP_NONE, 1.0f);
 		break;
@@ -428,7 +424,7 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 	case COLLIDER_WIN:
 		TouchingGround = true;
 		App->scene->active = false;
-		//App->player->active = false;
+		App->entitymanager->ActivePlayer = false;
 		App->collision->active = false;
 		App->map->active = false;
 		App->choose->start = false;
