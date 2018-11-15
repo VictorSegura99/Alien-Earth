@@ -34,11 +34,18 @@ public:
 	fPoint position;
 	
 	//
+
+	Animation* current_animation = nullptr;
+	SDL_Texture* texture;
+
+	Collider* coll = nullptr;
+
 	float auxGravity = 0.0f;
 	float gravity = 0.0f;
-	Collider* coll = nullptr;
-	SDL_Texture* texture;
-	Animation* current_animation = nullptr;
+
+	
+
+
 
 };
 
