@@ -189,8 +189,25 @@ bool Player::Update(float dt)
 
 	coll->SetPos(position.x, position.y);
 	//App->render->DrawQuad(rect, 150, 150, 150, 255, true, false);
+
+
 	if (App->collision->debug)
 		App->render->DrawQuad(CamRect, 150, 150, 150);
+
+
+
+	switch (App->entitymanager->GetPlayerData()->NumPlayer) {
+	case 0:
+		App->render->Blit(App->scene->TutorialJeff, 415, 0, NULL, SDL_FLIP_NONE, 1.0f);
+		break;
+	case 1:
+		App->render->Blit(App->scene->TutorialJane, 415, 0, NULL, SDL_FLIP_NONE, 1.0f);
+		break;
+	case 2:
+		App->render->Blit(App->scene->TutorialJerry, 415, 0, NULL, SDL_FLIP_NONE, 1.0f);
+		break;
+	}
+
 	if (current_animation == &dashR.FinishDash) {
 		App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame(dt)));
 	}

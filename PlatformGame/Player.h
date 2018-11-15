@@ -125,8 +125,7 @@ public:
 	
 	fPoint velocity;
 	fPoint acceleration;
-	iPoint initialmap1;
-	iPoint initialmap2;
+
 
 	bool AnimDoubleJump = false;
 	bool WalkLeft = false;

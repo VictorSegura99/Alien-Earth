@@ -104,17 +104,7 @@ bool j1Scene::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN) {
 		App->capactivated = !App->capactivated;
 	}
-	switch (App->entitymanager->GetPlayerData()->NumPlayer) {
-	case 0:
-		App->render->Blit(TutorialJeff, 415, 0, NULL, SDL_FLIP_NONE, 1.0f);
-		break;
-	case 1:
-		App->render->Blit(TutorialJane, 415, 0, NULL, SDL_FLIP_NONE, 1.0f);
-		break;
-	case 2:
-		App->render->Blit(TutorialJerry, 415, 0, NULL, SDL_FLIP_NONE, 1.0f);
-		break;
-	}
+	
 	App->map->Draw();
 
 	return true;
