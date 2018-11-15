@@ -70,36 +70,38 @@ bool j1Scene::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		App->SaveGame("save_game.xml");
-	/*
-	if (App->player->NextMap) {
-		App->player->NextMap = false;
+	
+	if (App->entitymanager->GetPlayerData()->NextMap) {
+		App->entitymanager->GetPlayerData()->NextMap = false;
 		KnowMap = 1;
 		App->map->ChangeMap(map_name[KnowMap]);
-		App->player->Spawn();
+		App->entitymanager->GetPlayerData()->Spawn();
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
-		App->map->ChangeMap(map_name[KnowMap]);
-		App->player->Spawn();
 		KnowMap = 0;
+		App->map->ChangeMap(map_name[KnowMap]);
+		App->entitymanager->GetPlayerData()->Spawn();
+		
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
 		if (KnowMap == 0) {
 			App->map->ChangeMap(map_name[KnowMap]);
-			App->player->Spawn();
+			App->entitymanager->GetPlayerData()->Spawn();
 		}
 		else if (KnowMap == 1) {
 			App->map->ChangeMap(map_name[KnowMap]);
-			App->player->Spawn();
+			App->entitymanager->GetPlayerData()->Spawn();
 		}
 		
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
-			App->map->ChangeMap(map_name[KnowMap]);
-			App->player->Spawn();
-			KnowMap = 1;
+		KnowMap = 1;
+		App->map->ChangeMap(map_name[KnowMap]);
+		App->entitymanager->GetPlayerData()->Spawn();
+			
 	}
-	*/
+	
 
 	if (App->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN) {
 		App->capactivated = !App->capactivated;

@@ -14,23 +14,18 @@ Entity::~Entity()
 
 }
 
-
-
 void Entity::Draw()
 {
-
-
+	
 	
 }
 
-void Entity::OnCollision(Collider* collider)
+void Entity::OnCollision(Collider* c2)
 {
-
+	
 }
 
 void Entity::UsePlayerFunctions(uint NumFun) const
 {
 	
-
-
 }

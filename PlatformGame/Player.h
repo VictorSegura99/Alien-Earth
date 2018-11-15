@@ -5,16 +5,11 @@
 #include "p2Point.h"
 #include "Entity.h"
 
-
-
-
 struct SDL_Texture;
 struct Collider;
 
-
 class Player : public Entity
 {
-	
 	struct Laser {
 		fPoint position;
 		fPoint velocity;
@@ -72,7 +67,7 @@ public:
 	bool Save(pugi::xml_node&) const;
 
 	bool CleanUp();
-	void OnCollision(Collider* c1, Collider* c2);
+	void OnCollision(Collider* c2);
 	void Die();
 	void Fall();
 	void Spawn();
@@ -90,16 +85,15 @@ public:
 	void Gravity(float dt);
 	void SetCamera();
 
-
 public:
 	bool cameraon = false;
-	float auxGravity;
+	
 	//float TIME;
 	j1Timer time;
 	float starttime;
 	SDL_Rect CamRect;
 
-	Animation* current_animation = nullptr;
+	
 	Animation idle[3];
 	Animation idle2[3];
 	Animation GoLeft[3];
@@ -114,21 +108,21 @@ public:
 	Animation doubleJump;
 
 
-	SDL_Texture* texture;
+	
 	SDL_Texture* ParticlesTex;
 
 	p2SString sprites_name[3];
-	p2SString	JumpFx;
-	p2SString	WaterFx;
+	p2SString JumpFx;
+	p2SString WaterFx;
 	p2SString DeathFx;
 	p2SString DeathFx2;
 	p2SString LadderFx;
 	p2SString LaserFx;
 	p2SString DashFx;
 
-	Collider* coll = nullptr;
+	
 
-	fPoint position;
+	
 	fPoint velocity;
 	fPoint acceleration;
 	iPoint initialmap1;
@@ -163,7 +157,7 @@ public:
 	bool FallingJump2 = false;
 	bool TouchingGround = false;
 
-	float gravity = 0.0f;
+	
 	float JumpSpeed = 0.0f;
 	float SpeedWalk = 0.0f;
 	float SpeedClimb = 0.0f;
