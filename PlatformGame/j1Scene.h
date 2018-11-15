@@ -39,6 +39,8 @@ public:
 	p2List<p2SString*> map_name;
 	p2SString Song;
 	//Entity* player = nullptr;
+	SDL_Texture* Tutorial[3];
+	p2SString tutorial[3];
 	
 };
 
