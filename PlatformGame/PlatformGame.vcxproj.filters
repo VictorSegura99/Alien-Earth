@@ -50,10 +50,13 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Spider.cpp">
+      <Filter>Modules\Entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,10 +127,13 @@
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Modules</Filter>
+      <Filter>Modules\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Spider.h">
+      <Filter>Modules\Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +156,9 @@
     </Filter>
     <Filter Include="Modules\timer">
       <UniqueIdentifier>{f3a04546-ef7a-4c22-a762-f1a269ee05ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\Entities">
+      <UniqueIdentifier>{3fe3114b-07d0-4967-a6d2-08816da2f5ac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

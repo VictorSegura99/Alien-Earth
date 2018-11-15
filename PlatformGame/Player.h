@@ -1,12 +1,9 @@
-#ifndef __j1Player_H__
-#define __j1Player_H__
+#ifndef __Player_H__
+#define __Player_H__
 
 #include "p2Animation.h"
 #include "p2Point.h"
 #include "Entity.h"
-
-struct SDL_Texture;
-struct Collider;
 
 class Player : public Entity
 {

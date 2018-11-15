@@ -10,12 +10,14 @@
 #include "j1Map.h"
 #include "j1Scene.h"
 #include "Player.h"
+#include "Spider.h"
 
 
 EntityManager::EntityManager()
 {
 	name.create("entity_manager");
 	player = CreateEntity(EntityType::PLAYER);
+	spider = CreateEntity(EntityType::SPIDER,500,350);
 }
 
 // Destructor
@@ -51,7 +53,7 @@ bool EntityManager::Start()
 
 bool EntityManager::PreUpdate()
 {
-	if (ActivePlayer) {
+	if (ActiveGame) {
 		for (int i = 0; i < entities.Count(); i++) {
 			if (entities[i] != nullptr)
 				entities[i]->PreUpdate();
@@ -64,7 +66,7 @@ bool EntityManager::PreUpdate()
 // Called before render is available
 bool EntityManager::Update(float dt)
 {
-	if (ActivePlayer) {
+	if (ActiveGame) {
 		for (int i = 0; i < entities.Count(); i++) {
 			if (entities[i] != nullptr)
 				entities[i]->Update(dt);
@@ -74,13 +76,13 @@ bool EntityManager::Update(float dt)
 				entities[i]->Draw(dt);
 		}
 	}
-
+	
 	return true;
 }
 
 bool EntityManager::PostUpdate()
 {
-	if (ActivePlayer) {
+	if (ActiveGame) {
 		for (int i = 0; i < entities.Count(); i++) {
 			if (entities[i] != nullptr)
 				entities[i]->PostUpdate();
@@ -92,7 +94,9 @@ bool EntityManager::PostUpdate()
 // Called before quitting
 bool EntityManager::CleanUp()
 {
-	
+	for (uint i = 0; i < entities.Count(); ++i)
+		if (entities[i] != nullptr)
+			entities[i]->CleanUp();
 
 
 	return true;
@@ -107,17 +111,30 @@ void EntityManager::OnCollision(Collider* c1, Collider* c2)
 }
 
 
-Entity * EntityManager::CreateEntity(EntityType type)
+Entity* EntityManager::CreateEntity(EntityType type, int x, int y)
 {
 	Entity* ret = nullptr;
 	switch (type) {
-	case EntityType::PLAYER: ret = new Player(); 
+	case EntityType::PLAYER: ret = new Player();
 		ret->type = PLAYER;
+		break;
+	case EntityType::SPIDER: ret = new Spider(x, y);
+		ret->type = SPIDER;
 		break;
 	}
 	if (ret != nullptr)
 		entities.PushBack(ret);
 	return ret;
+}
+
+void EntityManager::DeleteEntities()
+{
+
+	for (uint i = 0; i < entities.Count(); ++i)
+		if (entities[i] != nullptr)
+			RELEASE(entities[i]);
+
+
 }
 
 

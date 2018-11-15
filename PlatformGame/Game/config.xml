@@ -326,72 +326,78 @@
         </Death>
       </AnimationsPlayerBlue>
     </player>
-    
+
+    <enemies>
+      <sprite>textures/enemies.png</sprite>
+      <Bat>
+        <AnimationsBat>
+          <GoLeft speed="0.1f" loop="true">
+            <frame x="0" y="0" w="70" h="47"/>
+            <frame x="70" y="0" w="88" h="47"/>
+          </GoLeft>
+          <GoRight speed="0.1f" loop="true">
+            <frame x="0" y="100" w="70" h="47"/>
+            <frame x="70" y="100" w="88" h="47"/>
+          </GoRight>
+          <Idle>
+            <frame x="164" y="0" w="37" h="48"/>
+          </Idle>
+          <HitLeft speed="0.1f" loop="true">
+            <frame x="203" y="0" w="70" h="47"/>
+            <frame x="198" y="53" w="85 " h="47"/>
+          </HitLeft>
+          <DieLeft speed="1.0f" loop="true">
+            <frame x="280" y="0" w="70" h="47"/>
+          </DieLeft>
+          <HitRight speed="0.1f" loop="true">
+            <frame x="203" y="100" w="70" h="47"/>
+            <frame x="198" y="153" w="85 " h="47"/>
+          </HitRight>
+          <DieRight speed="1.0f" loop="true">
+            <frame x="280" y="100" w="70" h="47"/>
+          </DieRight>
+        </AnimationsBat>
+      </Bat>
+      <Spider>
+        <sprite>textures/enemies.png</sprite>
+        <AnimationsSpider>
+          <GoLeft speed="0.1f" loop="true">
+            <frame x="73" y="212" w="72" h="53"/>
+            <frame x="148" y="212" w="75" h="53"/>
+          </GoLeft>
+          <GoRight speed="0.1f" loop="true">
+            <frame x="150" y="212" w="72" h="53"/>
+            <frame x="72" y="212" w="75" h="53"/>
+          </GoRight>
+          <IdleLeft speed="1.0f" loop="true">
+            <frame x="0" y="212" w="70" h="53"/>
+          </IdleLeft>
+          <IdleRight speed="1.0f" loop="true">
+            <frame x="225" y="268" w="70" h="53"/>
+          </IdleRight>
+          <HitLeft speed="0.1f" loop="true">
+            <frame x="0" y="268" w="70" h="53"/>
+            <frame x="73" y="268" w="72 " h="53"/>
+            <frame x="148" y="268" w="75 " h="53"/>
+          </HitLeft>
+          <DieLeft speed="1.0f" loop="true">
+            <frame x="226" y="212" w="70" h="53"/>
+          </DieLeft>
+          <HitRight speed="0.1f" loop="true">
+            <frame x="150" y="380" w="72" h="53"/>
+            <frame x="72" y="380" w="75 " h="53"/>
+            <frame x="225" y="380" w="70" h="53"/>
+          </HitRight>
+          <DieRight speed="1.0f" loop="true">
+            <frame x="280" y="100" w="70" h="47"/>
+          </DieRight>
+        </AnimationsSpider>
+      </Spider>
+    </enemies>
   </entity_manager>
   
 
-  <enemies>
-    <sprite>textures/enemies.png</sprite>
-    <AnimationsBat>
-      <GoLeft speed="0.1f" loop="true">
-        <frame x="0" y="0" w="70" h="47"/>
-        <frame x="70" y="0" w="88" h="47"/>
-      </GoLeft>
-      <GoRight speed="0.1f" loop="true">
-        <frame x="0" y="100" w="70" h="47"/>
-        <frame x="70" y="100" w="88" h="47"/>
-      </GoRight>
-      <Idle>
-        <frame x="164" y="0" w="37" h="48"/>
-      </Idle>
-      <HitLeft speed="0.1f" loop="true">
-        <frame x="203" y="0" w="70" h="47"/>
-        <frame x="198" y="53" w="85 " h="47"/>
-      </HitLeft>
-      <DieLeft speed="1.0f" loop="true">
-        <frame x="280" y="0" w="70" h="47"/>
-      </DieLeft>
-      <HitRight speed="0.1f" loop="true">
-        <frame x="203" y="100" w="70" h="47"/>
-        <frame x="198" y="153" w="85 " h="47"/>
-      </HitRight>
-      <DieRight speed="1.0f" loop="true">
-        <frame x="280" y="100" w="70" h="47"/>
-      </DieRight>
-    </AnimationsBat>
-    <AnimationsSpider>
-      <GoLeft speed="0.1f" loop="true">
-        <frame x="73" y="212" w="72" h="53"/>
-        <frame x="148" y="212" w="75" h="53"/>
-      </GoLeft>
-      <GoRight speed="0.1f" loop="true">
-        <frame x="150" y="212" w="72" h="53"/>
-        <frame x="72" y="212" w="75" h="53"/>
-      </GoRight>
-      <IdleLeft speed="1.0f" loop="true">
-        <frame x="0" y="212" w="70" h="53"/>
-      </IdleLeft>
-      <IdleRight speed="1.0f" loop="true">
-        <frame x="225" y="268" w="70" h="53"/>
-      </IdleRight>
-      <HitLeft speed="0.1f" loop="true">
-        <frame x="0" y="268" w="70" h="53"/>
-        <frame x="73" y="268" w="72 " h="53"/>
-        <frame x="148" y="268" w="75 " h="53"/>
-      </HitLeft>
-      <DieLeft speed="1.0f" loop="true">
-        <frame x="226" y="212" w="70" h="53"/>
-      </DieLeft>
-      <HitRight speed="0.1f" loop="true">
-        <frame x="150" y="380" w="72" h="53"/>
-        <frame x="72" y="380" w="75 " h="53"/>
-        <frame x="225" y="380" w="70" h="53"/>
-      </HitRight>
-      <DieRight speed="1.0f" loop="true">
-        <frame x="280" y="100" w="70" h="47"/>
-      </DieRight>
-    </AnimationsSpider>
-  </enemies>
+  
   
   
 </config>
