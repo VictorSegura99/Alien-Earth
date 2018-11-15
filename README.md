@@ -8,8 +8,9 @@ CONTROLS:
 - SPACE: Jump
 - W: Go Up while Climbing/Swimming.
 - S: Go Down while Climbing/Swimming.
-- +: Level audio up
-- -: Level audio down
+- J: Special Character Hability.
+- +: Level audio up.
+- -: Level audio down.
 
 DEBUG KEYS:
 - F1: Return to the begining of the first level.
@@ -19,10 +20,16 @@ DEBUG KEYS:
 - F6: Load.
 - F9: Show Colliders.
 - F10: Godmode.
+- F11: 30FPS Cap Activate/Desactivate.
 
 INNOVATIONS:
 - Climb ladders and ropes.
 - Swim through water.
+- Initial Menu+Choose Menu.
+- 3 Different Characters with unique habilities.
+- Yellow Alien(Jeff): Double Jump+Bomb Jump(only when previous doble jump)
+- Pink Alien(Jane): Shoots Laser.
+- Blue Alien(Jerry): Dash
 _____________
 AUTHORS
 - Víctor Segura Blanco (Github: https://github.com/VictorSegura99)

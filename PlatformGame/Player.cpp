@@ -142,8 +142,9 @@ bool Player::PreUpdate() //Here we preload the input functions to determine the 
 bool Player::Update(float dt)
 {
 	DT = dt;
-	if (!TouchingGround && !dashing) {
-		acceleration.y = gravity * dt;
+
+	if (!TouchingGround&&!dashing) {
+		acceleration.y = gravity*dt;
 		LOG("Acceleration %f", acceleration.y);
 	}
 	else
