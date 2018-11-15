@@ -98,7 +98,9 @@ bool EntityManager::CleanUp()
 
 void EntityManager::OnCollision(Collider* c1, Collider* c2)
 {
-
+	for (uint i = 0; i < entities.Count(); ++i)
+		if (entities[i] != nullptr)
+			entities[i]->OnCollision(c2);
 }
 
 
@@ -106,7 +108,7 @@ Entity * EntityManager::CreateEntity(EntityType type)
 {
 	Entity* ret = nullptr;
 	switch (type) {
-	case EntityType::PLAYER: ret = new Player(1000,450); 
+	case EntityType::PLAYER: ret = new Player(1000,150); 
 		break;
 	}
 	if (ret != nullptr)

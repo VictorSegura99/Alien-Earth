@@ -14,7 +14,7 @@ public:
 	Entity(int x, int y);
 	virtual ~Entity();
 
-
+	
 	virtual bool Start() { return true; };
 	virtual bool PreUpdate() { return true; };
 	virtual bool Update(float dt) { return true; };
@@ -23,7 +23,7 @@ public:
 	virtual void Draw();
 	virtual bool Load(pugi::xml_node&) { return true; };
 	virtual bool Save(pugi::xml_node&) const { return true; };
-	virtual void OnCollision(Collider* collider);
+	virtual void OnCollision(Collider* c2);
 
 	void UsePlayerFunctions(uint NumFun) const;
 
@@ -31,8 +31,14 @@ public:
 
 
 	int type = 0;
-	iPoint position;
+	fPoint position;
 	
+	//
+	float auxGravity = 0.0f;
+	float gravity = 0.0f;
+	Collider* coll = nullptr;
+	SDL_Texture* texture;
+	Animation* current_animation = nullptr;
 
 };
 

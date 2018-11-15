@@ -70,9 +70,9 @@ bool j1Choose::Start()
 	choose2 = App->tex->Load(file_texture[3].GetString());
 	choose3 = App->tex->Load(file_texture[4].GetString());
 
-	//yellow = App->tex->Load(App->player->sprites_name[0].GetString());
-	//pink = App->tex->Load(App->player->sprites_name[1].GetString());
-	//blue = App->tex->Load(App->player->sprites_name[2].GetString());
+	yellow = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[0].GetString());
+	pink = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[1].GetString());
+	blue = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[2].GetString());
 
 	choosefx = App->audio->LoadFx(ChooseFx.GetString());
 	introfx = App->audio->LoadFx(IntroFx.GetString());
@@ -85,7 +85,7 @@ bool j1Choose::PreUpdate()
 {
 
 	App->input->GetMousePosition(mouse.x, mouse.y);
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && !GameOn) {
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && !GameOn && !start) {
 		start = true;
 		App->audio->PlayFx(introfx);
 	}
@@ -132,14 +132,14 @@ bool j1Choose::Update(float dt)
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 					playernumber = PlayerNumber2;
 					App->scene->active = !App->scene->active;
-					//App->player->active = !App->player->active;
 					App->collision->active = !App->collision->active;
 					App->map->active = !App->map->active;
 					App->scene->KnowMap = 0;
 					App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-				//	App->player->Start();
-					//App->player->ChangePlayer(playernumber);
-					//App->player->SetCamera();
+					App->entitymanager->ActivePlayer = true;
+					App->entitymanager->GetPlayerData()->Start();
+					App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
+					App->entitymanager->GetPlayerData()->SetCamera();
 					GameOn = true;
 				}
 			}
@@ -155,14 +155,14 @@ bool j1Choose::Update(float dt)
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 					playernumber = PlayerNumber3;
 					App->scene->active = !App->scene->active;
-					//App->player->active = !App->player->active;
 					App->collision->active = !App->collision->active;
 					App->map->active = !App->map->active;
 					App->scene->KnowMap = 0;
 					App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-					//App->player->Start();
-					//App->player->ChangePlayer(playernumber);
-					//App->player->SetCamera();
+					App->entitymanager->ActivePlayer = true;
+					App->entitymanager->GetPlayerData()->Start();
+					App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
+					App->entitymanager->GetPlayerData()->SetCamera();
 					GameOn = true;
 				}
 			}
@@ -186,13 +186,6 @@ bool j1Choose::PostUpdate()
 {
 	bool ret = true;
 	if (!GameOn) {
-		/*if (App->input->GetKey(SDL_SCANCODE_T) == KEY_DOWN) {
-			App->scene->active = !App->scene->active;
-			App->player->active = !App->player->active;
-			App->collision->active = !App->collision->active;
-			App->map->active = !App->map->active;
-			GameOn = true;
-		}*/
 		if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 			ret = false;
 	}

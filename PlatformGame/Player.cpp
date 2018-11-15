@@ -190,7 +190,7 @@ bool Player::Update(float dt)
 	if (God)
 		CanJump = true;
 
-	//coll->SetPos(position.x, position.y);
+	coll->SetPos(position.x, position.y);
 	//App->render->DrawQuad(rect, 150, 150, 150, 255, true, false);
 	if (App->collision->debug)
 		App->render->DrawQuad(CamRect, 150, 150, 150);
@@ -260,7 +260,7 @@ bool Player::CleanUp()
 	return true;
 }
 
-void Player::OnCollision(Collider * c1, Collider * c2) //this determine what happens when the player touch a type of collider
+void Player::OnCollision(Collider * c2) //this determine what happens when the player touch a type of collider
 {
 	switch (c2->type) {
 	case COLLIDER_GROUND:
@@ -503,15 +503,15 @@ void Player::ChangePlayer(const int playernumber)
 		current_animation = &idle[NumPlayer];
 		switch (playernumber) {
 		case 0:
-			coll = App->collision->AddCollider({ 0, 0, playerwidth, playerheight }, COLLIDER_PLAYER);
+			coll = App->collision->AddCollider({ 0, 0, playerwidth, playerheight }, COLLIDER_PLAYER, (j1Module*)App->entitymanager);
 			break;
 		case 1:
 			position.y -= 17;
-			coll = App->collision->AddCollider({ 0, 0, 67, 93 }, COLLIDER_PLAYER);
+			coll = App->collision->AddCollider({ 0, 0, 67, 93 }, COLLIDER_PLAYER, (j1Module*)App->entitymanager);
 			break;
 		case 2:
 			position.y -= 17;
-			coll = App->collision->AddCollider({ 0, 0, 67, 93 }, COLLIDER_PLAYER);
+			coll = App->collision->AddCollider({ 0, 0, 67, 93 }, COLLIDER_PLAYER, (j1Module*)App->entitymanager);
 			break;
 		}
 	}
