@@ -62,7 +62,8 @@ private:
 	SDL_Texture* test = nullptr;
 
 public:
-
+	Particle laser;
+	Particle smokeBottom;
 };
 
 #endif // __MODULEPARTICLES_H__

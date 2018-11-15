@@ -18,7 +18,11 @@ j1Particles::j1Particles()
 		active[i] = nullptr;
 
 	//animations for particles, avoiding repeat animations pushback rects
-
+	smokeBottom.anim.PushBack({ 0,663,100,86 });
+	smokeBottom.anim.PushBack({ 101,663,103,86 });
+	smokeBottom.anim.PushBack({ 204,663,105,86 });
+	smokeBottom.anim.PushBack({ 309,663,70,86 });
+	smokeBottom.anim.speed = 1.0f;
 }
 
 j1Particles::~j1Particles()
