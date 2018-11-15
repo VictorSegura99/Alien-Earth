@@ -4,11 +4,37 @@
 #include "j1App.h"
 #include "j1Render.h"
 #include "PugiXml\src\pugixml.hpp"
+#include "j1Collision.h"
+#include "EntityManager.h"
+#include "Player.h"
 
 Spider::Spider(int x, int y) : Entity(x,y)
 {
 	position.x = x;
 	position.y = y;
+
+	pugi::xml_document	config_file;
+	pugi::xml_node		config;
+	pugi::xml_node		app_config;
+	pugi::xml_node		spider;
+
+	config = App->LoadConfig(config_file);
+	app_config = config.child("entity_manager").child("enemies");
+	spider = app_config.child("Spider");
+
+	sprites = spider.child("sprite").text().as_string();
+	GoLeft = LoadPushbacks(spider, "GoLeft");
+	GoRight = LoadPushbacks(spider, "GoRight");
+	IdleLeft = LoadPushbacks(spider, "IdleLeft");
+	IdleRight = LoadPushbacks(spider, "IdleRight");
+	DieLeft = LoadPushbacks(spider, "DieLeft");
+	DieRight = LoadPushbacks(spider, "DieRight");
+	HitLeft = LoadPushbacks(spider, "HitLeft");
+	HitRight = LoadPushbacks(spider, "HitRight");
+
+	texture = App->tex->Load(sprites.GetString());
+	current_animation = &IdleLeft;
+
 }
 
 Spider::~Spider()
@@ -37,16 +63,23 @@ bool Spider::Start()
 
 	texture = App->tex->Load(sprites.GetString());
 	current_animation = &IdleLeft;
+	
+
 	return true;
 }
 
 bool Spider::PreUpdate()
 {
+	
 	return true;
 }
 
 bool Spider::PostUpdate()
 {
+
+
+	//coll->SetPos(position.x, position.y);
+
 	return true;
 }
 

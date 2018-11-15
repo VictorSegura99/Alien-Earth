@@ -16,8 +16,10 @@
 EntityManager::EntityManager()
 {
 	name.create("entity_manager");
+	
+	
+
 	player = CreateEntity(EntityType::PLAYER);
-	spider = CreateEntity(EntityType::SPIDER,500,350);
 }
 
 // Destructor
@@ -169,3 +171,7 @@ Player* EntityManager::GetPlayerData() const {
 	return nullptr;
 
 }
+
+
+
+
