@@ -179,6 +179,12 @@ public:
 	int finalmapplayer = 0;
 	int finalmap = 0;
 	int NumPlayer = 900;
+	
+	int TutorialX = 0;
+	int TutorialY1 = 0;
+	int TutorialY2 = 0;
+
+
 
 
 	unsigned int jumpfx;

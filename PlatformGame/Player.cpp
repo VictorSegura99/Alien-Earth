@@ -62,6 +62,9 @@ bool Player::Awake(pugi::xml_node& config)
 	laserR.timelife = player.child("lasertimelife").attribute("value").as_int();
 	BottomLeft.speed = player.child("BottomSpeed").attribute("value").as_float();
 	BottomRight.speed = player.child("BottomSpeed").attribute("value").as_float();
+	TutorialX = player.child("TutorialX").attribute("value").as_int();
+	TutorialY1 = player.child("TutorialY1").attribute("value").as_int();
+	TutorialY2 = player.child("TutorialY2").attribute("value").as_int();
 
 	for (int numplayer = 0; numplayer < 3; ++numplayer) {
 		idle[numplayer] = LoadPushbacks(numplayer, player, "idle");
@@ -247,17 +250,18 @@ bool Player::Save(pugi::xml_node& player) const
 void Player::Draw(float dt)
 {
 
-	switch (NumPlayer) {
+	switch (App->entitymanager->GetPlayerData()->NumPlayer) {
 	case 0:
-		App->render->Blit(App->scene->TutorialJeff, 415, 0, NULL, SDL_FLIP_NONE, 1.0f);
+		App->render->Blit(App->scene->TutorialJeff, TutorialX, TutorialY1, NULL, SDL_FLIP_NONE, 1.0f);
 		break;
 	case 1:
-		App->render->Blit(App->scene->TutorialJane, 415, 0, NULL, SDL_FLIP_NONE, 1.0f);
+		App->render->Blit(App->scene->TutorialJane, TutorialX, TutorialY2, NULL, SDL_FLIP_NONE, 1.0f);
 		break;
 	case 2:
-		App->render->Blit(App->scene->TutorialJerry, 415, 0, NULL, SDL_FLIP_NONE, 1.0f);
+		App->render->Blit(App->scene->TutorialJerry, TutorialX, TutorialY2, NULL, SDL_FLIP_NONE, 1.0f);
 		break;
 	}
+
 
 	if (current_animation == &dashR.FinishDash) {
 		App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame(dt)));
