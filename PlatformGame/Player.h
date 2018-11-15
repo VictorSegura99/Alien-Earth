@@ -106,7 +106,7 @@ public:
 	Animation Death[3];
 	Animation doubleJump;
 
-
+	pugi::xml_node node;
 	
 	SDL_Texture* ParticlesTex;
 

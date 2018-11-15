@@ -24,6 +24,7 @@ bool Player::Awake(pugi::xml_node& config)
 {
 	LOG("Init SDL player");
 
+	node = config;
 	pugi::xml_node player = config.child("player");
 
 	sprites_name[0] = player.child("sprites").text().as_string();

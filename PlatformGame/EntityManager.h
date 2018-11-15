@@ -47,6 +47,7 @@ public:
 
 	Player* GetPlayerData() const;
 
+
 private:
 
 	p2DynArray<Entity*> entities;

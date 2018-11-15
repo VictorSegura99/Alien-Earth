@@ -29,6 +29,7 @@ public:
 	virtual void OnCollision(Collider* c2);
 
 
+
 public:
 
 	int type = 0;
