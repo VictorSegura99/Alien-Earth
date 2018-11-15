@@ -112,6 +112,7 @@ Entity * EntityManager::CreateEntity(EntityType type)
 	Entity* ret = nullptr;
 	switch (type) {
 	case EntityType::PLAYER: ret = new Player(); 
+		ret->type = PLAYER;
 		break;
 	}
 	if (ret != nullptr)

@@ -68,6 +68,8 @@ public:
 	void Draw(float dt);
 	bool CleanUp();
 	void OnCollision(Collider* c2);
+
+
 	void Die();
 	void Fall();
 	void Spawn();
