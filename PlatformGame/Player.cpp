@@ -12,6 +12,7 @@
 #include "j1Scene.h"
 #include "j1Choose.h"
 #include "Player.h"
+#include "j1Particles.h"
 
 Player::Player() : Entity()
 {
@@ -24,7 +25,6 @@ bool Player::Awake(pugi::xml_node& config)
 {
 	LOG("Init SDL player");
 
-	node = config;
 	pugi::xml_node player = config.child("player");
 
 	sprites_name[0] = player.child("sprites").text().as_string();
@@ -205,15 +205,7 @@ bool Player::Update(float dt)
 
 bool Player::PostUpdate()
 {
-	/*if (App->input->GetKey(SDL_SCANCODE_Y) == KEY_DOWN) {
-	App->scene->active = !App->scene->active;
-	App->player->active = !App->player->active;
-	App->collision->active = !App->collision->active;
-	App->map->active = !App->map->active;
-	App->render->camera.x = 0;
-	App->render->camera.y = 0;
-	App->choose->GameOn = false;
-	}*/
+
 	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) {
 		ChangePlayer(0);
 	}
@@ -275,8 +267,6 @@ bool Player::CleanUp()
 	death = false;
 	fall = false;
 	God = false;
-	//Death[NumPlayer].current_frame = 0.0f;
-	//Death[NumPlayer].loops = 0;
 	if (coll)
 		coll->to_delete = true;
 	return true;
@@ -548,6 +538,7 @@ void Player::GoJump(float dt)
 		Time = 0;
 		JumpSpeed = AuxJumpSpeed;
 		starttime = SDL_GetTicks();
+		App->particles->AddParticle(App->particles->smokeBottom, position.x, position.y, COLLIDER_NONE, { 0,0 });
 	}
 	if (IsJumping) { //if you are able to jump, determine the animation and direction of the jump
 					 //Time = Time * dt;
