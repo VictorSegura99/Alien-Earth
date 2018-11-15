@@ -8,8 +8,10 @@
 #include "j1Window.h"
 #include "j1Map.h"
 #include "j1Scene.h"
-#include "jPlayer.h"
 #include "j1Choose.h"
+#include "j1Collision.h"
+#include "Entity.h"
+#include "EntityManager.h"
 
 j1Choose::j1Choose() : j1Module()
 {
@@ -57,20 +59,19 @@ bool j1Choose::Awake(pugi::xml_node& config)
 bool j1Choose::Start()
 {
 	App->scene->active = false;
-	App->player->active = false;
+	//App->player->active = false;
 	App->collision->active = false;
 	App->map->active = false;
 	GameOn = false;
-
 	ScreenStart = App->tex->Load(file_texture[0].GetString());
 	NoChoose = App->tex->Load(file_texture[1].GetString());
 	choose1 = App->tex->Load(file_texture[2].GetString());
 	choose2 = App->tex->Load(file_texture[3].GetString());
 	choose3 = App->tex->Load(file_texture[4].GetString());
 
-	yellow = App->tex->Load(App->player->sprites_name[0].GetString());
-	pink = App->tex->Load(App->player->sprites_name[1].GetString());
-	blue = App->tex->Load(App->player->sprites_name[2].GetString());
+	//yellow = App->tex->Load(App->player->sprites_name[0].GetString());
+	//pink = App->tex->Load(App->player->sprites_name[1].GetString());
+	//blue = App->tex->Load(App->player->sprites_name[2].GetString());
 
 	choosefx = App->audio->LoadFx(ChooseFx.GetString());
 	introfx = App->audio->LoadFx(IntroFx.GetString());
@@ -107,15 +108,16 @@ bool j1Choose::Update(float dt)
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 					playernumber = PlayerNumber1;
 					App->scene->active = !App->scene->active;
-					App->player->active = !App->player->active;
+					//App->player->active = !App->player->active;
 					App->collision->active = !App->collision->active;
 					App->map->active = !App->map->active;
-				//	App->scene->Start();
+				    //App->scene->Start();
 					App->scene->KnowMap = 0;
+					//App->entitymanager
 					App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-					App->player->Start();
-					App->player->ChangePlayer(playernumber);
-					App->player->SetCamera();
+					//App->player->Start();
+					//App->player->ChangePlayer(playernumber);
+					//App->player->SetCamera();
 					GameOn = true;
 				}
 			}
@@ -131,14 +133,14 @@ bool j1Choose::Update(float dt)
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 					playernumber = PlayerNumber2;
 					App->scene->active = !App->scene->active;
-					App->player->active = !App->player->active;
+					//App->player->active = !App->player->active;
 					App->collision->active = !App->collision->active;
 					App->map->active = !App->map->active;
 					App->scene->KnowMap = 0;
 					App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-					App->player->Start();
-					App->player->ChangePlayer(playernumber);
-					App->player->SetCamera();
+				//	App->player->Start();
+					//App->player->ChangePlayer(playernumber);
+					//App->player->SetCamera();
 					GameOn = true;
 				}
 			}
@@ -154,14 +156,14 @@ bool j1Choose::Update(float dt)
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 					playernumber = PlayerNumber3;
 					App->scene->active = !App->scene->active;
-					App->player->active = !App->player->active;
+					//App->player->active = !App->player->active;
 					App->collision->active = !App->collision->active;
 					App->map->active = !App->map->active;
 					App->scene->KnowMap = 0;
 					App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-					App->player->Start();
-					App->player->ChangePlayer(playernumber);
-					App->player->SetCamera();
+					//App->player->Start();
+					//App->player->ChangePlayer(playernumber);
+					//App->player->SetCamera();
 					GameOn = true;
 				}
 			}

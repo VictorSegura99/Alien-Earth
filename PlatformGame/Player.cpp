@@ -1,29 +1,26 @@
 #include "p2Defs.h"
 #include "p2Log.h"
-#include "p2Point.h"
 #include "j1App.h"
-#include "jPlayer.h"
-#include "j1Textures.h"
+#include "j1Input.h"
 #include "j1Render.h"
-#include "j1input.h"
+#include "j1Textures.h"
 #include "j1Map.h"
-#include "j1Scene.h"
 #include "j1Collision.h"
 #include "j1Audio.h"
+#include "EntityManager.h"
+#include "j1Timer.h"
+#include "j1Scene.h"
 #include "j1Choose.h"
-#include "j1Map.h"
-#include "j1Window.h"
+#include "Player.h"
 
-
-jPlayer::jPlayer() : j1Module()
+Player::Player(int x, int y) : Entity(x, y)
 {
-	name.create("player");
 
 }
 
-jPlayer::~jPlayer() {}
+Player::~Player() {}
 
-bool jPlayer::Awake(pugi::xml_node& config)
+bool Player::Awake(pugi::xml_node& config)
 {
 	LOG("Init SDL player");
 	sprites_name[0] = config.child("sprites").text().as_string();
@@ -98,9 +95,9 @@ bool jPlayer::Awake(pugi::xml_node& config)
 	return ret;
 }
 
-bool jPlayer::Start()
+bool Player::Start()
 {
-	
+
 	bool ret = true;
 
 	auxGravity = gravity;
@@ -114,13 +111,13 @@ bool jPlayer::Start()
 
 	position.x = initialmap1.x;
 	position.y = initialmap1.y;
-	
+
 	laserR.life = laserR.timelife;
 	laserL.life = laserL.timelife;
 
 	return ret;
 }
-bool jPlayer::PreUpdate() //Here we preload the input functions to determine the state of the player
+bool Player::PreUpdate() //Here we preload the input functions to determine the state of the player
 {
 	if (!NoInput) {
 		if (!dashing) {
@@ -142,9 +139,10 @@ bool jPlayer::PreUpdate() //Here we preload the input functions to determine the
 	}
 	return true;
 }
-bool jPlayer::Update(float dt)
+bool Player::Update(float dt)
 {
 	DT = dt;
+
 	if (!TouchingGround&&!dashing) {
 		acceleration.y = gravity*dt;
 		LOG("Acceleration %f", acceleration.y);
@@ -152,7 +150,7 @@ bool jPlayer::Update(float dt)
 	else
 		acceleration.y = 0;
 	position.x += velocity.x;
-	position.y -= velocity.y+acceleration.y;
+	position.y -= velocity.y + acceleration.y;
 	LOG("Gravity: %.6f", gravity);
 	if (!dashing) {
 		if (NumPlayer == 0)
@@ -161,7 +159,7 @@ bool jPlayer::Update(float dt)
 		GoSwim(dt);
 		GoClimb(dt);
 		Move_Left_Right(dt);
-		if (NumPlayer == 1) 
+		if (NumPlayer == 1)
 			ShootLaser(dt);
 	}
 	if (NumPlayer == 2)
@@ -169,7 +167,7 @@ bool jPlayer::Update(float dt)
 	if (NumPlayer == 0)
 		BottomFall(dt);
 	Camera(dt);
-	
+
 	if (death && !God) {
 		death = false;
 		//App->audio->PlayFx(deathfx2);
@@ -182,7 +180,7 @@ bool jPlayer::Update(float dt)
 	}
 	if (God)
 		CanJump = true;
-	
+
 	coll->SetPos(position.x, position.y);
 	//App->render->DrawQuad(rect, 150, 150, 150, 255, true, false);
 	if (App->collision->debug)
@@ -197,16 +195,16 @@ bool jPlayer::Update(float dt)
 	return true;
 }
 
-bool jPlayer::PostUpdate()
+bool Player::PostUpdate()
 {
 	/*if (App->input->GetKey(SDL_SCANCODE_Y) == KEY_DOWN) {
-		App->scene->active = !App->scene->active;
-		App->player->active = !App->player->active;
-		App->collision->active = !App->collision->active;
-		App->map->active = !App->map->active;
-		App->render->camera.x = 0;
-		App->render->camera.y = 0;
-		App->choose->GameOn = false;
+	App->scene->active = !App->scene->active;
+	App->player->active = !App->player->active;
+	App->collision->active = !App->collision->active;
+	App->map->active = !App->map->active;
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
+	App->choose->GameOn = false;
 	}*/
 	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) {
 		ChangePlayer(0);
@@ -219,18 +217,18 @@ bool jPlayer::PostUpdate()
 	}
 	return true;
 }
-bool jPlayer::Load(pugi::xml_node& player)
+bool Player::Load(pugi::xml_node& player)
 {
 	position.x = player.child("position").attribute("x").as_float();
 	position.y = player.child("position").attribute("y").as_float();
-	
-	
+
+
 	App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 
 
 	return true;
 }
-bool jPlayer::Save(pugi::xml_node& player) const
+bool Player::Save(pugi::xml_node& player) const
 {
 	player.append_child("position").append_attribute("x") = position.x;
 	player.child("position").append_attribute("y") = position.y;
@@ -238,7 +236,7 @@ bool jPlayer::Save(pugi::xml_node& player) const
 
 	return true;
 }
-bool jPlayer::CleanUp()
+bool Player::CleanUp()
 {
 	App->tex->UnLoad(texture);
 	App->tex->UnLoad(ParticlesTex);
@@ -253,7 +251,7 @@ bool jPlayer::CleanUp()
 	return true;
 }
 
-void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what happens when the player touch a type of collider
+void Player::OnCollision(Collider * c1, Collider * c2) //this determine what happens when the player touch a type of collider
 {
 	switch (c2->type) {
 	case COLLIDER_GROUND:
@@ -316,28 +314,28 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 	case COLLIDER_PLATFORM:
 		if (position.y + 70 < c2->rect.y)
 		{
-		velocity.y = 0;
-		//IsJumping = false;
-		//IsJumping2 = false;
-		TouchingGround = true;
-		CanDoAnotherJump = true;
-		CanJump = true;
-		CanClimb = false;
-		FallingJump2 = false;
-		CanJump2 = false;
-		GoDown = false;
-		CanSwim = false;
-		CanDash = true;
-		Falling = false;
-		BottomLeft.IsFalling = false;
-		BottomRight.IsFalling = false;
-		if (!dashing)
-			if (current_animation == &GoRight[NumPlayer] || current_animation == &jumpR[NumPlayer])
-				current_animation = &idle[NumPlayer];
-			else if (current_animation == &GoLeft[NumPlayer] || current_animation == &jumpL[NumPlayer])
-				current_animation = &idle2[NumPlayer];
-	}
-		
+			velocity.y = 0;
+			//IsJumping = false;
+			//IsJumping2 = false;
+			TouchingGround = true;
+			CanDoAnotherJump = true;
+			CanJump = true;
+			CanClimb = false;
+			FallingJump2 = false;
+			CanJump2 = false;
+			GoDown = false;
+			CanSwim = false;
+			CanDash = true;
+			Falling = false;
+			BottomLeft.IsFalling = false;
+			BottomRight.IsFalling = false;
+			if (!dashing)
+				if (current_animation == &GoRight[NumPlayer] || current_animation == &jumpR[NumPlayer])
+					current_animation = &idle[NumPlayer];
+				else if (current_animation == &GoLeft[NumPlayer] || current_animation == &jumpL[NumPlayer])
+					current_animation = &idle2[NumPlayer];
+		}
+
 		break;
 	case COLLIDER_CLIMB:
 		App->audio->PlayFx(ladderfx);
@@ -360,7 +358,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		TouchingGround = true;
 		CanClimb = false;
 		velocity.y = 0;
-		break;	
+		break;
 	case COLLIDER_NONE:
 		CanClimb = false;
 		CanSwim = false;
@@ -386,7 +384,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 		fall = true;
 		if (!God)
 			NoInput = true;
-		break;	
+		break;
 	case COLLIDER_ROPE:
 		TouchingGround = true;
 		CanClimb = true;
@@ -397,7 +395,7 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 	case COLLIDER_WIN:
 		TouchingGround = true;
 		App->scene->active = false;
-		App->player->active = false;
+		//App->player->active = false;
 		App->collision->active = false;
 		App->map->active = false;
 		App->choose->start = false;
@@ -408,11 +406,11 @@ void jPlayer::OnCollision(Collider * c1, Collider * c2) //this determine what ha
 	}
 }
 
-void jPlayer::Die()//What happens when the player die
+void Player::Die()//What happens when the player die
 {
 	current_animation = &Death[NumPlayer];
 	//App->audio->PlayFx(deathfx);
-	if (Death[NumPlayer].SeeCurrentFrame() == 1) 
+	if (Death[NumPlayer].SeeCurrentFrame() == 1)
 		App->audio->PlayFx(deathfx2);
 	if (Death[NumPlayer].Finished()) {
 		if (App->scene->KnowMap == 0) {
@@ -425,18 +423,18 @@ void jPlayer::Die()//What happens when the player die
 	}
 }
 
-void jPlayer::Fall()//What happens when the player falls
+void Player::Fall()//What happens when the player falls
 {
 	if (App->scene->KnowMap == 0) {
 		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 	}
 	if (App->scene->KnowMap == 1) {
 		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-	}	
+	}
 	Spawn();
 }
 
-void jPlayer::Spawn()
+void Player::Spawn()
 {
 	NoInput = false;
 	CanJump = true;
@@ -456,13 +454,13 @@ void jPlayer::Spawn()
 	Death[NumPlayer].current_frame = 0.0f;
 	Death[NumPlayer].loops = 0;
 }
-Animation jPlayer::LoadPushbacks(int playernumber, pugi::xml_node& config, p2SString NameAnim) const
+Animation Player::LoadPushbacks(int playernumber, pugi::xml_node& config, p2SString NameAnim) const
 {
 	p2SString XML_Name_Player_Anims;
 	SDL_Rect rect;
 	Animation anim;
 	switch (playernumber) {
-	case 0: 
+	case 0:
 		XML_Name_Player_Anims = "AnimationsPlayerYellow";
 		break;
 	case 1:
@@ -486,7 +484,7 @@ Animation jPlayer::LoadPushbacks(int playernumber, pugi::xml_node& config, p2SSt
 	return anim;
 }
 
-void jPlayer::ChangePlayer(const int playernumber)
+void Player::ChangePlayer(const int playernumber)
 {
 	if (NumPlayer != playernumber) {
 		App->tex->UnLoad(texture);
@@ -496,21 +494,21 @@ void jPlayer::ChangePlayer(const int playernumber)
 		current_animation = &idle[NumPlayer];
 		switch (playernumber) {
 		case 0:
-			coll = App->collision->AddCollider({ 0, 0, playerwidth, playerheight }, COLLIDER_PLAYER, this);
+			coll = App->collision->AddCollider({ 0, 0, playerwidth, playerheight }, COLLIDER_PLAYER);
 			break;
 		case 1:
 			position.y -= 17;
-			coll = App->collision->AddCollider({ 0, 0, 67, 93 }, COLLIDER_PLAYER, this);
+			coll = App->collision->AddCollider({ 0, 0, 67, 93 }, COLLIDER_PLAYER);
 			break;
 		case 2:
 			position.y -= 17;
-			coll = App->collision->AddCollider({ 0, 0, 67, 93 }, COLLIDER_PLAYER, this);
+			coll = App->collision->AddCollider({ 0, 0, 67, 93 }, COLLIDER_PLAYER);
 			break;
 		}
 	}
 }
 
-void jPlayer::GoJump(float dt)
+void Player::GoJump(float dt)
 {
 	if (Jump && CanJump && !CanSwim && !God && !IsJumping) { //If you clicked the jump button and you are able to jump(always except you just jumpt) you can jump
 		IsJumping = true;
@@ -520,10 +518,10 @@ void jPlayer::GoJump(float dt)
 		starttime = SDL_GetTicks();
 	}
 	if (IsJumping) { //if you are able to jump, determine the animation and direction of the jump
-		//Time = Time * dt;
-		
+					 //Time = Time * dt;
+
 		float TIME = SDL_GetTicks();
-		Time+= 1;
+		Time += 1;
 		LOG("TIME %f", TIME);
 		CanJump = false;
 		if (TIME - starttime == 0)
@@ -559,14 +557,14 @@ void jPlayer::GoJump(float dt)
 			else current_animation = &idle2[NumPlayer];
 		}
 	}
-	
+
 	if (God && Jump) { //if you are in god mode and jump, you can fly
 					   //App->audio->PlayFx(jumpfx);
 		position.y -= JumpSpeed * dt;
 	}
 }
 
-void jPlayer::GoSwim(float dt)
+void Player::GoSwim(float dt)
 {
 	if (CanSwim) {
 		if (current_animation == &SwimLeft[NumPlayer]) {
@@ -585,7 +583,7 @@ void jPlayer::GoSwim(float dt)
 
 }
 
-void jPlayer::GoClimb(float dt)
+void Player::GoClimb(float dt)
 {
 	if (CanClimb && GoUp) {
 		position.y -= SpeedClimb * dt;
@@ -600,7 +598,7 @@ void jPlayer::GoClimb(float dt)
 
 }
 
-void jPlayer::Move_Left_Right(float dt)
+void Player::Move_Left_Right(float dt)
 {
 	if (!BottomLeft.IsFalling && !BottomRight.IsFalling) {
 		if (WalkRight) { //This determine the movement to the right, depending on the state of the player
@@ -653,10 +651,10 @@ void jPlayer::Move_Left_Right(float dt)
 				current_animation = &jumpR[NumPlayer];
 		}
 	}
-	
+
 	if (Idle) {
 		if (!BottomLeft.IsFalling && NumPlayer == 0 && current_animation == &BottomLeft.anim)
-			current_animation = &idle2[NumPlayer]; 
+			current_animation = &idle2[NumPlayer];
 		if (!BottomRight.IsFalling && NumPlayer == 0 && current_animation == &BottomRight.anim)
 			current_animation = &idle[NumPlayer];
 		if (current_animation == &GoRight[NumPlayer])
@@ -673,14 +671,14 @@ void jPlayer::Move_Left_Right(float dt)
 			dashR.ResetDashAnims();
 			dashL.ResetDashAnims();
 		}
-		if (Falling&&current_animation==&idle[NumPlayer])
+		if (Falling&&current_animation == &idle[NumPlayer])
 			current_animation = &jumpR[NumPlayer];
 		if (Falling&&current_animation == &idle2[NumPlayer])
 			current_animation = &jumpL[NumPlayer];
 	}
 }
 
-void jPlayer::Camera(float dt)
+void Player::Camera(float dt)
 {
 	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {//knowmap it's a varibable that let us know in which map we are. //Knowmap=0, level 1 //knowmap=2, level 2
 		NextMap = true;
@@ -706,27 +704,27 @@ void jPlayer::Camera(float dt)
 	}
 
 	/*if (CamRect.x + CamRect.w <= position.x + playerwidth) { //WHEN THE PLAYER MOVES RIGHT
-		CamRect.x += (SpeedWalk + 1000*dt) * dt;
-		App->render->camera.x -= (SpeedWalk + 2000 * dt) * dt;
-		//App->render->camera.x = -position.x + (App->render->camera.w / 2);
+	CamRect.x += (SpeedWalk + 1000*dt) * dt;
+	App->render->camera.x -= (SpeedWalk + 2000 * dt) * dt;
+	//App->render->camera.x = -position.x + (App->render->camera.w / 2);
 	}
 	if (CamRect.x >= position.x) { //WHEN THE PLAYER MOVES LEFT
-		CamRect.x -= (SpeedWalk + 1000 * dt) * dt;
-		App->render->camera.x += (SpeedWalk + 1000 * dt) * dt;
-		//App->render->camera.x = -position.x + (App->render->camera.w / 2);
+	CamRect.x -= (SpeedWalk + 1000 * dt) * dt;
+	App->render->camera.x += (SpeedWalk + 1000 * dt) * dt;
+	//App->render->camera.x = -position.x + (App->render->camera.w / 2);
 	}
 	if (position.y <= CamRect.y && cameraon) { //WHEN THE PLAYER GOES UP
-		CamRect.y -= (JumpSpeed + 1000 * dt) * dt;
-		//App->render->camera.y += 100 * dt;
-		App->render->camera.y += (SpeedWalk + 1000 * dt) * dt;
+	CamRect.y -= (JumpSpeed + 1000 * dt) * dt;
+	//App->render->camera.y += 100 * dt;
+	App->render->camera.y += (SpeedWalk + 1000 * dt) * dt;
 	}
 	if (position.y + playerHeight >= CamRect.y + CamRect.h) { //WHEN THE PLAYER GOES DOWN
-		//App->render->camera.y = -position.y + (App->render->camera.h / 2);
-		if (CanClimb)
-			CamRect.y += SpeedClimb * dt;
-		else CamRect.y -= gravity;
-		App->render->camera.y += (gravity);
-		
+	//App->render->camera.y = -position.y + (App->render->camera.h / 2);
+	if (CanClimb)
+	CamRect.y += SpeedClimb * dt;
+	else CamRect.y -= gravity;
+	App->render->camera.y += (gravity);
+
 	}*/
 	if (-App->render->camera.x >= position.x) //PLAYER CAN NOT GO BACK
 		position.x += SpeedWalk * dt;
@@ -739,11 +737,11 @@ void jPlayer::Camera(float dt)
 	LOG("Position.y = %f", position.y);
 	float Cam = CamRect.y;
 	LOG("CamRect.y = %f", Cam);
-	
+
 
 }
 
-void jPlayer::DoDash(float dt)
+void Player::DoDash(float dt)
 {
 	if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && Hability && CanDash) {
 		App->audio->PlayFx(dashfx);
@@ -789,7 +787,7 @@ void jPlayer::DoDash(float dt)
 		if (dashL.StartDash.Finished()) {
 			++dashL.DashCont;
 			current_animation = &dashL.Dashing;
-			
+
 			position.x -= 1800 * dt;
 			if (dashL.DashCont >= dashL.DashTime) {
 				position.x += 1600 * dt;
@@ -809,7 +807,7 @@ void jPlayer::DoDash(float dt)
 }
 
 
-void jPlayer::ShootLaser(float dt)
+void Player::ShootLaser(float dt)
 {
 	if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && (Hability && !laserR.IsShooting)) {
 		laserR.StartShooting = true;
@@ -826,7 +824,7 @@ void jPlayer::ShootLaser(float dt)
 		laserR.position.y = position.y;
 
 		laserR.coll = App->collision->AddCollider(laserR.anim.GetCurrentFrame(dt), COLLIDER_PARTICLE);
-		
+
 	}
 	if (laserR.IsShooting) {
 		if (laserR.life < laserR.time) {
@@ -869,9 +867,9 @@ void jPlayer::ShootLaser(float dt)
 	}
 }
 
-void jPlayer::DoubleJump(float dt)
+void Player::DoubleJump(float dt)
 {
-  	if (CanJump2 && Jump && !IsJumping && CanDoAnotherJump) {
+	if (CanJump2 && Jump && !IsJumping && CanDoAnotherJump) {
 		AnimDoubleJump = true;
 		IsJumping2 = true;
 		Falling = false;
@@ -885,7 +883,7 @@ void jPlayer::DoubleJump(float dt)
 		IsJumping = false;
 		CanJump2 = true;
 		Falling = false;
- 		CanJump = false;
+		CanJump = false;
 		Jump2Complete = true;
 		Time = 0;
 		starttime = SDL_GetTicks();
@@ -934,10 +932,10 @@ void jPlayer::DoubleJump(float dt)
 	}
 }
 
-void jPlayer::BottomFall(float dt)
+void Player::BottomFall(float dt)
 {
 	if (Hability && IsJumping2) {
-		if (current_animation == &GoRight[NumPlayer] || current_animation==&idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) {
+		if (current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) {
 			AnimDoubleJump = false;
 			BottomRight.anim.loops = 0;
 			BottomRight.anim.current_frame = 0.0f;
@@ -978,14 +976,14 @@ void jPlayer::BottomFall(float dt)
 
 }
 
-void jPlayer::Gravity(float dt)
+void Player::Gravity(float dt)
 {
 	gravity = auxGravity;
 	gravity = gravity * dt;
 	position.y -= gravity;
 }
 
-void jPlayer::SetCamera()
+void Player::SetCamera()
 {
 	App->render->camera.x = -300;
 	CamRect.x = 580;
@@ -994,7 +992,7 @@ void jPlayer::SetCamera()
 	CamRect.h = playerHeight + playerHeight;
 }
 
-void Dash::ResetDashAnims()
+void Player::Dash::ResetDashAnims()
 {
 	StartDash.current_frame = 0.0f;
 	StartDash.loops = 0;
@@ -1005,4 +1003,5 @@ void Dash::ResetDashAnims()
 	DashLeft = false;
 	DashRight = false;
 	DashCont = 0;
+
 }

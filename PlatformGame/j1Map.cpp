@@ -5,7 +5,6 @@
 #include "j1Textures.h"
 #include "j1Map.h"
 #include "j1Collision.h"
-#include "jPlayer.h"
 #include <math.h>
 
 j1Map::j1Map() : j1Module(), map_loaded(false)
@@ -187,7 +186,7 @@ bool j1Map::Load(const char* file_name)
 		}
 		data.object_layers.add(set);
 	}
-	LoadPlayerProperties();
+	//LoadPlayerProperties();
 	if(ret == true)
 	{
 		LOG("Successfully parsed map XML file: %s", file_name);
@@ -461,7 +460,7 @@ bool j1Map::LoadObjects(pugi::xml_node & node, ObjectGroup* obj)
 
 bool j1Map::LoadPlayerProperties()
 {
-	
+	/*
 	p2List_item<ObjectGroup*>* item = data.object_layers.start;
 	p2List_item<ObjectData*>* item2;
 
@@ -482,7 +481,7 @@ bool j1Map::LoadPlayerProperties()
 		}
 		item = item->next;
 	}
-
+	*/
 	return true;
 }
 

@@ -1,51 +1,56 @@
-#ifndef __JPLAYER_H_
-#define __JPLAYER_H_
+#ifndef __j1Player_H__
+#define __j1Player_H__
 
-#include "j1Module.h"
 #include "p2Animation.h"
 #include "p2Point.h"
-#include "j1Collision.h"
-#include "j1Timer.h"
+#include "Entity.h"
+
+
+
+
 struct SDL_Texture;
-struct SDL_Rect;
+struct Collider;
 
-struct Laser {
-	fPoint position;
-	fPoint velocity;
-	Animation anim;
-	int life;
-	int timelife;
-	Collider* coll = nullptr;
-	int time = 0;
-	bool StartShooting = false;
-	bool IsShooting = false;
 
-};
-
-struct BottomHit {
-	Animation anim;
-	float speed = 0.0f;
-	bool IsFalling = false;
-};
-
-struct Dash {
-	Animation StartDash;
-	Animation Dashing;
-	Animation FinishDash;
-	int DashTime = 8;
-	int DashCont = 0;
-	bool DashLeft = false;
-	bool DashRight = false;
-	void ResetDashAnims();
-};
-
-class jPlayer : public j1Module
+class Player : public Entity
 {
+	
+	struct Laser {
+		fPoint position;
+		fPoint velocity;
+		Animation anim;
+		int life;
+		int timelife;
+		Collider* coll = nullptr;
+		int time = 0;
+		bool StartShooting = false;
+		bool IsShooting = false;
+
+	};
+
+	struct BottomHit {
+		Animation anim;
+		float speed = 0.0f;
+		bool IsFalling = false;
+	};
+
+	struct Dash {
+		Animation StartDash;
+		Animation Dashing;
+		Animation FinishDash;
+		int DashTime = 8;
+		int DashCont = 0;
+		bool DashLeft = false;
+		bool DashRight = false;
+		void ResetDashAnims();
+	};
+
 public:
-	jPlayer();
+
+	Player(int x, int y);
 
 	//Destructor
-	virtual ~jPlayer();
+	virtual ~Player();
 
 	//Called before player is aviable
 	bool Awake(pugi::xml_node&);
@@ -55,7 +60,7 @@ public:
 
 	//// Called each loop iteration
 	bool PreUpdate();
-	
+
 	//// Called each loop iteration
 	bool PostUpdate();
 
@@ -107,9 +112,9 @@ public:
 	Animation ClimbIdle[3];
 	Animation Death[3];
 	Animation doubleJump;
-	
 
-	SDL_Texture* texture; 
+
+	SDL_Texture* texture;
 	SDL_Texture* ParticlesTex;
 
 	p2SString sprites_name[3];
@@ -205,4 +210,6 @@ public:
 };
 
 
-#endif
+
+#endif // 
+
