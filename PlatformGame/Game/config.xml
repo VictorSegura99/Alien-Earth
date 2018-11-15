@@ -84,245 +84,248 @@
     </AnimationsPlayerBlue>
   
   </choose>
+  <entity_manager>
+    <player>
+      <sprites>textures/Alien.png</sprites>
+      <sprites2>textures/AlienPink.png</sprites2>
+      <sprites3>textures/AlienBlue.png</sprites3>
+      <JumpFx>audio/fx/Jump_fx.wav</JumpFx>
+      <WaterFx>audio/fx/waterfx.wav</WaterFx>
+      <DeathFx>audio/fx/deathfx.wav</DeathFx>
+      <DeathFx2>audio/fx/deathfx2.wav</DeathFx2>
+      <LadderFx>audio/fx/Ladder.wav</LadderFx>
+      <LaserFx>audio/fx/Laser.wav</LaserFx>
+      <DashFx>audio/fx/Dash.wav</DashFx>
+      <finalmapplayer value="10700"></finalmapplayer>
+      <finalmap value="-10200"></finalmap>
+      <startmap2 value="560"></startmap2>
+      <maxYcam value="740"></maxYcam>
+      <minYcam value="450"></minYcam>
+      <lowcam value="-290"></lowcam>
+      <gravity value="-433.33333f"></gravity>
+      <startpointcameramap2 value="-60"></startpointcameramap2>
+      <positionWinMap1 value="10780"></positionWinMap1>
+      <JumpTime value="20"></JumpTime>
+      <JumpSpeed value="1250.0f"></JumpSpeed>
+      <AuxJumpSpeed value="1250.0f"></AuxJumpSpeed>
+      <SpeedWalk value="350.0f"></SpeedWalk>
+      <SpeedSwimLeftRight value="450.0f"></SpeedSwimLeftRight>
+      <playerHeight value="78"></playerHeight>
+      <SpeedClimb value="300.0f"></SpeedClimb>
+      <BottomSpeed value="450.0f"></BottomSpeed>
+      <SpeedSwimUp value="450.0f"></SpeedSwimUp>
+      <SpeedSwimDown value="350.0f"></SpeedSwimDown>
+      <playerwidth value="65"></playerwidth>
+      <playerheight value="87"></playerheight>
+      <laservelocityR value="650.0f" ></laservelocityR>
+      <laservelocityL value="-650.0f" ></laservelocityL>
+      <lasertimelife value="75"></lasertimelife>
+
+      <AnimationsPlayerYellow>
+        <doubleJump speed="1.0f" loop="true">
+          <frame  x="430" y="180" w="45" h="12"/>
+        </doubleJump>
+        <BottomLeft speed="11.0f" loop="false">
+          <frame  x="656" y="533" w="75" h="93"/>
+          <frame  x="450" y="533" w="75" h="93"/>
+          <frame  x="355" y="533" w="75" h="93"/>
+          <frame  x="270" y="533" w="75" h="93"/>
+        </BottomLeft>
+        <BottomRight speed="11.0f" loop="false">
+          <frame  x="539" y="533" w="75" h="93"/>
+          <frame  x="0" y="533" w="75" h="93"/>
+          <frame  x="95" y="533" w="75" h="93"/>
+          <frame  x="180" y="533" w="75" h="93"/>
+        </BottomRight>
+        <GoRight speed="5.0f" loop="true">
+          <frame  x="0" y="0" w="67" h="86"/>
+          <frame x="69" y="0" w="70" h="86"/>
+        </GoRight>
+        <idle speed="1.0f" loop="true">
+          <frame  x="142" y="0" w="66" h="86"/>
+        </idle>
+        <idle2 speed="1.0f" loop="true">
+          <frame  x="353" y="0" w="66" h="86"/>
+        </idle2>
+        <GoLeft speed="5.0f" loop="true">
+          <frame  x="285" y="0" w="67" h="86"/>
+          <frame  x="212" y="0" w="70" h="87"/>
+        </GoLeft>
+        <jumpR speed="1.0f" loop="true">
+          <frame  x="420" y="0" w="67" h="86"/>
+        </jumpR>
+        <jumpL speed="1.0f" loop="true">
+          <frame  x="420" y="86" w="67" h="86"/>
+        </jumpL>
+        <Climb speed="5.0f" loop="true">
+          <frame  x="488" y="0" w="65" h="86"/>
+          <frame  x="556" y="0" w="65" h="86"/>
+        </Climb>
+        <ClimbIdle speed="1.0f" loop="true">
+          <frame  x="488" y="0" w="65" h="86"/>
+        </ClimbIdle>
+        <SwimRight speed="5.0f" loop="true">
+          <frame  x="621" y="0" w="70" h="86"/>
+          <frame  x="617" y="88" w="70" h="86"/>
+        </SwimRight>
+        <SwimLeft speed="5.0f" loop="true">
+          <frame  x="617" y="176" w="70" h="86"/>
+          <frame  x="617" y="263" w="70" h="86"/>
+        </SwimLeft>
+        <Death speed="7.0f" loop="false">
+          <frame  x="0" y="94" w="68" h="81"/>
+          <frame  x="73" y="94" w="68" h="81"/>
+          <frame  x="142" y="94" w="68" h="81"/>
+          <frame  x="213" y="94" w="68" h="81"/>
+          <frame  x="283" y="94" w="68" h="81"/>
+          <frame  x="351" y="94" w="68" h="81"/>
+          <frame  x="0" y="175" w="68" h="81"/>
+          <frame  x="69" y="175" w="68" h="81"/>
+          <frame  x="139" y="175" w="68" h="81"/>
+          <frame  x="206" y="175" w="68" h="81"/>
+          <frame  x="272" y="175" w="68" h="81"/>
+        </Death>
+      </AnimationsPlayerYellow>
+
+      <AnimationsPlayerPink>
+        <GoRight speed="5.0f" loop="true">
+          <frame  x="0" y="0" w="67" h="93"/>
+          <frame x="69" y="0" w="70" h="95"/>
+        </GoRight>
+        <idle speed="1.0f" loop="true">
+          <frame  x="143" y="0" w="65" h="92"/>
+        </idle>
+        <idle2 speed="1.0f" loop="true">
+          <frame  x="354" y="0" w="65" h="92"/>
+        </idle2>
+        <GoLeft speed="5.0f" loop="true">
+          <frame  x="285" y="0" w="67" h="93"/>
+          <frame x="212" y="0" w="70" h="98"/>
+        </GoLeft>
+        <jumpR speed="1.0f" loop="true">
+          <frame  x="420" y="0" w="67" h="93"/>
+        </jumpR>
+        <jumpL speed="1.0f" loop="true">
+          <frame  x="420" y="95" w="67" h="93"/>
+        </jumpL>
+        <ClimbIdle speed="1.0f" loop="true">
+          <frame  x="488" y="0" w="65" h="92"/>
+        </ClimbIdle>
+        <Climb speed="5.0f" loop="true">
+          <frame  x="488" y="0" w="65" h="92"/>
+          <frame x="556" y="0" w="65" h="92"/>
+        </Climb>
+        <SwimRight speed="5.0f" loop="true">
+          <frame  x="622" y="0" w="69" h="95"/>
+          <frame x="622" y="96" w="70" h="96"/>
+        </SwimRight>
+        <SwimLeft speed="5.0f" loop="true">
+          <frame  x="622" y="193" w="69" h="95"/>
+          <frame x="622" y="289" w="70" h="96"/>
+        </SwimLeft>
+        <Death speed="7.0f" loop="false">
+          <frame  x="0" y="105" w="68" h="92"/>
+          <frame x="69" y="105" w="68" h="92"/>
+          <frame  x="138" y="105" w="68" h="92"/>
+          <frame  x="207" y="105" w="68" h="92"/>
+          <frame  x="276"  y="105" w="68" h="92"/>
+          <frame  x="0" y="196" w="68" h="81"/>
+          <frame  x="69" y="196" w="68" h="81"/>
+          <frame  x="139"  y="196" w="68" h="81"/>
+          <frame  x="206" y="196" w="68" h="81"/>
+          <frame  x="272" y="196" w="68" h="81"/>
+        </Death>
+        <LaserRight speed="10.0f" loop="true">
+          <frame  x="34" y="554" w="83" h="27"/>
+          <frame  x="124" y="554" w="83" h="27"/>
+        </LaserRight>
+        <LaserLeft speed="10.0f" loop="true">
+          <frame  x="34" y="582" w="83" h="27"/>
+          <frame  x="124" y="582" w="83" h="27"/>
+        </LaserLeft>
+
+      </AnimationsPlayerPink>
+
+      <AnimationsPlayerBlue>
+        <GoRight speed="5.0f" loop="true">
+          <frame  x="0" y="0" w="67" h="93"/>
+          <frame x="69" y="0" w="70" h="95"/>
+        </GoRight>
+        <StartDashRight speed="30.0f" loop="false">
+          <frame  x="0" y="532" w="67" h="97"/>
+          <frame  x="0" y="658" w="84" h="92"/>
+          <frame  x="85" y="658" w="84" h="92"/>
+        </StartDashRight>
+        <FinishDashRight speed="20.0f" loop="false">
+          <frame  x="564" y="532" w="115" h="92"/>
+          <frame  x="564" y="625" w="130" h="92"/>
+          <frame  x="430" y="625" w="130" h="92"/>
+          <frame  x="288" y="625" w="130" h="92"/>
+        </FinishDashRight>
+        <DashingRight speed="1.0f" loop="true">
+          <frame  x="85" y="658" w="84" h="92"/>
+        </DashingRight>
+        <StartDashLeft speed="30.0f" loop="false">
+          <frame  x="84" y="806" w="67" h="92"/>
+          <frame  x="84" y="806" w="67" h="92"/>
+          <frame  x="0" y="806" w="83" h="92"/>
+        </StartDashLeft>
+        <FinishDashLeft speed="20.0f" loop="false">
+          <frame  x="564" y="771" w="107" h="92"/>
+          <frame  x="564" y="844" w="130" h="92"/>
+          <frame  x="430" y="725" w="130" h="92"/>
+        </FinishDashLeft>
+        <DashingLeft speed="1.0f" loop="true">
+          <frame  x="0" y="806" w="83" h="92"/>
+        </DashingLeft>
+        <idle speed="1.0f" loop="true">
+          <frame  x="143" y="0" w="65" h="92"/>
+        </idle>
+        <idle2 speed="1.0f" loop="true">
+          <frame  x="354" y="0" w="65" h="92"/>
+        </idle2>
+        <GoLeft speed="5.0f" loop="true">
+          <frame  x="285" y="0" w="67" h="93"/>
+          <frame x="212" y="0" w="70" h="98"/>
+        </GoLeft>
+        <jumpR speed="1.0f" loop="true">
+          <frame  x="420" y="0" w="67" h="93"/>
+        </jumpR>
+        <jumpL speed="1.0f" loop="true">
+          <frame  x="420" y="95" w="67" h="93"/>
+        </jumpL>
+        <ClimbIdle speed="1.0f" loop="true">
+          <frame  x="488" y="0" w="65" h="92"/>
+        </ClimbIdle>
+        <Climb speed="5.0f" loop="true">
+          <frame  x="488" y="0" w="65" h="92"/>
+          <frame x="556" y="0" w="65" h="92"/>
+        </Climb>
+        <SwimRight speed="5.0f" loop="true">
+          <frame  x="622" y="0" w="69" h="95"/>
+          <frame x="622" y="96" w="70" h="96"/>
+        </SwimRight>
+        <SwimLeft speed="5.0f" loop="true">
+          <frame  x="622" y="193" w="69" h="95"/>
+          <frame x="622" y="289" w="70" h="96"/>
+        </SwimLeft>
+        <Death speed="7.0f" loop="false">
+          <frame  x="0" y="105" w="68" h="92"/>
+          <frame x="69" y="105" w="68" h="92"/>
+          <frame  x="138" y="105" w="68" h="92"/>
+          <frame  x="207" y="105" w="68" h="92"/>
+          <frame  x="276"  y="105" w="68" h="92"/>
+          <frame  x="0" y="196" w="68" h="81"/>
+          <frame  x="69" y="196" w="68" h="81"/>
+          <frame  x="139"  y="196" w="68" h="81"/>
+          <frame  x="206" y="196" w="68" h="81"/>
+          <frame  x="272" y="196" w="68" h="81"/>
+        </Death>
+      </AnimationsPlayerBlue>
+    </player>
+    
+  </entity_manager>
   
-  <player>
-    <sprites>textures/Alien.png</sprites>
-    <sprites2>textures/AlienPink.png</sprites2>
-    <sprites3>textures/AlienBlue.png</sprites3>
-    <JumpFx>audio/fx/Jump_fx.wav</JumpFx>
-    <WaterFx>audio/fx/waterfx.wav</WaterFx>
-    <DeathFx>audio/fx/deathfx.wav</DeathFx> 
-    <DeathFx2>audio/fx/deathfx2.wav</DeathFx2>
-    <LadderFx>audio/fx/Ladder.wav</LadderFx>
-    <LaserFx>audio/fx/Laser.wav</LaserFx>
-    <DashFx>audio/fx/Dash.wav</DashFx>
-    <finalmapplayer value="10700"></finalmapplayer>
-    <finalmap value="-10200"></finalmap>
-    <startmap2 value="560"></startmap2>
-    <maxYcam value="740"></maxYcam>
-    <minYcam value="450"></minYcam>
-    <lowcam value="-290"></lowcam>
-    <gravity value="-433.33333f"></gravity>
-    <startpointcameramap2 value="-60"></startpointcameramap2>
-    <positionWinMap1 value="10780"></positionWinMap1>
-    <JumpTime value="20"></JumpTime>
-    <JumpSpeed value="1250.0f"></JumpSpeed>
-    <AuxJumpSpeed value="1250.0f"></AuxJumpSpeed>
-    <SpeedWalk value="350.0f"></SpeedWalk>
-    <SpeedSwimLeftRight value="450.0f"></SpeedSwimLeftRight>
-    <playerHeight value="78"></playerHeight>
-    <SpeedClimb value="300.0f"></SpeedClimb>
-    <BottomSpeed value="450.0f"></BottomSpeed>
-    <SpeedSwimUp value="450.0f"></SpeedSwimUp>
-    <SpeedSwimDown value="350.0f"></SpeedSwimDown>
-    <playerwidth value="65"></playerwidth>
-    <playerheight value="87"></playerheight>
-    <laservelocityR value="650.0f" ></laservelocityR>
-    <laservelocityL value="-650.0f" ></laservelocityL>
-    <lasertimelife value="75"></lasertimelife>
-    
-    <AnimationsPlayerYellow>
-      <doubleJump speed="1.0f" loop="true">
-        <frame  x="430" y="180" w="45" h="12"/>
-      </doubleJump>
-      <BottomLeft speed="11.0f" loop="false">
-        <frame  x="656" y="533" w="75" h="93"/>
-        <frame  x="450" y="533" w="75" h="93"/>
-        <frame  x="355" y="533" w="75" h="93"/>
-        <frame  x="270" y="533" w="75" h="93"/>
-      </BottomLeft>
-      <BottomRight speed="11.0f" loop="false">
-        <frame  x="539" y="533" w="75" h="93"/>
-        <frame  x="0" y="533" w="75" h="93"/>
-        <frame  x="95" y="533" w="75" h="93"/>
-        <frame  x="180" y="533" w="75" h="93"/>
-      </BottomRight>
-      <GoRight speed="5.0f" loop="true">
-        <frame  x="0" y="0" w="67" h="86"/>
-        <frame x="69" y="0" w="70" h="86"/>
-      </GoRight>
-      <idle speed="1.0f" loop="true">
-        <frame  x="142" y="0" w="66" h="86"/>
-      </idle>
-      <idle2 speed="1.0f" loop="true">
-        <frame  x="353" y="0" w="66" h="86"/>
-      </idle2>
-      <GoLeft speed="5.0f" loop="true">
-        <frame  x="285" y="0" w="67" h="86"/>
-        <frame  x="212" y="0" w="70" h="87"/>
-      </GoLeft>
-      <jumpR speed="1.0f" loop="true">
-        <frame  x="420" y="0" w="67" h="86"/>
-      </jumpR>
-      <jumpL speed="1.0f" loop="true">
-        <frame  x="420" y="86" w="67" h="86"/>
-      </jumpL>
-      <Climb speed="5.0f" loop="true">
-        <frame  x="488" y="0" w="65" h="86"/>
-        <frame  x="556" y="0" w="65" h="86"/>
-      </Climb>
-      <ClimbIdle speed="1.0f" loop="true">
-        <frame  x="488" y="0" w="65" h="86"/>
-      </ClimbIdle>
-      <SwimRight speed="5.0f" loop="true">
-        <frame  x="621" y="0" w="70" h="86"/>
-        <frame  x="617" y="88" w="70" h="86"/>
-      </SwimRight>
-      <SwimLeft speed="5.0f" loop="true">
-        <frame  x="617" y="176" w="70" h="86"/>
-        <frame  x="617" y="263" w="70" h="86"/>
-      </SwimLeft>
-      <Death speed="7.0f" loop="false">
-        <frame  x="0" y="94" w="68" h="81"/>
-        <frame  x="73" y="94" w="68" h="81"/>
-        <frame  x="142" y="94" w="68" h="81"/>
-        <frame  x="213" y="94" w="68" h="81"/>
-        <frame  x="283" y="94" w="68" h="81"/>
-        <frame  x="351" y="94" w="68" h="81"/>
-        <frame  x="0" y="175" w="68" h="81"/>
-        <frame  x="69" y="175" w="68" h="81"/>
-        <frame  x="139" y="175" w="68" h="81"/>
-        <frame  x="206" y="175" w="68" h="81"/>
-        <frame  x="272" y="175" w="68" h="81"/>
-      </Death>
-    </AnimationsPlayerYellow>
-   
-    <AnimationsPlayerPink>
-      <GoRight speed="5.0f" loop="true">
-        <frame  x="0" y="0" w="67" h="93"/>
-        <frame x="69" y="0" w="70" h="95"/>
-      </GoRight>
-      <idle speed="1.0f" loop="true">
-        <frame  x="143" y="0" w="65" h="92"/>
-      </idle>
-      <idle2 speed="1.0f" loop="true">
-        <frame  x="354" y="0" w="65" h="92"/>
-      </idle2>
-      <GoLeft speed="5.0f" loop="true">
-        <frame  x="285" y="0" w="67" h="93"/>
-        <frame x="212" y="0" w="70" h="98"/>
-      </GoLeft>
-      <jumpR speed="1.0f" loop="true">
-        <frame  x="420" y="0" w="67" h="93"/>
-      </jumpR>
-      <jumpL speed="1.0f" loop="true">
-        <frame  x="420" y="95" w="67" h="93"/>
-      </jumpL>
-      <ClimbIdle speed="1.0f" loop="true">
-        <frame  x="488" y="0" w="65" h="92"/>
-      </ClimbIdle>
-      <Climb speed="5.0f" loop="true">
-        <frame  x="488" y="0" w="65" h="92"/>
-        <frame x="556" y="0" w="65" h="92"/>
-      </Climb>
-      <SwimRight speed="5.0f" loop="true">
-        <frame  x="622" y="0" w="69" h="95"/>
-        <frame x="622" y="96" w="70" h="96"/>
-      </SwimRight>
-      <SwimLeft speed="5.0f" loop="true">
-        <frame  x="622" y="193" w="69" h="95"/>
-        <frame x="622" y="289" w="70" h="96"/>
-      </SwimLeft>
-      <Death speed="7.0f" loop="false">
-        <frame  x="0" y="105" w="68" h="92"/>
-        <frame x="69" y="105" w="68" h="92"/>
-        <frame  x="138" y="105" w="68" h="92"/>
-        <frame  x="207" y="105" w="68" h="92"/>
-        <frame  x="276"  y="105" w="68" h="92"/>
-        <frame  x="0" y="196" w="68" h="81"/>
-        <frame  x="69" y="196" w="68" h="81"/>
-        <frame  x="139"  y="196" w="68" h="81"/>
-        <frame  x="206" y="196" w="68" h="81"/>
-        <frame  x="272" y="196" w="68" h="81"/>
-      </Death>
-      <LaserRight speed="10.0f" loop="true">
-        <frame  x="34" y="554" w="83" h="27"/>
-        <frame  x="124" y="554" w="83" h="27"/>
-      </LaserRight>
-      <LaserLeft speed="10.0f" loop="true">
-        <frame  x="34" y="582" w="83" h="27"/>
-        <frame  x="124" y="582" w="83" h="27"/>
-      </LaserLeft>
-    
-  </AnimationsPlayerPink>
-    
-    <AnimationsPlayerBlue>
-      <GoRight speed="5.0f" loop="true">
-        <frame  x="0" y="0" w="67" h="93"/>
-        <frame x="69" y="0" w="70" h="95"/>
-      </GoRight>
-      <StartDashRight speed="30.0f" loop="false">
-        <frame  x="0" y="532" w="67" h="97"/>
-        <frame  x="0" y="658" w="84" h="92"/>
-        <frame  x="85" y="658" w="84" h="92"/>
-      </StartDashRight>
-      <FinishDashRight speed="20.0f" loop="false">
-        <frame  x="564" y="532" w="115" h="92"/>
-        <frame  x="564" y="625" w="130" h="92"/>
-        <frame  x="430" y="625" w="130" h="92"/>
-        <frame  x="288" y="625" w="130" h="92"/>
-      </FinishDashRight>
-      <DashingRight speed="1.0f" loop="true">
-        <frame  x="85" y="658" w="84" h="92"/>
-      </DashingRight>
-      <StartDashLeft speed="30.0f" loop="false">
-        <frame  x="84" y="806" w="67" h="92"/>
-        <frame  x="84" y="806" w="67" h="92"/>
-        <frame  x="0" y="806" w="83" h="92"/>
-      </StartDashLeft>
-      <FinishDashLeft speed="20.0f" loop="false">
-        <frame  x="564" y="771" w="107" h="92"/>
-        <frame  x="564" y="844" w="130" h="92"/>
-        <frame  x="430" y="725" w="130" h="92"/>
-      </FinishDashLeft>
-      <DashingLeft speed="1.0f" loop="true">
-        <frame  x="0" y="806" w="83" h="92"/>
-      </DashingLeft>
-      <idle speed="1.0f" loop="true">
-        <frame  x="143" y="0" w="65" h="92"/>
-      </idle>
-      <idle2 speed="1.0f" loop="true">
-        <frame  x="354" y="0" w="65" h="92"/>
-      </idle2>
-      <GoLeft speed="5.0f" loop="true">
-        <frame  x="285" y="0" w="67" h="93"/>
-        <frame x="212" y="0" w="70" h="98"/>
-      </GoLeft>
-      <jumpR speed="1.0f" loop="true">
-        <frame  x="420" y="0" w="67" h="93"/>
-      </jumpR>
-      <jumpL speed="1.0f" loop="true">
-        <frame  x="420" y="95" w="67" h="93"/>
-      </jumpL>
-      <ClimbIdle speed="1.0f" loop="true">
-        <frame  x="488" y="0" w="65" h="92"/>
-      </ClimbIdle>
-      <Climb speed="5.0f" loop="true">
-        <frame  x="488" y="0" w="65" h="92"/>
-        <frame x="556" y="0" w="65" h="92"/>
-      </Climb>
-      <SwimRight speed="5.0f" loop="true">
-        <frame  x="622" y="0" w="69" h="95"/>
-        <frame x="622" y="96" w="70" h="96"/>
-      </SwimRight>
-      <SwimLeft speed="5.0f" loop="true">
-        <frame  x="622" y="193" w="69" h="95"/>
-        <frame x="622" y="289" w="70" h="96"/>
-      </SwimLeft>
-      <Death speed="7.0f" loop="false">
-        <frame  x="0" y="105" w="68" h="92"/>
-        <frame x="69" y="105" w="68" h="92"/>
-        <frame  x="138" y="105" w="68" h="92"/>
-        <frame  x="207" y="105" w="68" h="92"/>
-        <frame  x="276"  y="105" w="68" h="92"/>
-        <frame  x="0" y="196" w="68" h="81"/>
-        <frame  x="69" y="196" w="68" h="81"/>
-        <frame  x="139"  y="196" w="68" h="81"/>
-        <frame  x="206" y="196" w="68" h="81"/>
-        <frame  x="272" y="196" w="68" h="81"/>
-      </Death>
-    </AnimationsPlayerBlue>
-  </player>
 
   <enemies>
     <sprite>textures/enemies.png</sprite>

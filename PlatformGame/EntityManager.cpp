@@ -15,6 +15,7 @@
 EntityManager::EntityManager()
 {
 	name.create("entity_manager");
+	player = CreateEntity(EntityType::PLAYER);
 }
 
 // Destructor
@@ -27,7 +28,10 @@ bool EntityManager::Awake(pugi::xml_node& config)
 {
 	bool ret = true;
 
-
+	for (int i = 0; i < entities.Count(); i++) {
+		if (entities[i] != nullptr) 
+			entities[i]->Awake(config);
+	}
 
 	return ret;
 }
@@ -36,7 +40,10 @@ bool EntityManager::Start()
 {
 	bool ret = true;
 
-
+	for (int i = 0; i < entities.Count(); i++) {
+		if (entities[i] != nullptr)
+			entities[i]->Start();
+	}
 
 
 	return ret;
@@ -44,14 +51,38 @@ bool EntityManager::Start()
 
 bool EntityManager::PreUpdate()
 {
+	if (ActivePlayer) {
+		for (int i = 0; i < entities.Count(); i++) {
+			if (entities[i] != nullptr)
+				entities[i]->PreUpdate();
+		}
+	}
+	
+
+
 	return true;
 }
 
 // Called before render is available
 bool EntityManager::Update(float dt)
 {
+	if (ActivePlayer) {
+		for (int i = 0; i < entities.Count(); i++) {
+			if (entities[i] != nullptr)
+				entities[i]->Update(dt);
+		}
+	}
+	return true;
+}
 
-
+bool EntityManager::PostUpdate()
+{
+	if (ActivePlayer) {
+		for (int i = 0; i < entities.Count(); i++) {
+			if (entities[i] != nullptr)
+				entities[i]->PostUpdate();
+		}
+	}
 	return true;
 }
 
@@ -70,11 +101,12 @@ void EntityManager::OnCollision(Collider* c1, Collider* c2)
 
 }
 
+
 Entity * EntityManager::CreateEntity(EntityType type)
 {
 	Entity* ret = nullptr;
 	switch (type) {
-	case EntityType::PLAYER: ret = new Player(30,30); 
+	case EntityType::PLAYER: ret = new Player(1000,450); 
 		break;
 	}
 	if (ret != nullptr)
@@ -100,3 +132,17 @@ bool EntityManager::Save(pugi::xml_node& save) const
 	return ret;
 }
 
+Player* EntityManager::GetPlayerData() const {
+
+	for (uint i = 0; i < entities.Count(); ++i)
+	{
+		if (entities[i] != nullptr)
+		{
+			if (entities[i]->type == PLAYER)
+				return (Player*)entities[i];
+		}
+	}
+
+	return nullptr;
+
+}

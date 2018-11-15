@@ -27,3 +27,10 @@ void Entity::OnCollision(Collider* collider)
 {
 
 }
+
+void Entity::UsePlayerFunctions(uint NumFun) const
+{
+	
+
+
+}

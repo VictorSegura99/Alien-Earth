@@ -15,6 +15,9 @@
 
 Player::Player(int x, int y) : Entity(x, y)
 {
+	initialmap1.x = x;
+	initialmap1.y = y;
+
 
 }
 
@@ -23,71 +26,74 @@ Player::~Player() {}
 bool Player::Awake(pugi::xml_node& config)
 {
 	LOG("Init SDL player");
-	sprites_name[0] = config.child("sprites").text().as_string();
-	sprites_name[1] = config.child("sprites2").text().as_string();
-	sprites_name[2] = config.child("sprites3").text().as_string();
-	JumpFx = config.child("JumpFx").text().as_string();
-	WaterFx = config.child("WaterFx").text().as_string();
-	DeathFx = config.child("DeathFx").text().as_string();
-	DeathFx2 = config.child("DeathFx2").text().as_string();
-	LadderFx = config.child("LadderFx").text().as_string();
-	LaserFx = config.child("LaserFx").text().as_string();
-	DashFx = config.child("DashFx").text().as_string();
-	finalmapplayer = config.child("finalmapplayer").attribute("value").as_int();
-	finalmap = config.child("finalmap").attribute("value").as_int();
-	startmap2 = config.child("startmap2").attribute("value").as_int();
-	maxYcam = config.child("maxYcam").attribute("value").as_int();
-	minYcam = config.child("minYcam").attribute("value").as_int();
-	lowcam = config.child("lowcam").attribute("value").as_int();
-	gravity = config.child("gravity").attribute("value").as_float();
-	positionWinMap1 = config.child("positionWinMap1").attribute("value").as_int();
-	startpointcameramap2 = config.child("startpointcameramap2").attribute("value").as_int();
-	SpeedSwimLeftRight = config.child("SpeedSwimLeftRight").attribute("value").as_float();
-	SpeedSwimUp = config.child("SpeedSwimUp").attribute("value").as_float();
-	SpeedClimb = config.child("SpeedClimb").attribute("value").as_float();
-	SpeedWalk = config.child("SpeedWalk").attribute("value").as_float();
-	playerHeight = config.child("playerHeight").attribute("value").as_int();
-	SpeedSwimDown = config.child("SpeedSwimDown").attribute("value").as_float();
-	JumpTime = config.child("JumpTime").attribute("value").as_int();
-	JumpSpeed = config.child("JumpSpeed").attribute("value").as_float();
-	AuxJumpSpeed = config.child("AuxJumpSpeed").attribute("value").as_float();
-	playerwidth = config.child("playerwidth").attribute("value").as_int();
-	playerheight = config.child("playerheight").attribute("value").as_int();
-	laserR.velocity.x = config.child("laservelocityR").attribute("value").as_float();
-	laserL.velocity.x = config.child("laservelocityL").attribute("value").as_float();
-	laserL.timelife = config.child("lasertimelife").attribute("value").as_int();
-	laserR.timelife = config.child("lasertimelife").attribute("value").as_int();
-	BottomLeft.speed = config.child("BottomSpeed").attribute("value").as_float();
-	BottomRight.speed = config.child("BottomSpeed").attribute("value").as_float();
+
+	pugi::xml_node player = config.child("player");
+
+	sprites_name[0] = player.child("sprites").text().as_string();
+	sprites_name[1] = player.child("sprites2").text().as_string();
+	sprites_name[2] = player.child("sprites3").text().as_string();
+	JumpFx = player.child("JumpFx").text().as_string();
+	WaterFx = player.child("WaterFx").text().as_string();
+	DeathFx = player.child("DeathFx").text().as_string();
+	DeathFx2 = player.child("DeathFx2").text().as_string();
+	LadderFx = player.child("LadderFx").text().as_string();
+	LaserFx = player.child("LaserFx").text().as_string();
+	DashFx = player.child("DashFx").text().as_string();
+	finalmapplayer = player.child("finalmapplayer").attribute("value").as_int();
+	finalmap = player.child("finalmap").attribute("value").as_int();
+	startmap2 = player.child("startmap2").attribute("value").as_int();
+	maxYcam = player.child("maxYcam").attribute("value").as_int();
+	minYcam = player.child("minYcam").attribute("value").as_int();
+	lowcam = player.child("lowcam").attribute("value").as_int();
+	gravity = player.child("gravity").attribute("value").as_float();
+	positionWinMap1 = player.child("positionWinMap1").attribute("value").as_int();
+	startpointcameramap2 = player.child("startpointcameramap2").attribute("value").as_int();
+	SpeedSwimLeftRight = player.child("SpeedSwimLeftRight").attribute("value").as_float();
+	SpeedSwimUp = player.child("SpeedSwimUp").attribute("value").as_float();
+	SpeedClimb = player.child("SpeedClimb").attribute("value").as_float();
+	SpeedWalk = player.child("SpeedWalk").attribute("value").as_float();
+	playerHeight = player.child("playerHeight").attribute("value").as_int();
+	SpeedSwimDown = player.child("SpeedSwimDown").attribute("value").as_float();
+	JumpTime = player.child("JumpTime").attribute("value").as_int();
+	JumpSpeed = player.child("JumpSpeed").attribute("value").as_float();
+	AuxJumpSpeed = player.child("AuxJumpSpeed").attribute("value").as_float();
+	playerwidth = player.child("playerwidth").attribute("value").as_int();
+	playerheight = player.child("playerheight").attribute("value").as_int();
+	laserR.velocity.x = player.child("laservelocityR").attribute("value").as_float();
+	laserL.velocity.x = player.child("laservelocityL").attribute("value").as_float();
+	laserL.timelife = player.child("lasertimelife").attribute("value").as_int();
+	laserR.timelife = player.child("lasertimelife").attribute("value").as_int();
+	BottomLeft.speed = player.child("BottomSpeed").attribute("value").as_float();
+	BottomRight.speed = player.child("BottomSpeed").attribute("value").as_float();
 
 	for (int numplayer = 0; numplayer < 3; ++numplayer) {
-		idle[numplayer] = LoadPushbacks(numplayer, config, "idle");
-		idle2[numplayer] = LoadPushbacks(numplayer, config, "idle2");
-		GoRight[numplayer] = LoadPushbacks(numplayer, config, "GoRight");
-		GoLeft[numplayer] = LoadPushbacks(numplayer, config, "GoLeft");
-		jumpR[numplayer] = LoadPushbacks(numplayer, config, "jumpR");
-		jumpL[numplayer] = LoadPushbacks(numplayer, config, "jumpL");
-		Climb[numplayer] = LoadPushbacks(numplayer, config, "Climb");
-		ClimbIdle[numplayer] = LoadPushbacks(numplayer, config, "ClimbIdle");
-		SwimRight[numplayer] = LoadPushbacks(numplayer, config, "SwimRight");
-		SwimLeft[numplayer] = LoadPushbacks(numplayer, config, "SwimLeft");
-		Death[numplayer] = LoadPushbacks(numplayer, config, "Death");
+		idle[numplayer] = LoadPushbacks(numplayer, player, "idle");
+		idle2[numplayer] = LoadPushbacks(numplayer, player, "idle2");
+		GoRight[numplayer] = LoadPushbacks(numplayer, player, "GoRight");
+		GoLeft[numplayer] = LoadPushbacks(numplayer, player, "GoLeft");
+		jumpR[numplayer] = LoadPushbacks(numplayer, player, "jumpR");
+		jumpL[numplayer] = LoadPushbacks(numplayer, player, "jumpL");
+		Climb[numplayer] = LoadPushbacks(numplayer, player, "Climb");
+		ClimbIdle[numplayer] = LoadPushbacks(numplayer, player, "ClimbIdle");
+		SwimRight[numplayer] = LoadPushbacks(numplayer, player, "SwimRight");
+		SwimLeft[numplayer] = LoadPushbacks(numplayer, player, "SwimLeft");
+		Death[numplayer] = LoadPushbacks(numplayer, player, "Death");
 		if (numplayer == 0) {
-			BottomLeft.anim = LoadPushbacks(numplayer, config, "BottomLeft");
-			BottomRight.anim = LoadPushbacks(numplayer, config, "BottomRight");
-			doubleJump = LoadPushbacks(numplayer, config, "doubleJump");
+			BottomLeft.anim = LoadPushbacks(numplayer, player, "BottomLeft");
+			BottomRight.anim = LoadPushbacks(numplayer, player, "BottomRight");
+			doubleJump = LoadPushbacks(numplayer, player, "doubleJump");
 		}
 		if (numplayer == 1) {
-			laserR.anim = LoadPushbacks(numplayer, config, "LaserRight");
-			laserL.anim = LoadPushbacks(numplayer, config, "LaserLeft");
+			laserR.anim = LoadPushbacks(numplayer, player, "LaserRight");
+			laserL.anim = LoadPushbacks(numplayer, player, "LaserLeft");
 		}
 		if (numplayer == 2) {
-			dashR.StartDash = LoadPushbacks(numplayer, config, "StartDashRight");
-			dashR.FinishDash = LoadPushbacks(numplayer, config, "FinishDashRight");
-			dashR.Dashing = LoadPushbacks(numplayer, config, "DashingRight");
-			dashL.StartDash = LoadPushbacks(numplayer, config, "StartDashLeft");
-			dashL.FinishDash = LoadPushbacks(numplayer, config, "FinishDashLeft");
-			dashL.Dashing = LoadPushbacks(numplayer, config, "DashingLeft");
+			dashR.StartDash = LoadPushbacks(numplayer, player, "StartDashRight");
+			dashR.FinishDash = LoadPushbacks(numplayer, player, "FinishDashRight");
+			dashR.Dashing = LoadPushbacks(numplayer, player, "DashingRight");
+			dashL.StartDash = LoadPushbacks(numplayer, player, "StartDashLeft");
+			dashL.FinishDash = LoadPushbacks(numplayer, player, "FinishDashLeft");
+			dashL.Dashing = LoadPushbacks(numplayer, player, "DashingLeft");
 		}
 	}
 
@@ -112,9 +118,9 @@ bool Player::Start()
 	position.x = initialmap1.x;
 	position.y = initialmap1.y;
 
-	laserR.life = laserR.timelife;
+ 	laserR.life = laserR.timelife;
 	laserL.life = laserL.timelife;
-
+	current_animation = &idle[NumPlayer];
 	return ret;
 }
 bool Player::PreUpdate() //Here we preload the input functions to determine the state of the player
@@ -137,6 +143,9 @@ bool Player::PreUpdate() //Here we preload the input functions to determine the 
 		if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
 			God = !God;
 	}
+
+
+
 	return true;
 }
 bool Player::Update(float dt)
@@ -181,7 +190,7 @@ bool Player::Update(float dt)
 	if (God)
 		CanJump = true;
 
-	coll->SetPos(position.x, position.y);
+	//coll->SetPos(position.x, position.y);
 	//App->render->DrawQuad(rect, 150, 150, 150, 255, true, false);
 	if (App->collision->debug)
 		App->render->DrawQuad(CamRect, 150, 150, 150);

@@ -9,6 +9,7 @@
 #include "j1Map.h"
 #include "j1Scene.h"
 #include "j1Choose.h"
+#include "Player.h"
 #include "j1Collision.h"
 #include "Entity.h"
 #include "EntityManager.h"
@@ -108,16 +109,14 @@ bool j1Choose::Update(float dt)
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 					playernumber = PlayerNumber1;
 					App->scene->active = !App->scene->active;
-					//App->player->active = !App->player->active;
 					App->collision->active = !App->collision->active;
 					App->map->active = !App->map->active;
-				    //App->scene->Start();
 					App->scene->KnowMap = 0;
-					//App->entitymanager
 					App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-					//App->player->Start();
-					//App->player->ChangePlayer(playernumber);
-					//App->player->SetCamera();
+					App->entitymanager->ActivePlayer = true;
+					App->entitymanager->GetPlayerData()->Start();
+					App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
+					App->entitymanager->GetPlayerData()->SetCamera();
 					GameOn = true;
 				}
 			}

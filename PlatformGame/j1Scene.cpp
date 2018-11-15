@@ -47,11 +47,8 @@ bool j1Scene::Start()
 	App->map->Load(map_name.start->data->GetString());
 	App->audio->PlayMusic(Song.GetString());
 	//active = false;
-	//player = App->entitymanager->AddEntity(Entity::EntityTypes::PLAYER);
-	
-	//player->Awake(App->LoadConfig(App->entitymanager->name.GetString));
-	
-	//player->Start();
+
+
 	
 	return true;
 }

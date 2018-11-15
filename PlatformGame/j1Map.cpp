@@ -186,7 +186,7 @@ bool j1Map::Load(const char* file_name)
 		}
 		data.object_layers.add(set);
 	}
-	//LoadPlayerProperties();
+	LoadPlayerProperties();
 	if(ret == true)
 	{
 		LOG("Successfully parsed map XML file: %s", file_name);

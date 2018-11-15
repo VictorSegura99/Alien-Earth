@@ -32,6 +32,8 @@ public:
 
 	bool Update(float dt);
 
+	bool PostUpdate();
+
 	bool Load(pugi::xml_node&);
 
 	bool Save(pugi::xml_node&) const;
@@ -42,13 +44,16 @@ public:
 
 	Entity* CreateEntity(EntityType type);
 
+	Player* GetPlayerData() const;
+
 private:
 
 	p2DynArray<Entity*> entities;
 
 public:
-	Entity* player;
 
+	Entity* player;
+	bool ActivePlayer = false;
 
 };
 
