@@ -245,17 +245,18 @@ bool Player::Save(pugi::xml_node& player) const
 }
 void Player::Draw(float dt)
 {
-
-	switch (NumPlayer) {
-	case 0:
-		App->render->Blit(App->scene->TutorialJeff, TutorialX, TutorialY1, NULL, SDL_FLIP_NONE, 1.0f);
-		break;
-	case 1:
-		App->render->Blit(App->scene->TutorialJane, TutorialX, TutorialY2, NULL, SDL_FLIP_NONE, 1.0f);
-		break;
-	case 2:
-		App->render->Blit(App->scene->TutorialJerry, TutorialX, TutorialY2, NULL, SDL_FLIP_NONE, 1.0f);
-		break;
+	if (App->scene->KnowMap == 0) {
+		switch (NumPlayer) {
+		case 0:
+			App->render->Blit(App->scene->TutorialJeff, TutorialX, TutorialY1, NULL, SDL_FLIP_NONE, 1.0f);
+			break;
+		case 1:
+			App->render->Blit(App->scene->TutorialJane, TutorialX, TutorialY2, NULL, SDL_FLIP_NONE, 1.0f);
+			break;
+		case 2:
+			App->render->Blit(App->scene->TutorialJerry, TutorialX, TutorialY2, NULL, SDL_FLIP_NONE, 1.0f);
+			break;
+		}
 	}
 
 
