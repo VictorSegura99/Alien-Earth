@@ -25,11 +25,14 @@
   <map>
     <folder>maps/</folder>
   </map>
-    <scene>
-      <mapname name="Map1.tmx"></mapname>
-      <mapname name="Map2.tmx"></mapname>
-      <song>audio/music/Level1.ogg</song>
-    </scene>  
+   <scene>
+     <mapname name="Map1.tmx"></mapname>
+     <mapname name="Map2.tmx"></mapname>
+     <song>audio/music/Level1.ogg</song>
+     <tutorialJeff>textures/Tutorial Jeff.png</tutorialJeff>
+     <tutorialJane>textures/Tutorial Jane.png</tutorialJane>
+     <tutorialJerry>textures/Tutorial Jerry.png</tutorialJerry>
+   </scene>  
   
   <audio>
     <volume value="50"></volume>
@@ -82,8 +85,8 @@
         <frame  x="368" y="281" w="163" h="237"/>
       </Walk>
     </AnimationsPlayerBlue>
-  
   </choose>
+
   <entity_manager>
     <player>
       <sprites>textures/Alien.png</sprites>

@@ -35,6 +35,9 @@ bool j1Scene::Awake(pugi::xml_node& config)
 		map_name.add(data);
 	}
 	Song = config.child("song").text().as_string();
+	tutorial[0] = config.child("TutorialJeff").text().as_string();
+	tutorial[1] = config.child("TutorialJane").text().as_string();
+	tutorial[2] = config.child("TutorialJerry").text().as_string();
 	bool ret = true;
 	
 	return ret;
@@ -47,9 +50,9 @@ bool j1Scene::Start()
 	App->map->Load(map_name.start->data->GetString());
 	App->audio->PlayMusic(Song.GetString());
 	//active = false;
-
-
-	
+	Tutorial[0] = App->tex->Load(tutorial[0].GetString());
+	Tutorial[1] = App->tex->Load(tutorial[1].GetString());
+	Tutorial[2] = App->tex->Load(tutorial[2].GetString());
 	return true;
 }
 
@@ -101,7 +104,7 @@ bool j1Scene::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN) {
 		App->capactivated = !App->capactivated;
 	}
-
+	App->render->Blit(Tutorial[0], 415, 0, NULL, SDL_FLIP_NONE, 1.0f);
 	App->map->Draw();
 
 	return true;
