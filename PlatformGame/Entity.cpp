@@ -18,7 +18,7 @@ Entity::~Entity()
 
 }
 
-void Entity::Draw()
+void Entity::Draw(float dt)
 {
 	
 	

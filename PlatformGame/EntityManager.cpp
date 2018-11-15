@@ -57,8 +57,6 @@ bool EntityManager::PreUpdate()
 				entities[i]->PreUpdate();
 		}
 	}
-	
-
 
 	return true;
 }
@@ -71,7 +69,12 @@ bool EntityManager::Update(float dt)
 			if (entities[i] != nullptr)
 				entities[i]->Update(dt);
 		}
+		for (int i = 0; i < entities.Count(); i++) {
+			if (entities[i] != nullptr)
+				entities[i]->Draw(dt);
+		}
 	}
+
 	return true;
 }
 

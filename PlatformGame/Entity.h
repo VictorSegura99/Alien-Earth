@@ -21,7 +21,7 @@ public:
 	virtual bool Update(float dt) { return true; };
 	virtual bool PostUpdate() { return true; };
 	virtual bool Awake(pugi::xml_node&) { return true; };
-	virtual void Draw();
+	virtual void Draw(float dt);
 	virtual bool Load(pugi::xml_node&) { return true; };
 	virtual bool Save(pugi::xml_node&) const { return true; };
 	virtual void OnCollision(Collider* c2);
