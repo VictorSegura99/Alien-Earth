@@ -8,7 +8,10 @@
 #include "j1Window.h"
 #include "j1Map.h"
 #include "j1Scene.h"
-#include "jPlayer.h"
+#include "Player.h"
+#include "Entity.h"
+#include "EntityManager.h"
+#include "j1Collision.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -33,7 +36,7 @@ bool j1Scene::Awake(pugi::xml_node& config)
 	}
 	Song = config.child("song").text().as_string();
 	bool ret = true;
-
+	
 	return ret;
 }
 
@@ -44,6 +47,12 @@ bool j1Scene::Start()
 	App->map->Load(map_name.start->data->GetString());
 	App->audio->PlayMusic(Song.GetString());
 	//active = false;
+	//player = App->entitymanager->AddEntity(Entity::EntityTypes::PLAYER);
+	
+	//player->Awake(App->LoadConfig(App->entitymanager->name.GetString));
+	
+	//player->Start();
+	
 	return true;
 }
 
@@ -61,7 +70,7 @@ bool j1Scene::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		App->SaveGame("save_game.xml");
-
+	/*
 	if (App->player->NextMap) {
 		App->player->NextMap = false;
 		KnowMap = 1;
@@ -90,7 +99,7 @@ bool j1Scene::Update(float dt)
 			App->player->Spawn();
 			KnowMap = 1;
 	}
-
+	*/
 	App->map->Draw();
 
 	return true;
@@ -110,7 +119,7 @@ bool j1Scene::PostUpdate()
 // Called before quitting
 bool j1Scene::CleanUp()
 {
-	App->collision->Disable();
+	//App->collision->Disable();
 	LOG("Freeing scene");
 	return true;
 }

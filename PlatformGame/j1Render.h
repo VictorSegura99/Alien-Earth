@@ -4,7 +4,7 @@
 #include "SDL/include/SDL.h"
 #include "p2Point.h"
 #include "j1Module.h"
-#include "jPlayer.h"
+
 
 class j1Render : public j1Module
 {

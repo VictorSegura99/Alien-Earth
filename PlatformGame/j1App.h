@@ -16,7 +16,7 @@ class j1Audio;
 class j1Scene;
 class j1Map;
 class j1Collision;
-class jPlayer;
+class EntityManager;
 class j1Choose;
 
 class j1App
@@ -53,7 +53,7 @@ public:
 	void LoadGame(const char* file);
 	void SaveGame(const char* file) const;
 	
-	pugi::xml_node LoadConfig(pugi::xml_document&) const;
+	pugi::xml_node LoadConfig(pugi::xml_document&, char* file = "config.xml") const;
 
 private:
 
@@ -90,7 +90,7 @@ public:
 	j1Scene*			scene;
 	j1Map*				map;
 	j1Collision*		collision;
-	jPlayer*			player;
+	EntityManager*		entitymanager;
 	j1Choose*			choose;
 
 private:

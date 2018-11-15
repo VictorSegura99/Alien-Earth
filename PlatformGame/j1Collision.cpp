@@ -1,6 +1,5 @@
 #include "j1App.h"
 #include "j1Input.h"
-#include "jPlayer.h"
 #include "j1Render.h"
 #include "j1Collision.h"
 

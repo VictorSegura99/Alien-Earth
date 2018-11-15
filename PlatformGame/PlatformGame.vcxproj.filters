@@ -37,9 +37,6 @@
     <ClCompile Include="j1Window.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="jPlayer.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="j1Choose.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
@@ -48,6 +45,15 @@
     </ClCompile>
     <ClCompile Include="j1Timer.cpp">
       <Filter>Modules\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityManager.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -102,9 +108,6 @@
     <ClInclude Include="j1Window.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="jPlayer.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="j1Map.h">
       <Filter>Modules</Filter>
     </ClInclude>
@@ -116,6 +119,15 @@
     </ClInclude>
     <ClInclude Include="j1Timer.h">
       <Filter>Modules\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

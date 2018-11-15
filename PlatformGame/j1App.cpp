@@ -11,7 +11,7 @@
 #include "j1Scene.h"
 #include "j1Map.h"
 #include "j1App.h"
-#include"jPlayer.h"
+#include "EntityManager.h"
 #include "j1Collision.h"
 #include "j1Choose.h"
 
@@ -29,7 +29,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	scene = new j1Scene();
 	map = new j1Map();
 	collision = new j1Collision();
-	player = new jPlayer();
+	entitymanager = new EntityManager();
 	choose = new j1Choose();
 
 	// Ordered for awake / Start / Update
@@ -45,10 +45,11 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 
 	AddModule(collision);
 
-	AddModule(player);
+	AddModule(entitymanager);
 
 	// render last to swap buffer
 	AddModule(render);
+
 
 	PERF_PEEK(ptimer);
 }
@@ -167,11 +168,11 @@ bool j1App::Update()
 }
 
 // ---------------------------------------------
-pugi::xml_node j1App::LoadConfig(pugi::xml_document& config_file) const
+pugi::xml_node j1App::LoadConfig(pugi::xml_document& config_file, char* file) const
 {
 	pugi::xml_node ret;
 
-	pugi::xml_parse_result result = config_file.load_file("config.xml");
+	pugi::xml_parse_result result = config_file.load_file(file);
 
 	if (result == NULL)
 		LOG("Could not load map xml file config.xml. pugi error: %s", result.description());
