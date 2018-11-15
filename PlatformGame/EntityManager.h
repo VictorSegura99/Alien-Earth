@@ -54,7 +54,8 @@ public:
 
 	Entity* player;
 	bool ActivePlayer = false;
-
+	fPoint positionStartMap1;
+	fPoint positionStartMap2;
 };
 
 #endif

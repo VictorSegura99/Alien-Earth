@@ -13,11 +13,8 @@
 #include "j1Choose.h"
 #include "Player.h"
 
-Player::Player(int x, int y) : Entity(x, y)
+Player::Player() : Entity()
 {
-	initialmap1.x = x;
-	initialmap1.y = y;
-
 
 }
 
@@ -115,8 +112,8 @@ bool Player::Start()
 	laserfx = App->audio->LoadFx(LaserFx.GetString());
 	dashfx = App->audio->LoadFx(DashFx.GetString());
 
-	position.x = initialmap1.x;
-	position.y = initialmap1.y;
+	position.x = App->entitymanager->positionStartMap1.x;
+	position.y = App->entitymanager->positionStartMap1.y;
 
  	laserR.life = laserR.timelife;
 	laserL.life = laserL.timelife;
@@ -453,12 +450,12 @@ void Player::Spawn()
 	Death[NumPlayer].loops = 0;
 	current_animation = &idle[NumPlayer];
 	if (App->scene->KnowMap == 0) {
-		position.x = initialmap1.x;
-		position.y = initialmap1.y;
+		position.x = App->entitymanager->positionStartMap1.x;
+		position.y = App->entitymanager->positionStartMap1.y;
 	}
 	if (App->scene->KnowMap == 1) {
-		position.x = initialmap2.x;
-		position.y = initialmap2.y;
+		position.x = App->entitymanager->positionStartMap2.x;
+		position.y = App->entitymanager->positionStartMap2.y;
 	}
 	Death[NumPlayer].current_frame = 0.0f;
 	Death[NumPlayer].loops = 0;

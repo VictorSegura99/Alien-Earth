@@ -11,6 +11,7 @@ class Entity
 {
 public:
 
+	Entity();
 	Entity(int x, int y);
 	virtual ~Entity();
 
@@ -25,7 +26,6 @@ public:
 	virtual bool Save(pugi::xml_node&) const { return true; };
 	virtual void OnCollision(Collider* c2);
 
-	void UsePlayerFunctions(uint NumFun) const;
 
 public:
 

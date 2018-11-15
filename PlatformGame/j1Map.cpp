@@ -5,11 +5,13 @@
 #include "j1Textures.h"
 #include "j1Map.h"
 #include "j1Collision.h"
+#include "EntityManager.h"
 #include <math.h>
 
 j1Map::j1Map() : j1Module(), map_loaded(false)
 {
 	name.create("map");
+	
 }
 
 // Destructor
@@ -460,7 +462,7 @@ bool j1Map::LoadObjects(pugi::xml_node & node, ObjectGroup* obj)
 
 bool j1Map::LoadPlayerProperties()
 {
-	/*
+	
 	p2List_item<ObjectGroup*>* item = data.object_layers.start;
 	p2List_item<ObjectData*>* item2;
 
@@ -469,19 +471,19 @@ bool j1Map::LoadPlayerProperties()
 			item2 = item->data->objects.start;
 			while (item2 != NULL) {
 				if (item2->data->name == "Position_Player_Start_Map1") {
-					App->player->initialmap1.x = item2->data->x;
-					App->player->initialmap1.y = item2->data->y;
+					App->entitymanager->positionStartMap1.x = item2->data->x;
+					App->entitymanager->positionStartMap1.y = item2->data->y;
 				}
 				if (item2->data->name == "Position_Player_Start_Map2") {
-					App->player->initialmap2.x = item2->data->x;
-					App->player->initialmap2.y = item2->data->y;
+					App->entitymanager->positionStartMap2.x = item2->data->x;
+					App->entitymanager->positionStartMap2.y = item2->data->y;
 				}
 				item2 = item2->next;
 			}
 		}
 		item = item->next;
 	}
-	*/
+	
 	return true;
 }
 

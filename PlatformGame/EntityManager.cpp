@@ -108,7 +108,7 @@ Entity * EntityManager::CreateEntity(EntityType type)
 {
 	Entity* ret = nullptr;
 	switch (type) {
-	case EntityType::PLAYER: ret = new Player(1000,150); 
+	case EntityType::PLAYER: ret = new Player(); 
 		break;
 	}
 	if (ret != nullptr)
