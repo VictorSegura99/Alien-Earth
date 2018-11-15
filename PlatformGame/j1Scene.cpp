@@ -90,7 +90,6 @@ bool j1Scene::Update(float dt)
 			App->map->ChangeMap(map_name[KnowMap]);
 			App->entitymanager->GetPlayerData()->Spawn();
 		}
-		
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
 		KnowMap = 1;
@@ -98,8 +97,6 @@ bool j1Scene::Update(float dt)
 		App->entitymanager->GetPlayerData()->Spawn();
 			
 	}
-	
-
 	if (App->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN) {
 		App->capactivated = !App->capactivated;
 	}

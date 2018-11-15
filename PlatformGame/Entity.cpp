@@ -5,6 +5,10 @@
 #include "j1Render.h"
 #include "j1Scene.h"
 
+Entity::Entity()
+{
+}
+
 Entity::Entity(int x, int y) : position(x, y)
 {
 }
@@ -25,7 +29,4 @@ void Entity::OnCollision(Collider* c2)
 	
 }
 
-void Entity::UsePlayerFunctions(uint NumFun) const
-{
-	
-}
+

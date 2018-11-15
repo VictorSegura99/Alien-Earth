@@ -42,7 +42,7 @@ class Player : public Entity
 
 public:
 
-	Player(int x, int y);
+	Player();
 
 	//Destructor
 	virtual ~Player();
