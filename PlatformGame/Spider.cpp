@@ -139,7 +139,6 @@ void Spider::OnCollision(Collider * c2)
 	case COLLIDER_PARTICLE:
 		coll->CanBeDeleted = true;
 	}
-
 }
 
 Animation Spider::LoadPushbacks(pugi::xml_node &config, p2SString NameAnim) const

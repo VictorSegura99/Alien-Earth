@@ -1023,6 +1023,19 @@ void Player::CheckWhatToDoWhenCollidingWithEnemy(Collider * c2)
 	if (BottomRight.IsFalling || BottomLeft.IsFalling || dashing) {
 		c2->CanBeDeleted = true;
 	}
+	else {
+		velocity.y = 0;
+		TouchingGround = true;
+		WalkLeft = false;
+		WalkRight = false;
+		GoUp = false;
+		GoDown = false;
+		CanJump = false;
+		CanJump2 = false;
+		death = true;
+		if (!God)
+			NoInput = true;
+	}
 	
 
 }
