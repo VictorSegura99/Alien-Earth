@@ -714,6 +714,7 @@ void Player::Camera(float dt)
 {
 	if (App->scene->KnowMap == 0 && position.x >= positionWinMap1) {//knowmap it's a varibable that let us know in which map we are. //Knowmap=0, level 1 //knowmap=2, level 2
 		NextMap = true;
+		App->entitymanager->DeleteEnemies();
 	}
 	if (position.x <= startmap2 && App->scene->KnowMap == 1) { //If player is in a position where the camera would print out of the map, camera stops
 		App->render->camera.x = startpointcameramap2;

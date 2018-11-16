@@ -81,28 +81,37 @@ bool j1Scene::Update(float dt)
 		KnowMap = 1;
 		App->map->ChangeMap(map_name[KnowMap]);
 		App->entitymanager->GetPlayerData()->Spawn();
+		SpawnEnemies();
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
+		App->entitymanager->DeleteEnemies();
 		KnowMap = 0;
 		App->map->ChangeMap(map_name[KnowMap]);
 		App->entitymanager->GetPlayerData()->Spawn();
+		SpawnEnemies();
 		
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
 		if (KnowMap == 0) {
+			App->entitymanager->DeleteEnemies();
 			App->map->ChangeMap(map_name[KnowMap]);
 			App->entitymanager->GetPlayerData()->Spawn();
+			SpawnEnemies();
 		}
 		else if (KnowMap == 1) {
+			App->entitymanager->DeleteEnemies();
 			App->map->ChangeMap(map_name[KnowMap]);
 			App->entitymanager->GetPlayerData()->Spawn();
+			SpawnEnemies();
 		}
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
+		App->entitymanager->DeleteEnemies();
 		KnowMap = 1;
 		App->map->ChangeMap(map_name[KnowMap]);
 		App->entitymanager->GetPlayerData()->Spawn();
+		SpawnEnemies();
 			
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN) {
