@@ -108,11 +108,21 @@ bool Spider::Update(float dt)
 
 bool Spider::Load(pugi::xml_node & spider)
 {
+
+	position.x = spider.child("position").attribute("x").as_float();
+	position.y = spider.child("position").attribute("y").as_float();
+
+
+
 	return true;
 }
 
 bool Spider::Save(pugi::xml_node & spider) const
 {
+
+	spider.append_child("position").append_attribute("x") = position.x;
+	spider.child("position").append_attribute("y") = position.y;
+
 	return true;
 }
 

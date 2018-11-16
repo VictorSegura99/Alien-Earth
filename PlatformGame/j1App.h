@@ -19,6 +19,7 @@ class j1Collision;
 class EntityManager;
 class j1Choose;
 class j1Particles;
+class j1PathFinding;
 
 class j1App
 {
@@ -97,6 +98,7 @@ public:
 	EntityManager*		entitymanager;
 	j1Choose*			choose;
 	j1Particles*		particles;
+	j1PathFinding*		pathfinding;
 
 private:
 

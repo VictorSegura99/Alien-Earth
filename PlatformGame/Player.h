@@ -172,6 +172,8 @@ public:
 	float SpeedSwimLeftRight = 0.0f;
 	float DT = 0.0f;
 	float AuxJumpSpeed = 0.0f;
+	float particletime = 0.0f;
+	float TimeBetweenShoot = 0.0f;
 
 	int startmap2 = 0;
 	int maxYcam = 0;

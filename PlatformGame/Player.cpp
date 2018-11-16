@@ -69,6 +69,7 @@ bool Player::Awake(pugi::xml_node& config)
 	TutorialX = player.child("TutorialX").attribute("value").as_int();
 	TutorialY1 = player.child("TutorialY1").attribute("value").as_int();
 	TutorialY2 = player.child("TutorialY2").attribute("value").as_int();
+	TimeBetweenShoot = player.child("TimeBetweenShoot").attribute("value").as_float();
 
 	for (int numplayer = 0; numplayer < 3; ++numplayer) {
 		idle[numplayer] = LoadPushbacks(numplayer, player, "idle");
@@ -248,13 +249,13 @@ void Player::Draw(float dt)
 	if (App->scene->KnowMap == 0) {
 		switch (NumPlayer) {
 		case 0:
-			App->render->Blit(App->scene->TutorialJeff, TutorialX, TutorialY1, NULL, SDL_FLIP_NONE, 1.0f);
+			App->render->Blit(App->scene->TutorialJeff, TutorialX, TutorialY1);
 			break;
 		case 1:
-			App->render->Blit(App->scene->TutorialJane, TutorialX, TutorialY2, NULL, SDL_FLIP_NONE, 1.0f);
+			App->render->Blit(App->scene->TutorialJane, TutorialX, TutorialY2);
 			break;
 		case 2:
-			App->render->Blit(App->scene->TutorialJerry, TutorialX, TutorialY2, NULL, SDL_FLIP_NONE, 1.0f);
+			App->render->Blit(App->scene->TutorialJerry, TutorialX, TutorialY2);
 			break;
 		}
 	}
@@ -882,15 +883,18 @@ void Player::DoDash(float dt)
 
 void Player::ShootLaser(float dt)
 {
-	if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && Hability) {
-		App->particles->AddParticle(App->particles->laserR, position.x - 10, position.y + 22, COLLIDER_PARTICLE);
-		App->audio->PlayFx(laserfx);
+	if (SDL_GetTicks() - particletime >= TimeBetweenShoot) {
+		if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && Hability) {
+			particletime = SDL_GetTicks();
+			App->particles->AddParticle(App->particles->laserR, position.x - 10, position.y + 22, COLLIDER_PARTICLE);
+			App->audio->PlayFx(laserfx);
+		}
+		if ((current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) && Hability) {
+			particletime = SDL_GetTicks();
+			App->particles->AddParticle(App->particles->laserL, position.x - 10, position.y + 22, COLLIDER_PARTICLE);
+			App->audio->PlayFx(laserfx);
+		}
 	}
-	if ((current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) && Hability) {
-		App->particles->AddParticle(App->particles->laserL, position.x - 10, position.y + 22, COLLIDER_PARTICLE);
-		App->audio->PlayFx(laserfx);
-	}
-
 }
 
 void Player::DoubleJump(float dt)

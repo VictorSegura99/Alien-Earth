@@ -193,7 +193,14 @@ bool EntityManager::Load(pugi::xml_node& load)
 {
 	bool ret = true;
 
-	
+	for (int i = 0; i < entities.Count(); i++) {
+		if (entities[i] != nullptr && entities[i]->type != PLAYER)
+			entities[i]->Load(load);
+	}
+	for (int i = 0; i < entities.Count(); i++) {
+		if (entities[i] != nullptr && entities[i]->type == PLAYER)
+			entities[i]->Load(load);
+	}
 	
 	return ret;
 }
@@ -201,7 +208,10 @@ bool EntityManager::Load(pugi::xml_node& load)
 bool EntityManager::Save(pugi::xml_node& save) const
 {
 	bool ret = true;
-
+	for (int i = 0; i < entities.Count(); i++) {
+		if (entities[i] != nullptr)
+			entities[i]->Save(save);
+	}
 
 	return ret;
 }
