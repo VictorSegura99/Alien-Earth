@@ -431,6 +431,9 @@ bool j1Map::LoadObjects(pugi::xml_node & node, ObjectGroup* obj)
 				else if (i == 8) {
 					App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_ROPE);
 				}
+				else if (i == 9) {
+					App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_GROUND_WATER);
+				}
 				else if (i == 10) {
 					App->collision->AddCollider(rect, COLLIDER_TYPE::COLLIDER_NONE);
 				}

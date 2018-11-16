@@ -157,7 +157,7 @@ bool Player::Update(float dt)
 	BROFILER_CATEGORY("Player: Update", Profiler::Color::Green);
 	DT = dt;
 
-	if (!TouchingGround&&!dashing) {
+	if (!TouchingGround&&!dashing&&!CanSwim) {
 		acceleration.y = gravity*dt;
 		LOG("Acceleration %f", acceleration.y);
 	}
@@ -203,6 +203,7 @@ bool Player::Update(float dt)
 		App->render->DrawQuad(CamRect, 150, 150, 150);
 
 	TouchingGround = false;
+
 
 	return true;
 }
@@ -285,7 +286,6 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 			TouchingGround = true;
 			CanJump = true;
 			CanJump2 = false;
-			CanSwim = false;
 			GoDown = false;
 			CanClimb = false;
 			CanDash = true;
@@ -293,7 +293,8 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 			BottomRight.IsFalling = false;
 			Falling = false;
 			FallingJump2 = false;
-			cameraon = true;
+			CanSwim = false;
+			//cameraon = true;
 			CanDoAnotherJump = true;
 			if (current_animation == &jumpR[NumPlayer])
 				current_animation = &idle[NumPlayer];
@@ -382,7 +383,30 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		CanSwim = true;
 		TouchingGround = true;
 		CanClimb = false;
-		velocity.y = 0;
+		CanJump = false;
+		break;
+	case COLLIDER_GROUND_WATER:
+		if (position.y < c2->rect.y + c2->rect.h) {
+			if (velocity.y < 0) {
+				velocity.y = 0;
+			}
+			CanJump = false;
+			CanJump2 = false;
+			GoDown = false;
+			CanClimb = false;
+			CanDash = true;
+			BottomLeft.IsFalling = false;
+			BottomRight.IsFalling = false;
+			Falling = false;
+			FallingJump2 = false;
+			CanSwim = true;
+			//cameraon = true;
+			CanDoAnotherJump = true;
+			if (current_animation == &jumpR[NumPlayer])
+				current_animation = &idle[NumPlayer];
+			if (current_animation == &jumpL[NumPlayer])
+				current_animation = &idle2[NumPlayer];
+		}
 		break;
 	case COLLIDER_NONE:
 		CanClimb = false;
@@ -607,11 +631,13 @@ void Player::GoSwim(float dt)
 		}
 	}
 	if (CanSwim && GoUp) { //Can Swim determine if you are in a water collider, if you are, it's true
-		position.y -= SpeedSwimUp * dt;
+		velocity.y = SpeedSwimUp * dt;
 	}
-	if (CanSwim && GoDown) {
-		position.y -= -SpeedSwimDown * dt;
+	else if (CanSwim && GoDown) {
+		velocity.y = -SpeedSwimDown * dt;
 	}
+	else
+		velocity.y = 0;
 
 }
 
