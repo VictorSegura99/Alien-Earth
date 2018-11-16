@@ -400,7 +400,9 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		death = true;
 		if (!God)
 			NoInput = true;
-		App->entitymanager->DeleteEnemies();
+		break;
+	case COLLIDER_ENEMY:
+		CheckWhatToDoWhenCollidingWithEnemy(c2);
 		break;
 	case COLLIDER_FALL:
 		WalkLeft = false;
@@ -410,8 +412,6 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		fall = true;
 		if (!God)
 			NoInput = true;
-		App->entitymanager->DeleteEnemies();
-		App->scene->SpawnEnemies();
 		break;
 	case COLLIDER_ROPE:
 		TouchingGround = true;
@@ -442,6 +442,7 @@ void Player::Die()//What happens when the player die
 	if (Death[NumPlayer].SeeCurrentFrame() == 1)
 		App->audio->PlayFx(deathfx2);
 	if (Death[NumPlayer].Finished()) {
+		App->entitymanager->DeleteEnemies();
 		if (App->scene->KnowMap == 0) {
 			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 		}
@@ -455,6 +456,7 @@ void Player::Die()//What happens when the player die
 
 void Player::Fall()//What happens when the player falls
 {
+	App->entitymanager->DeleteEnemies();
 	if (App->scene->KnowMap == 0) {
 		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 	}
@@ -462,6 +464,7 @@ void Player::Fall()//What happens when the player falls
 		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 	}
 	Spawn();
+	App->scene->SpawnEnemies();
 }
 
 void Player::Spawn()
@@ -1022,6 +1025,15 @@ void Player::SetCamera()
 	CamRect.y = 480;
 	CamRect.w = 300;
 	CamRect.h = playerHeight + playerHeight;
+}
+
+void Player::CheckWhatToDoWhenCollidingWithEnemy(Collider * c2)
+{
+	if (BottomRight.IsFalling || BottomLeft.IsFalling || dashing) {
+		c2->CanBeDeleted = true;
+	}
+	
+
 }
 
 void Player::Dash::ResetDashAnims()

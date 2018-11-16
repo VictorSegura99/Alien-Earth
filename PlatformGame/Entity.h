@@ -42,10 +42,10 @@ public:
 	
 
 	Collider* coll = nullptr;
-
+	float starttime = 0.0f;
 	float auxGravity = 0.0f;
 	float gravity = 0.0f;
-
+	bool death = false;
 };
 
 #endif

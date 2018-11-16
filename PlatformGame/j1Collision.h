@@ -29,6 +29,7 @@ struct Collider
 {
 	SDL_Rect rect;
 	bool to_delete = false;
+	bool CanBeDeleted = false;
 	COLLIDER_TYPE type;
 	j1Module* callback = nullptr;
 	bool enable = true;
