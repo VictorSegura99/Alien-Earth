@@ -285,8 +285,11 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 	case COLLIDER_GROUND:
 		if (position.y < c2->rect.y + c2->rect.h) {
 			velocity.y = 0;
-			if (current_animation == &BottomRight.anim || current_animation == &BottomRight.anim) {
+			if (current_animation == &BottomLeft.anim || current_animation == &BottomRight.anim) {
+				App->particles->AddParticle(App->particles->smokeBottom, position.x - 20, position.y, COLLIDER_PARTICLE);
 				App->audio->PlayFx(bombjumpfx);
+				App->particles->smokeBottom.anim.current_frame = 0.0f;
+				App->particles->smokeBottom.anim.loops = 0;
 			}
 			TouchingGround = true;
 			CanJump = true;

@@ -51,7 +51,7 @@ bool j1Particles::Start()
 	smokeBottom.anim.PushBack({ 101,663,103,86 });
 	smokeBottom.anim.PushBack({ 204,663,105,86 });
 	smokeBottom.anim.PushBack({ 309,663,70,86 });
-	smokeBottom.anim.speed = 10.0f;
+	smokeBottom.anim.speed = 5.0f;
 	smokeBottom.anim.loop = false;
 
 	return true;
