@@ -72,9 +72,8 @@ bool Spider::Start()
 bool Spider::PreUpdate()
 {
 	BROFILER_CATEGORY("Spider: PreUpdate", Profiler::Color::Green);
-	if (coll == nullptr)
-		coll = App->collision->AddCollider({ 0,0,60,60 }, COLLIDER_ENEMY);
-	coll->SetPos(position.x, position.y);
+
+	
 	return true;
 }
 
@@ -106,7 +105,9 @@ void Spider::Draw(float dt)
 {
 
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
-
+	if (coll == nullptr)
+		coll = App->collision->AddCollider({ 0,0,60,60 }, COLLIDER_ENEMY);
+	coll->SetPos(position.x, position.y);
 }
 
 bool Spider::CleanUp()

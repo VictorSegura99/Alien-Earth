@@ -400,6 +400,7 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		death = true;
 		if (!God)
 			NoInput = true;
+		App->entitymanager->DeleteEnemies();
 		break;
 	case COLLIDER_FALL:
 		WalkLeft = false;
@@ -409,6 +410,7 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		fall = true;
 		if (!God)
 			NoInput = true;
+		App->entitymanager->DeleteEnemies();
 		App->scene->SpawnEnemies();
 		break;
 	case COLLIDER_ROPE:
@@ -447,6 +449,7 @@ void Player::Die()//What happens when the player die
 			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 		}
 		Spawn();
+		App->scene->SpawnEnemies();
 	}
 }
 

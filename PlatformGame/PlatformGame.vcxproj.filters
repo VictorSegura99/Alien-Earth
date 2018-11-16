@@ -141,6 +141,9 @@
     <ClInclude Include="j1Particles.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="p2DynArray.h">
+      <Filter>p2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Game\config.xml">

@@ -183,7 +183,7 @@ bool j1Collision::ColliderCleanUp()
 
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 	{
-		if (colliders[i] != nullptr && colliders[i]->type != COLLIDER_PLAYER)
+		if (colliders[i] != nullptr && (colliders[i]->type != COLLIDER_PLAYER))
 		{
 			delete colliders[i];
 			colliders[i] = nullptr;

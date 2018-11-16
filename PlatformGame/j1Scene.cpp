@@ -152,6 +152,6 @@ bool j1Scene::Save(pugi::xml_node & scene) const
 void j1Scene::SpawnEnemies() const
 {
 	BROFILER_CATEGORY("Scene: Spawn", Profiler::Color::LightYellow);
-	App->entitymanager->CreateEntity(EntityType::SPIDER, 500, 350);
+	App->entitymanager->CreateEntity(EntityType::SPIDER, 900, 550);
 
 }
