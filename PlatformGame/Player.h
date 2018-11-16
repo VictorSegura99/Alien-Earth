@@ -83,13 +83,14 @@ public:
 	void BottomFall(float dt);
 	void Gravity(float dt);
 	void SetCamera();
+	void CheckWhatToDoWhenCollidingWithEnemy(Collider * c2);
 
 public:
 	bool cameraon = false;
 	
 	//float TIME;
 	j1Timer time;
-	float starttime;
+	
 	SDL_Rect CamRect;
 
 	
@@ -139,7 +140,6 @@ public:
 	bool CanClimb = false;
 	bool Falling = false;
 	bool CanSwim = false;
-	bool death = false;
 	bool fall = false;
 	bool God = false;
 	bool NextMap = false;

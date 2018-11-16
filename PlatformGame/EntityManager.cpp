@@ -77,7 +77,11 @@ bool EntityManager::Update(float dt)
 				entities[i]->Update(dt);
 		}
 		for (int i = 0; i < entities.Count(); i++) {
-			if (entities[i] != nullptr)
+			if (entities[i] != nullptr && entities[i]->type != PLAYER)
+				entities[i]->Draw(dt);
+		}
+		for (int i = 0; i < entities.Count(); i++) {
+			if (entities[i] != nullptr && entities[i]->type == PLAYER)
 				entities[i]->Draw(dt);
 		}
 	}
@@ -128,11 +132,11 @@ Entity* EntityManager::CreateEntity(EntityType type, int x, int y)
 {
 	Entity* ret = nullptr;
 	switch (type) {
-	case EntityType::PLAYER: ret = new Player();
-		ret->type = PLAYER;
-		break;
 	case EntityType::SPIDER: ret = new Spider(x, y);
 		ret->type = SPIDER;
+		break;
+	case EntityType::PLAYER: ret = new Player();
+		ret->type = PLAYER;
 		break;
 	}
 	if (ret != nullptr)

@@ -112,7 +112,6 @@ bool j1Scene::Update(float dt)
 		App->map->ChangeMap(map_name[KnowMap]);
 		App->entitymanager->GetPlayerData()->Spawn();
 		SpawnEnemies();
-			
 	}
 	if (App->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN) {
 		App->capactivated = !App->capactivated;
@@ -139,6 +138,9 @@ bool j1Scene::PostUpdate()
 bool j1Scene::CleanUp()
 {
 	//App->collision->Disable();
+	App->tex->UnLoad(TutorialJane);
+	App->tex->UnLoad(TutorialJeff);
+	App->tex->UnLoad(TutorialJerry);
 	LOG("Freeing scene");
 	return true;
 }

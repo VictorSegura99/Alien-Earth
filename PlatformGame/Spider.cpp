@@ -81,6 +81,21 @@ bool Spider::PostUpdate()
 {
 	BROFILER_CATEGORY("Spider: PostUpdate", Profiler::Color::Green);
 	
+	if (coll->CanBeDeleted) {
+		coll->CanBeDeleted = false;
+		coll->to_delete = true;
+		death = true;
+		starttime = SDL_GetTicks();
+	}
+	if (death) {
+		float TIME = SDL_GetTicks();
+		if (current_animation == &HitLeft || current_animation == &GoLeft || current_animation == &IdleLeft)
+			current_animation = &DieLeft;
+		if (current_animation == &HitRight || current_animation == &GoRight || current_animation == &IdleRight)
+			current_animation = &DieRight;
+		if (TIME - starttime >= 2000)
+			App->entitymanager->DeleteEntity(this);
+	}
 
 	return true;
 }
@@ -106,7 +121,7 @@ void Spider::Draw(float dt)
 
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
 	if (coll == nullptr)
-		coll = App->collision->AddCollider({ 0,0,60,60 }, COLLIDER_ENEMY);
+		coll = App->collision->AddCollider({ 0,0,72,53 }, COLLIDER_ENEMY, (j1Module*)App->entitymanager);
 	coll->SetPos(position.x, position.y);
 }
 
@@ -120,7 +135,10 @@ bool Spider::CleanUp()
 
 void Spider::OnCollision(Collider * c2)
 {
-
+	switch (c2->type) {
+	case COLLIDER_PARTICLE:
+		coll->CanBeDeleted = true;
+	}
 
 }
 
