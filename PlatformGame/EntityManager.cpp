@@ -103,6 +103,7 @@ bool EntityManager::CleanUp()
 	for (int i = entities.Count() - 1; i >= 0; --i)
 	{
 		if (entities[i] != nullptr) {
+			entities[i]->CleanUp();
 			delete(entities[i]);
 			entities[i] = nullptr;
 			entities.RemoveAt(i);
@@ -145,6 +146,7 @@ void EntityManager::DeleteEntities()
 	for (int i = entities.Count() - 1; i >= 0; --i)
 	{
 		if (entities[i] != nullptr) {
+			entities[i]->CleanUp();
 			delete(entities[i]);
 			entities[i] = nullptr;
 			entities.RemoveAt(i);
@@ -164,9 +166,6 @@ void EntityManager::DeleteEnemies() {
 			entities.RemoveAt(i);
 		}
 	}
-
-	
-
 }
 
 bool EntityManager::DeleteEntity(Entity* entity)
@@ -176,6 +175,7 @@ bool EntityManager::DeleteEntity(Entity* entity)
 	for (int i = entities.Count() - 1; i >= 0; --i)
 	{
 		if (entities[i] == entity) {
+			entities[i]->CleanUp();
 			delete(entities[i]);
 			entities[i] = nullptr;
 			entities.RemoveAt(i);
