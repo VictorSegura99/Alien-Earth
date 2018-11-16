@@ -14,6 +14,8 @@
 #include "Player.h"
 #include "j1Particles.h"
 
+#include "Brofiler/Brofiler.h"
+
 Player::Player() : Entity()
 {
 
@@ -126,6 +128,7 @@ bool Player::Start()
 }
 bool Player::PreUpdate() //Here we preload the input functions to determine the state of the player
 {
+	BROFILER_CATEGORY("Player: PreUpdate", Profiler::Color::Green);
 	if (!NoInput) {
 		if (!dashing) {
 			WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
@@ -151,6 +154,7 @@ bool Player::PreUpdate() //Here we preload the input functions to determine the 
 }
 bool Player::Update(float dt)
 {
+	BROFILER_CATEGORY("Player: Update", Profiler::Color::Green);
 	DT = dt;
 
 	if (!TouchingGround&&!dashing) {
@@ -205,7 +209,7 @@ bool Player::Update(float dt)
 
 bool Player::PostUpdate()
 {
-
+	BROFILER_CATEGORY("Player: PostUpdate", Profiler::Color::Green);
 	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) {
 		ChangePlayer(0);
 	}
