@@ -99,6 +99,7 @@
       <LadderFx>audio/fx/Ladder.wav</LadderFx>
       <LaserFx>audio/fx/Laser.wav</LaserFx>
       <DashFx>audio/fx/Dash.wav</DashFx>
+      <BombJumpFx>audio/fx/BombJump.wav</BombJumpFx>
       <TutorialX value="700"></TutorialX>
       <TutorialY1 value="150"></TutorialY1>
       <TutorialY2 value="155"></TutorialY2>

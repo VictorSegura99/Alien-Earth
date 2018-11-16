@@ -39,6 +39,7 @@ bool Player::Awake(pugi::xml_node& config)
 	LadderFx = player.child("LadderFx").text().as_string();
 	LaserFx = player.child("LaserFx").text().as_string();
 	DashFx = player.child("DashFx").text().as_string();
+	BombJumpfx = player.child("BombJumpFx").text().as_string();
 	finalmapplayer = player.child("finalmapplayer").attribute("value").as_int();
 	finalmap = player.child("finalmap").attribute("value").as_int();
 	startmap2 = player.child("startmap2").attribute("value").as_int();
@@ -117,6 +118,7 @@ bool Player::Start()
 	ladderfx = App->audio->LoadFx(LadderFx.GetString());
 	laserfx = App->audio->LoadFx(LaserFx.GetString());
 	dashfx = App->audio->LoadFx(DashFx.GetString());
+	bombjumpfx = App->audio->LoadFx(BombJumpfx.GetString());
 
 	position.x = App->entitymanager->positionStartMap1.x;
 	position.y = App->entitymanager->positionStartMap1.y;
@@ -283,6 +285,9 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 	case COLLIDER_GROUND:
 		if (position.y < c2->rect.y + c2->rect.h) {
 			velocity.y = 0;
+			if (current_animation == &BottomRight.anim || current_animation == &BottomRight.anim) {
+				App->audio->PlayFx(bombjumpfx);
+			}
 			TouchingGround = true;
 			CanJump = true;
 			CanJump2 = false;
@@ -300,6 +305,7 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 				current_animation = &idle[NumPlayer];
 			if (current_animation == &jumpL[NumPlayer])
 				current_animation = &idle2[NumPlayer];
+			
 		}
 		break;
 	case COLLIDER_WALL_UP:
@@ -341,6 +347,9 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		if (position.y + 70 < c2->rect.y)
 		{
 			velocity.y = 0;
+			if (current_animation == &BottomRight.anim || current_animation == &BottomRight.anim) {
+				App->audio->PlayFx(bombjumpfx);
+			}
 			//IsJumping = false;
 			//IsJumping2 = false;
 			TouchingGround = true;

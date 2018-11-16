@@ -45,6 +45,7 @@ Death sfx 2: http://soundbible.com/1454-Pain.html
 Jump sfx: http://soundbible.com/1601-Mario-Jumping.html
 Water sfx: http://soundbible.com/1148-Bubbling.html
 Laser sfx: https://www.zapsplat.com/music/laser-noise-synth-vintage-12/
+Bomb Jump sfx: http://soundbible.com/1414-Batman-Punch.html
 Background Music: https://www.bensound.com/royalty-free-music/track/retro-soul
 Menu Font: https://www.dafont.com/es/sunday-afternoon.font
 Spacebar Sprite: https://www.facebook.com/suepeisueba/
