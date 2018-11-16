@@ -34,8 +34,7 @@ Spider::Spider(int x, int y) : Entity(x,y)
 
 	texture = App->tex->Load(sprites.GetString());
 	current_animation = &IdleLeft;
-
-	App->collision->AddCollider({ 0,0,60,60 }, COLLIDER_ENEMY);
+	
 }
 
 Spider::~Spider()
@@ -71,15 +70,16 @@ bool Spider::Start()
 
 bool Spider::PreUpdate()
 {
-	
+	if (coll == nullptr)
+		coll = App->collision->AddCollider({ 0,0,60,60 }, COLLIDER_ENEMY);
+	coll->SetPos(position.x, position.y);
 	return true;
 }
 
 bool Spider::PostUpdate()
 {
-
-
-	//coll->SetPos(position.x, position.y);
+	
+	
 
 	return true;
 }

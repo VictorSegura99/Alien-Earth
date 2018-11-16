@@ -143,3 +143,9 @@ bool j1Scene::Save(pugi::xml_node & scene) const
 
 	return true;
 }
+
+void j1Scene::SpawnEnemies() const
+{
+	App->entitymanager->CreateEntity(EntityType::SPIDER, 500, 350);
+
+}

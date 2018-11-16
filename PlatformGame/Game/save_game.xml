@@ -12,8 +12,9 @@
 		<KnowMap value="0" />
 	</scene>
 	<:anonymous />
+	<:anonymous />
 	<entity_manager />
 	<renderer>
-		<camera x="-307" y="-97" />
+		<camera x="-189" y="-134" />
 	</renderer>
 </game_state>
