@@ -13,6 +13,8 @@
 #include "EntityManager.h"
 #include "j1Collision.h"
 
+#include "Brofiler/Brofiler.h"
+
 j1Scene::j1Scene() : j1Module()
 {
 	//App->scene->Disable();
@@ -46,7 +48,7 @@ bool j1Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool j1Scene::Start()
 {
-
+	BROFILER_CATEGORY("Scene: Start", Profiler::Color::LightYellow);
 	App->map->Load(map_name.start->data->GetString());
 	App->audio->PlayMusic(Song.GetString());
 	//active = false;
@@ -60,12 +62,14 @@ bool j1Scene::Start()
 // Called each loop iteration
 bool j1Scene::PreUpdate()
 {
+	BROFILER_CATEGORY("Scene: PreUpdate", Profiler::Color::LightYellow);
 	return true;
 }
 
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
+	BROFILER_CATEGORY("Scene: Update", Profiler::Color::LightYellow);
 	if(App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		App->LoadGame("save_game.xml");
 
@@ -113,6 +117,7 @@ bool j1Scene::Update(float dt)
 // Called each loop iteration
 bool j1Scene::PostUpdate()
 {
+	BROFILER_CATEGORY("Scene: PostUpdate", Profiler::Color::LightYellow);
 	bool ret = true;
 
 	if(App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
@@ -146,6 +151,7 @@ bool j1Scene::Save(pugi::xml_node & scene) const
 
 void j1Scene::SpawnEnemies() const
 {
+	BROFILER_CATEGORY("Scene: Spawn", Profiler::Color::LightYellow);
 	App->entitymanager->CreateEntity(EntityType::SPIDER, 500, 350);
 
 }

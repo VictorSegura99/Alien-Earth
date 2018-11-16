@@ -8,6 +8,8 @@
 #include "EntityManager.h"
 #include <math.h>
 
+#include "Brofiler/Brofiler.h"
+
 j1Map::j1Map() : j1Module(), map_loaded(false)
 {
 	name.create("map");
@@ -31,6 +33,7 @@ bool j1Map::Awake(pugi::xml_node& config)
 
 void j1Map::Draw()
 {
+	BROFILER_CATEGORY("Map Draw", Profiler::Color::Yellow);
 	if(map_loaded == false)
 		return;
 
@@ -61,6 +64,7 @@ iPoint j1Map::MapToWorld(int x, int y) const
 
 bool j1Map::ChangeMap(const p2SString * map)
 {
+	BROFILER_CATEGORY("Map: ChangeMap", Profiler::Color::Orange);
 	CleanUp();
 	Load(map->GetString());
 	return true;
@@ -127,6 +131,7 @@ bool j1Map::CleanUp()
 // Load new map
 bool j1Map::Load(const char* file_name)
 {
+	BROFILER_CATEGORY("Map: Load", Profiler::Color::DarkGreen)
 	bool ret = true;
 	p2SString tmp("%s%s", folder.GetString(), file_name);
 

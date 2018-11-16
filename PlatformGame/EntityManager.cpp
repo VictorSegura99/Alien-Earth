@@ -12,6 +12,7 @@
 #include "Player.h"
 #include "Spider.h"
 
+#include "Brofiler/Brofiler.h"
 
 EntityManager::EntityManager()
 {
@@ -55,6 +56,7 @@ bool EntityManager::Start()
 
 bool EntityManager::PreUpdate()
 {
+	BROFILER_CATEGORY("EntityManager: PreUpdate", Profiler::Color::Green);
 	if (ActiveGame) {
 		for (int i = 0; i < entities.Count(); i++) {
 			if (entities[i] != nullptr)
@@ -68,6 +70,7 @@ bool EntityManager::PreUpdate()
 // Called before render is available
 bool EntityManager::Update(float dt)
 {
+	BROFILER_CATEGORY("EntityManager: Update", Profiler::Color::Green);
 	if (ActiveGame) {
 		for (int i = 0; i < entities.Count(); i++) {
 			if (entities[i] != nullptr)
@@ -84,6 +87,7 @@ bool EntityManager::Update(float dt)
 
 bool EntityManager::PostUpdate()
 {
+	BROFILER_CATEGORY("EntityManager: PostUpdate", Profiler::Color::Green);
 	if (ActiveGame) {
 		for (int i = 0; i < entities.Count(); i++) {
 			if (entities[i] != nullptr)

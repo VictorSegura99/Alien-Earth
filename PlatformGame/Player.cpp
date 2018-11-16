@@ -106,7 +106,7 @@ bool Player::Awake(pugi::xml_node& config)
 
 bool Player::Start()
 {
-
+	BROFILER_CATEGORY("Player: Start", Profiler::Color::DarkGreen)
 	bool ret = true;
 
 	auxGravity = gravity;
@@ -513,6 +513,7 @@ Animation Player::LoadPushbacks(int playernumber, pugi::xml_node& config, p2SStr
 
 void Player::ChangePlayer(const int playernumber)
 {
+	BROFILER_CATEGORY("Player: ChangePlayer", Profiler::Color::Blue);
 	if (NumPlayer != playernumber) {
 		App->tex->UnLoad(texture);
 		texture = App->tex->Load(sprites_name[playernumber].GetString());

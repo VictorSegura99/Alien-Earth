@@ -7,6 +7,7 @@
 #include "j1Collision.h"
 #include "EntityManager.h"
 #include "Player.h"
+#include "Brofiler/Brofiler.h"
 
 Spider::Spider(int x, int y) : Entity(x,y)
 {
@@ -70,6 +71,7 @@ bool Spider::Start()
 
 bool Spider::PreUpdate()
 {
+	BROFILER_CATEGORY("Spider: PreUpdate", Profiler::Color::Green);
 	if (coll == nullptr)
 		coll = App->collision->AddCollider({ 0,0,60,60 }, COLLIDER_ENEMY);
 	coll->SetPos(position.x, position.y);
@@ -78,7 +80,7 @@ bool Spider::PreUpdate()
 
 bool Spider::PostUpdate()
 {
-	
+	BROFILER_CATEGORY("Spider: PostUpdate", Profiler::Color::Green);
 	
 
 	return true;
@@ -86,6 +88,7 @@ bool Spider::PostUpdate()
 
 bool Spider::Update(float dt)
 {
+	BROFILER_CATEGORY("Spider: Update", Profiler::Color::Green);
 	return true;
 }
 

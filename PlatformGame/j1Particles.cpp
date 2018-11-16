@@ -23,6 +23,7 @@ j1Particles::j1Particles()
 	smokeBottom.anim.PushBack({ 204,663,105,86 });
 	smokeBottom.anim.PushBack({ 309,663,70,86 });
 	smokeBottom.anim.speed = 1.0f;
+	smokeBottom.life = 2100;
 }
 
 j1Particles::~j1Particles()

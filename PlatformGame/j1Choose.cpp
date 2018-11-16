@@ -14,6 +14,8 @@
 #include "Entity.h"
 #include "EntityManager.h"
 
+#include "Brofiler/Brofiler.h"
+
 j1Choose::j1Choose() : j1Module()
 {
 	name.create("choose");
@@ -83,7 +85,7 @@ bool j1Choose::Start()
 // Called each loop iteration
 bool j1Choose::PreUpdate()
 {
-
+	BROFILER_CATEGORY("Choose: PreUpdate", Profiler::Color::Aquamarine);
 	App->input->GetMousePosition(mouse.x, mouse.y);
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && !GameOn && !start) {
 		start = true;
@@ -95,6 +97,7 @@ bool j1Choose::PreUpdate()
 // Called each loop iteration
 bool j1Choose::Update(float dt)
 {
+	BROFILER_CATEGORY("Choose: Update", Profiler::Color::Aquamarine);
 	if (start) {
 		if (!GameOn) {
 			if (mouse.x >= MinX_RectChoosePlayer1 && mouse.x <= MaxX_RectChoosePlayer1 && mouse.y >= MinY_ChooseRect && mouse.y <= MaxY_ChooseRect) {
@@ -185,6 +188,7 @@ bool j1Choose::Update(float dt)
 // Called each loop iteration
 bool j1Choose::PostUpdate()
 {
+	BROFILER_CATEGORY("Choose: PostUpdate", Profiler::Color::Aquamarine);
 	bool ret = true;
 	if (!GameOn) {
 		if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
