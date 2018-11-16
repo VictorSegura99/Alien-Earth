@@ -45,6 +45,10 @@ public:
 	Entity* CreateEntity(EntityType type, int x = 0, int y = 0);
 	void DeleteEntities();
 
+	void DeleteEnemies();
+
+	bool DeleteEntity(Entity * entity);
+
 	Player* GetPlayerData() const;
 
 

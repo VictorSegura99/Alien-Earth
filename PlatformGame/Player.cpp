@@ -420,15 +420,15 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		break;
 	case COLLIDER_WIN:
 		TouchingGround = true;
-		App->entitymanager->DeleteEntities();
-		/*App->scene->active = false;
+		App->entitymanager->DeleteEnemies();
+		App->scene->active = false;
 		App->entitymanager->ActiveGame = false;
 		App->collision->active = false;
 		App->map->active = false;
 		App->choose->start = false;
 		App->render->camera.x = 0;
 		App->render->camera.y = 0;
-		App->choose->GameOn = false;*/
+		App->choose->GameOn = false;
 		break;
 	}
 }

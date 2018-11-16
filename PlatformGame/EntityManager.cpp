@@ -100,10 +100,16 @@ bool EntityManager::PostUpdate()
 // Called before quitting
 bool EntityManager::CleanUp()
 {
-	for (uint i = 0; i < entities.Count(); ++i)
-		if (entities[i] != nullptr)
-			entities[i]->CleanUp();
+	for (int i = entities.Count() - 1; i >= 0; --i)
+	{
+		if (entities[i] != nullptr) {
+			delete(entities[i]);
+			entities[i] = nullptr;
+			entities.RemoveAt(i);
+		}
+	}
 
+	entities.Clear();
 
 	return true;
 }
@@ -136,11 +142,46 @@ Entity* EntityManager::CreateEntity(EntityType type, int x, int y)
 void EntityManager::DeleteEntities()
 {
 
-	for (uint i = 0; i < entities.Count(); ++i)
-		if (entities[i] != nullptr)
-			RELEASE(entities[i]);
+	for (int i = entities.Count() - 1; i >= 0; --i)
+	{
+		if (entities[i] != nullptr) {
+			delete(entities[i]);
+			entities[i] = nullptr;
+			entities.RemoveAt(i);
+		}
+	}
 
+	entities.Clear();
 
+}
+void EntityManager::DeleteEnemies() {
+	for (int i = entities.Count() - 1; i >= 0; --i)
+	{
+		if (entities[i] != nullptr && entities[i]->type != PLAYER) {
+			entities[i]->CleanUp();
+			delete(entities[i]);
+			entities[i] = nullptr;
+			entities.RemoveAt(i);
+		}
+	}
+
+	
+
+}
+
+bool EntityManager::DeleteEntity(Entity* entity)
+{
+	bool ret = true;
+
+	for (int i = entities.Count() - 1; i >= 0; --i)
+	{
+		if (entities[i] == entity) {
+			delete(entities[i]);
+			entities[i] = nullptr;
+			entities.RemoveAt(i);
+		}
+	}
+	return ret;
 }
 
 

@@ -72,8 +72,8 @@ public:
 	// Destructor
 	virtual ~p2SString()
 	{
-		if(str != NULL)
-			delete[] str;
+		//if(str != NULL)
+			//delete[] str;
 	}
 
 	const p2SString& create(const char *format, ...)

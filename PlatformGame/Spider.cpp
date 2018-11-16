@@ -111,6 +111,9 @@ void Spider::Draw(float dt)
 
 bool Spider::CleanUp()
 {
+	App->tex->UnLoad(texture);
+	if (coll)
+		coll->to_delete = true;
 	return true;
 }
 
