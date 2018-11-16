@@ -119,10 +119,18 @@ public:
 	p2SString LadderFx;
 	p2SString LaserFx;
 	p2SString DashFx;
-
+	p2SString BombJumpfx;
 	
+	unsigned int jumpfx;
+	unsigned int waterfx;
+	unsigned int deathfx;
+	unsigned int deathfx2;
+	unsigned int ladderfx;
+	unsigned int laserfx;
+	unsigned int dashfx;
+	unsigned int bombjumpfx;
 
-	
+
 	fPoint velocity;
 	fPoint acceleration;
 
@@ -183,16 +191,6 @@ public:
 	int TutorialY1 = 0;
 	int TutorialY2 = 0;
 
-
-
-
-	unsigned int jumpfx;
-	unsigned int waterfx;
-	unsigned int deathfx;
-	unsigned int deathfx2;
-	unsigned int ladderfx;
-	unsigned int laserfx;
-	unsigned int dashfx;
 	uint Time = 0;
 
 	int cont = 0;
