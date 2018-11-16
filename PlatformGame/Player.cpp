@@ -882,64 +882,15 @@ void Player::DoDash(float dt)
 
 void Player::ShootLaser(float dt)
 {
-	/*if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && (Hability && !laserR.IsShooting)) {
-		laserR.StartShooting = true;
+	if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && Hability) {
+		App->particles->AddParticle(App->particles->laserR, position.x - 10, position.y + 22, COLLIDER_PARTICLE);
 		App->audio->PlayFx(laserfx);
 	}
-	if (laserR.StartShooting) {
-		laserR.StartShooting = false;
-		laserR.IsShooting = true;
-		if (laserR.coll != nullptr) {
-			laserR.coll->to_delete = true;
-		}
-
-		laserR.position.x = position.x;
-		laserR.position.y = position.y;
-
-		laserR.coll = App->collision->AddCollider(laserR.anim.GetCurrentFrame(dt), COLLIDER_PARTICLE);
-
-	}
-	if (laserR.IsShooting) {
-		if (laserR.life < laserR.time) {
-			laserR.life = laserR.timelife;
-			laserR.IsShooting = false;
-			laserR.coll->to_delete = true;
-		}
-		laserR.life--;
-		laserR.position.x += laserR.velocity.x * dt;
-		laserR.coll->SetPos(laserR.position.x - 10, laserR.position.y + 22);
-		App->render->Blit(texture, laserR.position.x - 10, laserR.position.y + 22, &(laserR.anim.GetCurrentFrame(dt)));
-	}
-
-	if ((current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) && (Hability && !laserL.IsShooting)) {
-		laserL.StartShooting = true;
+	if ((current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) && Hability) {
+		App->particles->AddParticle(App->particles->laserL, position.x - 10, position.y + 22, COLLIDER_PARTICLE);
 		App->audio->PlayFx(laserfx);
 	}
-	if (laserL.StartShooting) {
-		laserL.StartShooting = false;
-		laserL.IsShooting = true;
-		if (laserL.coll != nullptr) {
-			laserL.coll->to_delete = true;
-		}
 
-		laserL.position.x = position.x;
-		laserL.position.y = position.y;
-
-		laserL.coll = App->collision->AddCollider(laserL.anim.GetCurrentFrame(dt), COLLIDER_PARTICLE);
-	}
-	if (laserL.IsShooting) {
-		if (laserL.life < laserL.time) {
-			laserL.life = laserL.timelife;
-			laserL.IsShooting = false;
-			laserL.coll->to_delete = true;
-		}
-		laserL.life--;
-		laserL.position.x += laserL.velocity.x * dt;
-		laserL.coll->SetPos(laserL.position.x - 10, laserL.position.y + 22);
-		App->render->Blit(texture, laserL.position.x - 10, laserL.position.y + 22, &(laserL.anim.GetCurrentFrame(dt)));
-	}*/
-	if (Hability)
-		App->particles->AddParticle(App->particles->smokeBottom, position.x + 20, position.y, COLLIDER_PARTICLE);
 }
 
 void Player::DoubleJump(float dt)

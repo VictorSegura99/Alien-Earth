@@ -28,7 +28,6 @@ j1Particles::~j1Particles()
 bool j1Particles::Start()
 {
 	LOG("Loading particles");
-	graphics = App->tex->Load("textures/Alien.png");
 
 	// Explosion particle
 	/*explosion.anim.PushBack({ 274, 296, 33, 30 });
@@ -54,6 +53,20 @@ bool j1Particles::Start()
 	smokeBottom.anim.speed = 5.0f;
 	smokeBottom.anim.loop = false;
 
+	laserL.anim.PushBack({ 34,582,83,27 });
+	laserL.anim.PushBack({ 124,582,83,27 });
+	laserL.anim.speed = 10.0f;
+	laserL.anim.speed = true;
+	laserL.speed.x = -999;
+
+	laserR.anim.PushBack({ 34,554,83,27 });
+	laserR.anim.PushBack({ 124,554,83,27 });
+	laserR.anim.speed = 10.0f;
+	laserR.anim.speed = true;
+	laserR.speed.x = 999;
+	
+
+
 	return true;
 }
 
@@ -61,7 +74,7 @@ bool j1Particles::Start()
 bool j1Particles::CleanUp()
 {
 	LOG("Unloading particles");
-	App->tex->UnLoad(graphics);
+
 
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
@@ -92,7 +105,7 @@ bool j1Particles::Update(float dt)
 		}
 		else if (SDL_GetTicks() >= p->born)
 		{
-			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame(App->entitymanager->GetPlayerData()->DT)));
+			App->render->Blit(App->entitymanager->GetPlayerData()->texture, p->position.x, p->position.y, &(p->anim.GetCurrentFrame(App->entitymanager->GetPlayerData()->DT)));
 			if (p->fx_played == false)
 			{
 				p->fx_played = true;
@@ -170,8 +183,8 @@ bool Particle::Update()
 		if (anim.Finished())
 			ret = false;
 
-	position.x += speed.x;
-	position.y += speed.y;
+	position.x += (speed.x * App->entitymanager->GetPlayerData()->DT);
+	position.y += (speed.y * App->entitymanager->GetPlayerData()->DT);
 
 	if (collider != nullptr)
 		collider->SetPos(position.x, position.y);
