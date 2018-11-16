@@ -409,6 +409,7 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		fall = true;
 		if (!God)
 			NoInput = true;
+		App->scene->SpawnEnemies();
 		break;
 	case COLLIDER_ROPE:
 		TouchingGround = true;
