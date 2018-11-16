@@ -574,7 +574,7 @@ void Player::GoJump(float dt)
 		Time = 0;
 		JumpSpeed = AuxJumpSpeed;
 		starttime = SDL_GetTicks();
-		App->particles->AddParticle(App->particles->smokeBottom, position.x, position.y, COLLIDER_NONE, { 0,0 });
+		//App->particles->AddParticle(App->particles->smokeBottom, position.x, position.y, COLLIDER_NONE, { 0,0 });
 	}
 	if (IsJumping) { //if you are able to jump, determine the animation and direction of the jump
 					 //Time = Time * dt;
@@ -870,7 +870,7 @@ void Player::DoDash(float dt)
 
 void Player::ShootLaser(float dt)
 {
-	if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && (Hability && !laserR.IsShooting)) {
+	/*if ((current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer]) && (Hability && !laserR.IsShooting)) {
 		laserR.StartShooting = true;
 		App->audio->PlayFx(laserfx);
 	}
@@ -925,7 +925,9 @@ void Player::ShootLaser(float dt)
 		laserL.position.x += laserL.velocity.x * dt;
 		laserL.coll->SetPos(laserL.position.x - 10, laserL.position.y + 22);
 		App->render->Blit(texture, laserL.position.x - 10, laserL.position.y + 22, &(laserL.anim.GetCurrentFrame(dt)));
-	}
+	}*/
+	if (Hability)
+		App->particles->AddParticle(App->particles->smokeBottom, position.x + 20, position.y, COLLIDER_PARTICLE);
 }
 
 void Player::DoubleJump(float dt)

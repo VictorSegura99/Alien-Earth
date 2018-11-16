@@ -12,18 +12,13 @@
 
 #define MARGIN 20
 
+
+#include "SDL/include/SDL_timer.h"
+
 j1Particles::j1Particles()
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 		active[i] = nullptr;
-
-	//animations for particles, avoiding repeat animations pushback rects
-	smokeBottom.anim.PushBack({ 0,663,100,86 });
-	smokeBottom.anim.PushBack({ 101,663,103,86 });
-	smokeBottom.anim.PushBack({ 204,663,105,86 });
-	smokeBottom.anim.PushBack({ 309,663,70,86 });
-	smokeBottom.anim.speed = 1.0f;
-	smokeBottom.life = 2100;
 }
 
 j1Particles::~j1Particles()
@@ -33,6 +28,31 @@ j1Particles::~j1Particles()
 bool j1Particles::Start()
 {
 	LOG("Loading particles");
+	graphics = App->tex->Load("textures/Alien.png");
+
+	// Explosion particle
+	/*explosion.anim.PushBack({ 274, 296, 33, 30 });
+	explosion.anim.PushBack({ 313, 296, 33, 30 });
+	explosion.anim.PushBack({ 346, 296, 33, 30 });
+	explosion.anim.PushBack({ 382, 296, 33, 30 });
+	explosion.anim.PushBack({ 419, 296, 33, 30 });
+	explosion.anim.PushBack({ 457, 296, 33, 30 });
+	explosion.anim.loop = false;
+	explosion.anim.speed = 0.3f;
+
+	laser.anim.PushBack({ 232, 103, 16, 12 });
+	laser.anim.PushBack({ 249, 103, 16, 12 });
+	laser.anim.speed = 0.2f;
+	laser.speed.x = 5;
+	laser.life = 3000;
+	*/
+
+	smokeBottom.anim.PushBack({ 0,663,100,86 });
+	smokeBottom.anim.PushBack({ 101,663,103,86 });
+	smokeBottom.anim.PushBack({ 204,663,105,86 });
+	smokeBottom.anim.PushBack({ 309,663,70,86 });
+	smokeBottom.anim.speed = 10.0f;
+	smokeBottom.anim.loop = false;
 
 	return true;
 }
@@ -41,10 +61,8 @@ bool j1Particles::Start()
 bool j1Particles::CleanUp()
 {
 	LOG("Unloading particles");
+	App->tex->UnLoad(graphics);
 
-	//unloading graphics
-
-	//removing active particles
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		if (active[i] != nullptr)
@@ -54,13 +72,11 @@ bool j1Particles::CleanUp()
 		}
 	}
 
-	//removing particles FX audio
-
 	return true;
 }
 
 // Update: draw background
-bool j1Particles::Update()
+bool j1Particles::Update(float dt)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
@@ -73,18 +89,13 @@ bool j1Particles::Update()
 		{
 			delete p;
 			active[i] = nullptr;
-
 		}
 		else if (SDL_GetTicks() >= p->born)
 		{
-
-			//p->r = p->anim->GetCurrentFrame(); ---
-			App->render->Blit(p->texture, p->position.x, p->position.y, &(p->anim.GetCurrentFrame(App->entitymanager->GetPlayerData()->DT)));
-			if (p->fx_played == false && p->fx != nullptr)
+			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame(App->entitymanager->GetPlayerData()->DT)));
+			if (p->fx_played == false)
 			{
 				p->fx_played = true;
-
-
 			}
 		}
 	}
@@ -92,29 +103,26 @@ bool j1Particles::Update()
 	return true;
 }
 
-//void ModuleParticles::AddParticle(const Particle& particle, Animation& sourceAnim, int x, int y, Uint32 delay, iPoint speed, Uint32 life, char* name)
-void j1Particles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, iPoint speed, Uint32 delay)
+void j1Particles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
 {
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i) {
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	{
 		if (active[i] == nullptr)
 		{
 			Particle* p = new Particle(particle);
 			p->born = SDL_GetTicks() + delay;
 			p->position.x = x;
 			p->position.y = y;
-			if (speed.x != 0 || speed.y != 0) //if we send specific speed, defines it
-			{
-				p->speed = speed;
-			}
 			if (collider_type != COLLIDER_NONE)
 				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(App->entitymanager->GetPlayerData()->DT), collider_type, this);
 			active[i] = p;
 			break;
 		}
 	}
+
 }
 
-// -------------------------------------------------------------
+// TODO 5: Make so every time a particle hits a wall it triggers an explosion particle
 void j1Particles::OnCollision(Collider* c1, Collider* c2)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
@@ -122,30 +130,6 @@ void j1Particles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
-			//AddParticle(explosion, active[i]->position.x, active[i]->position.y);
-			// checks if we are collisioning on walls, or anything else
-
-			if (c2->type == COLLIDER_WALL_LEFT&& c2->type == COLLIDER_WALL_RIGHT) // if collider wall...
-			{
-				if (active[i]->onCollisionWallParticle != nullptr)
-				{
-					if (active[i]->impactPosition.x != NULL || active[i]->impactPosition.y != NULL)
-					{
-						AddParticle(*active[i]->onCollisionWallParticle, active[i]->position.x + active[i]->impactPosition.x,
-							active[i]->position.y + active[i]->impactPosition.y, COLLIDER_NONE, { 0,0 }, 0);
-					}
-					else
-						AddParticle(*active[i]->onCollisionWallParticle, active[i]->position.x, active[i]->position.y, COLLIDER_NONE, { 0,0 }, 0);
-				}
-			}
-			//if (c2->type != COLLIDER_WALL) // anything collider
-			//{
-			if (active[i]->onCollisionGeneralParticle != nullptr)
-				AddParticle(*active[i]->onCollisionGeneralParticle, active[i]->position.x + active[i]->impactPosition.x,
-					active[i]->position.y + active[i]->impactPosition.y, COLLIDER_NONE, { 0,0 }, 0);
-			//}
-
-			//active[i]->texture = nullptr;
 			delete active[i];
 			active[i] = nullptr;
 			break;
@@ -153,6 +137,7 @@ void j1Particles::OnCollision(Collider* c1, Collider* c2)
 	}
 }
 
+// -------------------------------------------------------------
 // -------------------------------------------------------------
 
 Particle::Particle()
@@ -162,9 +147,8 @@ Particle::Particle()
 }
 
 Particle::Particle(const Particle& p) :
-	anim(p.anim), position(p.position), speed(p.speed), fx(p.fx), born(p.born), life(p.life), texture(p.texture),
-	damage(p.damage), onCollisionGeneralParticle(p.onCollisionGeneralParticle), onCollisionWallParticle(p.onCollisionWallParticle),
-	impactPosition(p.impactPosition), deathParticle(p.deathParticle)
+	anim(p.anim), position(p.position), speed(p.speed),
+	fx(p.fx), born(p.born), life(p.life)
 {}
 
 Particle::~Particle()
@@ -177,6 +161,15 @@ bool Particle::Update()
 {
 	bool ret = true;
 
+	if (life > 0)
+	{
+		if ((SDL_GetTicks() - born) > life)
+			ret = false;
+	}
+	else
+		if (anim.Finished())
+			ret = false;
+
 	position.x += speed.x;
 	position.y += speed.y;
 
@@ -185,3 +178,4 @@ bool Particle::Update()
 
 	return ret;
 }
+

@@ -44,13 +44,13 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(choose);
 	AddModule(map);
 	AddModule(scene);
-	AddModule(particles);
+	
 	
 	
 	AddModule(collision);
 
 	AddModule(entitymanager);
-
+	AddModule(particles);
 
 	// render last to swap buffer
 	AddModule(render);
