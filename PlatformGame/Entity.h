@@ -33,7 +33,7 @@ public:
 public:
 
 	int type = 0;
-	iPoint position;
+	fPoint position;
 	
 	//
 

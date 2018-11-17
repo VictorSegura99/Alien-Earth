@@ -11,8 +11,6 @@ class Spider : public Entity {
 public:
 	Spider(int x, int y);
 	virtual ~Spider();
-	bool Awake(pugi::xml_node&);
-	bool Start();
 	bool PreUpdate();
 	bool PostUpdate();
 	bool Update(float dt);
@@ -21,6 +19,7 @@ public:
 	void Draw(float dt);
 	bool CleanUp();
 	void OnCollision(Collider* c2);
+	void AnimationLogic();
 
 	Animation LoadPushbacks(pugi::xml_node&, p2SString NameAnim) const;
 

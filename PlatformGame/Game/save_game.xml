@@ -13,11 +13,13 @@
 	</scene>
 	<:anonymous />
 	<entity_manager>
-		<position x="629.849915" y="542.099976" y="550" />
+		<position x="1118" y="552" y="550" y="550" y="400" />
+		<position x="1300" />
 		<position x="900" />
+		<position x="1600" />
 	</entity_manager>
 	<:anonymous />
 	<renderer>
-		<camera x="-129" y="-92" />
+		<camera x="-618" y="-102" />
 	</renderer>
 </game_state>

@@ -33,39 +33,11 @@ Bat::Bat(int x, int y) : Entity(x, y)
 	HitRight = LoadPushbacks(Bat, "HitRight");
 
 	texture = App->tex->Load(sprites.GetString());
-	current_animation = &GoLeft;
 
 }
 
 Bat::~Bat()
 {
-}
-
-bool Bat::Awake(pugi::xml_node & config)
-{
-	pugi::xml_node Bat = config.child("enemies").child("Bat");
-
-	sprites = Bat.child("sprite").text().as_string();
-	GoLeft = LoadPushbacks(Bat, "GoLeft");
-	GoRight = LoadPushbacks(Bat, "GoRight");
-	Idle = LoadPushbacks(Bat, "Idle");
-	DieLeft = LoadPushbacks(Bat, "DieLeft");
-	DieRight = LoadPushbacks(Bat, "DieRight");
-	HitLeft = LoadPushbacks(Bat, "HitLeft");
-	HitRight = LoadPushbacks(Bat, "HitRight");
-
-
-	return true;
-}
-
-bool Bat::Start()
-{
-
-	texture = App->tex->Load(sprites.GetString());
-	current_animation = &GoLeft;
-
-
-	return true;
 }
 
 bool Bat::PreUpdate()
@@ -88,11 +60,7 @@ bool Bat::PostUpdate()
 	}
 	if (death) {
 		float TIME = SDL_GetTicks();
-		position.y -= App->entitymanager->GetPlayerData()->gravity*App->entitymanager->GetPlayerData()->DT;
-		if (current_animation == &HitLeft || current_animation == &GoLeft)
-			current_animation = &DieLeft;
-		if (current_animation == &HitRight || current_animation == &GoRight)
-			current_animation = &DieRight;
+		//position.y -= App->entitymanager->GetPlayerData()->gravity*App->entitymanager->GetPlayerData()->DT;
 		if (TIME - starttime >= 2000)
 			App->entitymanager->DeleteEntity(this);
 	}
@@ -103,6 +71,8 @@ bool Bat::PostUpdate()
 bool Bat::Update(float dt)
 {
 	BROFILER_CATEGORY("Bat: Update", Profiler::Color::Green);
+
+	AnimationLogic();
 	return true;
 }
 
@@ -148,6 +118,12 @@ void Bat::OnCollision(Collider * c2)
 	switch (c2->type) {
 	case COLLIDER_PARTICLE:
 		coll->CanBeDeleted = true;
+		break;
+	/*case COLLIDER_PLAYER:
+		if ((App->entitymanager->GetPlayerData()->position.y + App->entitymanager->GetPlayerData()->playerHeight) >= position.y) {
+			coll->CanBeDeleted = true;
+			break;
+		}*/
 	}
 }
 
@@ -169,4 +145,21 @@ Animation Bat::LoadPushbacks(pugi::xml_node &config, p2SString NameAnim) const
 	anim.loop = config.child(XML_Name_Player_Anims.GetString()).child(NameAnim.GetString()).attribute("loop").as_bool();
 
 	return anim;
+}
+
+
+void Bat::AnimationLogic() {
+	if (App->entitymanager->GetPlayerData()->position.x <= position.x) {
+		current_animation = &GoLeft;
+	}
+	if (App->entitymanager->GetPlayerData()->position.x > position.x) {
+		current_animation = &GoRight;
+	}
+	if (death)
+	{
+		if (current_animation == &HitLeft || current_animation == &GoLeft)
+			current_animation = &DieLeft;
+		if (current_animation == &HitRight || current_animation == &GoRight)
+			current_animation = &DieRight;
+	}
 }

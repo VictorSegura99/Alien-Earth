@@ -1013,7 +1013,8 @@ void Player::SetCamera()
 
 void Player::CheckWhatToDoWhenCollidingWithEnemy(Collider * c2)
 {
-	if (BottomRight.IsFalling || BottomLeft.IsFalling || dashing) {
+	if (BottomRight.IsFalling || BottomLeft.IsFalling || dashing)
+	{
 		c2->CanBeDeleted = true;
 	}
 	else {

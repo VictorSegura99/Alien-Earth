@@ -35,39 +35,11 @@ Spider::Spider(int x, int y) : Entity(x,y)
 	HitRight = LoadPushbacks(spider, "HitRight");
 
 	texture = App->tex->Load(sprites.GetString());
-	current_animation = &IdleLeft;
 	
 }
 
 Spider::~Spider()
 {
-}
-
-bool Spider::Awake(pugi::xml_node & config)
-{
-	pugi::xml_node spider = config.child("enemies").child("Spider");
-
-	sprites = spider.child("sprite").text().as_string();
-	GoLeft = LoadPushbacks(spider, "GoLeft");
-	GoRight = LoadPushbacks(spider, "GoRight");
-	IdleLeft = LoadPushbacks(spider, "IdleLeft");
-	IdleRight = LoadPushbacks(spider, "IdleRight");
-	DieLeft = LoadPushbacks(spider, "DieLeft");
-	DieRight = LoadPushbacks(spider, "DieRight");
-	HitLeft = LoadPushbacks(spider, "HitLeft");
-	HitRight = LoadPushbacks(spider, "HitRight");
-
-	return true;
-}
-
-bool Spider::Start()
-{
-
-	texture = App->tex->Load(sprites.GetString());
-	current_animation = &IdleLeft;
-	
-
-	return true;
 }
 
 bool Spider::PreUpdate()
@@ -90,10 +62,6 @@ bool Spider::PostUpdate()
 	}
 	if (death) {
 		float TIME = SDL_GetTicks();
-		if (current_animation == &HitLeft || current_animation == &GoLeft || current_animation == &IdleLeft)
-			current_animation = &DieLeft;
-		if (current_animation == &HitRight || current_animation == &GoRight || current_animation == &IdleRight)
-			current_animation = &DieRight;
 		if (TIME - starttime >= 2000)
 			App->entitymanager->DeleteEntity(this);
 	}
@@ -105,13 +73,13 @@ bool Spider::Update(float dt)
 {
 	BROFILER_CATEGORY("Spider: Update", Profiler::Color::Green);
 
-	iPoint origin{ position.x,position.y };
-	iPoint destination { App->entitymanager->GetPlayerData()->position.x,App->entitymanager->GetPlayerData()->position.y };
+	//iPoint origin{ position.x,position.y };
+	//iPoint destination { App->entitymanager->GetPlayerData()->position.x,App->entitymanager->GetPlayerData()->position.y };
 
-	if (App->pathfinding->CreatePath(origin, destination) == 1) {
+	/*if (App->pathfinding->CreatePath(origin, destination) == 1) {
 		int i = 0;
-	 }
-	
+	 }*/
+	AnimationLogic();
 
 	return true;
 }
@@ -179,4 +147,20 @@ Animation Spider::LoadPushbacks(pugi::xml_node &config, p2SString NameAnim) cons
 	anim.loop = config.child(XML_Name_Player_Anims.GetString()).child(NameAnim.GetString()).attribute("loop").as_bool();
 
 	return anim;
+}
+
+void Spider::AnimationLogic() {
+	if (App->entitymanager->GetPlayerData()->position.x <= position.x) {
+		current_animation = &GoLeft;
+	}
+	if (App->entitymanager->GetPlayerData()->position.x > position.x) {
+		current_animation = &GoRight;
+	}
+	if (death)
+	{
+		if (current_animation == &HitLeft || current_animation == &GoLeft)
+			current_animation = &DieLeft;
+		if (current_animation == &HitRight || current_animation == &GoRight)
+			current_animation = &DieRight;
+	}
 }
