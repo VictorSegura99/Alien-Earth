@@ -167,10 +167,72 @@ int PathNode::CalculateF(const iPoint& destination)
 // ----------------------------------------------------------------------------------
 int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 {
-	int ret = -1;
+	last_path.Clear();
+	// TODO 1: if origin or destination are not walkable, return -1
 
-	// Nice try :)
+	if (!IsWalkable(origin) || !IsWalkable(destination))
+		return -1;
 
-	return ret;
+	// TODO 2: Create two lists: open, close
+	// Add the origin tile to open
+	// Iterate while we have tile in the open list
+
+	PathList open, close;
+	PathNode Origin(0, origin.DistanceNoSqrt(destination), origin, NULL);
+	open.list.add(Origin);
+
+	while (open.list.count() > 0) {
+		// TODO 3: Move the lowest score cell from open list to the closed list
+		close.list.add(open.GetNodeLowestScore()->data);
+		open.list.del(open.GetNodeLowestScore());
+
+		if (close.list.end->data.pos == destination) {
+			// TODO 4: If we just added the destination, we are done!
+			// Backtrack to create the final path
+			// Use the Pathnode::parent and Flip() the path when you are finish
+			p2List_item<PathNode>* item = close.list.end;
+			for (item; item->data.parent != NULL; item = close.Find(item->data.parent->pos)) {
+				last_path.PushBack(item->data.pos);
+				if (item->data.parent == NULL)
+					last_path.PushBack(close.list.start->data.pos);
+			}
+			last_path.PushBack(item->data.pos);
+			last_path.Flip();
+			break;
+		}
+		else if (close.list.end->data.pos != destination) {
+			// TODO 5: Fill a list of all adjancent nodes
+			PathList AdjacentsNodes;
+			close.list.end->data.FindWalkableAdjacents(AdjacentsNodes);
+			// TODO 6: Iterate adjancent nodes:
+			// ignore nodes in the closed list
+			// If it is NOT found, calculate its F and add it to the open list
+			// If it is already in the open list, check if it is a better path (compare G)
+			// If it is a better path, Update the parent
+			p2List_item<PathNode>* item = AdjacentsNodes.list.start;
+			while (item != NULL) {
+				bool InCloseList = false;
+				if (close.Find(item->data.pos)) {
+					InCloseList = true;
+				}
+				if (!InCloseList) {
+					if (open.Find(item->data.pos))
+					{
+						PathNode Node = open.Find(item->data.pos)->data;
+						item->data.CalculateF(destination);
+						if (Node.g > item->data.g)
+							Node.parent = item->data.parent;
+					}
+					else {
+						item->data.CalculateF(destination);
+						open.list.add(item->data);
+					}
+				}
+				item = item->next;
+			}
+		}
+
+	}
+	return 1;
 }
 

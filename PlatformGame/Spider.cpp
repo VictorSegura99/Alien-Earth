@@ -8,6 +8,7 @@
 #include "EntityManager.h"
 #include "Player.h"
 #include "Brofiler/Brofiler.h"
+#include "j1Pathfinding.h"
 
 Spider::Spider(int x, int y) : Entity(x,y)
 {
@@ -103,6 +104,15 @@ bool Spider::PostUpdate()
 bool Spider::Update(float dt)
 {
 	BROFILER_CATEGORY("Spider: Update", Profiler::Color::Green);
+
+	iPoint origin{ position.x,position.y };
+	iPoint destination { App->entitymanager->GetPlayerData()->position.x,App->entitymanager->GetPlayerData()->position.y };
+
+	if (App->pathfinding->CreatePath(origin, destination) == 1) {
+		int i = 0;
+	 }
+	
+
 	return true;
 }
 

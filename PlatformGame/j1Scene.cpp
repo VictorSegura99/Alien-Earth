@@ -49,7 +49,7 @@ bool j1Scene::Awake(pugi::xml_node& config)
 bool j1Scene::Start()
 {
 	BROFILER_CATEGORY("Scene: Start", Profiler::Color::LightYellow);
-	App->map->Load(map_name.start->data->GetString());
+	//App->map->Load(map_name.start->data->GetString());
 	App->audio->PlayMusic(Song.GetString());
 	//active = false;
 	TutorialJeff = App->tex->Load(tutorial[0].GetString());
@@ -163,6 +163,6 @@ bool j1Scene::Save(pugi::xml_node & scene) const
 void j1Scene::SpawnEnemies() const
 {
 	BROFILER_CATEGORY("Scene: Spawn", Profiler::Color::LightYellow);
-	App->entitymanager->CreateEntity(EntityType::SPIDER, 900, 550);
+	App->entitymanager->CreateEntity(EntityType::SPIDER, 1300, 550);
 
 }

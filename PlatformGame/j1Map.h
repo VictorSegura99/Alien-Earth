@@ -129,6 +129,8 @@ public:
 
 	TileSet * GetTilesetFromTileId(int id) const;
 
+	iPoint WorldToMap(int x, int y) const;
+
 	// Called before quitting
 	bool CleanUp();
 
@@ -136,6 +138,7 @@ public:
 	bool Load(const char* path);
 
 	iPoint MapToWorld(int x, int y) const;
+	bool CreateWalkabilityMap(int& width, int& height, uchar** buffer) const;
 	bool ChangeMap(const p2SString* map);
 
 private:
