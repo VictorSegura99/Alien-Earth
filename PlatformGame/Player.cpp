@@ -60,10 +60,6 @@ bool Player::Awake(pugi::xml_node& config)
 	AuxJumpSpeed = player.child("AuxJumpSpeed").attribute("value").as_float();
 	playerwidth = player.child("playerwidth").attribute("value").as_int();
 	playerheight = player.child("playerheight").attribute("value").as_int();
-	laserR.velocity.x = player.child("laservelocityR").attribute("value").as_float();
-	laserL.velocity.x = player.child("laservelocityL").attribute("value").as_float();
-	laserL.timelife = player.child("lasertimelife").attribute("value").as_int();
-	laserR.timelife = player.child("lasertimelife").attribute("value").as_int();
 	BottomLeft.speed = player.child("BottomSpeed").attribute("value").as_float();
 	BottomRight.speed = player.child("BottomSpeed").attribute("value").as_float();
 	TutorialX = player.child("TutorialX").attribute("value").as_int();
@@ -87,10 +83,6 @@ bool Player::Awake(pugi::xml_node& config)
 			BottomLeft.anim = LoadPushbacks(numplayer, player, "BottomLeft");
 			BottomRight.anim = LoadPushbacks(numplayer, player, "BottomRight");
 			doubleJump = LoadPushbacks(numplayer, player, "doubleJump");
-		}
-		if (numplayer == 1) {
-			laserR.anim = LoadPushbacks(numplayer, player, "LaserRight");
-			laserL.anim = LoadPushbacks(numplayer, player, "LaserLeft");
 		}
 		if (numplayer == 2) {
 			dashR.StartDash = LoadPushbacks(numplayer, player, "StartDashRight");
@@ -124,8 +116,6 @@ bool Player::Start()
 	position.x = App->entitymanager->positionStartMap1.x;
 	position.y = App->entitymanager->positionStartMap1.y;
 
- 	laserR.life = laserR.timelife;
-	laserL.life = laserL.timelife;
 	current_animation = &idle[NumPlayer];
 	return ret;
 }
@@ -201,9 +191,9 @@ bool Player::Update(float dt)
 	coll->SetPos(position.x, position.y);
 	//App->render->DrawQuad(rect, 150, 150, 150, 255, true, false);
 
-
-	if (App->collision->debug)
-		App->render->DrawQuad(CamRect, 150, 150, 150);
+	LOG("CAM Y: %f", App->render->camera.y);
+	/*if (App->collision->debug)
+		App->render->DrawQuad(CamRect, 150, 150, 150);*/
 
 	TouchingGround = false;
 

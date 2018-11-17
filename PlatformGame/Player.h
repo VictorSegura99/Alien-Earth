@@ -7,19 +7,6 @@
 
 class Player : public Entity
 {
-	struct Laser {
-		fPoint position;
-		fPoint velocity;
-		Animation anim;
-		int life;
-		int timelife;
-		Collider* coll = nullptr;
-		int time = 0;
-		bool StartShooting = false;
-		bool IsShooting = false;
-
-	};
-
 	struct BottomHit {
 		Animation anim;
 		float speed = 0.0f;
@@ -196,9 +183,6 @@ public:
 	uint Time = 0;
 
 	int cont = 0;
-
-	Laser laserR;
-	Laser laserL;
 
 	BottomHit BottomLeft;
 	BottomHit BottomRight;
