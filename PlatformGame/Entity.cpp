@@ -5,6 +5,10 @@
 #include "j1Render.h"
 #include "j1Scene.h"
 #include "Brofiler/Brofiler.h"
+#include "j1Map.h"
+#include "p2DynArray.h"
+#include "j1Pathfinding.h"
+#include "Player.h"
 Entity::Entity()
 {
 }
