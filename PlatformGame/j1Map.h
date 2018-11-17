@@ -6,6 +6,34 @@
 #include "p2Point.h"
 #include "j1Module.h"
 
+
+struct Properties
+{
+	struct Property
+	{
+		p2SString name;
+		int value;
+	};
+
+	~Properties()
+	{
+		p2List_item<Property*>* item;
+		item = list.start;
+
+		while (item != NULL)
+		{
+			RELEASE(item->data);
+			item = item->next;
+		}
+
+		list.clear();
+	}
+
+	int Get(const char* name, int default_value = 0) const;
+
+	p2List<Property*>	list;
+};
+
 struct ObjectData
 {
 	p2SString	name;
@@ -25,10 +53,12 @@ struct ObjectGroup
 
 
 struct map_layer {
+	Properties	properties;
 	p2SString name;
 	uint width = 0u;
 	uint height = 0u;
 	uint* data = nullptr;
+	bool Walkable = false;
 	float ParallaxSpeed = 10.0f;
 	~map_layer() {
 		if (data != nullptr)
@@ -97,6 +127,8 @@ public:
 	// Called each loop iteration
 	void Draw();
 
+	TileSet * GetTilesetFromTileId(int id) const;
+
 	// Called before quitting
 	bool CleanUp();
 
@@ -114,6 +146,7 @@ private:
 	bool LoadLayer(pugi::xml_node& node, map_layer* layer);
 	bool LoadObjects(pugi::xml_node& node, ObjectGroup* Obj);
 	bool LoadPlayerProperties();
+	bool LoadProperties(pugi::xml_node& node, Properties& properties);
 
 public:
 
@@ -126,6 +159,7 @@ private:
 	bool				map_loaded;
 	p2List_item<map_layer*>* layer = nullptr;
 	p2List_item<TileSet*>* tileset = nullptr;
+
 };
 
 #endif // __j1MAP_H__

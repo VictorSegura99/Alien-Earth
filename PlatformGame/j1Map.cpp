@@ -34,23 +34,55 @@ bool j1Map::Awake(pugi::xml_node& config)
 void j1Map::Draw()
 {
 	BROFILER_CATEGORY("Map Draw", Profiler::Color::Yellow);
-	if(map_loaded == false)
+	
+	if (map_loaded == false)
 		return;
 
-	for (layer = data.layers.start; layer != nullptr; layer = layer->next) {
-		for (tileset = data.tilesets.start; tileset != nullptr; tileset = tileset->next) {
-			for (uint i = 0; i < layer->data->width; ++i) {
-				for (uint j = 0; j < layer->data->height; ++j) {
-					uint gid = layer->data->Get(i, j);
-					iPoint pos = MapToWorld(i, j);
-					SDL_Rect rect = tileset->data->GetTileRect(gid);
-					App->render->Blit(tileset->data->texture, pos.x, pos.y, &rect, SDL_FLIP_NONE, layer->data->ParallaxSpeed);
+	p2List_item<map_layer*>* item = data.layers.start;
+
+	for (; item != NULL; item = item->next)
+	{
+		map_layer* layer = item->data;
+
+		if (layer->properties.Get("NoDraw") != 0)
+			continue;
+
+		for (int y = 0; y < data.height; ++y)
+		{
+			for (int x = 0; x < data.width; ++x)
+			{
+				int tile_id = layer->Get(x, y);
+				if (tile_id > 0)
+				{
+					TileSet* tileset = GetTilesetFromTileId(tile_id);
+
+					SDL_Rect r = tileset->GetTileRect(tile_id);
+					iPoint pos = MapToWorld(x, y);
+
+					App->render->Blit(tileset->texture, pos.x, pos.y, &r, SDL_FLIP_NONE,layer->properties.Get("speed"));
 				}
 			}
 		}
 	}
 }
+TileSet* j1Map::GetTilesetFromTileId(int id) const
+{
+	p2List_item<TileSet*>* item = data.tilesets.start;
+	TileSet* set = item->data;
 
+	while (item)
+	{
+		if (id < item->data->firstgid)
+		{
+			set = item->prev->data;
+			break;
+		}
+		set = item->data;
+		item = item->next;
+	}
+
+	return set;
+}
 
 iPoint j1Map::MapToWorld(int x, int y) const
 {
@@ -372,8 +404,7 @@ bool j1Map::LoadLayer(pugi::xml_node& node, map_layer* layer) {
 	layer->name.create(node.attribute("name").as_string());
 	layer->width = node.attribute("width").as_int();
 	layer->height = node.attribute("height").as_int();
-	pugi::xml_node prop = node.child("properties");
-	layer->ParallaxSpeed = prop.child("property").attribute("value").as_float();
+	LoadProperties(node, layer->properties);
 	pugi::xml_node data = node.child("data");
 	layer->data = new uint[layer->width*layer->height];
 	memset(layer->data, 0, sizeof(uint)*layer->height*layer->width);
@@ -495,8 +526,46 @@ bool j1Map::LoadPlayerProperties()
 	return true;
 }
 
+bool j1Map::LoadProperties(pugi::xml_node & node, Properties & properties)
+{
+	bool ret = false;
+
+	pugi::xml_node data = node.child("properties");
+
+	if (data != NULL)
+	{
+		pugi::xml_node prop;
+
+		for (prop = data.child("property"); prop; prop = prop.next_sibling("property"))
+		{
+			Properties::Property* p = new Properties::Property();
+
+			p->name = prop.attribute("name").as_string();
+			p->value = prop.attribute("value").as_int();
+
+			properties.list.add(p);
+		}
+	}
+
+	return ret;
+}
+
 ObjectGroup::~ObjectGroup()
 {
 	objects.clear();
 
+}
+
+int Properties::Get(const char * value, int default_value) const
+{
+	p2List_item<Property*>* item = list.start;
+
+	while (item)
+	{
+		if (item->data->name == value)
+			return item->data->value;
+		item = item->next;
+	}
+
+	return default_value;
 }
