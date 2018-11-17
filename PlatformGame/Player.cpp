@@ -574,7 +574,6 @@ void Player::GoJump(float dt)
 	if (Jump && CanJump && !CanSwim && !God && !IsJumping) { //If you clicked the jump button and you are able to jump(always except you just jumpt) you can jump
 		IsJumping = true;
 		TouchingGround = false;
-		Time = 0;
 		JumpSpeed = AuxJumpSpeed;
 		starttime = SDL_GetTicks();
 		//App->particles->AddParticle(App->particles->smokeBottom, position.x, position.y, COLLIDER_NONE, { 0,0 });
@@ -583,7 +582,6 @@ void Player::GoJump(float dt)
 					 //Time = Time * dt;
 
 		float TIME = SDL_GetTicks();
-		Time += 1;
 		LOG("TIME %f", TIME);
 		CanJump = false;
 		if (TIME - starttime == 0)
@@ -812,62 +810,61 @@ void Player::DoDash(float dt)
 		JumpSpeed = AuxJumpSpeed;
 		dashing = true;
 		dashR.DashRight = true;
+		startDash = SDL_GetTicks();
 	}
 	if ((current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer]) && Hability && CanDash) {
 		App->audio->PlayFx(dashfx);
 		JumpSpeed = AuxJumpSpeed;
 		dashing = true;
 		dashL.DashLeft = true;
+		startDash = SDL_GetTicks();
 	}
 	if (dashing && dashR.DashRight) {
 		velocity.y = 0;
-		if (dashR.StartDash.current_frame == 0) {
-			//	position.x -= 60;
+		DashTime = SDL_GetTicks();
+		CanJump = false;
+		if (DashTime - startDash == 0)
 			current_animation = &dashR.StartDash;
-		}
-		if (dashR.StartDash.Finished()) {
-			++dashR.DashCont;
+		if (DashTime - startDash >= 20) {
 			current_animation = &dashR.Dashing;
 			position.x += 1800 * dt;
-			if (dashR.DashCont >= dashR.DashTime) {
-				position.x -= 1600 * dt;
-				current_animation = &dashR.FinishDash;
-				if (dashR.FinishDash.Finished()) {
-					dashR.DashCont = 0;
-					dashing = false;
-					IsJumping = false;
-					CanJump = false;
-					CanDash = false;
-				}
-
-			}
+		}
+		if (DashTime - startDash >= 200) {
+			position.x -= 1600 * dt;
+			current_animation = &dashR.FinishDash;
+		}
+		if (DashTime - startDash >= 400) {
+			dashing = false;
+			IsJumping = false;
+			CanJump = false;
+			CanDash = false;
+			DashTime = 0;
+			startDash = 0;
 		}
 	}
 	if (dashing && dashL.DashLeft) {
 		velocity.y = 0;
-		if (dashL.StartDash.current_frame == 0) {
+		DashTime = SDL_GetTicks();
+		CanJump = false;
+		if (DashTime - startDash == 0)
 			current_animation = &dashL.StartDash;
-		}
-		if (dashL.StartDash.Finished()) {
-			++dashL.DashCont;
+		if (DashTime - startDash >= 20) {
 			current_animation = &dashL.Dashing;
-
 			position.x -= 1800 * dt;
-			if (dashL.DashCont >= dashL.DashTime) {
-				position.x += 1600 * dt;
-				current_animation = &dashL.FinishDash;
-				if (dashL.FinishDash.Finished()) {
-					dashL.DashCont = 0;
-					dashing = false;
-					IsJumping = false;
-					CanJump = false;
-					CanDash = false;
-				}
-
-			}
+		}
+		if (DashTime - startDash >= 200) {
+			position.x += 1600 * dt;
+			current_animation = &dashL.FinishDash;
+		}
+		if (DashTime - startDash >= 400) {
+			dashing = false;
+			IsJumping = false;
+			CanJump = false;
+			CanDash = false;
+			DashTime = 0;
+			startDash = 0;
 		}
 	}
-
 }
 
 

@@ -72,6 +72,10 @@ public:
 	void SetCamera();
 	void CheckWhatToDoWhenCollidingWithEnemy(Collider * c2);
 
+private:
+	float startDash;
+	float DashTime;
+
 public:
 	bool cameraon = false;
 	
@@ -179,6 +183,7 @@ public:
 	int TutorialX = 0;
 	int TutorialY1 = 0;
 	int TutorialY2 = 0;
+
 
 	uint Time = 0;
 
