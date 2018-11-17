@@ -150,10 +150,10 @@ Animation Spider::LoadPushbacks(pugi::xml_node &config, p2SString NameAnim) cons
 }
 
 void Spider::AnimationLogic() {
-	if (App->entitymanager->GetPlayerData()->position.x <= position.x) {
+	if (App->entitymanager->GetPlayerData()->position.x <= position.x&&!death) {
 		current_animation = &GoLeft;
 	}
-	if (App->entitymanager->GetPlayerData()->position.x > position.x) {
+	if (App->entitymanager->GetPlayerData()->position.x > position.x &&!death) {
 		current_animation = &GoRight;
 	}
 	if (death)
