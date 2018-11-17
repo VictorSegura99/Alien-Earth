@@ -222,10 +222,26 @@ void j1App::FinishUpdate()
 	float seconds_since_startup = startup_time.ReadSec();
 	uint32 last_frame_ms = frame_time.Read();
 	uint32 frames_on_last_update = prev_last_sec_frame_count;
-
-	static char title[256];
-	sprintf_s(title, 256, "Alien Earth v0.5: FPS: %i Avg.FPS: %.2f Ms last Frame %02u", frames_on_last_update, avg_fps, last_frame_ms);
-	App->win->SetTitle(title);
+	if (capactivated&&App->render->vsync) {
+		static char title[256];
+		sprintf_s(title, 256, "Alien Earth v0.5: FPS: %i Avg.FPS: %.2f Ms last Frame %02u  30FPSCap: On  Vsync: On", frames_on_last_update, avg_fps, last_frame_ms);
+		App->win->SetTitle(title);
+	}
+	else if (capactivated&&!App->render->vsync) {
+		static char title[256];
+		sprintf_s(title, 256, "Alien Earth v0.5: FPS: %i Avg.FPS: %.2f Ms last Frame %02u  30FPSCap: On  Vsync: Off", frames_on_last_update, avg_fps, last_frame_ms);
+		App->win->SetTitle(title);
+	}
+	else if (!capactivated&&App->render->vsync) {
+		static char title[256];
+		sprintf_s(title, 256, "Alien Earth v0.5: FPS: %i Avg.FPS: %.2f Ms last Frame %02u  30FPSCap: Off  Vsync: On", frames_on_last_update, avg_fps, last_frame_ms);
+		App->win->SetTitle(title);
+	}
+	else {
+		static char title[256];
+		sprintf_s(title, 256, "Alien Earth v0.5: FPS: %i Avg.FPS: %.2f Ms last Frame %02u  30FPSCap: Off  Vsync: Off", frames_on_last_update, avg_fps, last_frame_ms);
+		App->win->SetTitle(title);
+	}
 
 	if (framerate_cap > 0 && last_frame_ms < framerate_cap&&capactivated)
 	{

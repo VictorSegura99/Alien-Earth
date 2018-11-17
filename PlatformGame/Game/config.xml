@@ -371,8 +371,8 @@
             <frame x="148" y="212" w="75" h="53"/>
           </GoLeft>
           <GoRight speed="5.0f" loop="true">
-            <frame x="150" y="212" w="72" h="53"/>
-            <frame x="72" y="212" w="75" h="53"/>
+            <frame x="150" y="324" w="72" h="53"/>
+            <frame x="72" y="324" w="75" h="53"/>
           </GoRight>
           <IdleLeft speed="1.0f" loop="true">
             <frame x="0" y="212" w="70" h="53"/>

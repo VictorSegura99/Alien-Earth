@@ -44,6 +44,8 @@ public:
 	// Set background color
 	void SetBackgroundColor(SDL_Color color);
 
+	bool vsync=false;
+
 public:
 
 	SDL_Renderer*	renderer;
