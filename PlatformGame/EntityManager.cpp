@@ -11,6 +11,7 @@
 #include "j1Scene.h"
 #include "Player.h"
 #include "Spider.h"
+#include "Bat.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -134,6 +135,9 @@ Entity* EntityManager::CreateEntity(EntityType type, int x, int y)
 	switch (type) {
 	case EntityType::SPIDER: ret = new Spider(x, y);
 		ret->type = SPIDER;
+		break;
+	case EntityType::BAT: ret = new Bat(x, y);
+		ret->type = BAT;
 		break;
 	case EntityType::PLAYER: ret = new Player();
 		ret->type = PLAYER;

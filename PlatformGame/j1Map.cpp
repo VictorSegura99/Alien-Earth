@@ -144,7 +144,6 @@ bool j1Map::CreateWalkabilityMap(int & width, int & height, uchar ** buffer) con
 		//TODO CHECK THIS
 		if (layer->name == "Walkable") {
 
-
 		uchar* map = new uchar[layer->width*layer->height];
 		memset(map, 1, layer->width*layer->height);
 
