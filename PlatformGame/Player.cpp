@@ -825,22 +825,23 @@ void Player::DoDash(float dt)
 		CanJump = false;
 		if (DashTime - startDash == 0)
 			current_animation = &dashR.StartDash;
-		if (DashTime - startDash >= 20) {
+		if (DashTime - startDash >= 50) {
 			current_animation = &dashR.Dashing;
 			position.x += 1800 * dt;
+			if (DashTime - startDash >= 200) {
+				position.x -= 1600 * dt;
+				current_animation = &dashR.FinishDash;
+			}
+			if (dashR.FinishDash.Finished()) {
+				dashing = false;
+				IsJumping = false;
+				CanJump = false;
+				CanDash = false;
+				DashTime = 0;
+				startDash = 0;
+			}
 		}
-		if (DashTime - startDash >= 200) {
-			position.x -= 1600 * dt;
-			current_animation = &dashR.FinishDash;
-		}
-		if (DashTime - startDash >= 400) {
-			dashing = false;
-			IsJumping = false;
-			CanJump = false;
-			CanDash = false;
-			DashTime = 0;
-			startDash = 0;
-		}
+
 	}
 	if (dashing && dashL.DashLeft) {
 		velocity.y = 0;
@@ -848,22 +849,23 @@ void Player::DoDash(float dt)
 		CanJump = false;
 		if (DashTime - startDash == 0)
 			current_animation = &dashL.StartDash;
-		if (DashTime - startDash >= 20) {
+		if (DashTime - startDash >= 50) {
 			current_animation = &dashL.Dashing;
 			position.x -= 1800 * dt;
+			if (DashTime - startDash >= 200) {
+				position.x += 1600 * dt;
+				current_animation = &dashL.FinishDash;
+			}
+			if (dashL.FinishDash.Finished()) {
+				dashing = false;
+				IsJumping = false;
+				CanJump = false;
+				CanDash = false;
+				DashTime = 0;
+				startDash = 0;
+			}
 		}
-		if (DashTime - startDash >= 200) {
-			position.x += 1600 * dt;
-			current_animation = &dashL.FinishDash;
-		}
-		if (DashTime - startDash >= 400) {
-			dashing = false;
-			IsJumping = false;
-			CanJump = false;
-			CanDash = false;
-			DashTime = 0;
-			startDash = 0;
-		}
+		
 	}
 }
 
