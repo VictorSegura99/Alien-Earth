@@ -333,8 +333,8 @@
     </player>
 
     <enemies>
-      <sprite>textures/enemies.png</sprite>
       <Bat>
+        <sprite>textures/enemies.png</sprite>
         <AnimationsBat>
           <GoLeft speed="0.1f" loop="true">
             <frame x="0" y="0" w="70" h="47"/>

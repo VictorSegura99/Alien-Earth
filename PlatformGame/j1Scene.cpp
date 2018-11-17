@@ -164,5 +164,6 @@ void j1Scene::SpawnEnemies() const
 {
 	BROFILER_CATEGORY("Scene: Spawn", Profiler::Color::LightYellow);
 	App->entitymanager->CreateEntity(EntityType::SPIDER, 900, 550);
+	App->entitymanager->CreateEntity(EntityType::BAT, 900, 400);
 
 }

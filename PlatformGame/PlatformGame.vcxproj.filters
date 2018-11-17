@@ -64,6 +64,9 @@
     <ClCompile Include="j1Pathfinding.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Bat.cpp">
+      <Filter>Modules\Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PugiXml\src\pugixml.hpp">
@@ -149,6 +152,9 @@
     </ClInclude>
     <ClInclude Include="j1Pathfinding.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Bat.h">
+      <Filter>Modules\Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

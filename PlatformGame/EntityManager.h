@@ -60,6 +60,7 @@ public:
 
 	Entity* player;
 	Entity* spider;
+	Entity* bat;
 
 
 	bool ActiveGame = false;
