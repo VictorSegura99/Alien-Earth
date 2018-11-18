@@ -160,15 +160,19 @@ void j1Scene::SpawnEnemies() const
 {
 	BROFILER_CATEGORY("Scene: Spawn", Profiler::Color::LightYellow);
 	if (KnowMap == 0) {
-		App->entitymanager->CreateEntity(EntityType::SPIDER, 1300, 300);
+		//Platforms
 		App->entitymanager->CreateEntity(EntityType::MOVING_PLATFORM, 7480, 900);
 		App->entitymanager->CreateEntity(EntityType::MOVING_PLATFORM, 8300, 900);
-		App->entitymanager->CreateEntity(EntityType::SPIDER, 900, 300);
-		App->entitymanager->CreateEntity(EntityType::BAT, 1600, 400);
-		App->entitymanager->CreateEntity(EntityType::SPIDER, 1000, 300);
-		App->entitymanager->CreateEntity(EntityType::BAT, 1400, 300);
+		//Enemies
+		App->entitymanager->CreateEntity(EntityType::SPIDER, 6800, 700);
+		App->entitymanager->CreateEntity(EntityType::BAT, 6000, 600);
+		App->entitymanager->CreateEntity(EntityType::BAT, 8000, 400);
+		App->entitymanager->CreateEntity(EntityType::SPIDER, 10500, 700);
 	}
 	if (KnowMap == 1) {
 		App->entitymanager->CreateEntity(EntityType::SPIDER, 1300, 500);
+		App->entitymanager->CreateEntity(EntityType::SPIDER, 1500, 600);
+		App->entitymanager->CreateEntity(EntityType::BAT, 3100, 300);
+		App->entitymanager->CreateEntity(EntityType::SPIDER, 6200, 800);
 	}
 }
