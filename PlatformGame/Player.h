@@ -125,8 +125,8 @@ public:
 
 
 	
-	bool MoveLeft = false;
-	bool MoveRight = false;
+	bool PlayerLeft = false;
+	bool PlayerRight = false;
 
 	bool AnimDoubleJump = false;
 	bool WalkLeft = false;

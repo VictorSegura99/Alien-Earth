@@ -22,6 +22,11 @@ Entity::~Entity()
 
 }
 
+const Collider * Entity::GetCollider() const
+{
+	return coll;
+}
+
 void Entity::Draw(float dt)
 {
 	
@@ -32,6 +37,7 @@ void Entity::OnCollision(Collider* c2)
 {
 	
 }
+
 
 
 

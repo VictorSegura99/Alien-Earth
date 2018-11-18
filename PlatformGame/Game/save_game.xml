@@ -17,17 +17,17 @@
 			<position x="1300" y="500" />
 		</spider>
 		<spider>
-			<position x="850.380432" y="500" />
+			<position x="817.800781" y="500" />
 		</spider>
 		<bat>
 			<position x="1600" y="400" />
 		</bat>
 		<player>
-			<position x="689" y="556.06665" />
+			<position x="689" y="278.374481" />
 		</player>
 	</entity_manager>
-	<:anonymous />
+	<particles />
 	<renderer>
-		<camera x="-300" y="-106" />
+		<camera x="-189" y="0" />
 	</renderer>
 </game_state>

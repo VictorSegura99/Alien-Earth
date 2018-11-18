@@ -17,7 +17,7 @@ public:
 	Entity();
 	Entity(int x, int y);
 	virtual ~Entity();
-
+	const Collider* GetCollider() const;
 	
 	virtual bool Start() { return true; };
 	virtual bool PreUpdate() { return true; };
