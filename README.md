@@ -66,6 +66,9 @@ Menu Font: https://www.dafont.com/es/sunday-afternoon.font
 Spacebar Sprite: https://www.facebook.com/suepeisueba/
 
 _____________
+ACHIVEMENTS by each member:
+
+_____________
 LICENSE:
 
 MIT License

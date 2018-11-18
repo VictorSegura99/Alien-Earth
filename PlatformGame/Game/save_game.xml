@@ -13,12 +13,30 @@
 	</scene>
 	<:anonymous />
 	<entity_manager>
+		<spider>
+			<position x="6800.83936" y="15143.8838" />
+		</spider>
+		<spider>
+			<position x="10500.4941" y="709.934143" />
+		</spider>
+		<spider>
+			<position x="6800.24023" y="15143.8838" />
+		</spider>
+		<spider>
+			<position x="10499.7637" y="725.833313" />
+		</spider>
+		<bat>
+			<position x="8000" y="400" />
+		</bat>
+		<bat>
+			<position x="8000" y="400" />
+		</bat>
 		<player>
-			<position x="6950.11572" y="694.218201" />
+			<position x="7338.11182" y="695.799988" />
 		</player>
 	</entity_manager>
 	<particles />
 	<renderer>
-		<camera x="-6450" y="-244" />
+		<camera x="-6838" y="-245" />
 	</renderer>
 </game_state>

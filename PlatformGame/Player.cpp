@@ -347,6 +347,7 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		if (Jump2Complete)
 			IsJumping2 = false;
 		Jump2Complete = false;
+		FallingJump2 = true;
 		GoUp = false;
 		break;
 	case COLLIDER_WALL_LEFT:

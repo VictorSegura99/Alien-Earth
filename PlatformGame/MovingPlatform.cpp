@@ -112,3 +112,18 @@ Animation MovingPlatform::LoadPushbacks(pugi::xml_node &config, p2SString NameAn
 	return anim;
 }
 
+bool MovingPlatform::Load(pugi::xml_node& platform)
+{
+	App->entitymanager->CreateEntity(MOVING_PLATFORM, 7480, 900);
+	App->entitymanager->CreateEntity(MOVING_PLATFORM, 8300, 900);
+	return true;
+}
+bool MovingPlatform::Save(pugi::xml_node& platform) const
+{
+	platform.append_child("position").append_attribute("x") = position.x;
+	platform.child("position").append_attribute("y") = position.y;
+
+	return true;
+}
+
+
