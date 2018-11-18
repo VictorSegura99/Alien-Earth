@@ -24,7 +24,7 @@ public:
 	Animation LoadPushbacks(pugi::xml_node&, p2SString NameAnim) const;
 
 public:
-
+	iPoint original_pos;
 	Animation GoLeft;
 	Animation GoRight;
 	Animation Idle;

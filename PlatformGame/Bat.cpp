@@ -6,6 +6,10 @@
 #include "PugiXml\src\pugixml.hpp"
 #include "j1Collision.h"
 #include "EntityManager.h"
+#include "j1Pathfinding.h"
+#include "Player.h"
+#include "p2DynArray.h"
+#include "j1Map.h"
 #include "Player.h"
 #include "Brofiler/Brofiler.h"
 
@@ -13,7 +17,8 @@ Bat::Bat(int x, int y) : Entity(x, y)
 {
 	position.x = x;
 	position.y = y;
-
+	original_pos.x = x;
+	original_pos.y = y;
 	pugi::xml_document	config_file;
 	pugi::xml_node		config;
 	pugi::xml_node		app_config;
@@ -54,7 +59,7 @@ bool Bat::PostUpdate()
 
 	if (coll->CanBeDeleted) {
 		coll->CanBeDeleted = false;
-		coll->to_delete = true;
+		coll->type = COLLIDER_PLAYER;
 		death = true;
 		starttime = SDL_GetTicks();
 	}
@@ -73,6 +78,73 @@ bool Bat::Update(float dt)
 	BROFILER_CATEGORY("Bat: Update", Profiler::Color::Green);
 
 	AnimationLogic();
+
+	float x = App->entitymanager->GetPlayerData()->position.x;
+	float y = App->entitymanager->GetPlayerData()->position.y;
+	
+	if (position.x - x < 400 && x - position.x < 400 && !death) {
+		iPoint origin = App->map->WorldToMap(position.x, position.y);
+		iPoint player_position = App->map->WorldToMap(App->entitymanager->GetPlayerData()->position.x, App->entitymanager->GetPlayerData()->position.y - App->entitymanager->GetPlayerData()->coll->rect.h);
+		if (position.DistanceTo(App->entitymanager->GetPlayerData()->position)) {
+			App->pathfinding->CreatePath(origin, player_position);
+			const p2DynArray<iPoint>* entity_path = App->pathfinding->GetLastPath();
+			for (int i = 0; i < entity_path->Count(); i++) {
+				pathfinding_path.PushBack(*entity_path->At(i));
+			}
+		}
+		if (pathfinding_path.Count() > 1) {
+			velocity.x = -60;
+			velocity.y = 60;
+		}
+		if (App->entitymanager->GetPlayerData()->position.x < position.x) {
+			position.x += velocity.x * dt;
+		}
+		else {
+			position.x += -velocity.x * dt;
+		}
+		if (App->entitymanager->GetPlayerData()->position.y > position.y) {
+			position.y += velocity.y * dt;
+		}
+		if (App->entitymanager->GetPlayerData()->position.y < position.y) {
+			position.y -= velocity.y * dt;
+		}
+	}
+	else {
+		iPoint origin = App->map->WorldToMap(position.x, position.y);
+		iPoint destination = App->map->WorldToMap(original_pos.x, original_pos.y);
+		x = original_pos.x;
+		y = original_pos.y;
+		fPoint originalpos{ x,y };
+		if (position.DistanceTo(originalpos)) {
+			App->pathfinding->CreatePath(origin, destination);
+			const p2DynArray<iPoint>* entity_path = App->pathfinding->GetLastPath();
+			for (int i = 0; i < entity_path->Count(); i++) {
+				pathfinding_path.PushBack(*entity_path->At(i));
+			}
+		}
+		if (pathfinding_path.Count() > 1) {
+			velocity.x = -60;
+			velocity.y = 60;
+		}
+		if (original_pos.x < position.x) {
+			position.x += velocity.x * dt;
+		}
+		else {
+			position.x += -velocity.x * dt;
+		}
+		if (original_pos.y > position.y) {
+			position.y += velocity.y * dt;
+		}
+		if (original_pos.y < position.y) {
+			position.y -= velocity.y * dt;
+		}
+	}
+	if (death && coll->type == COLLIDER_PLAYER) {
+		position.y += 433.33f * dt;
+	}
+	if (position.x + 100< -App->render->camera.x)
+		App->entitymanager->DeleteEntity(this);
+
 	return true;
 }
 
@@ -98,8 +170,10 @@ bool Bat::Save(pugi::xml_node & Bat) const
 
 void Bat::Draw(float dt)
 {
-
-	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
+	if (current_animation == &DieLeft || current_animation == &DieRight)
+		App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)), SDL_FLIP_VERTICAL);
+	else
+		App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
 	if (coll == nullptr)
 		coll = App->collision->AddCollider({ 0,0,70,47 }, COLLIDER_ENEMY, (j1Module*)App->entitymanager);
 	coll->SetPos(position.x, position.y);
@@ -119,11 +193,12 @@ void Bat::OnCollision(Collider * c2)
 	case COLLIDER_PARTICLE:
 		coll->CanBeDeleted = true;
 		break;
-	/*case COLLIDER_PLAYER:
-		if ((App->entitymanager->GetPlayerData()->position.y + App->entitymanager->GetPlayerData()->playerHeight) >= position.y) {
-			coll->CanBeDeleted = true;
-			break;
-		}*/
+	case COLLIDER_GROUND:
+		if (death) {
+			coll->type = COLLIDER_NONE;
+		}
+		
+		
 	}
 }
 
@@ -149,14 +224,13 @@ Animation Bat::LoadPushbacks(pugi::xml_node &config, p2SString NameAnim) const
 
 
 void Bat::AnimationLogic() {
-	if (App->entitymanager->GetPlayerData()->position.x <= position.x&&!death) {
+	if (App->entitymanager->GetPlayerData()->position.x + 5 <= position.x&&!death) {
 		current_animation = &GoLeft;
 	}
 	if (App->entitymanager->GetPlayerData()->position.x > position.x&&!death) {
 		current_animation = &GoRight;
 	}
-	if (death)
-	{
+	if (death) {
 		if (current_animation == &HitLeft || current_animation == &GoLeft)
 			current_animation = &DieLeft;
 		if (current_animation == &HitRight || current_animation == &GoRight)

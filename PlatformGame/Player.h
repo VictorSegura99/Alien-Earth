@@ -122,8 +122,7 @@ public:
 	unsigned int bombjumpfx;
 
 
-	fPoint velocity;
-	fPoint acceleration;
+	
 
 
 	bool AnimDoubleJump = false;
@@ -152,7 +151,7 @@ public:
 	bool Jump2Complete = false;
 	bool CanDoAnotherJump = true;
 	bool FallingJump2 = false;
-	bool TouchingGround = false;
+	
 
 	
 	float JumpSpeed = 0.0f;

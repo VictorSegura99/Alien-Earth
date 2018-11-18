@@ -135,14 +135,12 @@ bool j1Map::CreateWalkabilityMap(int & width, int & height, uchar ** buffer) con
 {
 	bool ret = false;
 	p2List_item<map_layer*>* item;
-	item = data.layers.start;
-
 	for (item = data.layers.start; item != NULL; item = item->next)
 	{
 		map_layer* layer = item->data;
 
-		//TODO CHECK THIS
-		if (layer->name == "Walkable") {
+		if (layer->properties.Get("Navigation", 0) == 0)
+			continue;
 
 		uchar* map = new uchar[layer->width*layer->height];
 		memset(map, 1, layer->width*layer->height);
@@ -174,8 +172,8 @@ bool j1Map::CreateWalkabilityMap(int & width, int & height, uchar ** buffer) con
 		ret = true;
 
 		break;
-		}
 	}
+
 
 	return ret;
 }
@@ -192,8 +190,6 @@ bool j1Map::ChangeMap(const p2SString * map)
 	
 	return true;
 }
-
-
 
 SDL_Rect TileSet::GetTileRect(int id) const
 {
