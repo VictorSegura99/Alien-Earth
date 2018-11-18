@@ -41,7 +41,7 @@ public:
 	iPoint original_pos;
 	iPoint velocity;
 	float GRAVITY = 433.33f;
-	uint range = 8;
+	
 
 	unsigned int spiderfx;
 	p2SString SpiderFx;

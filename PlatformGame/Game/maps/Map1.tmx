@@ -16405,27 +16405,27 @@
   </object>
   <object id="54" x="3290" y="700.25" width="69.5" height="68.75">
    <properties>
-    <property name="Type" type="int" value="12"/>
+    <property name="Type" type="int" value="2"/>
    </properties>
   </object>
   <object id="55" x="3430.18" y="699.818" width="69.4545" height="69.2273">
    <properties>
-    <property name="Type" type="int" value="12"/>
+    <property name="Type" type="int" value="2"/>
    </properties>
   </object>
   <object id="56" x="3710.25" y="700.25" width="280" height="70">
    <properties>
-    <property name="Type" type="int" value="12"/>
+    <property name="Type" type="int" value="2"/>
    </properties>
   </object>
   <object id="77" x="4690" y="770.25" width="279.667" height="69.75">
    <properties>
-    <property name="Type" type="int" value="12"/>
+    <property name="Type" type="int" value="2"/>
    </properties>
   </object>
   <object id="84" x="5739.82" y="770" width="139.636" height="69.2727">
    <properties>
-    <property name="Type" type="int" value="12"/>
+    <property name="Type" type="int" value="2"/>
    </properties>
   </object>
   <object id="86" x="4340" y="752.909" width="140" height="17.2727">
@@ -16450,7 +16450,7 @@
   </object>
   <object id="93" x="6300.5" y="770" width="68.5" height="39.5">
    <properties>
-    <property name="Type" type="int" value="12"/>
+    <property name="Type" type="int" value="2"/>
    </properties>
   </object>
   <object id="94" x="6374" y="821.5" width="205" height="17.5">
@@ -16460,7 +16460,7 @@
   </object>
   <object id="95" x="6579" y="769" width="841" height="70">
    <properties>
-    <property name="Type" type="int" value="12"/>
+    <property name="Type" type="int" value="2"/>
    </properties>
   </object>
   <object id="100" x="8960.73" y="770.5" width="421.5" height="39.5">
@@ -16638,7 +16638,7 @@
     <property name="Type" type="int" value="1"/>
    </properties>
   </object>
-  <object id="337" x="6866.07" y="1181.82" width="3537.65" height="6.36364">
+  <object id="337" x="2330.07" y="1181.82" width="8073.65" height="6.36364">
    <properties>
     <property name="Type" type="int" value="4"/>
    </properties>
@@ -16655,17 +16655,17 @@
   </object>
   <object id="341" x="4129.5" y="629" width="72" height="7.5">
    <properties>
-    <property name="Type" type="int" value="12"/>
+    <property name="Type" type="int" value="2"/>
    </properties>
   </object>
   <object id="342" x="4269" y="559.75" width="72" height="7.5">
    <properties>
-    <property name="Type" type="int" value="12"/>
+    <property name="Type" type="int" value="2"/>
    </properties>
   </object>
   <object id="343" x="4480.5" y="560.25" width="69.3333" height="7.5">
    <properties>
-    <property name="Type" type="int" value="12"/>
+    <property name="Type" type="int" value="2"/>
    </properties>
   </object>
   <object id="344" x="4130.25" y="637.375" width="3" height="132.75">
@@ -16715,7 +16715,7 @@
   </object>
   <object id="366" x="5110.17" y="769.922" width="350.167" height="69.75">
    <properties>
-    <property name="Type" type="int" value="12"/>
+    <property name="Type" type="int" value="2"/>
    </properties>
   </object>
   <object id="367" x="2044.67" y="491.322" width="44.6667" height="53.357">

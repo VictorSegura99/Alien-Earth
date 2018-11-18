@@ -11,18 +11,11 @@ class MovingPlatform : public Entity {
 public:
 	MovingPlatform(int x, int y);
 	virtual ~MovingPlatform();
-	bool PreUpdate();
 	bool Update(float dt);
-	bool PostUpdate();
-	//bool Load(pugi::xml_node&);
-	//bool Save(pugi::xml_node&) const;
 	void Draw(float dt);
 	bool CleanUp();
-	
 	Animation LoadPushbacks(pugi::xml_node&, p2SString NameAnim) const;
-	//void AnimationLogic();
 
-	//Animation LoadPushbacks(pugi::xml_node&, p2SString NameAnim) const;
 
 public:
 	iPoint original_pos;

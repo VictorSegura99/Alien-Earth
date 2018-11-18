@@ -41,12 +41,6 @@ MovingPlatform::~MovingPlatform()
 {
 }
 
-bool MovingPlatform::PreUpdate()
-{
-
-	return true;
-}
-
 bool MovingPlatform::Update(float dt)
 {
 		if (Start) {
@@ -80,10 +74,6 @@ bool MovingPlatform::Update(float dt)
 	return true;
 }
 
-bool MovingPlatform::PostUpdate()
-{
-	return true;
-}
 
 void MovingPlatform::Draw(float dt)
 {
