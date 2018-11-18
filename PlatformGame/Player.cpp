@@ -180,12 +180,14 @@ bool Player::Update(float dt)
 
 	if (death && !God) {
 		death = false;
-		//App->audio->PlayFx(deathfx2);
 		Die();
 	}
 	if (fall && !God) {
 		fall = false;
-		App->audio->PlayFx(deathfx2);
+		if (NumPlayer == 0 || NumPlayer == 2)
+			App->audio->PlayFx(deathfx2);
+		else
+			App->audio->PlayFx(deathfx);
 		Fall();
 	}
 	if (God)
@@ -511,9 +513,11 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 void Player::Die()//What happens when the player die
 {
 	current_animation = &Death[NumPlayer];
-	//App->audio->PlayFx(deathfx);
 	if (Death[NumPlayer].SeeCurrentFrame() == 1)
-		App->audio->PlayFx(deathfx2);
+		if (NumPlayer == 0 || NumPlayer == 2)
+			App->audio->PlayFx(deathfx2);
+		else
+			App->audio->PlayFx(deathfx);
 	if (Death[NumPlayer].Finished()) {
 		App->entitymanager->DeleteEnemies();
 		if (App->scene->KnowMap == 0) {
