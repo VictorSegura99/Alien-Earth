@@ -53,11 +53,11 @@ public:
 		return loops > 0;
 	}
 
-	/*void Reset()
+	void Reset()
 	{
 		loops = 0;
 		current_frame = 0.0f;
-	}*/
+	}
 	int SeeCurrentFrame() {
 		return (int)current_frame;
 	}

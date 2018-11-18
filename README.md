@@ -27,9 +27,10 @@ INNOVATIONS:
 - Swim through water.
 - Initial Menu+Choose Menu.
 - 3 Different Characters with unique habilities.
-- Yellow Alien(Jeff): Double Jump+Bomb Jump(only when previous doble jump)
-- Pink Alien(Jane): Shoots Laser.
-- Blue Alien(Jerry): Dash
+-- Yellow Alien(Jeff): Double Jump+Bomb Jump(only when previous doble jump)
+-- Pink Alien(Jane): Shoots Laser.
+-- Blue Alien(Jerry): Dash
+- Movement Platforms.
 _____________
 AUTHORS
 - Víctor Segura Blanco (Github: https://github.com/VictorSegura99)
@@ -42,9 +43,11 @@ CREDITS
 Sprites from: https://opengameart.org/content/platformer-art-complete-pack-often-updated
 Death sfx: https://www.zapsplat.com/music/balloon-pop/
 Death sfx 2: http://soundbible.com/1454-Pain.html
+Spider sfx: https://freesound.org/people/spookymodem/sounds/202108/
 Jump sfx: http://soundbible.com/1601-Mario-Jumping.html
 Water sfx: http://soundbible.com/1148-Bubbling.html
 Laser sfx: https://www.zapsplat.com/music/laser-noise-synth-vintage-12/
+SpiderDeath sfx: https://opengameart.org/content/15-monster-gruntpaindeath-sounds
 Bomb Jump sfx: http://soundbible.com/1414-Batman-Punch.html
 Background Music: https://www.bensound.com/royalty-free-music/track/retro-soul
 Menu Font: https://www.dafont.com/es/sunday-afternoon.font

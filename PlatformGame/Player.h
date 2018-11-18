@@ -111,6 +111,7 @@ public:
 	p2SString LaserFx;
 	p2SString DashFx;
 	p2SString BombJumpfx;
+	p2SString SpiderDeathFx;
 	
 	unsigned int jumpfx;
 	unsigned int waterfx;
@@ -120,6 +121,7 @@ public:
 	unsigned int laserfx;
 	unsigned int dashfx;
 	unsigned int bombjumpfx;
+	unsigned int spiderdeathfx;
 
 
 	

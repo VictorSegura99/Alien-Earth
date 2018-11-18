@@ -115,6 +115,7 @@
       <LadderFx>audio/fx/Ladder.wav</LadderFx>
       <LaserFx>audio/fx/Laser.wav</LaserFx>
       <DashFx>audio/fx/Dash.wav</DashFx>
+      <SpiderDeathFx>audio/fx/SpiderDeath.wav</SpiderDeathFx>
       <TimeBetweenShoot value="750.0f"></TimeBetweenShoot>
       <BombJumpFx>audio/fx/BombJump.wav</BombJumpFx>
       <TutorialX value="700"></TutorialX>
@@ -381,6 +382,7 @@
       </Bat>
       <Spider>
         <sprite>textures/enemies.png</sprite>
+        <SpiderFx>audio/fx/Spider.wav</SpiderFx>
         <AnimationsSpider>
           <GoLeft speed="5.0f" loop="true">
             <frame x="73" y="212" w="72" h="53"/>

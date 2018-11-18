@@ -11,6 +11,7 @@
 #include "Brofiler/Brofiler.h"
 #include "j1Pathfinding.h"
 #include "j1Map.h"
+#include "j1Audio.h"
 
 Spider::Spider(int x, int y) : Entity(x,y)
 {
@@ -29,6 +30,7 @@ Spider::Spider(int x, int y) : Entity(x,y)
 	spider = app_config.child("Spider");
 
 	sprites = spider.child("sprite").text().as_string();
+	SpiderFx = spider.child("SpiderFx").text().as_string();
 	GoLeft = LoadPushbacks(spider, "GoLeft");
 	GoRight = LoadPushbacks(spider, "GoRight");
 	IdleLeft = LoadPushbacks(spider, "IdleLeft");
@@ -37,14 +39,15 @@ Spider::Spider(int x, int y) : Entity(x,y)
 	DieRight = LoadPushbacks(spider, "DieRight");
 	HitLeft = LoadPushbacks(spider, "HitLeft");
 	HitRight = LoadPushbacks(spider, "HitRight");
-
-	texture = App->tex->Load(sprites.GetString());
 	
+	texture = App->tex->Load(sprites.GetString());
+	spiderfx = App->audio->LoadFx(SpiderFx.GetString());
 }
 
 Spider::~Spider()
 {
 }
+
 
 bool Spider::PreUpdate()
 {
@@ -87,7 +90,6 @@ bool Spider::Update(float dt)
 		if (position.x - x < 400 && x - position.x < 400) {
 			iPoint origin = App->map->WorldToMap(position.x, position.y);
 			iPoint player_position = App->map->WorldToMap(App->entitymanager->GetPlayerData()->position.x, App->entitymanager->GetPlayerData()->position.y - App->entitymanager->GetPlayerData()->coll->rect.h);
-
 			if (position.DistanceTo(App->entitymanager->GetPlayerData()->position)) {
 				App->pathfinding->CreatePath(origin, player_position);
 				const p2DynArray<iPoint>* entity_path = App->pathfinding->GetLastPath();

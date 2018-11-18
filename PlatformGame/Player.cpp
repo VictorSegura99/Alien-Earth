@@ -40,6 +40,7 @@ bool Player::Awake(pugi::xml_node& config)
 	LaserFx = player.child("LaserFx").text().as_string();
 	DashFx = player.child("DashFx").text().as_string();
 	BombJumpfx = player.child("BombJumpFx").text().as_string();
+	SpiderDeathFx = player.child("SpiderDeathFx").text().as_string();
 	finalmapplayer = player.child("finalmapplayer").attribute("value").as_int();
 	finalmap = player.child("finalmap").attribute("value").as_int();
 	startmap2 = player.child("startmap2").attribute("value").as_int();
@@ -112,6 +113,7 @@ bool Player::Start()
 	laserfx = App->audio->LoadFx(LaserFx.GetString());
 	dashfx = App->audio->LoadFx(DashFx.GetString());
 	bombjumpfx = App->audio->LoadFx(BombJumpfx.GetString());
+	spiderdeathfx = App->audio->LoadFx(SpiderDeathFx.GetString());
 
 	position.x = App->entitymanager->positionStartMap1.x;
 	position.y = App->entitymanager->positionStartMap1.y;
@@ -179,8 +181,6 @@ bool Player::Update(float dt)
 		death = false;
 		//App->audio->PlayFx(deathfx2);
 		Die();
-		App->render->camera.x= -position.x + (App->render->camera.w / 2);
-		App->render->camera.y = position.y + (App->render->camera.h / 2);
 	}
 	if (fall && !God) {
 		fall = false;
@@ -795,7 +795,6 @@ void Player::Camera(float dt)
 		App->render->camera.x = finalmap;
 	}
 	else {
-		if (WalkRight && (-App->render->camera.x + App->render->camera.w/2)<= position.x)
 			App->render->camera.x = -position.x + (App->render->camera.w / 2);
 	}
 	if (position.y <= minYcam) { //If player is in a position where the camera would print out of the map, camera stops
@@ -1023,6 +1022,7 @@ void Player::CheckWhatToDoWhenCollidingWithEnemy(Collider * c2)
 {
 	if (BottomRight.IsFalling || BottomLeft.IsFalling || dashing)
 	{
+		App->audio->PlayFx(spiderdeathfx);
 		c2->CanBeDeleted = true;
 	}
 	else {

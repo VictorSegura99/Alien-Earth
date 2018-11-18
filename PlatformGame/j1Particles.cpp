@@ -30,23 +30,6 @@ bool j1Particles::Start()
 {
 	LOG("Loading particles");
 
-	// Explosion particle
-	/*explosion.anim.PushBack({ 274, 296, 33, 30 });
-	explosion.anim.PushBack({ 313, 296, 33, 30 });
-	explosion.anim.PushBack({ 346, 296, 33, 30 });
-	explosion.anim.PushBack({ 382, 296, 33, 30 });
-	explosion.anim.PushBack({ 419, 296, 33, 30 });
-	explosion.anim.PushBack({ 457, 296, 33, 30 });
-	explosion.anim.loop = false;
-	explosion.anim.speed = 0.3f;
-
-	laser.anim.PushBack({ 232, 103, 16, 12 });
-	laser.anim.PushBack({ 249, 103, 16, 12 });
-	laser.anim.speed = 0.2f;
-	laser.speed.x = 5;
-	laser.life = 3000;
-	*/
-
 	smokeBottom.anim.PushBack({ 0,663,100,86 });
 	smokeBottom.anim.PushBack({ 101,663,103,86 });
 	smokeBottom.anim.PushBack({ 204,663,105,86 });
