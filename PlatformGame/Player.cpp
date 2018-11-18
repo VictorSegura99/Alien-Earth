@@ -300,7 +300,7 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 			CanSwim = false;
 			//cameraon = true;
 			CanDoAnotherJump = true;
-			if (current_animation == &jumpR[NumPlayer])
+			if (current_animation == &jumpR[NumPlayer]|| current_animation == &Climb[NumPlayer])
 				current_animation = &idle[NumPlayer];
 			if (current_animation == &jumpL[NumPlayer])
 				current_animation = &idle2[NumPlayer];

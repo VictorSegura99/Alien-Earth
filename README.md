@@ -47,7 +47,7 @@ Spider sfx: https://freesound.org/people/spookymodem/sounds/202108/
 Jump sfx: http://soundbible.com/1601-Mario-Jumping.html
 Water sfx: http://soundbible.com/1148-Bubbling.html
 Laser sfx: https://www.zapsplat.com/music/laser-noise-synth-vintage-12/
-SpiderDeath sfx: https://opengameart.org/content/15-monster-gruntpaindeath-sounds
+SpiderDeath and Bat death sfx: https://freesound.org/people/columbia23/sounds/395395/
 Bomb Jump sfx: http://soundbible.com/1414-Batman-Punch.html
 Background Music: https://www.bensound.com/royalty-free-music/track/retro-soul
 Menu Font: https://www.dafont.com/es/sunday-afternoon.font
