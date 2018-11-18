@@ -65,11 +65,9 @@ bool Spider::PostUpdate()
 		coll->CanBeDeleted = false;
 		coll->to_delete = true;
 		death = true;
-		starttime = SDL_GetTicks();
 	}
 	if (death) {
-		float TIME = SDL_GetTicks();
-		if (TIME - starttime >= 2000)
+		if (position.x<App->render->camera.x)
 			App->entitymanager->DeleteEntity(this);
 	}
 

@@ -405,7 +405,8 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 
 		break;
 	case COLLIDER_CLIMB:
-		App->audio->PlayFx(ladderfx);
+		if (current_animation == &Climb[NumPlayer])
+			App->audio->PlayFx(ladderfx);
 		IsJumping = false;
 		IsJumping2 = false;
 		CanDoAnotherJump = false;
@@ -917,7 +918,7 @@ void Player::DoubleJump(float dt)
 	}
 	if (AnimDoubleJump) {
 		
-		App->particles->AddParticle(App->particles->Doublejump, position.x - 9, position.y + playerHeight + 5, COLLIDER_NONE);
+		App->particles->AddParticle(App->particles->Doublejump, position.x - 9, position.y + playerHeight -25, COLLIDER_NONE);
 	}
 	if (IsJumping2) { //if you are able to jump, determine the animation and direction of the jump
 		CanDoAnotherJump = false;

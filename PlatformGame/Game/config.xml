@@ -417,6 +417,14 @@
         </AnimationsSpider>
       </Spider>
     </enemies>
+    <Platforms>
+      <MovingPlatform>
+        <Sprite>textures/MovingPlatform.png</Sprite>
+        <Animation speed="1.0f" loop="true">
+           <frame x="0" y="0" w="70" h="40"></frame>
+        </Animation>
+      </MovingPlatform>
+    </Platforms>
   </entity_manager>
   
 

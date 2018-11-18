@@ -61,12 +61,9 @@ bool Bat::PostUpdate()
 		coll->CanBeDeleted = false;
 		coll->type = COLLIDER_PLAYER;
 		death = true;
-		starttime = SDL_GetTicks();
 	}
 	if (death) {
-		float TIME = SDL_GetTicks();
-		//position.y -= App->entitymanager->GetPlayerData()->gravity*App->entitymanager->GetPlayerData()->DT;
-		if (TIME - starttime >= 2000)
+		if (position.x < App->render->camera.x)
 			App->entitymanager->DeleteEntity(this);
 	}
 

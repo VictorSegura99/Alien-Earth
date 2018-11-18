@@ -21,6 +21,8 @@ MovingPlatform::MovingPlatform(int x, int y)
 	original_pos.x = x;
 	original_pos.y = y;
 
+
+
 }
 
 MovingPlatform::~MovingPlatform()
@@ -70,7 +72,7 @@ void MovingPlatform::Draw(float dt)
 {
 
 	if (coll == nullptr)
-		coll = App->collision->AddCollider({ 0,0,72,53 }, COLLIDER_MOVINGPLATFORM, (j1Module*)App->entitymanager);
+		coll = App->collision->AddCollider({ 0,0,70,40 }, COLLIDER_MOVINGPLATFORM, (j1Module*)App->entitymanager);
 	coll->SetPos(position.x, position.y);
 
 }
