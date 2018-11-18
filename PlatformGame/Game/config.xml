@@ -356,6 +356,9 @@
     <enemies>
       <Bat>
         <sprite>textures/enemies.png</sprite>
+        <range value="100"/>
+        <speed value="75.0f"/>
+        <gravity value="433.333f" />
         <AnimationsBat>
           <GoLeft speed="5.0f" loop="true">
             <frame x="0" y="0" w="88" h="47"/>
@@ -387,6 +390,8 @@
       <Spider>
         <sprite>textures/enemies.png</sprite>
         <SpiderFx>audio/fx/Spider.wav</SpiderFx>
+        <range value="400"/>
+        <speed value="100.0f"/>
         <AnimationsSpider>
           <GoLeft speed="5.0f" loop="true">
             <frame x="73" y="212" w="72" h="53"/>

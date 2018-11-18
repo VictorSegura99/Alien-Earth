@@ -29,6 +29,8 @@ public:
 	Animation GoLeft;
 	Animation GoRight;
 	Animation Idle;
+	int range = 0;
+	float Speed = 0.0f;
 	Animation HitLeft;
 	Animation HitRight;
 	Animation DieLeft;

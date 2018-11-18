@@ -30,7 +30,9 @@ Spider::Spider(int x, int y) : Entity(x,y)
 	spider = app_config.child("Spider");
 
 	sprites = spider.child("sprite").text().as_string();
+	range = spider.child("range").attribute("value").as_int();
 	SpiderFx = spider.child("SpiderFx").text().as_string();
+	Speed = spider.child("speed").attribute("value").as_float();
 	GoLeft = LoadPushbacks(spider, "GoLeft");
 	GoRight = LoadPushbacks(spider, "GoRight");
 	IdleLeft = LoadPushbacks(spider, "IdleLeft");
@@ -89,7 +91,7 @@ bool Spider::Update(float dt)
 	float x = App->entitymanager->GetPlayerData()->position.x;
 	float y = App->entitymanager->GetPlayerData()->position.y;
 	if (!death) {
-		if (position.x - x < 400 && x - position.x < 400) {
+		if (position.x - x < range && x - position.x < range) {
 			iPoint origin = App->map->WorldToMap(position.x, position.y);
 			iPoint destination = App->map->WorldToMap(App->entitymanager->GetPlayerData()->position.x, App->entitymanager->GetPlayerData()->position.y - App->entitymanager->GetPlayerData()->coll->rect.h);
 			if (position.DistanceTo(App->entitymanager->GetPlayerData()->position)) {
@@ -100,7 +102,7 @@ bool Spider::Update(float dt)
 				}
 			}
 			if (PATH.Count() > 1) {
-				velocity.x = -60;
+				velocity.x = -Speed;
 			}
 			if (App->entitymanager->GetPlayerData()->position.x < position.x) {
 				position.x += velocity.x * dt;

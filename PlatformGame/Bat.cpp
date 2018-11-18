@@ -29,8 +29,11 @@ Bat::Bat(int x, int y) : Entity(x, y)
 	Bat = app_config.child("Bat");
 
 	sprites = Bat.child("sprite").text().as_string();
+	range = Bat.child("range").attribute("value").as_int();
+	gravity = Bat.child("gravity").attribute("value").as_float();
 	GoLeft = LoadPushbacks(Bat, "GoLeft");
 	GoRight = LoadPushbacks(Bat, "GoRight");
+	Speed = Bat.child("speed").attribute("value").as_float();
 	Idle = LoadPushbacks(Bat, "Idle");
 	DieLeft = LoadPushbacks(Bat, "DieLeft");
 	DieRight = LoadPushbacks(Bat, "DieRight");
@@ -90,8 +93,8 @@ bool Bat::Update(float dt)
 			}
 		}
 		if (PATH.Count() > 1) {
-			velocity.x = -60;
-			velocity.y = 60;
+			velocity.x = -Speed;
+			velocity.y = Speed;
 		}
 		if (App->entitymanager->GetPlayerData()->position.x < position.x) {
 			position.x += velocity.x * dt;
@@ -120,8 +123,8 @@ bool Bat::Update(float dt)
 			}
 		}
 		if (PATH.Count() > 1) {
-			velocity.x = -60;
-			velocity.y = 60;
+			velocity.x = -Speed;
+			velocity.y = Speed;
 		}
 		if (original_pos.x < position.x) {
 			position.x += velocity.x * dt;
@@ -137,9 +140,9 @@ bool Bat::Update(float dt)
 		}
 	}
 	if (death) {
-		position.y += 433.33f * dt;
+		position.y += gravity * dt;
 	}
-	if (position.x + 100< -App->render->camera.x)
+	if (position.x + range < -App->render->camera.x)
 		App->entitymanager->DeleteEntity(this);
 
 	return true;
