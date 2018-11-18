@@ -8,6 +8,8 @@
 #include "j1Particles.h"
 #include "Player.h"
 #include "j1Collision.h"
+#include "PugiXml\src\pugiconfig.hpp"
+#include "PugiXml\src\pugixml.hpp"
 #include "EntityManager.h"
 
 #define MARGIN 20
@@ -17,9 +19,10 @@
 
 j1Particles::j1Particles()
 {
+	name.create("particles");
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 		active[i] = nullptr;
-	name.create("particles");
+
 }
 
 j1Particles::~j1Particles()
@@ -40,18 +43,27 @@ bool j1Particles::Start()
 	laserL.anim.PushBack({ 34,582,83,27 });
 	laserL.anim.PushBack({ 124,582,83,27 });
 	laserL.anim.speed = 10.0f;
-	laserL.anim.speed = true;
 	laserL.speed.x = -999;
 
 	laserR.anim.PushBack({ 34,554,83,27 });
 	laserR.anim.PushBack({ 124,554,83,27 });
 	laserR.anim.speed = 10.0f;
-	laserR.anim.speed = true;
 	laserR.speed.x = 999;
-	
-	Doublejump.anim = DoubleJump;
-	Doublejump.anim.speed = 10.0f;
-	Doublejump.anim.speed = true;
+
+	//Doublejump.anim = DoubleJump;
+	Doublejump.anim.PushBack({ 0,802,98,65 });
+	Doublejump.anim.PushBack({ 98,802,98,65 });
+	Doublejump.anim.PushBack({ 196,802,98,65 });
+	Doublejump.anim.PushBack({ 294,802,98,65 });
+	Doublejump.anim.PushBack({ 391,802,98,65 });
+	Doublejump.anim.PushBack({ 492,802,98,65 });
+	Doublejump.anim.PushBack({ 590,802,98,65 });
+	Doublejump.anim.PushBack({ 0,888,98,65 });
+	Doublejump.anim.PushBack({ 98,888,98,65 });
+	Doublejump.anim.PushBack({ 196,888,98,65 });
+	Doublejump.anim.PushBack({ 294,888,98,65 });
+	Doublejump.anim.speed = 40.0f;
+	Doublejump.anim.loop = false;
 	return true;
 }
 
@@ -75,7 +87,8 @@ bool j1Particles::CleanUp()
 
 bool j1Particles::Awake(pugi::xml_node& config) 
 {
-	DoubleJump = LoadPushbacks(config, "DoubleJump");
+	pugi::xml_node particles = config.child("particles");
+	DoubleJump = LoadPushbacks(particles, "DoubleJump");
 
 	return true;
 }
@@ -186,20 +199,20 @@ bool Particle::Update()
 
 Animation j1Particles::LoadPushbacks(pugi::xml_node& config, p2SString NameAnim) const
 {
-	p2SString XML_Name_Particles;
+	p2SString XML_Name_Player_Anims;
 	SDL_Rect rect;
 	Animation anim;
-	XML_Name_Particles = "particles";
+	XML_Name_Player_Anims = "particles";
 
-	for (pugi::xml_node frames = config.child(XML_Name_Particles.GetString()).child(NameAnim.GetString()).child("frame"); frames; frames = frames.next_sibling("frame")) {
+	for (pugi::xml_node frames = config.child(NameAnim.GetString()).child("frame"); frames; frames = frames.next_sibling("frame")) {
 		rect.x = frames.attribute("x").as_int();
 		rect.y = frames.attribute("y").as_int();
 		rect.w = frames.attribute("w").as_int();
 		rect.h = frames.attribute("h").as_int();
 		anim.PushBack({ rect.x,rect.y,rect.w,rect.h });
 	}
-	anim.speed = config.child(XML_Name_Particles.GetString()).child(NameAnim.GetString()).attribute("speed").as_float();
-	anim.loop = config.child(XML_Name_Particles.GetString()).child(NameAnim.GetString()).attribute("loop").as_bool();
+	anim.speed = config.child(XML_Name_Player_Anims.GetString()).child(NameAnim.GetString()).attribute("speed").as_float();
+	anim.loop = config.child(XML_Name_Player_Anims.GetString()).child(NameAnim.GetString()).attribute("loop").as_bool();
 
 	return anim;
 }

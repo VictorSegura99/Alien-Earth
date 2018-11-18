@@ -3,6 +3,8 @@
 
 #include "SDL/include/SDL_rect.h"
 
+
+
 #define MAX_FRAMES 50
 
 class Animation
@@ -38,14 +40,16 @@ public:
 
 	SDL_Rect& GetCurrentFrame(float dt)
 	{
-		current_frame += speed * dt;
-		if (current_frame >= last_frame)
-		{
-			current_frame = (loop) ? 0.0f : last_frame - 1;
-			loops++;
-		}
+		
+			current_frame += speed * dt;
+			if (current_frame >= last_frame)
+			{
+				current_frame = (loop) ? 0.0f : last_frame - 1;
+				loops++;
+			}
 
-		return frames[(int)current_frame];
+			return frames[(int)current_frame];
+
 	}
 
 	bool Finished() const

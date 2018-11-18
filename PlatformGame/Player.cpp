@@ -916,10 +916,7 @@ void Player::DoubleJump(float dt)
 		IsJumping2 = true;
 	}
 	if (AnimDoubleJump) {
-		if (current_animation == &jumpL[NumPlayer] || current_animation == &GoLeft[NumPlayer])
-			App->render->Blit(texture, position.x + 13, position.y + playerHeight, &(doubleJump.GetCurrentFrame(dt)));
-		if (current_animation == &jumpR[NumPlayer] || current_animation == &GoRight[NumPlayer])
-			App->render->Blit(texture, position.x + 13, position.y + playerHeight, &(doubleJump.GetCurrentFrame(dt)), SDL_FLIP_HORIZONTAL);
+		
 		App->particles->AddParticle(App->particles->Doublejump, position.x - 9, position.y + playerHeight + 5, COLLIDER_NONE);
 	}
 	if (IsJumping2) { //if you are able to jump, determine the animation and direction of the jump
