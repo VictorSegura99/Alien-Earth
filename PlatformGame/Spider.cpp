@@ -96,9 +96,32 @@ bool Spider::Update(float dt)
 			}
 		}
 		if (pathfinding_path.Count() > 1){
-			velocity.x = (pathfinding_path[1].x - pathfinding_path[0].x) * 60;
+			velocity.x =  -60;
 		}
 		if (App->entitymanager->GetPlayerData()->position.x < position.x) {
+			position.x += velocity.x * dt;
+		}
+		else {
+			position.x += -velocity.x * dt;
+		}
+	}
+	else {
+		iPoint origin = App->map->WorldToMap(position.x, position.y);
+		iPoint destination = App->map->WorldToMap(original_pos.x, original_pos.y);
+		x = original_pos.x;
+		y = original_pos.y;
+		fPoint originalpos{ x,y };
+		if (position.DistanceTo(originalpos)) {
+			App->pathfinding->CreatePath(origin, destination);
+			const p2DynArray<iPoint>* entity_path = App->pathfinding->GetLastPath();
+			for (int i = 0; i < entity_path->Count(); i++) {
+				pathfinding_path.PushBack(*entity_path->At(i));
+			}
+		}
+		if (pathfinding_path.Count() > 1) {
+			velocity.x = -60;
+		}
+		if (originalpos.x < position.x) {
 			position.x += velocity.x * dt;
 		}
 		else {
