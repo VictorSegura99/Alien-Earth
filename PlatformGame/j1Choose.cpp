@@ -115,13 +115,13 @@ bool j1Choose::Update(float dt)
 					App->collision->active = !App->collision->active;
 					App->map->active = !App->map->active;
 					App->scene->KnowMap = 0;
-					App->scene->SpawnEnemies();
 					App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 					App->entitymanager->ActiveGame = true;
 					if (App->entitymanager->player == nullptr)
 						App->entitymanager->player = App->entitymanager->player = App->entitymanager->CreateEntity(EntityType::PLAYER);
 					App->entitymanager->GetPlayerData()->Start();
 					App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
+					App->scene->SpawnEnemies();
 					App->entitymanager->GetPlayerData()->SetCamera();
 					GameOn = true;
 				}

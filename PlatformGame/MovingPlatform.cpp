@@ -22,6 +22,18 @@ MovingPlatform::MovingPlatform(int x, int y)
 	original_pos.y = y;
 
 
+	pugi::xml_document	config_file;
+	pugi::xml_node		config;
+	pugi::xml_node		app_config;
+	pugi::xml_node		MovingPlatform;
+
+	config = App->LoadConfig(config_file);
+	app_config = config.child("entity_manager").child("Platforms");
+	MovingPlatform = app_config.child("MovingPlatform");
+	sprites = MovingPlatform.child("Sprite").text().as_string();
+	Idle = LoadPushbacks(MovingPlatform, "Animation");
+	current_animation = &Idle;
+	texture = App->tex->Load(sprites.GetString());
 
 }
 
@@ -74,7 +86,7 @@ bool MovingPlatform::PostUpdate()
 
 void MovingPlatform::Draw(float dt)
 {
-
+	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
 	if (coll == nullptr)
 		coll = App->collision->AddCollider({ 0,0,70,40 }, COLLIDER_MOVINGPLATFORM, (j1Module*)App->entitymanager);
 	coll->SetPos(position.x, position.y);
@@ -87,5 +99,25 @@ bool MovingPlatform::CleanUp()
 	if (coll)
 		coll->to_delete = true;
 	return true;
+}
+
+Animation MovingPlatform::LoadPushbacks(pugi::xml_node &config, p2SString NameAnim) const
+{
+	p2SString XML_Name_Player_Anims;
+	SDL_Rect rect;
+	Animation anim;
+	XML_Name_Player_Anims = "Animation";
+
+	pugi::xml_node frames = config.child(NameAnim.GetString()).child("frame");
+		rect.x = frames.attribute("x").as_int();
+		rect.y = frames.attribute("y").as_int();
+		rect.w = frames.attribute("w").as_int();
+		rect.h = frames.attribute("h").as_int();
+		anim.PushBack({ rect.x,rect.y,rect.w,rect.h });
+	
+	anim.speed = config.child(NameAnim.GetString()).attribute("speed").as_float();
+	anim.loop = config.child(NameAnim.GetString()).attribute("loop").as_bool();
+
+	return anim;
 }
 

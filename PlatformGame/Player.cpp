@@ -521,7 +521,7 @@ void Player::Die()//What happens when the player die
 			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 		}
 		Spawn();
-		App->scene->SpawnEnemies();
+
 	}
 }
 
@@ -535,7 +535,7 @@ void Player::Fall()//What happens when the player falls
 		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 	}
 	Spawn();
-	App->scene->SpawnEnemies();
+
 }
 
 void Player::Spawn()
@@ -557,6 +557,7 @@ void Player::Spawn()
 	}
 	Death[NumPlayer].current_frame = 0.0f;
 	Death[NumPlayer].loops = 0;
+	App->scene->SpawnEnemies();
 }
 Animation Player::LoadPushbacks(int playernumber, pugi::xml_node& config, p2SString NameAnim) const
 {

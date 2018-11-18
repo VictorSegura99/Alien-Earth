@@ -19,7 +19,7 @@ public:
 	void Draw(float dt);
 	bool CleanUp();
 	
-
+	Animation LoadPushbacks(pugi::xml_node&, p2SString NameAnim) const;
 	//void AnimationLogic();
 
 	//Animation LoadPushbacks(pugi::xml_node&, p2SString NameAnim) const;
@@ -32,6 +32,7 @@ public:
 	bool MoveRight = false;
 	bool MoveLeft = false;
 	float Speed = 200;
+	Animation Idle;
 	p2SString sprites;
 };
 
