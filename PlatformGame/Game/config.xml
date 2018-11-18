@@ -115,6 +115,7 @@
       <LadderFx>audio/fx/Ladder.wav</LadderFx>
       <LaserFx>audio/fx/Laser.wav</LaserFx>
       <DashFx>audio/fx/Dash.wav</DashFx>
+      <WinningFx>audio/fx/Winning.wav</WinningFx>
       <SpiderDeathFx>audio/fx/SpiderDeath.wav</SpiderDeathFx>
       <TimeBetweenShoot value="750.0f"></TimeBetweenShoot>
       <BombJumpFx>audio/fx/BombJump.wav</BombJumpFx>

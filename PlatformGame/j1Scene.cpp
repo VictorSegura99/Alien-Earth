@@ -113,10 +113,6 @@ bool j1Scene::Update(float dt)
 		App->entitymanager->GetPlayerData()->Spawn();
 		SpawnEnemies();
 	}
-	if (App->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN) {
-		App->capactivated = !App->capactivated;
-	}
-	
 	App->map->Draw();
 
 	return true;
