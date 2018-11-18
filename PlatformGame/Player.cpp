@@ -369,6 +369,39 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		}
 
 		break;
+	case COLLIDER_MOVINGPLATFORM:
+		if (position.y + 70 < c2->rect.y)
+		{
+			if (MoveLeft)
+				position.x -= 200 * DT;
+			if (MoveRight)
+				position.x += 200 * DT;
+			velocity.y = 0;
+			if (current_animation == &BottomRight.anim || current_animation == &BottomRight.anim) {
+				App->audio->PlayFx(bombjumpfx);
+			}
+			//IsJumping = false;
+			//IsJumping2 = false;
+			TouchingGround = true;
+			CanDoAnotherJump = true;
+			CanJump = true;
+			CanClimb = false;
+			FallingJump2 = false;
+			CanJump2 = false;
+			GoDown = false;
+			CanSwim = false;
+			CanDash = true;
+			Falling = false;
+			BottomLeft.IsFalling = false;
+			BottomRight.IsFalling = false;
+			if (!dashing)
+				if (current_animation == &GoRight[NumPlayer] || current_animation == &jumpR[NumPlayer])
+					current_animation = &idle[NumPlayer];
+				else if (current_animation == &GoLeft[NumPlayer] || current_animation == &jumpL[NumPlayer])
+					current_animation = &idle2[NumPlayer];
+		}
+
+		break;
 	case COLLIDER_CLIMB:
 		App->audio->PlayFx(ladderfx);
 		IsJumping = false;
@@ -431,7 +464,10 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		if (!God)
 			NoInput = true;
 		break;
-	case COLLIDER_ENEMY:
+	case COLLIDER_ENEMY_BAT:
+		CheckWhatToDoWhenCollidingWithEnemy(c2);
+		break;
+	case COLLIDER_ENEMY_SPIDER:
 		CheckWhatToDoWhenCollidingWithEnemy(c2);
 		break;
 	case COLLIDER_FALL:

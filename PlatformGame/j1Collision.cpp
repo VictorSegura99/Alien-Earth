@@ -12,9 +12,11 @@ j1Collision::j1Collision()
 
 	matrix[COLLIDER_PLAYER][COLLIDER_WALL_RIGHT] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_WALL_LEFT] = true;
-	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY_BAT] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY_SPIDER] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_WALL_UP] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_PLATFORM] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_MOVINGPLATFORM] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_GROUND] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_GROUND_WATER] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_FALL] = true;
@@ -25,19 +27,28 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_PLAYER][COLLIDER_ROPE] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_NONE] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_PARTICLE] = false;
-	matrix[COLLIDER_PARTICLE][COLLIDER_ENEMY] = true;
+	matrix[COLLIDER_PARTICLE][COLLIDER_ENEMY_BAT] = true;
+	matrix[COLLIDER_PARTICLE][COLLIDER_ENEMY_SPIDER] = true;
 	matrix[COLLIDER_PARTICLE][COLLIDER_PLAYER] = false;
 	matrix[COLLIDER_PARTICLE][COLLIDER_GROUND] = true;
 	matrix[COLLIDER_PARTICLE][COLLIDER_WALL_RIGHT] = true;
 	matrix[COLLIDER_PARTICLE][COLLIDER_WALL_LEFT] = true;
 
-	matrix[COLLIDER_ENEMY][COLLIDER_PLAYER] = true;
-	matrix[COLLIDER_ENEMY][COLLIDER_WALL_LEFT] = true;
-	matrix[COLLIDER_ENEMY][COLLIDER_WALL_RIGHT] = true;
-	matrix[COLLIDER_ENEMY][COLLIDER_WALL_UP] = true;
-	matrix[COLLIDER_ENEMY][COLLIDER_PLATFORM] = true;
-	matrix[COLLIDER_ENEMY][COLLIDER_GROUND] = true;
-	matrix[COLLIDER_ENEMY][COLLIDER_PARTICLE] = true;
+	matrix[COLLIDER_ENEMY_BAT][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_ENEMY_BAT][COLLIDER_WALL_LEFT] = true;
+	matrix[COLLIDER_ENEMY_BAT][COLLIDER_WALL_RIGHT] = true;
+	matrix[COLLIDER_ENEMY_BAT][COLLIDER_WALL_UP] = true;
+	matrix[COLLIDER_ENEMY_BAT][COLLIDER_PLATFORM] = true;
+	matrix[COLLIDER_ENEMY_BAT][COLLIDER_GROUND] = true;
+	matrix[COLLIDER_ENEMY_BAT][COLLIDER_PARTICLE] = true;
+
+	matrix[COLLIDER_ENEMY_SPIDER][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_ENEMY_SPIDER][COLLIDER_WALL_LEFT] = true;
+	matrix[COLLIDER_ENEMY_SPIDER][COLLIDER_WALL_RIGHT] = true;
+	matrix[COLLIDER_ENEMY_SPIDER][COLLIDER_WALL_UP] = true;
+	matrix[COLLIDER_ENEMY_SPIDER][COLLIDER_PLATFORM] = true;
+	matrix[COLLIDER_ENEMY_SPIDER][COLLIDER_GROUND] = true;
+	matrix[COLLIDER_ENEMY_SPIDER][COLLIDER_PARTICLE] = true;
 
 }
 
@@ -137,6 +148,9 @@ void j1Collision::DebugDraw()
 		case COLLIDER_PLATFORM: // WHITE
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;
+		case COLLIDER_MOVINGPLATFORM: // WHITE
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+			break;
 		case COLLIDER_SPIKES: // RED
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;
@@ -158,7 +172,10 @@ void j1Collision::DebugDraw()
 		case COLLIDER_PARTICLE:
 			App->render->DrawQuad(colliders[i]->rect, 150, 150, 150, alpha);
 			break;
-		case COLLIDER_ENEMY:
+		case COLLIDER_ENEMY_BAT:
+			App->render->DrawQuad(colliders[i]->rect, 155, 155, 155, alpha);
+			break;
+		case COLLIDER_ENEMY_SPIDER:
 			App->render->DrawQuad(colliders[i]->rect, 155, 155, 155, alpha);
 			break;
 		}

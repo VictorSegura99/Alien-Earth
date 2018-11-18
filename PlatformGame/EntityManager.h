@@ -10,6 +10,7 @@ enum EntityType
 	PLAYER,
 	BAT,
 	SPIDER,
+	MOVING_PLATFORM,
 
 	NO_TYPE
 };

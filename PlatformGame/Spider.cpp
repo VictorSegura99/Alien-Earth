@@ -164,7 +164,7 @@ void Spider::Draw(float dt)
 
 	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
 	if (coll == nullptr)
-		coll = App->collision->AddCollider({ 0,0,72,53 }, COLLIDER_ENEMY, (j1Module*)App->entitymanager);
+		coll = App->collision->AddCollider({ 0,0,72,53 }, COLLIDER_ENEMY_SPIDER, (j1Module*)App->entitymanager);
 	coll->SetPos(position.x, position.y);
 }
 

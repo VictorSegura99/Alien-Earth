@@ -11,6 +11,7 @@
 #include "j1Scene.h"
 #include "Player.h"
 #include "Spider.h"
+#include"MovingPlatform.h"
 #include "Bat.h"
 
 #include "Brofiler/Brofiler.h"
@@ -123,9 +124,22 @@ bool EntityManager::CleanUp()
 
 void EntityManager::OnCollision(Collider* c1, Collider* c2)
 {
-	for (uint i = 0; i < entities.Count(); ++i)
-		if (entities[i] != nullptr)
-			entities[i]->OnCollision(c2);
+	for (uint i = 0; i < entities.Count(); ++i) {
+		if (entities[i] != nullptr) {
+			if (c1->type == COLLIDER_ENEMY_SPIDER) {
+				entities[i]->OnCollision(c2);
+				break;
+			}
+			if (c1->type == COLLIDER_ENEMY_BAT) {
+				entities[i]->OnCollision(c2);
+				break;
+			}
+			if (c1->type == COLLIDER_PLAYER) {
+				entities[i]->OnCollision(c2);
+				break;
+			}
+		}
+	}
 }
 
 
@@ -138,6 +152,9 @@ Entity* EntityManager::CreateEntity(EntityType type, int x, int y)
 		break;
 	case EntityType::BAT: ret = new Bat(x, y);
 		ret->type = BAT;
+		break;
+	case EntityType::MOVING_PLATFORM: ret = new MovingPlatform(x, y);
+		ret->type = MOVING_PLATFORM;
 		break;
 	case EntityType::PLAYER: ret = new Player();
 		ret->type = PLAYER;

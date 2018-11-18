@@ -123,7 +123,8 @@ public:
 
 
 	
-
+	bool MoveLeft = false;
+	bool MoveRight = false;
 
 	bool AnimDoubleJump = false;
 	bool WalkLeft = false;
