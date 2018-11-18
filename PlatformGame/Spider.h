@@ -36,10 +36,9 @@ public:
 	Animation DieRight;
 	p2SString sprites;
 	fPoint speed;
-	iPoint spider_pos;
-	iPoint player_pos;
+
+
 	iPoint original_pos;
-	iPoint path_to_follow;
 	iPoint velocity;
 	float GRAVITY = 433.33f;
 	uint range = 8;

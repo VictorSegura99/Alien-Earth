@@ -44,14 +44,12 @@ public:
 	Animation* current_animation = nullptr;
 	SDL_Texture* texture;
 	
-	j1PerfTimer			do_standard_path;
 	Collider* coll = nullptr;
 	float starttime = 0.0f;
 	float auxGravity = 0.0f;
 	float gravity = 0.0f;
-	bool				counting = true;
 	bool death = false;
-	p2DynArray<iPoint>	pathfinding_path;
+	p2DynArray<iPoint>	PATH;
 };
 
 #endif

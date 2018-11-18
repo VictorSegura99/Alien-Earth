@@ -14,26 +14,26 @@
 	<:anonymous />
 	<entity_manager>
 		<spider>
-			<position x="1174.83936" y="553.06665" />
+			<position x="1301.44006" y="566.93335" />
 		</spider>
 		<spider>
-			<position x="828.060669" y="1605.19873" />
+			<position x="854.40033" y="582.100037" />
 		</spider>
 		<spider>
-			<position x="878.861206" y="1605.19873" />
+			<position x="855.641418" y="582.100037" />
 		</spider>
 		<bat>
 			<position x="1600" y="400" />
 		</bat>
 		<bat>
-			<position x="1401.92004" y="298.139984" />
+			<position x="1400" y="300" />
 		</bat>
 		<player>
-			<position x="960.450378" y="564.006531" />
+			<position x="853.700195" y="161.633301" />
 		</player>
 	</entity_manager>
 	<particles />
 	<renderer>
-		<camera x="-460" y="-114" />
+		<camera x="-353" y="0" />
 	</renderer>
 </game_state>

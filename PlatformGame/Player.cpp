@@ -252,6 +252,7 @@ bool Player::Load(pugi::xml_node& player)
 	{
 		position.x = player.child("position").attribute("x").as_float();
 		position.y = player.child("position").attribute("y").as_float();
+		God = player.child("god").attribute("value").as_bool();
 	}
 
 
@@ -264,7 +265,7 @@ bool Player::Save(pugi::xml_node& player) const
 {
 	player.append_child("position").append_attribute("x") = position.x;
 	player.child("position").append_attribute("y") = position.y;
-
+	player.child("god").attribute("value") = God;
 
 	return true;
 }
@@ -313,7 +314,7 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		if (position.y < c2->rect.y + c2->rect.h) {
 			velocity.y = 0;
 			if (current_animation == &BottomLeft.anim || current_animation == &BottomRight.anim) {
-				App->particles->AddParticle(App->particles->smokeBottom, position.x - 20, position.y, COLLIDER_PARTICLE);
+				App->particles->AddParticle(App->particles->smokeBottom, position.x - 20, position.y, COLLIDER_NONE);
 				App->audio->PlayFx(bombjumpfx);
 				App->particles->smokeBottom.anim.current_frame = 0.0f;
 				App->particles->smokeBottom.anim.loops = 0;

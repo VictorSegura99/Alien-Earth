@@ -81,15 +81,15 @@ bool Bat::Update(float dt)
 
 	if (position.x - x < 400 && x - position.x < 400 && !death) {
 		iPoint origin = App->map->WorldToMap(position.x, position.y);
-		iPoint player_position = App->map->WorldToMap(App->entitymanager->GetPlayerData()->position.x, App->entitymanager->GetPlayerData()->position.y - App->entitymanager->GetPlayerData()->coll->rect.h);
+		iPoint destination = App->map->WorldToMap(App->entitymanager->GetPlayerData()->position.x, App->entitymanager->GetPlayerData()->position.y - App->entitymanager->GetPlayerData()->coll->rect.h);
 		if (position.DistanceTo(App->entitymanager->GetPlayerData()->position)) {
-			App->pathfinding->CreatePath(origin, player_position);
-			const p2DynArray<iPoint>* entity_path = App->pathfinding->GetLastPath();
-			for (int i = 0; i < entity_path->Count(); i++) {
-				pathfinding_path.PushBack(*entity_path->At(i));
+			App->pathfinding->CreatePath(origin, destination);
+			const p2DynArray<iPoint>* path = App->pathfinding->GetLastPath();
+			for (int i = 0; i < path->Count(); i++) {
+				PATH.PushBack(*path->At(i));
 			}
 		}
-		if (pathfinding_path.Count() > 1) {
+		if (PATH.Count() > 1) {
 			velocity.x = -60;
 			velocity.y = 60;
 		}
@@ -114,12 +114,12 @@ bool Bat::Update(float dt)
 		fPoint originalpos{ x,y };
 		if (position.DistanceTo(originalpos)) {
 			App->pathfinding->CreatePath(origin, destination);
-			const p2DynArray<iPoint>* entity_path = App->pathfinding->GetLastPath();
-			for (int i = 0; i < entity_path->Count(); i++) {
-				pathfinding_path.PushBack(*entity_path->At(i));
+			const p2DynArray<iPoint>* path = App->pathfinding->GetLastPath();
+			for (int i = 0; i < path->Count(); i++) {
+				PATH.PushBack(*path->At(i));
 			}
 		}
-		if (pathfinding_path.Count() > 1) {
+		if (PATH.Count() > 1) {
 			velocity.x = -60;
 			velocity.y = 60;
 		}

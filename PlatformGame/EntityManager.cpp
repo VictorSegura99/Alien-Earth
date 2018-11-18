@@ -208,8 +208,6 @@ bool EntityManager::Load(pugi::xml_node& load)
 		}
 	}
 
-
-
 	for (pugi::xml_node spider = load.child("spider"); spider; spider = spider.next_sibling("spider")) {
 		CreateEntity(EntityType::SPIDER, spider.child("position").attribute("x").as_float(), spider.child("position").attribute("y").as_float() - 80.0f);
 	}
