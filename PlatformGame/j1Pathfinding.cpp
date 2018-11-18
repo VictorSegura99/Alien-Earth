@@ -3,6 +3,7 @@
 #include "j1App.h"
 #include "j1PathFinding.h"
 
+#include "Brofiler/Brofiler.h"
 j1PathFinding::j1PathFinding() : j1Module(), map(NULL), last_path(DEFAULT_PATH_LENGTH),width(0), height(0)
 {
 	name.create("pathfinding");
@@ -166,6 +167,7 @@ int PathNode::CalculateF(const iPoint& destination)
 // ----------------------------------------------------------------------------------
 int j1PathFinding::CreatePath(const iPoint& origin, const iPoint& destination)
 {
+	BROFILER_CATEGORY("Pathfinding: CreatePath", Profiler::Color::Beige);
 	last_path.Clear();
 	// TODO 1: if origin or destination are not walkable, return -1
 

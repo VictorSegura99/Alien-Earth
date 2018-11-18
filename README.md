@@ -37,9 +37,9 @@ INNOVATIONS:
 - Swim through water.
 - Initial Menu+Choose Menu.
 - 3 Different Characters with unique habilities.
--- Yellow Alien(Jeff): Double Jump+Bomb Jump(only when previous doble jump)
--- Pink Alien(Jane): Shoots Laser.
--- Blue Alien(Jerry): Dash
+- - Yellow Alien(Jeff): Double Jump+Bomb Jump(only when previous doble jump)
+- - Pink Alien(Jane): Shoots Laser.
+- - Blue Alien(Jerry): Dash
 - Movement Platforms.
 _____________
 AUTHORS
@@ -67,6 +67,29 @@ Spacebar Sprite: https://www.facebook.com/suepeisueba/
 
 _____________
 ACHIVEMENTS by each member:
+
+Víctor Segura:
+- Camera
+- Bat
+- Dash
+- Menu Sprites and Animations
+- Particles
+- Art: All Animations and Spritesheets
+- Framerate Cap
+- Brofile
+- ReadMe
+
+Oriol Capdevila:
+- Entity System
+- UML
+- Save&Load
+- Spider
+- Moving Platform
+- Double Jump
+- Laser
+- Pathfinding
+- Menu Logic
+- FPS & dt Logic
 
 _____________
 LICENSE:
