@@ -222,7 +222,7 @@ bool Player::Update(float dt)
 	coll->SetPos(position.x, position.y);
 	//App->render->DrawQuad(rect, 150, 150, 150, 255, true, false);
 
-	LOG("CAM Y: %f", App->render->camera.y);
+	LOG("Position X: %f", position.x);
 	/*if (App->collision->debug)
 		App->render->DrawQuad(CamRect, 150, 150, 150);*/
 
@@ -298,6 +298,7 @@ bool Player::CleanUp()
 {
 	App->tex->UnLoad(texture);
 	App->tex->UnLoad(ParticlesTex);
+	App->tex->UnLoad(Godmode);
 	NextMap = false;
 	death = false;
 	fall = false;
