@@ -170,6 +170,10 @@ bool j1App::Update()
 	if (ret == true)
 		ret = PostUpdate();
 
+	if (App->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN) {
+		App->capactivated = !App->capactivated;
+	}
+
 	FinishUpdate();
 	return ret;
 }

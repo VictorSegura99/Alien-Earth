@@ -112,7 +112,9 @@ public:
 	p2SString DashFx;
 	p2SString BombJumpfx;
 	p2SString SpiderDeathFx;
-	
+	p2SString WinningFx;
+
+
 	unsigned int jumpfx;
 	unsigned int waterfx;
 	unsigned int deathfx;
@@ -122,7 +124,7 @@ public:
 	unsigned int dashfx;
 	unsigned int bombjumpfx;
 	unsigned int spiderdeathfx;
-
+	unsigned int winningfx;
 
 	
 	bool PlayerLeft = false;

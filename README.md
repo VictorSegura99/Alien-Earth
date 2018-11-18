@@ -41,10 +41,12 @@ _____________
 CREDITS
 
 Sprites from: https://opengameart.org/content/platformer-art-complete-pack-often-updated
+Intro sfx: https://freesound.org/people/GameAudio/sounds/220210/
 Death sfx: https://www.zapsplat.com/music/balloon-pop/
 Death sfx 2: http://soundbible.com/1454-Pain.html
 Spider sfx: https://freesound.org/people/spookymodem/sounds/202108/
 Jump sfx: http://soundbible.com/1601-Mario-Jumping.html
+Choose sfx: https://freesound.org/people/GameAudio/sounds/220182/
 Water sfx: http://soundbible.com/1148-Bubbling.html
 Laser sfx: https://www.zapsplat.com/music/laser-noise-synth-vintage-12/
 SpiderDeath and Bat death sfx: https://freesound.org/people/columbia23/sounds/395395/

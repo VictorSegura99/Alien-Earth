@@ -41,6 +41,7 @@ bool Player::Awake(pugi::xml_node& config)
 	DashFx = player.child("DashFx").text().as_string();
 	BombJumpfx = player.child("BombJumpFx").text().as_string();
 	SpiderDeathFx = player.child("SpiderDeathFx").text().as_string();
+	WinningFx = player.child("WinningFx").text().as_string();
 	finalmapplayer = player.child("finalmapplayer").attribute("value").as_int();
 	finalmap = player.child("finalmap").attribute("value").as_int();
 	startmap2 = player.child("startmap2").attribute("value").as_int();
@@ -114,7 +115,7 @@ bool Player::Start()
 	dashfx = App->audio->LoadFx(DashFx.GetString());
 	bombjumpfx = App->audio->LoadFx(BombJumpfx.GetString());
 	spiderdeathfx = App->audio->LoadFx(SpiderDeathFx.GetString());
-
+	winningfx = App->audio->LoadFx(WinningFx.GetString());
 	position.x = App->entitymanager->positionStartMap1.x;
 	position.y = App->entitymanager->positionStartMap1.y;
 
@@ -179,12 +180,14 @@ bool Player::Update(float dt)
 
 	if (death && !God) {
 		death = false;
-		//App->audio->PlayFx(deathfx2);
 		Die();
 	}
 	if (fall && !God) {
 		fall = false;
-		App->audio->PlayFx(deathfx2);
+		if (NumPlayer == 0 || NumPlayer == 2)
+			App->audio->PlayFx(deathfx2);
+		else
+			App->audio->PlayFx(deathfx);
 		Fall();
 	}
 	if (God)
@@ -492,6 +495,7 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		velocity.y = 0;
 		break;
 	case COLLIDER_WIN:
+		App->audio->PlayFx(winningfx);
 		TouchingGround = true;
 		App->entitymanager->DeleteEnemies();
 		App->scene->active = false;
@@ -509,9 +513,11 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 void Player::Die()//What happens when the player die
 {
 	current_animation = &Death[NumPlayer];
-	//App->audio->PlayFx(deathfx);
 	if (Death[NumPlayer].SeeCurrentFrame() == 1)
-		App->audio->PlayFx(deathfx2);
+		if (NumPlayer == 0 || NumPlayer == 2)
+			App->audio->PlayFx(deathfx2);
+		else
+			App->audio->PlayFx(deathfx);
 	if (Death[NumPlayer].Finished()) {
 		App->entitymanager->DeleteEnemies();
 		if (App->scene->KnowMap == 0) {
