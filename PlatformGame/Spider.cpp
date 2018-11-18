@@ -84,31 +84,24 @@ bool Spider::Update(float dt)
 	float x = App->entitymanager->GetPlayerData()->position.x;
 	float y = App->entitymanager->GetPlayerData()->position.y;
 
-	if (position.x - x < 400 && x - position.x < 400) {
+	if (position.x - x < 400 && x - position.x < 400 && !death) {
 		iPoint origin = App->map->WorldToMap(position.x, position.y);
 		iPoint player_position = App->map->WorldToMap(App->entitymanager->GetPlayerData()->position.x, App->entitymanager->GetPlayerData()->position.y - App->entitymanager->GetPlayerData()->coll->rect.h);
 
-
-		if (position.DistanceTo(App->entitymanager->GetPlayerData()->position))
-		{
+		if (position.DistanceTo(App->entitymanager->GetPlayerData()->position)) {
 			App->pathfinding->CreatePath(origin, player_position);
 			const p2DynArray<iPoint>* entity_path = App->pathfinding->GetLastPath();
-			for (int i = 0; i < entity_path->Count(); i++)
-			{
+			for (int i = 0; i < entity_path->Count(); i++) {
 				pathfinding_path.PushBack(*entity_path->At(i));
 			}
 		}
-		if (pathfinding_path.Count() > 1)
-		{
+		if (pathfinding_path.Count() > 1){
 			velocity.x = (pathfinding_path[1].x - pathfinding_path[0].x) * 60;
 		}
-
-		if (App->entitymanager->GetPlayerData()->position.x < position.x)
-		{
+		if (App->entitymanager->GetPlayerData()->position.x < position.x) {
 			position.x += velocity.x * dt;
 		}
-		else
-		{
+		else {
 			position.x += -velocity.x * dt;
 		}
 	}
@@ -194,8 +187,7 @@ void Spider::AnimationLogic() {
 	else if (App->entitymanager->GetPlayerData()->position.x > position.x && !death) {
 		current_animation = &GoRight;
 	}
-	if (death)
-	{
+	if (death) {
 		if (current_animation == &HitLeft || current_animation == &GoLeft)
 			current_animation = &DieLeft;
 		if (current_animation == &HitRight || current_animation == &GoRight)
