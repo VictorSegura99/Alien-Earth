@@ -82,8 +82,3 @@ bool MovingPlatform::CleanUp()
 		coll->to_delete = true;
 	return true;
 }
-
-void MovingPlatform::OnCollision(Collider * c2)
-{
-
-}

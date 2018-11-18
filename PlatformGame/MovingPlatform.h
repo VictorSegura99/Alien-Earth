@@ -18,7 +18,6 @@ public:
 	//bool Save(pugi::xml_node&) const;
 	void Draw(float dt);
 	bool CleanUp();
-	void OnCollision(Collider* c2);
 	//void AnimationLogic();
 
 	//Animation LoadPushbacks(pugi::xml_node&, p2SString NameAnim) const;

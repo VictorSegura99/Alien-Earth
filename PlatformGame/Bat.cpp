@@ -81,7 +81,7 @@ bool Bat::Update(float dt)
 
 	float x = App->entitymanager->GetPlayerData()->position.x;
 	float y = App->entitymanager->GetPlayerData()->position.y;
-	
+
 	if (position.x - x < 400 && x - position.x < 400 && !death) {
 		iPoint origin = App->map->WorldToMap(position.x, position.y);
 		iPoint player_position = App->map->WorldToMap(App->entitymanager->GetPlayerData()->position.x, App->entitymanager->GetPlayerData()->position.y - App->entitymanager->GetPlayerData()->coll->rect.h);
