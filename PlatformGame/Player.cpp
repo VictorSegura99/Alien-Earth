@@ -181,9 +181,9 @@ bool Player::Update(float dt)
 		position.y -= velocity.y + acceleration.y;
 	}
 	else {
-		if (WalkRight)
+		if (current_animation==&GoRight[NumPlayer]|| current_animation == &idle[NumPlayer])
 			App->render->Blit(Godmode, position.x - ringpositionx, position.y - ringpositiony);
-		else
+		else if (current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer])
 			App->render->Blit(Godmode, position.x + ringpositionx, position.y - ringpositiony, NULL, SDL_FLIP_HORIZONTAL);
 	}
 	
