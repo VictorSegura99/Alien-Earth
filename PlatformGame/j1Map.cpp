@@ -58,8 +58,9 @@ void j1Map::Draw()
 
 					SDL_Rect r = tileset->GetTileRect(tile_id);
 					iPoint pos = MapToWorld(x, y);
-
-					App->render->Blit(tileset->texture, pos.x, pos.y, &r, SDL_FLIP_NONE,layer->properties.Get("speed"));
+					if (layer->name == "parallax")
+						App->render->Blit(tileset->texture, pos.x, pos.y, &r, SDL_FLIP_NONE,0.2f);
+					else App->render->Blit(tileset->texture, pos.x, pos.y, &r);
 				}
 			}
 		}

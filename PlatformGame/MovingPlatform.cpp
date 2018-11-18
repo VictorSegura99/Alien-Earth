@@ -49,32 +49,33 @@ bool MovingPlatform::PreUpdate()
 
 bool MovingPlatform::Update(float dt)
 {
-
-	if (Start) {
-		Start = false;
-		StartTime = SDL_GetTicks();
-		MoveRight = true;
-	}
-	if (MoveRight) {
-		position.x += Speed * dt;
-		if (SDL_GetTicks() - StartTime >= 700) {
-			App->entitymanager->GetPlayerData()->PlayerLeft = true;
-			App->entitymanager->GetPlayerData()->PlayerRight = false;
-			MoveRight = false;
-			MoveLeft = true;
+		if (Start) {
+			Start = false;
 			StartTime = SDL_GetTicks();
-		}
-	}
-	if (MoveLeft) {
-		position.x -= Speed * dt;
-		if (SDL_GetTicks() - StartTime >= 700) {
-			App->entitymanager->GetPlayerData()->PlayerLeft = false;
-			App->entitymanager->GetPlayerData()->PlayerRight = true;
 			MoveRight = true;
-			MoveLeft = false;
-			StartTime = SDL_GetTicks();
 		}
-	}
+		if (MoveRight) {
+			position.x += Speed * dt;
+			if (SDL_GetTicks() - StartTime > 2300) {
+				App->entitymanager->GetPlayerData()->PlayerLeft = true;
+				App->entitymanager->GetPlayerData()->PlayerRight = false;
+				MoveRight = false;
+				MoveLeft = true;
+				StartTime = SDL_GetTicks();
+			}
+		}
+		if (MoveLeft) {
+			position.x -= Speed * dt;
+			if (SDL_GetTicks() - StartTime > 2260) {
+				App->entitymanager->GetPlayerData()->PlayerLeft = false;
+				App->entitymanager->GetPlayerData()->PlayerRight = true;
+				MoveRight = true;
+				MoveLeft = false;
+				StartTime = SDL_GetTicks();
+			}
+		}
+
+
 
 	return true;
 }
