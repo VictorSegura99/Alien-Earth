@@ -12,7 +12,6 @@ public:
 	MovingPlatform(int x, int y);
 	virtual ~MovingPlatform();
 	bool Update(float dt);
-	bool PostUpdate();
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
 	void Draw(float dt);
