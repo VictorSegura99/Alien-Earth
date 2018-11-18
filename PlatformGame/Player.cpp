@@ -343,7 +343,7 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 
 		break;
 	case COLLIDER_PLATFORM:
-		if (position.y + 70 < c2->rect.y)
+		if (position.y +playerHeight < c2->rect.y)
 		{
 			velocity.y = 0;
 			if (current_animation == &BottomRight.anim || current_animation == &BottomRight.anim) {
@@ -372,7 +372,7 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 
 		break;
 	case COLLIDER_MOVINGPLATFORM:
-		if (position.y + 70 < c2->rect.y)
+		if (position.y + playerHeight < c2->rect.y)
 		{
 			if (MoveLeft)
 				position.x -= 200 * DT;

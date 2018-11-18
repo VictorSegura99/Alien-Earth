@@ -135,7 +135,7 @@
       <AuxJumpSpeed value="1250.0f"></AuxJumpSpeed>
       <SpeedWalk value="350.0f"></SpeedWalk>
       <SpeedSwimLeftRight value="450.0f"></SpeedSwimLeftRight>
-      <playerHeight value="78"></playerHeight>
+      <playerHeight value="70"></playerHeight>
       <SpeedClimb value="300.0f"></SpeedClimb>
       <BottomSpeed value="450.0f"></BottomSpeed>
       <SpeedSwimUp value="450.0f"></SpeedSwimUp>
@@ -420,6 +420,7 @@
     <Platforms>
       <MovingPlatform>
         <Sprite>textures/MovingPlatform.png</Sprite>
+        <Movement value="200"></Movement>
         <Animation speed="1.0f" loop="true">
            <frame x="0" y="0" w="70" h="40"></frame>
         </Animation>
