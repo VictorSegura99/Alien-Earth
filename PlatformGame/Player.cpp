@@ -217,8 +217,11 @@ bool Player::PostUpdate()
 }
 bool Player::Load(pugi::xml_node& player)
 {
-	position.x = player.child("position").attribute("x").as_float();
-	position.y = player.child("position").attribute("y").as_float();
+	if (!player.child("position").empty())
+	{
+		position.x = player.child("position").attribute("x").as_float();
+		position.y = player.child("position").attribute("y").as_float();
+	}
 
 
 	App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);

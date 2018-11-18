@@ -140,10 +140,11 @@ bool Spider::Radar()
 bool Spider::Load(pugi::xml_node & spider)
 {
 
-	position.x = spider.child("position").attribute("x").as_float();
-	position.y = spider.child("position").attribute("y").as_float();
-
-
+	if (!spider.child("position").empty())
+	{
+		position.x = spider.child("position").attribute("x").as_float();
+		position.y = spider.child("position").attribute("y").as_float();
+	}
 
 	return true;
 }
