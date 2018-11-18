@@ -167,7 +167,7 @@ void j1Scene::SpawnEnemies() const
 		App->entitymanager->CreateEntity(EntityType::SPIDER, 6800, 700);
 		App->entitymanager->CreateEntity(EntityType::BAT, 6000, 600);
 		App->entitymanager->CreateEntity(EntityType::BAT, 8000, 400);
-		App->entitymanager->CreateEntity(EntityType::SPIDER, 10500, 700);
+		App->entitymanager->CreateEntity(EntityType::SPIDER, 10500, 650);
 	}
 	if (KnowMap == 1) {
 		App->entitymanager->CreateEntity(EntityType::SPIDER, 1300, 500);

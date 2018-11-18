@@ -135,6 +135,7 @@ bool j1App::Awake()
 // Called before the first frame
 bool j1App::Start()
 {
+	BROFILER_CATEGORY("App: Start", Profiler::Color::PeachPuff);
 	PERF_START(ptimer);
 	bool ret = true;
 	p2List_item<j1Module*>* item;
@@ -155,6 +156,7 @@ bool j1App::Start()
 // Called each loop iteration
 bool j1App::Update()
 {
+	BROFILER_CATEGORY("App: Update", Profiler::Color::PeachPuff);
 	bool ret = true;
 	PrepareUpdate();
 
@@ -196,6 +198,7 @@ pugi::xml_node j1App::LoadConfig(pugi::xml_document& config_file, char* file) co
 // ---------------------------------------------
 void j1App::PrepareUpdate()
 {
+	BROFILER_CATEGORY("App: PrepareUpdate", Profiler::Color::PeachPuff);
 	frame_count++;
 	last_sec_frame_count++;
 	dt = frame_time.ReadSec();
@@ -207,6 +210,7 @@ void j1App::PrepareUpdate()
 // ---------------------------------------------
 void j1App::FinishUpdate()
 {
+	BROFILER_CATEGORY("App: FinishUpdate", Profiler::Color::PeachPuff);
 	if (want_to_save == true)
 		SavegameNow();
 
