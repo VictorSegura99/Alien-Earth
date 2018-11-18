@@ -3377,7 +3377,7 @@
    <tile gid="238"/>
   </data>
  </layer>
- <layer name="Paralax" width="160" height="21">
+ <layer name="parallax" width="160" height="21">
   <properties>
    <property name="speed" type="float" value="0.2"/>
   </properties>

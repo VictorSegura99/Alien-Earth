@@ -44,11 +44,13 @@ bool j1Particles::Start()
 	laserL.anim.PushBack({ 124,582,83,27 });
 	laserL.anim.speed = 10.0f;
 	laserL.speed.x = -999;
+	laserL.life = 1000;
 
 	laserR.anim.PushBack({ 34,554,83,27 });
 	laserR.anim.PushBack({ 124,554,83,27 });
 	laserR.anim.speed = 10.0f;
 	laserR.speed.x = 999;
+	laserR.life = 1000;
 
 	//Doublejump.anim = DoubleJump;
 	Doublejump.anim.PushBack({ 0,802,98,65 });
