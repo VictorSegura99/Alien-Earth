@@ -241,26 +241,28 @@ bool Player::Save(pugi::xml_node& player) const
 }
 void Player::Draw(float dt)
 {
-	if (App->scene->KnowMap == 0) {
-		switch (NumPlayer) {
-		case 0:
-			App->render->Blit(App->scene->TutorialJeff, TutorialX, TutorialY1);
-			break;
-		case 1:
-			App->render->Blit(App->scene->TutorialJane, TutorialX, TutorialY2);
-			break;
-		case 2:
-			App->render->Blit(App->scene->TutorialJerry, TutorialX, TutorialY2);
-			break;
+		if (App->scene->KnowMap == 0) {
+			switch (NumPlayer) {
+			case 0:
+				App->render->Blit(App->scene->TutorialJeff, TutorialX, TutorialY1);
+				break;
+			case 1:
+				App->render->Blit(App->scene->TutorialJane, TutorialX, TutorialY2);
+				break;
+			case 2:
+				App->render->Blit(App->scene->TutorialJerry, TutorialX, TutorialY2);
+				break;
+			}
 		}
-	}
 
 
-	if (current_animation == &dashR.FinishDash) {
-		App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame(dt)));
-	}
-	else App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
+		if (current_animation == &dashR.FinishDash) {
+			App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame(dt)));
+		}
+		else App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
 
+	
+	
 }
 bool Player::CleanUp()
 {
@@ -374,9 +376,9 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 	case COLLIDER_MOVINGPLATFORM:
 		if (position.y + playerHeight < c2->rect.y)
 		{
-			if (MoveLeft)
+			if (PlayerLeft)
 				position.x -= 200 * DT;
-			if (MoveRight)
+			if (PlayerRight)
 				position.x += 200 * DT;
 			velocity.y = 0;
 			if (current_animation == &BottomRight.anim || current_animation == &BottomRight.anim) {

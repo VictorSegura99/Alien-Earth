@@ -49,7 +49,7 @@ public:
 	void DeleteEnemies();
 
 	bool DeleteEntity(Entity * entity);
-
+	Collider * GetCollider() const;
 	Player* GetPlayerData() const;
 
 
@@ -67,6 +67,7 @@ public:
 	bool ActiveGame = false;
 	fPoint positionStartMap1;
 	fPoint positionStartMap2;
+
 };
 
 #endif

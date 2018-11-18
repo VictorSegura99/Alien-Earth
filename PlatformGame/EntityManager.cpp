@@ -124,24 +124,10 @@ bool EntityManager::CleanUp()
 
 void EntityManager::OnCollision(Collider* c1, Collider* c2)
 {
-	for (uint i = 0; i < entities.Count(); ++i) {
-		if (entities[i] != nullptr) {
-			if (c1->type == COLLIDER_ENEMY_SPIDER) {
-				entities[i]->OnCollision(c2);
-				break;
-			}
-			if (c1->type == COLLIDER_ENEMY_BAT) {
-				entities[i]->OnCollision(c2);
-				break;
-			}
-			if (c1->type == COLLIDER_PLAYER) {
-				entities[i]->OnCollision(c2);
-				break;
-			}
-		}
-	}
+	for (uint i = 0; i < entities.Count(); ++i)
+		if (entities[i] != nullptr && entities[i]->GetCollider() == c1)
+			entities[i]->OnCollision(c2);
 }
-
 
 Entity* EntityManager::CreateEntity(EntityType type, int x, int y)
 {

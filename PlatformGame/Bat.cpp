@@ -36,7 +36,7 @@ Bat::Bat(int x, int y) : Entity(x, y)
 	DieRight = LoadPushbacks(Bat, "DieRight");
 	HitLeft = LoadPushbacks(Bat, "HitLeft");
 	HitRight = LoadPushbacks(Bat, "HitRight");
-
+	current_animation = &Idle;
 	texture = App->tex->Load(sprites.GetString());
 
 }
@@ -171,7 +171,7 @@ void Bat::Draw(float dt)
 {
 	if (current_animation == &DieLeft || current_animation == &DieRight)
 		App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)), SDL_FLIP_VERTICAL);
-	else
+	else if (!death)
 		App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
 	if (firsttime) {
 		firsttime = false;

@@ -41,21 +41,25 @@ bool MovingPlatform::Update(float dt)
 	if (Start) {
 		Start = false;
 		StartTime = SDL_GetTicks();
-		App->entitymanager->GetPlayerData()->MoveRight = true;
+		MoveRight = true;
 	}
-	if (App->entitymanager->GetPlayerData()->MoveRight) {
+	if (MoveRight) {
 		position.x += Speed * dt;
 		if (SDL_GetTicks() - StartTime >= 700) {
-			App->entitymanager->GetPlayerData()->MoveRight = false;
-			App->entitymanager->GetPlayerData()->MoveLeft = true;
+			App->entitymanager->GetPlayerData()->PlayerLeft = true;
+			App->entitymanager->GetPlayerData()->PlayerRight = false;
+			MoveRight = false;
+			MoveLeft = true;
 			StartTime = SDL_GetTicks();
 		}
 	}
-	if (App->entitymanager->GetPlayerData()->MoveLeft) {
+	if (MoveLeft) {
 		position.x -= Speed * dt;
 		if (SDL_GetTicks() - StartTime >= 700) {
-			App->entitymanager->GetPlayerData()->MoveRight = true;
-			App->entitymanager->GetPlayerData()->MoveLeft = false;
+			App->entitymanager->GetPlayerData()->PlayerLeft = false;
+			App->entitymanager->GetPlayerData()->PlayerRight = true;
+			MoveRight = true;
+			MoveLeft = false;
 			StartTime = SDL_GetTicks();
 		}
 	}
@@ -84,3 +88,4 @@ bool MovingPlatform::CleanUp()
 		coll->to_delete = true;
 	return true;
 }
+
