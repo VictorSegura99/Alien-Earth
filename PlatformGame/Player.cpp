@@ -241,26 +241,28 @@ bool Player::Save(pugi::xml_node& player) const
 }
 void Player::Draw(float dt)
 {
-	if (App->scene->KnowMap == 0) {
-		switch (NumPlayer) {
-		case 0:
-			App->render->Blit(App->scene->TutorialJeff, TutorialX, TutorialY1);
-			break;
-		case 1:
-			App->render->Blit(App->scene->TutorialJane, TutorialX, TutorialY2);
-			break;
-		case 2:
-			App->render->Blit(App->scene->TutorialJerry, TutorialX, TutorialY2);
-			break;
+		if (App->scene->KnowMap == 0) {
+			switch (NumPlayer) {
+			case 0:
+				App->render->Blit(App->scene->TutorialJeff, TutorialX, TutorialY1);
+				break;
+			case 1:
+				App->render->Blit(App->scene->TutorialJane, TutorialX, TutorialY2);
+				break;
+			case 2:
+				App->render->Blit(App->scene->TutorialJerry, TutorialX, TutorialY2);
+				break;
+			}
 		}
-	}
 
 
-	if (current_animation == &dashR.FinishDash) {
-		App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame(dt)));
-	}
-	else App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
+		if (current_animation == &dashR.FinishDash) {
+			App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame(dt)));
+		}
+		else App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
 
+	
+	
 }
 bool Player::CleanUp()
 {

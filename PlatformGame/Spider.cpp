@@ -39,7 +39,7 @@ Spider::Spider(int x, int y) : Entity(x,y)
 	DieRight = LoadPushbacks(spider, "DieRight");
 	HitLeft = LoadPushbacks(spider, "HitLeft");
 	HitRight = LoadPushbacks(spider, "HitRight");
-	
+	current_animation = &IdleLeft;
 	texture = App->tex->Load(sprites.GetString());
 	spiderfx = App->audio->LoadFx(SpiderFx.GetString());
 }
@@ -162,7 +162,7 @@ bool Spider::Save(pugi::xml_node & spider) const
 void Spider::Draw(float dt)
 {
 
-	App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
+		App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
 	if (coll == nullptr)
 		coll = App->collision->AddCollider({ 0,0,72,53 }, COLLIDER_ENEMY_SPIDER, (j1Module*)App->entitymanager);
 	coll->SetPos(position.x, position.y);
