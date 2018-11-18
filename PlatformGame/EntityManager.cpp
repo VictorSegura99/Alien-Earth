@@ -208,13 +208,10 @@ bool EntityManager::Load(pugi::xml_node& load)
 		}
 	}
 
-	for (int i = 0; i < entities.Count(); i++) {
-		if (entities[i] != nullptr && entities[i]->type != PLAYER)
-			entities[i]->Load(load);
-	}
+
 
 	for (pugi::xml_node spider = load.child("spider"); spider; spider = spider.next_sibling("spider")) {
-		CreateEntity(EntityType::SPIDER, spider.child("position").attribute("x").as_float(), spider.child("position").attribute("y").as_float());
+		CreateEntity(EntityType::SPIDER, spider.child("position").attribute("x").as_float(), spider.child("position").attribute("y").as_float() - 80.0f);
 	}
 	for (pugi::xml_node bat = load.child("bat"); bat; bat = bat.next_sibling("bat")) {
 		CreateEntity(EntityType::BAT, bat.child("position").attribute("x").as_float(), bat.child("position").attribute("y").as_float());

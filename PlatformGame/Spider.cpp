@@ -77,9 +77,13 @@ bool Spider::PostUpdate()
 bool Spider::Update(float dt)
 {
 	BROFILER_CATEGORY("Spider: Update", Profiler::Color::Green);
-
-	//position.y -= gravity * dt;
-
+	
+	if (!TouchingGround && !death) {
+		acceleration.y = gravity * dt;
+	}
+	else
+		acceleration.y = 0;
+	position.y -= velocity.y + acceleration.y;
 	AnimationLogic();
 
 	float x = App->entitymanager->GetPlayerData()->position.x;
@@ -131,22 +135,11 @@ bool Spider::Update(float dt)
 	}
 	if (position.x + 100< -App->render->camera.x)
 		App->entitymanager->DeleteEntity(this);
-
+	TouchingGround = false;
 	return true;
-}
-bool Spider::Radar()
-{
-	return (original_pos.x < player_pos.x + range && original_pos.x > player_pos.x - range && original_pos.y < player_pos.y + range && original_pos.y > player_pos.y - range);
 }
 bool Spider::Load(pugi::xml_node & spider)
 {
-
-	if (!spider.child("position").empty())
-	{
-		position.x = spider.child("position").attribute("x").as_float();
-		position.y = spider.child("position").attribute("y").as_float();
-	}
-
 	return true;
 }
 
@@ -182,6 +175,13 @@ void Spider::OnCollision(Collider * c2)
 	case COLLIDER_PARTICLE:
 		coll->CanBeDeleted = true;
 		break;
+	case COLLIDER_GROUND:
+		if (position.y < c2->rect.y + c2->rect.h) 
+			TouchingGround = true;
+		break;
+	case COLLIDER_PLATFORM:
+		if (position.y + 72 < c2->rect.y)
+			TouchingGround = true;
 	}
 }
 

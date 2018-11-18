@@ -20705,7 +20705,7 @@
   <properties>
    <property name="speed" type="float" value="1"/>
   </properties>
-  <object id="148" x="220.667" y="274" width="41.3333" height="25.3333">
+  <object id="148" x="225.667" y="99" width="41.3333" height="25.3333">
    <properties>
     <property name="name" value="Position_Player_Start_Map2"/>
    </properties>

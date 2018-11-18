@@ -49,7 +49,6 @@ public:
 	void DeleteEnemies();
 
 	bool DeleteEntity(Entity * entity);
-	Collider * GetCollider() const;
 	Player* GetPlayerData() const;
 
 

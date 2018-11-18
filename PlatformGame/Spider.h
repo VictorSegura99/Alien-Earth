@@ -14,7 +14,6 @@ public:
 	bool PreUpdate();
 	bool PostUpdate();
 	bool Update(float dt);
-	bool Radar();
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
 	void Draw(float dt);

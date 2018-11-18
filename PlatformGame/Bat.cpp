@@ -147,14 +147,6 @@ bool Bat::Update(float dt)
 
 bool Bat::Load(pugi::xml_node & Bat)
 {
-
-	if (!Bat.child("position").empty())
-	{
-		position.x = Bat.child("position").attribute("x").as_float();
-		position.y = Bat.child("position").attribute("y").as_float();
-	}
-
-
 	return true;
 }
 
