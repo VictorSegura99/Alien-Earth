@@ -19,6 +19,7 @@ j1Particles::j1Particles()
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 		active[i] = nullptr;
+	name.create("particles");
 }
 
 j1Particles::~j1Particles()
@@ -65,8 +66,9 @@ bool j1Particles::Start()
 	laserR.anim.speed = true;
 	laserR.speed.x = 999;
 	
-
-
+	Doublejump.anim = DoubleJump;
+	Doublejump.anim.speed = 10.0f;
+	Doublejump.anim.speed = true;
 	return true;
 }
 
@@ -84,6 +86,13 @@ bool j1Particles::CleanUp()
 			active[i] = nullptr;
 		}
 	}
+
+	return true;
+}
+
+bool j1Particles::Awake(pugi::xml_node& config) 
+{
+	DoubleJump = LoadPushbacks(config, "DoubleJump");
 
 	return true;
 }
@@ -192,3 +201,22 @@ bool Particle::Update()
 	return ret;
 }
 
+Animation j1Particles::LoadPushbacks(pugi::xml_node& config, p2SString NameAnim) const
+{
+	p2SString XML_Name_Particles;
+	SDL_Rect rect;
+	Animation anim;
+	XML_Name_Particles = "particles";
+
+	for (pugi::xml_node frames = config.child(XML_Name_Particles.GetString()).child(NameAnim.GetString()).child("frame"); frames; frames = frames.next_sibling("frame")) {
+		rect.x = frames.attribute("x").as_int();
+		rect.y = frames.attribute("y").as_int();
+		rect.w = frames.attribute("w").as_int();
+		rect.h = frames.attribute("h").as_int();
+		anim.PushBack({ rect.x,rect.y,rect.w,rect.h });
+	}
+	anim.speed = config.child(XML_Name_Particles.GetString()).child(NameAnim.GetString()).attribute("speed").as_float();
+	anim.loop = config.child(XML_Name_Particles.GetString()).child(NameAnim.GetString()).attribute("loop").as_bool();
+
+	return anim;
+}
