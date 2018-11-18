@@ -25,6 +25,7 @@ public:
 
 public:
 	iPoint original_pos;
+	bool firsttime = true;
 	Animation GoLeft;
 	Animation GoRight;
 	Animation Idle;

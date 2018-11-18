@@ -139,7 +139,7 @@ bool Bat::Update(float dt)
 			position.y -= velocity.y * dt;
 		}
 	}
-	if (death && coll->type == COLLIDER_PLAYER) {
+	if (death) {
 		position.y += 433.33f * dt;
 	}
 	if (position.x + 100< -App->render->camera.x)
@@ -176,8 +176,11 @@ void Bat::Draw(float dt)
 		App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)), SDL_FLIP_VERTICAL);
 	else
 		App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
-	if (coll == nullptr)
+	if (firsttime) {
+		firsttime = false;
 		coll = App->collision->AddCollider({ 0,0,70,47 }, COLLIDER_ENEMY, (j1Module*)App->entitymanager);
+	}
+		
 	coll->SetPos(position.x, position.y);
 }
 
@@ -194,13 +197,7 @@ void Bat::OnCollision(Collider * c2)
 	switch (c2->type) {
 	case COLLIDER_PARTICLE:
 		coll->CanBeDeleted = true;
-		break;
-	case COLLIDER_GROUND:
-		if (death) {
-			coll->type = COLLIDER_NONE;
-		}
-		
-		
+		break;	
 	}
 }
 
