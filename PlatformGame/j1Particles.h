@@ -36,12 +36,13 @@ public:
 	~j1Particles();
 
 	bool Start();
+	bool Awake(pugi::xml_node&);
 	bool Update(float dt);
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 
 	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type = COLLIDER_NONE, Uint32 delay = 0);
-
+	Animation LoadPushbacks(pugi::xml_node & config, p2SString NameAnim) const;
 private:
 
 
@@ -52,6 +53,11 @@ public:
 	Particle smokeBottom;
 	Particle laserL;
 	Particle laserR;
+
+	p2SString sprites_name[2];
+	
+	Animation DoubleJump;
+	Particle Doublejump;
 
 };
 

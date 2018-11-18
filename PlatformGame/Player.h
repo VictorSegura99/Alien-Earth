@@ -152,7 +152,7 @@ public:
 	bool Jump2Complete = false;
 	bool CanDoAnotherJump = true;
 	bool FallingJump2 = false;
-	
+	bool GoingRight;
 
 	
 	float JumpSpeed = 0.0f;

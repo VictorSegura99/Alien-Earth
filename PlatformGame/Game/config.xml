@@ -87,6 +87,22 @@
     </AnimationsPlayerBlue>
   </choose>
 
+  <particles>
+      <DoubleJump speed="10.0f" loop="false">
+        <frame  x="0" y="802" w="98" h="65"/>
+        <frame  x="98" y="802" w="98" h="65"/>
+        <frame  x="196" y="802" w="98" h="65"/>
+        <frame  x="294" y="802" w="98" h="65"/>
+        <frame  x="391" y="802" w="98" h="65"/>
+        <frame  x="492" y="802" w="98" h="65"/>
+        <frame  x="590" y="802" w="98" h="65"/>
+        <frame  x="0" y="888" w="98" h="65"/>
+        <frame  x="98" y="888" w="98" h="65"/>
+        <frame  x="196" y="888" w="98" h="65"/>
+        <frame  x="294" y="888" w="98" h="65"/>
+      </DoubleJump>
+  </particles>
+  
   <entity_manager>
     <player>
       <sprites>textures/Alien.png</sprites>

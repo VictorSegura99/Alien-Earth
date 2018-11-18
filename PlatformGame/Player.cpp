@@ -179,6 +179,8 @@ bool Player::Update(float dt)
 		death = false;
 		//App->audio->PlayFx(deathfx2);
 		Die();
+		App->render->camera.x= -position.x + (App->render->camera.w / 2);
+		App->render->camera.y = position.y + (App->render->camera.h / 2);
 	}
 	if (fall && !God) {
 		fall = false;
@@ -805,42 +807,8 @@ void Player::Camera(float dt)
 	else {
 		App->render->camera.y = -position.y + (App->render->camera.h / 2);
 	}
-
-	/*if (CamRect.x + CamRect.w <= position.x + playerwidth) { //WHEN THE PLAYER MOVES RIGHT
-	CamRect.x += (SpeedWalk + 1000*dt) * dt;
-	App->render->camera.x -= (SpeedWalk + 2000 * dt) * dt;
-	//App->render->camera.x = -position.x + (App->render->camera.w / 2);
-	}
-	if (CamRect.x >= position.x) { //WHEN THE PLAYER MOVES LEFT
-	CamRect.x -= (SpeedWalk + 1000 * dt) * dt;
-	App->render->camera.x += (SpeedWalk + 1000 * dt) * dt;
-	//App->render->camera.x = -position.x + (App->render->camera.w / 2);
-	}
-	if (position.y <= CamRect.y && cameraon) { //WHEN THE PLAYER GOES UP
-	CamRect.y -= (JumpSpeed + 1000 * dt) * dt;
-	//App->render->camera.y += 100 * dt;
-	App->render->camera.y += (SpeedWalk + 1000 * dt) * dt;
-	}
-	if (position.y + playerHeight >= CamRect.y + CamRect.h) { //WHEN THE PLAYER GOES DOWN
-	//App->render->camera.y = -position.y + (App->render->camera.h / 2);
-	if (CanClimb)
-	CamRect.y += SpeedClimb * dt;
-	else CamRect.y -= gravity;
-	App->render->camera.y += (gravity);
-
-	}*/
 	if (-App->render->camera.x >= position.x) //PLAYER CAN NOT GO BACK
 		position.x += SpeedWalk * dt;
-
-
-
-
-
-
-
-
-
-
 }
 
 void Player::DoDash(float dt)
@@ -933,7 +901,6 @@ void Player::DoubleJump(float dt)
 		IsJumping2 = true;
 		Falling = false;
 		Jump2Complete = true;
-		Time = 0;
 		starttime = SDL_GetTicks();
 		JumpSpeed = AuxJumpSpeed;
 	}
@@ -954,6 +921,7 @@ void Player::DoubleJump(float dt)
 			App->render->Blit(texture, position.x + 13, position.y + playerHeight, &(doubleJump.GetCurrentFrame(dt)));
 		if (current_animation == &jumpR[NumPlayer] || current_animation == &GoRight[NumPlayer])
 			App->render->Blit(texture, position.x + 13, position.y + playerHeight, &(doubleJump.GetCurrentFrame(dt)), SDL_FLIP_HORIZONTAL);
+		App->particles->AddParticle(App->particles->Doublejump, position.x - 9, position.y + playerHeight + 5, COLLIDER_NONE);
 	}
 	if (IsJumping2) { //if you are able to jump, determine the animation and direction of the jump
 		CanDoAnotherJump = false;
