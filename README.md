@@ -12,6 +12,13 @@ CONTROLS:
 - +: Level audio up.
 - -: Level audio down.
 
+GODMODE CONTROLS:
+- D: Move to the right
+- A: Move to the left
+- W: Fly Up
+- S: Fly Down
+
+
 DEBUG KEYS:
 - F1: Return to the begining of the first level.
 - F2: Start from the begining of the current level.
@@ -21,6 +28,9 @@ DEBUG KEYS:
 - F9: Show Colliders.
 - F10: Godmode.
 - F11: 30FPS Cap Activate/Desactivate.
+- 1: Change to Jeff
+- 2: Change to Jane
+- 3: Change to Jerry
 
 INNOVATIONS:
 - Climb ladders and ropes.

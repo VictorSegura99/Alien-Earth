@@ -32,6 +32,9 @@ bool Player::Awake(pugi::xml_node& config)
 	sprites_name[0] = player.child("sprites").text().as_string();
 	sprites_name[1] = player.child("sprites2").text().as_string();
 	sprites_name[2] = player.child("sprites3").text().as_string();
+	godmode = player.child("godmode").text().as_string();
+	ringpositionx = player.child("ringpositionx").attribute("value").as_int();
+	ringpositiony = player.child("ringpositiony").attribute("value").as_int();
 	JumpFx = player.child("JumpFx").text().as_string();
 	WaterFx = player.child("WaterFx").text().as_string();
 	DeathFx = player.child("DeathFx").text().as_string();
@@ -118,6 +121,7 @@ bool Player::Start()
 	winningfx = App->audio->LoadFx(WinningFx.GetString());
 	position.x = App->entitymanager->positionStartMap1.x;
 	position.y = App->entitymanager->positionStartMap1.y;
+	Godmode = App->tex->Load(godmode.GetString());
 
 	current_animation = &idle[NumPlayer];
 	return ret;
@@ -125,27 +129,40 @@ bool Player::Start()
 bool Player::PreUpdate() //Here we preload the input functions to determine the state of the player
 {
 	BROFILER_CATEGORY("Player: PreUpdate", Profiler::Color::Green);
-	if (!NoInput) {
-		if (!dashing) {
+	if (!God) {
+		if (!NoInput) {
+			if (!dashing) {
+				WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
+				WalkRight = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
+			}
+			GoUp = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
+			GoDown = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
+			Hability = App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN;
+			if (!God)
+				Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
+			else Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT;
+			if (!WalkLeft && !WalkRight && !CanSwim && !CanClimb)
+				Idle = true;
+			else
+				Idle = false;
+		}
+	}
+	else {
+		if (!NoInput) {
 			WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
 			WalkRight = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
+			if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+				position.y -= 500.0f*DT;
+			if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+				position.y += 500.0f*DT;
+			if (!WalkLeft && !WalkRight && !CanSwim && !CanClimb)
+				Idle = true;
+			else
+				Idle = false;
 		}
-		GoUp = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
-		GoDown = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
-		Hability = App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN;
-		if (!God)
-			Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
-		else Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT;
-		if (!WalkLeft && !WalkRight && !CanSwim && !CanClimb)
-			Idle = true;
-		else
-			Idle = false;
-		if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
-			God = !God;
 	}
-
-
-
+	if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+		God = !God;
 	return true;
 }
 bool Player::Update(float dt)
@@ -153,14 +170,22 @@ bool Player::Update(float dt)
 	BROFILER_CATEGORY("Player: Update", Profiler::Color::Green);
 	DT = dt;
 
-	if (!TouchingGround&&!dashing&&!CanSwim) {
-		acceleration.y = gravity*dt;
-		LOG("Acceleration %f", acceleration.y);
+	if (!God) {
+		if (!TouchingGround && !dashing && !CanSwim) {
+			acceleration.y = gravity * dt;
+			LOG("Acceleration %f", acceleration.y);
+		}
+		else
+			acceleration.y = 0;
+		position.x += velocity.x;
+		position.y -= velocity.y + acceleration.y;
 	}
-	else
-		acceleration.y = 0;
-	position.x += velocity.x;
-	position.y -= velocity.y + acceleration.y;
+	else {
+		if (WalkRight)
+			App->render->Blit(Godmode, position.x - ringpositionx, position.y - ringpositiony);
+		else
+			App->render->Blit(Godmode, position.x + ringpositionx, position.y - ringpositiony, NULL, SDL_FLIP_HORIZONTAL);
+	}
 	
 	if (!dashing) {
 		if (NumPlayer == 0)
@@ -191,6 +216,7 @@ bool Player::Update(float dt)
 		Fall();
 	}
 	if (God)
+
 		CanJump = true;
 
 	coll->SetPos(position.x, position.y);
@@ -410,49 +436,55 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 
 		break;
 	case COLLIDER_CLIMB:
-		if (current_animation == &Climb[NumPlayer])
-			App->audio->PlayFx(ladderfx);
-		IsJumping = false;
-		IsJumping2 = false;
-		CanDoAnotherJump = false;
-		Falling = false;
-		TouchingGround = true;
-		AnimDoubleJump = false;
-		CanClimb = true;
-		CanJump = true;
-		CanJump2 = false;
-		velocity.y = 0;
-		if (current_animation == &jumpR[NumPlayer] || current_animation == &jumpL[NumPlayer])
-			current_animation = &ClimbIdle[NumPlayer];
+		if (!God) {
+			if (current_animation == &Climb[NumPlayer])
+				App->audio->PlayFx(ladderfx);
+			IsJumping = false;
+			IsJumping2 = false;
+			CanDoAnotherJump = false;
+			Falling = false;
+			TouchingGround = true;
+			AnimDoubleJump = false;
+			CanClimb = true;
+			CanJump = true;
+			CanJump2 = false;
+			velocity.y = 0;
+			if (current_animation == &jumpR[NumPlayer] || current_animation == &jumpL[NumPlayer])
+				current_animation = &ClimbIdle[NumPlayer];
+		}
 		break;
 	case COLLIDER_WATER:
 		App->audio->PlayFx(waterfx);
-		CanSwim = true;
-		TouchingGround = true;
-		CanClimb = false;
-		CanJump = false;
+		if (!God) {
+			CanSwim = true;
+			TouchingGround = true;
+			CanClimb = false;
+			CanJump = false;
+		}
 		break;
 	case COLLIDER_GROUND_WATER:
-		if (position.y < c2->rect.y + c2->rect.h) {
-			if (velocity.y < 0) {
-				velocity.y = 0;
+		if (!God) {
+			if (position.y < c2->rect.y + c2->rect.h) {
+				if (velocity.y < 0) {
+					velocity.y = 0;
+				}
+				CanJump = false;
+				CanJump2 = false;
+				GoDown = false;
+				CanClimb = false;
+				CanDash = true;
+				BottomLeft.IsFalling = false;
+				BottomRight.IsFalling = false;
+				Falling = false;
+				FallingJump2 = false;
+				CanSwim = true;
+				//cameraon = true;
+				CanDoAnotherJump = true;
+				if (current_animation == &jumpR[NumPlayer])
+					current_animation = &idle[NumPlayer];
+				if (current_animation == &jumpL[NumPlayer])
+					current_animation = &idle2[NumPlayer];
 			}
-			CanJump = false;
-			CanJump2 = false;
-			GoDown = false;
-			CanClimb = false;
-			CanDash = true;
-			BottomLeft.IsFalling = false;
-			BottomRight.IsFalling = false;
-			Falling = false;
-			FallingJump2 = false;
-			CanSwim = true;
-			//cameraon = true;
-			CanDoAnotherJump = true;
-			if (current_animation == &jumpR[NumPlayer])
-				current_animation = &idle[NumPlayer];
-			if (current_animation == &jumpL[NumPlayer])
-				current_animation = &idle2[NumPlayer];
 		}
 		break;
 	case COLLIDER_NONE:
@@ -460,23 +492,26 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		CanSwim = false;
 		break;
 	case COLLIDER_SPIKES:
-		velocity.y = 0;
-		TouchingGround = true;
-		WalkLeft = false;
-		WalkRight = false;
-		GoUp = false;
-		GoDown = false;
-		CanJump = false;
-		CanJump2 = false;
-		death = true;
-		if (!God)
+		if (!God) {
+			velocity.y = 0;
+			TouchingGround = true;
+			WalkLeft = false;
+			WalkRight = false;
+			GoUp = false;
+			GoDown = false;
+			CanJump = false;
+			CanJump2 = false;
+			death = true;
 			NoInput = true;
+		}
 		break;
 	case COLLIDER_ENEMY_BAT:
-		CheckWhatToDoWhenCollidingWithEnemy(c2);
+		if (!God)
+			CheckWhatToDoWhenCollidingWithEnemy(c2);
 		break;
 	case COLLIDER_ENEMY_SPIDER:
-		CheckWhatToDoWhenCollidingWithEnemy(c2);
+		if (!God)
+			CheckWhatToDoWhenCollidingWithEnemy(c2);
 		break;
 	case COLLIDER_FALL:
 		WalkLeft = false;
@@ -488,11 +523,13 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 			NoInput = true;
 		break;
 	case COLLIDER_ROPE:
-		TouchingGround = true;
-		CanClimb = true;
-		CanJump = true;
-		CanJump2 = false;
-		velocity.y = 0;
+		if (!God) {
+			TouchingGround = true;
+			CanClimb = true;
+			CanJump = true;
+			CanJump2 = false;
+			velocity.y = 0;
+		}
 		break;
 	case COLLIDER_WIN:
 		App->audio->PlayFx(winningfx);

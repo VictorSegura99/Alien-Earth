@@ -103,6 +103,7 @@ public:
 	SDL_Texture* ParticlesTex;
 
 	p2SString sprites_name[3];
+	p2SString godmode;
 	p2SString JumpFx;
 	p2SString WaterFx;
 	p2SString DeathFx;
@@ -114,6 +115,7 @@ public:
 	p2SString SpiderDeathFx;
 	p2SString WinningFx;
 
+	SDL_Texture* Godmode;
 
 	unsigned int jumpfx;
 	unsigned int waterfx;
@@ -183,7 +185,8 @@ public:
 	int finalmapplayer = 0;
 	int finalmap = 0;
 	int NumPlayer = 900;
-	
+	int ringpositionx = 0;
+	int ringpositiony = 0;
 	int TutorialX = 0;
 	int TutorialY1 = 0;
 	int TutorialY2 = 0;

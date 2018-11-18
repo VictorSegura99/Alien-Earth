@@ -108,6 +108,9 @@
       <sprites>textures/Alien.png</sprites>
       <sprites2>textures/AlienPink.png</sprites2>
       <sprites3>textures/AlienBlue.png</sprites3>
+      <godmode>textures/Godmode.png</godmode>
+      <ringpositionx value="10"></ringpositionx>
+      <ringpositiony value="12"></ringpositiony>
       <JumpFx>audio/fx/Jump_fx.wav</JumpFx>
       <WaterFx>audio/fx/waterfx.wav</WaterFx>
       <DeathFx>audio/fx/deathfx.wav</DeathFx>
