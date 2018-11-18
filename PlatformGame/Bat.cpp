@@ -178,7 +178,7 @@ void Bat::Draw(float dt)
 		App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
 	if (firsttime) {
 		firsttime = false;
-		coll = App->collision->AddCollider({ 0,0,70,47 }, COLLIDER_ENEMY, (j1Module*)App->entitymanager);
+		coll = App->collision->AddCollider({ 0,0,70,47 }, COLLIDER_ENEMY_BAT, (j1Module*)App->entitymanager);
 	}
 		
 	coll->SetPos(position.x, position.y);
