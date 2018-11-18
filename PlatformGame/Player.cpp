@@ -757,7 +757,8 @@ void Player::Camera(float dt)
 		App->render->camera.x = finalmap;
 	}
 	else {
-		App->render->camera.x = -position.x + (App->render->camera.w / 2);
+		if (WalkRight && (-App->render->camera.x + App->render->camera.w/2)<= position.x)
+			App->render->camera.x = -position.x + (App->render->camera.w / 2);
 	}
 	if (position.y <= minYcam) { //If player is in a position where the camera would print out of the map, camera stops
 		App->render->camera.y = 0;
