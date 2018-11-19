@@ -92,6 +92,7 @@ Second Assigment:
 - - Bat
 - - Dash
 - - Menu Sprites and Animations
+- - Tutorials
 - - Particles
 - - Art: All Animations and Spritesheets
 - - Framerate Cap
