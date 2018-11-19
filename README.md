@@ -68,28 +68,46 @@ Spacebar Sprite: https://www.facebook.com/suepeisueba/
 _____________
 ACHIVEMENTS by each member:
 
-Víctor Segura:
-- Camera
-- Bat
-- Dash
-- Menu Sprites and Animations
-- Particles
-- Art: All Animations and Spritesheets
-- Framerate Cap
-- Brofile
-- ReadMe
+First Assigment:
 
-Oriol Capdevila:
-- Entity System
-- UML
-- Save&Load
-- Spider
-- Moving Platform
-- Double Jump
-- Laser
-- Pathfinding
-- Menu Logic
-- FPS & dt Logic
+- Víctor Segura:
+- - Maps Creation in Tiled
+- - Maps 1 and 2 Levels Desing
+- - Colliders 
+- - Art: All Animations and Spritesheets
+- - ReadMe and Management 
+- - Godmode
+
+- Oriol Capdevila:
+- - Colliders Logic
+- - XML Logic and Creation
+- - Levels Change Logic
+- - Parallax
+- - Save&Load
+
+Second Assigment:
+
+- Víctor Segura:
+- - Camera
+- - Bat
+- - Dash
+- - Menu Sprites and Animations
+- - Particles
+- - Art: All Animations and Spritesheets
+- - Framerate Cap
+- - Brofile
+- - ReadMe and Management 
+
+- Oriol Capdevila:
+- - Entity System
+- - UML
+- - Spider
+- - Moving Platform
+- - Double Jump
+- - Laser
+- - Pathfinding
+- - Menu Logic
+- - FPS & dt Logic
 
 _____________
 LICENSE:
