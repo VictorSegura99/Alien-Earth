@@ -218,8 +218,8 @@ bool Player::Update(float dt)
 	if (God)
 
 		CanJump = true;
-
-	coll->SetPos(position.x, position.y);
+	if (coll != nullptr)
+		coll->SetPos(position.x, position.y);
 	//App->render->DrawQuad(rect, 150, 150, 150, 255, true, false);
 
 	LOG("Position X: %f", position.x);
