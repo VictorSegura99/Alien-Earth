@@ -16823,7 +16823,7 @@
     <property name="name" value="Position_Player_Start_Map1"/>
    </properties>
   </object>
-  <object id="392" x="692.833" y="395.833" width="31" height="33">
+  <object id="392" x="700.833" y="443.833" width="31" height="33">
    <properties>
     <property name="name" value="Position2_Player_Start_Map1"/>
    </properties>

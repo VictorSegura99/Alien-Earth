@@ -197,8 +197,6 @@ bool Player::Update(float dt)
 	}
 	else if (Intro) {
 		position.y -= IntroFall * dt;
-		App->render->Blit(IntroLight, 620, 0);
-		App->render->DrawQuad({ -App->render->camera.x,-App->render->camera.y,App->render->camera.w,App->render->camera.h }, 0, 0, 0,150);
 		App->audio->PlayFx(ovnifx);
 	}
 	else {
@@ -299,10 +297,16 @@ void Player::Draw(float dt)
 				break;
 			}
 		}
+		if (Intro) {
+			App->render->DrawQuad({ -App->render->camera.x,-App->render->camera.y,App->render->camera.w,App->render->camera.h }, 0, 0, 0, 150);
+			App->render->Blit(IntroLight, 620, 0);
+		}
 		if (current_animation == &dashR.FinishDash) {
 			App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame(dt)));
 		}
-		else App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
+		else {
+			App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
+		}
 
 	
 	
