@@ -12,6 +12,7 @@
 #include "Entity.h"
 #include "EntityManager.h"
 #include "j1Collision.h"
+#include "j1Choose.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -107,6 +108,18 @@ bool j1Scene::Update(float dt)
 			KnowMap = 1;
 			App->map->ChangeMap(map_name[KnowMap]);
 			App->entitymanager->GetPlayerData()->Spawn();
+		}
+		if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN) {
+			App->entitymanager->DeleteEnemies();
+			App->scene->active = false;
+			App->entitymanager->ActiveGame = false;
+			App->collision->active = false;
+			App->map->active = false;
+			App->choose->start = false;
+			App->render->camera.x = 0;
+			App->render->camera.y = 0;
+			App->choose->GameOn = false;
+			App->entitymanager->GetPlayerData()->Intro = true;
 		}
 	}
 	App->map->Draw();
