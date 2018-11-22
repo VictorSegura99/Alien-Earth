@@ -565,6 +565,7 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		App->render->camera.x = 0;
 		App->render->camera.y = 0;
 		App->choose->GameOn = false;
+		Intro = true;
 		break;
 	}
 }

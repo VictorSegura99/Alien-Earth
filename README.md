@@ -3,9 +3,9 @@ _____________
 GAME
 
 CONTROLS:
-- D: Move to the right
-- A: Move to the left
-- SPACE: Jump
+- D: Move to the right.
+- A: Move to the left.
+- SPACE: Jump.
 - W: Go Up while Climbing/Swimming.
 - S: Go Down while Climbing/Swimming.
 - J: Special Character Hability.
@@ -13,31 +13,33 @@ CONTROLS:
 - -: Level audio down.
 
 GODMODE CONTROLS:
-- D: Move to the right
-- A: Move to the left
-- W: Fly Up
-- S: Fly Down
-
+- D: Move to the right.
+- A: Move to the left.
+- W: Fly Up.
+- S: Fly Down.
 
 DEBUG KEYS:
 - F1: Return to the begining of the first level.
 - F2: Start from the begining of the current level.
-- F3: Begining of the second level
+- F3: Begining of the second level.
+- F4: Return to Choose Menu.
 - F5: Save.
 - F6: Load.
 - F9: Show Colliders.
 - F10: Godmode.
 - F11: 30FPS Cap Activate/Desactivate.
-- 1: Change to Jeff
-- 2: Change to Jane
-- 3: Change to Jerry
+- 1: Change to Jeff.
+- 2: Change to Jane.
+- 3: Change to Jerry.
 
 INNOVATIONS:
+First Assigment:
 - Climb ladders and ropes.
 - Swim through water.
+Second Assigment:
 - Initial Menu+Choose Menu.
 - 3 Different Characters with unique habilities.
-- - Yellow Alien(Jeff): Double Jump+Bomb Jump(only when previous doble jump)
+- - Yellow Alien(Jeff): Double Jump+Bomb Jump(only when previous doble jump).
 - - Pink Alien(Jane): Shoots Laser.
 - - Blue Alien(Jerry): Dash
 - Movement Platforms.
@@ -57,6 +59,7 @@ Death sfx 2: http://soundbible.com/1454-Pain.html
 Spider sfx: https://freesound.org/people/spookymodem/sounds/202108/
 Jump sfx: http://soundbible.com/1601-Mario-Jumping.html
 Choose sfx: https://freesound.org/people/GameAudio/sounds/220182/
+Ovni sfx: http://soundbible.com/147-UFO-Landing.html
 Water sfx: http://soundbible.com/1148-Bubbling.html
 Laser sfx: https://www.zapsplat.com/music/laser-noise-synth-vintage-12/
 SpiderDeath and Bat death sfx: https://freesound.org/people/columbia23/sounds/395395/
