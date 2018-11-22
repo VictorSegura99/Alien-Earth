@@ -298,8 +298,6 @@ void Player::Draw(float dt)
 				break;
 			}
 		}
-
-
 		if (current_animation == &dashR.FinishDash) {
 			App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame(dt)));
 		}

@@ -600,14 +600,17 @@ bool j1Map::LoadPlayerProperties()
 				if (item2->data->name == "Position_Player_Start_Map1") {
 					App->entitymanager->positionStartMap1.x = item2->data->x;
 					App->entitymanager->positionStartMap1.y = item2->data->y;
+
 				}
-				if (item2->data->name == "Position2_Player_Spawn_Map1") {
+				if (item2->data->name == "Position2_Player_Start_Map1") {
 					App->entitymanager->positionSpawnMap1.x = item2->data->x;
 					App->entitymanager->positionSpawnMap1.y = item2->data->y;
+
 				}
 				if (item2->data->name == "Position_Player_Start_Map2") {
 					App->entitymanager->positionStartMap2.x = item2->data->x;
 					App->entitymanager->positionStartMap2.y = item2->data->y;
+
 				}
 				item2 = item2->next;
 			}
