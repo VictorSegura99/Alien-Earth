@@ -299,7 +299,11 @@ void Player::Draw(float dt)
 		}
 		if (Intro) {
 			App->render->DrawQuad({ -App->render->camera.x,-App->render->camera.y,App->render->camera.w,App->render->camera.h }, 0, 0, 0, 150);
-			App->render->Blit(IntroLight, 620, 0);
+			if (!OvniCanMove)
+				App->render->Blit(IntroLight, 620, 0);
+			else {
+				App->render->Blit(IntroLight, 620, 3);
+			}
 		}
 		if (current_animation == &dashR.FinishDash) {
 			App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame(dt)));
@@ -874,6 +878,7 @@ void Player::Camera(float dt)
 		App->render->camera.y = lowcam;//lowcam is the bottom part of the map, when the player is too low, the camera follows a constant height to don't get out of the map
 	}
 	else {
+		OvniCanMove = true;
 		App->render->camera.y = -position.y + (App->render->camera.h / 2);
 	}
 	if (-App->render->camera.x >= position.x) //PLAYER CAN NOT GO BACK

@@ -162,8 +162,9 @@ public:
 	bool Jump2Complete = false;
 	bool CanDoAnotherJump = true;
 	bool FallingJump2 = false;
+	bool OvniCanMove = false;
 	bool GoingRight;
-	bool Intro=true;
+	bool Intro = true;
 	
 	float JumpSpeed = 0.0f;
 	float SpeedWalk = 0.0f;
