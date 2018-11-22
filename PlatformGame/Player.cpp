@@ -233,7 +233,8 @@ bool Player::Update(float dt)
 		Fall();
 	}
 
-	coll->SetPos(position.x, position.y);
+	if (coll != nullptr)
+		coll->SetPos(position.x, position.y);
 
 	LOG("Position Y: %f", position.y);
 
