@@ -195,7 +195,7 @@ bool Player::Update(float dt)
 	}
 	else if (Intro) {
 		position.y -= IntroFall * dt;
-		App->render->Blit(IntroLight, 610, 0);
+		App->render->Blit(IntroLight, 620, 0);
 		App->audio->PlayFx(ovnifx);
 	}
 	else {
