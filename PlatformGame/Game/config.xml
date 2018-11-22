@@ -88,19 +88,41 @@
   </choose>
 
   <particles>
-      <DoubleJump speed="10.0f" loop="false">
-        <frame  x="0" y="802" w="98" h="65"/>
-        <frame  x="98" y="802" w="98" h="65"/>
-        <frame  x="196" y="802" w="98" h="65"/>
-        <frame  x="294" y="802" w="98" h="65"/>
-        <frame  x="391" y="802" w="98" h="65"/>
-        <frame  x="492" y="802" w="98" h="65"/>
-        <frame  x="590" y="802" w="98" h="65"/>
-        <frame  x="0" y="888" w="98" h="65"/>
-        <frame  x="98" y="888" w="98" h="65"/>
-        <frame  x="196" y="888" w="98" h="65"/>
-        <frame  x="294" y="888" w="98" h="65"/>
-      </DoubleJump>
+    <DoubleJump speed="40.0f" loop="false">
+      <frame  x="0" y="802" w="98" h="65"/>
+      <frame  x="98" y="802" w="98" h="65"/>
+      <frame  x="196" y="802" w="98" h="65"/>
+      <frame  x="294" y="802" w="98" h="65"/>
+      <frame  x="391" y="802" w="98" h="65"/>
+      <frame  x="492" y="802" w="98" h="65"/>
+      <frame  x="590" y="802" w="98" h="65"/>
+      <frame  x="0" y="888" w="98" h="65"/>
+      <frame  x="98" y="888" w="98" h="65"/>
+      <frame  x="196" y="888" w="98" h="65"/>
+      <frame  x="294" y="888" w="98" h="65"/>
+    </DoubleJump>
+    <smokeBottom speed="20.0f" loop="false">
+      <frame  x="0" y="663" w="100" h="86"/>
+      <frame  x="101" y="663" w="103" h="86"/>
+      <frame  x="204" y="663" w="105" h="86"/>
+      <frame  x="309" y="663" w="70" h="86"/>
+    </smokeBottom>
+    <laserL speed="10.0f" loop="true">
+      <frame  x="34" y="582" w="83" h="27"/>
+      <frame  x="124" y="582" w="83" h="27"/>
+      <speedX value="-999"/>
+      <life value="1000"/>
+    </laserL>
+    <laserR speed="10.0f" loop="true">
+      <frame  x="34" y="554" w="83" h="27"/>
+      <frame  x="124" y="554" w="83" h="27"/>
+      <speedX value="999"/>
+      <life value="1000"/>
+    </laserR>
+
+   
+   
+
   </particles>
   
   <entity_manager>

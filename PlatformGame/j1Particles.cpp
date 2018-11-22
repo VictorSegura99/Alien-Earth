@@ -33,39 +33,10 @@ bool j1Particles::Start()
 {
 	LOG("Loading particles");
 
-	smokeBottom.anim.PushBack({ 0,663,100,86 });
-	smokeBottom.anim.PushBack({ 101,663,103,86 });
-	smokeBottom.anim.PushBack({ 204,663,105,86 });
-	smokeBottom.anim.PushBack({ 309,663,70,86 });
-	smokeBottom.anim.speed = 20.0f;
-	smokeBottom.anim.loop = false;
 
-	laserL.anim.PushBack({ 34,582,83,27 });
-	laserL.anim.PushBack({ 124,582,83,27 });
-	laserL.anim.speed = 10.0f;
-	laserL.speed.x = -999;
-	laserL.life = 1000;
+	
 
-	laserR.anim.PushBack({ 34,554,83,27 });
-	laserR.anim.PushBack({ 124,554,83,27 });
-	laserR.anim.speed = 10.0f;
-	laserR.speed.x = 999;
-	laserR.life = 1000;
-
-	//Doublejump.anim = DoubleJump;
-	Doublejump.anim.PushBack({ 0,802,98,65 });
-	Doublejump.anim.PushBack({ 98,802,98,65 });
-	Doublejump.anim.PushBack({ 196,802,98,65 });
-	Doublejump.anim.PushBack({ 294,802,98,65 });
-	Doublejump.anim.PushBack({ 391,802,98,65 });
-	Doublejump.anim.PushBack({ 492,802,98,65 });
-	Doublejump.anim.PushBack({ 590,802,98,65 });
-	Doublejump.anim.PushBack({ 0,888,98,65 });
-	Doublejump.anim.PushBack({ 98,888,98,65 });
-	Doublejump.anim.PushBack({ 196,888,98,65 });
-	Doublejump.anim.PushBack({ 294,888,98,65 });
-	Doublejump.anim.speed = 40.0f;
-	Doublejump.anim.loop = false;
+	
 	return true;
 }
 
@@ -89,9 +60,14 @@ bool j1Particles::CleanUp()
 
 bool j1Particles::Awake(pugi::xml_node& config) 
 {
-	pugi::xml_node particles = config.child("particles");
-	DoubleJump = LoadPushbacks(particles, "DoubleJump");
-
+	Doublejump.anim = LoadPushbacks(config, "DoubleJump");
+	smokeBottom.anim = LoadPushbacks(config, "smokeBottom");
+	laserL.anim = LoadPushbacks(config, "laserL");
+	laserL.speed.x = config.child("laserL").child("speedX").attribute("value").as_int();
+	laserL.life = config.child("laserL").child("life").attribute("value").as_int();
+	laserR.anim = LoadPushbacks(config, "laserR");
+	laserR.speed.x = config.child("laserR").child("speedX").attribute("value").as_int();
+	laserR.life = config.child("laserR").child("life").attribute("value").as_int();
 	return true;
 }
 
@@ -201,10 +177,8 @@ bool Particle::Update()
 
 Animation j1Particles::LoadPushbacks(pugi::xml_node& config, p2SString NameAnim) const
 {
-	p2SString XML_Name_Player_Anims;
 	SDL_Rect rect;
 	Animation anim;
-	XML_Name_Player_Anims = "particles";
 
 	for (pugi::xml_node frames = config.child(NameAnim.GetString()).child("frame"); frames; frames = frames.next_sibling("frame")) {
 		rect.x = frames.attribute("x").as_int();
@@ -213,8 +187,9 @@ Animation j1Particles::LoadPushbacks(pugi::xml_node& config, p2SString NameAnim)
 		rect.h = frames.attribute("h").as_int();
 		anim.PushBack({ rect.x,rect.y,rect.w,rect.h });
 	}
-	anim.speed = config.child(XML_Name_Player_Anims.GetString()).child(NameAnim.GetString()).attribute("speed").as_float();
-	anim.loop = config.child(XML_Name_Player_Anims.GetString()).child(NameAnim.GetString()).attribute("loop").as_bool();
+	anim.loop = config.child(NameAnim.GetString()).attribute("loop").as_bool();
+	anim.speed = config.child(NameAnim.GetString()).attribute("speed").as_float();
+	
 
 	return anim;
 }
