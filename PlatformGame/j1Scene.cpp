@@ -82,31 +82,32 @@ bool j1Scene::Update(float dt)
 		App->map->ChangeMap(map_name[KnowMap]);
 		App->entitymanager->GetPlayerData()->Spawn();
 	}
+	if (!App->entitymanager->GetPlayerData()->Intro) {
+		if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
+			App->entitymanager->DeleteEnemies();
+			KnowMap = 0;
+			App->map->ChangeMap(map_name[KnowMap]);
+			App->entitymanager->GetPlayerData()->Spawn();
 
-	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
-		App->entitymanager->DeleteEnemies();
-		KnowMap = 0;
-		App->map->ChangeMap(map_name[KnowMap]);
-		App->entitymanager->GetPlayerData()->Spawn();
-		
-	}
-	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
-		if (KnowMap == 0) {
+		}
+		if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
+			if (KnowMap == 0) {
+				App->entitymanager->DeleteEnemies();
+				App->map->ChangeMap(map_name[KnowMap]);
+				App->entitymanager->GetPlayerData()->Spawn();
+			}
+			else if (KnowMap == 1) {
+				App->entitymanager->DeleteEnemies();
+				App->map->ChangeMap(map_name[KnowMap]);
+				App->entitymanager->GetPlayerData()->Spawn();
+			}
+		}
+		if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
 			App->entitymanager->DeleteEnemies();
+			KnowMap = 1;
 			App->map->ChangeMap(map_name[KnowMap]);
 			App->entitymanager->GetPlayerData()->Spawn();
 		}
-		else if (KnowMap == 1) {
-			App->entitymanager->DeleteEnemies();
-			App->map->ChangeMap(map_name[KnowMap]);
-			App->entitymanager->GetPlayerData()->Spawn();
-		}
-	}
-	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
-		App->entitymanager->DeleteEnemies();
-		KnowMap = 1;
-		App->map->ChangeMap(map_name[KnowMap]);
-		App->entitymanager->GetPlayerData()->Spawn();
 	}
 	App->map->Draw();
 

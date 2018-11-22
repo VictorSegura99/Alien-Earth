@@ -172,8 +172,10 @@ bool Player::PreUpdate() //Here we preload the input functions to determine the 
 				Idle = false;
 		}
 	}
-	if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
-		God = !God;
+	if (!Intro) {
+		if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+			God = !God;
+	}
 	return true;
 }
 bool Player::Update(float dt)
@@ -608,8 +610,8 @@ void Player::Spawn()
 	Death[NumPlayer].loops = 0;
 	current_animation = &idle[NumPlayer];
 	if (App->scene->KnowMap == 0) {
-		position.x = App->entitymanager->positionStartMap1.x;
-		position.y = App->entitymanager->positionStartMap1.y;
+		position.x = App->entitymanager->positionSpawnMap1.x;
+		position.y = App->entitymanager->positionSpawnMap1.y;
 	}
 	if (App->scene->KnowMap == 1) {
 		position.x = App->entitymanager->positionStartMap2.x;

@@ -63,7 +63,8 @@ public:
 	bool ActiveGame = false;
 	fPoint positionStartMap1;
 	fPoint positionStartMap2;
-
+	fPoint positionSpawnMap1;
+	fPoint positionSpawnMap2;
 };
 
 #endif
