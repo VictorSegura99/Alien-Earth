@@ -109,6 +109,7 @@
       <sprites2>textures/AlienPink.png</sprites2>
       <sprites3>textures/AlienBlue.png</sprites3>
       <godmode>textures/Godmode.png</godmode>
+      <IntroLight>textures/OvniLight.png</IntroLight>
       <ringpositionx value="10"></ringpositionx>
       <ringpositiony value="12"></ringpositiony>
       <JumpFx>audio/fx/Jump_fx.wav</JumpFx>
@@ -118,6 +119,7 @@
       <LadderFx>audio/fx/Ladder.wav</LadderFx>
       <LaserFx>audio/fx/Laser.wav</LaserFx>
       <DashFx>audio/fx/Dash.wav</DashFx>
+      <OvniFx>audio/fx/Ovni.wav</OvniFx>
       <WinningFx>audio/fx/Winning.wav</WinningFx>
       <SpiderDeathFx>audio/fx/SpiderDeath.wav</SpiderDeathFx>
       <TimeBetweenShoot value="750.0f"></TimeBetweenShoot>
@@ -132,6 +134,7 @@
       <minYcam value="450"></minYcam>
       <lowcam value="-290"></lowcam>
       <gravity value="-433.33333f"></gravity>
+      <IntroFall value="-200.0f"></IntroFall>
       <startpointcameramap2 value="-60"></startpointcameramap2>
       <positionWinMap1 value="10780"></positionWinMap1>
       <JumpTime value="20"></JumpTime>

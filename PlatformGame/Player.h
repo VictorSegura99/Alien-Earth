@@ -104,6 +104,7 @@ public:
 
 	p2SString sprites_name[3];
 	p2SString godmode;
+	p2SString introlight;
 	p2SString JumpFx;
 	p2SString WaterFx;
 	p2SString DeathFx;
@@ -114,8 +115,10 @@ public:
 	p2SString BombJumpfx;
 	p2SString SpiderDeathFx;
 	p2SString WinningFx;
+	p2SString OvniFx;
 
 	SDL_Texture* Godmode;
+	SDL_Texture* IntroLight;
 
 	unsigned int jumpfx;
 	unsigned int waterfx;
@@ -127,6 +130,7 @@ public:
 	unsigned int bombjumpfx;
 	unsigned int spiderdeathfx;
 	unsigned int winningfx;
+	unsigned int ovnifx;
 
 	
 	bool PlayerLeft = false;
@@ -159,7 +163,7 @@ public:
 	bool CanDoAnotherJump = true;
 	bool FallingJump2 = false;
 	bool GoingRight;
-
+	bool Intro=true;
 	
 	float JumpSpeed = 0.0f;
 	float SpeedWalk = 0.0f;
@@ -171,6 +175,7 @@ public:
 	float AuxJumpSpeed = 0.0f;
 	float particletime = 0.0f;
 	float TimeBetweenShoot = 0.0f;
+	float IntroFall;
 
 	int startmap2 = 0;
 	int maxYcam = 0;

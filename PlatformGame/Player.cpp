@@ -33,6 +33,7 @@ bool Player::Awake(pugi::xml_node& config)
 	sprites_name[1] = player.child("sprites2").text().as_string();
 	sprites_name[2] = player.child("sprites3").text().as_string();
 	godmode = player.child("godmode").text().as_string();
+	introlight = player.child("IntroLight").text().as_string();
 	ringpositionx = player.child("ringpositionx").attribute("value").as_int();
 	ringpositiony = player.child("ringpositiony").attribute("value").as_int();
 	JumpFx = player.child("JumpFx").text().as_string();
@@ -42,6 +43,7 @@ bool Player::Awake(pugi::xml_node& config)
 	LadderFx = player.child("LadderFx").text().as_string();
 	LaserFx = player.child("LaserFx").text().as_string();
 	DashFx = player.child("DashFx").text().as_string();
+	OvniFx = player.child("OvniFx").text().as_string();
 	BombJumpfx = player.child("BombJumpFx").text().as_string();
 	SpiderDeathFx = player.child("SpiderDeathFx").text().as_string();
 	WinningFx = player.child("WinningFx").text().as_string();
@@ -52,6 +54,7 @@ bool Player::Awake(pugi::xml_node& config)
 	minYcam = player.child("minYcam").attribute("value").as_int();
 	lowcam = player.child("lowcam").attribute("value").as_int();
 	gravity = player.child("gravity").attribute("value").as_float();
+	IntroFall = player.child("IntroFall").attribute("value").as_float();
 	positionWinMap1 = player.child("positionWinMap1").attribute("value").as_int();
 	startpointcameramap2 = player.child("startpointcameramap2").attribute("value").as_int();
 	SpeedSwimLeftRight = player.child("SpeedSwimLeftRight").attribute("value").as_float();
@@ -119,17 +122,24 @@ bool Player::Start()
 	bombjumpfx = App->audio->LoadFx(BombJumpfx.GetString());
 	spiderdeathfx = App->audio->LoadFx(SpiderDeathFx.GetString());
 	winningfx = App->audio->LoadFx(WinningFx.GetString());
+	ovnifx = App->audio->LoadFx(OvniFx.GetString());
+
+
 	position.x = App->entitymanager->positionStartMap1.x;
 	position.y = App->entitymanager->positionStartMap1.y;
+
+
 	Godmode = App->tex->Load(godmode.GetString());
+	IntroLight= App->tex->Load(introlight.GetString());
 
 	current_animation = &idle[NumPlayer];
+	Intro = true;
 	return ret;
 }
 bool Player::PreUpdate() //Here we preload the input functions to determine the state of the player
 {
 	BROFILER_CATEGORY("Player: PreUpdate", Profiler::Color::Green);
-	if (!God) {
+	if (!God&&!Intro) {
 		if (!NoInput) {
 			if (!dashing) {
 				WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
@@ -147,7 +157,8 @@ bool Player::PreUpdate() //Here we preload the input functions to determine the 
 				Idle = false;
 		}
 	}
-	else {
+	else if (God)
+	{
 		if (!NoInput) {
 			WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
 			WalkRight = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
@@ -170,7 +181,9 @@ bool Player::Update(float dt)
 	BROFILER_CATEGORY("Player: Update", Profiler::Color::Green);
 	DT = dt;
 
-	if (!God) {
+	Camera(dt);
+
+	if (!God && !Intro) {
 		if (!TouchingGround && !dashing && !CanSwim) {
 			acceleration.y = gravity * dt;
 			LOG("Acceleration %f", acceleration.y);
@@ -179,6 +192,11 @@ bool Player::Update(float dt)
 			acceleration.y = 0;
 		position.x += velocity.x;
 		position.y -= velocity.y + acceleration.y;
+	}
+	else if (Intro) {
+		position.y -= IntroFall * dt;
+		App->render->Blit(IntroLight, 610, 0);
+		App->audio->PlayFx(ovnifx);
 	}
 	else {
 		if (current_animation==&GoRight[NumPlayer]|| current_animation == &idle[NumPlayer])
@@ -201,7 +219,6 @@ bool Player::Update(float dt)
 		DoDash(dt);
 	if (NumPlayer == 0)
 		BottomFall(dt);
-	Camera(dt);
 
 	if (death && !God) {
 		death = false;
@@ -215,16 +232,10 @@ bool Player::Update(float dt)
 			App->audio->PlayFx(deathfx);
 		Fall();
 	}
-	if (God)
-
-		CanJump = true;
 
 	coll->SetPos(position.x, position.y);
-	//App->render->DrawQuad(rect, 150, 150, 150, 255, true, false);
 
-	LOG("Position X: %f", position.x);
-	/*if (App->collision->debug)
-		App->render->DrawQuad(CamRect, 150, 150, 150);*/
+	LOG("Position Y: %f", position.y);
 
 	TouchingGround = false;
 
@@ -299,6 +310,7 @@ bool Player::CleanUp()
 	App->tex->UnLoad(texture);
 	App->tex->UnLoad(ParticlesTex);
 	App->tex->UnLoad(Godmode);
+	App->tex->UnLoad(IntroLight);
 	NextMap = false;
 	death = false;
 	fall = false;
@@ -313,6 +325,7 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 	switch (c2->type) {
 	case COLLIDER_GROUND:
 		if (position.y < c2->rect.y + c2->rect.h) {
+			Intro = false;
 			velocity.y = 0;
 			if (current_animation == &BottomLeft.anim || current_animation == &BottomRight.anim) {
 				App->particles->AddParticle(App->particles->smokeBottom, position.x - 20, position.y, COLLIDER_NONE);
