@@ -43,6 +43,8 @@ Second Assigment:
 - - Pink Alien(Jane): Shoots Laser.
 - - Blue Alien(Jerry): Dash
 - Movement Platforms.
+Third Assigment:
+- Animation Cinematic Intro
 _____________
 AUTHORS
 - Víctor Segura Blanco (Github: https://github.com/VictorSegura99)
