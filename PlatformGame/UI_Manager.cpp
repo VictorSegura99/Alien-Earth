@@ -38,6 +38,10 @@ bool UI_Manager::Update(float dt)
 		if (elements[i] != nullptr)
 			elements[i]->Update(dt);
 	}
+	for (int i = 0; i < elements.Count(); i++) {
+		if (elements[i] != nullptr)
+			elements[i]->Draw(dt);
+	}
 
 	return true;
 }

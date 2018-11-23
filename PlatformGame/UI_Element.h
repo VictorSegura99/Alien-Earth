@@ -9,6 +9,12 @@
 #include "j1PerfTimer.h"
 
 struct SDL_Texture;
+enum UI_Elements
+{
+	NON_TYPE,
+
+	BUTTON,
+};
 
 
 class UI_Element
@@ -34,9 +40,9 @@ public:
 
 public:
 
-
-	iPoint position;
-	int type = -1;
+	SDL_Rect position;
+	SDL_Rect png_pos = { 0,0,0,0 };
+	UI_Elements type = UI_Elements::NON_TYPE;
 	//
 
 	Animation* current_animation = nullptr;

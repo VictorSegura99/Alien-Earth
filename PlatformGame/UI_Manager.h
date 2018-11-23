@@ -5,12 +5,6 @@
 #include "p2Animation.h"
 #include "p2DynArray.h"
 
-enum UI_Elements
-{
-	BUTTON,
-
-	NON_TYPE
-};
 
 class UI_Element;
 
