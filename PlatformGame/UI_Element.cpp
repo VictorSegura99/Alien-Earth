@@ -18,6 +18,6 @@ UI_Element::~UI_Element()
 void UI_Element::Draw(float dt)
 {
 
-	App->render->Blit(texture, position.x, position.y, &(png_pos));
+	
 
 }

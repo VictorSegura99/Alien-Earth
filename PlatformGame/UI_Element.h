@@ -50,6 +50,8 @@ public:
 
 	bool debug_draw = false;
 
+	bool pressed = false;
+
 };
 
 #endif

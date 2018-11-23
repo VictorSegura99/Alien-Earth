@@ -12,19 +12,19 @@ public:
 
 	Button(SDL_Rect pos);
 	virtual ~Button();
-	bool PreUpdate();
-	bool PostUpdate();
 	bool Update(float dt);
 	void Draw(float dt);
-	bool Load(pugi::xml_node&);
-	bool Save(pugi::xml_node&) const;
 	bool CleanUp();
-	
+	bool IsMouseOn();
 
 
 
 public:
 	
+	SDL_Rect NoPressedNoMouseOn;
+	SDL_Rect MouseOn;
+	SDL_Rect Pressed;
+
 	
 };
 

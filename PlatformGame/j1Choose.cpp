@@ -13,6 +13,9 @@
 #include "j1Collision.h"
 #include "Entity.h"
 #include "EntityManager.h"
+#include "Button.h"
+#include "UI_Element.h"
+#include "UI_Manager.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -181,6 +184,23 @@ bool j1Choose::Update(float dt)
 				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
 				App->render->Blit(blue, 665,350, &(BlueStand.GetCurrentFrame(dt)));
 				repeat = false;
+			}
+			if (button == nullptr)
+				button = App->ui_manager->CreateButton({ 100,100,70,39 });
+			if (button->pressed) {
+				playernumber = PlayerNumber1;
+				App->scene->active = !App->scene->active;
+				App->collision->active = !App->collision->active;
+				App->map->active = !App->map->active;
+				App->scene->KnowMap = 0;
+				App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
+				App->entitymanager->ActiveGame = true;
+				//App->entitymanager->CreateEntity(EntityType::PLAYER);
+				App->entitymanager->GetPlayerData()->Start();
+				App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
+				App->scene->SpawnEnemies();
+				App->entitymanager->GetPlayerData()->SetCamera();
+				GameOn = true;
 			}
 		}
 	}

@@ -7,6 +7,7 @@
 
 struct SDL_Texture;
 struct SDL_Rect;
+class UI_Element;
 
 class j1Choose : public j1Module
 {
@@ -81,6 +82,8 @@ public:
 
 	unsigned int choosefx;
 	unsigned int introfx;
+
+	UI_Element* button = nullptr;
 };
 
 #endif //
