@@ -3,6 +3,7 @@
 #include "j1Textures.h"
 #include "j1Render.h"
 #include "p2Log.h"
+#include "j1Audio.h"
 #include "j1Input.h"
 
 Button::Button(int x, int y, int weight, int height, int type)
@@ -22,6 +23,8 @@ Button::Button(int x, int y, int weight, int height, int type)
 		NoPressedNoMouseOn = { 0,0,0,0 };
 		MouseOn = { 0,0,weight,height };
 		Pressed = { 0,0,weight,height };
+		FXON = UI_node.child("button").child("ChooseFx").text().as_string();
+		fxOn = App->audio->LoadFx(FXON.GetString());
 		break; }
 	}
 
@@ -37,12 +40,17 @@ bool Button::Update(float dt)
 	if (IsMouseOn()) {
 		png_pos = MouseOn;
 		mouseOn = true;
+		if (repeataudio) {
+			App->audio->PlayFx(fxOn);
+			repeataudio = false;
+		}
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
 			png_pos = Pressed;
 			pressed = true;
 		}
 	}
 	else {
+		repeataudio = true;
 		png_pos = NoPressedNoMouseOn;
 		mouseOn = false;
 	}

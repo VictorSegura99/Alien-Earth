@@ -460,6 +460,9 @@
 
   <UI>
     <sprite>textures/UI.png</sprite>
+    <button>
+      <ChooseFx>audio/fx/Menu.wav</ChooseFx>
+    </button>
   </UI>
 
   

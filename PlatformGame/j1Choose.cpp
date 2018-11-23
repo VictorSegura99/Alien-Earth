@@ -109,10 +109,6 @@ bool j1Choose::Update(float dt)
 				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
 				App->render->Blit(yellow, 150, 350, &(YellowWalk.GetCurrentFrame(dt)));
 				App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
-				if (!repeat) {
-					App->audio->PlayFx(choosefx);
-					repeat = true;
-				}
 				if (buttonJEFF->pressed) {
 					playernumber = PlayerNumber1;
 					StartLevel();
@@ -122,10 +118,6 @@ bool j1Choose::Update(float dt)
 				App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
 				App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
 				App->render->Blit(pink, 418, 350, &(PinkWalk.GetCurrentFrame(dt)));
-				if (!repeat) {
-					App->audio->PlayFx(choosefx);
-					repeat = true;
-				}
 				if (buttonJANE->pressed) {
 					playernumber = PlayerNumber2;
 					StartLevel();
@@ -135,10 +127,6 @@ bool j1Choose::Update(float dt)
 				App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
 				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
 				App->render->Blit(blue, 665, 350, &(BlueWalk.GetCurrentFrame(dt)));
-				if (!repeat) {
-					App->audio->PlayFx(choosefx);
-					repeat = true;
-				}
 				if (buttonJERRY->pressed) {
 					playernumber = PlayerNumber3;
 					StartLevel();

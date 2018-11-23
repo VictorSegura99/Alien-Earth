@@ -53,6 +53,11 @@ public:
 	bool pressed = false;
 	bool mouseOn = false;
 
+	unsigned int fxOn;
+	unsigned int fxPressed;
+
+	p2SString FXON;
+
 };
 
 #endif

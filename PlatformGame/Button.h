@@ -22,6 +22,7 @@ public:
 	SDL_Rect NoPressedNoMouseOn;
 	SDL_Rect MouseOn;
 	SDL_Rect Pressed;
+	bool repeataudio = true;
 
 };
 
