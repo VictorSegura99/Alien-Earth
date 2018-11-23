@@ -103,6 +103,8 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
     <ClCompile Include="Spider.cpp" />
+    <ClCompile Include="UI_Element.cpp" />
+    <ClCompile Include="UI_Manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bat.h" />
@@ -135,6 +137,8 @@
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
     <ClInclude Include="Spider.h" />
+    <ClInclude Include="UI_Element.h" />
+    <ClInclude Include="UI_Manager.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Game\config.xml">

@@ -33,10 +33,6 @@ bool j1Particles::Start()
 {
 	LOG("Loading particles");
 
-
-	
-
-	
 	return true;
 }
 

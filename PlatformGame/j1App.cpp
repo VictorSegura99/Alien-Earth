@@ -16,6 +16,7 @@
 #include "j1Choose.h"
 #include "j1Particles.h"
 #include "j1Pathfinding.h"
+#include "UI_Manager.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -36,6 +37,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	choose = new j1Choose();
 	particles = new j1Particles();
 	pathfinding = new j1PathFinding();
+	ui_manager = new UI_Manager();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -50,7 +52,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	
 	
 	AddModule(collision);
-
+	AddModule(ui_manager);
 	AddModule(entitymanager);
 	AddModule(particles);
 

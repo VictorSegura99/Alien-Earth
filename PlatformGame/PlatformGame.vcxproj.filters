@@ -70,6 +70,12 @@
     <ClCompile Include="MovingPlatform.cpp">
       <Filter>Modules\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="UI_Manager.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Element.cpp">
+      <Filter>Modules\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PugiXml\src\pugixml.hpp">
@@ -162,6 +168,12 @@
     <ClInclude Include="MovingPlatform.h">
       <Filter>Modules\Entities</Filter>
     </ClInclude>
+    <ClInclude Include="UI_Manager.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Element.h">
+      <Filter>Modules\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Game\config.xml">
@@ -186,6 +198,9 @@
     </Filter>
     <Filter Include="Modules\Entities">
       <UniqueIdentifier>{3fe3114b-07d0-4967-a6d2-08816da2f5ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Modules\UI">
+      <UniqueIdentifier>{39673bcc-2fe1-4baf-abcc-12bede5af88e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

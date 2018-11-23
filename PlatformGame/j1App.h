@@ -20,6 +20,7 @@ class EntityManager;
 class j1Choose;
 class j1Particles;
 class j1PathFinding;
+class UI_Manager;
 
 class j1App
 {
@@ -99,6 +100,7 @@ public:
 	j1Choose*			choose;
 	j1Particles*		particles;
 	j1PathFinding*		pathfinding;
+	UI_Manager*			ui_manager;
 
 private:
 
