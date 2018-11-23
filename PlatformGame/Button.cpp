@@ -57,7 +57,7 @@ bool Button::Update(float dt)
 	}
 
 	if (App->ui_manager->debug_draw) {
-		App->render->DrawQuad({ position.x,position.y,weight,height }, 0, 255, 255, 255, false);
+		App->render->DrawQuad({ position.x,position.y,weight,height }, 0, 0, 0, 255, false);
 	}
 
 	return true;
