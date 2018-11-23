@@ -3,6 +3,7 @@
 #include "j1Render.h"
 #include "j1Textures.h"
 #include "p2SString.h"
+#include "j1Input.h"
 
 UI_Element::UI_Element()
 {
@@ -20,6 +21,12 @@ UI_Element::UI_Element()
 
 UI_Element::~UI_Element()
 {
+}
+
+bool UI_Element::PreUpdate()
+{
+
+	return true;
 }
 
 void UI_Element::Draw(float dt)

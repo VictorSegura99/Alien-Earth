@@ -1,5 +1,11 @@
 #include "UI_Manager.h"
 #include "Button.h"
+#include "j1Input.h"
+#include "j1App.h"
+#include "j1Textures.h"
+#include "j1Render.h"
+#include "p2Log.h"
+#include "j1Audio.h"
 
 UI_Manager::UI_Manager()
 {
@@ -24,6 +30,10 @@ bool UI_Manager::Start()
 
 bool UI_Manager::Update(float dt)
 {
+
+	if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
+		debug_draw = !debug_draw;
+	}
 
 	for (int i = 0; i < elements.Count(); i++) {
 		if (elements[i] != nullptr)

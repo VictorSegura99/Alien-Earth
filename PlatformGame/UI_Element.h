@@ -25,7 +25,7 @@ public:
 	UI_Element();
 	virtual ~UI_Element();
 	
-	virtual bool PreUpdate() { return true; };
+	virtual bool PreUpdate();
 	virtual bool Update(float dt) { return true; };
 	virtual bool PostUpdate() { return true; };
 	virtual bool CleanUp() { return true; };
@@ -48,7 +48,7 @@ public:
 	Animation* current_animation = nullptr;
 	SDL_Texture* texture;
 
-	bool debug_draw = false;
+	
 
 	bool pressed = false;
 	bool mouseOn = false;

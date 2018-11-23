@@ -3,6 +3,7 @@
 #include "j1Textures.h"
 #include "j1Render.h"
 #include "p2Log.h"
+#include "UI_Manager.h"
 #include "j1Audio.h"
 #include "j1Input.h"
 
@@ -54,6 +55,11 @@ bool Button::Update(float dt)
 		png_pos = NoPressedNoMouseOn;
 		mouseOn = false;
 	}
+
+	if (App->ui_manager->debug_draw) {
+		App->render->DrawQuad({ position.x,position.y,weight,height }, 0, 255, 255, 255, false);
+	}
+
 	return true;
 }
 
