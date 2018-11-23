@@ -16,6 +16,7 @@ class UI_Element
 public:
 
 	UI_Element();
+	UI_Element(int x, int y);
 	virtual ~UI_Element();
 	
 
@@ -34,14 +35,14 @@ public:
 public:
 
 
-	fPoint position;
-
+	iPoint position;
+	int type = -1;
 	//
 
 	Animation* current_animation = nullptr;
 	SDL_Texture* texture;
 
-	
+	bool debug_draw = false;
 
 };
 

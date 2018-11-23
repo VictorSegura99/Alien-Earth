@@ -76,6 +76,9 @@
     <ClCompile Include="UI_Element.cpp">
       <Filter>Modules\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Modules\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PugiXml\src\pugixml.hpp">
@@ -172,6 +175,9 @@
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="UI_Element.h">
+      <Filter>Modules\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
       <Filter>Modules\UI</Filter>
     </ClInclude>
   </ItemGroup>

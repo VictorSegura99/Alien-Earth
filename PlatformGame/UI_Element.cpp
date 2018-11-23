@@ -4,6 +4,10 @@ UI_Element::UI_Element()
 {
 }
 
+UI_Element::UI_Element(int x, int y)
+{
+}
+
 UI_Element::~UI_Element()
 {
 }

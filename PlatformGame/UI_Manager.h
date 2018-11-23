@@ -9,7 +9,7 @@ enum UI_Elements
 {
 	BUTTON,
 
-
+	NON_TYPE
 };
 
 class UI_Element;
@@ -38,7 +38,7 @@ public:
 
 	bool CleanUp();
 
-	
+	UI_Element* CreateButton(SDL_Rect pos);
 
 	
 
