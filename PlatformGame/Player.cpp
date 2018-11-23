@@ -248,14 +248,16 @@ bool Player::Update(float dt)
 bool Player::PostUpdate()
 {
 	BROFILER_CATEGORY("Player: PostUpdate", Profiler::Color::Green);
-	if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) {
-		ChangePlayer(0);
-	}
-	if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) {
-		ChangePlayer(1);
-	}
-	if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) {
-		ChangePlayer(2);
+	if (!Intro) {
+		if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) {
+			ChangePlayer(0);
+		}
+		if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) {
+			ChangePlayer(1);
+		}
+		if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) {
+			ChangePlayer(2);
+		}
 	}
 	return true;
 }

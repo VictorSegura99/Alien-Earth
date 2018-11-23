@@ -9,31 +9,16 @@
 	<choose />
 	<map />
 	<scene>
-		<KnowMap value="0" />
+		<KnowMap value="1" />
 	</scene>
 	<:anonymous />
 	<entity_manager>
-		<spider>
-			<position x="6799.21973" y="721.966797" />
-		</spider>
-		<spider>
-			<position x="10499.2207" y="726.900085" />
-		</spider>
-		<bat>
-			<position x="6000" y="600" />
-		</bat>
-		<bat>
-			<position x="8000" y="400" />
-		</bat>
-		<bat>
-			<position x="9500" y="600" />
-		</bat>
 		<player>
-			<position x="936.90033" y="544.599792" />
+			<position x="8969.82031" y="752.663391" />
 		</player>
 	</entity_manager>
 	<particles />
 	<renderer>
-		<camera x="-436" y="-94" />
+		<camera x="-8469" y="-290" />
 	</renderer>
 </game_state>
