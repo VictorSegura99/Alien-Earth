@@ -38,6 +38,7 @@ public:
 
 	Animation LoadGigantAliensAnimations(int playernumber, pugi::xml_node&, p2SString NameAnim) const;
 	void CreateButtons();
+	void StartLevel();
 
 public:
 
@@ -53,15 +54,13 @@ public:
 	Animation BlueStand;
 	Animation BlueWalk;
 
+	SDL_Texture* Choose = nullptr;
 	p2SString ChooseFx;
 	p2SString IntroFx;
 
 	bool start = false;
 	SDL_Texture * ScreenStart = nullptr;
 	SDL_Texture * NoChoose = nullptr;
-	SDL_Texture * choose1 = nullptr;
-	SDL_Texture * choose2 = nullptr;
-	SDL_Texture * choose3 = nullptr;
 	p2SString file_texture[5];
 	iPoint mouse;
 	int playernumber = -1;
@@ -85,8 +84,9 @@ public:
 	unsigned int choosefx;
 	unsigned int introfx;
 
-
-	UI_Element* button = nullptr;
+	UI_Element* buttonJEFF = nullptr;
+	UI_Element* buttonJANE = nullptr;
+	UI_Element* buttonJERRY = nullptr;
 };
 
 #endif //

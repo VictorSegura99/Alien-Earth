@@ -15,7 +15,6 @@ UI_Element::UI_Element()
 
 	sprite = UI_node.child("sprite").text().as_string();
 
-
 	texture = App->tex->Load(sprite.GetString());
 }
 

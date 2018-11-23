@@ -10,14 +10,12 @@
 class Button : public UI_Element {
 public:
 
-	Button(int x, int y, int weight, int height);
+	Button(int x, int y, int weight, int height, int type);
 	virtual ~Button();
 	bool Update(float dt);
 	void Draw(float dt);
 	bool CleanUp();
 	bool IsMouseOn();
-
-
 
 public:
 	
@@ -25,7 +23,6 @@ public:
 	SDL_Rect MouseOn;
 	SDL_Rect Pressed;
 
-	
 };
 
 #endif

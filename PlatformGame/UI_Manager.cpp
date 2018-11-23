@@ -55,11 +55,11 @@ bool UI_Manager::CleanUp()
 	return true;
 }
 
-UI_Element * UI_Manager::CreateButton(int x, int y, int weight, int height)
+UI_Element * UI_Manager::CreateButton(int x, int y, int weight, int height, int type)
 {
 	UI_Element* ret = nullptr;
 	
-	ret = new Button(x, y, weight, height);
+	ret = new Button(x, y, weight, height, type);
 	ret->type = BUTTON;
 
 	if (ret != nullptr)

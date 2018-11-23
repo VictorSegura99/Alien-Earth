@@ -71,10 +71,10 @@ bool j1Choose::Start()
 	GameOn = false;
 	ScreenStart = App->tex->Load(file_texture[0].GetString());
 	NoChoose = App->tex->Load(file_texture[1].GetString());
-	choose1 = App->tex->Load(file_texture[2].GetString());
-	choose2 = App->tex->Load(file_texture[3].GetString());
-	choose3 = App->tex->Load(file_texture[4].GetString());
-
+	//choose1 = App->tex->Load(file_texture[2].GetString());
+	//choose2 = App->tex->Load(file_texture[3].GetString());
+	//choose3 = App->tex->Load(file_texture[4].GetString());
+	Choose = App->tex->Load("textures/ChooseReworked.png");
 	yellow = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[0].GetString());
 	pink = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[1].GetString());
 	blue = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[2].GetString());
@@ -104,8 +104,8 @@ bool j1Choose::Update(float dt)
 	BROFILER_CATEGORY("Choose: Update", Profiler::Color::Aquamarine);
 	if (start) {
 		if (!GameOn) {
-			if (mouse.x >= MinX_RectChoosePlayer1 && mouse.x <= MaxX_RectChoosePlayer1 && mouse.y >= MinY_ChooseRect && mouse.y <= MaxY_ChooseRect) {
-				App->render->Blit(choose1, 0, 0, NULL);
+			App->render->Blit(Choose, 0, 0, NULL);
+			if (buttonJEFF->mouseOn) {
 				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
 				App->render->Blit(yellow, 150, 350, &(YellowWalk.GetCurrentFrame(dt)));
 				App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
@@ -113,24 +113,12 @@ bool j1Choose::Update(float dt)
 					App->audio->PlayFx(choosefx);
 					repeat = true;
 				}
-				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+				if (buttonJEFF->pressed) {
 					playernumber = PlayerNumber1;
-					App->scene->active = !App->scene->active;
-					App->collision->active = !App->collision->active;
-					App->map->active = !App->map->active;
-					App->scene->KnowMap = 0;
-					App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-					App->entitymanager->ActiveGame = true;
-					//App->entitymanager->CreateEntity(EntityType::PLAYER);
-					App->entitymanager->GetPlayerData()->Start();
-					App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
-					App->scene->SpawnEnemies();
-					App->entitymanager->GetPlayerData()->SetCamera();
-					GameOn = true;
+					StartLevel();
 				}
 			}
-			else if (mouse.x >= MinX_RectChoosePlayer2 && mouse.x <= MaxX_RectChoosePlayer2 && mouse.y >= MinY_ChooseRect && mouse.y <= MaxY_ChooseRect) {
-				App->render->Blit(choose2, 0, 0, NULL);
+			else if (buttonJANE->mouseOn) {
 				App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
 				App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
 				App->render->Blit(pink, 418, 350, &(PinkWalk.GetCurrentFrame(dt)));
@@ -138,24 +126,12 @@ bool j1Choose::Update(float dt)
 					App->audio->PlayFx(choosefx);
 					repeat = true;
 				}
-				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+				if (buttonJANE->pressed) {
 					playernumber = PlayerNumber2;
-					App->scene->active = !App->scene->active;
-					App->collision->active = !App->collision->active;
-					App->map->active = !App->map->active;
-					App->scene->KnowMap = 0;
-					App->scene->SpawnEnemies();
-					App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-					App->entitymanager->ActiveGame = true;
-					//App->entitymanager->CreateEntity(EntityType::PLAYER);
-					App->entitymanager->GetPlayerData()->Start();
-					App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
-					App->entitymanager->GetPlayerData()->SetCamera();
-					GameOn = true;
+					StartLevel();
 				}
 			}
-			else if (mouse.x >= MinX_RectChoosePlayer3 && mouse.x <= MaxX_RectChoosePlayer3 && mouse.y >= MinY_ChooseRect && mouse.y <= MaxY_ChooseRect) {
-				App->render->Blit(choose3, 0, 0, NULL);
+			else if (buttonJERRY->mouseOn) {
 				App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
 				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
 				App->render->Blit(blue, 665, 350, &(BlueWalk.GetCurrentFrame(dt)));
@@ -163,20 +139,9 @@ bool j1Choose::Update(float dt)
 					App->audio->PlayFx(choosefx);
 					repeat = true;
 				}
-				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+				if (buttonJERRY->pressed) {
 					playernumber = PlayerNumber3;
-					App->scene->active = !App->scene->active;
-					App->collision->active = !App->collision->active;
-					App->map->active = !App->map->active;
-					App->scene->KnowMap = 0;
-					App->scene->SpawnEnemies();
-					App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-					App->entitymanager->ActiveGame = true;
-					//App->entitymanager->CreateEntity(EntityType::PLAYER);
-					App->entitymanager->GetPlayerData()->Start();
-					App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
-					App->entitymanager->GetPlayerData()->SetCamera();
-					GameOn = true;
+					StartLevel();
 				}
 			}
 			else {
@@ -185,22 +150,6 @@ bool j1Choose::Update(float dt)
 				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
 				App->render->Blit(blue, 665,350, &(BlueStand.GetCurrentFrame(dt)));
 				repeat = false;
-			}
-			if (button->pressed) {
-				playernumber = PlayerNumber1;
-				App->scene->active = !App->scene->active;
-				App->collision->active = !App->collision->active;
-				App->map->active = !App->map->active;
-				App->scene->KnowMap = 0;
-				App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-				App->entitymanager->ActiveGame = true;
-				//App->entitymanager->CreateEntity(EntityType::PLAYER);
-				App->entitymanager->GetPlayerData()->Start();
-				App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
-				App->scene->SpawnEnemies();
-				App->entitymanager->GetPlayerData()->SetCamera();
-				App->ui_manager->DeleteButtons();
-				GameOn = true;
 			}
 		}
 	}
@@ -228,9 +177,6 @@ bool j1Choose::CleanUp()
 {
 	App->tex->UnLoad(ScreenStart);
 	App->tex->UnLoad(NoChoose);
-	App->tex->UnLoad(choose1);
-	App->tex->UnLoad(choose2);
-	App->tex->UnLoad(choose3);
 	LOG("Freeing scene");
 	return true;
 }
@@ -267,9 +213,25 @@ Animation j1Choose::LoadGigantAliensAnimations(int playernumber, pugi::xml_node&
 
 void j1Choose::CreateButtons()
 {
-	button = App->ui_manager->CreateButton(100, 100, 70, 39);
+	buttonJEFF = App->ui_manager->CreateButton(138, 229, 225, 441, 2);
+	buttonJANE = App->ui_manager->CreateButton(388, 229, 225, 441, 2);
+	buttonJERRY = App->ui_manager->CreateButton(638, 229, 225, 441, 2);
+}
 
-
+void j1Choose::StartLevel()
+{
+	App->scene->active = !App->scene->active;
+	App->collision->active = !App->collision->active;
+	App->map->active = !App->map->active;
+	App->scene->KnowMap = 0;
+	App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
+	App->entitymanager->ActiveGame = true;
+	App->entitymanager->GetPlayerData()->Start();
+	App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
+	App->scene->SpawnEnemies();
+	App->entitymanager->GetPlayerData()->SetCamera();
+	App->ui_manager->DeleteButtons();
+	GameOn = true;
 }
 
 

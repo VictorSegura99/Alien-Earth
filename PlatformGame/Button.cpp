@@ -5,15 +5,25 @@
 #include "p2Log.h"
 #include "j1Input.h"
 
-Button::Button(int x, int y, int weight, int height)
+Button::Button(int x, int y, int weight, int height, int type)
 {
 	position.x = x;
 	position.y = y;
 	this->weight = weight;
 	this->height = height;
-	NoPressedNoMouseOn = { 215,712,70,39 };
-	MouseOn = { 463,712,70,39 };
-	Pressed = { 702,711,70,39 };
+
+	switch (type) {
+	case 1: {
+		NoPressedNoMouseOn = { 215,712,70,39 };
+		MouseOn = { 463,712,70,39 };
+		Pressed = { 702,711,70,39 };
+		break; }
+	case 2: {
+		NoPressedNoMouseOn = { 0,0,0,0 };
+		MouseOn = { 0,0,weight,height };
+		Pressed = { 0,0,weight,height };
+		break; }
+	}
 
 	png_pos = NoPressedNoMouseOn;
 }
@@ -26,6 +36,7 @@ bool Button::Update(float dt)
 {
 	if (IsMouseOn()) {
 		png_pos = MouseOn;
+		mouseOn = true;
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
 			png_pos = Pressed;
 			pressed = true;
@@ -33,6 +44,7 @@ bool Button::Update(float dt)
 	}
 	else {
 		png_pos = NoPressedNoMouseOn;
+		mouseOn = false;
 	}
 	return true;
 }

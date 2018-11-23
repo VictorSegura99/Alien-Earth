@@ -51,6 +51,7 @@ public:
 	bool debug_draw = false;
 
 	bool pressed = false;
+	bool mouseOn = false;
 
 };
 
