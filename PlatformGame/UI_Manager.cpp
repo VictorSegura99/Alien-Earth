@@ -3,6 +3,9 @@
 
 UI_Manager::UI_Manager()
 {
+
+	name.create("UI");
+
 }
 
 UI_Manager::~UI_Manager()

@@ -11,7 +11,6 @@ Button::Button(int x, int y, int weight, int height)
 	position.y = y;
 	this->weight = weight;
 	this->height = height;
-	texture = App->tex->Load("textures/Choose.png");
 	NoPressedNoMouseOn = { 215,712,70,39 };
 	MouseOn = { 463,712,70,39 };
 	Pressed = { 702,711,70,39 };

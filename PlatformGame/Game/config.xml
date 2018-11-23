@@ -119,10 +119,6 @@
       <speedX value="999"/>
       <life value="1000"/>
     </laserR>
-
-   
-   
-
   </particles>
   
   <entity_manager>
@@ -461,7 +457,10 @@
       </MovingPlatform>
     </Platforms>
   </entity_manager>
-  
+
+  <UI>
+    <sprite>textures/UI.png</sprite>
+  </UI>
 
   
   

@@ -5,6 +5,7 @@
 #include "p2Point.h"
 #include "p2Animation.h"
 #include "p2DynArray.h"
+#include "p2SString.h"
 #include "PugiXml\src\pugixml.hpp"
 #include "j1PerfTimer.h"
 
@@ -22,10 +23,7 @@ class UI_Element
 public:
 
 	UI_Element();
-	UI_Element(int x, int y);
 	virtual ~UI_Element();
-	
-
 	
 	virtual bool PreUpdate() { return true; };
 	virtual bool Update(float dt) { return true; };
@@ -39,14 +37,14 @@ public:
 
 
 public:
-
+	p2SString sprite;
 	iPoint position;
 	int height;
 	int weight;
 	SDL_Rect png_pos = { 0,0,0,0 };
 	UI_Elements type = UI_Elements::NON_TYPE;
 	//
-
+	pugi::xml_node		UI_node;
 	Animation* current_animation = nullptr;
 	SDL_Texture* texture;
 
