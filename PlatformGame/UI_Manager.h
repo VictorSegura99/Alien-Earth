@@ -4,6 +4,7 @@
 #include "j1Module.h"
 #include "p2Animation.h"
 #include "p2DynArray.h"
+#include "p2List.h"
 
 
 class UI_Element;
@@ -20,21 +21,13 @@ public:
 
 	bool Start();
 
-	bool PreUpdate();
-
 	bool Update(float dt);
-
-	bool PostUpdate();
-
-	bool Load(pugi::xml_node&);
-
-	bool Save(pugi::xml_node&) const;
 
 	bool CleanUp();
 
-	UI_Element* CreateButton(SDL_Rect pos);
+	UI_Element* CreateButton(int x, int y, int weight, int height);
 
-	
+	void DeleteButtons();
 
 
 private:

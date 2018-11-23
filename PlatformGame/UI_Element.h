@@ -40,7 +40,9 @@ public:
 
 public:
 
-	SDL_Rect position;
+	iPoint position;
+	int height;
+	int weight;
 	SDL_Rect png_pos = { 0,0,0,0 };
 	UI_Elements type = UI_Elements::NON_TYPE;
 	//

@@ -93,6 +93,7 @@ bool j1Choose::PreUpdate()
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && !GameOn && !start) {
 		start = true;
 		App->audio->PlayFx(introfx);
+		CreateButtons();
 	}
 	return true;
 }
@@ -185,8 +186,6 @@ bool j1Choose::Update(float dt)
 				App->render->Blit(blue, 665,350, &(BlueStand.GetCurrentFrame(dt)));
 				repeat = false;
 			}
-			if (button == nullptr)
-				button = App->ui_manager->CreateButton({ 100,100,70,39 });
 			if (button->pressed) {
 				playernumber = PlayerNumber1;
 				App->scene->active = !App->scene->active;
@@ -200,6 +199,7 @@ bool j1Choose::Update(float dt)
 				App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
 				App->scene->SpawnEnemies();
 				App->entitymanager->GetPlayerData()->SetCamera();
+				App->ui_manager->DeleteButtons();
 				GameOn = true;
 			}
 		}
@@ -263,6 +263,13 @@ Animation j1Choose::LoadGigantAliensAnimations(int playernumber, pugi::xml_node&
 	anim.loop = config.child(XML_Name_Player_Anims.GetString()).child(NameAnim.GetString()).attribute("loop").as_bool();
 
 	return anim;
+}
+
+void j1Choose::CreateButtons()
+{
+	button = App->ui_manager->CreateButton(100, 100, 70, 39);
+
+
 }
 
 

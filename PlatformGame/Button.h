@@ -10,7 +10,7 @@
 class Button : public UI_Element {
 public:
 
-	Button(SDL_Rect pos);
+	Button(int x, int y, int weight, int height);
 	virtual ~Button();
 	bool Update(float dt);
 	void Draw(float dt);

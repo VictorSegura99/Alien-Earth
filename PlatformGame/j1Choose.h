@@ -37,6 +37,7 @@ public:
 	bool CleanUp();
 
 	Animation LoadGigantAliensAnimations(int playernumber, pugi::xml_node&, p2SString NameAnim) const;
+	void CreateButtons();
 
 public:
 
@@ -79,9 +80,11 @@ public:
 	bool repeat = false;
 	bool repeat2 = false;
 	bool repeat3 = false;
+	bool FirstUpdate = true;
 
 	unsigned int choosefx;
 	unsigned int introfx;
+
 
 	UI_Element* button = nullptr;
 };
