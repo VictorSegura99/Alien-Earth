@@ -94,7 +94,8 @@ bool j1Choose::PreUpdate()
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && !GameOn && !start) {
 		start = true;
 		App->audio->PlayFx(introfx);
-		CreateButtons();
+		CreateMainMenuButtons();
+		//CreateButtons();
 	}
 	return true;
 }
@@ -105,41 +106,10 @@ bool j1Choose::Update(float dt)
 	BROFILER_CATEGORY("Choose: Update", Profiler::Color::Aquamarine);
 	if (start) {
 		if (!GameOn) {
-			App->render->Blit(Choose, 0, 0, NULL);
-			if (buttonJEFF->mouseOn) {
-				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
-				App->render->Blit(yellow, 150, 350, &(YellowWalk.GetCurrentFrame(dt)));
-				App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
-				if (buttonJEFF->pressed) {
-					playernumber = PlayerNumber1;
-					StartLevel();
-				}
-			}
-			else if (buttonJANE->mouseOn) {
-				App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
-				App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
-				App->render->Blit(pink, 418, 350, &(PinkWalk.GetCurrentFrame(dt)));
-				if (buttonJANE->pressed) {
-					playernumber = PlayerNumber2;
-					StartLevel();
-				}
-			}
-			else if (buttonJERRY->mouseOn) {
-				App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
-				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
-				App->render->Blit(blue, 665, 350, &(BlueWalk.GetCurrentFrame(dt)));
-				if (buttonJERRY->pressed) {
-					playernumber = PlayerNumber3;
-					StartLevel();
-				}
-			}
-			else {
-				App->render->Blit(NoChoose, 0, 0, NULL);
-				App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
-				App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
-				App->render->Blit(blue, 665,350, &(BlueStand.GetCurrentFrame(dt)));
-				repeat = false;
-			}
+			if (InMainMenu)
+				MainMenu();
+			if (StartChoosing)
+				MenuChoosePlayer(dt);
 		}
 	}
 	else {
@@ -158,9 +128,10 @@ bool j1Choose::PostUpdate()
 			ret = false;
 	}
 	if (GoStart) {
-		
 		if (App->fade->current_step==App->fade->fade_from_black) {
 			GoStart = false;
+			InMainMenu = true;
+			StartChoosing = false;
 			App->scene->active = !App->scene->active;
 			App->collision->active = !App->collision->active;
 			App->map->active = !App->map->active;
@@ -229,6 +200,64 @@ void j1Choose::StartLevel()
 	App->entitymanager->GetPlayerData()->Intro = true;
 	App->fade->FadeToBlack(3.0f);
 	GoStart = true;
+}
+
+void j1Choose::MenuChoosePlayer(float dt)
+{
+	App->render->Blit(Choose, 0, 0, NULL);
+	if (buttonJEFF->mouseOn) {
+		App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
+		App->render->Blit(yellow, 150, 350, &(YellowWalk.GetCurrentFrame(dt)));
+		App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
+		if (buttonJEFF->pressed) {
+			playernumber = PlayerNumber1;
+			StartLevel();
+		}
+	}
+	else if (buttonJANE->mouseOn) {
+		App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
+		App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
+		App->render->Blit(pink, 418, 350, &(PinkWalk.GetCurrentFrame(dt)));
+		if (buttonJANE->pressed) {
+			playernumber = PlayerNumber2;
+			StartLevel();
+		}
+	}
+	else if (buttonJERRY->mouseOn) {
+		App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
+		App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
+		App->render->Blit(blue, 665, 350, &(BlueWalk.GetCurrentFrame(dt)));
+		if (buttonJERRY->pressed) {
+			playernumber = PlayerNumber3;
+			StartLevel();
+		}
+	}
+	else {
+		App->render->Blit(NoChoose, 0, 0, NULL);
+		App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
+		App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
+		App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
+		repeat = false;
+	}
+
+
+}
+
+void j1Choose::MainMenu()
+{
+	App->render->Blit(NoChoose, 0, 0, NULL);
+	if (buttonSTART->pressed) {
+		App->ui_manager->DeleteButtons();
+		CreateButtons();
+		InMainMenu = false;
+		StartChoosing = true;
+	}
+}
+
+void j1Choose::CreateMainMenuButtons()
+{
+	buttonSTART = App->ui_manager->CreateButton(400, 350, 70, 39, 1);
+	
 }
 
 

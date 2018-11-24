@@ -39,6 +39,9 @@ public:
 	Animation LoadGigantAliensAnimations(int playernumber, pugi::xml_node&, p2SString NameAnim) const;
 	void CreateButtons();
 	void StartLevel();
+	void MenuChoosePlayer(float dt);
+	void MainMenu();
+	void CreateMainMenuButtons();
 
 public:
 
@@ -81,10 +84,13 @@ public:
 	bool repeat3 = false;
 	bool FirstUpdate = true;
 	bool GoStart = false;
+	bool StartChoosing = false;
+	bool InMainMenu = true;
 
 	unsigned int choosefx;
 	unsigned int introfx;
 
+	UI_Element* buttonSTART = nullptr;
 	UI_Element* buttonJEFF = nullptr;
 	UI_Element* buttonJANE = nullptr;
 	UI_Element* buttonJERRY = nullptr;

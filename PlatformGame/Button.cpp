@@ -45,7 +45,7 @@ bool Button::Update(float dt)
 			App->audio->PlayFx(fxOn);
 			repeataudio = false;
 		}
-		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
 			png_pos = Pressed;
 			pressed = true;
 		}
