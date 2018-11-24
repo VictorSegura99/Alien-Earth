@@ -79,6 +79,9 @@
     <ClCompile Include="Button.cpp">
       <Filter>Modules\UI</Filter>
     </ClCompile>
+    <ClCompile Include="j1FadeToBlack.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PugiXml\src\pugixml.hpp">
@@ -179,6 +182,9 @@
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>Modules\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="j1FadeToBlack.h">
+      <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

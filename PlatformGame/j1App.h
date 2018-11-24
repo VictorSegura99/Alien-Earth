@@ -21,6 +21,7 @@ class j1Choose;
 class j1Particles;
 class j1PathFinding;
 class UI_Manager;
+class j1FadeToBlack;
 
 class j1App
 {
@@ -101,6 +102,7 @@ public:
 	j1Particles*		particles;
 	j1PathFinding*		pathfinding;
 	UI_Manager*			ui_manager;
+	j1FadeToBlack*		fade;
 
 private:
 
