@@ -110,7 +110,7 @@ bool Player::Start()
 {
 	BROFILER_CATEGORY("Player: Start", Profiler::Color::DarkGreen)
 	bool ret = true;
-
+	Intro = true;
 	auxGravity = gravity;
 	jumpfx = App->audio->LoadFx(JumpFx.GetString());
 	waterfx = App->audio->LoadFx(WaterFx.GetString());
@@ -133,7 +133,7 @@ bool Player::Start()
 	IntroLight= App->tex->Load(introlight.GetString());
 
 	current_animation = &idle[NumPlayer];
-	Intro = true;
+	
 	return ret;
 }
 bool Player::PreUpdate() //Here we preload the input functions to determine the state of the player
@@ -337,7 +337,8 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 	switch (c2->type) {
 	case COLLIDER_GROUND:
 		if (position.y < c2->rect.y + c2->rect.h) {
-			Intro = false;
+			if (Intro)
+				Intro = false;
 			velocity.y = 0;
 			if (current_animation == &BottomLeft.anim || current_animation == &BottomRight.anim) {
 				App->particles->AddParticle(App->particles->smokeBottom, position.x - 20, position.y, COLLIDER_NONE);

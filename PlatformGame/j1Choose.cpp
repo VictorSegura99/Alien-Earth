@@ -12,6 +12,7 @@
 #include "Player.h"
 #include "j1Collision.h"
 #include "Entity.h"
+#include "j1FadeToBlack.h"
 #include "EntityManager.h"
 #include "Button.h"
 #include "UI_Element.h"
@@ -156,7 +157,24 @@ bool j1Choose::PostUpdate()
 		if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 			ret = false;
 	}
-	
+	if (GoStart) {
+		
+		if (App->fade->current_step==App->fade->fade_from_black) {
+			GoStart = false;
+			App->scene->active = !App->scene->active;
+			App->collision->active = !App->collision->active;
+			App->map->active = !App->map->active;
+			App->scene->KnowMap = 0;
+			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
+			App->entitymanager->ActiveGame = true;
+			App->entitymanager->GetPlayerData()->Start();
+			App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
+			App->scene->SpawnEnemies();
+			App->entitymanager->GetPlayerData()->SetCamera();
+			App->ui_manager->DeleteButtons();
+			GameOn = true;
+		}
+	}
 	return ret;
 }
 
@@ -208,18 +226,9 @@ void j1Choose::CreateButtons()
 
 void j1Choose::StartLevel()
 {
-	App->scene->active = !App->scene->active;
-	App->collision->active = !App->collision->active;
-	App->map->active = !App->map->active;
-	App->scene->KnowMap = 0;
-	App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-	App->entitymanager->ActiveGame = true;
-	App->entitymanager->GetPlayerData()->Start();
-	App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
-	App->scene->SpawnEnemies();
-	App->entitymanager->GetPlayerData()->SetCamera();
-	App->ui_manager->DeleteButtons();
-	GameOn = true;
+	App->entitymanager->GetPlayerData()->Intro = true;
+	App->fade->FadeToBlack(3.0f);
+	GoStart = true;
 }
 
 

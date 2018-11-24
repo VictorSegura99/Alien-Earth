@@ -59,12 +59,14 @@ bool Bat::PreUpdate()
 bool Bat::PostUpdate()
 {
 	BROFILER_CATEGORY("Bat: PostUpdate", Profiler::Color::Green);
-
-	if (coll->CanBeDeleted) {
-		coll->CanBeDeleted = false;
-		coll->type = COLLIDER_PLAYER;
-		death = true;
+	if (coll != nullptr) {
+		if (coll->CanBeDeleted) {
+			coll->CanBeDeleted = false;
+			coll->type = COLLIDER_PLAYER;
+			death = true;
+		}
 	}
+	
 	if (death) {
 		if (position.x < App->render->camera.x)
 			App->entitymanager->DeleteEntity(this);

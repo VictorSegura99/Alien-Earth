@@ -80,6 +80,7 @@ public:
 	bool repeat2 = false;
 	bool repeat3 = false;
 	bool FirstUpdate = true;
+	bool GoStart = false;
 
 	unsigned int choosefx;
 	unsigned int introfx;

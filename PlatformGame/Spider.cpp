@@ -62,12 +62,14 @@ bool Spider::PreUpdate()
 bool Spider::PostUpdate()
 {
 	BROFILER_CATEGORY("Spider: PostUpdate", Profiler::Color::Green);
-	
-	if (coll->CanBeDeleted) {
-		coll->CanBeDeleted = false;
-		coll->to_delete = true;
-		death = true;
+	if (coll != nullptr) {
+		if (coll->CanBeDeleted) {
+			coll->CanBeDeleted = false;
+			coll->to_delete = true;
+			death = true;
+		}
 	}
+	
 	if (death) {
 		if (position.x<App->render->camera.x)
 			App->entitymanager->DeleteEntity(this);
@@ -79,7 +81,9 @@ bool Spider::PostUpdate()
 bool Spider::Update(float dt)
 {
 	BROFILER_CATEGORY("Spider: Update", Profiler::Color::Green);
-	
+	if (coll == nullptr)
+		coll = App->collision->AddCollider({ 0,0,72,53 }, COLLIDER_ENEMY_SPIDER, (j1Module*)App->entitymanager);
+	coll->SetPos(position.x, position.y);
 	if (!TouchingGround && !death) {
 		acceleration.y = gravity * dt;
 	}
@@ -158,9 +162,7 @@ void Spider::Draw(float dt)
 {
 
 		App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
-	if (coll == nullptr)
-		coll = App->collision->AddCollider({ 0,0,72,53 }, COLLIDER_ENEMY_SPIDER, (j1Module*)App->entitymanager);
-	coll->SetPos(position.x, position.y);
+	
 }
 
 bool Spider::CleanUp()

@@ -13,9 +13,8 @@ public:
 	bool Start();
 	bool Update(float dt);
 	bool FadeToBlack(j1Module* module_off, j1Module* module_on, float time = 1.0f);
+	bool FadeToBlack(float time);
 	bool IsFading() const;
-
-private:
 
 	enum fade_step
 	{
@@ -23,6 +22,10 @@ private:
 		fade_to_black,
 		fade_from_black
 	} current_step = fade_step::none;
+
+private:
+
+	
 
 	Uint32 start_time = 0;
 	Uint32 total_time = 0;
