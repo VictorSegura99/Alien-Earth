@@ -88,6 +88,7 @@ public:
 	UI_Element* buttonJEFF = nullptr;
 	UI_Element* buttonJANE = nullptr;
 	UI_Element* buttonJERRY = nullptr;
+
 };
 
 #endif //

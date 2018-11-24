@@ -6,6 +6,7 @@
 #include "j1Render.h"
 #include "p2Log.h"
 #include "j1Audio.h"
+#include "CheckBox.h"
 
 UI_Manager::UI_Manager()
 {
@@ -78,9 +79,21 @@ UI_Element * UI_Manager::CreateButton(int x, int y, int weight, int height, int 
 	return ret;
 }
 
+UI_Element * UI_Manager::CreateCheckBox(int x, int y, int weight, int height)
+{
+	UI_Element* ret = nullptr;
+
+	ret = new CheckBox(x, y, weight, height);
+	ret->type = CHECKBOX;
+
+	if (ret != nullptr)
+		elements.PushBack(ret);
+
+	return ret;
+}
+
 void UI_Manager::DeleteButtons()
 {
-
 	for (int i = elements.Count() - 1; i >= 0; --i)
 	{
 		if (elements[i] != nullptr && elements[i]->type == BUTTON) {
@@ -90,8 +103,18 @@ void UI_Manager::DeleteButtons()
 			elements.RemoveAt(i);
 		}
 	}
-
-
+}
+void UI_Manager::DeleteCheckBoxes()
+{
+	for (int i = elements.Count() - 1; i >= 0; --i)
+	{
+		if (elements[i] != nullptr && elements[i]->type == CHECKBOX) {
+			elements[i]->CleanUp();
+			delete(elements[i]);
+			elements[i] = nullptr;
+			elements.RemoveAt(i);
+		}
+	}
 }
 
 

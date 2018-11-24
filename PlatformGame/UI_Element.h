@@ -15,6 +15,7 @@ enum UI_Elements
 	NON_TYPE,
 
 	BUTTON,
+	CHECKBOX,
 };
 
 
