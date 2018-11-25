@@ -239,8 +239,6 @@ void j1Choose::MenuChoosePlayer(float dt)
 		App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
 		repeat = false;
 	}
-
-
 }
 
 void j1Choose::MainMenu()
