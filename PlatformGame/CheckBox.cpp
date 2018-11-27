@@ -38,10 +38,9 @@ bool CheckBox::Update(float dt)
 	if (pressed)
 		png_pos = Pressed;
 	else png_pos = NoPressedNoMouseOn;
-	if (App->ui_manager->debug_draw) {
-		App->render->DrawQuad({ position.x,position.y,weight,height }, 0, 0, 0, 255, false);
-	}
+
 	Draw(dt);
+	
 	return true;
 }
 

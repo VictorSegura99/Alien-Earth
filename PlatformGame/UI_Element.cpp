@@ -4,6 +4,7 @@
 #include "j1Textures.h"
 #include "p2SString.h"
 #include "j1Input.h"
+#include "UI_Manager.h"
 
 UI_Element::UI_Element()
 {
@@ -32,6 +33,9 @@ bool UI_Element::CleanUp()
 void UI_Element::Draw(float dt)
 {
 	App->render->Blit(texture, position.x, position.y, &(png_pos));
+	if (App->ui_manager->debug_draw) {
+		App->render->DrawQuad({ position.x,position.y,weight,height }, 255, 0, 0, 255, false);
+	}
 }
 bool UI_Element::IsMouseOn()
 {

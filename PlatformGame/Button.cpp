@@ -61,10 +61,11 @@ bool Button::Update(float dt)
 		mouseOn = false;
 	}
 
+	
+	Draw(dt);
 	if (App->ui_manager->debug_draw) {
 		App->render->DrawQuad({ position.x,position.y,weight,height }, 0, 0, 0, 255, false);
 	}
-	Draw(dt);
 	return true;
 }
 
