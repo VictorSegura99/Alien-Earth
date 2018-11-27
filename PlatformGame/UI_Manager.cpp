@@ -66,6 +66,16 @@ bool UI_Manager::CleanUp()
 	return true;
 }
 
+bool UI_Manager::Load(pugi::xml_node &)
+{
+	return true;
+}
+
+bool UI_Manager::Save(pugi::xml_node &) const
+{
+	return true;
+}
+
 UI_Element * UI_Manager::CreateButton(int x, int y, int type)
 {
 	UI_Element* ret = nullptr;

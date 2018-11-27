@@ -62,7 +62,7 @@ bool Button::Update(float dt)
 	}
 
 	
-	Draw(dt);
+
 
 	return true;
 }

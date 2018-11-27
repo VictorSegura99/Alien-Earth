@@ -13,14 +13,6 @@ public:
 	CheckBox(int x, int y);
 	virtual ~CheckBox();
 	bool Update(float dt);
-
-public:
-
-	SDL_Rect NoPressedNoMouseOn;
-	SDL_Rect MouseOn;
-	SDL_Rect Pressed;
-	bool repeataudio = true;
-
 };
 
 #endif

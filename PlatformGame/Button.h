@@ -13,13 +13,6 @@ public:
 	Button(int x, int y, int type);
 	virtual ~Button();
 	bool Update(float dt);
-	
-public:
-	
-	SDL_Rect NoPressedNoMouseOn;
-	SDL_Rect MouseOn;
-	SDL_Rect Pressed;
-	bool repeataudio = true;
 
 };
 

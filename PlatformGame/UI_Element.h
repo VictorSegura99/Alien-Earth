@@ -26,9 +26,7 @@ public:
 	UI_Element();
 	virtual ~UI_Element();
 	
-	virtual bool PreUpdate() {	return true;};
 	virtual bool Update(float dt) { return true; };
-	virtual bool PostUpdate() { return true; };
 	virtual bool CleanUp();
 	virtual bool Awake(pugi::xml_node&) { return true; };
 	virtual void Draw(float dt);
@@ -47,7 +45,7 @@ public:
 	UI_Elements type = UI_Elements::NON_TYPE;
 	//
 	pugi::xml_node		UI_node;
-	Animation* current_animation = nullptr;
+
 	SDL_Texture* texture;
 
 	
@@ -60,6 +58,11 @@ public:
 
 	p2SString FXON;
 
+	//
+	SDL_Rect NoPressedNoMouseOn;
+	SDL_Rect MouseOn;
+	SDL_Rect Pressed;
+	bool repeataudio = true;
 };
 
 #endif

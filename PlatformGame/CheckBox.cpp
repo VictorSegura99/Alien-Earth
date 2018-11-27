@@ -39,8 +39,7 @@ bool CheckBox::Update(float dt)
 		png_pos = Pressed;
 	else png_pos = NoPressedNoMouseOn;
 
-	Draw(dt);
-	
+
 	return true;
 }
 

@@ -24,6 +24,10 @@ public:
 	bool Update(float dt);
 
 	bool CleanUp();
+	void Draw(float dt);
+	bool Load(pugi::xml_node&);
+
+	bool Save(pugi::xml_node&) const;
 
 	UI_Element* CreateButton(int x, int y, int type);
 	UI_Element* CreateCheckBox(int x, int y);
