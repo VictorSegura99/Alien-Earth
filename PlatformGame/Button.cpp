@@ -7,23 +7,25 @@
 #include "j1Audio.h"
 #include "j1Input.h"
 
-Button::Button(int x, int y, int weight, int height, int type)
+Button::Button(int x, int y, int type)
 {
 	position.x = x;
 	position.y = y;
-	this->weight = weight;
-	this->height = height;
-
+	
 	switch (type) {
 	case 1: {
 		NoPressedNoMouseOn = { 215,712,70,39 };
 		MouseOn = { 463,712,70,39 };
 		Pressed = { 702,711,70,39 };
+		weight = 70;
+		height = 39;
 		break; }
-	case 2: {
+	case 2: { //button choose player
 		NoPressedNoMouseOn = { 0,0,0,0 };
-		MouseOn = { 0,0,weight,height };
-		Pressed = { 0,0,weight,height };
+		MouseOn = { 0,0,225,441 };
+		Pressed = { 0,0,225,441 };
+		weight = 225;
+		height = 441;
 		FXON = UI_node.child("button").child("ChooseFx").text().as_string();
 		fxOn = App->audio->LoadFx(FXON.GetString());
 		break; }
@@ -45,8 +47,11 @@ bool Button::Update(float dt)
 			App->audio->PlayFx(fxOn);
 			repeataudio = false;
 		}
-		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+		
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
 			png_pos = Pressed;
+		}
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
 			pressed = true;
 		}
 	}
@@ -59,27 +64,10 @@ bool Button::Update(float dt)
 	if (App->ui_manager->debug_draw) {
 		App->render->DrawQuad({ position.x,position.y,weight,height }, 0, 0, 0, 255, false);
 	}
-
+	Draw(dt);
 	return true;
 }
 
-void Button::Draw(float dt)
-{
-	App->render->Blit(texture, position.x, position.y, &(png_pos));
-}
 
-bool Button::CleanUp()
-{
-	App->tex->UnLoad(texture);
-	return true;
-}
 
-bool Button::IsMouseOn()
-{
-	iPoint mouse_pos;
-	App->input->GetMousePosition(mouse_pos.x, mouse_pos.y);
-	if (mouse_pos.x >= position.x && position.x + weight >= mouse_pos.x && mouse_pos.y >= position.y && position.y + height >= mouse_pos.y) {
-		return true;
-	}
-	return false;
-}
+

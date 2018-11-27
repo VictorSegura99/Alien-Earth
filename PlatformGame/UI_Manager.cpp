@@ -66,11 +66,11 @@ bool UI_Manager::CleanUp()
 	return true;
 }
 
-UI_Element * UI_Manager::CreateButton(int x, int y, int weight, int height, int type)
+UI_Element * UI_Manager::CreateButton(int x, int y, int type)
 {
 	UI_Element* ret = nullptr;
 	
-	ret = new Button(x, y, weight, height, type);
+	ret = new Button(x, y, type);
 	ret->type = BUTTON;
 
 	if (ret != nullptr)
@@ -79,11 +79,11 @@ UI_Element * UI_Manager::CreateButton(int x, int y, int weight, int height, int 
 	return ret;
 }
 
-UI_Element * UI_Manager::CreateCheckBox(int x, int y, int weight, int height)
+UI_Element * UI_Manager::CreateCheckBox(int x, int y)
 {
 	UI_Element* ret = nullptr;
 
-	ret = new CheckBox(x, y, weight, height);
+	ret = new CheckBox(x, y);
 	ret->type = CHECKBOX;
 
 	if (ret != nullptr)

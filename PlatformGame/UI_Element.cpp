@@ -23,12 +23,22 @@ UI_Element::~UI_Element()
 {
 }
 
-bool UI_Element::PreUpdate()
+bool UI_Element::CleanUp()
 {
-
+	App->tex->UnLoad(texture);
 	return true;
 }
 
 void UI_Element::Draw(float dt)
 {
+	App->render->Blit(texture, position.x, position.y, &(png_pos));
+}
+bool UI_Element::IsMouseOn()
+{
+	iPoint mouse_pos;
+	App->input->GetMousePosition(mouse_pos.x, mouse_pos.y);
+	if (mouse_pos.x >= position.x && position.x + weight >= mouse_pos.x && mouse_pos.y >= position.y && position.y + height >= mouse_pos.y) {
+		return true;
+	}
+	return false;
 }

@@ -25,8 +25,8 @@ public:
 
 	bool CleanUp();
 
-	UI_Element* CreateButton(int x, int y, int weight, int height, int type);
-	UI_Element* CreateCheckBox(int x, int y, int weight, int height);
+	UI_Element* CreateButton(int x, int y, int type);
+	UI_Element* CreateCheckBox(int x, int y);
 	void DeleteButtons();
 
 	void DeleteCheckBoxes();

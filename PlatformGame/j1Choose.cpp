@@ -190,9 +190,9 @@ Animation j1Choose::LoadGigantAliensAnimations(int playernumber, pugi::xml_node&
 
 void j1Choose::CreateButtons()
 {
-	buttonJEFF = App->ui_manager->CreateButton(138, 229, 225, 441, 2);
-	buttonJANE = App->ui_manager->CreateButton(388, 229, 225, 441, 2);
-	buttonJERRY = App->ui_manager->CreateButton(638, 229, 225, 441, 2);
+	buttonJEFF = App->ui_manager->CreateButton(138, 229, 2);
+	buttonJANE = App->ui_manager->CreateButton(388, 229, 2);
+	buttonJERRY = App->ui_manager->CreateButton(638, 229, 2);
 }
 
 void j1Choose::StartLevel()
@@ -254,8 +254,8 @@ void j1Choose::MainMenu()
 
 void j1Choose::CreateMainMenuButtons()
 {
-	buttonSTART = App->ui_manager->CreateButton(400, 350, 70, 39, 1);
-	
+	buttonSTART = App->ui_manager->CreateButton(400, 350, 1);
+	checkbox = App->ui_manager->CreateCheckBox(600, 200);
 }
 
 

@@ -10,13 +10,9 @@
 class CheckBox : public UI_Element {
 public:
 
-	CheckBox(int x, int y, int weight, int height);
+	CheckBox(int x, int y);
 	virtual ~CheckBox();
 	bool Update(float dt);
-	void Draw(float dt);
-	bool CleanUp();
-
-	bool IsMouseOn();
 
 public:
 

@@ -7,15 +7,15 @@
 #include "j1Audio.h"
 #include "j1Input.h"
 
-CheckBox::CheckBox(int x, int y, int weight, int height)
+CheckBox::CheckBox(int x, int y)
 {
 	position.x = x;
 	position.y = y;
-	this->weight = weight;
-	this->height = height;
+	weight = 40;
+	height = 39;
 
-	NoPressedNoMouseOn = { 215,712,70,39 };
-	Pressed = { 702,711,70,39 };
+	NoPressedNoMouseOn = { 283,0,40,39 };
+	Pressed = { 243,0,40,39 };
 
 	png_pos = NoPressedNoMouseOn;
 }
@@ -28,7 +28,10 @@ bool CheckBox::Update(float dt)
 {
 	
 	if (IsMouseOn()) {
-		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN) {
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
+			png_pos = Pressed;
+		}
+		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
 			pressed = !pressed;
 		}
 	}
@@ -38,26 +41,8 @@ bool CheckBox::Update(float dt)
 	if (App->ui_manager->debug_draw) {
 		App->render->DrawQuad({ position.x,position.y,weight,height }, 0, 0, 0, 255, false);
 	}
-
+	Draw(dt);
 	return true;
 }
 
-void CheckBox::Draw(float dt)
-{
-	App->render->Blit(texture, position.x, position.y, &(png_pos));
-}
 
-bool CheckBox::CleanUp()
-{
-	App->tex->UnLoad(texture);
-	return true;
-}
-bool CheckBox::IsMouseOn()
-{
-	iPoint mouse_pos;
-	App->input->GetMousePosition(mouse_pos.x, mouse_pos.y);
-	if (mouse_pos.x >= position.x && position.x + weight >= mouse_pos.x && mouse_pos.y >= position.y && position.y + height >= mouse_pos.y) {
-		return true;
-	}
-	return false;
-}
