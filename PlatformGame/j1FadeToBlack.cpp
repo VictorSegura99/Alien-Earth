@@ -6,23 +6,25 @@
 #include "SDL/include/SDL_timer.h"
 #include "j1Window.h"
 #include "p2Log.h"
-
+#include "j1App.h"
 
 
 j1FadeToBlack::j1FadeToBlack()
 {
-	screen = { 0,0, 1000, 900 };
 }
 
 j1FadeToBlack::~j1FadeToBlack()
 {
 }
 
+
 // Load assets
 bool j1FadeToBlack::Start()
 {
-
 	SDL_SetRenderDrawBlendMode(App->render->renderer, SDL_BLENDMODE_BLEND);
+
+	screen = { 0,0,App->win->Width,  App->win->Height };
+
 	return true;
 }
 

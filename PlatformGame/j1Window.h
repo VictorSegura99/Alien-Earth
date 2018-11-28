@@ -42,6 +42,9 @@ public:
 	uint		width;
 	uint		height;
 	uint		scale;
+
+	int Width;
+	int Height;
 };
 
 #endif // __j1WINDOW_H__
