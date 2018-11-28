@@ -8,19 +8,15 @@
 #include "j1Input.h"
 #include "j1Fonts.h"
 
-Label::Label(int x, int y, p2SString name)
+Label::Label(int x, int y, p2SString name, bool CanBeMoved) : UI_Element (x,y)
 {
-	
-	weight = 100;
-	height = 100;
-	position.x = x;
-	position.y = y;
+	this->CanBeMoved = CanBeMoved;
 	Distance.x = position.x - (-App->render->camera.x);
 	Distance.y = position.y - (-App->render->camera.y);
 	this->name = name;
 	App->tex->UnLoad(atlas);
 	atlas = App->fonts->Print(name.GetString());
-	
+	App->fonts->CalcSize(name.GetString(), width, height, App->fonts->default);
 	
 }
 
@@ -30,10 +26,10 @@ Label::~Label()
 
 bool Label::Update(float dt)
 {
-
-	position.x = (-App->render->camera.x) + Distance.x;
-	position.y = (-App->render->camera.y) + Distance.y;
-
+	if (!CanBeMoved) {
+		position.x = (-App->render->camera.x) + Distance.x;
+		position.y = (-App->render->camera.y) + Distance.y;
+	}
 
 	return true;
 }

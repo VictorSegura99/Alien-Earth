@@ -7,24 +7,28 @@
 #include "j1Audio.h"
 #include "j1Input.h"
 
-Button::Button(int x, int y, int type)
+Button::Button(int x, int y, int type, p2SString name) : UI_Element(x, y)
 {
-	position.x = x;
-	position.y = y;
 	
 	switch (type) {
 	case 1: {
 		NoPressedNoMouseOn = { 215,712,70,39 };
 		MouseOn = { 463,712,70,39 };
 		Pressed = { 702,711,70,39 };
-		weight = 70;
+		width = 70;
 		height = 39;
+		if (name != "NONE") {
+			label = App->ui_manager->CreateLabel(position.x + width / 2, position.y + height / 2, name, true);
+			label->position.x -= label->width / 2;
+			label->position.y -= label->height / 2;
+
+		}
 		break; }
 	case 2: { //button choose player
 		NoPressedNoMouseOn = { 0,0,0,0 };
 		MouseOn = { 0,0,225,441 };
 		Pressed = { 0,0,225,441 };
-		weight = 225;
+		width = 225;
 		height = 441;
 		FXON = UI_node.child("button").child("ChooseFx").text().as_string();
 		fxOn = App->audio->LoadFx(FXON.GetString());
@@ -36,6 +40,7 @@ Button::Button(int x, int y, int type)
 
 Button::~Button()
 {
+	
 }
 
 bool Button::Update(float dt)

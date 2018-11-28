@@ -253,6 +253,7 @@ void j1Choose::MainMenu()
 	App->render->Blit(NoChoose, 0, 0, NULL);
 	if (buttonSTART->pressed) {
 		App->ui_manager->DeleteButtons();
+		App->ui_manager->DeleteLabels();
 		CreateButtonsTypePlayer();
 		InMainMenu = false;
 		StartChoosing = true;
@@ -262,7 +263,7 @@ void j1Choose::MainMenu()
 void j1Choose::CreateMainMenuButtons()
 {
 	AlreadyChoosen = false;
-	buttonSTART = App->ui_manager->CreateButton(400, 350, 1);
+	buttonSTART = App->ui_manager->CreateButton(400, 350, 1, "START");
 	//checkbox = App->ui_manager->CreateCheckBox(600, 200);
 }
 

@@ -43,7 +43,11 @@ bool UI_Manager::Update(float dt)
 			elements[i]->Update(dt);
 	}
 	for (int i = 0; i < elements.Count(); i++) {
-		if (elements[i] != nullptr)
+		if (elements[i] != nullptr && elements[i]->type != LABEL)
+			elements[i]->Draw(dt);
+	}
+	for (int i = 0; i < elements.Count(); i++) {
+		if (elements[i] != nullptr && elements[i]->type == LABEL)
 			elements[i]->Draw(dt);
 	}
 
@@ -82,11 +86,11 @@ bool UI_Manager::Save(pugi::xml_node &) const
 	return true;
 }
 
-UI_Element * UI_Manager::CreateButton(int x, int y, int type)
+UI_Element * UI_Manager::CreateButton(int x, int y, int type, p2SString name)
 {
 	UI_Element* ret = nullptr;
 	
-	ret = new Button(x, y, type);
+	ret = new Button(x, y, type, name);
 	ret->type = BUTTON;
 
 	if (ret != nullptr)
@@ -121,11 +125,11 @@ UI_Element * UI_Manager::CreateImage(int x, int y)
 	return ret;
 }
 
-UI_Element * UI_Manager::CreateLabel(int x, int y, p2SString name)
+UI_Element * UI_Manager::CreateLabel(int x, int y, p2SString name, bool CanBeMoved)
 {
 	UI_Element* ret = nullptr;
 
-	ret = new Label(x, y, name);
+	ret = new Label(x, y, name, CanBeMoved);
 	ret->type = LABEL;
 
 	if (ret != nullptr)

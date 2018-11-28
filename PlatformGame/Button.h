@@ -10,9 +10,12 @@
 class Button : public UI_Element {
 public:
 
-	Button(int x, int y, int type);
+	Button(int x, int y, int type, p2SString name = "NONE");
 	virtual ~Button();
 	bool Update(float dt);
+
+private:
+	UI_Element * label = nullptr;
 
 };
 

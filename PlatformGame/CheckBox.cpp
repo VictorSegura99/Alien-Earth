@@ -7,11 +7,10 @@
 #include "j1Audio.h"
 #include "j1Input.h"
 
-CheckBox::CheckBox(int x, int y)
+CheckBox::CheckBox(int x, int y) : UI_Element(x, y)
 {
-	position.x = x;
-	position.y = y;
-	weight = 40;
+	
+	width = 40;
 	height = 39;
 
 	NoPressedNoMouseOn = { 283,0,40,39 };

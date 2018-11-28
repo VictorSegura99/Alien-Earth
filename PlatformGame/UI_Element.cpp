@@ -8,6 +8,10 @@
 
 UI_Element::UI_Element()
 {
+}
+
+UI_Element::UI_Element(int x, int y) : position(x,y)
+{
 	pugi::xml_document	config_file;
 	pugi::xml_node		config;
 
@@ -39,14 +43,14 @@ void UI_Element::Draw(float dt)
 	}
 	
 	if (App->ui_manager->debug_draw) {
-		App->render->DrawQuad({ position.x,position.y,weight,height }, 255, 0, 0, 255, false);
+		App->render->DrawQuad({ position.x,position.y,width,height }, 255, 0, 0, 255, false);
 	}
 }
 bool UI_Element::IsMouseOn()
 {
 	iPoint mouse_pos;
 	App->input->GetMousePosition(mouse_pos.x, mouse_pos.y);
-	if (mouse_pos.x >= position.x && position.x + weight >= mouse_pos.x && mouse_pos.y >= position.y && position.y + height >= mouse_pos.y) {
+	if (mouse_pos.x >= position.x && position.x + width >= mouse_pos.x && mouse_pos.y >= position.y && position.y + height >= mouse_pos.y) {
 		return true;
 	}
 	return false;

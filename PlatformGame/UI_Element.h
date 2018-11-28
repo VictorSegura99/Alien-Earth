@@ -26,6 +26,7 @@ class UI_Element
 public:
 
 	UI_Element();
+	UI_Element(int x, int y);
 	virtual ~UI_Element();
 	
 	virtual bool Update(float dt) { return true; };
@@ -42,7 +43,7 @@ public:
 	p2SString sprite;
 	iPoint position;
 	int height;
-	int weight;
+	int width;
 	SDL_Rect png_pos = { 0,0,0,0 };
 	UI_Elements type = UI_Elements::NON_TYPE;
 	//

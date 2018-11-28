@@ -105,7 +105,7 @@ SDL_Texture* const j1Textures::LoadSurface(SDL_Surface* surface)
 	{
 		LOG("Unable to create texture from surface! SDL Error: %s\n", SDL_GetError());
 	}
-	else
+	else 
 	{
 		textures.add(texture);
 	}

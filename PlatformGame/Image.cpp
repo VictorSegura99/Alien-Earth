@@ -7,17 +7,14 @@
 #include "j1Audio.h"
 #include "j1Input.h"
 
-Image::Image(int x, int y)
+Image::Image(int x, int y) : UI_Element(x, y)
 {
 	
-	position.x = x;
-	position.y = y;
-	original_pos.x = x;
-	original_pos.y = y;
+	
 	Distance.x = position.x - (-App->render->camera.x);
 	Distance.y = position.y - (-App->render->camera.y);
 	NoPressedNoMouseOn = { 336, 398, 328, 103 };
-	weight = 328;
+	width = 328;
 	height = 103;
 	png_pos = NoPressedNoMouseOn;
 

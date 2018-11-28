@@ -10,12 +10,13 @@
 class Label : public UI_Element {
 public:
 
-	Label(int x, int y, p2SString name);
+	Label(int x, int y, p2SString name, bool CanBeMoved);
 	virtual ~Label();
 	bool Update(float dt);
 public:
 	p2SString name;
 	iPoint Distance;
+	bool CanBeMoved = false;
 };
 
 #endif

@@ -16,7 +16,6 @@ public:
 
 private:
 	
-	iPoint original_pos;
 	iPoint Distance;
 };
 
