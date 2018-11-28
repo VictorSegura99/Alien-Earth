@@ -17,7 +17,7 @@ UI_Element::UI_Element()
 
 	sprite = UI_node.child("sprite").text().as_string();
 
-	texture = App->tex->Load(sprite.GetString());
+	atlas = App->tex->Load(sprite.GetString());
 }
 
 UI_Element::~UI_Element()
@@ -26,13 +26,13 @@ UI_Element::~UI_Element()
 
 bool UI_Element::CleanUp()
 {
-	App->tex->UnLoad(texture);
+	App->tex->UnLoad(atlas);
 	return true;
 }
 
 void UI_Element::Draw(float dt)
 {
-	App->render->Blit(texture, position.x, position.y, &(png_pos));
+	App->render->Blit(atlas, position.x, position.y, &(png_pos));
 	if (App->ui_manager->debug_draw) {
 		App->render->DrawQuad({ position.x,position.y,weight,height }, 255, 0, 0, 255, false);
 	}

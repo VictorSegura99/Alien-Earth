@@ -11,14 +11,16 @@
 	<scene>
 		<KnowMap value="0" />
 	</scene>
+	<pathfinding />
+	<fonts />
 	<:anonymous />
 	<UI />
 	<entity_manager>
 		<spider>
-			<position x="6799.40039" y="746.233459" />
+			<position x="6801.56006" y="733.233276" />
 		</spider>
 		<spider>
-			<position x="10499.3955" y="736.86676" />
+			<position x="10501.5605" y="739.899963" />
 		</spider>
 		<bat>
 			<position x="6000" y="600" />
@@ -30,12 +32,12 @@
 			<position x="9500" y="600" />
 		</bat>
 		<player>
-			<position x="1128.70056" y="485.056702" />
+			<position x="826.299744" y="551.620605" />
 		</player>
 	</entity_manager>
 	<particles />
 	<:anonymous />
 	<renderer>
-		<camera x="-628" y="-20" />
+		<camera x="-326" y="-101" />
 	</renderer>
 </game_state>

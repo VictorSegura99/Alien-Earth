@@ -16,6 +16,7 @@ enum UI_Elements
 
 	BUTTON,
 	CHECKBOX,
+	IMAGE,
 };
 
 
@@ -46,7 +47,7 @@ public:
 	//
 	pugi::xml_node		UI_node;
 
-	SDL_Texture* texture;
+	SDL_Texture* atlas;
 
 	
 

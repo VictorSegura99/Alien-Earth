@@ -16,6 +16,7 @@
 #include "EntityManager.h"
 #include "Button.h"
 #include "UI_Element.h"
+#include "Image.h"
 #include "UI_Manager.h"
 
 #include "Brofiler/Brofiler.h"
@@ -141,7 +142,7 @@ bool j1Choose::PostUpdate()
 			App->entitymanager->GetPlayerData()->Start();
 			App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
 			App->scene->SpawnEnemies();
-			App->entitymanager->GetPlayerData()->SetCamera();
+			App->entitymanager->GetPlayerData()->SetUI();
 			App->ui_manager->DeleteButtons();
 			GameOn = true;
 		}
@@ -255,7 +256,7 @@ void j1Choose::MainMenu()
 void j1Choose::CreateMainMenuButtons()
 {
 	buttonSTART = App->ui_manager->CreateButton(400, 350, 1);
-	checkbox = App->ui_manager->CreateCheckBox(600, 200);
+	//checkbox = App->ui_manager->CreateCheckBox(600, 200);
 }
 
 

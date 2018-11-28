@@ -31,8 +31,9 @@ public:
 
 	UI_Element* CreateButton(int x, int y, int type);
 	UI_Element* CreateCheckBox(int x, int y);
+	UI_Element* CreateImage(int x, int y);
+	
 	void DeleteButtons();
-
 	void DeleteCheckBoxes();
 
 

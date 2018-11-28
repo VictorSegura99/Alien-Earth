@@ -5,6 +5,8 @@
 #include "p2Point.h"
 #include "Entity.h"
 
+class UI_Element;
+
 class Player : public Entity
 {
 	struct BottomHit {
@@ -69,7 +71,7 @@ public:
 	void DoubleJump(float dt);
 	void BottomFall(float dt);
 	void Gravity(float dt);
-	void SetCamera();
+	void SetUI();
 	void CheckWhatToDoWhenCollidingWithEnemy(Collider * c2);
 
 private:
@@ -77,6 +79,10 @@ private:
 	float DashTime;
 
 public:
+
+
+	
+
 	bool cameraon = false;
 	
 	//float TIME;
