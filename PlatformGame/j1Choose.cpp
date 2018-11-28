@@ -290,6 +290,12 @@ void j1Choose::MainMenu()
 	if (buttonEXIT->pressed) {
 		Exit = true;
 	}
+	if (buttonGOBACK->pressed) {
+		App->ui_manager->DeleteButtons();
+		App->ui_manager->DeleteLabels();
+		start = false;
+		//InMainMenu = false;
+	}
 	
 }
 
@@ -301,7 +307,7 @@ void j1Choose::CreateMainMenuButtons()
 	buttonSETTINGS = App->ui_manager->CreateButton(400, 550, 1, "SETTINGS", 30);
 	buttonCREDITS = App->ui_manager->CreateButton(400, 650, 1, "CREDITS", 30);
 	buttonEXIT = App->ui_manager->CreateButton(400, 750, 1, "EXIT", 30);
-	
+	buttonGOBACK = App->ui_manager->CreateButton(50, 25, 3);
 	
 }
 

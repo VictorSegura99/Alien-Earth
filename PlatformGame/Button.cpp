@@ -35,8 +35,8 @@ Button::Button(int x, int y, int type, p2SString name, int size) : UI_Element(x,
 	case 3: {
 		this->type = 1;
 		NoPressedNoMouseOn = { 559,0,39,31 };
-		MouseOn = { 559,0,39,31 };
-		Pressed = { 608,0,190,28 };
+		MouseOn = { 652,0,39,31 };
+		Pressed = { 608,0,39,28 };
 		width = 39;
 		height = 31;
 		break;
