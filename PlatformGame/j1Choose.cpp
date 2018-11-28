@@ -125,7 +125,7 @@ bool j1Choose::PostUpdate()
 	BROFILER_CATEGORY("Choose: PostUpdate", Profiler::Color::Aquamarine);
 	bool ret = true;
 	if (!GameOn) {
-		if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+		if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN || Exit)
 			ret = false;
 	}
 	if (GoStart) {
@@ -156,12 +156,9 @@ bool j1Choose::PostUpdate()
 			App->map->active = !App->map->active;
 			App->scene->KnowMap = 0;
 			App->entitymanager->ActiveGame = true;
-			//App->entitymanager->GetPlayerData()->Start();
-			playernumber = 1;
-			App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
 			App->LoadGame("save_game.xml");
 			App->entitymanager->GetPlayerData()->SetUI();
-			//App->ui_manager->DeleteButtons();
+			App->ui_manager->DeleteButtons();
 			GameOn = true;
 		}
 	}
@@ -283,6 +280,9 @@ void j1Choose::MainMenu()
 		App->fade->FadeToBlack(3.0f);
 		GoStartSaved = true;
 	}
+	if (buttonEXIT->pressed) {
+		Exit = true;
+	}
 }
 
 void j1Choose::CreateMainMenuButtons()
@@ -290,6 +290,9 @@ void j1Choose::CreateMainMenuButtons()
 	AlreadyChoosen = false;
 	buttonSTART = App->ui_manager->CreateButton(400, 350, 1, "START", 30);
 	buttonCONTINUE = App->ui_manager->CreateButton(400, 450, 1, "CONTINUE", 30);
+	buttonSETTINGS = App->ui_manager->CreateButton(400, 550, 1, "SETTINGS", 30);
+	buttonCREDITS = App->ui_manager->CreateButton(400, 650, 1, "CREDITS", 30);
+	buttonEXIT = App->ui_manager->CreateButton(400, 750, 1, "EXIT", 30);
 	checkbox = App->ui_manager->CreateCheckBox(600, 200);
 }
 

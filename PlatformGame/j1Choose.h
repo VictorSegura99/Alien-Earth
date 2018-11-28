@@ -88,12 +88,16 @@ public:
 	bool StartChoosing = false;
 	bool InMainMenu = true;
 	bool AlreadyChoosen = false;
+	bool Exit = false;
 
 	unsigned int choosefx;
 	unsigned int introfx;
 	//INITIAL MENU
 	UI_Element* buttonSTART = nullptr;
 	UI_Element* buttonCONTINUE = nullptr;
+	UI_Element* buttonSETTINGS = nullptr;
+	UI_Element* buttonCREDITS = nullptr;
+	UI_Element* buttonEXIT = nullptr;
 
 	//CHOOSING PLAYER
 	UI_Element* buttonJEFF = nullptr;

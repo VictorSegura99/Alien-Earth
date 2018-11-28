@@ -16,10 +16,10 @@
 	<:anonymous />
 	<entity_manager>
 		<spider>
-			<position x="6798.7002" y="768.799988" />
+			<position x="6800" y="797.766663" />
 		</spider>
 		<spider>
-			<position x="10498.6963" y="774.799988" />
+			<position x="10500" y="802.766663" />
 		</spider>
 		<bat>
 			<position x="6000" y="600" />
@@ -31,13 +31,15 @@
 			<position x="9500" y="600" />
 		</bat>
 		<player>
-			<position x="1402.0509" y="514.754028" />
+			<position x="2203.20166" y="820.975159" />
+			<god value="false" />
+			<NumPlayer value="2" />
 		</player>
 	</entity_manager>
 	<UI />
 	<particles />
 	<:anonymous />
 	<renderer>
-		<camera x="-902" y="-64" />
+		<camera x="-1703" y="-290" />
 	</renderer>
 </game_state>

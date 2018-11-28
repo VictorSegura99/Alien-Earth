@@ -256,6 +256,7 @@ bool Player::PostUpdate()
 	if (!Intro) {
 		if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) {
 			ChangePlayer(0);
+			
 		}
 		if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) {
 			ChangePlayer(1);
@@ -268,16 +269,17 @@ bool Player::PostUpdate()
 }
 bool Player::Load(pugi::xml_node& player)
 {
-	if (!player.child("position").empty())
-	{
-		position.x = player.child("position").attribute("x").as_float();
-		position.y = player.child("position").attribute("y").as_float();
-		God = player.child("god").attribute("value").as_bool();
-	}
+	
 
-
+	position.x = player.child("position").attribute("x").as_float();
+	position.y = player.child("position").attribute("y").as_float() - 50.0f;
+	God = player.child("god").attribute("value").as_bool();
+	
+	
+	ChangePlayer(player.child("NumPlayer").attribute("value").as_int());
+	
 	App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-
+	
 
 	return true;
 }
@@ -285,7 +287,8 @@ bool Player::Save(pugi::xml_node& player) const
 {
 	player.append_child("position").append_attribute("x") = position.x;
 	player.child("position").append_attribute("y") = position.y;
-	player.child("god").attribute("value") = God;
+	player.append_child("god").append_attribute("value") = God;
+	player.append_child("NumPlayer").append_attribute("value") = NumPlayer;
 
 	return true;
 }
@@ -671,7 +674,7 @@ Animation Player::LoadPushbacks(int playernumber, pugi::xml_node& config, p2SStr
 void Player::ChangePlayer(const int playernumber)
 {
 	BROFILER_CATEGORY("Player: ChangePlayer", Profiler::Color::Blue);
-	if (NumPlayer != playernumber) {
+	if (NumPlayer != playernumber || texture == nullptr ) {
 		App->tex->UnLoad(texture);
 		texture = App->tex->Load(sprites_name[playernumber].GetString());
 		App->collision->ColliderCleanUpPlayer();
