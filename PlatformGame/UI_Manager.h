@@ -3,6 +3,7 @@
 
 #include "j1Module.h"
 #include "p2Animation.h"
+#include "p2SString.h"
 #include "p2DynArray.h"
 #include "p2List.h"
 
@@ -32,6 +33,7 @@ public:
 	UI_Element* CreateButton(int x, int y, int type);
 	UI_Element* CreateCheckBox(int x, int y);
 	UI_Element* CreateImage(int x, int y);
+	UI_Element* CreateLabel(int x, int y, p2SString name);
 	
 	void DeleteButtons();
 	void DeleteCheckBoxes();

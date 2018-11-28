@@ -32,7 +32,12 @@ bool UI_Element::CleanUp()
 
 void UI_Element::Draw(float dt)
 {
-	App->render->Blit(atlas, position.x, position.y, &(png_pos));
+	if (type != LABEL)
+		App->render->Blit(atlas, position.x, position.y, &(png_pos));
+	else {
+		App->render->Blit(atlas, position.x, position.y, NULL);
+	}
+	
 	if (App->ui_manager->debug_draw) {
 		App->render->DrawQuad({ position.x,position.y,weight,height }, 255, 0, 0, 255, false);
 	}

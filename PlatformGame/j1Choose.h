@@ -96,6 +96,7 @@ public:
 	UI_Element* buttonJERRY = nullptr;
 	UI_Element* checkbox = nullptr;
 	UI_Element* image = nullptr;
+	UI_Element* label = nullptr;
 
 };
 

@@ -6,6 +6,7 @@
 #include "j1Render.h"
 #include "p2Log.h"
 #include "j1Audio.h"
+#include "Label.h"
 #include "CheckBox.h"
 #include "Image.h"
 
@@ -113,6 +114,19 @@ UI_Element * UI_Manager::CreateImage(int x, int y)
 
 	ret = new Image(x, y);
 	ret->type = IMAGE;
+
+	if (ret != nullptr)
+		elements.PushBack(ret);
+
+	return ret;
+}
+
+UI_Element * UI_Manager::CreateLabel(int x, int y, p2SString name)
+{
+	UI_Element* ret = nullptr;
+
+	ret = new Label(x, y, name);
+	ret->type = LABEL;
 
 	if (ret != nullptr)
 		elements.PushBack(ret);

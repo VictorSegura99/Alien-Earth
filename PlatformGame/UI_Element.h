@@ -17,6 +17,7 @@ enum UI_Elements
 	BUTTON,
 	CHECKBOX,
 	IMAGE,
+	LABEL,
 };
 
 
