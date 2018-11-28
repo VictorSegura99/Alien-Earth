@@ -159,4 +159,44 @@ void UI_Manager::DeleteCheckBoxes()
 	}
 }
 
+void UI_Manager::DeleteImages()
+{
+	for (int i = elements.Count() - 1; i >= 0; --i)
+	{
+		if (elements[i] != nullptr && elements[i]->type == IMAGE) {
+			elements[i]->CleanUp();
+			delete(elements[i]);
+			elements[i] = nullptr;
+			elements.RemoveAt(i);
+		}
+	}
+}
+
+void UI_Manager::DeleteLabels()
+{
+	for (int i = elements.Count() - 1; i >= 0; --i)
+	{
+		if (elements[i] != nullptr && elements[i]->type == LABEL) {
+			elements[i]->CleanUp();
+			delete(elements[i]);
+			elements[i] = nullptr;
+			elements.RemoveAt(i);
+		}
+	}
+}
+
+bool UI_Manager::DeleteUI_Element(UI_Element * element)
+{
+	for (int i = elements.Count() - 1; i >= 0; --i)
+	{
+		if (elements[i] == element) {
+			elements[i]->CleanUp();
+			delete(elements[i]);
+			elements[i] = nullptr;
+			elements.RemoveAt(i);
+		}
+	}
+	return true;
+}
+
 

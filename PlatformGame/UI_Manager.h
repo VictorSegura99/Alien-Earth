@@ -37,7 +37,10 @@ public:
 	
 	void DeleteButtons();
 	void DeleteCheckBoxes();
+	void DeleteImages();
+	void DeleteLabels();
 
+	bool DeleteUI_Element(UI_Element* element);
 
 private:
 

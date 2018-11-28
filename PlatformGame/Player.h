@@ -72,6 +72,7 @@ public:
 	void BottomFall(float dt);
 	void Gravity(float dt);
 	void SetUI();
+	void DeleteUI();
 	void CheckWhatToDoWhenCollidingWithEnemy(Collider * c2);
 
 private:

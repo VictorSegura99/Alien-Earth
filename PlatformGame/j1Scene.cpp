@@ -120,6 +120,8 @@ bool j1Scene::Update(float dt)
 			App->render->camera.y = 0;
 			App->choose->GameOn = false;
 			App->entitymanager->GetPlayerData()->Intro = true;
+			App->entitymanager->GetPlayerData()->DeleteUI();
+			
 		}
 	}
 	App->map->Draw();

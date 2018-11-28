@@ -577,6 +577,7 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		App->render->camera.x = 0;
 		App->render->camera.y = 0;
 		App->choose->GameOn = false;
+		DeleteUI();
 		Intro = true;
 		break;
 	}
@@ -1094,6 +1095,13 @@ void Player::SetUI()
 	App->choose->image = App->ui_manager->CreateImage(100, 200);
 	App->choose->label = App->ui_manager->CreateLabel(500, 100, "HOLA");
 	
+}
+
+void Player::DeleteUI()
+{
+	App->ui_manager->DeleteUI_Element(App->choose->image);
+	App->ui_manager->DeleteUI_Element(App->choose->label);
+
 }
 
 void Player::CheckWhatToDoWhenCollidingWithEnemy(Collider * c2)

@@ -189,7 +189,7 @@ Animation j1Choose::LoadGigantAliensAnimations(int playernumber, pugi::xml_node&
 	return anim;
 }
 
-void j1Choose::CreateButtons()
+void j1Choose::CreateButtonsTypePlayer()
 {
 	buttonJEFF = App->ui_manager->CreateButton(138, 229, 2);
 	buttonJANE = App->ui_manager->CreateButton(388, 229, 2);
@@ -206,11 +206,13 @@ void j1Choose::StartLevel()
 void j1Choose::MenuChoosePlayer(float dt)
 {
 	App->render->Blit(Choose, 0, 0, NULL);
+	
 	if (buttonJEFF->mouseOn) {
 		App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
 		App->render->Blit(yellow, 150, 350, &(YellowWalk.GetCurrentFrame(dt)));
 		App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
-		if (buttonJEFF->pressed) {
+		if (buttonJEFF->pressed && !AlreadyChoosen) {
+			AlreadyChoosen = true;
 			playernumber = PlayerNumber1;
 			StartLevel();
 		}
@@ -219,7 +221,8 @@ void j1Choose::MenuChoosePlayer(float dt)
 		App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
 		App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
 		App->render->Blit(pink, 418, 350, &(PinkWalk.GetCurrentFrame(dt)));
-		if (buttonJANE->pressed) {
+		if (buttonJANE->pressed && !AlreadyChoosen) {
+			AlreadyChoosen = true;
 			playernumber = PlayerNumber2;
 			StartLevel();
 		}
@@ -228,7 +231,8 @@ void j1Choose::MenuChoosePlayer(float dt)
 		App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
 		App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
 		App->render->Blit(blue, 665, 350, &(BlueWalk.GetCurrentFrame(dt)));
-		if (buttonJERRY->pressed) {
+		if (buttonJERRY->pressed && !AlreadyChoosen) {
+			AlreadyChoosen = true;
 			playernumber = PlayerNumber3;
 			StartLevel();
 		}
@@ -240,6 +244,8 @@ void j1Choose::MenuChoosePlayer(float dt)
 		App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
 		repeat = false;
 	}
+	
+	
 }
 
 void j1Choose::MainMenu()
@@ -247,7 +253,7 @@ void j1Choose::MainMenu()
 	App->render->Blit(NoChoose, 0, 0, NULL);
 	if (buttonSTART->pressed) {
 		App->ui_manager->DeleteButtons();
-		CreateButtons();
+		CreateButtonsTypePlayer();
 		InMainMenu = false;
 		StartChoosing = true;
 	}
@@ -255,6 +261,7 @@ void j1Choose::MainMenu()
 
 void j1Choose::CreateMainMenuButtons()
 {
+	AlreadyChoosen = false;
 	buttonSTART = App->ui_manager->CreateButton(400, 350, 1);
 	//checkbox = App->ui_manager->CreateCheckBox(600, 200);
 }
