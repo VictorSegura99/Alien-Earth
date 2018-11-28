@@ -60,7 +60,7 @@ public:
 	unsigned int fxPressed;
 
 	p2SString FXON;
-
+	p2SString FXPRESSED;
 	//
 	SDL_Rect NoPressedNoMouseOn;
 	SDL_Rect MouseOn;

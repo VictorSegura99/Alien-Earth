@@ -5,6 +5,7 @@
 #include "p2SString.h"
 #include "j1Input.h"
 #include "UI_Manager.h"
+#include "j1Audio.h"
 
 UI_Element::UI_Element()
 {
@@ -20,6 +21,10 @@ UI_Element::UI_Element(int x, int y) : position(x,y)
 	UI_node = config.child("UI");
 
 	sprite = UI_node.child("sprite").text().as_string();
+	FXON = UI_node.child("FXON").text().as_string();
+	FXPRESSED = UI_node.child("FXPRESSED").text().as_string();
+	fxOn = App->audio->LoadFx(FXON.GetString());
+	fxPressed = App->audio->LoadFx(FXPRESSED.GetString());
 
 	atlas = App->tex->Load(sprite.GetString());
 }

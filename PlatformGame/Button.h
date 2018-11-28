@@ -16,6 +16,8 @@ public:
 
 private:
 	UI_Element * label = nullptr;
+	int type = -1;
+	unsigned int fXOn;
 
 };
 

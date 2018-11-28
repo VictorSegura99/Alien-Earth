@@ -9,14 +9,14 @@
 
 Button::Button(int x, int y, int type, p2SString name, int size) : UI_Element(x, y)
 {
-	
+	this->type = type;
 	switch (type) {
 	case 1: {
-		NoPressedNoMouseOn = { 215,712,70,39 };
-		MouseOn = { 463,712,70,39 };
-		Pressed = { 702,711,70,39 };
-		width = 70;
-		height = 39;
+		NoPressedNoMouseOn = { 349,99,190,49 };
+		MouseOn = { 349,47,190,49 };
+		Pressed = { 349,1,190,45 };
+		width = 190;
+		height = 49;
 		if (name != "NONE") {
 			label = App->ui_manager->CreateLabel(position.x + width / 2, position.y + height / 2, name, size, true);
 			label->position.x -= label->width / 2;
@@ -30,7 +30,7 @@ Button::Button(int x, int y, int type, p2SString name, int size) : UI_Element(x,
 		width = 225;
 		height = 441;
 		FXON = UI_node.child("button").child("ChooseFx").text().as_string();
-		fxOn = App->audio->LoadFx(FXON.GetString());
+		fXOn = App->audio->LoadFx(FXON.GetString());
 		break; }
 	}
 
@@ -44,27 +44,53 @@ Button::~Button()
 
 bool Button::Update(float dt)
 {
-	if (IsMouseOn()) {
-		png_pos = MouseOn;
-		mouseOn = true;
-		if (repeataudio) {
-			App->audio->PlayFx(fxOn);
-			repeataudio = false;
+	switch (type) {
+	case 1: {
+		if (IsMouseOn()) {
+			png_pos = MouseOn;
+			mouseOn = true;
+			if (repeataudio) {
+				App->audio->PlayFx(fxOn);
+				repeataudio = false;
+			}
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
+				App->audio->PlayFx(fxPressed);
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
+				png_pos = Pressed;
+			}
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
+				pressed = true;
+			}
 		}
-		
-		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
-			png_pos = Pressed;
+		else {
+			repeataudio = true;
+			png_pos = NoPressedNoMouseOn;
+			mouseOn = false;
 		}
-		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
-			pressed = true;
+		break; }
+	case 2: {
+		if (IsMouseOn()) {
+			png_pos = MouseOn;
+			mouseOn = true;
+			if (repeataudio) {
+				App->audio->PlayFx(fXOn);
+				repeataudio = false;
+			}
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
+				png_pos = Pressed;
+			}
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
+				pressed = true;
+			}
 		}
+		else {
+			repeataudio = true;
+			png_pos = NoPressedNoMouseOn;
+			mouseOn = false;
+		}
+		break; }
 	}
-	else {
-		repeataudio = true;
-		png_pos = NoPressedNoMouseOn;
-		mouseOn = false;
-	}
-
+	
 	
 
 

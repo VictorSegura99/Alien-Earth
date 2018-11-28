@@ -11,10 +11,10 @@ CheckBox::CheckBox(int x, int y) : UI_Element(x, y)
 {
 	
 	width = 40;
-	height = 39;
+	height = 38;
 
-	NoPressedNoMouseOn = { 283,0,40,39 };
-	Pressed = { 243,0,40,39 };
+	NoPressedNoMouseOn = { 283,0,40,38 };
+	Pressed = { 243,0,40,38 };
 
 	png_pos = NoPressedNoMouseOn;
 }

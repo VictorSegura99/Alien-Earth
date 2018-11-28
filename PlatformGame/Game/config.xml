@@ -460,6 +460,8 @@
 
   <UI>
     <sprite>textures/UI.png</sprite>
+    <FXON>audio/fx/click1.wav</FXON>
+    <FXPRESSED>audio/fx/switch2.wav</FXPRESSED>
     <button>
       <ChooseFx>audio/fx/Menu.wav</ChooseFx>
     </button>

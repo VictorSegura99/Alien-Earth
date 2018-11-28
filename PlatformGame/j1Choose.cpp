@@ -264,7 +264,7 @@ void j1Choose::CreateMainMenuButtons()
 {
 	AlreadyChoosen = false;
 	buttonSTART = App->ui_manager->CreateButton(400, 350, 1, "START", 30);
-	//checkbox = App->ui_manager->CreateCheckBox(600, 200);
+	checkbox = App->ui_manager->CreateCheckBox(600, 200);
 }
 
 
