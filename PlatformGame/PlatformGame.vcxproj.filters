@@ -88,6 +88,9 @@
     <ClCompile Include="j1Fonts.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>Modules\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PugiXml\src\pugixml.hpp">
@@ -197,6 +200,9 @@
     </ClInclude>
     <ClInclude Include="j1Fonts.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>Modules\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,9 @@
 #include "j1Choose.h"
 #include "Player.h"
 #include "j1Particles.h"
+#include "UI_Element.h"
+#include "UI_Manager.h"
+#include "Image.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -133,6 +136,8 @@ bool Player::Start()
 	IntroLight= App->tex->Load(introlight.GetString());
 
 	current_animation = &idle[NumPlayer];
+
+	
 	
 	return ret;
 }
@@ -1084,13 +1089,10 @@ void Player::Gravity(float dt)
 	position.y -= gravity;
 }
 
-void Player::SetCamera()
+void Player::SetUI()
 {
-	App->render->camera.x = -300;
-	CamRect.x = 580;
-	CamRect.y = 480;
-	CamRect.w = 300;
-	CamRect.h = playerHeight + playerHeight;
+	App->choose->image = App->ui_manager->CreateImage(100, 200);
+	
 }
 
 void Player::CheckWhatToDoWhenCollidingWithEnemy(Collider * c2)

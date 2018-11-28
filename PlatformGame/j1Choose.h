@@ -95,6 +95,7 @@ public:
 	UI_Element* buttonJANE = nullptr;
 	UI_Element* buttonJERRY = nullptr;
 	UI_Element* checkbox = nullptr;
+	UI_Element* image = nullptr;
 
 };
 

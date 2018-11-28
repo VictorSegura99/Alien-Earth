@@ -7,6 +7,7 @@
 #include "p2Log.h"
 #include "j1Audio.h"
 #include "CheckBox.h"
+#include "Image.h"
 
 UI_Manager::UI_Manager()
 {
@@ -66,6 +67,10 @@ bool UI_Manager::CleanUp()
 	return true;
 }
 
+void UI_Manager::Draw(float dt)
+{
+}
+
 bool UI_Manager::Load(pugi::xml_node &)
 {
 	return true;
@@ -95,6 +100,19 @@ UI_Element * UI_Manager::CreateCheckBox(int x, int y)
 
 	ret = new CheckBox(x, y);
 	ret->type = CHECKBOX;
+
+	if (ret != nullptr)
+		elements.PushBack(ret);
+
+	return ret;
+}
+
+UI_Element * UI_Manager::CreateImage(int x, int y)
+{
+	UI_Element* ret = nullptr;
+
+	ret = new Image(x, y);
+	ret->type = IMAGE;
 
 	if (ret != nullptr)
 		elements.PushBack(ret);
