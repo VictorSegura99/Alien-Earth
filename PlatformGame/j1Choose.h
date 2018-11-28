@@ -99,14 +99,15 @@ public:
 	UI_Element* buttonCREDITS = nullptr;
 	UI_Element* buttonEXIT = nullptr;
 
+
 	//CHOOSING PLAYER
 	UI_Element* buttonJEFF = nullptr;
 	UI_Element* buttonJANE = nullptr;
 	UI_Element* buttonJERRY = nullptr;
+	UI_Element* buttonGOBACK = nullptr;
 
 
 
-	UI_Element* checkbox = nullptr;
 
 	//PLAYER UI
 

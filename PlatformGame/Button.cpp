@@ -32,6 +32,15 @@ Button::Button(int x, int y, int type, p2SString name, int size) : UI_Element(x,
 		FXON = UI_node.child("button").child("ChooseFx").text().as_string();
 		fXOn = App->audio->LoadFx(FXON.GetString());
 		break; }
+	case 3: {
+		this->type = 1;
+		NoPressedNoMouseOn = { 559,0,39,31 };
+		MouseOn = { 559,0,39,31 };
+		Pressed = { 608,0,190,28 };
+		width = 39;
+		height = 31;
+		break;
+	}
 	}
 
 	png_pos = NoPressedNoMouseOn;

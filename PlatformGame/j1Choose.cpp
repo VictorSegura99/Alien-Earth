@@ -209,6 +209,7 @@ void j1Choose::CreateButtonsTypePlayer()
 	buttonJEFF = App->ui_manager->CreateButton(138, 229, 2);
 	buttonJANE = App->ui_manager->CreateButton(388, 229, 2);
 	buttonJERRY = App->ui_manager->CreateButton(638, 229, 2);
+	buttonGOBACK = App->ui_manager->CreateButton(50, 25, 3);
 }
 
 void j1Choose::StartLevel()
@@ -259,7 +260,13 @@ void j1Choose::MenuChoosePlayer(float dt)
 		App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
 		repeat = false;
 	}
-	
+	if (buttonGOBACK->pressed) {
+		App->ui_manager->DeleteButtons();
+		App->ui_manager->DeleteLabels();
+		StartChoosing = false;
+		InMainMenu = true;
+		CreateMainMenuButtons();
+	}
 	
 }
 
@@ -283,6 +290,7 @@ void j1Choose::MainMenu()
 	if (buttonEXIT->pressed) {
 		Exit = true;
 	}
+	
 }
 
 void j1Choose::CreateMainMenuButtons()
@@ -293,7 +301,8 @@ void j1Choose::CreateMainMenuButtons()
 	buttonSETTINGS = App->ui_manager->CreateButton(400, 550, 1, "SETTINGS", 30);
 	buttonCREDITS = App->ui_manager->CreateButton(400, 650, 1, "CREDITS", 30);
 	buttonEXIT = App->ui_manager->CreateButton(400, 750, 1, "EXIT", 30);
-	checkbox = App->ui_manager->CreateCheckBox(600, 200);
+	
+	
 }
 
 
