@@ -10,12 +10,13 @@
 
 Label::Label(int x, int y, p2SString name)
 {
-	Distance.x = position.x - (-App->render->camera.x);
-	Distance.y = position.y - (-App->render->camera.y);
+	
 	weight = 100;
 	height = 100;
 	position.x = x;
 	position.y = y;
+	Distance.x = position.x - (-App->render->camera.x);
+	Distance.y = position.y - (-App->render->camera.y);
 	this->name = name;
 	App->tex->UnLoad(atlas);
 	atlas = App->fonts->Print(name.GetString());
