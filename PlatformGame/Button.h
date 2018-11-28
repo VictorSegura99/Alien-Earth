@@ -10,7 +10,7 @@
 class Button : public UI_Element {
 public:
 
-	Button(int x, int y, int type, p2SString name = "NONE");
+	Button(int x, int y, int type, p2SString name = "NONE", int size = 0);
 	virtual ~Button();
 	bool Update(float dt);
 

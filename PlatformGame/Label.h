@@ -10,7 +10,7 @@
 class Label : public UI_Element {
 public:
 
-	Label(int x, int y, p2SString name, bool CanBeMoved);
+	Label(int x, int y, p2SString name, int size, bool CanBeMoved);
 	virtual ~Label();
 	bool Update(float dt);
 public:

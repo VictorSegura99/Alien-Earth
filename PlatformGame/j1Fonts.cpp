@@ -30,7 +30,7 @@ bool j1Fonts::Awake(pugi::xml_node& conf)
 	}
 	else
 	{
-		const char* path = conf.child("default_font").attribute("file").as_string(DEFAULT_FONT);
+		path = conf.child("default_font").attribute("file").as_string(DEFAULT_FONT);
 		int size = conf.child("default_font").attribute("size").as_int(DEFAULT_FONT_SIZE);
 		default = Load(path, size);
 	}
@@ -46,7 +46,8 @@ bool j1Fonts::CleanUp()
 
 	for(item = fonts.start; item != NULL; item = item->next)
 	{
-		TTF_CloseFont(item->data);
+		if (item->data != NULL)
+			TTF_CloseFont(item->data);
 	}
 
 	fonts.clear();
@@ -73,10 +74,10 @@ TTF_Font* const j1Fonts::Load(const char* path, int size)
 }
 
 // Print text using font
-SDL_Texture* j1Fonts::Print(const char* text, SDL_Color color, TTF_Font* font)
+SDL_Texture* j1Fonts::Print(const char* text, _TTF_Font* font, SDL_Color color)
 {
 	SDL_Texture* ret = NULL;
-	SDL_Surface* surface = TTF_RenderText_Blended((font) ? font : default, text, color);
+	SDL_Surface* surface = TTF_RenderText_Blended((font) ? font : font, text, color);
 
 	if(surface == NULL)
 	{

@@ -86,11 +86,11 @@ bool UI_Manager::Save(pugi::xml_node &) const
 	return true;
 }
 
-UI_Element * UI_Manager::CreateButton(int x, int y, int type, p2SString name)
+UI_Element * UI_Manager::CreateButton(int x, int y, int type, p2SString name, int size)
 {
 	UI_Element* ret = nullptr;
 	
-	ret = new Button(x, y, type, name);
+	ret = new Button(x, y, type, name, size);
 	ret->type = BUTTON;
 
 	if (ret != nullptr)
@@ -125,11 +125,11 @@ UI_Element * UI_Manager::CreateImage(int x, int y)
 	return ret;
 }
 
-UI_Element * UI_Manager::CreateLabel(int x, int y, p2SString name, bool CanBeMoved)
+UI_Element * UI_Manager::CreateLabel(int x, int y, p2SString name, int size, bool CanBeMoved)
 {
 	UI_Element* ret = nullptr;
 
-	ret = new Label(x, y, name, CanBeMoved);
+	ret = new Label(x, y, name, size, CanBeMoved);
 	ret->type = LABEL;
 
 	if (ret != nullptr)

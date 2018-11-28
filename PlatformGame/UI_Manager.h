@@ -30,10 +30,10 @@ public:
 
 	bool Save(pugi::xml_node&) const;
 
-	UI_Element* CreateButton(int x, int y, int type, p2SString name = "NONE");
+	UI_Element* CreateButton(int x, int y, int type, p2SString name = "NONE", int size = 0);
 	UI_Element* CreateCheckBox(int x, int y);
 	UI_Element* CreateImage(int x, int y);
-	UI_Element* CreateLabel(int x, int y, p2SString name, bool CanBeMoved);
+	UI_Element* CreateLabel(int x, int y, p2SString name, int size, bool CanBeMoved);
 	
 	void DeleteButtons();
 	void DeleteCheckBoxes();

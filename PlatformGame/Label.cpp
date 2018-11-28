@@ -8,20 +8,29 @@
 #include "j1Input.h"
 #include "j1Fonts.h"
 
-Label::Label(int x, int y, p2SString name, bool CanBeMoved) : UI_Element (x,y)
+
+Label::Label(int x, int y, p2SString name, int size, bool CanBeMoved) : UI_Element (x,y)
 {
 	this->CanBeMoved = CanBeMoved;
-	Distance.x = position.x - (-App->render->camera.x);
-	Distance.y = position.y - (-App->render->camera.y);
 	this->name = name;
 	App->tex->UnLoad(atlas);
-	atlas = App->fonts->Print(name.GetString());
-	App->fonts->CalcSize(name.GetString(), width, height, App->fonts->default);
-	
+	if (!CanBeMoved) {
+		Distance.x = position.x - (-App->render->camera.x);
+		Distance.y = position.y - (-App->render->camera.y);
+		App->fonts->PlayerUI = App->fonts->Load(App->fonts->path, size);
+		atlas = App->fonts->Print(name.GetString(), App->fonts->PlayerUI);
+		App->fonts->CalcSize(name.GetString(), width, height, App->fonts->PlayerUI);
+	}
+	else {
+		App->fonts->InitialMenu = App->fonts->Load(App->fonts->path, size);
+		atlas = App->fonts->Print(name.GetString(), App->fonts->InitialMenu);
+		App->fonts->CalcSize(name.GetString(), width, height, App->fonts->InitialMenu);
+	}
 }
 
 Label::~Label()
 {
+	//TTF_CloseFont(App->fonts->InitialMenu);
 }
 
 bool Label::Update(float dt)

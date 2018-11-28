@@ -5,7 +5,7 @@
 #include "SDL\include\SDL_pixels.h"
 
 #define DEFAULT_FONT "fonts/open_sans/Sunday-Afternoon.ttf"
-#define DEFAULT_FONT_SIZE 30
+#define DEFAULT_FONT_SIZE 20
 
 struct SDL_Texture;
 struct _TTF_Font;
@@ -31,14 +31,16 @@ public:
 
 
 	// Create a surface from text
-	SDL_Texture* Print(const char* text, SDL_Color color = {0, 0, 0, 255}, _TTF_Font* font = NULL);
+	SDL_Texture* Print(const char* text, _TTF_Font* font, SDL_Color color = {0, 0, 0, 255});
 
 	bool CalcSize(const char* text, int& width, int& height, _TTF_Font* font = NULL) const;
 
 public:
-
+	const char* path = nullptr;
 	p2List<_TTF_Font*>	fonts;
 	_TTF_Font*			default;
+	_TTF_Font*			InitialMenu;
+	_TTF_Font*			PlayerUI;
 };
 
 

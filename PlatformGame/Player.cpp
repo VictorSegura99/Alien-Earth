@@ -1093,7 +1093,7 @@ void Player::Gravity(float dt)
 void Player::SetUI()
 {
 	App->choose->image = App->ui_manager->CreateImage(100, 200);
-	App->choose->label = App->ui_manager->CreateLabel(100, 0, "HOLA", false);
+	App->choose->label = App->ui_manager->CreateLabel(100, 0, "HOLA", 60, false);
 	
 }
 

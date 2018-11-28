@@ -7,7 +7,7 @@
 #include "j1Audio.h"
 #include "j1Input.h"
 
-Button::Button(int x, int y, int type, p2SString name) : UI_Element(x, y)
+Button::Button(int x, int y, int type, p2SString name, int size) : UI_Element(x, y)
 {
 	
 	switch (type) {
@@ -18,7 +18,7 @@ Button::Button(int x, int y, int type, p2SString name) : UI_Element(x, y)
 		width = 70;
 		height = 39;
 		if (name != "NONE") {
-			label = App->ui_manager->CreateLabel(position.x + width / 2, position.y + height / 2, name, true);
+			label = App->ui_manager->CreateLabel(position.x + width / 2, position.y + height / 2, name, size, true);
 			label->position.x -= label->width / 2;
 			label->position.y -= label->height / 2;
 		}
