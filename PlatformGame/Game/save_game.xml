@@ -14,13 +14,12 @@
 	<pathfinding />
 	<fonts />
 	<:anonymous />
-	<UI />
 	<entity_manager>
 		<spider>
-			<position x="6801.56006" y="733.233276" />
+			<position x="6798.7002" y="768.799988" />
 		</spider>
 		<spider>
-			<position x="10501.5605" y="739.899963" />
+			<position x="10498.6963" y="774.799988" />
 		</spider>
 		<bat>
 			<position x="6000" y="600" />
@@ -32,12 +31,13 @@
 			<position x="9500" y="600" />
 		</bat>
 		<player>
-			<position x="826.299744" y="551.620605" />
+			<position x="1402.0509" y="514.754028" />
 		</player>
 	</entity_manager>
+	<UI />
 	<particles />
 	<:anonymous />
 	<renderer>
-		<camera x="-326" y="-101" />
+		<camera x="-902" y="-64" />
 	</renderer>
 </game_state>

@@ -147,6 +147,24 @@ bool j1Choose::PostUpdate()
 			GameOn = true;
 		}
 	}
+	if (GoStartSaved) {
+		if (App->fade->current_step == App->fade->fade_from_black) {
+			GoStartSaved = false;
+			InMainMenu = true;
+			App->scene->active = !App->scene->active;
+			App->collision->active = !App->collision->active;
+			App->map->active = !App->map->active;
+			App->scene->KnowMap = 0;
+			App->entitymanager->ActiveGame = true;
+			//App->entitymanager->GetPlayerData()->Start();
+			playernumber = 1;
+			App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
+			App->LoadGame("save_game.xml");
+			App->entitymanager->GetPlayerData()->SetUI();
+			//App->ui_manager->DeleteButtons();
+			GameOn = true;
+		}
+	}
 	return ret;
 }
 
@@ -258,12 +276,20 @@ void j1Choose::MainMenu()
 		InMainMenu = false;
 		StartChoosing = true;
 	}
+	if (buttonCONTINUE->pressed) {
+		App->ui_manager->DeleteButtons();
+		App->ui_manager->DeleteLabels();
+		App->entitymanager->GetPlayerData()->Intro = false;
+		App->fade->FadeToBlack(3.0f);
+		GoStartSaved = true;
+	}
 }
 
 void j1Choose::CreateMainMenuButtons()
 {
 	AlreadyChoosen = false;
 	buttonSTART = App->ui_manager->CreateButton(400, 350, 1, "START", 30);
+	buttonCONTINUE = App->ui_manager->CreateButton(400, 450, 1, "CONTINUE", 30);
 	checkbox = App->ui_manager->CreateCheckBox(600, 200);
 }
 

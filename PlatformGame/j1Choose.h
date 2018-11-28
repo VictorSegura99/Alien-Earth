@@ -84,17 +84,24 @@ public:
 	bool repeat3 = false;
 	bool FirstUpdate = true;
 	bool GoStart = false;
+	bool GoStartSaved = false;
 	bool StartChoosing = false;
 	bool InMainMenu = true;
 	bool AlreadyChoosen = false;
 
 	unsigned int choosefx;
 	unsigned int introfx;
-
+	//INITIAL MENU
 	UI_Element* buttonSTART = nullptr;
+	UI_Element* buttonCONTINUE = nullptr;
+
+	//CHOOSING PLAYER
 	UI_Element* buttonJEFF = nullptr;
 	UI_Element* buttonJANE = nullptr;
 	UI_Element* buttonJERRY = nullptr;
+
+
+
 	UI_Element* checkbox = nullptr;
 
 	//PLAYER UI
