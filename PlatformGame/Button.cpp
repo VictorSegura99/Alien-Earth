@@ -21,7 +21,6 @@ Button::Button(int x, int y, int type, p2SString name) : UI_Element(x, y)
 			label = App->ui_manager->CreateLabel(position.x + width / 2, position.y + height / 2, name, true);
 			label->position.x -= label->width / 2;
 			label->position.y -= label->height / 2;
-
 		}
 		break; }
 	case 2: { //button choose player
