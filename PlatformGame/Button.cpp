@@ -86,14 +86,6 @@ bool Button::Update(float dt)
 			if (label != nullptr)
 				label->WantToRender = true;
 		}
-		/*if (NoUse) {
-			if (label != nullptr)
-				label->WantToRender = false;
-		}
-		if (!NoUse) {
-			if (label != nullptr)
-				label->WantToRender = true;
-		}*/
 		if (NoRenderLabel) {
 			label->WantToRender = false;
 		}

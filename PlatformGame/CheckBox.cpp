@@ -31,6 +31,7 @@ bool CheckBox::Update(float dt)
 			png_pos = Pressed;
 		}
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
+			App->audio->PlayFx(fxPressed);
 			pressed = !pressed;
 		}
 	}

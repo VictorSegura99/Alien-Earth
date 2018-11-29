@@ -114,6 +114,8 @@ public:
 	//SETTINGS
 	UI_Element* buttonGOBACKSETTINGS = nullptr;
 	UI_Element* imageSETTINGS = nullptr;
+	UI_Element* checkboxFPS = nullptr;
+	UI_Element* labelFPS = nullptr;
 	SDL_Texture* Settings = nullptr;
 	int x = 170;
 	int y = 950;

@@ -279,6 +279,9 @@ void j1Choose::MainMenu()
 	if (buttonSTART->pressed) {
 		App->ui_manager->DeleteButtons();
 		App->ui_manager->DeleteLabels();
+		App->ui_manager->DeleteCheckBoxes();
+		App->ui_manager->DeleteImages();
+		App->ui_manager->DeleteLabels();
 		CreateButtonsTypePlayer();
 		InMainMenu = false;
 		StartChoosing = true;
@@ -286,12 +289,18 @@ void j1Choose::MainMenu()
 	if (buttonCONTINUE->pressed) {
 		App->ui_manager->DeleteButtons();
 		App->ui_manager->DeleteLabels();
+		App->ui_manager->DeleteCheckBoxes();
+		App->ui_manager->DeleteImages();
+		App->ui_manager->DeleteLabels();
 		App->entitymanager->GetPlayerData()->Intro = false;
 		App->fade->FadeToBlack(3.0f);
 		GoStartSaved = true;
 	}
 	if (buttonSETTINGS->pressed) {
 		App->ui_manager->DeleteButtons();
+		App->ui_manager->DeleteLabels();
+		App->ui_manager->DeleteCheckBoxes();
+		App->ui_manager->DeleteImages();
 		App->ui_manager->DeleteLabels();
 		CreateMainMenuButtons();
 		CreateSettingsButtons();
@@ -307,12 +316,6 @@ void j1Choose::MainMenu()
 	if (buttonEXIT->pressed) {
 		Exit = true;
 	}
-	/*if (buttonGOBACK->pressed) {
-		App->ui_manager->DeleteButtons();
-		App->ui_manager->DeleteLabels();
-		start = false;
-		//InMainMenu = false;
-	}*/
 
 }
 
@@ -324,7 +327,6 @@ void j1Choose::CreateMainMenuButtons()
 	buttonSETTINGS = App->ui_manager->CreateButton(400, 550, 1, "SETTINGS", 30);
 	buttonCREDITS = App->ui_manager->CreateButton(400, 650, 1, "CREDITS", 30);
 	buttonEXIT = App->ui_manager->CreateButton(400, 750, 1, "EXIT", 30);
-	//buttonGOBACK = App->ui_manager->CreateButton(50, 25, 3);
 	
 }
 
@@ -332,7 +334,7 @@ void j1Choose::SettingsMenu(float dt)
 {
 	App->render->Blit(NoChoose, 0, 0, NULL);
 
-	if (!Positioned && !SettingMenuDone) {
+	if (!Positioned && !SettingMenuDone) { //MENU GOING UP
 		if (imageSETTINGS->position.y <= buttonEXIT->position.y + buttonEXIT->height) {
 			buttonEXIT->NoRenderLabel = true;
 		}
@@ -350,14 +352,14 @@ void j1Choose::SettingsMenu(float dt)
 		}
 		buttonGOBACKSETTINGS->position.y -= 2000 * dt;
 		imageSETTINGS->position.y -= 2000 * dt;
+		checkboxFPS->position.y -= 2000 * dt;
+		labelFPS->position.y -= 2000 * dt;
 		if (buttonGOBACKSETTINGS->position.y <= 250) {
 			Positioned = true;
 			SettingMenuDone = true;
 		}
 	}
-
-	
-	if (!Positioned && SettingMenuDone) {
+	if (!Positioned && SettingMenuDone) { //MENU GOING DOWN
 		if (imageSETTINGS->position.y >= buttonEXIT->position.y) {
 			buttonEXIT->NoRenderLabel = false;
 		}
@@ -375,10 +377,9 @@ void j1Choose::SettingsMenu(float dt)
 		}
 		buttonGOBACKSETTINGS->position.y += 2000 * dt;
 		imageSETTINGS->position.y += 2000 * dt;
+		checkboxFPS->position.y += 2000 * dt;
+		labelFPS->position.y += 2000 * dt;
 		if (buttonGOBACKSETTINGS->position.y >= 1075) {
-			/*App->ui_manager->DeleteButtons();
-			App->ui_manager->DeleteLabels();
-			App->ui_manager->DeleteImages();*/
 			buttonSTART->NoUse = false;
 			buttonCONTINUE->NoUse = false;
 			buttonSETTINGS->NoUse = false;
@@ -386,29 +387,19 @@ void j1Choose::SettingsMenu(float dt)
 			buttonCREDITS->NoUse = false;
 			InSettings = false;
 			SettingMenuDone = false;
-			//CreateMainMenuButtons();
 			InMainMenu = true;
 		}
 	}
-	if (SettingMenuDone) {
-
+	if (SettingMenuDone) { //MENU LOGIC BUTTONS
 		if (buttonGOBACKSETTINGS->pressed) {
 			Positioned = false;
-			/*buttonSTART->WantToRender = true;
-			buttonCONTINUE->WantToRender = true;
-			buttonSETTINGS->WantToRender =  true;
-			buttonEXIT->WantToRender = true;
-			buttonCREDITS->WantToRender = true;*/
 		}
-	}
-
-
-
-	if (App->input->GetKey(SDL_SCANCODE_J) == KEY_REPEAT) {
-		buttonGOBACKSETTINGS->position.y += 50;
-	}
-	if (App->input->GetKey(SDL_SCANCODE_K) == KEY_REPEAT) {
-		buttonGOBACKSETTINGS->position.y -= 50;
+		if (checkboxFPS->pressed) {
+			App->capactivated = true;
+		}
+		if (!checkboxFPS->pressed) {
+			App->capactivated = false;
+		}
 	}
 
 }
@@ -416,9 +407,12 @@ void j1Choose::SettingsMenu(float dt)
 void j1Choose::CreateSettingsButtons()
 {
 
-	Create = false;
 	imageSETTINGS = App->ui_manager->CreateImage(170, 1450, 2);
 	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(200, 1485, 3);
-}
+	checkboxFPS = App->ui_manager->CreateCheckBox(550, 1557);
+	labelFPS = App->ui_manager->CreateLabel(270, 1550, "CAP FPS TO 30", 50, true);
 
+	if (App->capactivated)
+		checkboxFPS->pressed = true;
+}
 
