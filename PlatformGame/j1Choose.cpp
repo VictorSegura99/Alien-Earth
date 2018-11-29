@@ -107,10 +107,13 @@ bool j1Choose::Update(float dt)
 	BROFILER_CATEGORY("Choose: Update", Profiler::Color::Aquamarine);
 	if (start) {
 		if (!GameOn) {
+			if (InSettings)
+				SettingsMenu(dt);
 			if (InMainMenu)
 				MainMenu();
 			if (StartChoosing)
 				MenuChoosePlayer(dt);
+			
 		}
 	}
 	else {
@@ -287,16 +290,24 @@ void j1Choose::MainMenu()
 		App->fade->FadeToBlack(3.0f);
 		GoStartSaved = true;
 	}
+	if (buttonSETTINGS->pressed) {
+		//App->ui_manager->DeleteButtons();
+		//App->ui_manager->DeleteLabels();
+		CreateSettingsButtons();
+		InMainMenu = false;
+		InSettings = true;
+
+	}
 	if (buttonEXIT->pressed) {
 		Exit = true;
 	}
-	if (buttonGOBACK->pressed) {
+	/*if (buttonGOBACK->pressed) {
 		App->ui_manager->DeleteButtons();
 		App->ui_manager->DeleteLabels();
 		start = false;
 		//InMainMenu = false;
-	}
-	
+	}*/
+
 }
 
 void j1Choose::CreateMainMenuButtons()
@@ -307,8 +318,53 @@ void j1Choose::CreateMainMenuButtons()
 	buttonSETTINGS = App->ui_manager->CreateButton(400, 550, 1, "SETTINGS", 30);
 	buttonCREDITS = App->ui_manager->CreateButton(400, 650, 1, "CREDITS", 30);
 	buttonEXIT = App->ui_manager->CreateButton(400, 750, 1, "EXIT", 30);
-	buttonGOBACK = App->ui_manager->CreateButton(50, 25, 3);
+	//buttonGOBACK = App->ui_manager->CreateButton(50, 25, 3);
 	
+}
+
+void j1Choose::SettingsMenu(float dt)
+{
+	App->render->Blit(NoChoose, 0, 0, NULL);
+
+	if (!Positioned && !SettingMenuDone) {
+		buttonGOBACKSETTINGS->position.y -= 2000 * dt;
+		if (buttonGOBACKSETTINGS->position.y <= 200) {
+			Positioned = true;
+			SettingMenuDone = true;
+		}
+	}
+	if (!Positioned && SettingMenuDone) {
+		buttonGOBACKSETTINGS->position.y += 2000 * dt;
+		if (buttonGOBACKSETTINGS->position.y >= 1000) {
+			App->ui_manager->DeleteButtons();
+			App->ui_manager->DeleteLabels();
+			InSettings = false;
+			SettingMenuDone = false;
+			CreateMainMenuButtons();
+			InMainMenu = true;
+		}
+	}
+	if (SettingMenuDone) {
+		if (buttonGOBACKSETTINGS->pressed) {
+			Positioned = false;
+		}
+	}
+
+
+
+	if (App->input->GetKey(SDL_SCANCODE_J) == KEY_REPEAT) {
+		buttonGOBACKSETTINGS->position.y += 50;
+	}
+	if (App->input->GetKey(SDL_SCANCODE_K) == KEY_REPEAT) {
+		buttonGOBACKSETTINGS->position.y -= 50;
+	}
+
+}
+
+void j1Choose::CreateSettingsButtons()
+{
+
+	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(150, 900, 3);
 }
 
 

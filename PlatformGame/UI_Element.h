@@ -29,7 +29,7 @@ public:
 	UI_Element(int x, int y);
 	virtual ~UI_Element();
 	
-	virtual bool Update(float dt) { return true; };
+	virtual bool Update(float dt);
 	virtual bool CleanUp();
 	virtual bool Awake(pugi::xml_node&) { return true; };
 	virtual void Draw(float dt);

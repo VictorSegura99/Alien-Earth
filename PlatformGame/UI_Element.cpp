@@ -33,6 +33,14 @@ UI_Element::~UI_Element()
 {
 }
 
+bool UI_Element::Update(float dt)
+{
+
+
+
+	return true;
+}
+
 bool UI_Element::CleanUp()
 {
 	App->tex->UnLoad(atlas);

@@ -42,6 +42,8 @@ public:
 	void MenuChoosePlayer(float dt);
 	void MainMenu();
 	void CreateMainMenuButtons();
+	void SettingsMenu(float dt);
+	void CreateSettingsButtons();
 
 public:
 
@@ -89,6 +91,9 @@ public:
 	bool InMainMenu = true;
 	bool AlreadyChoosen = false;
 	bool Exit = false;
+	bool InSettings = false;
+	bool Positioned = false;
+	bool SettingMenuDone = false;
 
 	unsigned int choosefx;
 	unsigned int introfx;
@@ -106,7 +111,8 @@ public:
 	UI_Element* buttonJERRY = nullptr;
 	UI_Element* buttonGOBACK = nullptr;
 
-
+	//SETTINGS
+	UI_Element* buttonGOBACKSETTINGS = nullptr;
 
 
 	//PLAYER UI
