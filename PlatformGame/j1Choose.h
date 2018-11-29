@@ -113,7 +113,11 @@ public:
 
 	//SETTINGS
 	UI_Element* buttonGOBACKSETTINGS = nullptr;
-
+	UI_Element* imageSETTINGS = nullptr;
+	SDL_Texture* Settings = nullptr;
+	int x = 170;
+	int y = 950;
+	bool Create = false;
 
 	//PLAYER UI
 

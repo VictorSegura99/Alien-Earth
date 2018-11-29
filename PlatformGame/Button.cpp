@@ -55,26 +55,36 @@ bool Button::Update(float dt)
 {
 	switch (type) {
 	case 1: {
-		if (IsMouseOn()) {
-			png_pos = MouseOn;
-			mouseOn = true;
-			if (repeataudio) {
-				App->audio->PlayFx(fxOn);
-				repeataudio = false;
+		if (WantToRender) {
+			if (IsMouseOn()) {
+				png_pos = MouseOn;
+				mouseOn = true;
+				if (repeataudio) {
+					App->audio->PlayFx(fxOn);
+					repeataudio = false;
+				}
+				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
+					App->audio->PlayFx(fxPressed);
+				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
+					png_pos = Pressed;
+				}
+				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
+					pressed = true;
+				}
 			}
-			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
-				App->audio->PlayFx(fxPressed);
-			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
-				png_pos = Pressed;
-			}
-			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
-				pressed = true;
+			else {
+				repeataudio = true;
+				png_pos = NoPressedNoMouseOn;
+				mouseOn = false;
 			}
 		}
-		else {
-			repeataudio = true;
-			png_pos = NoPressedNoMouseOn;
-			mouseOn = false;
+		if (!WantToRender) {
+			if (label != nullptr)
+				label->WantToRender = false;
+		}
+		if (WantToRender) {
+			if (label != nullptr)
+				label->WantToRender = true;
 		}
 		break; }
 	case 2: {

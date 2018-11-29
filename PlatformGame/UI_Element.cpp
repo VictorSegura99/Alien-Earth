@@ -49,15 +49,18 @@ bool UI_Element::CleanUp()
 
 void UI_Element::Draw(float dt)
 {
-	if (type != LABEL)
-		App->render->Blit(atlas, position.x, position.y, &(png_pos));
-	else {
-		App->render->Blit(atlas, position.x, position.y, NULL);
+	if (WantToRender) {
+		if (type != LABEL)
+			App->render->Blit(atlas, position.x, position.y, &(png_pos));
+		else {
+			App->render->Blit(atlas, position.x, position.y, NULL);
+		}
+
+		if (App->ui_manager->debug_draw) {
+			App->render->DrawQuad({ position.x,position.y,width,height }, 255, 0, 0, 255, false);
+		}
 	}
 	
-	if (App->ui_manager->debug_draw) {
-		App->render->DrawQuad({ position.x,position.y,width,height }, 255, 0, 0, 255, false);
-	}
 }
 bool UI_Element::IsMouseOn()
 {

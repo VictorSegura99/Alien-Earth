@@ -10,12 +10,12 @@
 class Image : public UI_Element {
 public:
 
-	Image(int x, int y);
+	Image(int x, int y, int type);
 	virtual ~Image();
 	bool Update(float dt);
 
 private:
-	
+	int type = -1;
 	iPoint Distance;
 };
 

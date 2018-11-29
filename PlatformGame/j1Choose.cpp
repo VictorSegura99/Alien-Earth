@@ -80,7 +80,7 @@ bool j1Choose::Start()
 	yellow = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[0].GetString());
 	pink = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[1].GetString());
 	blue = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[2].GetString());
-
+	Settings = App->tex->Load("textures/Settings.png");
 	choosefx = App->audio->LoadFx(ChooseFx.GetString());
 	introfx = App->audio->LoadFx(IntroFx.GetString());
 
@@ -291,8 +291,8 @@ void j1Choose::MainMenu()
 		GoStartSaved = true;
 	}
 	if (buttonSETTINGS->pressed) {
-		//App->ui_manager->DeleteButtons();
-		//App->ui_manager->DeleteLabels();
+		App->ui_manager->DeleteButtons();
+		App->ui_manager->DeleteLabels();
 		CreateSettingsButtons();
 		InMainMenu = false;
 		InSettings = true;
@@ -328,16 +328,20 @@ void j1Choose::SettingsMenu(float dt)
 
 	if (!Positioned && !SettingMenuDone) {
 		buttonGOBACKSETTINGS->position.y -= 2000 * dt;
-		if (buttonGOBACKSETTINGS->position.y <= 200) {
+		imageSETTINGS->position.y -= 2000 * dt;
+		if (buttonGOBACKSETTINGS->position.y <= 250) {
 			Positioned = true;
 			SettingMenuDone = true;
 		}
 	}
 	if (!Positioned && SettingMenuDone) {
-		buttonGOBACKSETTINGS->position.y += 2000 * dt;
-		if (buttonGOBACKSETTINGS->position.y >= 1000) {
+		
+		buttonGOBACKSETTINGS->position.y += 4000 * dt;
+		imageSETTINGS->position.y += 4000 * dt;
+		if (buttonGOBACKSETTINGS->position.y >= 1075) {
 			App->ui_manager->DeleteButtons();
 			App->ui_manager->DeleteLabels();
+			App->ui_manager->DeleteImages();
 			InSettings = false;
 			SettingMenuDone = false;
 			CreateMainMenuButtons();
@@ -345,8 +349,22 @@ void j1Choose::SettingsMenu(float dt)
 		}
 	}
 	if (SettingMenuDone) {
+		if (!Create) {
+			Create = true;
+			CreateMainMenuButtons();
+			buttonSTART->WantToRender = false;
+			buttonCONTINUE->WantToRender = false;
+			buttonSETTINGS->WantToRender = false;
+			buttonEXIT->WantToRender = false;
+			buttonCREDITS->WantToRender = false;
+		}
 		if (buttonGOBACKSETTINGS->pressed) {
 			Positioned = false;
+			buttonSTART->WantToRender = true;
+			buttonCONTINUE->WantToRender = true;
+			buttonSETTINGS->WantToRender =  true;
+			buttonEXIT->WantToRender = true;
+			buttonCREDITS->WantToRender = true;
 		}
 	}
 
@@ -364,7 +382,9 @@ void j1Choose::SettingsMenu(float dt)
 void j1Choose::CreateSettingsButtons()
 {
 
-	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(150, 900, 3);
+	Create = false;
+	imageSETTINGS = App->ui_manager->CreateImage(170, 950, 2);
+	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(200, 975, 3);
 }
 
 

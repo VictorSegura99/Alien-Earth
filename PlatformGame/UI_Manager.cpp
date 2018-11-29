@@ -112,11 +112,11 @@ UI_Element * UI_Manager::CreateCheckBox(int x, int y)
 	return ret;
 }
 
-UI_Element * UI_Manager::CreateImage(int x, int y)
+UI_Element * UI_Manager::CreateImage(int x, int y, int type)
 {
 	UI_Element* ret = nullptr;
 
-	ret = new Image(x, y);
+	ret = new Image(x, y, type);
 	ret->type = IMAGE;
 
 	if (ret != nullptr)
