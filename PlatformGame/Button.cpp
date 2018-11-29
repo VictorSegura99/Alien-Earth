@@ -55,7 +55,7 @@ bool Button::Update(float dt)
 {
 	switch (type) {
 	case 1: {
-		if (WantToRender) {
+		if (!NoUse) {
 			if (IsMouseOn()) {
 				png_pos = MouseOn;
 				mouseOn = true;
@@ -85,6 +85,17 @@ bool Button::Update(float dt)
 		if (WantToRender) {
 			if (label != nullptr)
 				label->WantToRender = true;
+		}
+		/*if (NoUse) {
+			if (label != nullptr)
+				label->WantToRender = false;
+		}
+		if (!NoUse) {
+			if (label != nullptr)
+				label->WantToRender = true;
+		}*/
+		if (NoRenderLabel) {
+			label->WantToRender = false;
 		}
 		break; }
 	case 2: {

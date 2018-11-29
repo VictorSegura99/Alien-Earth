@@ -51,6 +51,7 @@ bool UI_Manager::Update(float dt)
 			elements[i]->Draw(dt);
 	}
 
+
 	return true;
 }
 

@@ -67,6 +67,8 @@ public:
 	SDL_Rect Pressed;
 	bool repeataudio = true;
 	bool WantToRender = true;
+	bool NoUse = false;
+	bool NoRenderLabel = false;
 };
 
 #endif

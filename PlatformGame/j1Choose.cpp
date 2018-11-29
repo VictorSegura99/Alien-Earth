@@ -293,7 +293,13 @@ void j1Choose::MainMenu()
 	if (buttonSETTINGS->pressed) {
 		App->ui_manager->DeleteButtons();
 		App->ui_manager->DeleteLabels();
+		CreateMainMenuButtons();
 		CreateSettingsButtons();
+		buttonSTART->NoUse = true;
+		buttonCONTINUE->NoUse = true;
+		buttonSETTINGS->NoUse = true;
+		buttonEXIT->NoUse = true;
+		buttonCREDITS->NoUse = true;
 		InMainMenu = false;
 		InSettings = true;
 
@@ -327,6 +333,21 @@ void j1Choose::SettingsMenu(float dt)
 	App->render->Blit(NoChoose, 0, 0, NULL);
 
 	if (!Positioned && !SettingMenuDone) {
+		if (imageSETTINGS->position.y <= buttonEXIT->position.y + buttonEXIT->height) {
+			buttonEXIT->NoRenderLabel = true;
+		}
+		if (imageSETTINGS->position.y <= buttonCREDITS->position.y + buttonCREDITS->height) {
+			buttonCREDITS->NoRenderLabel = true;
+		}
+		if (imageSETTINGS->position.y <= buttonSETTINGS->position.y + buttonSETTINGS->height) {
+			buttonSETTINGS->NoRenderLabel = true;
+		}
+		if (imageSETTINGS->position.y <= buttonCONTINUE->position.y + buttonCONTINUE->height) {
+			buttonCONTINUE->NoRenderLabel = true;
+		}
+		if (imageSETTINGS->position.y <= buttonSTART->position.y + buttonSTART->height) {
+			buttonSTART->NoRenderLabel = true;
+		}
 		buttonGOBACKSETTINGS->position.y -= 2000 * dt;
 		imageSETTINGS->position.y -= 2000 * dt;
 		if (buttonGOBACKSETTINGS->position.y <= 250) {
@@ -334,37 +355,50 @@ void j1Choose::SettingsMenu(float dt)
 			SettingMenuDone = true;
 		}
 	}
+
+	
 	if (!Positioned && SettingMenuDone) {
-		
-		buttonGOBACKSETTINGS->position.y += 4000 * dt;
-		imageSETTINGS->position.y += 4000 * dt;
+		if (imageSETTINGS->position.y >= buttonEXIT->position.y) {
+			buttonEXIT->NoRenderLabel = false;
+		}
+		if (imageSETTINGS->position.y >= buttonCREDITS->position.y) {
+			buttonCREDITS->NoRenderLabel = false;
+		}
+		if (imageSETTINGS->position.y >= buttonSETTINGS->position.y) {
+			buttonSETTINGS->NoRenderLabel = false;
+		}
+		if (imageSETTINGS->position.y >= buttonCONTINUE->position.y) {
+			buttonCONTINUE->NoRenderLabel = false;
+		}
+		if (imageSETTINGS->position.y >= buttonSTART->position.y) {
+			buttonSTART->NoRenderLabel = false;
+		}
+		buttonGOBACKSETTINGS->position.y += 2000 * dt;
+		imageSETTINGS->position.y += 2000 * dt;
 		if (buttonGOBACKSETTINGS->position.y >= 1075) {
-			App->ui_manager->DeleteButtons();
+			/*App->ui_manager->DeleteButtons();
 			App->ui_manager->DeleteLabels();
-			App->ui_manager->DeleteImages();
+			App->ui_manager->DeleteImages();*/
+			buttonSTART->NoUse = false;
+			buttonCONTINUE->NoUse = false;
+			buttonSETTINGS->NoUse = false;
+			buttonEXIT->NoUse = false;
+			buttonCREDITS->NoUse = false;
 			InSettings = false;
 			SettingMenuDone = false;
-			CreateMainMenuButtons();
+			//CreateMainMenuButtons();
 			InMainMenu = true;
 		}
 	}
 	if (SettingMenuDone) {
-		if (!Create) {
-			Create = true;
-			CreateMainMenuButtons();
-			buttonSTART->WantToRender = false;
-			buttonCONTINUE->WantToRender = false;
-			buttonSETTINGS->WantToRender = false;
-			buttonEXIT->WantToRender = false;
-			buttonCREDITS->WantToRender = false;
-		}
+
 		if (buttonGOBACKSETTINGS->pressed) {
 			Positioned = false;
-			buttonSTART->WantToRender = true;
+			/*buttonSTART->WantToRender = true;
 			buttonCONTINUE->WantToRender = true;
 			buttonSETTINGS->WantToRender =  true;
 			buttonEXIT->WantToRender = true;
-			buttonCREDITS->WantToRender = true;
+			buttonCREDITS->WantToRender = true;*/
 		}
 	}
 
@@ -383,8 +417,8 @@ void j1Choose::CreateSettingsButtons()
 {
 
 	Create = false;
-	imageSETTINGS = App->ui_manager->CreateImage(170, 950, 2);
-	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(200, 975, 3);
+	imageSETTINGS = App->ui_manager->CreateImage(170, 1450, 2);
+	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(200, 1485, 3);
 }
 
 

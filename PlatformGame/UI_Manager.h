@@ -49,6 +49,7 @@ private:
 public:
 
 	bool debug_draw = false;
+	
 };
 
 #endif

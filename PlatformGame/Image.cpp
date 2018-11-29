@@ -22,6 +22,7 @@ Image::Image(int x, int y, int type) : UI_Element(x, y)
 		break; }
 	case 2: {
 		this->type = type;
+		width = height = 668;
 		App->tex->UnLoad(atlas);
 		atlas = App->tex->Load("textures/Settings.png");
 		png_pos = { 0,0,1000,1000 };
