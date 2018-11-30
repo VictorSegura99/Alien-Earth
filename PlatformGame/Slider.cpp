@@ -35,7 +35,7 @@ Slider::Slider(int x, int y, int SliderPos) : UI_Element(x, y)
 		position.x = image->position.x + 5;
 	}
 	if (Value > 0 && Value < 100) {
-		position.x = (image->position.x + 5) + SliderPos * 2;
+		position.x = (image->position.x + 4) + SliderPos * 2;
 	}
 }
 
@@ -85,19 +85,19 @@ bool Slider::Update(float dt)
 		
 	}
 	value = (position.x - 5 - image->position.x);
-	Value = (100 * value) / (image->width);
-	
+	Value = (((100 * value) / (image->width))-1)*(100/78.5);
+	LOG("%f", Value);
 	
 	return true;
 }
 
 void Slider::LookLimits()
 {
-	if (position.x <= image->position.x + 5) {
-		position.x = image->position.x + 5;
+	if (position.x <= image->position.x +7) {
+		position.x = image->position.x + 7;
 	}
-	if (position.x + width >= image->position.x + image->width - 5) {
-		position.x = -width + image->position.x + image->width - 5;
+	if (position.x + width >= image->position.x + image->width - 7) {
+		position.x = -width + image->position.x + image->width - 7;
 	}
 
 }

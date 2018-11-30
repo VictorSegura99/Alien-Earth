@@ -195,6 +195,71 @@ Animation j1Choose::LoadGigantAliensAnimations(int playernumber, pugi::xml_node&
 	return anim;
 }
 
+
+//MENU
+void j1Choose::CreateIntro()
+{
+	Background = App->ui_manager->CreateImage(0, 0, false);
+	Background->SetSpritesData({ 0,1158,1024,768 });
+	Title = App->ui_manager->CreateImage((App->win->width / 2) - (354 / 2), 70, false);
+	Title->SetSpritesData({ 0,783,354,305 });
+	sentence = App->ui_manager->CreateImage((App->win->width / 2) - (268 / 2), 550, false);
+	sentence->SetSpritesData({ 0,1105,268,35 });
+}
+
+void j1Choose::CreateMainMenuButtons()
+{
+	AlreadyChoosen = false;
+	buttonSTART = App->ui_manager->CreateButton(400, 250, 1, "START", 30);
+	buttonCONTINUE = App->ui_manager->CreateButton(400, 350, 1, "CONTINUE", 30);
+	buttonSETTINGS = App->ui_manager->CreateButton(400, 450, 1, "SETTINGS", 30);
+	buttonCREDITS = App->ui_manager->CreateButton(400, 550, 1, "CREDITS", 30);
+	buttonEXIT = App->ui_manager->CreateButton(400, 650, 1, "EXIT", 30);
+}
+
+void j1Choose::MainMenu()
+{
+	App->ui_manager->DeleteUI_Element(Title);
+	App->ui_manager->DeleteUI_Element(sentence);
+	if (buttonSTART->pressed) {
+		App->ui_manager->DeleteButtons();
+		App->ui_manager->DeleteLabels();
+		App->ui_manager->DeleteCheckBoxes();
+		App->ui_manager->DeleteImages();
+		App->ui_manager->DeleteLabels();
+		App->ui_manager->DeleteSliders();
+		CreateButtonsTypePlayer();
+		InMainMenu = false;
+		StartChoosing = true;
+	}
+	if (buttonCONTINUE->pressed) {
+		App->ui_manager->DeleteButtons();
+		App->ui_manager->DeleteLabels();
+		App->ui_manager->DeleteCheckBoxes();
+		App->ui_manager->DeleteImages();
+		App->ui_manager->DeleteLabels();
+		App->ui_manager->DeleteSliders();
+		App->entitymanager->GetPlayerData()->Intro = false;
+		App->fade->FadeToBlack(3.0f);
+		GoStartSaved = true;
+	}
+	if (buttonSETTINGS->pressed) {
+
+		CreateSettingsButtons();
+		buttonSTART->NoUse = true;
+		buttonCONTINUE->NoUse = true;
+		buttonSETTINGS->NoUse = true;
+		buttonEXIT->NoUse = true;
+		buttonCREDITS->NoUse = true;
+		InMainMenu = false;
+		InSettings = true;
+
+	}
+	if (buttonEXIT->pressed) {
+		Exit = true;
+	}
+}
+
 void j1Choose::CreateButtonsTypePlayer()
 {
 	CHOOSE = App->ui_manager->CreateImage((App->win->width / 2) - (608 / 2), 70, false);
@@ -210,16 +275,9 @@ void j1Choose::CreateButtonsTypePlayer()
 	buttonJANE = App->ui_manager->CreateButton(388, 229, 2);
 	buttonJANE->SetSpritesData({ 0,0,0,0 }, { 0,0,225,441 }, { 0,0,225,441 });
 	buttonJERRY = App->ui_manager->CreateButton(638, 229, 2);
-	buttonJERRY->SetSpritesData({ 0,0,0,0 }, { 0,0,225,441 }, { 0,0,225,441 });
+	buttonJERRY->SetSpritesData({ 0,0,0,0	}, { 0,0,225,441 }, { 0,0,225,441 });
 	buttonGOBACK = App->ui_manager->CreateButton(50, 25, 3);
 	buttonGOBACK->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
-}
-
-void j1Choose::StartLevel()
-{
-	App->entitymanager->GetPlayerData()->Intro = true;
-	App->fade->FadeToBlack(3.0f);
-	GoStart = true;
 }
 
 void j1Choose::MenuChoosePlayer(float dt)
@@ -267,62 +325,27 @@ void j1Choose::MenuChoosePlayer(float dt)
 		InMainMenu = true;
 		CreateMainMenuButtons();
 	}
-	
+
 }
 
-void j1Choose::MainMenu()
+void j1Choose::CreateSettingsButtons()
 {
-	App->ui_manager->DeleteUI_Element(Title);
-	App->ui_manager->DeleteUI_Element(sentence);
-	if (buttonSTART->pressed) {
-		App->ui_manager->DeleteButtons();
-		App->ui_manager->DeleteLabels();
-		App->ui_manager->DeleteCheckBoxes();
-		App->ui_manager->DeleteImages();
-		App->ui_manager->DeleteLabels();
-		App->ui_manager->DeleteSliders();
-		CreateButtonsTypePlayer();
-		InMainMenu = false;
-		StartChoosing = true;
-	}
-	if (buttonCONTINUE->pressed) {
-		App->ui_manager->DeleteButtons();
-		App->ui_manager->DeleteLabels();
-		App->ui_manager->DeleteCheckBoxes();
-		App->ui_manager->DeleteImages();
-		App->ui_manager->DeleteLabels();
-		App->ui_manager->DeleteSliders();
-		App->entitymanager->GetPlayerData()->Intro = false;
-		App->fade->FadeToBlack(3.0f);
-		GoStartSaved = true;
-	}
-	if (buttonSETTINGS->pressed) {
+	SettingMenuDone = false;
+	imageSETTINGS = App->ui_manager->CreateImage(170, 1300, true);
+	imageSETTINGS->SetSpritesData({ 758,0,705,671 });
+	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(200, 1335, 3);
+	buttonGOBACKSETTINGS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
+	checkboxFPS = App->ui_manager->CreateCheckBox(550, 1407);
+	labelFPS = App->ui_manager->CreateLabel(270, 1400, "CAP FPS TO 30", 50, true);
+	sliderVOLUMEMUSIC = App->ui_manager->CreateSlider(550, 1507, App->audio->volume);
+	labelMUSICVOLUME = App->ui_manager->CreateLabel(270, 1507, "MUSIC VOLUME", 50, true);
+	sliderVOLUMEFX = App->ui_manager->CreateSlider(550, 1607, App->audio->fxvolume);
+	labelVOLUMEFX = App->ui_manager->CreateLabel(270, 1607, "FX VOLUME", 50, true);
 
-		CreateSettingsButtons();
-		buttonSTART->NoUse = true;
-		buttonCONTINUE->NoUse = true;
-		buttonSETTINGS->NoUse = true;
-		buttonEXIT->NoUse = true;
-		buttonCREDITS->NoUse = true;
-		InMainMenu = false;
-		InSettings = true;
-
-	}
-	if (buttonEXIT->pressed) {
-		Exit = true;
-	}
-
+	if (App->capactivated)
+		checkboxFPS->pressed = true;
 }
 
-void j1Choose::CreateMainMenuButtons()
-{
-	AlreadyChoosen = false;
-	buttonSTART = App->ui_manager->CreateButton(400, 250, 1, "START", 30);
-	buttonCONTINUE = App->ui_manager->CreateButton(400, 350, 1, "CONTINUE", 30);
-	buttonSETTINGS = App->ui_manager->CreateButton(400, 450, 1, "SETTINGS", 30);
-	buttonCREDITS = App->ui_manager->CreateButton(400, 550, 1, "CREDITS", 30);
-	buttonEXIT = App->ui_manager->CreateButton(400, 650, 1, "EXIT", 30);
-}
 
 void j1Choose::SettingsMenu(float dt)
 {
@@ -404,7 +427,7 @@ void j1Choose::SettingsMenu(float dt)
 		if (!checkboxFPS->pressed) {
 			App->capactivated = false;
 		}
-		App->audio->volume= sliderVOLUMEMUSIC->Value;
+		App->audio->volume = sliderVOLUMEMUSIC->Value;
 		App->audio->fxvolume = sliderVOLUMEFX->Value;
 		if (App->input->GetKey(SDL_SCANCODE_J) == KEY_REPEAT) {
 			App->render->camera.y += 20;
@@ -412,36 +435,18 @@ void j1Choose::SettingsMenu(float dt)
 			App->render->camera.y -= 20;
 		}
 	}
-
 }
 
-void j1Choose::CreateSettingsButtons()
+
+void j1Choose::StartLevel()
 {
-	SettingMenuDone = false;
-	imageSETTINGS = App->ui_manager->CreateImage(170, 1300, true);
-	imageSETTINGS->SetSpritesData({ 758,0,705,671 });
-	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(200, 1335, 3);
-	buttonGOBACKSETTINGS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
-	checkboxFPS = App->ui_manager->CreateCheckBox(550, 1407);
-	labelFPS = App->ui_manager->CreateLabel(270, 1400, "CAP FPS TO 30", 50, true);
-	sliderVOLUMEMUSIC = App->ui_manager->CreateSlider(550, 1507, App->audio->volume);
-	labelMUSICVOLUME = App->ui_manager->CreateLabel(270, 1507, "MUSIC VOLUME", 50, true);
-	sliderVOLUMEFX = App->ui_manager->CreateSlider(550, 1607, App->audio->fxvolume);
-	labelVOLUMEFX = App->ui_manager->CreateLabel(270, 1607, "FX VOLUME", 50, true);
-
-
-
-	if (App->capactivated)
-		checkboxFPS->pressed = true;
+	App->entitymanager->GetPlayerData()->Intro = true;
+	App->fade->FadeToBlack(3.0f);
+	GoStart = true;
 }
 
-void j1Choose::CreateIntro()
-{
-	Background = App->ui_manager->CreateImage(0, 0, false);
-	Background->SetSpritesData({ 0,1158,1024,768 });
-	Title = App->ui_manager->CreateImage((App->win->width / 2) - (354 / 2), 70, false);
-	Title->SetSpritesData({ 0,783,354,305 });
-	sentence = App->ui_manager->CreateImage((App->win->width / 2) - (268 / 2), 550, false);
-	sentence->SetSpritesData({ 0,1105,268,35 });
-}
+
+
+
+
 
