@@ -326,64 +326,65 @@ void j1Choose::MainMenu()
 void j1Choose::CreateMainMenuButtons()
 {
 	AlreadyChoosen = false;
-	buttonSTART = App->ui_manager->CreateButton(400, 350, 1, "START", 30);
-	buttonCONTINUE = App->ui_manager->CreateButton(400, 450, 1, "CONTINUE", 30);
-	buttonSETTINGS = App->ui_manager->CreateButton(400, 550, 1, "SETTINGS", 30);
-	buttonCREDITS = App->ui_manager->CreateButton(400, 650, 1, "CREDITS", 30);
-	buttonEXIT = App->ui_manager->CreateButton(400, 750, 1, "EXIT", 30);
+	buttonSTART = App->ui_manager->CreateButton(400, 250, 1, "START", 30);
+	buttonCONTINUE = App->ui_manager->CreateButton(400, 350, 1, "CONTINUE", 30);
+	buttonSETTINGS = App->ui_manager->CreateButton(400, 450, 1, "SETTINGS", 30);
+	buttonCREDITS = App->ui_manager->CreateButton(400, 550, 1, "CREDITS", 30);
+	buttonEXIT = App->ui_manager->CreateButton(400, 650, 1, "EXIT", 30);
 	
 }
 
 void j1Choose::SettingsMenu(float dt)
 {
 	App->render->Blit(ScreenStart, 0, 0, NULL);
-
+	if (imageSETTINGS->position.y <= buttonEXIT->position.y + buttonEXIT->height) {
+		buttonEXIT->NoRenderLabel = true;
+	}
+	if (imageSETTINGS->position.y <= buttonCREDITS->position.y + buttonCREDITS->height) {
+		buttonCREDITS->NoRenderLabel = true;
+	}
+	if (imageSETTINGS->position.y <= buttonSETTINGS->position.y + buttonSETTINGS->height) {
+		buttonSETTINGS->NoRenderLabel = true;
+	}
+	if (imageSETTINGS->position.y <= buttonCONTINUE->position.y + buttonCONTINUE->height) {
+		buttonCONTINUE->NoRenderLabel = true;
+	}
+	if (imageSETTINGS->position.y <= buttonSTART->position.y + buttonSTART->height) {
+		buttonSTART->NoRenderLabel = true;
+	}
+	if (imageSETTINGS->position.y >= buttonEXIT->position.y) {
+		buttonEXIT->NoRenderLabel = false;
+	}
+	if (imageSETTINGS->position.y >= buttonCREDITS->position.y) {
+		buttonCREDITS->NoRenderLabel = false;
+	}
+	if (imageSETTINGS->position.y >= buttonSETTINGS->position.y) {
+		buttonSETTINGS->NoRenderLabel = false;
+	}
+	if (imageSETTINGS->position.y >= buttonCONTINUE->position.y) {
+		buttonCONTINUE->NoRenderLabel = false;
+	}
+	if (imageSETTINGS->position.y >= buttonSTART->position.y) {
+		buttonSTART->NoRenderLabel = false;
+	}
 	if (!Positioned && !SettingMenuDone) { //MENU GOING UP
-		if (imageSETTINGS->position.y <= buttonEXIT->position.y + buttonEXIT->height) {
-			buttonEXIT->NoRenderLabel = true;
-		}
-		if (imageSETTINGS->position.y <= buttonCREDITS->position.y + buttonCREDITS->height) {
-			buttonCREDITS->NoRenderLabel = true;
-		}
-		if (imageSETTINGS->position.y <= buttonSETTINGS->position.y + buttonSETTINGS->height) {
-			buttonSETTINGS->NoRenderLabel = true;
-		}
-		if (imageSETTINGS->position.y <= buttonCONTINUE->position.y + buttonCONTINUE->height) {
-			buttonCONTINUE->NoRenderLabel = true;
-		}
-		if (imageSETTINGS->position.y <= buttonSTART->position.y + buttonSTART->height) {
-			buttonSTART->NoRenderLabel = true;
-		}
-		buttonGOBACKSETTINGS->position.y -= 2000 * dt;
-		imageSETTINGS->position.y -= 2000 * dt;
-		checkboxFPS->position.y -= 2000 * dt;
-		labelFPS->position.y -= 2000 * dt;
-		if (buttonGOBACKSETTINGS->position.y <= 250) {
+
+		buttonGOBACKSETTINGS->position.y -= 1000 * dt;
+		imageSETTINGS->position.y -= 1000 * dt;
+		checkboxFPS->position.y -= 1000 * dt;
+		labelFPS->position.y -= 1000 * dt;
+		if (buttonGOBACKSETTINGS->position.y <= 100) {
 			Positioned = true;
 			SettingMenuDone = true;
 		}
 	}
 	if (!Positioned && SettingMenuDone) { //MENU GOING DOWN
-		if (imageSETTINGS->position.y >= buttonEXIT->position.y) {
-			buttonEXIT->NoRenderLabel = false;
-		}
-		if (imageSETTINGS->position.y >= buttonCREDITS->position.y) {
-			buttonCREDITS->NoRenderLabel = false;
-		}
-		if (imageSETTINGS->position.y >= buttonSETTINGS->position.y) {
-			buttonSETTINGS->NoRenderLabel = false;
-		}
-		if (imageSETTINGS->position.y >= buttonCONTINUE->position.y) {
-			buttonCONTINUE->NoRenderLabel = false;
-		}
-		if (imageSETTINGS->position.y >= buttonSTART->position.y) {
-			buttonSTART->NoRenderLabel = false;
-		}
+
 		buttonGOBACKSETTINGS->position.y += 2000 * dt;
 		imageSETTINGS->position.y += 2000 * dt;
 		checkboxFPS->position.y += 2000 * dt;
 		labelFPS->position.y += 2000 * dt;
-		if (buttonGOBACKSETTINGS->position.y >= 1075) {
+		if (buttonGOBACKSETTINGS->position.y >= 1225) {
 			buttonSTART->NoUse = false;
 			buttonCONTINUE->NoUse = false;
 			buttonSETTINGS->NoUse = false;
@@ -411,11 +412,11 @@ void j1Choose::SettingsMenu(float dt)
 void j1Choose::CreateSettingsButtons()
 {
 
-	imageSETTINGS = App->ui_manager->CreateImage(170, 1450, 2);
-	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(200, 1485, 3);
+	imageSETTINGS = App->ui_manager->CreateImage(170, 1400, 2);
+	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(200, 1435, 3);
 	buttonGOBACKSETTINGS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
-	checkboxFPS = App->ui_manager->CreateCheckBox(550, 1557);
-	labelFPS = App->ui_manager->CreateLabel(270, 1550, "CAP FPS TO 30", 50, true);
+	checkboxFPS = App->ui_manager->CreateCheckBox(550, 1507);
+	labelFPS = App->ui_manager->CreateLabel(270, 1500, "CAP FPS TO 30", 50, true);
 
 	if (App->capactivated)
 		checkboxFPS->pressed = true;
