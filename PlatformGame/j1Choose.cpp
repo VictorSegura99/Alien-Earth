@@ -412,11 +412,11 @@ void j1Choose::SettingsMenu(float dt)
 void j1Choose::CreateSettingsButtons()
 {
 
-	imageSETTINGS = App->ui_manager->CreateImage(170, 1400, 2);
-	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(200, 1435, 3);
+	imageSETTINGS = App->ui_manager->CreateImage(170, 1000, 2);
+	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(200, 1035, 3);
 	buttonGOBACKSETTINGS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
-	checkboxFPS = App->ui_manager->CreateCheckBox(550, 1507);
-	labelFPS = App->ui_manager->CreateLabel(270, 1500, "CAP FPS TO 30", 50, true);
+	checkboxFPS = App->ui_manager->CreateCheckBox(550, 1107);
+	labelFPS = App->ui_manager->CreateLabel(270, 1100, "CAP FPS TO 30", 50, true);
 
 	if (App->capactivated)
 		checkboxFPS->pressed = true;
