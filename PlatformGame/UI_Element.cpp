@@ -25,7 +25,7 @@ UI_Element::UI_Element(int x, int y) : position(x,y)
 	FXPRESSED = UI_node.child("FXPRESSED").text().as_string();
 	fxOn = App->audio->LoadFx(FXON.GetString());
 	fxPressed = App->audio->LoadFx(FXPRESSED.GetString());
-
+	
 	atlas = App->tex->Load(sprite.GetString());
 }
 
