@@ -121,7 +121,10 @@ public:
 	UI_Element* checkboxFPS = nullptr;
 	UI_Element* labelFPS = nullptr;
 	SDL_Texture* Settings = nullptr;
-	UI_Element* sliderVOLUME = nullptr;
+	UI_Element* sliderVOLUMEMUSIC = nullptr;
+	UI_Element* labelMUSICVOLUME = nullptr;
+	UI_Element* sliderVOLUMEFX = nullptr;
+	UI_Element* labelVOLUMEFX = nullptr;
 	int x = 170;
 	int y = 950;
 	bool Create = false;

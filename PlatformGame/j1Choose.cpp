@@ -373,7 +373,10 @@ void j1Choose::SettingsMenu(float dt)
 		imageSETTINGS->position.y -= 1000 * dt;
 		checkboxFPS->position.y -= 1000 * dt;
 		labelFPS->position.y -= 1000 * dt;
-		sliderVOLUME->position.y -= 1000 * dt;
+		sliderVOLUMEMUSIC->position.y -= 1000 * dt;
+		labelMUSICVOLUME->position.y -= 1000 * dt;
+		sliderVOLUMEFX->position.y -= 1000 * dt;
+		labelVOLUMEFX->position.y -= 1000 * dt;
 		if (buttonGOBACKSETTINGS->position.y <= 100) {
 			Positioned = true;
 			SettingMenuDone = true;
@@ -385,7 +388,10 @@ void j1Choose::SettingsMenu(float dt)
 		imageSETTINGS->position.y += 2000 * dt;
 		checkboxFPS->position.y += 2000 * dt;
 		labelFPS->position.y += 2000 * dt;
-		sliderVOLUME->position.y += 2000 * dt;
+		sliderVOLUMEMUSIC->position.y += 2000 * dt;
+		labelMUSICVOLUME->position.y += 2000 * dt;
+		sliderVOLUMEFX->position.y += 2000 * dt;
+		labelVOLUMEFX->position.y += 2000 * dt;
 		if (buttonGOBACKSETTINGS->position.y >= 1225) {
 			buttonSTART->NoUse = false;
 			buttonCONTINUE->NoUse = false;
@@ -407,6 +413,13 @@ void j1Choose::SettingsMenu(float dt)
 		if (!checkboxFPS->pressed) {
 			App->capactivated = false;
 		}
+		App->audio->volume= sliderVOLUMEMUSIC->Value;
+		App->audio->fxvolume = sliderVOLUMEFX->Value;
+		if (App->input->GetKey(SDL_SCANCODE_J) == KEY_REPEAT) {
+			App->render->camera.y += 20;
+		}if (App->input->GetKey(SDL_SCANCODE_K) == KEY_REPEAT) {
+			App->render->camera.y -= 20;
+		}
 	}
 
 }
@@ -420,7 +433,10 @@ void j1Choose::CreateSettingsButtons()
 	buttonGOBACKSETTINGS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
 	checkboxFPS = App->ui_manager->CreateCheckBox(550, 1407);
 	labelFPS = App->ui_manager->CreateLabel(270, 1400, "CAP FPS TO 30", 50, true);
-	sliderVOLUME = App->ui_manager->CreateSlider(550, 1507);
+	sliderVOLUMEMUSIC = App->ui_manager->CreateSlider(550, 1507, App->audio->volume);
+	labelMUSICVOLUME = App->ui_manager->CreateLabel(270, 1507, "MUSIC VOLUME", 50, true);
+	sliderVOLUMEFX = App->ui_manager->CreateSlider(550, 1607, App->audio->fxvolume);
+	labelVOLUMEFX = App->ui_manager->CreateLabel(270, 1607, "FX VOLUME", 50, true);
 
 
 

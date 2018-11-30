@@ -140,11 +140,11 @@ UI_Element * UI_Manager::CreateLabel(int x, int y, p2SString name, int size, boo
 	return ret;
 }
 
-UI_Element * UI_Manager::CreateSlider(int x, int y)
+UI_Element * UI_Manager::CreateSlider(int x, int y, int SliderPos)
 {
 	UI_Element* ret = nullptr;
 
-	ret = new Slider(x, y);
+	ret = new Slider(x, y, SliderPos);
 	ret->type = SLIDER;
 
 	if (ret != nullptr)
