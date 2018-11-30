@@ -197,6 +197,14 @@ Animation j1Choose::LoadGigantAliensAnimations(int playernumber, pugi::xml_node&
 
 void j1Choose::CreateButtonsTypePlayer()
 {
+	CHOOSE = App->ui_manager->CreateImage((App->win->width / 2) - (608 / 2), 70, false);
+	CHOOSE->SetSpritesData({ 0,1928,608,72 });
+	JEFFNAME = App->ui_manager->CreateImage((App->win->width / 4) - (68 / 2), 700, false);
+	JEFFNAME->SetSpritesData({ 611,1928,68,37 });
+	JANENAME = App->ui_manager->CreateImage((App->win->width / 4) * 2 - (72 / 2), 700, false);
+	JANENAME->SetSpritesData({ 681,1928,72,37 });
+	JERRYNAME = App->ui_manager->CreateImage((App->win->width / 4) * 3 - (92 / 2), 700, false);
+	JERRYNAME->SetSpritesData({ 754,1928,92,37 });
 	buttonJEFF = App->ui_manager->CreateButton(138, 229, 2);
 	buttonJEFF->SetSpritesData({ 0,0,0,0 }, { 0,0,225,441 }, { 0,0,225,441 });
 	buttonJANE = App->ui_manager->CreateButton(388, 229, 2);
@@ -264,6 +272,8 @@ void j1Choose::MenuChoosePlayer(float dt)
 
 void j1Choose::MainMenu()
 {
+	App->ui_manager->DeleteUI_Element(Title);
+	App->ui_manager->DeleteUI_Element(sentence);
 	if (buttonSTART->pressed) {
 		App->ui_manager->DeleteButtons();
 		App->ui_manager->DeleteLabels();

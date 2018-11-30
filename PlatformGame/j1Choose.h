@@ -116,6 +116,11 @@ public:
 	UI_Element* buttonJANE = nullptr;
 	UI_Element* buttonJERRY = nullptr;
 	UI_Element* buttonGOBACK = nullptr;
+	UI_Element* CHOOSE = nullptr;
+	UI_Element* JEFFNAME = nullptr;
+	UI_Element* JANENAME = nullptr;
+	UI_Element* JERRYNAME = nullptr;
+
 
 	//SETTINGS
 	UI_Element* buttonGOBACKSETTINGS = nullptr;
