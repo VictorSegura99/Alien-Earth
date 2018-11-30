@@ -74,7 +74,7 @@ bool j1Choose::Start()
 	Settings = App->tex->Load("textures/Settings.png");
 	choosefx = App->audio->LoadFx(ChooseFx.GetString());
 	introfx = App->audio->LoadFx(IntroFx.GetString());
-	CreateIntroButtons();
+	CreateIntro();
 	return true;
 }
 
@@ -86,8 +86,7 @@ bool j1Choose::PreUpdate()
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && !GameOn && !start) {
 		start = true;
-		App->audio->PlayFx(introfx);
-		App->ui_manager->DeleteImages();
+		App->audio->PlayFx(introfx);	
 		CreateMainMenuButtons();
 		//CreateButtons();
 	}
@@ -108,9 +107,6 @@ bool j1Choose::Update(float dt)
 				MenuChoosePlayer(dt);
 			
 		}
-	}
-	else {
-		App->render->Blit(ScreenStart, 0, 0, NULL);
 	}
 	return true;
 }
@@ -220,8 +216,6 @@ void j1Choose::StartLevel()
 
 void j1Choose::MenuChoosePlayer(float dt)
 {
-	App->render->Blit(ScreenStart, 0, 0, NULL);
-	
 	if (buttonJEFF->mouseOn) {
 		App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
 		App->render->Blit(yellow, 150, 350, &(YellowWalk.GetCurrentFrame(dt)));
@@ -253,7 +247,6 @@ void j1Choose::MenuChoosePlayer(float dt)
 		}
 	}
 	else {
-		App->render->Blit(ScreenStart, 0, 0, NULL);
 		App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
 		App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
 		App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
@@ -271,7 +264,6 @@ void j1Choose::MenuChoosePlayer(float dt)
 
 void j1Choose::MainMenu()
 {
-	App->render->Blit(ScreenStart, 0, 0, NULL);
 	if (buttonSTART->pressed) {
 		App->ui_manager->DeleteButtons();
 		App->ui_manager->DeleteLabels();
@@ -320,14 +312,12 @@ void j1Choose::CreateMainMenuButtons()
 	buttonSETTINGS = App->ui_manager->CreateButton(400, 450, 1, "SETTINGS", 30);
 	buttonCREDITS = App->ui_manager->CreateButton(400, 550, 1, "CREDITS", 30);
 	buttonEXIT = App->ui_manager->CreateButton(400, 650, 1, "EXIT", 30);
-
-	
-	
 }
 
 void j1Choose::SettingsMenu(float dt)
 {
-	App->render->Blit(ScreenStart, 0, 0, NULL);
+	Title->NoRenderLabel = true;
+	sentence->NoRenderLabel = true;
 	if (imageSETTINGS->position.y <= buttonEXIT->position.y + buttonEXIT->height) {
 		buttonEXIT->NoRenderLabel = true;
 	}
@@ -435,11 +425,13 @@ void j1Choose::CreateSettingsButtons()
 		checkboxFPS->pressed = true;
 }
 
-void j1Choose::CreateIntroButtons()
+void j1Choose::CreateIntro()
 {
+	Background = App->ui_manager->CreateImage(0, 0, false);
+	Background->SetSpritesData({ 0,1158,1024,768 });
 	Title = App->ui_manager->CreateImage((App->win->width / 2) - (354 / 2), 70, false);
 	Title->SetSpritesData({ 0,783,354,305 });
 	sentence = App->ui_manager->CreateImage((App->win->width / 2) - (268 / 2), 550, false);
-	sentence->SetSpritesData({ 0,1105,268,355 });
+	sentence->SetSpritesData({ 0,1105,268,35 });
 }
 

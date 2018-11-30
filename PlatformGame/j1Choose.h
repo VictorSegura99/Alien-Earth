@@ -44,7 +44,7 @@ public:
 	void CreateMainMenuButtons();
 	void SettingsMenu(float dt);
 	void CreateSettingsButtons();
-	void CreateIntroButtons();
+	void CreateIntro();
 
 public:
 
@@ -99,6 +99,7 @@ public:
 	unsigned int introfx;
 
 	//START MENU
+	UI_Element* Background = nullptr;
 	UI_Element* Title = nullptr;
 	UI_Element* sentence = nullptr;
 
