@@ -1096,7 +1096,7 @@ void Player::Gravity(float dt)
 void Player::SetUI()
 {
 	App->choose->image = App->ui_manager->CreateImage(100, 200,1);
-	App->choose->label = App->ui_manager->CreateLabel(100, 0, "WELCOME ALIENERTHEROS", 60, false);
+	App->choose->label = App->ui_manager->CreateLabel(100, 0, "WELCOME ALIENEARTHEROS", 60, false);
 	
 }
 
