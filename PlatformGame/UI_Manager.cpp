@@ -113,11 +113,11 @@ UI_Element * UI_Manager::CreateCheckBox(int x, int y)
 	return ret;
 }
 
-UI_Element * UI_Manager::CreateImage(int x, int y, int type)
+UI_Element * UI_Manager::CreateImage(int x, int y, bool WantToBeMoved)
 {
 	UI_Element* ret = nullptr;
 
-	ret = new Image(x, y, type);
+	ret = new Image(x, y, WantToBeMoved);
 	ret->type = IMAGE;
 
 	if (ret != nullptr)

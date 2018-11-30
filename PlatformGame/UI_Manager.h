@@ -32,7 +32,7 @@ public:
 
 	UI_Element* CreateButton(int x, int y, int type, p2SString name = "NONE", int size = 0);
 	UI_Element* CreateCheckBox(int x, int y);
-	UI_Element* CreateImage(int x, int y, int type);
+	UI_Element* CreateImage(int x, int y, bool WantToBeMoved);
 	UI_Element* CreateLabel(int x, int y, p2SString name, int size, bool CanBeMoved);
 	
 	void DeleteButtons();

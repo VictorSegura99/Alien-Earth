@@ -7,15 +7,19 @@
 #include "p2SString.h"
 #include "PugiXml\src\pugixml.hpp"
 
+#define IDLE  336, 398, 328, 103 
+#define WIDTH 328
+#define HEIGHT 103
+
 class Image : public UI_Element {
 public:
 
-	Image(int x, int y, int type);
+	Image(int x, int y, bool WantToBeMoved);
 	virtual ~Image();
 	bool Update(float dt);
 
 private:
-	int type = -1;
+	bool WantToBeMoved = false;
 	iPoint Distance;
 };
 

@@ -37,7 +37,7 @@ public:
 	virtual bool Load(pugi::xml_node&) { return true; };
 	virtual bool Save(pugi::xml_node&) const { return true; };
 
-	void SetSpritesData(SDL_Rect Idle, SDL_Rect Hover, SDL_Rect Pressed);
+	void SetSpritesData(SDL_Rect Idle, SDL_Rect Hover = { 0,0,0,0 }, SDL_Rect Pressed = { 0,0,0,0 });
 
 public:
 	p2SString sprite;
