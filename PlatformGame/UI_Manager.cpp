@@ -8,6 +8,7 @@
 #include "j1Audio.h"
 #include "Label.h"
 #include "CheckBox.h"
+#include "Slider.h"
 #include "Image.h"
 
 UI_Manager::UI_Manager()
@@ -132,6 +133,19 @@ UI_Element * UI_Manager::CreateLabel(int x, int y, p2SString name, int size, boo
 
 	ret = new Label(x, y, name, size, CanBeMoved);
 	ret->type = LABEL;
+
+	if (ret != nullptr)
+		elements.PushBack(ret);
+
+	return ret;
+}
+
+UI_Element * UI_Manager::CreateSlider(int x, int y)
+{
+	UI_Element* ret = nullptr;
+
+	ret = new Slider(x, y);
+	ret->type = SLIDER;
 
 	if (ret != nullptr)
 		elements.PushBack(ret);

@@ -126,6 +126,9 @@ public:
 	UI_Element* image = nullptr;
 	UI_Element* label = nullptr;
 
+	// 
+	UI_Element* slider = nullptr;
+
 };
 
 #endif //

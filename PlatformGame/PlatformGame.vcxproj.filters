@@ -94,6 +94,9 @@
     <ClCompile Include="Label.cpp">
       <Filter>Modules\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Slider.cpp">
+      <Filter>Modules\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PugiXml\src\pugixml.hpp">
@@ -208,6 +211,9 @@
       <Filter>Modules\UI</Filter>
     </ClInclude>
     <ClInclude Include="Label.h">
+      <Filter>Modules\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Slider.h">
       <Filter>Modules\UI</Filter>
     </ClInclude>
   </ItemGroup>
