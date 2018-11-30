@@ -35,7 +35,7 @@
    </scene>  
   
   <audio>
-    <volume value="80"></volume>
+    <volume value="100"></volume>
   </audio>
   <choose>
     <Start>textures/Start.png</Start>

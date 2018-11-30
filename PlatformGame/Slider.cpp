@@ -24,8 +24,19 @@ Slider::Slider(int x, int y, int SliderPos) : UI_Element(x, y)
 
 	//position.x = x + image->width / 2 - width/2;
 	position.y = y + image->height / 2 - height / 2;
-	Value = 50;
-	position.x = (image->position.x + 5) + SliderPos * 2 -15;
+	Value = SliderPos;
+	int RelPos = image->width - 15;
+	// (SliderPos*RelPos) /100
+	//position.x = (image->position.x + 5) + SliderPos * 2;
+	if (Value == 100) {
+		position.x = image->position.x + image->width - width - 5;
+	}
+	if (Value == 0) {
+		position.x = image->position.x + 5;
+	}
+	if (Value > 0 && Value < 100) {
+		position.x = (image->position.x + 5) + SliderPos * 2;
+	}
 }
 
 Slider::~Slider()
