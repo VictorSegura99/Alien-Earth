@@ -210,9 +210,13 @@ Animation j1Choose::LoadGigantAliensAnimations(int playernumber, pugi::xml_node&
 void j1Choose::CreateButtonsTypePlayer()
 {
 	buttonJEFF = App->ui_manager->CreateButton(138, 229, 2);
+	buttonJEFF->SetSpritesData({ 0,0,0,0 }, { 0,0,225,441 }, { 0,0,225,441 });
 	buttonJANE = App->ui_manager->CreateButton(388, 229, 2);
+	buttonJANE->SetSpritesData({ 0,0,0,0 }, { 0,0,225,441 }, { 0,0,225,441 });
 	buttonJERRY = App->ui_manager->CreateButton(638, 229, 2);
+	buttonJERRY->SetSpritesData({ 0,0,0,0 }, { 0,0,225,441 }, { 0,0,225,441 });
 	buttonGOBACK = App->ui_manager->CreateButton(50, 25, 3);
+	buttonGOBACK->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
 }
 
 void j1Choose::StartLevel()
@@ -409,6 +413,7 @@ void j1Choose::CreateSettingsButtons()
 
 	imageSETTINGS = App->ui_manager->CreateImage(170, 1450, 2);
 	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(200, 1485, 3);
+	buttonGOBACKSETTINGS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
 	checkboxFPS = App->ui_manager->CreateCheckBox(550, 1557);
 	labelFPS = App->ui_manager->CreateLabel(270, 1550, "CAP FPS TO 30", 50, true);
 

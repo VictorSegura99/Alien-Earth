@@ -17,7 +17,7 @@ enum UI_Elements
 	BUTTON,
 	CHECKBOX,
 	IMAGE,
-	LABEL,
+	LABEL
 };
 
 
@@ -37,7 +37,7 @@ public:
 	virtual bool Load(pugi::xml_node&) { return true; };
 	virtual bool Save(pugi::xml_node&) const { return true; };
 
-
+	void SetSpritesData(SDL_Rect Idle, SDL_Rect Hover, SDL_Rect Pressed);
 
 public:
 	p2SString sprite;

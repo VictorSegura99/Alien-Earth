@@ -7,6 +7,13 @@
 #include "p2SString.h"
 #include "PugiXml\src\pugixml.hpp"
 
+#define IDLE 349,99,190,49 
+#define MOUSEON 349,47,190,49 
+#define PRESSED  349,1,190,45 
+#define WIDTH 190
+#define HEIGHT 49
+
+
 class Button : public UI_Element {
 public:
 

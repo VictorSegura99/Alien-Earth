@@ -71,3 +71,14 @@ bool UI_Element::IsMouseOn()
 	}
 	return false;
 }
+
+void UI_Element::SetSpritesData(SDL_Rect Idle, SDL_Rect Hover, SDL_Rect Pressed)
+{
+
+	NoPressedNoMouseOn = Idle;
+	MouseOn = Hover;
+	this->Pressed=Pressed;
+	width = Hover.w;
+	height = Hover.h;
+
+}
