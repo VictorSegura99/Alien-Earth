@@ -74,7 +74,7 @@ bool j1Choose::Start()
 	Settings = App->tex->Load("textures/Settings.png");
 	choosefx = App->audio->LoadFx(ChooseFx.GetString());
 	introfx = App->audio->LoadFx(IntroFx.GetString());
-
+	CreateIntroButtons();
 	return true;
 }
 
@@ -87,6 +87,7 @@ bool j1Choose::PreUpdate()
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && !GameOn && !start) {
 		start = true;
 		App->audio->PlayFx(introfx);
+		App->ui_manager->DeleteImages();
 		CreateMainMenuButtons();
 		//CreateButtons();
 	}
@@ -110,10 +111,6 @@ bool j1Choose::Update(float dt)
 	}
 	else {
 		App->render->Blit(ScreenStart, 0, 0, NULL);
-		Title = App->ui_manager->CreateImage((App->win->width / 2) - (354 /2), 70, false);
-		Title->SetSpritesData({ 0,783,354,305 });
-		sentence = App->ui_manager->CreateImage((App->win->width / 2) - (268 / 2), 550, false);
-		sentence->SetSpritesData({ 0,1105,268,355 });
 	}
 	return true;
 }
@@ -298,13 +295,7 @@ void j1Choose::MainMenu()
 		GoStartSaved = true;
 	}
 	if (buttonSETTINGS->pressed) {
-		App->ui_manager->DeleteButtons();
-		App->ui_manager->DeleteLabels();
-		App->ui_manager->DeleteCheckBoxes();
-		App->ui_manager->DeleteImages();
-		App->ui_manager->DeleteLabels();
-		App->ui_manager->DeleteSliders();
-		CreateMainMenuButtons();
+
 		CreateSettingsButtons();
 		buttonSTART->NoUse = true;
 		buttonCONTINUE->NoUse = true;
@@ -393,13 +384,13 @@ void j1Choose::SettingsMenu(float dt)
 		sliderVOLUMEFX->position.y += 2000 * dt;
 		labelVOLUMEFX->position.y += 2000 * dt;
 		if (buttonGOBACKSETTINGS->position.y >= 1225) {
+			buttonSETTINGS->pressed = false;
 			buttonSTART->NoUse = false;
 			buttonCONTINUE->NoUse = false;
 			buttonSETTINGS->NoUse = false;
 			buttonEXIT->NoUse = false;
 			buttonCREDITS->NoUse = false;
 			InSettings = false;
-			SettingMenuDone = false;
 			InMainMenu = true;
 		}
 	}
@@ -426,7 +417,7 @@ void j1Choose::SettingsMenu(float dt)
 
 void j1Choose::CreateSettingsButtons()
 {
-
+	SettingMenuDone = false;
 	imageSETTINGS = App->ui_manager->CreateImage(170, 1300, true);
 	imageSETTINGS->SetSpritesData({ 758,0,705,671 });
 	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(200, 1335, 3);
@@ -442,5 +433,13 @@ void j1Choose::CreateSettingsButtons()
 
 	if (App->capactivated)
 		checkboxFPS->pressed = true;
+}
+
+void j1Choose::CreateIntroButtons()
+{
+	Title = App->ui_manager->CreateImage((App->win->width / 2) - (354 / 2), 70, false);
+	Title->SetSpritesData({ 0,783,354,305 });
+	sentence = App->ui_manager->CreateImage((App->win->width / 2) - (268 / 2), 550, false);
+	sentence->SetSpritesData({ 0,1105,268,355 });
 }
 

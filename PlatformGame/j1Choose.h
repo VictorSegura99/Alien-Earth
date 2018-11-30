@@ -44,6 +44,7 @@ public:
 	void CreateMainMenuButtons();
 	void SettingsMenu(float dt);
 	void CreateSettingsButtons();
+	void CreateIntroButtons();
 
 public:
 
