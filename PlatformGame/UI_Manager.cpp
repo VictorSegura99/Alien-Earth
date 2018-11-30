@@ -204,6 +204,32 @@ void UI_Manager::DeleteLabels()
 	}
 }
 
+void UI_Manager::DeleteSliders()
+{
+	for (int i = elements.Count() - 1; i >= 0; --i)
+	{
+		if (elements[i] != nullptr && elements[i]->type == SLIDER) {
+			elements[i]->CleanUp();
+			delete(elements[i]);
+			elements[i] = nullptr;
+			elements.RemoveAt(i);
+		}
+	}
+}
+
+void UI_Manager::DeleteAllUI()
+{
+	for (int i = elements.Count() - 1; i >= 0; --i)
+	{
+		if (elements[i] != nullptr) {
+			elements[i]->CleanUp();
+			delete(elements[i]);
+			elements[i] = nullptr;
+			elements.RemoveAt(i);
+		}
+	}
+}
+
 bool UI_Manager::DeleteUI_Element(UI_Element * element)
 {
 	for (int i = elements.Count() - 1; i >= 0; --i)

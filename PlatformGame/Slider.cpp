@@ -24,6 +24,7 @@ Slider::Slider(int x, int y) : UI_Element(x, y)
 
 	position.x = x + image->width / 2 - width/2;
 	position.y = y + image->height / 2 - height / 2;
+	Value = 50;
 }
 
 Slider::~Slider()
@@ -32,7 +33,7 @@ Slider::~Slider()
 
 bool Slider::Update(float dt)
 {
-
+	image->position.y = position.y - height/2 + 5;
 	if (!pressed) {
 		if (IsMouseOn()) {
 			png_pos = MouseOn;
@@ -62,7 +63,6 @@ bool Slider::Update(float dt)
 		}
 	}
 	if (pressed) {
-		
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
 			App->input->GetMousePosition(mouse_pos.x, mouse_pos.y);
 			position.x = mouse_pos.x - distance;
@@ -72,7 +72,9 @@ bool Slider::Update(float dt)
 			pressed = false;
 		
 	}
-
+	value = (position.x - 5 - image->position.x) / 2;
+	Value = (100 * value) / 83;
+	LOG("Value Slider = %f", Value);
 	return true;
 }
 

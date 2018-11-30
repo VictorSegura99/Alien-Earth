@@ -70,6 +70,7 @@ public:
 	bool WantToRender = true;
 	bool NoUse = false;
 	bool NoRenderLabel = false;
+	float Value = -1;
 };
 
 #endif

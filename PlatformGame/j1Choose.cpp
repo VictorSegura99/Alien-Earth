@@ -286,6 +286,7 @@ void j1Choose::MainMenu()
 		App->ui_manager->DeleteCheckBoxes();
 		App->ui_manager->DeleteImages();
 		App->ui_manager->DeleteLabels();
+		App->ui_manager->DeleteSliders();
 		CreateButtonsTypePlayer();
 		InMainMenu = false;
 		StartChoosing = true;
@@ -296,6 +297,7 @@ void j1Choose::MainMenu()
 		App->ui_manager->DeleteCheckBoxes();
 		App->ui_manager->DeleteImages();
 		App->ui_manager->DeleteLabels();
+		App->ui_manager->DeleteSliders();
 		App->entitymanager->GetPlayerData()->Intro = false;
 		App->fade->FadeToBlack(3.0f);
 		GoStartSaved = true;
@@ -306,6 +308,7 @@ void j1Choose::MainMenu()
 		App->ui_manager->DeleteCheckBoxes();
 		App->ui_manager->DeleteImages();
 		App->ui_manager->DeleteLabels();
+		App->ui_manager->DeleteSliders();
 		CreateMainMenuButtons();
 		CreateSettingsButtons();
 		buttonSTART->NoUse = true;
@@ -332,7 +335,7 @@ void j1Choose::CreateMainMenuButtons()
 	buttonCREDITS = App->ui_manager->CreateButton(400, 550, 1, "CREDITS", 30);
 	buttonEXIT = App->ui_manager->CreateButton(400, 650, 1, "EXIT", 30);
 
-	slider = App->ui_manager->CreateSlider(400, 150);
+	
 	
 }
 
@@ -375,6 +378,7 @@ void j1Choose::SettingsMenu(float dt)
 		imageSETTINGS->position.y -= 1000 * dt;
 		checkboxFPS->position.y -= 1000 * dt;
 		labelFPS->position.y -= 1000 * dt;
+		sliderVOLUME->position.y -= 1000 * dt;
 		if (buttonGOBACKSETTINGS->position.y <= 100) {
 			Positioned = true;
 			SettingMenuDone = true;
@@ -386,6 +390,7 @@ void j1Choose::SettingsMenu(float dt)
 		imageSETTINGS->position.y += 2000 * dt;
 		checkboxFPS->position.y += 2000 * dt;
 		labelFPS->position.y += 2000 * dt;
+		sliderVOLUME->position.y += 2000 * dt;
 		if (buttonGOBACKSETTINGS->position.y >= 1225) {
 			buttonSTART->NoUse = false;
 			buttonCONTINUE->NoUse = false;
@@ -420,6 +425,7 @@ void j1Choose::CreateSettingsButtons()
 	buttonGOBACKSETTINGS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
 	checkboxFPS = App->ui_manager->CreateCheckBox(550, 1407);
 	labelFPS = App->ui_manager->CreateLabel(270, 1400, "CAP FPS TO 30", 50, true);
+	sliderVOLUME = App->ui_manager->CreateSlider(550, 1507);
 
 	if (App->capactivated)
 		checkboxFPS->pressed = true;

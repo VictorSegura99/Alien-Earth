@@ -40,7 +40,8 @@ public:
 	void DeleteCheckBoxes();
 	void DeleteImages();
 	void DeleteLabels();
-
+	void DeleteSliders();
+	void DeleteAllUI();
 	bool DeleteUI_Element(UI_Element* element);
 
 private:
