@@ -33,17 +33,23 @@ DEBUG KEYS:
 - 3: Change to Jerry.
 
 INNOVATIONS:
+
 First Assigment:
+
 - Climb ladders and ropes.
 - Swim through water.
+
 Second Assigment:
+
 - Initial Menu+Choose Menu.
 - 3 Different Characters with unique habilities.
 - - Yellow Alien(Jeff): Double Jump+Bomb Jump(only when previous doble jump).
 - - Pink Alien(Jane): Shoots Laser.
 - - Blue Alien(Jerry): Dash
 - Movement Platforms.
+
 Third Assigment:
+
 - Animation Cinematic Intro
 _____________
 AUTHORS

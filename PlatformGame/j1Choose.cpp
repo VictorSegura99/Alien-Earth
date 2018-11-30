@@ -228,7 +228,7 @@ void j1Choose::StartLevel()
 
 void j1Choose::MenuChoosePlayer(float dt)
 {
-	App->render->Blit(Choose, 0, 0, NULL);
+	App->render->Blit(ScreenStart, 0, 0, NULL);
 	
 	if (buttonJEFF->mouseOn) {
 		App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
@@ -261,7 +261,7 @@ void j1Choose::MenuChoosePlayer(float dt)
 		}
 	}
 	else {
-		App->render->Blit(NoChoose, 0, 0, NULL);
+		App->render->Blit(ScreenStart, 0, 0, NULL);
 		App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
 		App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
 		App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
@@ -279,7 +279,7 @@ void j1Choose::MenuChoosePlayer(float dt)
 
 void j1Choose::MainMenu()
 {
-	App->render->Blit(NoChoose, 0, 0, NULL);
+	App->render->Blit(ScreenStart, 0, 0, NULL);
 	if (buttonSTART->pressed) {
 		App->ui_manager->DeleteButtons();
 		App->ui_manager->DeleteLabels();
@@ -336,7 +336,7 @@ void j1Choose::CreateMainMenuButtons()
 
 void j1Choose::SettingsMenu(float dt)
 {
-	App->render->Blit(NoChoose, 0, 0, NULL);
+	App->render->Blit(ScreenStart, 0, 0, NULL);
 
 	if (!Positioned && !SettingMenuDone) { //MENU GOING UP
 		if (imageSETTINGS->position.y <= buttonEXIT->position.y + buttonEXIT->height) {
