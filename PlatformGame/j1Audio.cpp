@@ -150,7 +150,7 @@ bool j1Audio::Update(float dt)
 	{
 		volume --;
 	}
-
+	
 	Mix_VolumeMusic(volume);
 	return true;
 }

@@ -38,9 +38,9 @@ public:
 	bool Save(pugi::xml_node&) const;
 
 
-
-private:
 	int volume = 0;
+private:
+	
 	_Mix_Music*			music;
 	p2List<Mix_Chunk*>	fx;
 };

@@ -7,7 +7,7 @@
 #include "j1Audio.h"
 #include "j1Input.h"
 
-Slider::Slider(int x, int y) : UI_Element(x, y)
+Slider::Slider(int x, int y, int SliderPos) : UI_Element(x, y)
 {
 
 	width = 29;
@@ -22,9 +22,10 @@ Slider::Slider(int x, int y) : UI_Element(x, y)
 	image = App->ui_manager->CreateImage(x, y, true);
 	image->SetSpritesData({ 553,89,200,49 });
 
-	position.x = x + image->width / 2 - width/2;
+	//position.x = x + image->width / 2 - width/2;
 	position.y = y + image->height / 2 - height / 2;
 	Value = 50;
+	position.x = (image->position.x + 5) + SliderPos * 2 -15;
 }
 
 Slider::~Slider()
@@ -74,7 +75,8 @@ bool Slider::Update(float dt)
 	}
 	value = (position.x - 5 - image->position.x) / 2;
 	Value = (100 * value) / 83;
-	LOG("Value Slider = %f", Value);
+	
+	
 	return true;
 }
 

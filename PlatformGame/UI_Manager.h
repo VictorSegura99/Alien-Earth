@@ -34,7 +34,7 @@ public:
 	UI_Element* CreateCheckBox(int x, int y);
 	UI_Element* CreateImage(int x, int y, bool WantToBeMoved);
 	UI_Element* CreateLabel(int x, int y, p2SString name, int size, bool CanBeMoved);
-	UI_Element* CreateSlider(int x, int y);
+	UI_Element* CreateSlider(int x, int y, int SliderPos);
 	
 	void DeleteButtons();
 	void DeleteCheckBoxes();
