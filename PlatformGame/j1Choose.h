@@ -65,8 +65,7 @@ public:
 
 	bool start = false;
 	SDL_Texture * ScreenStart = nullptr;
-	SDL_Texture * NoChoose = nullptr;
-	p2SString file_texture[5];
+	p2SString file_texture;
 	iPoint mouse;
 	int playernumber = -1;
 	int MinY_ChooseRect = 0;
@@ -97,6 +96,11 @@ public:
 
 	unsigned int choosefx;
 	unsigned int introfx;
+
+	//START MENU
+	UI_Element* Title = nullptr;
+	UI_Element* sentence = nullptr;
+
 	//INITIAL MENU
 	UI_Element* buttonSTART = nullptr;
 	UI_Element* buttonCONTINUE = nullptr;

@@ -34,11 +34,7 @@ j1Choose::~j1Choose()
 bool j1Choose::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Scene");
-	file_texture[0] = config.child("Start").text().as_string();
-	file_texture[1] = config.child("NoChoose").text().as_string();
-	file_texture[2] = config.child("Choose1").text().as_string();
-	file_texture[3] = config.child("Choose2").text().as_string();
-	file_texture[4] = config.child("Choose3").text().as_string();
+	file_texture = config.child("Start").text().as_string();
 	MinY_ChooseRect = config.child("MinY_ChooseRect").attribute("value").as_int();
 	MaxY_ChooseRect = config.child("MaxY_ChooseRect").attribute("value").as_int();
 	MinX_RectChoosePlayer1 = config.child("MinX_RectChoosePlayer1").attribute("value").as_int();
@@ -71,12 +67,7 @@ bool j1Choose::Start()
 	App->collision->active = false;
 	App->map->active = false;
 	GameOn = false;
-	ScreenStart = App->tex->Load(file_texture[0].GetString());
-	NoChoose = App->tex->Load(file_texture[1].GetString());
-	//choose1 = App->tex->Load(file_texture[2].GetString());
-	//choose2 = App->tex->Load(file_texture[3].GetString());
-	//choose3 = App->tex->Load(file_texture[4].GetString());
-	Choose = App->tex->Load("textures/ChooseReworked.png");
+	ScreenStart = App->tex->Load(file_texture.GetString());
 	yellow = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[0].GetString());
 	pink = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[1].GetString());
 	blue = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[2].GetString());
@@ -92,6 +83,7 @@ bool j1Choose::PreUpdate()
 {
 	BROFILER_CATEGORY("Choose: PreUpdate", Profiler::Color::Aquamarine);
 	App->input->GetMousePosition(mouse.x, mouse.y);
+
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && !GameOn && !start) {
 		start = true;
 		App->audio->PlayFx(introfx);
@@ -118,6 +110,10 @@ bool j1Choose::Update(float dt)
 	}
 	else {
 		App->render->Blit(ScreenStart, 0, 0, NULL);
+		Title = App->ui_manager->CreateImage((App->win->width / 2) - (354 /2), 70, false);
+		Title->SetSpritesData({ 0,783,354,305 });
+		sentence = App->ui_manager->CreateImage((App->win->width / 2) - (268 / 2), 550, false);
+		sentence->SetSpritesData({ 0,1105,268,355 });
 	}
 	return true;
 }
@@ -172,7 +168,6 @@ bool j1Choose::PostUpdate()
 bool j1Choose::CleanUp()
 {
 	App->tex->UnLoad(ScreenStart);
-	App->tex->UnLoad(NoChoose);
 	LOG("Freeing scene");
 	return true;
 }
@@ -426,6 +421,8 @@ void j1Choose::CreateSettingsButtons()
 	checkboxFPS = App->ui_manager->CreateCheckBox(550, 1407);
 	labelFPS = App->ui_manager->CreateLabel(270, 1400, "CAP FPS TO 30", 50, true);
 	sliderVOLUME = App->ui_manager->CreateSlider(550, 1507);
+
+
 
 	if (App->capactivated)
 		checkboxFPS->pressed = true;
