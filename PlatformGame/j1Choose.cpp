@@ -418,8 +418,8 @@ void j1Choose::SettingsMenu(float dt)
 		if (!checkboxFPS->pressed) {
 			App->capactivated = false;
 		}
-		Mix_VolumeMusic(sliderVOLUMEMUSIC->Value);
-		Mix_Volume(-1,sliderVOLUMEFX->Value);
+		App->audio->volume= sliderVOLUMEMUSIC->Value;
+		App->audio->fxvolume = sliderVOLUMEFX->Value;
 		if (App->input->GetKey(SDL_SCANCODE_J) == KEY_REPEAT) {
 			App->render->camera.y += 20;
 		}if (App->input->GetKey(SDL_SCANCODE_K) == KEY_REPEAT) {
@@ -440,7 +440,7 @@ void j1Choose::CreateSettingsButtons()
 	labelFPS = App->ui_manager->CreateLabel(270, 1400, "CAP FPS TO 30", 50, true);
 	sliderVOLUMEMUSIC = App->ui_manager->CreateSlider(550, 1507, App->audio->volume);
 	labelMUSICVOLUME = App->ui_manager->CreateLabel(270, 1507, "MUSIC VOLUME", 50, true);
-	sliderVOLUMEFX = App->ui_manager->CreateSlider(550, 1607, 50);
+	sliderVOLUMEFX = App->ui_manager->CreateSlider(550, 1607, App->audio->fxvolume);
 	labelVOLUMEFX = App->ui_manager->CreateLabel(270, 1607, "FX VOLUME", 50, true);
 
 	if (App->capactivated)

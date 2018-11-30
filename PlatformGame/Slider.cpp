@@ -73,8 +73,8 @@ bool Slider::Update(float dt)
 			pressed = false;
 		
 	}
-	value = (position.x - 5 - image->position.x) / 2;
-	Value = (100 * value) / 83;
+	value = (position.x - 5 - image->position.x);
+	Value = (100 * value) / (image->width);
 	
 	
 	return true;

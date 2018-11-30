@@ -4,7 +4,6 @@
 #include "p2List.h"
 #include "j1Input.h"
 #include "j1App.h"
-
 #include "SDL/include/SDL.h"
 #include "SDL_mixer\include\SDL_mixer.h"
 #pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
@@ -150,7 +149,7 @@ bool j1Audio::Update(float dt)
 	{
 		volume --;
 	}
-	
+	Mix_Volume(-1, fxvolume);
 	Mix_VolumeMusic(volume);
 	return true;
 }
