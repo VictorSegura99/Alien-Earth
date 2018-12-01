@@ -21,14 +21,14 @@ Slider::Slider(int x, int y, int SliderPos) : UI_Element(x, y)
 
 	image = App->ui_manager->CreateImage(x, y, true);
 	image->SetSpritesData({ 553,89,200,49 });
-
+	image->type = SLIDER;
 	//position.x = x + image->width / 2 - width/2;
 	position.y = y + image->height / 2 - height / 2;
 	Value = SliderPos;
 	int RelPos = image->width - 15;
 	// (SliderPos*RelPos) /100
 	//position.x = (image->position.x + 5) + SliderPos * 2;
-	if (Value == 100) {
+	/*if (Value == 100) {
 		position.x = image->position.x + image->width - width - 5;
 	}
 	if (Value == 0) {
@@ -36,7 +36,8 @@ Slider::Slider(int x, int y, int SliderPos) : UI_Element(x, y)
 	}
 	if (Value > 0 && Value < 100) {
 		position.x = (image->position.x + 4) + SliderPos * 2;
-	}
+	}*/
+	position.x = ((((Value / (100 / 78.5)) + 1)*image->width) / 100) + 7 + image->position.x;
 }
 
 Slider::~Slider()
@@ -84,8 +85,7 @@ bool Slider::Update(float dt)
 			pressed = false;
 		
 	}
-	value = (position.x - 5 - image->position.x);
-	Value = (((100 * value) / (image->width))-1)*(100/78.5);
+	Value = (((100 * (position.x - 7 - image->position.x)) / (image->width))-1)*(100/78.5);
 	LOG("%f", Value);
 	
 	return true;

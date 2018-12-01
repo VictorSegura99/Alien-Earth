@@ -20,7 +20,6 @@ private:
 	bool repeat2 = true;
 	int distance;
 	iPoint mouse_pos;
-	float value = -1;
 };
 
 #endif

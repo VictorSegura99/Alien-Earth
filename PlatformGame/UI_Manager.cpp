@@ -44,9 +44,18 @@ bool UI_Manager::Update(float dt)
 			elements[i]->Update(dt);
 	}
 	for (int i = 0; i < elements.Count(); i++) {
-		if (elements[i] != nullptr && elements[i]->type != LABEL)
+		if (elements[i] != nullptr && elements[i]->type != LABEL && elements[i]->type != BUTTON && elements[i]->type != SLIDER)
 			elements[i]->Draw(dt);
 	}
+	for (int i = 0; i < elements.Count(); i++) {
+		if (elements[i] != nullptr && elements[i]->type == BUTTON)
+			elements[i]->Draw(dt);
+	}
+	for (int i = 0; i < elements.Count(); i++) {
+		if (elements[i] != nullptr && elements[i]->type == SLIDER)
+			elements[i]->Draw(dt);
+	}
+
 	for (int i = 0; i < elements.Count(); i++) {
 		if (elements[i] != nullptr && elements[i]->type == LABEL)
 			elements[i]->Draw(dt);

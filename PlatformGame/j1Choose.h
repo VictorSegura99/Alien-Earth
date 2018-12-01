@@ -45,6 +45,8 @@ public:
 	void SettingsMenu(float dt);
 	void CreateSettingsButtons();
 	void CreateIntro();
+	void WantToDisappearMainMenu(bool Disappear);
+	void WantToDisappearButtonsTypePlayer(bool Disappear);
 
 public:
 

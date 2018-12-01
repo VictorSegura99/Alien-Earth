@@ -125,6 +125,7 @@ bool Button::Update(float dt)
 		}
 		break; }
 	}*/
+	pressed = false;
 	if (!NoUse) {
 		if (IsMouseOn()) {
 			png_pos = MouseOn;
@@ -139,10 +140,11 @@ bool Button::Update(float dt)
 				png_pos = Pressed;
 			}
 			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
-				pressed = true;
+				pressed = true; 
 			}
 		}
 		else {
+			pressed = false;
 			repeataudio = true;
 			png_pos = NoPressedNoMouseOn;
 			mouseOn = false;
