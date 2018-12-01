@@ -342,10 +342,13 @@ void j1Choose::CreateButtonsTypePlayer()
 	CHOOSE->SetSpritesData({ 0,1928,608,72 });
 	JEFFNAME = App->ui_manager->CreateImage((App->win->width / 4) - (68 / 2), 700, false);
 	JEFFNAME->SetSpritesData({ 611,1928,68,37 });
+	JEFFNAME->type = BUTTON;
 	JANENAME = App->ui_manager->CreateImage((App->win->width / 4) * 2 - (72 / 2), 700, false);
 	JANENAME->SetSpritesData({ 681,1928,72,37 });
+	JANENAME->type = BUTTON;
 	JERRYNAME = App->ui_manager->CreateImage((App->win->width / 4) * 3 - (92 / 2), 700, false);
 	JERRYNAME->SetSpritesData({ 754,1928,92,37 });
+	JERRYNAME->type = BUTTON;
 	buttonJEFF = App->ui_manager->CreateButton(138, 229, 2);
 	buttonJEFF->SetSpritesData({ 0,0,0,0 }, { 0,0,225,441 }, { 0,0,225,441 });
 	buttonJANE = App->ui_manager->CreateButton(388, 229, 2);
