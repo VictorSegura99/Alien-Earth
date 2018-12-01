@@ -329,6 +329,12 @@ void j1Choose::MainMenu()
 		buttonCREDITS->NoUse = true;
 		InMainMenu = false;
 		InSettings = true;
+		if (App->capactivated)
+			checkboxFPS->pressed = true;
+		else checkboxFPS->pressed = false;
+		if (App->entitymanager->GetPlayerData()->God)
+			checkboxGODMODE->pressed = true;
+		else checkboxGODMODE->pressed = false;
 
 	}
 	if (buttonEXIT->pressed) {
@@ -350,11 +356,11 @@ void j1Choose::CreateButtonsTypePlayer()
 	JERRYNAME = App->ui_manager->CreateImage((App->win->width / 4) * 3 - (92 / 2), 700, false);
 	JERRYNAME->SetSpritesData({ 754,1928,92,38 });
 	JERRYNAME->type = BUTTON;
-	buttonJEFF = App->ui_manager->CreateButton(138, 229, 2);
+	buttonJEFF = App->ui_manager->CreateButton(138, 159, 2);
 	buttonJEFF->SetSpritesData({ 0,0,0,0 }, { 0,0,225,441 }, { 0,0,225,441 });
-	buttonJANE = App->ui_manager->CreateButton(388, 229, 2);
+	buttonJANE = App->ui_manager->CreateButton(388, 159, 2);
 	buttonJANE->SetSpritesData({ 0,0,0,0 }, { 0,0,225,441 }, { 0,0,225,441 });
-	buttonJERRY = App->ui_manager->CreateButton(638, 229, 2);
+	buttonJERRY = App->ui_manager->CreateButton(638, 159, 2);
 	buttonJERRY->SetSpritesData({ 0,0,0,0	}, { 0,0,225,441 }, { 0,0,225,441 });
 	buttonGOBACK = App->ui_manager->CreateButton(50, 25, 3);
 	buttonGOBACK->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
@@ -363,9 +369,9 @@ void j1Choose::CreateButtonsTypePlayer()
 void j1Choose::MenuChoosePlayer(float dt)
 {
 	if (buttonJEFF->mouseOn) {
-		App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
-		App->render->Blit(yellow, 150, 350, &(YellowWalk.GetCurrentFrame(dt)));
-		App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
+		App->render->Blit(pink, 421, 300, &(PinkStand.GetCurrentFrame(dt)));
+		App->render->Blit(yellow, 150, 300, &(YellowWalk.GetCurrentFrame(dt)));
+		App->render->Blit(blue, 665, 300, &(BlueStand.GetCurrentFrame(dt)));
 		if (buttonJEFF->pressed && !AlreadyChoosen) {
 			AlreadyChoosen = true;
 			playernumber = PlayerNumber1;
@@ -373,9 +379,9 @@ void j1Choose::MenuChoosePlayer(float dt)
 		}
 	}
 	else if (buttonJANE->mouseOn) {
-		App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
-		App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
-		App->render->Blit(pink, 418, 350, &(PinkWalk.GetCurrentFrame(dt)));
+		App->render->Blit(yellow, 158, 300, &(YellowStand.GetCurrentFrame(dt)));
+		App->render->Blit(blue, 665, 300, &(BlueStand.GetCurrentFrame(dt)));
+		App->render->Blit(pink, 418, 300, &(PinkWalk.GetCurrentFrame(dt)));
 		if (buttonJANE->pressed && !AlreadyChoosen) {
 			AlreadyChoosen = true;
 			playernumber = PlayerNumber2;
@@ -383,9 +389,9 @@ void j1Choose::MenuChoosePlayer(float dt)
 		}
 	}
 	else if (buttonJERRY->mouseOn) {
-		App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
-		App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
-		App->render->Blit(blue, 665, 350, &(BlueWalk.GetCurrentFrame(dt)));
+		App->render->Blit(yellow, 158, 300, &(YellowStand.GetCurrentFrame(dt)));
+		App->render->Blit(pink, 421, 300, &(PinkStand.GetCurrentFrame(dt)));
+		App->render->Blit(blue, 665, 300, &(BlueWalk.GetCurrentFrame(dt)));
 		if (buttonJERRY->pressed && !AlreadyChoosen) {
 			AlreadyChoosen = true;
 			playernumber = PlayerNumber3;
@@ -393,9 +399,9 @@ void j1Choose::MenuChoosePlayer(float dt)
 		}
 	}
 	else {
-		App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
-		App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
-		App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
+		App->render->Blit(yellow, 158, 300, &(YellowStand.GetCurrentFrame(dt)));
+		App->render->Blit(pink, 421, 300, &(PinkStand.GetCurrentFrame(dt)));
+		App->render->Blit(blue, 665, 300, &(BlueStand.GetCurrentFrame(dt)));
 		repeat = false;
 	}
 	if (buttonGOBACK->pressed) {
@@ -421,6 +427,8 @@ void j1Choose::CreateSettingsButtons()
 	labelMUSICVOLUME = App->ui_manager->CreateLabel(270, 1507, "MUSIC VOLUME", 50, true);
 	sliderVOLUMEFX = App->ui_manager->CreateSlider(550, 1607, App->audio->fxvolume);
 	labelVOLUMEFX = App->ui_manager->CreateLabel(270, 1607, "FX VOLUME", 50, true);
+	labelGODMODE = App->ui_manager->CreateLabel(270, 1707, "GODMODE", 50, true);
+	checkboxGODMODE = App->ui_manager->CreateCheckBox(550, 1710);
 
 	if (App->capactivated)
 		checkboxFPS->pressed = true;
@@ -471,6 +479,8 @@ void j1Choose::SettingsMenu(float dt)
 		labelMUSICVOLUME->position.y -= 1000 * dt;
 		sliderVOLUMEFX->position.y -= 1000 * dt;
 		labelVOLUMEFX->position.y -= 1000 * dt;
+		labelGODMODE->position.y -= 1000 * dt;
+		checkboxGODMODE->position.y -= 1000 * dt;
 		if (buttonGOBACKSETTINGS->position.y <= 100) {
 			Positioned = true;
 			buttonGOBACKSETTINGS->pressed = false;
@@ -487,6 +497,8 @@ void j1Choose::SettingsMenu(float dt)
 		labelMUSICVOLUME->position.y += 2000 * dt;
 		sliderVOLUMEFX->position.y += 2000 * dt;
 		labelVOLUMEFX->position.y += 2000 * dt;
+		labelGODMODE->position.y += 2000 * dt;
+		checkboxGODMODE->position.y += 2000 * dt;
 		if (buttonGOBACKSETTINGS->position.y >= 1225) {
 			buttonSTART->NoUse = false;
 			buttonCONTINUE->NoUse = false;
@@ -506,6 +518,12 @@ void j1Choose::SettingsMenu(float dt)
 		}
 		if (!checkboxFPS->pressed) {
 			App->capactivated = false;
+		}
+		if (checkboxGODMODE->pressed) {
+			App->entitymanager->GetPlayerData()->God = true;
+		}
+		if (!checkboxGODMODE->pressed) {
+			App->entitymanager->GetPlayerData()->God = false;
 		}
 		App->audio->volume = sliderVOLUMEMUSIC->Value;
 		App->audio->fxvolume = sliderVOLUMEFX->Value;

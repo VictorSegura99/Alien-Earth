@@ -4,6 +4,7 @@
 #include "j1Input.h"
 #include "j1Render.h"
 #include "j1Textures.h"
+#include "j1FadeToBlack.h"
 #include "j1Map.h"
 #include "j1Collision.h"
 #include "j1Audio.h"
@@ -162,7 +163,7 @@ bool Player::PreUpdate() //Here we preload the input functions to determine the 
 				Idle = false;
 		}
 	}
-	else if (God)
+	else if (God && !Intro)
 	{
 		if (!NoInput) {
 			WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
@@ -204,12 +205,9 @@ bool Player::Update(float dt)
 		position.y -= IntroFall * dt;
 		App->audio->PlayFx(ovnifx);
 	}
-	else {
-		if (current_animation==&GoRight[NumPlayer]|| current_animation == &idle[NumPlayer])
-			App->render->Blit(Godmode, position.x - ringpositionx, position.y - ringpositiony);
-		else if (current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer])
-			App->render->Blit(Godmode, position.x + ringpositionx, position.y - ringpositiony, NULL, SDL_FLIP_HORIZONTAL);
-	}
+
+		
+	
 	
 	if (!dashing) {
 		if (NumPlayer == 0)
@@ -321,7 +319,12 @@ void Player::Draw(float dt)
 		else {
 			App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
 		}
-
+		if (God) {
+			if (current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer] || current_animation == &Climb[NumPlayer] || current_animation == &ClimbIdle[NumPlayer] || current_animation == &SwimRight[NumPlayer])
+				App->render->Blit(Godmode, position.x - ringpositionx, position.y - ringpositiony);
+			else if (current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer] || current_animation == &SwimLeft[NumPlayer])
+				App->render->Blit(Godmode, position.x + ringpositionx, position.y - ringpositiony, NULL, SDL_FLIP_HORIZONTAL);
+		}
 	
 	
 }
@@ -569,19 +572,13 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		}
 		break;
 	case COLLIDER_WIN:
+		NoInput = true;
+		App->fade->FadeToBlack(3.0f);
 		App->audio->PlayFx(winningfx);
 		TouchingGround = true;
-		App->entitymanager->DeleteEnemies();
-		App->scene->active = false;
-		App->entitymanager->ActiveGame = false;
-		App->collision->active = false;
-		App->map->active = false;
-		App->choose->start = false;
-		App->render->camera.x = 0;
-		App->render->camera.y = 0;
-		App->choose->GameOn = false;
-		DeleteUI();
-		Intro = true;
+		WalkLeft = false;
+		WalkRight = false;
+		App->scene->CanStart = true;
 		break;
 	}
 }

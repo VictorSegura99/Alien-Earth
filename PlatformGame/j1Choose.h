@@ -134,6 +134,8 @@ public:
 	UI_Element* labelMUSICVOLUME = nullptr;
 	UI_Element* sliderVOLUMEFX = nullptr;
 	UI_Element* labelVOLUMEFX = nullptr;
+	UI_Element* labelGODMODE = nullptr;
+	UI_Element* checkboxGODMODE = nullptr;
 	int x = 170;
 	int y = 950;
 	bool Create = false;
