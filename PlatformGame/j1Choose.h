@@ -47,6 +47,8 @@ public:
 	void CreateIntro();
 	void WantToDisappearMainMenu(bool Disappear);
 	void WantToDisappearButtonsTypePlayer(bool Disappear);
+	void HacksMenu(float dt);
+	void CreatehacksButtons();
 
 public:
 
@@ -96,6 +98,9 @@ public:
 	bool InSettings = false;
 	bool Positioned = false;
 	bool SettingMenuDone = false;
+	bool InHacks = false;
+	bool positioned = false;
+	bool HacksMenuDone = false;
 
 	unsigned int choosefx;
 	unsigned int introfx;
@@ -109,6 +114,7 @@ public:
 	UI_Element* buttonSTART = nullptr;
 	UI_Element* buttonCONTINUE = nullptr;
 	UI_Element* buttonSETTINGS = nullptr;
+	UI_Element* buttonHACKS = nullptr;
 	UI_Element* buttonCREDITS = nullptr;
 	UI_Element* buttonEXIT = nullptr;
 
@@ -138,7 +144,16 @@ public:
 	UI_Element* checkboxGODMODE = nullptr;
 	int x = 170;
 	int y = 950;
-	bool Create = false;
+	
+
+	//HACKS
+	UI_Element* buttonGOBACKHACKS = nullptr;
+	UI_Element* imageHACKS = nullptr;
+
+
+
+
+
 
 	//PLAYER UI
 
