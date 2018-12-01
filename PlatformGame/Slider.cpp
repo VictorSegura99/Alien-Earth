@@ -83,7 +83,6 @@ bool Slider::Update(float dt)
 		}
 		if (!IsMouseOn())
 			pressed = false;
-		
 	}
 	Value = (((100 * (position.x - 5 - image->position.x)) / (image->width))-1)*(100/78.5);
 	LOG("%f", Value);

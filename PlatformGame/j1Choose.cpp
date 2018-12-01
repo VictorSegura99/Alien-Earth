@@ -347,20 +347,20 @@ void j1Choose::CreateButtonsTypePlayer()
 	CHOOSE = App->ui_manager->CreateImage((App->win->width / 2) - (608 / 2), 70, false);
 	CHOOSE->SetSpritesData({ 0,1928,608,72 });
 	CHOOSE->type = BUTTON;
-	JEFFNAME = App->ui_manager->CreateImage((App->win->width / 4) - (68 / 2), 700, false);
+	JEFFNAME = App->ui_manager->CreateImage((App->win->width / 4) - (68 / 2), 620, false);
 	JEFFNAME->SetSpritesData({ 611,1928,68,37 });
 	JEFFNAME->type = BUTTON;
-	JANENAME = App->ui_manager->CreateImage((App->win->width / 4) * 2 - (72 / 2), 700, false);
+	JANENAME = App->ui_manager->CreateImage((App->win->width / 4) * 2 - (72 / 2), 620, false);
 	JANENAME->SetSpritesData({ 681,1928,72,37 });
 	JANENAME->type = BUTTON;
-	JERRYNAME = App->ui_manager->CreateImage((App->win->width / 4) * 3 - (92 / 2), 700, false);
+	JERRYNAME = App->ui_manager->CreateImage((App->win->width / 4) * 3 - (92 / 2), 620, false);
 	JERRYNAME->SetSpritesData({ 754,1928,92,37 });
 	JERRYNAME->type = BUTTON;
-	buttonJEFF = App->ui_manager->CreateButton(138, 229, 2);
+	buttonJEFF = App->ui_manager->CreateButton(138, 159, 2);
 	buttonJEFF->SetSpritesData({ 0,0,0,0 }, { 0,0,225,441 }, { 0,0,225,441 });
-	buttonJANE = App->ui_manager->CreateButton(388, 229, 2);
+	buttonJANE = App->ui_manager->CreateButton(388, 159, 2);
 	buttonJANE->SetSpritesData({ 0,0,0,0 }, { 0,0,225,441 }, { 0,0,225,441 });
-	buttonJERRY = App->ui_manager->CreateButton(638, 229, 2);
+	buttonJERRY = App->ui_manager->CreateButton(638, 159, 2);
 	buttonJERRY->SetSpritesData({ 0,0,0,0	}, { 0,0,225,441 }, { 0,0,225,441 });
 	buttonGOBACK = App->ui_manager->CreateButton(50, 25, 3);
 	buttonGOBACK->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
@@ -369,9 +369,9 @@ void j1Choose::CreateButtonsTypePlayer()
 void j1Choose::MenuChoosePlayer(float dt)
 {
 	if (buttonJEFF->mouseOn) {
-		App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
-		App->render->Blit(yellow, 150, 350, &(YellowWalk.GetCurrentFrame(dt)));
-		App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
+		App->render->Blit(pink, 421, 300, &(PinkStand.GetCurrentFrame(dt)));
+		App->render->Blit(yellow, 150, 300, &(YellowWalk.GetCurrentFrame(dt)));
+		App->render->Blit(blue, 665, 300, &(BlueStand.GetCurrentFrame(dt)));
 		if (buttonJEFF->pressed && !AlreadyChoosen) {
 			AlreadyChoosen = true;
 			playernumber = PlayerNumber1;
@@ -379,9 +379,9 @@ void j1Choose::MenuChoosePlayer(float dt)
 		}
 	}
 	else if (buttonJANE->mouseOn) {
-		App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
-		App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
-		App->render->Blit(pink, 418, 350, &(PinkWalk.GetCurrentFrame(dt)));
+		App->render->Blit(yellow, 158, 300, &(YellowStand.GetCurrentFrame(dt)));
+		App->render->Blit(blue, 665, 300, &(BlueStand.GetCurrentFrame(dt)));
+		App->render->Blit(pink, 418, 300, &(PinkWalk.GetCurrentFrame(dt)));
 		if (buttonJANE->pressed && !AlreadyChoosen) {
 			AlreadyChoosen = true;
 			playernumber = PlayerNumber2;
@@ -389,9 +389,9 @@ void j1Choose::MenuChoosePlayer(float dt)
 		}
 	}
 	else if (buttonJERRY->mouseOn) {
-		App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
-		App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
-		App->render->Blit(blue, 665, 350, &(BlueWalk.GetCurrentFrame(dt)));
+		App->render->Blit(yellow, 158, 300, &(YellowStand.GetCurrentFrame(dt)));
+		App->render->Blit(pink, 421, 300, &(PinkStand.GetCurrentFrame(dt)));
+		App->render->Blit(blue, 665, 300, &(BlueWalk.GetCurrentFrame(dt)));
 		if (buttonJERRY->pressed && !AlreadyChoosen) {
 			AlreadyChoosen = true;
 			playernumber = PlayerNumber3;
@@ -399,9 +399,9 @@ void j1Choose::MenuChoosePlayer(float dt)
 		}
 	}
 	else {
-		App->render->Blit(yellow, 158, 350, &(YellowStand.GetCurrentFrame(dt)));
-		App->render->Blit(pink, 421, 350, &(PinkStand.GetCurrentFrame(dt)));
-		App->render->Blit(blue, 665, 350, &(BlueStand.GetCurrentFrame(dt)));
+		App->render->Blit(yellow, 158, 300, &(YellowStand.GetCurrentFrame(dt)));
+		App->render->Blit(pink, 421, 300, &(PinkStand.GetCurrentFrame(dt)));
+		App->render->Blit(blue, 665, 300, &(BlueStand.GetCurrentFrame(dt)));
 		repeat = false;
 	}
 	if (buttonGOBACK->pressed) {
