@@ -78,7 +78,7 @@ bool j1Choose::Start()
 	choosefx = App->audio->LoadFx(ChooseFx.GetString());
 	introfx = App->audio->LoadFx(IntroFx.GetString());
 	CreateButtonsTypePlayer();
-	CreateMainMenuButtons();
+	CreateMainMenu();
 	CreateSettingsButtons();
 	CreatehacksButtons();
 	CreateIntro();
@@ -220,167 +220,12 @@ void j1Choose::CreateIntro()
 	sentence->SetSpritesData({ 0,1105,268,35 });
 }
 
-void j1Choose::WantToDisappearMainMenu(bool Disappear)
-{
-	if (Disappear) {
-		buttonSTART->NoUse = true;
-		buttonCONTINUE->NoUse = true;
-		buttonSETTINGS->NoUse = true;
-		buttonEXIT->NoUse = true;
-		buttonCREDITS->NoUse = true;
-		buttonHACKS->NoUse = true;
-		buttonSTART->WantToRender = false;
-		buttonCONTINUE->WantToRender = false;
-		buttonSETTINGS->WantToRender = false;
-		buttonHACKS->WantToRender = false;
-		buttonEXIT->WantToRender = false;
-		buttonCREDITS->WantToRender = false;
-	}
-	else {
-		buttonSTART->NoUse = false;
-		buttonCONTINUE->NoUse = false;
-		buttonSETTINGS->NoUse = false;
-		buttonEXIT->NoUse = false;
-		buttonHACKS->NoUse = false;
-		buttonCREDITS->NoUse = false;
-		buttonSTART->WantToRender = true;
-		buttonCONTINUE->WantToRender = true;
-		buttonSETTINGS->WantToRender = true;
-		buttonHACKS->WantToRender = true;
-		buttonEXIT->WantToRender = true;
-		buttonCREDITS->WantToRender = true;
-	}
 
-}
-
-void j1Choose::WantToDisappearButtonsTypePlayer(bool Disappear)
-{
-	if (Disappear) {
-		CHOOSE->WantToRender = false;
-		JEFFNAME->WantToRender = false;
-		JANENAME->WantToRender = false;
-		JERRYNAME->WantToRender = false;
-		buttonJEFF->WantToRender = false;
-		buttonJANE->WantToRender = false;
-		buttonJERRY->WantToRender = false;
-		buttonGOBACK->WantToRender = false;
-		CHOOSE->NoUse = true;
-		JEFFNAME->NoUse = true;
-		JANENAME->NoUse = true;
-		JERRYNAME->NoUse = true;
-		buttonJEFF->NoUse = true;
-		buttonJANE->NoUse = true;
-		buttonJERRY->NoUse = true;
-		buttonGOBACK->NoUse = true;
-	}
-	else {
-		CHOOSE->WantToRender = true;
-		JEFFNAME->WantToRender = true;
-		JANENAME->WantToRender = true;
-		JERRYNAME->WantToRender = true;
-		buttonJEFF->WantToRender = true;
-		buttonJANE->WantToRender = true;
-		buttonJERRY->WantToRender = true;
-		buttonGOBACK->WantToRender = true;
-		CHOOSE->NoUse = false;
-		JEFFNAME->NoUse = false;
-		JANENAME->NoUse = false;
-		JERRYNAME->NoUse = false;
-		buttonJEFF->NoUse = false;
-		buttonJANE->NoUse = false;
-		buttonJERRY->NoUse = false;
-		buttonGOBACK->NoUse = false;
-	}
-
-
-}
-
-void j1Choose::HacksMenu(float dt)
-{
-	Title->NoRenderLabel = true;
-	sentence->NoRenderLabel = true;
-	if (imageHACKS->position.y + imageHACKS->height >= buttonEXIT->position.y + buttonEXIT->height) {
-		buttonEXIT->WantToRender = false;
-	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonHACKS->position.y + buttonHACKS->height) {
-		buttonHACKS->WantToRender = false;
-	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonCREDITS->position.y + buttonCREDITS->height) {
-		buttonCREDITS->WantToRender = false;
-	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonSETTINGS->position.y + buttonSETTINGS->height) {
-		buttonSETTINGS->WantToRender = false;
-	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonCONTINUE->position.y + buttonCONTINUE->height) {
-		buttonCONTINUE->WantToRender = false;
-	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonSTART->position.y + buttonSTART->height) {
-		buttonSTART->WantToRender = false;
-	}
-	if (imageHACKS->position.y + imageHACKS->height <= buttonEXIT->position.y) {
-		buttonEXIT->WantToRender = true;
-	}
-	if (imageHACKS->position.y + imageHACKS->height <= buttonCREDITS->position.y) {
-		buttonCREDITS->WantToRender = true;
-	}
-	if (imageHACKS->position.y + imageHACKS->height <= buttonHACKS->position.y) {
-		buttonHACKS->WantToRender = true;
-	}
-	if (imageHACKS->position.y + imageHACKS->height <= buttonSETTINGS->position.y) {
-		buttonSETTINGS->WantToRender = true;
-	}
-	if (imageHACKS->position.y + imageHACKS->height <= buttonCONTINUE->position.y) {
-		buttonCONTINUE->WantToRender = true;
-	}
-	if (imageHACKS->position.y + imageHACKS->height <= buttonSTART->position.y) {
-		buttonSTART->WantToRender = true;
-	}
-	if (!positioned && !HacksMenuDone) { //MENU GOING UP
-
-		buttonGOBACKHACKS->position.y += 1000 * dt;
-		imageHACKS->position.y += 1000 * dt;
-		if (imageHACKS->position.y + imageHACKS->height >= 700) {
-			positioned = true;
-			buttonGOBACKHACKS->pressed = false;
-			HacksMenuDone = true;
-		}
-	}
-	if (!positioned && HacksMenuDone) { //MENU GOING DOWN
-
-		buttonGOBACKHACKS->position.y -= 2000 * dt;
-		imageHACKS->position.y -= 2000 * dt;
-		if (buttonGOBACKHACKS->position.y <= -700) {
-			buttonSTART->NoUse = false;
-			buttonCONTINUE->NoUse = false;
-			buttonSETTINGS->NoUse = false;
-			buttonHACKS->NoUse = false;
-			buttonEXIT->NoUse = false;
-			buttonCREDITS->NoUse = false;
-			InHacks = false;
-			InMainMenu = true;
-		}
-	}
-	if (HacksMenuDone) { //MENU LOGIC BUTTONS
-		if (buttonGOBACKHACKS->pressed) {
-			positioned = false;
-		}
-	}
-}
-
-void j1Choose::CreatehacksButtons()
-{
-	HacksMenuDone = false;
-	imageHACKS = App->ui_manager->CreateImage(170, -700, true);
-	imageHACKS->SetSpritesData({ 758,0,705,671 });
-	imageHACKS->type = BUTTON;
-	buttonGOBACKHACKS = App->ui_manager->CreateButton(200, -665, 3);
-	buttonGOBACKHACKS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
-
-}
-
-void j1Choose::CreateMainMenuButtons()
+void j1Choose::CreateMainMenu()
 {
 	AlreadyChoosen = false;
+	MainTitle = App->ui_manager->CreateImage((App->win->width / 2) - (844 / 2), 70, false);
+	MainTitle->SetSpritesData({ 401,784,844	,165 });
 	buttonSTART = App->ui_manager->CreateButton(400, 150, 1, "START", 30);
 	buttonCONTINUE = App->ui_manager->CreateButton(400, 250, 1, "CONTINUE", 30);
 	buttonSETTINGS = App->ui_manager->CreateButton(400, 350, 1, "SETTINGS", 30);
@@ -391,7 +236,6 @@ void j1Choose::CreateMainMenuButtons()
 
 void j1Choose::MainMenu()
 {
-	
 	if (buttonSTART->pressed) {
 		WantToDisappearMainMenu(true);
 		WantToDisappearButtonsTypePlayer(false);
@@ -441,6 +285,39 @@ void j1Choose::MainMenu()
 	if (buttonEXIT->pressed) {
 		Exit = true;
 	}
+}
+
+void j1Choose::WantToDisappearMainMenu(bool Disappear)
+{
+	if (Disappear) {
+		buttonSTART->NoUse = true;
+		buttonCONTINUE->NoUse = true;
+		buttonSETTINGS->NoUse = true;
+		buttonEXIT->NoUse = true;
+		buttonCREDITS->NoUse = true;
+		buttonHACKS->NoUse = true;
+		buttonSTART->WantToRender = false;
+		buttonCONTINUE->WantToRender = false;
+		buttonSETTINGS->WantToRender = false;
+		buttonHACKS->WantToRender = false;
+		buttonEXIT->WantToRender = false;
+		buttonCREDITS->WantToRender = false;
+	}
+	else {
+		buttonSTART->NoUse = false;
+		buttonCONTINUE->NoUse = false;
+		buttonSETTINGS->NoUse = false;
+		buttonEXIT->NoUse = false;
+		buttonHACKS->NoUse = false;
+		buttonCREDITS->NoUse = false;
+		buttonSTART->WantToRender = true;
+		buttonCONTINUE->WantToRender = true;
+		buttonSETTINGS->WantToRender = true;
+		buttonHACKS->WantToRender = true;
+		buttonEXIT->WantToRender = true;
+		buttonCREDITS->WantToRender = true;
+	}
+
 }
 
 void j1Choose::CreateButtonsTypePlayer()
@@ -511,6 +388,48 @@ void j1Choose::MenuChoosePlayer(float dt)
 		StartChoosing = false;
 		InMainMenu = true;
 	}
+
+}
+
+void j1Choose::WantToDisappearButtonsTypePlayer(bool Disappear)
+{
+	if (Disappear) {
+		CHOOSE->WantToRender = false;
+		JEFFNAME->WantToRender = false;
+		JANENAME->WantToRender = false;
+		JERRYNAME->WantToRender = false;
+		buttonJEFF->WantToRender = false;
+		buttonJANE->WantToRender = false;
+		buttonJERRY->WantToRender = false;
+		buttonGOBACK->WantToRender = false;
+		CHOOSE->NoUse = true;
+		JEFFNAME->NoUse = true;
+		JANENAME->NoUse = true;
+		JERRYNAME->NoUse = true;
+		buttonJEFF->NoUse = true;
+		buttonJANE->NoUse = true;
+		buttonJERRY->NoUse = true;
+		buttonGOBACK->NoUse = true;
+	}
+	else {
+		CHOOSE->WantToRender = true;
+		JEFFNAME->WantToRender = true;
+		JANENAME->WantToRender = true;
+		JERRYNAME->WantToRender = true;
+		buttonJEFF->WantToRender = true;
+		buttonJANE->WantToRender = true;
+		buttonJERRY->WantToRender = true;
+		buttonGOBACK->WantToRender = true;
+		CHOOSE->NoUse = false;
+		JEFFNAME->NoUse = false;
+		JANENAME->NoUse = false;
+		JERRYNAME->NoUse = false;
+		buttonJEFF->NoUse = false;
+		buttonJANE->NoUse = false;
+		buttonJERRY->NoUse = false;
+		buttonGOBACK->NoUse = false;
+	}
+
 
 }
 
@@ -639,6 +558,87 @@ void j1Choose::SettingsMenu(float dt)
 	}
 }
 
+void j1Choose::CreatehacksButtons()
+{
+	HacksMenuDone = false;
+	imageHACKS = App->ui_manager->CreateImage(170, -700, true);
+	imageHACKS->SetSpritesData({ 758,0,705,671 });
+	imageHACKS->type = BUTTON;
+	buttonGOBACKHACKS = App->ui_manager->CreateButton(200, -665, 3);
+	buttonGOBACKHACKS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
+}
+
+void j1Choose::HacksMenu(float dt)
+{
+	Title->NoRenderLabel = true;
+	sentence->NoRenderLabel = true;
+	if (imageHACKS->position.y + imageHACKS->height >= buttonEXIT->position.y + buttonEXIT->height) {
+		buttonEXIT->WantToRender = false;
+	}
+	if (imageHACKS->position.y + imageHACKS->height >= buttonHACKS->position.y + buttonHACKS->height) {
+		buttonHACKS->WantToRender = false;
+	}
+	if (imageHACKS->position.y + imageHACKS->height >= buttonCREDITS->position.y + buttonCREDITS->height) {
+		buttonCREDITS->WantToRender = false;
+	}
+	if (imageHACKS->position.y + imageHACKS->height >= buttonSETTINGS->position.y + buttonSETTINGS->height) {
+		buttonSETTINGS->WantToRender = false;
+	}
+	if (imageHACKS->position.y + imageHACKS->height >= buttonCONTINUE->position.y + buttonCONTINUE->height) {
+		buttonCONTINUE->WantToRender = false;
+	}
+	if (imageHACKS->position.y + imageHACKS->height >= buttonSTART->position.y + buttonSTART->height) {
+		buttonSTART->WantToRender = false;
+	}
+	if (imageHACKS->position.y + imageHACKS->height <= buttonEXIT->position.y) {
+		buttonEXIT->WantToRender = true;
+	}
+	if (imageHACKS->position.y + imageHACKS->height <= buttonCREDITS->position.y) {
+		buttonCREDITS->WantToRender = true;
+	}
+	if (imageHACKS->position.y + imageHACKS->height <= buttonHACKS->position.y) {
+		buttonHACKS->WantToRender = true;
+	}
+	if (imageHACKS->position.y + imageHACKS->height <= buttonSETTINGS->position.y) {
+		buttonSETTINGS->WantToRender = true;
+	}
+	if (imageHACKS->position.y + imageHACKS->height <= buttonCONTINUE->position.y) {
+		buttonCONTINUE->WantToRender = true;
+	}
+	if (imageHACKS->position.y + imageHACKS->height <= buttonSTART->position.y) {
+		buttonSTART->WantToRender = true;
+	}
+	if (!positioned && !HacksMenuDone) { //MENU GOING UP
+
+		buttonGOBACKHACKS->position.y += 1000 * dt;
+		imageHACKS->position.y += 1000 * dt;
+		if (imageHACKS->position.y + imageHACKS->height >= 700) {
+			positioned = true;
+			buttonGOBACKHACKS->pressed = false;
+			HacksMenuDone = true;
+		}
+	}
+	if (!positioned && HacksMenuDone) { //MENU GOING DOWN
+
+		buttonGOBACKHACKS->position.y -= 2000 * dt;
+		imageHACKS->position.y -= 2000 * dt;
+		if (buttonGOBACKHACKS->position.y <= -700) {
+			buttonSTART->NoUse = false;
+			buttonCONTINUE->NoUse = false;
+			buttonSETTINGS->NoUse = false;
+			buttonHACKS->NoUse = false;
+			buttonEXIT->NoUse = false;
+			buttonCREDITS->NoUse = false;
+			InHacks = false;
+			InMainMenu = true;
+		}
+	}
+	if (HacksMenuDone) { //MENU LOGIC BUTTONS
+		if (buttonGOBACKHACKS->pressed) {
+			positioned = false;
+		}
+	}
+}
 
 void j1Choose::StartLevel()
 {

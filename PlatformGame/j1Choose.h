@@ -41,7 +41,7 @@ public:
 	void StartLevel();
 	void MenuChoosePlayer(float dt);
 	void MainMenu();
-	void CreateMainMenuButtons();
+	void CreateMainMenu();
 	void SettingsMenu(float dt);
 	void CreateSettingsButtons();
 	void CreateIntro();
@@ -111,6 +111,7 @@ public:
 	UI_Element* sentence = nullptr;
 
 	//INITIAL MENU
+	UI_Element* MainTitle = nullptr;
 	UI_Element* buttonSTART = nullptr;
 	UI_Element* buttonCONTINUE = nullptr;
 	UI_Element* buttonSETTINGS = nullptr;
