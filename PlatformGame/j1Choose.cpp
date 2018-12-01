@@ -90,7 +90,7 @@ bool j1Choose::Start()
 // Called each loop iteration
 bool j1Choose::PreUpdate()
 {
-	BROFILER_CATEGORY("Choose: PreUpdate", Profiler::Color::Aquamarine);
+	BROFILER_CATEGORY("Menu: PreUpdate", Profiler::Color::Aquamarine);
 	App->input->GetMousePosition(mouse.x, mouse.y);
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN && !GameOn && !start) {
@@ -108,7 +108,7 @@ bool j1Choose::PreUpdate()
 // Called each loop iteration
 bool j1Choose::Update(float dt)
 {
-	BROFILER_CATEGORY("Choose: Update", Profiler::Color::Aquamarine);
+	BROFILER_CATEGORY("Menu: Update", Profiler::Color::Aquamarine);
 	if (start) {
 		if (!GameOn) {
 			if (InSettings)
@@ -126,7 +126,7 @@ bool j1Choose::Update(float dt)
 // Called each loop iteration
 bool j1Choose::PostUpdate()
 {
-	BROFILER_CATEGORY("Choose: PostUpdate", Profiler::Color::Aquamarine);
+	BROFILER_CATEGORY("Menu: PostUpdate", Profiler::Color::Aquamarine);
 	bool ret = true;
 	if (!GameOn) {
 		if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN || Exit)
@@ -342,13 +342,13 @@ void j1Choose::CreateButtonsTypePlayer()
 	CHOOSE->SetSpritesData({ 0,1928,608,72 });
 	CHOOSE->type = BUTTON;
 	JEFFNAME = App->ui_manager->CreateImage((App->win->width / 4) - (68 / 2), 700, false);
-	JEFFNAME->SetSpritesData({ 611,1928,68,37 });
+	JEFFNAME->SetSpritesData({ 611,1928,68,38 });
 	JEFFNAME->type = BUTTON;
 	JANENAME = App->ui_manager->CreateImage((App->win->width / 4) * 2 - (72 / 2), 700, false);
-	JANENAME->SetSpritesData({ 681,1928,72,37 });
+	JANENAME->SetSpritesData({ 681,1928,72,38 });
 	JANENAME->type = BUTTON;
 	JERRYNAME = App->ui_manager->CreateImage((App->win->width / 4) * 3 - (92 / 2), 700, false);
-	JERRYNAME->SetSpritesData({ 754,1928,92,37 });
+	JERRYNAME->SetSpritesData({ 754,1928,92,38 });
 	JERRYNAME->type = BUTTON;
 	buttonJEFF = App->ui_manager->CreateButton(138, 229, 2);
 	buttonJEFF->SetSpritesData({ 0,0,0,0 }, { 0,0,225,441 }, { 0,0,225,441 });
