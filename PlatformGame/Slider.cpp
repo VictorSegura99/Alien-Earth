@@ -37,7 +37,7 @@ Slider::Slider(int x, int y, int SliderPos) : UI_Element(x, y)
 	if (Value > 0 && Value < 100) {
 		position.x = (image->position.x + 4) + SliderPos * 2;
 	}*/
-	position.x = ((((Value / (100 / 78.5)) + 1)*image->width) / 100) + 7 + image->position.x;
+	position.x = ((((Value / (100 / 78.5))+1)*image->width) / 100) + 5 + image->position.x;
 }
 
 Slider::~Slider()
@@ -85,7 +85,7 @@ bool Slider::Update(float dt)
 			pressed = false;
 		
 	}
-	Value = (((100 * (position.x - 7 - image->position.x)) / (image->width))-1)*(100/78.5);
+	Value = (((100 * (position.x - 5 - image->position.x)) / (image->width))-1)*(100/78.5);
 	LOG("%f", Value);
 	
 	return true;

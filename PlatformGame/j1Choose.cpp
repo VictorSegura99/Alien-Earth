@@ -340,6 +340,7 @@ void j1Choose::CreateButtonsTypePlayer()
 {
 	CHOOSE = App->ui_manager->CreateImage((App->win->width / 2) - (608 / 2), 70, false);
 	CHOOSE->SetSpritesData({ 0,1928,608,72 });
+	CHOOSE->type = BUTTON;
 	JEFFNAME = App->ui_manager->CreateImage((App->win->width / 4) - (68 / 2), 700, false);
 	JEFFNAME->SetSpritesData({ 611,1928,68,37 });
 	JEFFNAME->type = BUTTON;
