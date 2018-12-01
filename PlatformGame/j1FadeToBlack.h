@@ -13,6 +13,8 @@ public:
 	bool Start();
 	bool Update(float dt);
 	bool FadeToBlack(j1Module* module_off, j1Module* module_on, float time = 1.0f);
+	bool FadeToBlack(j1Module* module_off,  float time = 1.0f);
+	bool FadeToBlack(float time, j1Module* module_on);
 	bool FadeToBlack(float time);
 	bool IsFading() const;
 
@@ -30,6 +32,8 @@ private:
 	SDL_Rect screen;
 	j1Module* to_enable = nullptr;
 	j1Module* to_disable = nullptr;
+	bool ENABLE = false;
+	bool DISABLE = false;
 };
 
 #endif

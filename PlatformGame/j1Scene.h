@@ -46,6 +46,7 @@ public:
 	SDL_Texture* TutorialJane;
 	SDL_Texture* TutorialJerry;
 	p2SString tutorial[3];
+	bool CanStart = false;
 	
 };
 

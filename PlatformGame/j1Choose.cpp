@@ -67,6 +67,9 @@ bool j1Choose::Start()
 	App->collision->active = false;
 	App->map->active = false;
 	GameOn = false;
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
+	start = false;
 	ScreenStart = App->tex->Load(file_texture.GetString());
 	yellow = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[0].GetString());
 	pink = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[1].GetString());

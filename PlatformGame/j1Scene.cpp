@@ -13,6 +13,7 @@
 #include "EntityManager.h"
 #include "j1Collision.h"
 #include "j1Choose.h"
+#include "j1FadeToBlack.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -110,18 +111,8 @@ bool j1Scene::Update(float dt)
 			App->entitymanager->GetPlayerData()->Spawn();
 		}
 		if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN) {
-			App->entitymanager->DeleteEnemies();
-			App->scene->active = false;
-			App->entitymanager->ActiveGame = false;
-			App->collision->active = false;
-			App->map->active = false;
-			App->choose->start = false;
-			App->render->camera.x = 0;
-			App->render->camera.y = 0;
-			App->choose->GameOn = false;
-			App->entitymanager->GetPlayerData()->Intro = true;
-			App->entitymanager->GetPlayerData()->DeleteUI();
-			
+			App->fade->FadeToBlack(3.0f);
+			CanStart = true;
 		}
 	}
 	App->map->Draw();
@@ -137,7 +128,19 @@ bool j1Scene::PostUpdate()
 
 	if(App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
-
+	if (CanStart && App->fade->current_step == App->fade->fade_from_black) {
+		CanStart = false;
+		App->entitymanager->DeleteEnemies();
+		App->entitymanager->ActiveGame = false;
+		App->scene->active = false;
+		App->collision->active = false;
+		App->map->active = false;
+		App->choose->start = false;
+		App->choose->GameOn = false;
+		App->entitymanager->GetPlayerData()->Intro = true;
+		App->entitymanager->GetPlayerData()->DeleteUI();
+		App->choose->Start();
+	}
 	return ret;
 }
 

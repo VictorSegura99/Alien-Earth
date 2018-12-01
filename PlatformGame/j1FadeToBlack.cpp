@@ -43,8 +43,16 @@ bool j1FadeToBlack::Update(float dt)
 	{
 		if (now >= total_time)
 		{
-			//to_disable->Disable();
-			//to_enable->Enable();
+			if (DISABLE) {
+				DISABLE = false;
+				to_disable->Disable();
+			}
+			if (ENABLE) {
+				ENABLE = false;
+				to_enable->Enable();
+			}
+			
+			
 			total_time += total_time;
 			start_time = SDL_GetTicks();
 			current_step = fade_step::fade_from_black;
@@ -79,6 +87,38 @@ bool j1FadeToBlack::FadeToBlack(j1Module* module_off, j1Module* module_on, float
 		total_time = (Uint32)(time * 0.5f * 1000.0f);
 		//to_enable = module_on;
 		//to_disable = module_off;
+		ret = true;
+	}
+
+	return ret;
+}
+bool j1FadeToBlack::FadeToBlack(j1Module * module_off, float time)
+{
+	bool ret = false;
+
+	if (current_step == fade_step::none)
+	{
+		current_step = fade_step::fade_to_black;
+		start_time = SDL_GetTicks();
+		total_time = (Uint32)(time * 0.5f * 1000.0f);
+		to_disable = module_off;
+		DISABLE = true;
+		ret = true;
+	}
+
+	return ret;
+}
+bool j1FadeToBlack::FadeToBlack(float time, j1Module * module_on)
+{
+	bool ret = false;
+
+	if (current_step == fade_step::none)
+	{
+		current_step = fade_step::fade_to_black;
+		start_time = SDL_GetTicks();
+		total_time = (Uint32)(time * 0.5f * 1000.0f);
+		to_enable = module_on;
+		ENABLE = true;
 		ret = true;
 	}
 
