@@ -220,7 +220,6 @@ void j1Choose::CreateIntro()
 	sentence->SetSpritesData({ 0,1105,268,35 });
 }
 
-
 void j1Choose::CreateMainMenu()
 {
 	AlreadyChoosen = false;
@@ -287,6 +286,7 @@ void j1Choose::MainMenu()
 	}
 }
 
+
 void j1Choose::WantToDisappearMainMenu(bool Disappear)
 {
 	if (Disappear) {
@@ -317,7 +317,6 @@ void j1Choose::WantToDisappearMainMenu(bool Disappear)
 		buttonEXIT->WantToRender = true;
 		buttonCREDITS->WantToRender = true;
 	}
-
 }
 
 void j1Choose::CreateButtonsTypePlayer()
@@ -429,8 +428,6 @@ void j1Choose::WantToDisappearButtonsTypePlayer(bool Disappear)
 		buttonJERRY->NoUse = false;
 		buttonGOBACK->NoUse = false;
 	}
-
-
 }
 
 void j1Choose::CreateSettingsButtons()
@@ -572,22 +569,22 @@ void j1Choose::HacksMenu(float dt)
 {
 	Title->NoRenderLabel = true;
 	sentence->NoRenderLabel = true;
-	if (imageHACKS->position.y + imageHACKS->height >= buttonEXIT->position.y + buttonEXIT->height) {
+	if (imageHACKS->position.y + imageHACKS->height >= buttonEXIT->position.y) {
 		buttonEXIT->WantToRender = false;
 	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonHACKS->position.y + buttonHACKS->height) {
+	if (imageHACKS->position.y + imageHACKS->height >= buttonHACKS->position.y) {
 		buttonHACKS->WantToRender = false;
 	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonCREDITS->position.y + buttonCREDITS->height) {
+	if (imageHACKS->position.y + imageHACKS->height >= buttonCREDITS->position.y) {
 		buttonCREDITS->WantToRender = false;
 	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonSETTINGS->position.y + buttonSETTINGS->height) {
+	if (imageHACKS->position.y + imageHACKS->height >= buttonSETTINGS->position.y) {
 		buttonSETTINGS->WantToRender = false;
 	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonCONTINUE->position.y + buttonCONTINUE->height) {
+	if (imageHACKS->position.y + imageHACKS->height >= buttonCONTINUE->position.y) {
 		buttonCONTINUE->WantToRender = false;
 	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonSTART->position.y + buttonSTART->height) {
+	if (imageHACKS->position.y + imageHACKS->height >= buttonSTART->position.y) {
 		buttonSTART->WantToRender = false;
 	}
 	if (imageHACKS->position.y + imageHACKS->height <= buttonEXIT->position.y) {
