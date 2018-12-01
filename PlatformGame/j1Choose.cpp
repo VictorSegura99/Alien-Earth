@@ -299,22 +299,22 @@ void j1Choose::HacksMenu(float dt)
 {
 	Title->NoRenderLabel = true;
 	sentence->NoRenderLabel = true;
-	if (imageHACKS->position.y + imageHACKS->height >= buttonEXIT->position.y + buttonEXIT->height) {
+	if (imageHACKS->position.y + imageHACKS->height >= buttonEXIT->position.y) {
 		buttonEXIT->WantToRender = false;
 	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonHACKS->position.y + buttonHACKS->height) {
+	if (imageHACKS->position.y + imageHACKS->height >= buttonHACKS->position.y) {
 		buttonHACKS->WantToRender = false;
 	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonCREDITS->position.y + buttonCREDITS->height) {
+	if (imageHACKS->position.y + imageHACKS->height >= buttonCREDITS->position.y) {
 		buttonCREDITS->WantToRender = false;
 	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonSETTINGS->position.y + buttonSETTINGS->height) {
+	if (imageHACKS->position.y + imageHACKS->height >= buttonSETTINGS->position.y) {
 		buttonSETTINGS->WantToRender = false;
 	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonCONTINUE->position.y + buttonCONTINUE->height) {
+	if (imageHACKS->position.y + imageHACKS->height >= buttonCONTINUE->position.y) {
 		buttonCONTINUE->WantToRender = false;
 	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonSTART->position.y + buttonSTART->height) {
+	if (imageHACKS->position.y + imageHACKS->height >= buttonSTART->position.y) {
 		buttonSTART->WantToRender = false;
 	}
 	if (imageHACKS->position.y + imageHACKS->height <= buttonEXIT->position.y) {
