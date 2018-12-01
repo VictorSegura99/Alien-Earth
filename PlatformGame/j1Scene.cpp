@@ -138,6 +138,7 @@ bool j1Scene::PostUpdate()
 		App->choose->start = false;
 		App->choose->GameOn = false;
 		App->entitymanager->GetPlayerData()->Intro = true;
+		App->entitymanager->GetPlayerData()->NoInput = false;
 		App->entitymanager->GetPlayerData()->DeleteUI();
 		App->choose->Start();
 	}
