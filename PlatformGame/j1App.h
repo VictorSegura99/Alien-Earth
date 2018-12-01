@@ -106,6 +106,7 @@ public:
 	j1FadeToBlack*		fade;
 	j1Fonts*			fonts;
 
+
 private:
 
 	p2List<j1Module*>	modules;

@@ -78,6 +78,17 @@ SDL_Texture* const j1Textures::Load(const char* path)
 	return texture;
 }
 
+SDL_Surface* const j1Textures::LoadMouse(const char* path)
+{
+	SDL_Surface* surface = IMG_Load(path);
+
+	if (surface == NULL)
+	{
+		LOG("Could not load surface with path: %s. IMG_Load: %s", path, IMG_GetError());
+	}
+
+	return surface;
+}
 // Unload texture
 bool j1Textures::UnLoad(SDL_Texture* texture)
 {
