@@ -27,6 +27,7 @@ public:
 	
 	// Load Texture
 	SDL_Texture* const	Load(const char* path);
+	SDL_Surface* const	LoadMouse(const char* path);
 	bool				UnLoad(SDL_Texture* texture);
 	SDL_Texture* const	LoadSurface(SDL_Surface* surface);
 	void				GetSize(const SDL_Texture* texture, uint& width, uint& height) const;

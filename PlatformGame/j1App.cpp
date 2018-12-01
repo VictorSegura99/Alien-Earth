@@ -2,6 +2,7 @@
 #include <sstream> 
 #include "p2Defs.h"
 #include "p2Log.h"
+#include "SDL/include/SDL.h"
 
 #include "j1Window.h"
 #include "j1Input.h"
@@ -19,6 +20,7 @@
 #include "UI_Manager.h"
 #include "j1FadeToBlack.h"
 #include "j1Fonts.h"
+#include "p2Point.h"
 
 #include "Brofiler/Brofiler.h"
 
@@ -159,6 +161,7 @@ bool j1App::Start()
 
 	PERF_PEEK(ptimer);
 
+	App->render->surface=App->tex->LoadMouse("textures/pointer.png");
 	return ret;
 }
 
@@ -289,6 +292,10 @@ bool j1App::PreUpdate()
 
 		ret = item->data->PreUpdate();
 	}
+
+	iPoint mouseposition;
+	App->input->GetMousePosition(mouseposition.x, mouseposition.y);
+	SDL_CreateColorCursor(App->render->surface, mouseposition.x, mouseposition.y);
 
 	return ret;
 }
