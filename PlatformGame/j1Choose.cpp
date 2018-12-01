@@ -258,6 +258,14 @@ void j1Choose::WantToDisappearButtonsTypePlayer(bool Disappear)
 		buttonJANE->WantToRender = false;
 		buttonJERRY->WantToRender = false;
 		buttonGOBACK->WantToRender = false;
+		CHOOSE->NoUse = true;
+		JEFFNAME->NoUse = true;
+		JANENAME->NoUse = true;
+		JERRYNAME->NoUse = true;
+		buttonJEFF->NoUse = true;
+		buttonJANE->NoUse = true;
+		buttonJERRY->NoUse = true;
+		buttonGOBACK->NoUse = true;
 	}
 	else {
 		CHOOSE->WantToRender = true;
@@ -268,6 +276,14 @@ void j1Choose::WantToDisappearButtonsTypePlayer(bool Disappear)
 		buttonJANE->WantToRender = true;
 		buttonJERRY->WantToRender = true;
 		buttonGOBACK->WantToRender = true;
+		CHOOSE->NoUse = false;
+		JEFFNAME->NoUse = false;
+		JANENAME->NoUse = false;
+		JERRYNAME->NoUse = false;
+		buttonJEFF->NoUse = false;
+		buttonJANE->NoUse = false;
+		buttonJERRY->NoUse = false;
+		buttonGOBACK->NoUse = false;
 	}
 
 
