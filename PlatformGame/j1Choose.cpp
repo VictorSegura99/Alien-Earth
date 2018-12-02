@@ -225,6 +225,7 @@ void j1Choose::CreateMainMenu()
 	AlreadyChoosen = false;
 	MainTitle = App->ui_manager->CreateImage((App->win->width / 2) - (844 / 2), 70, false);
 	MainTitle->SetSpritesData({ 401,784,844	,165 });
+	MainTitle->type = BUTTON;
 	buttonSTART = App->ui_manager->CreateButton(400, 150, 1, "START", 30);
 	buttonCONTINUE = App->ui_manager->CreateButton(400, 250, 1, "CONTINUE", 30);
 	buttonSETTINGS = App->ui_manager->CreateButton(400, 350, 1, "SETTINGS", 30);
@@ -302,6 +303,7 @@ void j1Choose::WantToDisappearMainMenu(bool Disappear)
 		buttonHACKS->WantToRender = false;
 		buttonEXIT->WantToRender = false;
 		buttonCREDITS->WantToRender = false;
+		MainTitle->WantToRender = false;
 	}
 	else {
 		buttonSTART->NoUse = false;
@@ -316,6 +318,7 @@ void j1Choose::WantToDisappearMainMenu(bool Disappear)
 		buttonHACKS->WantToRender = true;
 		buttonEXIT->WantToRender = true;
 		buttonCREDITS->WantToRender = true;
+		MainTitle->WantToRender = true;
 	}
 }
 
