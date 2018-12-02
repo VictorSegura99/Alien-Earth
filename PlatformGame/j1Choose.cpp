@@ -226,12 +226,12 @@ void j1Choose::CreateMainMenu()
 	MainTitle = App->ui_manager->CreateImage((App->win->width / 2) - (844 / 2), 70, false);
 	MainTitle->SetSpritesData({ 401,784,844	,165 });
 	MainTitle->type = BUTTON;
-	buttonSTART = App->ui_manager->CreateButton(400, 150, 1, "START", 30);
-	buttonCONTINUE = App->ui_manager->CreateButton(400, 250, 1, "CONTINUE", 30);
-	buttonSETTINGS = App->ui_manager->CreateButton(400, 350, 1, "SETTINGS", 30);
-	buttonHACKS = App->ui_manager->CreateButton(400, 450, 1, "HACKS", 30);
-	buttonCREDITS = App->ui_manager->CreateButton(400, 550, 1, "CREDITS", 30);
-	buttonEXIT = App->ui_manager->CreateButton(400, 650, 1, "EXIT", 30);
+	buttonSTART = App->ui_manager->CreateButton(400, 270, 1, "START", 30);
+	buttonCONTINUE = App->ui_manager->CreateButton(400, 350, 1, "CONTINUE", 30);
+	buttonSETTINGS = App->ui_manager->CreateButton(400, 430, 1, "SETTINGS", 30);
+	buttonHACKS = App->ui_manager->CreateButton(400, 510, 1, "HACKS", 30);
+	buttonCREDITS = App->ui_manager->CreateButton(400, 590, 1, "CREDITS", 30);
+	buttonEXIT = App->ui_manager->CreateButton(400, 670, 1, "EXIT", 30);
 }
 
 void j1Choose::MainMenu()
