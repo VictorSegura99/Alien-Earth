@@ -54,6 +54,10 @@ bool j1Choose::Awake(pugi::xml_node& config)
 	YellowWalk = LoadGigantAliensAnimations(0, config, "Walk");
 	PinkWalk = LoadGigantAliensAnimations(1, config, "Walk");
 	BlueWalk = LoadGigantAliensAnimations(2, config, "Walk");
+
+
+
+	
 	bool ret = true;
 
 	return ret;
@@ -70,6 +74,9 @@ bool j1Choose::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 	start = false;
+
+
+
 	ScreenStart = App->tex->Load(file_texture.GetString());
 	yellow = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[0].GetString());
 	pink = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[1].GetString());
@@ -142,7 +149,6 @@ bool j1Choose::PostUpdate()
 			App->scene->active = !App->scene->active;
 			App->collision->active = !App->collision->active;
 			App->map->active = !App->map->active;
-			App->scene->KnowMap = 0;
 			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 			App->entitymanager->ActiveGame = true;
 			App->entitymanager->GetPlayerData()->Start();
@@ -281,6 +287,13 @@ void j1Choose::MainMenu()
 		if (App->entitymanager->GetPlayerData()->God)
 			checkboxGODMODE->pressed = true;
 		else checkboxGODMODE->pressed = false;
+		if (App->scene->WantToSpawnEnemies)
+			checkboxNOENEMIES->pressed = false;
+		else checkboxNOENEMIES->pressed = true;
+		if (App->scene->KnowMap == 0)
+			checkboxSTARTLEVEL2->pressed = false;
+		else checkboxSTARTLEVEL2->pressed = true;
+
 	}
 	if (buttonEXIT->pressed) {
 		Exit = true;
@@ -447,6 +460,8 @@ void j1Choose::CreateSettingsButtons()
 	labelMUSICVOLUME = App->ui_manager->CreateLabel(270, 1507, "MUSIC VOLUME", 50, true);
 	sliderVOLUMEFX = App->ui_manager->CreateSlider(550, 1607, App->audio->fxvolume);
 	labelVOLUMEFX = App->ui_manager->CreateLabel(270, 1607, "FX VOLUME", 50, true);
+	labelSETTINGS = App->ui_manager->CreateLabel(App->win->width / 2, 1335, "#SETTINGS#", 35, true);
+	labelSETTINGS->position.x -= labelSETTINGS->width / 2;
 	
 	if (App->capactivated)
 		checkboxFPS->pressed = true;
@@ -503,7 +518,7 @@ void j1Choose::SettingsMenu(float dt)
 		labelMUSICVOLUME->position.y -= 1000 * dt;
 		sliderVOLUMEFX->position.y -= 1000 * dt;
 		labelVOLUMEFX->position.y -= 1000 * dt;
-		
+		labelSETTINGS->position.y -= 1000 * dt;
 		if (buttonGOBACKSETTINGS->position.y <= 100) {
 			Positioned = true;
 			buttonGOBACKSETTINGS->pressed = false;
@@ -520,6 +535,7 @@ void j1Choose::SettingsMenu(float dt)
 		labelMUSICVOLUME->position.y += 2000 * dt;
 		sliderVOLUMEFX->position.y += 2000 * dt;
 		labelVOLUMEFX->position.y += 2000 * dt;
+		labelSETTINGS->position.y += 2000 * dt;
 		if (buttonGOBACKSETTINGS->position.y >= 1225) {
 			buttonSTART->NoUse = false;
 			buttonCONTINUE->NoUse = false;
@@ -557,8 +573,13 @@ void j1Choose::CreatehacksButtons()
 	buttonGOBACKHACKS = App->ui_manager->CreateButton(200, -665, 3);
 	buttonGOBACKHACKS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
 	labelGODMODE = App->ui_manager->CreateLabel(270, -600, "GODMODE", 50, true);
-	checkboxGODMODE = App->ui_manager->CreateCheckBox(550, -600);
-
+	checkboxGODMODE = App->ui_manager->CreateCheckBox(550, -593);
+	checkboxNOENEMIES = App->ui_manager->CreateCheckBox(550, -493);
+	labelNOENEMIES = App->ui_manager->CreateLabel(270, -500, "NO ENEMIES", 50, true);
+	checkboxSTARTLEVEL2 = App->ui_manager->CreateCheckBox(550, -393);
+	labelSTARTLEVEL2 = App->ui_manager->CreateLabel(270, -400, "START IN LEVEL 2", 50, true);
+	labelHACKS = App->ui_manager->CreateLabel(App->win->width/2, -665, "#HACKS#", 35, true);
+	labelHACKS->position.x -= labelHACKS->width / 2;
 }
 
 void j1Choose::HacksMenu(float dt)
@@ -607,6 +628,11 @@ void j1Choose::HacksMenu(float dt)
 		imageHACKS->position.y += 1000 * dt;
 		labelGODMODE->position.y += 1000 * dt;
 		checkboxGODMODE->position.y += 1000 * dt;
+		checkboxNOENEMIES->position.y += 1000 * dt;
+		labelNOENEMIES->position.y += 1000 * dt;
+		checkboxSTARTLEVEL2->position.y += 1000 * dt;
+		labelSTARTLEVEL2->position.y += 1000 * dt;
+		labelHACKS->position.y += 1000 * dt;
 		if (imageHACKS->position.y + imageHACKS->height >= 700) {
 			positioned = true;
 			buttonGOBACKHACKS->pressed = false;
@@ -619,6 +645,11 @@ void j1Choose::HacksMenu(float dt)
 		imageHACKS->position.y -= 2000 * dt;
 		labelGODMODE->position.y -= 2000 * dt;
 		checkboxGODMODE->position.y -= 2000 * dt;
+		checkboxNOENEMIES->position.y -= 2000 * dt;
+		labelNOENEMIES->position.y -= 2000 * dt;
+		checkboxSTARTLEVEL2->position.y -= 2000 * dt;
+		labelSTARTLEVEL2->position.y -= 2000 * dt;
+		labelHACKS->position.y -= 2000 * dt;
 		if (buttonGOBACKHACKS->position.y <= -700) {
 			buttonSTART->NoUse = false;
 			buttonCONTINUE->NoUse = false;
@@ -640,13 +671,26 @@ void j1Choose::HacksMenu(float dt)
 		if (!checkboxGODMODE->pressed && App->entitymanager->GetPlayerData()->God) {
 			App->entitymanager->GetPlayerData()->God = false;
 		}
+		if (checkboxNOENEMIES->pressed && App->scene->WantToSpawnEnemies) {
+			App->scene->WantToSpawnEnemies = false;
+		}
+		if (!checkboxNOENEMIES->pressed && !App->scene->WantToSpawnEnemies) {
+			App->scene->WantToSpawnEnemies = true;
+		}
+		if (checkboxSTARTLEVEL2->pressed && App->scene->KnowMap != 1) {
+			App->scene->KnowMap = 1;
+		}
+		if (!checkboxSTARTLEVEL2->pressed && App->scene->KnowMap != 0) {
+			App->scene->KnowMap = 0;
+		}
 	}
 }
 
 void j1Choose::StartLevel()
 {
 	App->ui_manager->DeleteAllUI();
-	App->entitymanager->GetPlayerData()->Intro = true;
+	if (App->scene->KnowMap == 0)
+		App->entitymanager->GetPlayerData()->Intro = true;
 	App->fade->FadeToBlack(3.0f);
 	GoStart = true;
 }

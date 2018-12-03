@@ -49,7 +49,7 @@ public:
 	p2SString tutorial[3];
 	bool CanStart = false;
 	Entity* bat1 = nullptr;
-
+	bool WantToSpawnEnemies = true;
 
 	
 };

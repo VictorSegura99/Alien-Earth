@@ -1,6 +1,8 @@
 #ifndef __SLIDER_H__
 #define __SLIDER_H__
 
+#define MARGIN 7
+
 #include "p2Animation.h"
 #include "p2Point.h"
 #include "UI_Element.h"

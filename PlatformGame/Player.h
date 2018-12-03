@@ -171,7 +171,7 @@ public:
 	bool FallingJump2 = false;
 	bool OvniCanMove = false;
 	bool GoingRight;
-	bool Intro = true;
+	bool Intro = false;
 	
 	float JumpSpeed = 0.0f;
 	float SpeedWalk = 0.0f;

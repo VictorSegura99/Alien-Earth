@@ -174,27 +174,33 @@ bool j1Scene::Save(pugi::xml_node & scene) const
 void j1Scene::SpawnEnemies() 
 {
 	BROFILER_CATEGORY("Scene: Spawn", Profiler::Color::LightYellow);
-	if (KnowMap == 0) {
+	if (WantToSpawnEnemies) {
+		if (KnowMap == 0) {
 
-		//Platforms
-		while (bat1 == nullptr) {
-			bat1=App->entitymanager->CreateEntity(EntityType::BAT, 6000, 600);
+			//Platforms
+			while (bat1 == nullptr) {
+				bat1 = App->entitymanager->CreateEntity(EntityType::BAT, 6000, 600);
+			}
+			App->entitymanager->CreateEntity(EntityType::MOVING_PLATFORM, 7480, 900);
+			App->entitymanager->CreateEntity(EntityType::MOVING_PLATFORM, 8300, 900);
+			//Enemies
+			App->entitymanager->CreateEntity(EntityType::SPIDER, 6800, 400);
+
+			App->entitymanager->CreateEntity(EntityType::BAT, 8000, 400);
+			App->entitymanager->CreateEntity(EntityType::BAT, 9500, 600);
+			App->entitymanager->CreateEntity(EntityType::SPIDER, 10500, 450);
 		}
+		if (KnowMap == 1) {
+			App->entitymanager->CreateEntity(EntityType::SPIDER, 1300, 300);
+			App->entitymanager->CreateEntity(EntityType::SPIDER, 1800, 500);
+			App->entitymanager->CreateEntity(EntityType::BAT, 3500, 300);
+			App->entitymanager->CreateEntity(EntityType::BAT, 7500, 700);
+			App->entitymanager->CreateEntity(EntityType::BAT, 4500, 700);
+			App->entitymanager->CreateEntity(EntityType::SPIDER, 6600, 700);
+		}
+	}
+	if (KnowMap == 0) {
 		App->entitymanager->CreateEntity(EntityType::MOVING_PLATFORM, 7480, 900);
 		App->entitymanager->CreateEntity(EntityType::MOVING_PLATFORM, 8300, 900);
-		//Enemies
-		App->entitymanager->CreateEntity(EntityType::SPIDER, 6800, 400);
-		
-		App->entitymanager->CreateEntity(EntityType::BAT, 8000, 400);
-		App->entitymanager->CreateEntity(EntityType::BAT, 9500, 600);
-		App->entitymanager->CreateEntity(EntityType::SPIDER, 10500, 450);
-	}
-	if (KnowMap == 1) {
-		App->entitymanager->CreateEntity(EntityType::SPIDER, 1300, 300);
-		App->entitymanager->CreateEntity(EntityType::SPIDER, 1800, 500);
-		App->entitymanager->CreateEntity(EntityType::BAT, 3500, 300);
-		App->entitymanager->CreateEntity(EntityType::BAT, 7500, 700);
-		App->entitymanager->CreateEntity(EntityType::BAT, 4500, 700);
-		App->entitymanager->CreateEntity(EntityType::SPIDER, 6600, 700);
 	}
 }

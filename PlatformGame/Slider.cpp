@@ -22,21 +22,10 @@ Slider::Slider(int x, int y, int SliderPos) : UI_Element(x, y)
 	image = App->ui_manager->CreateImage(x, y, true);
 	image->SetSpritesData({ 553,89,200,49 });
 	image->type = SLIDER;
-	//position.x = x + image->width / 2 - width/2;
 	position.y = y + image->height / 2 - height / 2;
 	Value = SliderPos;
 	int RelPos = image->width - 15;
-	// (SliderPos*RelPos) /100
-	//position.x = (image->position.x + 5) + SliderPos * 2;
-	/*if (Value == 100) {
-		position.x = image->position.x + image->width - width - 5;
-	}
-	if (Value == 0) {
-		position.x = image->position.x + 5;
-	}
-	if (Value > 0 && Value < 100) {
-		position.x = (image->position.x + 4) + SliderPos * 2;
-	}*/
+	
 	position.x = ((((Value / (100 / 78.5))+1)*image->width) / 100) + 5 + image->position.x;
 }
 
@@ -92,11 +81,11 @@ bool Slider::Update(float dt)
 
 void Slider::LookLimits()
 {
-	if (position.x <= image->position.x +7) {
-		position.x = image->position.x + 7;
+	if (position.x <= image->position.x + MARGIN) {
+		position.x = image->position.x + MARGIN;
 	}
-	if (position.x + width >= image->position.x + image->width - 7) {
-		position.x = -width + image->position.x + image->width - 7;
+	if (position.x + width >= image->position.x + image->width - MARGIN) {
+		position.x = -width + image->position.x + image->width - MARGIN;
 	}
 
 }

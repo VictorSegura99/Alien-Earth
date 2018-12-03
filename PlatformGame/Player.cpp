@@ -114,7 +114,6 @@ bool Player::Start()
 {
 	BROFILER_CATEGORY("Player: Start", Profiler::Color::DarkGreen)
 	bool ret = true;
-	Intro = true;
 	auxGravity = gravity;
 	jumpfx = App->audio->LoadFx(JumpFx.GetString());
 	waterfx = App->audio->LoadFx(WaterFx.GetString());
@@ -570,6 +569,7 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		break;
 	case COLLIDER_WIN:
 		NoInput = true;
+		App->scene->KnowMap = 0;
 		App->fade->FadeToBlack(3.0f);
 		App->audio->PlayFx(winningfx);
 		TouchingGround = true;

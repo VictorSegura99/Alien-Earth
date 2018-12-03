@@ -140,6 +140,7 @@ public:
 	UI_Element* sliderVOLUMEMUSIC = nullptr;
 	UI_Element* labelMUSICVOLUME = nullptr;
 	UI_Element* sliderVOLUMEFX = nullptr;
+	UI_Element* labelSETTINGS = nullptr;
 	UI_Element* labelVOLUMEFX = nullptr;
 	UI_Element* labelGODMODE = nullptr;
 	UI_Element* checkboxGODMODE = nullptr;
@@ -148,9 +149,13 @@ public:
 	
 
 	//HACKS
+	UI_Element* labelHACKS = nullptr;
 	UI_Element* buttonGOBACKHACKS = nullptr;
 	UI_Element* imageHACKS = nullptr;
-
+	UI_Element* checkboxSTARTLEVEL2 = nullptr;
+	UI_Element* checkboxNOENEMIES = nullptr;
+	UI_Element* labelSTARTLEVEL2 = nullptr;
+	UI_Element* labelNOENEMIES = nullptr;
 
 
 
