@@ -349,9 +349,9 @@ void j1Choose::CreateButtonsTypePlayer()
 void j1Choose::MenuChoosePlayer(float dt)
 {
 	if (buttonJEFF->mouseOn) {
-		App->render->Blit(yellow, (App->win->width / 4) - (195 / 2), 300, &(YellowWalk.GetCurrentFrame(dt)));
-		App->render->Blit(pink, (App->win->width / 4) * 2 - (160/ 2), 300, &(PinkStand.GetCurrentFrame(dt)));
-		App->render->Blit(blue, (App->win->width / 4) * 3 - (169 / 2), 300, &(BlueStand.GetCurrentFrame(dt)));
+		App->render->Blit(yellow, (App->win->width / 4) - (195 / 2), 265, &(YellowWalk.GetCurrentFrame(dt)));
+		App->render->Blit(pink, (App->win->width / 4) * 2 - (160/ 2), 265, &(PinkStand.GetCurrentFrame(dt)));
+		App->render->Blit(blue, (App->win->width / 4) * 3 - (169 / 2), 265, &(BlueStand.GetCurrentFrame(dt)));
 		if (buttonJEFF->pressed && !AlreadyChoosen) {
 			AlreadyChoosen = true;
 			playernumber = PlayerNumber1;
@@ -359,9 +359,9 @@ void j1Choose::MenuChoosePlayer(float dt)
 		}
 	}
 	else if (buttonJANE->mouseOn) {
-		App->render->Blit(yellow, (App->win->width / 4) - (184 / 2), 300, &(YellowStand.GetCurrentFrame(dt)));
-		App->render->Blit(blue, (App->win->width / 4) * 3 - (168/2), 300, &(BlueStand.GetCurrentFrame(dt)));
-		App->render->Blit(pink, (App->win->width / 4) * 2 - (168 / 2), 300, &(PinkWalk.GetCurrentFrame(dt)));
+		App->render->Blit(yellow, (App->win->width / 4) - (184 / 2), 265, &(YellowStand.GetCurrentFrame(dt)));
+		App->render->Blit(blue, (App->win->width / 4) * 3 - (168/2), 265, &(BlueStand.GetCurrentFrame(dt)));
+		App->render->Blit(pink, (App->win->width / 4) * 2 - (168 / 2), 265, &(PinkWalk.GetCurrentFrame(dt)));
 		if (buttonJANE->pressed && !AlreadyChoosen) {
 			AlreadyChoosen = true;
 			playernumber = PlayerNumber2;
@@ -369,9 +369,9 @@ void j1Choose::MenuChoosePlayer(float dt)
 		}
 	}
 	else if (buttonJERRY->mouseOn) {
-		App->render->Blit(yellow, (App->win->width / 4) - (184 / 2), 300, &(YellowStand.GetCurrentFrame(dt)));
-		App->render->Blit(pink, (App->win->width / 4) * 2 - (160 / 2), 300, &(PinkStand.GetCurrentFrame(dt)));
-		App->render->Blit(blue, (App->win->width / 4) * 3 - (163/2), 300, &(BlueWalk.GetCurrentFrame(dt)));
+		App->render->Blit(yellow, (App->win->width / 4) - (184 / 2), 265, &(YellowStand.GetCurrentFrame(dt)));
+		App->render->Blit(pink, (App->win->width / 4) * 2 - (160 / 2), 265, &(PinkStand.GetCurrentFrame(dt)));
+		App->render->Blit(blue, (App->win->width / 4) * 3 - (163/2), 265, &(BlueWalk.GetCurrentFrame(dt)));
 		if (buttonJERRY->pressed && !AlreadyChoosen) {
 			AlreadyChoosen = true;
 			playernumber = PlayerNumber3;
@@ -379,9 +379,9 @@ void j1Choose::MenuChoosePlayer(float dt)
 		}
 	}
 	else {
-		App->render->Blit(yellow, (App->win->width / 4) - (184 / 2), 300, &(YellowStand.GetCurrentFrame(dt)));
-		App->render->Blit(pink, (App->win->width / 4) * 2 - (160 / 2), 300, &(PinkStand.GetCurrentFrame(dt)));
-		App->render->Blit(blue, (App->win->width / 4) * 3 - (168 / 2), 300, &(BlueStand.GetCurrentFrame(dt)));
+		App->render->Blit(yellow, (App->win->width / 4) - (184 / 2), 265, &(YellowStand.GetCurrentFrame(dt)));
+		App->render->Blit(pink, (App->win->width / 4) * 2 - (160 / 2), 265, &(PinkStand.GetCurrentFrame(dt)));
+		App->render->Blit(blue, (App->win->width / 4) * 3 - (168 / 2), 265, &(BlueStand.GetCurrentFrame(dt)));
 		repeat = false;
 	}
 	if (buttonGOBACK->pressed) {
