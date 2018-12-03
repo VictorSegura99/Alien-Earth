@@ -265,9 +265,6 @@ void j1Choose::MainMenu()
 		if (App->capactivated)
 			checkboxFPS->pressed = true;
 		else checkboxFPS->pressed = false;
-		if (App->entitymanager->GetPlayerData()->God)
-			checkboxGODMODE->pressed = true;
-		else checkboxGODMODE->pressed = false;
 
 	}
 	if (buttonHACKS->pressed) {
@@ -281,6 +278,9 @@ void j1Choose::MainMenu()
 		buttonCREDITS->NoUse = true;
 		InMainMenu = false;
 		InHacks = true;
+		if (App->entitymanager->GetPlayerData()->God)
+			checkboxGODMODE->pressed = true;
+		else checkboxGODMODE->pressed = false;
 	}
 	if (buttonEXIT->pressed) {
 		Exit = true;
@@ -447,9 +447,7 @@ void j1Choose::CreateSettingsButtons()
 	labelMUSICVOLUME = App->ui_manager->CreateLabel(270, 1507, "MUSIC VOLUME", 50, true);
 	sliderVOLUMEFX = App->ui_manager->CreateSlider(550, 1607, App->audio->fxvolume);
 	labelVOLUMEFX = App->ui_manager->CreateLabel(270, 1607, "FX VOLUME", 50, true);
-	labelGODMODE = App->ui_manager->CreateLabel(270, 1707, "GODMODE", 50, true);
-	checkboxGODMODE = App->ui_manager->CreateCheckBox(550, 1710);
-
+	
 	if (App->capactivated)
 		checkboxFPS->pressed = true;
 }
@@ -505,8 +503,7 @@ void j1Choose::SettingsMenu(float dt)
 		labelMUSICVOLUME->position.y -= 1000 * dt;
 		sliderVOLUMEFX->position.y -= 1000 * dt;
 		labelVOLUMEFX->position.y -= 1000 * dt;
-		labelGODMODE->position.y -= 1000 * dt;
-		checkboxGODMODE->position.y -= 1000 * dt;
+		
 		if (buttonGOBACKSETTINGS->position.y <= 100) {
 			Positioned = true;
 			buttonGOBACKSETTINGS->pressed = false;
@@ -523,8 +520,6 @@ void j1Choose::SettingsMenu(float dt)
 		labelMUSICVOLUME->position.y += 2000 * dt;
 		sliderVOLUMEFX->position.y += 2000 * dt;
 		labelVOLUMEFX->position.y += 2000 * dt;
-		labelGODMODE->position.y += 2000 * dt;
-		checkboxGODMODE->position.y += 2000 * dt;
 		if (buttonGOBACKSETTINGS->position.y >= 1225) {
 			buttonSTART->NoUse = false;
 			buttonCONTINUE->NoUse = false;
@@ -546,12 +541,7 @@ void j1Choose::SettingsMenu(float dt)
 		if (!checkboxFPS->pressed) {
 			App->capactivated = false;
 		}
-		if (checkboxGODMODE->pressed) {
-			App->entitymanager->GetPlayerData()->God = true;
-		}
-		if (!checkboxGODMODE->pressed) {
-			App->entitymanager->GetPlayerData()->God = false;
-		}
+		
 		App->audio->volume = sliderVOLUMEMUSIC->Value;
 		App->audio->fxvolume = sliderVOLUMEFX->Value;
 
@@ -566,6 +556,9 @@ void j1Choose::CreatehacksButtons()
 	imageHACKS->type = BUTTON;
 	buttonGOBACKHACKS = App->ui_manager->CreateButton(200, -665, 3);
 	buttonGOBACKHACKS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
+	labelGODMODE = App->ui_manager->CreateLabel(270, -600, "GODMODE", 50, true);
+	checkboxGODMODE = App->ui_manager->CreateCheckBox(550, -600);
+
 }
 
 void j1Choose::HacksMenu(float dt)
@@ -612,6 +605,8 @@ void j1Choose::HacksMenu(float dt)
 
 		buttonGOBACKHACKS->position.y += 1000 * dt;
 		imageHACKS->position.y += 1000 * dt;
+		labelGODMODE->position.y += 1000 * dt;
+		checkboxGODMODE->position.y += 1000 * dt;
 		if (imageHACKS->position.y + imageHACKS->height >= 700) {
 			positioned = true;
 			buttonGOBACKHACKS->pressed = false;
@@ -622,6 +617,8 @@ void j1Choose::HacksMenu(float dt)
 
 		buttonGOBACKHACKS->position.y -= 2000 * dt;
 		imageHACKS->position.y -= 2000 * dt;
+		labelGODMODE->position.y -= 2000 * dt;
+		checkboxGODMODE->position.y -= 2000 * dt;
 		if (buttonGOBACKHACKS->position.y <= -700) {
 			buttonSTART->NoUse = false;
 			buttonCONTINUE->NoUse = false;
@@ -636,6 +633,12 @@ void j1Choose::HacksMenu(float dt)
 	if (HacksMenuDone) { //MENU LOGIC BUTTONS
 		if (buttonGOBACKHACKS->pressed) {
 			positioned = false;
+		}
+		if (checkboxGODMODE->pressed && !App->entitymanager->GetPlayerData()->God) {
+			App->entitymanager->GetPlayerData()->God = true;
+		}
+		if (!checkboxGODMODE->pressed && App->entitymanager->GetPlayerData()->God) {
+			App->entitymanager->GetPlayerData()->God = false;
 		}
 	}
 }
