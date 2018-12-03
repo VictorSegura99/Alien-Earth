@@ -148,9 +148,9 @@
       <finalmapplayer value="10700"></finalmapplayer>
       <finalmap value="-10200"></finalmap>
       <startmap2 value="560"></startmap2>
-      <maxYcam value="740"></maxYcam>
-      <minYcam value="450"></minYcam>
-      <lowcam value="-290"></lowcam>
+      <maxYcam value="800"></maxYcam>
+      <minYcam value="384"></minYcam>
+      <lowcam value="-418"></lowcam>
       <gravity value="-433.33333f"></gravity>
       <IntroFall value="-200.0f"></IntroFall>
       <startpointcameramap2 value="-60"></startpointcameramap2>

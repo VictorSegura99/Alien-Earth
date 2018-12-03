@@ -74,7 +74,7 @@ bool j1Render::PreUpdate()
 bool j1Render::Update(float dt)
 {
 	BROFILER_CATEGORY("Render: Update", Profiler::Color::Black);
-	LOG("Camera.x = %i", camera.x);
+	LOG("Camera.y = %i", camera.y);
 	return true;
 }
 

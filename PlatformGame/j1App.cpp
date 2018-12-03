@@ -317,9 +317,6 @@ bool j1App::DoUpdate()
 			continue;
 		}
 
-		// TODO 5: send dt as an argument to all updates
-		// you will need to update module parent class
-		// and all modules that use update
 		ret = item->data->Update(dt);
 	}
 

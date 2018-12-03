@@ -205,9 +205,6 @@ bool Player::Update(float dt)
 		position.y -= IntroFall * dt;
 		App->audio->PlayFx(ovnifx);
 	}
-
-		
-	
 	
 	if (!dashing) {
 		if (NumPlayer == 0)
@@ -872,7 +869,6 @@ void Player::Camera(float dt)
 	}
 	if (position.x <= startmap2 && App->scene->KnowMap == 1) { //If player is in a position where the camera would print out of the map, camera stops
 		App->render->camera.x = startpointcameramap2;
-
 	}
 	else if (position.x >= finalmapplayer) {
 		App->render->camera.x = finalmap;

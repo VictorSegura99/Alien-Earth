@@ -2,6 +2,7 @@
 #define __j1SCENE_H__
 
 #include "j1Module.h"
+#include "Entity.h"
 
 struct SDL_Texture;
 
@@ -35,7 +36,7 @@ public:
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
 
-	void SpawnEnemies() const;
+	void SpawnEnemies();
 
 public:
 	int KnowMap = 0; // KnowMap == 0 Map1 is working // KnowMap == 1 Map2 is working  
@@ -47,6 +48,9 @@ public:
 	SDL_Texture* TutorialJerry;
 	p2SString tutorial[3];
 	bool CanStart = false;
+	Entity* bat1 = nullptr;
+
+
 	
 };
 

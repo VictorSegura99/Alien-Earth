@@ -132,22 +132,24 @@ void EntityManager::OnCollision(Collider* c1, Collider* c2)
 Entity* EntityManager::CreateEntity(EntityType type, int x, int y)
 {
 	Entity* ret = nullptr;
-	switch (type) {
-	case EntityType::SPIDER: ret = new Spider(x, y);
-		ret->type = SPIDER;
-		break;
-	case EntityType::BAT: ret = new Bat(x, y);
-		ret->type = BAT;
-		break;
-	case EntityType::MOVING_PLATFORM: ret = new MovingPlatform(x, y);
-		ret->type = MOVING_PLATFORM;
-		break;
-	case EntityType::PLAYER: ret = new Player();
-		ret->type = PLAYER;
-		break;
+	while (ret == nullptr) {
+		switch (type) {
+		case EntityType::SPIDER: ret = new Spider(x, y);
+			ret->type = SPIDER;
+			break;
+		case EntityType::BAT: ret = new Bat(x, y);
+			ret->type = BAT;
+			break;
+		case EntityType::MOVING_PLATFORM: ret = new MovingPlatform(x, y);
+			ret->type = MOVING_PLATFORM;
+			break;
+		case EntityType::PLAYER: ret = new Player();
+			ret->type = PLAYER;
+			break;
+		}
+		if (ret != nullptr)
+			entities.PushBack(ret);
 	}
-	if (ret != nullptr)
-		entities.PushBack(ret);
 	return ret;
 }
 
