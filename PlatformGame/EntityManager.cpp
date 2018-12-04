@@ -229,6 +229,9 @@ bool EntityManager::Load(pugi::xml_node& load)
 	for (pugi::xml_node bat = load.child("bat"); bat; bat = bat.next_sibling("bat")) {
 		CreateEntity(EntityType::BAT, bat.child("position").attribute("x").as_float(), bat.child("position").attribute("y").as_float());
 	}
+	for (pugi::xml_node coin = load.child("coin"); coin; coin = coin.next_sibling("coin")) {
+		CreateEntity(EntityType::COIN, coin.child("position").attribute("x").as_float(), coin.child("position").attribute("y").as_float());
+	}
 
 	return ret;
 }
@@ -246,6 +249,12 @@ bool EntityManager::Save(pugi::xml_node& save) const
 		if (entities[i] != nullptr && entities[i]->type == BAT) {
 			pugi::xml_node& bat = save.append_child("bat");
 			entities[i]->Save(bat);
+		}
+	}
+	for (int i = 0; i < entities.Count(); i++) {
+		if (entities[i] != nullptr && entities[i]->type == COIN) {
+			pugi::xml_node& coin = save.append_child("coin");
+			entities[i]->Save(coin);
 		}
 	}
 	for (int i = 0; i < entities.Count(); i++) {

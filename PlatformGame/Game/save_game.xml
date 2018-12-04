@@ -4,9 +4,9 @@
 	<window />
 	<textures />
 	<audio>
-		<volume value="0" />
-		<fxvolume value="73" />
-		<general value="76" />
+		<volume value="90" />
+		<fxvolume value="70" />
+		<general value="50" />
 	</audio>
 	<map />
 	<scene>
@@ -17,10 +17,10 @@
 	<:anonymous />
 	<entity_manager>
 		<spider>
-			<position x="6799.51953" y="737.133362" />
+			<position x="6801.2002" y="743.199951" />
 		</spider>
 		<spider>
-			<position x="10499.5195" y="743.366699" />
+			<position x="10501.1982" y="733.833252" />
 		</spider>
 		<bat>
 			<position x="6000" y="600" />
@@ -31,8 +31,11 @@
 		<bat>
 			<position x="9500" y="600" />
 		</bat>
+		<coin>
+			<position x="900" y="500" />
+		</coin>
 		<player>
-			<position x="1331.70117" y="523.606567" />
+			<position x="687" y="548.199768" />
 			<god value="false" />
 			<NumPlayer value="0" />
 		</player>
@@ -42,6 +45,6 @@
 	<particles />
 	<:anonymous />
 	<renderer>
-		<camera x="-819" y="-139" />
+		<camera x="-175" y="-164" />
 	</renderer>
 </game_state>

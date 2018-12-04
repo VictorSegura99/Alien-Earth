@@ -3,6 +3,7 @@
 #include "j1Textures.h"
 #include "j1Render.h"
 #include "j1Collision.h"
+#include "Player.h"
 #include "EntityManager.h"
 Coin::Coin(int x, int y)
 {
@@ -20,7 +21,9 @@ Coin::Coin(int x, int y)
 	sprites = coin.child("sprites").text().as_string();
 	texture = App->tex->Load(sprites.GetString());
 
-	Idle.PushBack({ 0,0,47,47 });
+	Jeff.PushBack({ 0,0,47,47 });
+	Jane.PushBack({ 48,0,47,47 });
+	Jerry.PushBack({ 96,0,47,47 });
 }
 
 Coin::~Coin()
@@ -29,7 +32,15 @@ Coin::~Coin()
 
 bool Coin::Update(float dt)
 {
-
+	if (App->entitymanager->GetPlayerData()->NumPlayer == 0 && anim != &Jeff) {
+		anim = &Jeff;
+	}
+	if (App->entitymanager->GetPlayerData()->NumPlayer == 1 && anim != &Jane) {
+		anim = &Jane;
+	}
+	if (App->entitymanager->GetPlayerData()->NumPlayer == 2 && anim != &Jerry) {
+		anim = &Jerry;
+	}
 	return true;
 }
 
@@ -38,8 +49,11 @@ bool Coin::Load(pugi::xml_node &)
 	return true;
 }
 
-bool Coin::Save(pugi::xml_node &) const
+bool Coin::Save(pugi::xml_node &coin) const
 {
+	coin.append_child("position").append_attribute("x") = position.x;
+	coin.child("position").append_attribute("y") = position.y;
+
 	return true;
 }
 
@@ -49,7 +63,7 @@ void Coin::Draw(float dt)
 		coll = App->collision->AddCollider({ x,y,47,47 }, COLLIDER_COIN, (j1Module*)App->entitymanager);
 		firsttime = false;
 	}
-	App->render->Blit(texture, position.x, position.y, &(Idle.GetCurrentFrame(dt)));
+	App->render->Blit(texture, position.x, position.y, &(anim->GetCurrentFrame(dt)));
 
 }
 

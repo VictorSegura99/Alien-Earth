@@ -23,7 +23,10 @@ public:
 	int x;
 	int y;
 	bool firsttime = true;
-	Animation Idle;
+	Animation Jeff;
+	Animation Jane;
+	Animation Jerry;
+	Animation* anim = nullptr;
 	p2SString sprites;
 };
 
