@@ -454,16 +454,21 @@ void j1Choose::CreateSettingsButtons()
 	imageSETTINGS->type = BUTTON;
 	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(200, 1335, 3);
 	buttonGOBACKSETTINGS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
-	checkboxFPS = App->ui_manager->CreateCheckBox(550, 1407);
-	labelFPS = App->ui_manager->CreateLabel(270, 1400, "CAP FPS TO 30", 50, true);
-	sliderVOLUMEMUSIC = App->ui_manager->CreateSlider(550, 1607, App->audio->volume);
-	labelMUSICVOLUME = App->ui_manager->CreateLabel(270, 1607, "MUSIC VOLUME", 50, true);
-	sliderVOLUMEFX = App->ui_manager->CreateSlider(550, 1707, App->audio->fxvolume);
-	labelVOLUMEFX = App->ui_manager->CreateLabel(270, 1707, "FX VOLUME", 50, true);
-	labelSETTINGS = App->ui_manager->CreateLabel(App->win->width / 2, 1335, "#SETTINGS#", 35, true);
+	checkboxFPS = App->ui_manager->CreateCheckBox(550, 1457);
+	labelFPS = App->ui_manager->CreateLabel(270, 1450, "CAP FPS TO 30", 50, true);
+	sliderVOLUMEMUSIC = App->ui_manager->CreateSlider(550, 1762, App->audio->volume);
+	labelMUSICVOLUME = App->ui_manager->CreateLabel(270, 1757, "MUSIC VOLUME", 50, true);
+	sliderVOLUMEFX = App->ui_manager->CreateSlider(550, 1862, App->audio->fxvolume);
+	labelVOLUMEFX = App->ui_manager->CreateLabel(270, 1857, "FX VOLUME", 50, true);
+	labelSETTINGS = App->ui_manager->CreateLabel(App->win->width / 2, 1350, "SETTINGS", 60, true);
 	labelSETTINGS->position.x -= labelSETTINGS->width / 2;
-	labelGENERALSOUND = App->ui_manager->CreateLabel(270, 1507, "GENERAL SOUND", 50, true);
-	sliderGENERALSOUND = App->ui_manager->CreateSlider(550, 1507, 50);
+	labelGENERALSOUND = App->ui_manager->CreateLabel(270, 1657, "GENERAL SOUND", App->audio->general, true);
+	sliderGENERALSOUND = App->ui_manager->CreateSlider(550, 1662, 50);
+	checkboxSOUND = App->ui_manager->CreateCheckBox(550, 1557);
+	if (!App->audio->NoAudio)
+		checkboxSOUND->pressed = true;
+	else checkboxSOUND->pressed = false;
+	labelSOUND = App->ui_manager->CreateLabel(270, 1550, "SOUND", 50, true);
 	if (App->capactivated)
 		checkboxFPS->pressed = true;
 }
@@ -522,6 +527,8 @@ void j1Choose::SettingsMenu(float dt)
 		labelSETTINGS->position.y -= 1000 * dt;
 		labelGENERALSOUND->position.y -= 1000 * dt;
 		sliderGENERALSOUND->position.y -= 1000 * dt;
+		checkboxSOUND->position.y -= 1000 * dt;
+		labelSOUND->position.y -= 1000 * dt;
 		if (buttonGOBACKSETTINGS->position.y <= 100) {
 			Positioned = true;
 			buttonGOBACKSETTINGS->pressed = false;
@@ -541,6 +548,8 @@ void j1Choose::SettingsMenu(float dt)
 		labelSETTINGS->position.y += 2000 * dt;
 		labelGENERALSOUND->position.y += 2000 * dt;
 		sliderGENERALSOUND->position.y += 2000 * dt;
+		checkboxSOUND->position.y += 2000 * dt;
+		labelSOUND->position.y += 2000 * dt;
 		if (buttonGOBACKSETTINGS->position.y >= 1225) {
 			buttonSTART->NoUse = false;
 			buttonCONTINUE->NoUse = false;
@@ -556,16 +565,28 @@ void j1Choose::SettingsMenu(float dt)
 		if (buttonGOBACKSETTINGS->pressed) {
 			Positioned = false;
 		}
+	
 		if (checkboxFPS->pressed) {
 			App->capactivated = true;
 		}
 		if (!checkboxFPS->pressed) {
 			App->capactivated = false;
 		}
-		App->audio->general = sliderGENERALSOUND->Value;
-		App->audio->volume = sliderVOLUMEMUSIC->Value;
-		App->audio->fxvolume = sliderVOLUMEFX->Value;
-		
+		if (checkboxSOUND->pressed) {
+			App->audio->NoAudio = false;
+			sliderGENERALSOUND->NoUse = false;
+			sliderVOLUMEMUSIC->NoUse = false;
+			sliderVOLUMEFX->NoUse = false;
+			App->audio->general = sliderGENERALSOUND->Value;
+			App->audio->volume = sliderVOLUMEMUSIC->Value;
+			App->audio->fxvolume = sliderVOLUMEFX->Value;
+		}
+		else {
+			App->audio->NoAudio = true;
+			sliderGENERALSOUND->NoUse = true;
+			sliderVOLUMEMUSIC->NoUse = true;
+			sliderVOLUMEFX->NoUse = true;
+		}
 	}
 }
 

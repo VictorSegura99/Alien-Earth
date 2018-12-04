@@ -37,7 +37,7 @@ public:
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
 
-
+	bool NoAudio = false;
 	int volume = 0;
 	int fxvolume = 0;
 	int volume1 = 0;

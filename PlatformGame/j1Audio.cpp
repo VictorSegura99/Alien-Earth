@@ -154,9 +154,15 @@ bool j1Audio::Update(float dt)
 
 	fxvolume1 = (fxvolume * general) / 100;
 	volume1 = (volume * general) / 100;
+	if (!NoAudio) {
+		Mix_Volume(-1, fxvolume1);
+		Mix_VolumeMusic(volume1);
+	}
+	else {
+		Mix_Volume(-1, 0);
+		Mix_VolumeMusic(0);
+	}
 
-	Mix_Volume(-1, fxvolume1);
-	Mix_VolumeMusic(volume1);
 	
 	return true;
 }

@@ -35,48 +35,51 @@ Slider::~Slider()
 
 bool Slider::Update(float dt)
 {
-	image->position.y = position.y - height/2 + 5;
-	if (!pressed) {
-		if (IsMouseOn()) {
-			png_pos = MouseOn;
-			mouseOn = true;
-			if (repeataudio) {
-				App->audio->PlayFx(fxOn);
-				repeataudio = false;
-			}
-			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
-				App->input->GetMousePosition(mouse_pos.x, mouse_pos.y);
-				distance = mouse_pos.x - position.x;
-				pressed = true;
-				if (repeat2) {
-					repeat2 = false;
-					App->audio->PlayFx(fxPressed);
+	if (!NoUse) {
+		image->position.y = position.y - height / 2 + 5;
+		if (!pressed) {
+			if (IsMouseOn()) {
+				png_pos = MouseOn;
+				mouseOn = true;
+				if (repeataudio) {
+					App->audio->PlayFx(fxOn);
+					repeataudio = false;
 				}
+				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
+					App->input->GetMousePosition(mouse_pos.x, mouse_pos.y);
+					distance = mouse_pos.x - position.x;
+					pressed = true;
+					if (repeat2) {
+						repeat2 = false;
+						App->audio->PlayFx(fxPressed);
+					}
+				}
+				else pressed = false;
 			}
-			else pressed = false;
+			else {
+				repeataudio = true;
+				repeat2 = true;
+				png_pos = NoPressedNoMouseOn;
+				mouseOn = false;
+				pressed = false;
+			}
 		}
-		else {
-			repeataudio = true;
-			repeat2 = true;
-			png_pos = NoPressedNoMouseOn;
-			mouseOn = false;
+		if (pressed) {
+			if (IsMouseOn())
+				png_pos = MouseOn;
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
+				png_pos = Pressed;
+				App->input->GetMousePosition(mouse_pos.x, mouse_pos.y);
+				position.x = mouse_pos.x - distance;
+				LookLimits();
+			}
+		}
+		if (!IsMouseOn())
 			pressed = false;
-		}
-	}
-	if (pressed) {
-		if (IsMouseOn())
-			png_pos = MouseOn;
-		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
-			png_pos = Pressed;
-			App->input->GetMousePosition(mouse_pos.x, mouse_pos.y);
-			position.x = mouse_pos.x - distance;
-			LookLimits();
-		}
-	}
-	if (!IsMouseOn())
-		pressed = false;
 
-	Value = (((100 * (position.x - 5 - image->position.x)) / (image->width))-1)*(100/78.5);
+		Value = (((100 * (position.x - 5 - image->position.x)) / (image->width)) - 1)*(100 / 78.5);
+
+	}
 	
 	
 	return true;
