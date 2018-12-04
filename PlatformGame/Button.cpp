@@ -76,9 +76,6 @@ bool Button::Update(float dt)
 		if (label != nullptr)
 			label->WantToRender = false;
 	}
-
-
-
 	return true;
 }
 

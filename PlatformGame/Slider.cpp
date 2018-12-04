@@ -45,7 +45,6 @@ bool Slider::Update(float dt)
 				repeataudio = false;
 			}
 			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
-				png_pos = Pressed;
 				App->input->GetMousePosition(mouse_pos.x, mouse_pos.y);
 				distance = mouse_pos.x - position.x;
 				pressed = true;
@@ -65,16 +64,20 @@ bool Slider::Update(float dt)
 		}
 	}
 	if (pressed) {
+		if (IsMouseOn())
+			png_pos = MouseOn;
 		if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
+			png_pos = Pressed;
 			App->input->GetMousePosition(mouse_pos.x, mouse_pos.y);
 			position.x = mouse_pos.x - distance;
 			LookLimits();
 		}
-		if (!IsMouseOn())
-			pressed = false;
 	}
+	if (!IsMouseOn())
+		pressed = false;
+
 	Value = (((100 * (position.x - 5 - image->position.x)) / (image->width))-1)*(100/78.5);
-	LOG("%f", Value);
+	
 	
 	return true;
 }

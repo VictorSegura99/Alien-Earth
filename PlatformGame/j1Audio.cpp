@@ -149,8 +149,13 @@ bool j1Audio::Update(float dt)
 	{
 		volume --;
 	}
+
+	fxvolume = (fxvolume * general) / 100;
+	volume = (volume * general) / 100;
+
 	Mix_Volume(-1, fxvolume);
 	Mix_VolumeMusic(volume);
+	
 	return true;
 }
 
@@ -161,7 +166,7 @@ unsigned int j1Audio::LoadFx(const char* path)
 
 	if(!active)
 		return 0;
-
+	
 	Mix_Chunk* chunk = Mix_LoadWAV(path);
 
 	if(chunk == NULL)

@@ -456,13 +456,14 @@ void j1Choose::CreateSettingsButtons()
 	buttonGOBACKSETTINGS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
 	checkboxFPS = App->ui_manager->CreateCheckBox(550, 1407);
 	labelFPS = App->ui_manager->CreateLabel(270, 1400, "CAP FPS TO 30", 50, true);
-	sliderVOLUMEMUSIC = App->ui_manager->CreateSlider(550, 1507, App->audio->volume);
-	labelMUSICVOLUME = App->ui_manager->CreateLabel(270, 1507, "MUSIC VOLUME", 50, true);
-	sliderVOLUMEFX = App->ui_manager->CreateSlider(550, 1607, App->audio->fxvolume);
-	labelVOLUMEFX = App->ui_manager->CreateLabel(270, 1607, "FX VOLUME", 50, true);
+	sliderVOLUMEMUSIC = App->ui_manager->CreateSlider(550, 1607, App->audio->volume);
+	labelMUSICVOLUME = App->ui_manager->CreateLabel(270, 1607, "MUSIC VOLUME", 50, true);
+	sliderVOLUMEFX = App->ui_manager->CreateSlider(550, 1707, App->audio->fxvolume);
+	labelVOLUMEFX = App->ui_manager->CreateLabel(270, 1707, "FX VOLUME", 50, true);
 	labelSETTINGS = App->ui_manager->CreateLabel(App->win->width / 2, 1335, "#SETTINGS#", 35, true);
 	labelSETTINGS->position.x -= labelSETTINGS->width / 2;
-	
+	labelGENERALSOUND = App->ui_manager->CreateLabel(270, 1507, "GENERAL SOUND", 50, true);
+	sliderGENERALSOUND = App->ui_manager->CreateSlider(550, 1507, 50);
 	if (App->capactivated)
 		checkboxFPS->pressed = true;
 }
@@ -519,6 +520,8 @@ void j1Choose::SettingsMenu(float dt)
 		sliderVOLUMEFX->position.y -= 1000 * dt;
 		labelVOLUMEFX->position.y -= 1000 * dt;
 		labelSETTINGS->position.y -= 1000 * dt;
+		labelGENERALSOUND->position.y -= 1000 * dt;
+		sliderGENERALSOUND->position.y -= 1000 * dt;
 		if (buttonGOBACKSETTINGS->position.y <= 100) {
 			Positioned = true;
 			buttonGOBACKSETTINGS->pressed = false;
@@ -536,6 +539,8 @@ void j1Choose::SettingsMenu(float dt)
 		sliderVOLUMEFX->position.y += 2000 * dt;
 		labelVOLUMEFX->position.y += 2000 * dt;
 		labelSETTINGS->position.y += 2000 * dt;
+		labelGENERALSOUND->position.y += 2000 * dt;
+		sliderGENERALSOUND->position.y += 2000 * dt;
 		if (buttonGOBACKSETTINGS->position.y >= 1225) {
 			buttonSTART->NoUse = false;
 			buttonCONTINUE->NoUse = false;
@@ -557,10 +562,10 @@ void j1Choose::SettingsMenu(float dt)
 		if (!checkboxFPS->pressed) {
 			App->capactivated = false;
 		}
-		
+		App->audio->general = sliderGENERALSOUND->Value;
 		App->audio->volume = sliderVOLUMEMUSIC->Value;
 		App->audio->fxvolume = sliderVOLUMEFX->Value;
-
+		
 	}
 }
 

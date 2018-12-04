@@ -4,7 +4,7 @@
 #include "j1Module.h"
 #include "SDL\include\SDL_pixels.h"
 
-#define DEFAULT_FONT "fonts/open_sans/Sunday-Afternoon.ttf"
+#define DEFAULT_FONT "fonts/Sunday-Afternoon.ttf"
 #define DEFAULT_FONT_SIZE 20
 
 struct SDL_Texture;
