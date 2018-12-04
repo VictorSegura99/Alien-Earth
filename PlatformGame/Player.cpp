@@ -442,9 +442,9 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		if (position.y + playerHeight < c2->rect.y)
 		{
 			if (PlayerLeft)
-				position.x -= 200 * DT;
+				position.x -= 100 * DT;
 			if (PlayerRight)
-				position.x += 200 * DT;
+				position.x += 100 * DT;
 			velocity.y = 0;
 			if (current_animation == &BottomRight.anim || current_animation == &BottomRight.anim) {
 				App->audio->PlayFx(bombjumpfx);
