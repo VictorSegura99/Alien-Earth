@@ -28,7 +28,9 @@ bool j1Audio::Awake(pugi::xml_node& config)
 	SDL_Init(0);
 
 	volume = config.child("volume").attribute("value").as_int();
-
+	general = config.child("general").attribute("value").as_int();
+	fxvolume = config.child("fxvolume").attribute("value").as_int();
+	
 	if(SDL_InitSubSystem(SDL_INIT_AUDIO) < 0)
 	{
 		LOG("SDL_INIT_AUDIO could not initialize! SDL_Error: %s\n", SDL_GetError());
@@ -150,11 +152,11 @@ bool j1Audio::Update(float dt)
 		volume --;
 	}
 
-	fxvolume = (fxvolume * general) / 100;
-	volume = (volume * general) / 100;
+	fxvolume1 = (fxvolume * general) / 100;
+	volume1 = (volume * general) / 100;
 
-	Mix_Volume(-1, fxvolume);
-	Mix_VolumeMusic(volume);
+	Mix_Volume(-1, fxvolume1);
+	Mix_VolumeMusic(volume1);
 	
 	return true;
 }
@@ -201,7 +203,8 @@ bool j1Audio::PlayFx(unsigned int id, int repeat)
 bool j1Audio::Load(pugi::xml_node & node)
 {
 	volume = node.child("volume").attribute("value").as_int();
-
+	general = node.child("general").attribute("value").as_int();
+	fxvolume = node.child("fxvolume").attribute("value").as_int();
 
 	return true;
 }
@@ -210,6 +213,8 @@ bool j1Audio::Save(pugi::xml_node & node) const
 {
 
 	node.append_child("volume").append_attribute("value") = volume;
+	node.append_child("fxvolume").append_attribute("value") = fxvolume;
+	node.append_child("general").append_attribute("value") = general;
 
 	return true;
 }

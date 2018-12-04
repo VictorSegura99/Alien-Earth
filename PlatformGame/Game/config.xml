@@ -36,6 +36,8 @@
   
   <audio>
     <volume value="60"></volume>
+    <fxvolume value="50" />
+    <general value="50" />
   </audio>
   <choose>
     <Start>textures/Start.png</Start>

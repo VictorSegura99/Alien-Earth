@@ -4,9 +4,10 @@
 	<window />
 	<textures />
 	<audio>
-		<volume value="50" />
+		<volume value="0" />
+		<fxvolume value="73" />
+		<general value="76" />
 	</audio>
-	<choose />
 	<map />
 	<scene>
 		<KnowMap value="0" />
@@ -16,10 +17,10 @@
 	<:anonymous />
 	<entity_manager>
 		<spider>
-			<position x="6800" y="797.766663" />
+			<position x="6799.51953" y="737.133362" />
 		</spider>
 		<spider>
-			<position x="10500" y="802.766663" />
+			<position x="10499.5195" y="743.366699" />
 		</spider>
 		<bat>
 			<position x="6000" y="600" />
@@ -31,15 +32,16 @@
 			<position x="9500" y="600" />
 		</bat>
 		<player>
-			<position x="2203.20166" y="820.975159" />
+			<position x="1331.70117" y="523.606567" />
 			<god value="false" />
-			<NumPlayer value="2" />
+			<NumPlayer value="0" />
 		</player>
 	</entity_manager>
 	<UI />
+	<choose />
 	<particles />
 	<:anonymous />
 	<renderer>
-		<camera x="-1703" y="-290" />
+		<camera x="-819" y="-139" />
 	</renderer>
 </game_state>

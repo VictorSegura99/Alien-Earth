@@ -39,8 +39,10 @@ public:
 
 
 	int volume = 0;
-	int fxvolume = 50;
-	int general = 100;
+	int fxvolume = 0;
+	int volume1 = 0;
+	int fxvolume1 = 0;
+	int general = 0;
 private:
 	
 	_Mix_Music*			music;
