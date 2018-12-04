@@ -596,16 +596,19 @@ void j1Choose::CreatehacksButtons()
 	imageHACKS = App->ui_manager->CreateImage(170, -700, true);
 	imageHACKS->SetSpritesData({ 758,0,705,671 });
 	imageHACKS->type = BUTTON;
-	buttonGOBACKHACKS = App->ui_manager->CreateButton(200, -665, 3);
+	buttonGOBACKHACKS = App->ui_manager->CreateButton(200, -655, 3);
 	buttonGOBACKHACKS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
-	labelGODMODE = App->ui_manager->CreateLabel(270, -600, "GODMODE", 50, true);
-	checkboxGODMODE = App->ui_manager->CreateCheckBox(550, -593);
-	checkboxNOENEMIES = App->ui_manager->CreateCheckBox(550, -493);
-	labelNOENEMIES = App->ui_manager->CreateLabel(270, -500, "NO ENEMIES", 50, true);
-	checkboxSTARTLEVEL2 = App->ui_manager->CreateCheckBox(550, -393);
-	labelSTARTLEVEL2 = App->ui_manager->CreateLabel(270, -400, "START IN LEVEL 2", 50, true);
-	labelHACKS = App->ui_manager->CreateLabel(App->win->width/2, -665, "#HACKS#", 35, true);
+	labelGODMODE = App->ui_manager->CreateLabel(270, -565, "GODMODE", 50, true);
+	checkboxGODMODE = App->ui_manager->CreateCheckBox(550, -558);
+	checkboxNOENEMIES = App->ui_manager->CreateCheckBox(550, -458);
+	labelNOENEMIES = App->ui_manager->CreateLabel(270, -465, "NO ENEMIES", 50, true);
+	checkboxSTARTLEVEL2 = App->ui_manager->CreateCheckBox(550, -358);
+	labelSTARTLEVEL2 = App->ui_manager->CreateLabel(270, -365, "START IN LEVEL 2", 50, true);
+	labelHACKS = App->ui_manager->CreateLabel(App->win->width/2, -645, "HACKS", 60, true);
 	labelHACKS->position.x -= labelHACKS->width / 2;
+
+
+	
 }
 
 void j1Choose::HacksMenu(float dt)
