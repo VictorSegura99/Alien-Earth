@@ -11,6 +11,7 @@ enum EntityType
 	BAT,
 	SPIDER,
 	MOVING_PLATFORM,
+	COIN,
 
 	NO_TYPE
 };

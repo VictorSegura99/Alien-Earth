@@ -181,6 +181,7 @@ void j1Scene::SpawnEnemies()
 			while (bat1 == nullptr) {
 				bat1 = App->entitymanager->CreateEntity(EntityType::BAT, 6000, 600);
 			}
+			App->entitymanager->CreateEntity(EntityType::COIN, 900, 500);
 			App->entitymanager->CreateEntity(EntityType::MOVING_PLATFORM, 7480, 900);
 			App->entitymanager->CreateEntity(EntityType::MOVING_PLATFORM, 8300, 900);
 			//Enemies

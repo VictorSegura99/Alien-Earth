@@ -12,6 +12,7 @@
 #include "Player.h"
 #include "Spider.h"
 #include"MovingPlatform.h"
+#include "Coin.h"
 #include "Bat.h"
 
 #include "Brofiler/Brofiler.h"
@@ -103,6 +104,10 @@ bool EntityManager::PostUpdate()
 	return true;
 }
 
+void EntityManager::Draw(float dt)
+{
+}
+
 // Called before quitting
 bool EntityManager::CleanUp()
 {
@@ -134,18 +139,26 @@ Entity* EntityManager::CreateEntity(EntityType type, int x, int y)
 	Entity* ret = nullptr;
 	while (ret == nullptr) {
 		switch (type) {
-		case EntityType::SPIDER: ret = new Spider(x, y);
+		case EntityType::SPIDER: {ret = new Spider(x, y);
 			ret->type = SPIDER;
 			break;
-		case EntityType::BAT: ret = new Bat(x, y);
+		}
+		case EntityType::BAT: {ret = new Bat(x, y);
 			ret->type = BAT;
 			break;
-		case EntityType::MOVING_PLATFORM: ret = new MovingPlatform(x, y);
+		}
+		case EntityType::MOVING_PLATFORM: {ret = new MovingPlatform(x, y);
 			ret->type = MOVING_PLATFORM;
 			break;
-		case EntityType::PLAYER: ret = new Player();
+		}
+		case EntityType::PLAYER: {ret = new Player();
 			ret->type = PLAYER;
+			break; }
+		case EntityType::COIN: {
+			ret = new Coin(x, y);
+			ret->type = COIN;
 			break;
+		}
 		}
 		if (ret != nullptr)
 			entities.PushBack(ret);

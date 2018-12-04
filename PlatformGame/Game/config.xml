@@ -458,6 +458,9 @@
         </Animation>
       </MovingPlatform>
     </Platforms>
+    <Coin>
+      <sprites>textures/coins.png</sprites>
+    </Coin>
   </entity_manager>
 
   <UI>

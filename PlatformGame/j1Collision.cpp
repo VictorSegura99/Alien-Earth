@@ -21,6 +21,7 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_PLAYER][COLLIDER_GROUND_WATER] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_FALL] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_WATER] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_COIN] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_SPIKES] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_WIN] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_CLIMB] = true;
@@ -33,6 +34,8 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_PARTICLE][COLLIDER_GROUND] = true;
 	matrix[COLLIDER_PARTICLE][COLLIDER_WALL_RIGHT] = true;
 	matrix[COLLIDER_PARTICLE][COLLIDER_WALL_LEFT] = true;
+
+	matrix[COLLIDER_COIN][COLLIDER_PLAYER] = true;
 
 	matrix[COLLIDER_ENEMY_BAT][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_ENEMY_BAT][COLLIDER_ENEMY_BAT] = false;
@@ -51,6 +54,8 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_ENEMY_SPIDER][COLLIDER_PLATFORM] = true;
 	matrix[COLLIDER_ENEMY_SPIDER][COLLIDER_GROUND] = true;
 	matrix[COLLIDER_ENEMY_SPIDER][COLLIDER_PARTICLE] = true;
+
+	
 
 }
 
@@ -179,6 +184,9 @@ void j1Collision::DebugDraw()
 			break;
 		case COLLIDER_ENEMY_SPIDER:
 			App->render->DrawQuad(colliders[i]->rect, 155, 155, 155, alpha);
+			break;
+		case COLLIDER_COIN:
+			App->render->DrawQuad(colliders[i]->rect, 255, 155, 155, alpha);
 			break;
 		}
 		
