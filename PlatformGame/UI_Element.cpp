@@ -20,13 +20,13 @@ UI_Element::UI_Element(int x, int y) : position(x,y)
 	config = App->LoadConfig(config_file);
 	UI_node = config.child("UI");
 
-	sprite = UI_node.child("sprite").text().as_string();
+	
 	FXON = UI_node.child("FXON").text().as_string();
 	FXPRESSED = UI_node.child("FXPRESSED").text().as_string();
 	fxOn = App->audio->LoadFx(FXON.GetString());
 	fxPressed = App->audio->LoadFx(FXPRESSED.GetString());
 	
-	atlas = App->tex->Load(sprite.GetString());
+	
 }
 
 UI_Element::~UI_Element()
@@ -43,17 +43,17 @@ bool UI_Element::Update(float dt)
 
 bool UI_Element::CleanUp()
 {
-	App->tex->UnLoad(atlas);
+
 	return true;
 }
 
-void UI_Element::Draw(float dt)
+void UI_Element::Draw(float dt, SDL_Texture* texture)
 {
 	if (WantToRender) {
 		if (type != LABEL)
-			App->render->Blit(atlas, position.x, position.y, &(png_pos));
+			App->render->Blit(texture, position.x, position.y, &(png_pos));
 		else {
-			App->render->Blit(atlas, position.x, position.y, NULL);
+			App->render->Blit(tex, position.x, position.y, NULL);
 		}
 
 		if (App->ui_manager->debug_draw) {

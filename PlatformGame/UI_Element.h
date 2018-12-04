@@ -33,7 +33,7 @@ public:
 	virtual bool Update(float dt);
 	virtual bool CleanUp();
 	virtual bool Awake(pugi::xml_node&) { return true; };
-	virtual void Draw(float dt);
+	virtual void Draw(float dt, SDL_Texture* texture);
 	bool IsMouseOn();
 	virtual bool Load(pugi::xml_node&) { return true; };
 	virtual bool Save(pugi::xml_node&) const { return true; };
@@ -41,7 +41,7 @@ public:
 	void SetSpritesData(SDL_Rect Idle, SDL_Rect Hover = { 0,0,0,0 }, SDL_Rect Pressed = { 0,0,0,0 });
 
 public:
-	p2SString sprite;
+	SDL_Texture * tex = nullptr;
 	iPoint position;
 	int height;
 	int width;
@@ -50,7 +50,7 @@ public:
 	//
 	pugi::xml_node		UI_node;
 
-	SDL_Texture* atlas;
+	
 
 	
 

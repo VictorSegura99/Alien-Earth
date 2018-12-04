@@ -9,7 +9,7 @@
 
 
 class UI_Element;
-
+struct SDL_Texture;
 
 class UI_Manager : public j1Module
 {
@@ -25,7 +25,7 @@ public:
 	bool Update(float dt);
 
 	bool CleanUp();
-	void Draw(float dt);
+	void Draw(float dt, SDL_Texture* texture);
 	bool Load(pugi::xml_node&);
 
 	bool Save(pugi::xml_node&) const;
@@ -47,6 +47,8 @@ public:
 private:
 
 	p2DynArray<UI_Element*> elements;
+	SDL_Texture* atlas = nullptr;
+	p2SString sprite;
 
 public:
 

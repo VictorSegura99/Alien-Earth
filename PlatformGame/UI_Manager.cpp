@@ -24,11 +24,14 @@ UI_Manager::~UI_Manager()
 
 bool UI_Manager::Awake(pugi::xml_node & config)
 {
+	sprite = config.child("sprite").text().as_string();
+
 	return true;
 }
 
 bool UI_Manager::Start()
 {
+	atlas = App->tex->Load(sprite.GetString());
 	return true;
 }
 
@@ -45,25 +48,25 @@ bool UI_Manager::Update(float dt)
 	}
 	for (int i = 0; i < elements.Count(); i++) {
 		if (elements[i] != nullptr && elements[i]->type != LABEL && elements[i]->type != BUTTON && elements[i]->type != SLIDER && elements[i]->type != CHECKBOX)
-			elements[i]->Draw(dt);
+			elements[i]->Draw(dt, atlas);
 	}
 
 	for (int i = 0; i < elements.Count(); i++) {
 		if (elements[i] != nullptr && elements[i]->type == BUTTON)
-			elements[i]->Draw(dt);
+			elements[i]->Draw(dt, atlas);
 	}
 	for (int i = 0; i < elements.Count(); i++) {
 		if (elements[i] != nullptr && elements[i]->type == CHECKBOX)
-			elements[i]->Draw(dt);
+			elements[i]->Draw(dt, atlas);
 	}
 	for (int i = 0; i < elements.Count(); i++) {
 		if (elements[i] != nullptr && elements[i]->type == SLIDER)
-			elements[i]->Draw(dt);
+			elements[i]->Draw(dt, atlas);
 	}
 
 	for (int i = 0; i < elements.Count(); i++) {
 		if (elements[i] != nullptr && elements[i]->type == LABEL)
-			elements[i]->Draw(dt);
+			elements[i]->Draw(dt, atlas);
 	}
 
 
@@ -72,7 +75,7 @@ bool UI_Manager::Update(float dt)
 
 bool UI_Manager::CleanUp()
 {
-
+	//App->tex->UnLoad(atlas);
 	for (int i = elements.Count() - 1; i >= 0; --i)
 	{
 		if (elements[i] != nullptr) {
@@ -88,7 +91,7 @@ bool UI_Manager::CleanUp()
 	return true;
 }
 
-void UI_Manager::Draw(float dt)
+void UI_Manager::Draw(float dt, SDL_Texture* texture)
 {
 }
 
