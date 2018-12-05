@@ -643,7 +643,7 @@ void j1Choose::HacksMenu(float dt)
 	if (!positioned && HacksMenuDone) { //MENU GOING DOWN
 
 		imageHACKS->Local_pos.y -= 2000 * dt;
-		if (buttonGOBACKHACKS->Local_pos.y <= -700) {
+		if (imageHACKS->Local_pos.y <= -700) {
 			buttonSTART->NoUse = false;
 			buttonCONTINUE->NoUse = false;
 			buttonSETTINGS->NoUse = false;
