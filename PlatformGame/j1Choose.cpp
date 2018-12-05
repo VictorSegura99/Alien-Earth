@@ -251,9 +251,9 @@ void j1Choose::MainMenu()
 	if (buttonSTART->pressed) {
 		WantToDisappearMainMenu(true);
 		WantToDisappearButtonsTypePlayer(false);
-		buttonJEFF->pressed = false;
-		buttonJANE->pressed = false;
-		buttonJERRY->pressed = false;
+		//buttonJEFF->pressed = false;
+		//buttonJANE->pressed = false;
+		//buttonJERRY->pressed = false;
 		InMainMenu = false;
 		StartChoosing = true;
 	}
@@ -524,7 +524,7 @@ void j1Choose::SettingsMenu(float dt)
 		imageSETTINGS->Local_pos.y -= 1000 * dt;
 		if (imageSETTINGS->Local_pos.y <= 100) {
 			Positioned = true;
-			buttonGOBACKSETTINGS->pressed = false;
+			//buttonGOBACKSETTINGS->pressed = false;
 			SettingMenuDone = true;
 		}
 	}
