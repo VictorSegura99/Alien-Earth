@@ -7,7 +7,7 @@
 #include "j1Audio.h"
 #include "j1Input.h"
 
-Slider::Slider(int x, int y, int SliderPos) : UI_Element(x, y)
+Slider::Slider(int x, int y, int SliderPos, UI_Element* parent) : UI_Element(x, y, parent)
 {
 
 	width = 29;
@@ -19,14 +19,14 @@ Slider::Slider(int x, int y, int SliderPos) : UI_Element(x, y)
 
 	png_pos = NoPressedNoMouseOn;
 
-	image = App->ui_manager->CreateImage(x, y, true);
+	image = App->ui_manager->CreateImage(0, 0, true, this);
 	image->SetSpritesData({ 553,89,200,49 });
 	image->type = SLIDER;
-	position.y = y + image->height / 2 - height / 2;
+	//Local_pos.y = y + image->height / 2 - height / 2;
 	Value = SliderPos;
 	int RelPos = image->width - 15;
 	
-	position.x = ((((Value / (100 / 78.5))+1)*image->width) / 100) + 5 + image->position.x;
+	//Local_pos.x = ((((Value / (100 / 78.5))+1)*image->width) / 100) + 5 + image->Local_pos.x;
 }
 
 Slider::~Slider()
@@ -36,7 +36,7 @@ Slider::~Slider()
 bool Slider::Update(float dt)
 {
 	if (!NoUse) {
-		image->position.y = position.y - height / 2 + 5;
+		//image->Local_pos.y = Local_pos.y - height / 2 + 5;
 		if (!pressed) {
 			if (IsMouseOn()) {
 				png_pos = MouseOn;
@@ -47,7 +47,7 @@ bool Slider::Update(float dt)
 				}
 				if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
 					App->input->GetMousePosition(mouse_pos.x, mouse_pos.y);
-					distance = mouse_pos.x - position.x;
+					distance = mouse_pos.x - Local_pos.x;
 					pressed = true;
 					if (repeat2) {
 						repeat2 = false;
@@ -70,14 +70,14 @@ bool Slider::Update(float dt)
 			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
 				png_pos = Pressed;
 				App->input->GetMousePosition(mouse_pos.x, mouse_pos.y);
-				position.x = mouse_pos.x - distance;
+				Local_pos.x = mouse_pos.x - distance;
 				LookLimits();
 			}
 		}
 		if (!IsMouseOn())
 			pressed = false;
 
-		Value = (((100 * (position.x - 5 - image->position.x)) / (image->width)) - 1)*(100 / 78.5);
+		Value = (((100 * (Local_pos.x - 5 - image->Local_pos.x)) / (image->width)) - 1)*(100 / 78.5);
 
 	}
 	
@@ -87,11 +87,11 @@ bool Slider::Update(float dt)
 
 void Slider::LookLimits()
 {
-	if (position.x <= image->position.x + MARGIN) {
-		position.x = image->position.x + MARGIN;
+	if (Local_pos.x <= image->Local_pos.x + MARGIN) {
+		Local_pos.x = image->Local_pos.x + MARGIN;
 	}
-	if (position.x + width >= image->position.x + image->width - MARGIN) {
-		position.x = -width + image->position.x + image->width - MARGIN;
+	if (Local_pos.x + width >= image->Local_pos.x + image->width - MARGIN) {
+		Local_pos.x = -width + image->Local_pos.x + image->width - MARGIN;
 	}
 
 }

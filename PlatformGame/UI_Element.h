@@ -27,7 +27,7 @@ class UI_Element
 public:
 
 	UI_Element();
-	UI_Element(int x, int y);
+	UI_Element(int x, int y, UI_Element* parent = nullptr);
 	virtual ~UI_Element();
 	
 	virtual bool Update(float dt);
@@ -42,7 +42,9 @@ public:
 
 public:
 	SDL_Texture * tex = nullptr;
-	iPoint position;
+	iPoint Local_pos;
+	iPoint Scree_pos;
+	UI_Element* parent = nullptr;
 	int height;
 	int width;
 	SDL_Rect png_pos = { 0,0,0,0 };

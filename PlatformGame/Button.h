@@ -17,7 +17,7 @@
 class Button : public UI_Element {
 public:
 
-	Button(int x, int y, int type, p2SString name = "NONE", int size = 0);
+	Button(int x, int y, int type, UI_Element* parent = nullptr, p2SString name = "NONE", int size = 0);
 	virtual ~Button();
 	bool Update(float dt);
 

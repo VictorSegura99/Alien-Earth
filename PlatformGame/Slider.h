@@ -12,7 +12,7 @@
 class Slider : public UI_Element {
 public:
 
-	Slider(int x, int y, int SliderPos);
+	Slider(int x, int y, int SliderPos, UI_Element* parent = nullptr);
 	virtual ~Slider();
 	bool Update(float dt);
 	void LookLimits();

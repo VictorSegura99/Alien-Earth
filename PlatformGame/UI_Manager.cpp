@@ -105,11 +105,11 @@ bool UI_Manager::Save(pugi::xml_node &) const
 	return true;
 }
 
-UI_Element * UI_Manager::CreateButton(int x, int y, int type, p2SString name, int size)
+UI_Element * UI_Manager::CreateButton(int x, int y, int type, UI_Element* parent, p2SString name, int size)
 {
 	UI_Element* ret = nullptr;
 	
-	ret = new Button(x, y, type, name, size);
+	ret = new Button(x, y, type, parent, name, size);
 	ret->type = BUTTON;
 
 	if (ret != nullptr)
@@ -118,11 +118,11 @@ UI_Element * UI_Manager::CreateButton(int x, int y, int type, p2SString name, in
 	return ret;
 }
 
-UI_Element * UI_Manager::CreateCheckBox(int x, int y)
+UI_Element * UI_Manager::CreateCheckBox(int x, int y, UI_Element* parent)
 {
 	UI_Element* ret = nullptr;
 
-	ret = new CheckBox(x, y);
+	ret = new CheckBox(x, y, parent);
 	ret->type = CHECKBOX;
 
 	if (ret != nullptr)
@@ -131,11 +131,11 @@ UI_Element * UI_Manager::CreateCheckBox(int x, int y)
 	return ret;
 }
 
-UI_Element * UI_Manager::CreateImage(int x, int y, bool WantToBeMoved)
+UI_Element * UI_Manager::CreateImage(int x, int y, bool WantToBeMoved, UI_Element* parent)
 {
 	UI_Element* ret = nullptr;
 
-	ret = new Image(x, y, WantToBeMoved);
+	ret = new Image(x, y, WantToBeMoved, parent);
 	ret->type = IMAGE;
 
 	if (ret != nullptr)
@@ -144,11 +144,11 @@ UI_Element * UI_Manager::CreateImage(int x, int y, bool WantToBeMoved)
 	return ret;
 }
 
-UI_Element * UI_Manager::CreateLabel(int x, int y, p2SString name, int size, bool CanBeMoved)
+UI_Element * UI_Manager::CreateLabel(int x, int y, p2SString name, int size, bool CanBeMoved, UI_Element* parent)
 {
 	UI_Element* ret = nullptr;
 
-	ret = new Label(x, y, name, size, CanBeMoved);
+	ret = new Label(x, y, name, size, CanBeMoved, parent);
 	ret->type = LABEL;
 
 	if (ret != nullptr)
@@ -157,11 +157,11 @@ UI_Element * UI_Manager::CreateLabel(int x, int y, p2SString name, int size, boo
 	return ret;
 }
 
-UI_Element * UI_Manager::CreateSlider(int x, int y, int SliderPos)
+UI_Element * UI_Manager::CreateSlider(int x, int y, int SliderPos, UI_Element* parent)
 {
 	UI_Element* ret = nullptr;
 
-	ret = new Slider(x, y, SliderPos);
+	ret = new Slider(x, y, SliderPos, parent);
 	ret->type = SLIDER;
 
 	if (ret != nullptr)

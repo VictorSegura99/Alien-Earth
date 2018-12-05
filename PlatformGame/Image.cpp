@@ -7,11 +7,11 @@
 #include "j1Audio.h"
 #include "j1Input.h"
 
-Image::Image(int x, int y, bool WantToBeMoved) : UI_Element(x, y)
+Image::Image(int x, int y, bool WantToBeMoved, UI_Element* parent) : UI_Element(x, y, parent)
 {
 	if (!WantToBeMoved) {
-		Distance.x = position.x - (-App->render->camera.x);
-		Distance.y = position.y - (-App->render->camera.y);
+		Distance.x = Local_pos.x - (-App->render->camera.x);
+		Distance.y = Local_pos.y - (-App->render->camera.y);
 	}
 	this->WantToBeMoved = WantToBeMoved;
 	width = WIDTH;
@@ -27,8 +27,8 @@ Image::~Image()
 bool Image::Update(float dt)
 {
 	if (!WantToBeMoved) {
-		position.x = (-App->render->camera.x) + Distance.x;
-		position.y = (-App->render->camera.y) + Distance.y;
+		Local_pos.x = (-App->render->camera.x) + Distance.x;
+		Local_pos.y = (-App->render->camera.y) + Distance.y;
 	}
 
 	return true;

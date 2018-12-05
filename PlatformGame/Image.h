@@ -14,7 +14,7 @@
 class Image : public UI_Element {
 public:
 
-	Image(int x, int y, bool WantToBeMoved);
+	Image(int x, int y, bool WantToBeMoved, UI_Element* parent = nullptr);
 	virtual ~Image();
 	bool Update(float dt);
 

@@ -7,7 +7,7 @@
 #include "j1Audio.h"
 #include "j1Input.h"
 
-CheckBox::CheckBox(int x, int y) : UI_Element(x, y)
+CheckBox::CheckBox(int x, int y, UI_Element* parent) : UI_Element(x, y, parent)
 {
 	
 	width = 40;

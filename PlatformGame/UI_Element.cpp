@@ -11,7 +11,7 @@ UI_Element::UI_Element()
 {
 }
 
-UI_Element::UI_Element(int x, int y) : position(x,y)
+UI_Element::UI_Element(int x, int y, UI_Element* parent) : Local_pos(x,y), parent(parent)
 {
 	pugi::xml_document	config_file;
 	pugi::xml_node		config;
@@ -21,11 +21,21 @@ UI_Element::UI_Element(int x, int y) : position(x,y)
 	UI_node = config.child("UI");
 
 	
+	//ELS AUDIOS NO S'HAN DE CARREGAR AQUI, S'HA DE FER COM LA TEXTURA I CARREGAR-LA AL UI_MANAGER
 	FXON = UI_node.child("FXON").text().as_string();
 	FXPRESSED = UI_node.child("FXPRESSED").text().as_string();
 	fxOn = App->audio->LoadFx(FXON.GetString());
 	fxPressed = App->audio->LoadFx(FXPRESSED.GetString());
-	
+	//IMPORTANT
+
+
+	if (parent == nullptr) {
+		Scree_pos = Local_pos;
+	}
+	else {
+		Scree_pos.x = parent->Scree_pos.x + Local_pos.x;
+		Scree_pos.y = parent->Scree_pos.y + Local_pos.y;
+	}
 	
 }
 
@@ -35,7 +45,7 @@ UI_Element::~UI_Element()
 
 bool UI_Element::Update(float dt)
 {
-
+	
 
 
 	return true;
@@ -49,15 +59,22 @@ bool UI_Element::CleanUp()
 
 void UI_Element::Draw(float dt, SDL_Texture* texture)
 {
+	if (parent == nullptr) {
+		Scree_pos = Local_pos;
+	}
+	else {
+		Scree_pos.x = parent->Scree_pos.x + Local_pos.x;
+		Scree_pos.y = parent->Scree_pos.y + Local_pos.y;
+	}
 	if (WantToRender) {
 		if (type != LABEL)
-			App->render->Blit(texture, position.x, position.y, &(png_pos));
+			App->render->Blit(texture, Scree_pos.x, Scree_pos.y, &(png_pos));
 		else {
-			App->render->Blit(tex, position.x, position.y, NULL);
+			App->render->Blit(tex, Scree_pos.x, Scree_pos.y, NULL);
 		}
 
 		if (App->ui_manager->debug_draw) {
-			App->render->DrawQuad({ position.x,position.y,width,height }, 255, 0, 0, 255, false);
+			App->render->DrawQuad({ Scree_pos.x,Scree_pos.y,width,height }, 255, 0, 0, 255, false);
 		}
 	}
 	
@@ -66,7 +83,7 @@ bool UI_Element::IsMouseOn()
 {
 	iPoint mouse_pos;
 	App->input->GetMousePosition(mouse_pos.x, mouse_pos.y);
-	if (mouse_pos.x >= position.x && position.x + width >= mouse_pos.x && mouse_pos.y >= position.y && position.y + height >= mouse_pos.y) {
+	if (mouse_pos.x >= Scree_pos.x && Scree_pos.x + width >= mouse_pos.x && mouse_pos.y >= Scree_pos.y && Scree_pos.y + height >= mouse_pos.y) {
 		return true;
 	}
 	return false;

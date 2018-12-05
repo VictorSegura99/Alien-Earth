@@ -10,7 +10,7 @@
 class CheckBox : public UI_Element {
 public:
 
-	CheckBox(int x, int y);
+	CheckBox(int x, int y, UI_Element* parent = nullptr);
 	virtual ~CheckBox();
 	bool Update(float dt);
 };

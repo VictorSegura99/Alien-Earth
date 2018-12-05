@@ -9,7 +9,7 @@
 
 
 
-Button::Button(int x, int y, int type, p2SString name, int size) : UI_Element(x, y)
+Button::Button(int x, int y, int type, UI_Element* parent, p2SString name, int size) : UI_Element(x, y, parent)
 {
 
 	NoPressedNoMouseOn = { IDLE };
@@ -18,10 +18,10 @@ Button::Button(int x, int y, int type, p2SString name, int size) : UI_Element(x,
 	width = WIDTH;
 	height = HEIGHT;
 	if (name != "NONE") {
-		label = App->ui_manager->CreateLabel(position.x + width / 2, position.y + height / 2, name, size, true);
-		label->position.x -= label->width / 2;
-		label->position.y -= label->height / 2;
-		label_pos = label->position.y;
+		label = App->ui_manager->CreateLabel(Local_pos.x + width / 2, Local_pos.y + height / 2, name, size, true);
+		label->Local_pos.x -= label->width / 2;
+		label->Local_pos.y -= label->height / 2;
+		label_pos = label->Local_pos.y;
 	}
 	png_pos = NoPressedNoMouseOn;
 	
@@ -35,7 +35,7 @@ Button::~Button()
 bool Button::Update(float dt)
 {
 	if (label != nullptr)
-		label->position.y = label_pos;
+		label->Local_pos.y = label_pos;
 	pressed = false;
 	if (!NoUse) {
 		if (IsMouseOn()) {
@@ -50,7 +50,7 @@ bool Button::Update(float dt)
 			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
 				png_pos = Pressed;
 				if (label != nullptr)
-					label->position.y = label_pos + 5;
+					label->Local_pos.y = label_pos + 5;
 			}
 			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
 				pressed = true; 

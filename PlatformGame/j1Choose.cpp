@@ -129,6 +129,12 @@ bool j1Choose::Update(float dt)
 				HacksMenu(dt);
 		}
 	}
+	if (App->input->GetKey(SDL_SCANCODE_J) == KEY_REPEAT) {
+		App->render->camera.y -= 10;
+	}
+	if (App->input->GetKey(SDL_SCANCODE_K) == KEY_REPEAT) {
+		App->render->camera.y += 10;
+	}
 	return true;
 }
 
@@ -232,12 +238,12 @@ void j1Choose::CreateMainMenu()
 	MainTitle = App->ui_manager->CreateImage((App->win->width / 2) - (844 / 2), 70, false);
 	MainTitle->SetSpritesData({ 401,784,844	,165 });
 	MainTitle->type = BUTTON;
-	buttonSTART = App->ui_manager->CreateButton(400, 270, 1, "START", 30);
-	buttonCONTINUE = App->ui_manager->CreateButton(400, 350, 1, "CONTINUE", 30);
-	buttonSETTINGS = App->ui_manager->CreateButton(400, 430, 1, "SETTINGS", 30);
-	buttonHACKS = App->ui_manager->CreateButton(400, 510, 1, "HACKS", 30);
-	buttonCREDITS = App->ui_manager->CreateButton(400, 590, 1, "CREDITS", 30);
-	buttonEXIT = App->ui_manager->CreateButton(400, 670, 1, "EXIT", 30);
+	buttonSTART = App->ui_manager->CreateButton(400, 270, 1, nullptr, "START", 30);
+	buttonCONTINUE = App->ui_manager->CreateButton(400, 350, 1, nullptr, "CONTINUE", 30);
+	buttonSETTINGS = App->ui_manager->CreateButton(400, 430, 1, nullptr, "SETTINGS", 30);
+	buttonHACKS = App->ui_manager->CreateButton(400, 510, 1, nullptr, "HACKS", 30);
+	buttonCREDITS = App->ui_manager->CreateButton(400, 590, 1, nullptr, "CREDITS", 30);
+	buttonEXIT = App->ui_manager->CreateButton(400, 670, 1, nullptr, "EXIT", 30);
 }
 
 void j1Choose::MainMenu()
@@ -452,23 +458,23 @@ void j1Choose::CreateSettingsButtons()
 	imageSETTINGS = App->ui_manager->CreateImage(170, 1300, true);
 	imageSETTINGS->SetSpritesData({ 758,0,705,671 });
 	imageSETTINGS->type = BUTTON;
-	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(200, 1335, 3);
+	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(37, 40, 3, imageSETTINGS);
 	buttonGOBACKSETTINGS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
-	checkboxFPS = App->ui_manager->CreateCheckBox(550, 1457);
-	labelFPS = App->ui_manager->CreateLabel(270, 1450, "CAP FPS TO 30", 50, true);
-	sliderVOLUMEMUSIC = App->ui_manager->CreateSlider(550, 1762, App->audio->volume);
-	labelMUSICVOLUME = App->ui_manager->CreateLabel(270, 1757, "MUSIC VOLUME", 50, true);
-	sliderVOLUMEFX = App->ui_manager->CreateSlider(550, 1862, App->audio->fxvolume);
-	labelVOLUMEFX = App->ui_manager->CreateLabel(270, 1857, "FX VOLUME", 50, true);
-	labelSETTINGS = App->ui_manager->CreateLabel(App->win->width / 2, 1350, "SETTINGS", 60, true);
-	labelSETTINGS->position.x -= labelSETTINGS->width / 2;
-	labelGENERALSOUND = App->ui_manager->CreateLabel(270, 1657, "GENERAL SOUND", App->audio->general, true);
-	sliderGENERALSOUND = App->ui_manager->CreateSlider(550, 1662, 50);
-	checkboxSOUND = App->ui_manager->CreateCheckBox(550, 1557);
+	checkboxFPS = App->ui_manager->CreateCheckBox(380, 157, imageSETTINGS);
+	labelFPS = App->ui_manager->CreateLabel(100, 150, "CAP FPS TO 30", 50, true, imageSETTINGS);
+	sliderVOLUMEMUSIC = App->ui_manager->CreateSlider(380, 452, App->audio->volume, imageSETTINGS);
+	labelMUSICVOLUME = App->ui_manager->CreateLabel(100, 450, "MUSIC VOLUME", 50, true, imageSETTINGS);
+	sliderVOLUMEFX = App->ui_manager->CreateSlider(380, 552, App->audio->fxvolume, imageSETTINGS);
+	labelVOLUMEFX = App->ui_manager->CreateLabel(100, 550, "FX VOLUME", 50, true, imageSETTINGS);
+	labelSETTINGS = App->ui_manager->CreateLabel(imageSETTINGS->width / 2, 50, "SETTINGS", 60, true, imageSETTINGS);
+	labelSETTINGS->Local_pos.x -= labelSETTINGS->width / 2;
+	labelGENERALSOUND = App->ui_manager->CreateLabel(100, 350, "GENERAL SOUND", App->audio->general, true, imageSETTINGS);
+	sliderGENERALSOUND = App->ui_manager->CreateSlider(380, 352, 50, imageSETTINGS);
+	checkboxSOUND = App->ui_manager->CreateCheckBox(380, 257, imageSETTINGS);
 	if (!App->audio->NoAudio)
 		checkboxSOUND->pressed = true;
 	else checkboxSOUND->pressed = false;
-	labelSOUND = App->ui_manager->CreateLabel(270, 1550, "SOUND", 50, true);
+	labelSOUND = App->ui_manager->CreateLabel(100, 250, "SOUND", 50, true, imageSETTINGS);
 	if (App->capactivated)
 		checkboxFPS->pressed = true;
 }
@@ -478,58 +484,45 @@ void j1Choose::SettingsMenu(float dt)
 {
 	Title->NoRenderLabel = true;
 	sentence->NoRenderLabel = true;
-	if (imageSETTINGS->position.y <= buttonEXIT->position.y + buttonEXIT->height) {
+	if (imageSETTINGS->Local_pos.y <= buttonEXIT->Local_pos.y + buttonEXIT->height) {
 		buttonEXIT->WantToRender = false;
 	}
-	if (imageSETTINGS->position.y <= buttonHACKS->position.y + buttonHACKS->height) {
+	if (imageSETTINGS->Local_pos.y <= buttonHACKS->Local_pos.y + buttonHACKS->height) {
 		buttonHACKS->WantToRender = false;
 	}
-	if (imageSETTINGS->position.y <= buttonCREDITS->position.y + buttonCREDITS->height) {
+	if (imageSETTINGS->Local_pos.y <= buttonCREDITS->Local_pos.y + buttonCREDITS->height) {
 		buttonCREDITS->WantToRender = false;
 	}
-	if (imageSETTINGS->position.y <= buttonSETTINGS->position.y + buttonSETTINGS->height) {
+	if (imageSETTINGS->Local_pos.y <= buttonSETTINGS->Local_pos.y + buttonSETTINGS->height) {
 		buttonSETTINGS->WantToRender = false;
 	}
-	if (imageSETTINGS->position.y <= buttonCONTINUE->position.y + buttonCONTINUE->height) {
+	if (imageSETTINGS->Local_pos.y <= buttonCONTINUE->Local_pos.y + buttonCONTINUE->height) {
 		buttonCONTINUE->WantToRender = false;
 	}
-	if (imageSETTINGS->position.y <= buttonSTART->position.y + buttonSTART->height) {
+	if (imageSETTINGS->Local_pos.y <= buttonSTART->Local_pos.y + buttonSTART->height) {
 		buttonSTART->WantToRender = false;
 	}
-	if (imageSETTINGS->position.y >= buttonEXIT->position.y) {
+	if (imageSETTINGS->Local_pos.y >= buttonEXIT->Local_pos.y) {
 		buttonEXIT->WantToRender = true;
 	}
-	if (imageSETTINGS->position.y >= buttonCREDITS->position.y) {
+	if (imageSETTINGS->Local_pos.y >= buttonCREDITS->Local_pos.y) {
 		buttonCREDITS->WantToRender = true;
 	}
-	if (imageSETTINGS->position.y >= buttonHACKS->position.y) {
+	if (imageSETTINGS->Local_pos.y >= buttonHACKS->Local_pos.y) {
 		buttonHACKS->WantToRender = true;
 	}
-	if (imageSETTINGS->position.y >= buttonSETTINGS->position.y) {
+	if (imageSETTINGS->Local_pos.y >= buttonSETTINGS->Local_pos.y) {
 		buttonSETTINGS->WantToRender = true;
 	}
-	if (imageSETTINGS->position.y >= buttonCONTINUE->position.y) {
+	if (imageSETTINGS->Local_pos.y >= buttonCONTINUE->Local_pos.y) {
 		buttonCONTINUE->WantToRender = true;
 	}
-	if (imageSETTINGS->position.y >= buttonSTART->position.y) {
+	if (imageSETTINGS->Local_pos.y >= buttonSTART->Local_pos.y) {
 		buttonSTART->WantToRender = true;
 	}
 	if (!Positioned && !SettingMenuDone) { //MENU GOING UP
-
-		buttonGOBACKSETTINGS->position.y -= 1000 * dt;
-		imageSETTINGS->position.y -= 1000 * dt;
-		checkboxFPS->position.y -= 1000 * dt;
-		labelFPS->position.y -= 1000 * dt;
-		sliderVOLUMEMUSIC->position.y -= 1000 * dt;
-		labelMUSICVOLUME->position.y -= 1000 * dt;
-		sliderVOLUMEFX->position.y -= 1000 * dt;
-		labelVOLUMEFX->position.y -= 1000 * dt;
-		labelSETTINGS->position.y -= 1000 * dt;
-		labelGENERALSOUND->position.y -= 1000 * dt;
-		sliderGENERALSOUND->position.y -= 1000 * dt;
-		checkboxSOUND->position.y -= 1000 * dt;
-		labelSOUND->position.y -= 1000 * dt;
-		if (buttonGOBACKSETTINGS->position.y <= 100) {
+		imageSETTINGS->Local_pos.y -= 1000 * dt;
+		if (imageSETTINGS->Local_pos.y <= 100) {
 			Positioned = true;
 			buttonGOBACKSETTINGS->pressed = false;
 			SettingMenuDone = true;
@@ -537,20 +530,8 @@ void j1Choose::SettingsMenu(float dt)
 	}
 	if (!Positioned && SettingMenuDone) { //MENU GOING DOWN
 
-		buttonGOBACKSETTINGS->position.y += 2000 * dt;
-		imageSETTINGS->position.y += 2000 * dt;
-		checkboxFPS->position.y += 2000 * dt;
-		labelFPS->position.y += 2000 * dt;
-		sliderVOLUMEMUSIC->position.y += 2000 * dt;
-		labelMUSICVOLUME->position.y += 2000 * dt;
-		sliderVOLUMEFX->position.y += 2000 * dt;
-		labelVOLUMEFX->position.y += 2000 * dt;
-		labelSETTINGS->position.y += 2000 * dt;
-		labelGENERALSOUND->position.y += 2000 * dt;
-		sliderGENERALSOUND->position.y += 2000 * dt;
-		checkboxSOUND->position.y += 2000 * dt;
-		labelSOUND->position.y += 2000 * dt;
-		if (buttonGOBACKSETTINGS->position.y >= 1225) {
+		imageSETTINGS->Local_pos.y += 2000 * dt;
+		if (imageSETTINGS->Local_pos.y >= 1225) {
 			buttonSTART->NoUse = false;
 			buttonCONTINUE->NoUse = false;
 			buttonSETTINGS->NoUse = false;
@@ -605,7 +586,7 @@ void j1Choose::CreatehacksButtons()
 	checkboxSTARTLEVEL2 = App->ui_manager->CreateCheckBox(550, -358);
 	labelSTARTLEVEL2 = App->ui_manager->CreateLabel(270, -365, "START IN LEVEL 2", 50, true);
 	labelHACKS = App->ui_manager->CreateLabel(App->win->width/2, -645, "HACKS", 60, true);
-	labelHACKS->position.x -= labelHACKS->width / 2;
+	labelHACKS->Local_pos.x -= labelHACKS->width / 2;
 
 
 	
@@ -615,54 +596,45 @@ void j1Choose::HacksMenu(float dt)
 {
 	Title->NoRenderLabel = true;
 	sentence->NoRenderLabel = true;
-	if (imageHACKS->position.y + imageHACKS->height >= buttonEXIT->position.y) {
+	if (imageHACKS->Local_pos.y + imageHACKS->height >= buttonEXIT->Local_pos.y) {
 		buttonEXIT->WantToRender = false;
 	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonHACKS->position.y) {
+	if (imageHACKS->Local_pos.y + imageHACKS->height >= buttonHACKS->Local_pos.y) {
 		buttonHACKS->WantToRender = false;
 	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonCREDITS->position.y) {
+	if (imageHACKS->Local_pos.y + imageHACKS->height >= buttonCREDITS->Local_pos.y) {
 		buttonCREDITS->WantToRender = false;
 	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonSETTINGS->position.y) {
+	if (imageHACKS->Local_pos.y + imageHACKS->height >= buttonSETTINGS->Local_pos.y) {
 		buttonSETTINGS->WantToRender = false;
 	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonCONTINUE->position.y) {
+	if (imageHACKS->Local_pos.y + imageHACKS->height >= buttonCONTINUE->Local_pos.y) {
 		buttonCONTINUE->WantToRender = false;
 	}
-	if (imageHACKS->position.y + imageHACKS->height >= buttonSTART->position.y) {
+	if (imageHACKS->Local_pos.y + imageHACKS->height >= buttonSTART->Local_pos.y) {
 		buttonSTART->WantToRender = false;
 	}
-	if (imageHACKS->position.y + imageHACKS->height <= buttonEXIT->position.y) {
+	if (imageHACKS->Local_pos.y + imageHACKS->height <= buttonEXIT->Local_pos.y) {
 		buttonEXIT->WantToRender = true;
 	}
-	if (imageHACKS->position.y + imageHACKS->height <= buttonCREDITS->position.y) {
+	if (imageHACKS->Local_pos.y + imageHACKS->height <= buttonCREDITS->Local_pos.y) {
 		buttonCREDITS->WantToRender = true;
 	}
-	if (imageHACKS->position.y + imageHACKS->height <= buttonHACKS->position.y) {
+	if (imageHACKS->Local_pos.y + imageHACKS->height <= buttonHACKS->Local_pos.y) {
 		buttonHACKS->WantToRender = true;
 	}
-	if (imageHACKS->position.y + imageHACKS->height <= buttonSETTINGS->position.y) {
+	if (imageHACKS->Local_pos.y + imageHACKS->height <= buttonSETTINGS->Local_pos.y) {
 		buttonSETTINGS->WantToRender = true;
 	}
-	if (imageHACKS->position.y + imageHACKS->height <= buttonCONTINUE->position.y) {
+	if (imageHACKS->Local_pos.y + imageHACKS->height <= buttonCONTINUE->Local_pos.y) {
 		buttonCONTINUE->WantToRender = true;
 	}
-	if (imageHACKS->position.y + imageHACKS->height <= buttonSTART->position.y) {
+	if (imageHACKS->Local_pos.y + imageHACKS->height <= buttonSTART->Local_pos.y) {
 		buttonSTART->WantToRender = true;
 	}
 	if (!positioned && !HacksMenuDone) { //MENU GOING UP
-
-		buttonGOBACKHACKS->position.y += 1000 * dt;
-		imageHACKS->position.y += 1000 * dt;
-		labelGODMODE->position.y += 1000 * dt;
-		checkboxGODMODE->position.y += 1000 * dt;
-		checkboxNOENEMIES->position.y += 1000 * dt;
-		labelNOENEMIES->position.y += 1000 * dt;
-		checkboxSTARTLEVEL2->position.y += 1000 * dt;
-		labelSTARTLEVEL2->position.y += 1000 * dt;
-		labelHACKS->position.y += 1000 * dt;
-		if (imageHACKS->position.y + imageHACKS->height >= 700) {
+		imageHACKS->Local_pos.y += 1000 * dt;
+		if (imageHACKS->Local_pos.y + imageHACKS->height >= 700) {
 			positioned = true;
 			buttonGOBACKHACKS->pressed = false;
 			HacksMenuDone = true;
@@ -670,16 +642,8 @@ void j1Choose::HacksMenu(float dt)
 	}
 	if (!positioned && HacksMenuDone) { //MENU GOING DOWN
 
-		buttonGOBACKHACKS->position.y -= 2000 * dt;
-		imageHACKS->position.y -= 2000 * dt;
-		labelGODMODE->position.y -= 2000 * dt;
-		checkboxGODMODE->position.y -= 2000 * dt;
-		checkboxNOENEMIES->position.y -= 2000 * dt;
-		labelNOENEMIES->position.y -= 2000 * dt;
-		checkboxSTARTLEVEL2->position.y -= 2000 * dt;
-		labelSTARTLEVEL2->position.y -= 2000 * dt;
-		labelHACKS->position.y -= 2000 * dt;
-		if (buttonGOBACKHACKS->position.y <= -700) {
+		imageHACKS->Local_pos.y -= 2000 * dt;
+		if (buttonGOBACKHACKS->Local_pos.y <= -700) {
 			buttonSTART->NoUse = false;
 			buttonCONTINUE->NoUse = false;
 			buttonSETTINGS->NoUse = false;
@@ -690,6 +654,7 @@ void j1Choose::HacksMenu(float dt)
 			InMainMenu = true;
 		}
 	}
+
 	if (HacksMenuDone) { //MENU LOGIC BUTTONS
 		if (buttonGOBACKHACKS->pressed) {
 			positioned = false;
