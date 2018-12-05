@@ -236,7 +236,7 @@ bool Player::Update(float dt)
 	if (coll != nullptr)
 		coll->SetPos(position.x, position.y);
 
-	LOG("Position Y: %f", position.y);
+	LOG("Position X: %f", position.x);
 
 	TouchingGround = false;
 
