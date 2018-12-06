@@ -89,6 +89,7 @@ bool j1Choose::Start()
 	CreateSettingsButtons();
 	CreatehacksButtons();
 	CreateIntro();
+	CreateCredits();
 	WantToDisappearMainMenu(true);
 	WantToDisappearButtonsTypePlayer(true);
 	
@@ -127,6 +128,8 @@ bool j1Choose::Update(float dt)
 				MenuChoosePlayer(dt);
 			if (InHacks)
 				HacksMenu(dt);
+			if (InCredits)
+				Credits(dt);
 		}
 	}
 	if (App->input->GetKey(SDL_SCANCODE_J) == KEY_REPEAT) {
@@ -304,6 +307,11 @@ void j1Choose::MainMenu()
 			checkboxSTARTLEVEL2->pressed = false;
 		else checkboxSTARTLEVEL2->pressed = true;
 
+	}
+	if (buttonCREDITS->pressed) {
+		WantToDisappearMainMenu(true);
+		InMainMenu = false;
+		InCredits = true;
 	}
 	if (buttonEXIT->pressed) {
 		Exit = true;
@@ -594,6 +602,31 @@ void j1Choose::CreatehacksButtons()
 
 
 	
+}
+
+void j1Choose::CreateCredits()
+{
+
+	imageCREDITS = App->ui_manager->CreateImage(10, 880, true);
+	imageCREDITS->SetSpritesData({ 1480,0,1200,1720 });
+	buttonGOBACKCREDITS = App->ui_manager->CreateButton(40, 1400, 1, imageCREDITS);
+	buttonGOBACKCREDITS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
+}
+
+void j1Choose::Credits(float dt)
+{
+	if (buttonGOBACKCREDITS->Scree_pos.y <= 50) {
+		if (buttonGOBACKCREDITS->pressed) {
+			App->ui_manager->DeleteUI_Element(imageCREDITS);
+			App->ui_manager->DeleteUI_Element(buttonGOBACKCREDITS);
+			CreateCredits();
+			InCredits = false;
+			InMainMenu = true;
+			WantToDisappearMainMenu(false);
+		}
+	}
+	else 
+		imageCREDITS->Local_pos.y -= 200 * dt;
 }
 
 void j1Choose::HacksMenu(float dt)

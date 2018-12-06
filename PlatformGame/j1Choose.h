@@ -49,6 +49,8 @@ public:
 	void WantToDisappearButtonsTypePlayer(bool Disappear);
 	void HacksMenu(float dt);
 	void CreatehacksButtons();
+	void CreateCredits();
+	void Credits(float dt);
 
 public:
 
@@ -101,6 +103,7 @@ public:
 	bool InHacks = false;
 	bool positioned = false;
 	bool HacksMenuDone = false;
+	bool InCredits = false;
 
 	unsigned int choosefx;
 	unsigned int introfx;
@@ -162,7 +165,9 @@ public:
 	UI_Element* labelNOENEMIES = nullptr;
 
 
-
+	//CREDITS
+	UI_Element* imageCREDITS = nullptr;
+	UI_Element* buttonGOBACKCREDITS = nullptr;
 
 
 	//PLAYER UI
