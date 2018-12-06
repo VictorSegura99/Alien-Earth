@@ -10,29 +10,29 @@
 	</audio>
 	<map />
 	<scene>
-		<KnowMap value="1" />
+		<KnowMap value="0" />
 	</scene>
 	<pathfinding />
 	<fonts />
 	<:anonymous />
 	<entity_manager>
 		<spider>
-			<position x="1300.68262" y="604.633301" />
+			<position x="6801.07959" y="733.666748" />
 		</spider>
 		<spider>
-			<position x="1800.71997" y="746.133301" />
-		</spider>
-		<spider>
-			<position x="6600.71973" y="1018.93329" />
+			<position x="10501.082" y="739.466736" />
 		</spider>
 		<bat>
-			<position x="3500" y="300" />
+			<position x="6000" y="600" />
 		</bat>
 		<bat>
-			<position x="7500" y="700" />
+			<position x="8000" y="400" />
+		</bat>
+		<bat>
+			<position x="9500" y="600" />
 		</bat>
 		<player>
-			<position x="546.650269" y="343.382935" />
+			<position x="1822.75195" y="547.702698" />
 			<god value="false" />
 			<NumPlayer value="0" />
 		</player>
@@ -42,6 +42,6 @@
 	<particles />
 	<:anonymous />
 	<renderer>
-		<camera x="-60" y="0" />
+		<camera x="-1310" y="-163" />
 	</renderer>
 </game_state>

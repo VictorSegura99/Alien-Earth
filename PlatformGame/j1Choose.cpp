@@ -174,7 +174,7 @@ bool j1Choose::PostUpdate()
 			App->map->active = !App->map->active;
 			App->scene->KnowMap = 0;
 			App->entitymanager->ActiveGame = true;
-			App->LoadGame("save_game.xml");
+			App->LoadGame("save_game.xml", true);
 			App->entitymanager->GetPlayerData()->SetUI();
 			GameOn = true;
 		}
@@ -258,10 +258,14 @@ void j1Choose::MainMenu()
 		StartChoosing = true;
 	}
 	if (buttonCONTINUE->pressed) {
-		App->ui_manager->DeleteAllUI();
-		App->entitymanager->GetPlayerData()->Intro = false;
-		App->fade->FadeToBlack(3.0f);
-		GoStartSaved = true;
+		App->LoadGame("save_game.xml", false);
+		if (App->CanLoad) {
+			App->ui_manager->DeleteAllUI();
+			App->entitymanager->GetPlayerData()->Intro = false;
+			App->fade->FadeToBlack(3.0f);
+			GoStartSaved = true;
+		}
+		
 	}
 	if (buttonSETTINGS->pressed) {
 		SettingMenuDone = false;

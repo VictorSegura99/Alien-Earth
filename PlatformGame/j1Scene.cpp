@@ -73,7 +73,7 @@ bool j1Scene::Update(float dt)
 {
 	BROFILER_CATEGORY("Scene: Update", Profiler::Color::LightYellow);
 	if(App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
-		App->LoadGame("save_game.xml");
+		App->LoadGame("save_game.xml", true);
 
 	if(App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		App->SaveGame("save_game.xml");

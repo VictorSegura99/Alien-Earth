@@ -55,7 +55,7 @@ public:
 	const char* GetTitle() const;
 	const char* GetOrganization() const;
 
-	void LoadGame(const char* file);
+	void LoadGame(const char* file, bool WantToLoad);
 	void SaveGame(const char* file) const;
 
 
@@ -84,7 +84,7 @@ private:
 	bool PostUpdate();
 
 	// Load / Save
-	bool LoadGameNow();
+	bool LoadGameNow(bool WantToLoad);
 	bool SavegameNow() const;
 
 public:
@@ -106,6 +106,7 @@ public:
 	j1FadeToBlack*		fade;
 	j1Fonts*			fonts;
 
+	bool CanLoad;
 
 private:
 
@@ -116,6 +117,7 @@ private:
 	p2SString			title;
 	p2SString			organization;
 
+	bool				WantToLoad = true;
 	mutable bool		want_to_save = false;
 	bool				want_to_load = false;
 	p2SString			load_game;

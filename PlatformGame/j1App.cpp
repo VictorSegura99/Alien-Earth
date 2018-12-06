@@ -227,7 +227,7 @@ void j1App::FinishUpdate()
 		SavegameNow();
 
 	if (want_to_load == true)
-		LoadGameNow();
+		LoadGameNow(WantToLoad);
 
 	// Framerate calculations --
 
@@ -391,10 +391,11 @@ const char* j1App::GetOrganization() const
 }
 
 // Load / Save
-void j1App::LoadGame(const char* file)
+void j1App::LoadGame(const char* file, bool WantToLoad)
 {
 	// we should be checking if that file actually exist
 	// from the "GetSaveGames" list
+	this->WantToLoad = WantToLoad;
 	want_to_load = true;
 	load_game.create(file);
 }
@@ -412,38 +413,51 @@ void j1App::SaveGame(const char* file) const
 // ---------------------------------------
 
 
-bool j1App::LoadGameNow()
+bool j1App::LoadGameNow(bool WantToLoad)
 {
 	bool ret = false;
-
+	CanLoad = false;
 	pugi::xml_document data;
 	pugi::xml_node root;
 
 	pugi::xml_parse_result result = data.load_file(load_game.GetString());
-
-	if(result != NULL)
-	{
-		LOG("Loading new Game State from %s...", load_game.GetString());
-
-		root = data.child("game_state");
-
-		p2List_item<j1Module*>* item = modules.start;
-		ret = true;
-
-		while(item != NULL && ret == true)
+	if (WantToLoad) {
+		if (result != NULL)
 		{
-			ret = item->data->Load(root.child(item->data->name.GetString()));
-			item = item->next;
-		}
+			ret = true;
+			CanLoad = true;
 
-		data.reset();
-		if(ret == true)
-			LOG("...finished loading");
+			LOG("Loading new Game State from %s...", load_game.GetString());
+
+			root = data.child("game_state");
+
+			p2List_item<j1Module*>* item = modules.start;
+
+
+			while (item != NULL && ret == true)
+			{
+				ret = item->data->Load(root.child(item->data->name.GetString()));
+				item = item->next;
+			}
+
+			data.reset();
+			if (ret == true)
+				LOG("...finished loading");
+			else
+				LOG("...loading process interrupted with error on module %s", (item != NULL) ? item->data->name.GetString() : "unknown");
+
+
+		}
 		else
-			LOG("...loading process interrupted with error on module %s", (item != NULL) ? item->data->name.GetString() : "unknown");
+			LOG("Could not parse game state xml file %s. pugi error: %s", load_game.GetString(), result.description());
 	}
-	else
-		LOG("Could not parse game state xml file %s. pugi error: %s", load_game.GetString(), result.description());
+	else {
+		if (result == NULL) {
+			CanLoad = false;
+		}
+		else CanLoad = true;
+	}
+	
 
 	want_to_load = false;
 	return ret;
