@@ -189,6 +189,7 @@ bool Player::Update(float dt)
 	DT = dt;
 
 	Camera(dt);
+	Lives();
 
 	if (!God && !Intro) {
 		if (!TouchingGround && !dashing && !CanSwim) {
@@ -251,7 +252,6 @@ bool Player::PostUpdate()
 	if (!Intro) {
 		if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) {
 			ChangePlayer(0);
-			
 		}
 		if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) {
 			ChangePlayer(1);
@@ -597,6 +597,7 @@ void Player::Die()//What happens when the player die
 		if (App->scene->KnowMap == 1) {
 			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 		}
+		lives -= 1;
 		Spawn();
 
 	}
@@ -611,6 +612,7 @@ void Player::Fall()//What happens when the player falls
 	if (App->scene->KnowMap == 1) {
 		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 	}
+	lives -= 1;
 	Spawn();
 
 }
@@ -1089,15 +1091,21 @@ void Player::Gravity(float dt)
 
 void Player::SetUI()
 {
-	//App->choose->image = App->ui_manager->CreateImage(100, 200, false);
-	//App->choose->label = App->ui_manager->CreateLabel(100, 0, "WELCOME ALIENEARTHEROS", 60, false);
+	live = App->ui_manager->CreateImage(900, 22, false);
+	if (NumPlayer == 0)
+		live->SetSpritesData({ 425,977,47,47 });
+	else if (NumPlayer==1)
+		live->SetSpritesData({ 473,977,47,47 });
+	else if (NumPlayer == 2)
+		live->SetSpritesData({ 521,977,47,47 });
+	livenumber = App->ui_manager->CreateImage(950, 17, false);
 	
 }
 
 void Player::DeleteUI()
 {
-	App->ui_manager->DeleteUI_Element(App->choose->image);
-	App->ui_manager->DeleteUI_Element(App->choose->label);
+	App->ui_manager->DeleteUI_Element(live);
+	App->ui_manager->DeleteUI_Element(livenumber);
 
 }
 
@@ -1137,4 +1145,24 @@ void Player::Dash::ResetDashAnims()
 	DashRight = false;
 	DashCont = 0;
 
+}
+
+void Player::Lives() {
+
+	if(lives<0){
+		App->fade->FadeToBlack(3.0f);
+		App->scene->CanStart = true;
+		lives = 3;
+	}
+	//Numbers
+	if (lives == 3)
+		livenumber->SetSpritesData({ 1252,1950,47,50 });
+	else if (lives == 2)
+		livenumber->SetSpritesData({ 1303,1950,47,50 });
+	else if (lives == 1)
+		livenumber->SetSpritesData({ 1355,1950,36,50 });
+	else if (lives == 0)
+		livenumber->SetSpritesData({ 1399,1950,47,50 });
+	else
+		livenumber->SetSpritesData({ NULL });
 }
