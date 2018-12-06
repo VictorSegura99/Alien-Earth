@@ -5,6 +5,9 @@
 #include "j1Collision.h"
 #include "Player.h"
 #include "EntityManager.h"
+#include "j1App.h"
+#include "j1Audio.h"
+
 Coin::Coin(int x, int y)
 {
 	position.x = x;
@@ -19,11 +22,15 @@ Coin::Coin(int x, int y)
 	config = App->LoadConfig(config_file);
 	coin = config.child("entity_manager").child("Coin");
 	sprites = coin.child("sprites").text().as_string();
+	CoinFx = config.child("DeathFx2").text().as_string();
+	coinfx = App->audio->LoadFx(CoinFx.GetString());
 	texture = App->tex->Load(sprites.GetString());
+
 
 	Jeff.PushBack({ 0,0,47,47 });
 	Jane.PushBack({ 48,0,47,47 });
 	Jerry.PushBack({ 96,0,47,47 });
+
 }
 
 Coin::~Coin()
@@ -77,6 +84,7 @@ bool Coin::CleanUp()
 
 void Coin::OnCollision(Collider * c2)
 {
+	App->audio->PlayFx(coinfx);
 	coll->to_delete = true;
 	App->entitymanager->DeleteEntity(this);
 }

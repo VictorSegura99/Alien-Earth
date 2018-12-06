@@ -28,6 +28,8 @@ public:
 	Animation Jerry;
 	Animation* anim = nullptr;
 	p2SString sprites;
+	p2SString CoinFx;
+	unsigned int coinfx;
 };
 
 #endif
