@@ -178,21 +178,43 @@ void j1Scene::SpawnEnemies()
 		if (KnowMap == 0) {
 
 			//Platforms
-			while (bat1 == nullptr) {
-				bat1 = App->entitymanager->CreateEntity(EntityType::BAT, 6000, 600);
-			}
-			App->entitymanager->CreateEntity(EntityType::COIN, 900, 500);
-			App->entitymanager->CreateEntity(EntityType::COIN, 1000, 500);
-			App->entitymanager->CreateEntity(EntityType::COIN, 1100, 500);
-			App->entitymanager->CreateEntity(EntityType::COIN, 1200, 500);
-			App->entitymanager->CreateEntity(EntityType::COIN, 1300, 500);
 			App->entitymanager->CreateEntity(EntityType::MOVING_PLATFORM, 7480, 900);
 			App->entitymanager->CreateEntity(EntityType::MOVING_PLATFORM, 8300, 900);
 			//Enemies
+			App->entitymanager->CreateEntity(EntityType::BAT, 6000, 600);
 			App->entitymanager->CreateEntity(EntityType::SPIDER, 6800, 400);
 			App->entitymanager->CreateEntity(EntityType::BAT, 8000, 400);
 			App->entitymanager->CreateEntity(EntityType::BAT, 9500, 600);
 			App->entitymanager->CreateEntity(EntityType::SPIDER, 10500, 450);
+
+			//Coins
+			if (App->entitymanager->GetPlayerData()->NumPlayer == 0) {
+				App->entitymanager->CreateEntity(EntityType::COIN, 1173, 442);
+				App->entitymanager->CreateEntity(EntityType::COIN, 1395, 305);
+				App->entitymanager->CreateEntity(EntityType::COIN, 1395, 525);
+			}
+			if (App->entitymanager->GetPlayerData()->NumPlayer == 1) {
+				App->entitymanager->CreateEntity(EntityType::COIN, 1175, 465);
+				App->entitymanager->CreateEntity(EntityType::COIN, 1333, 518);
+			}
+			if (App->entitymanager->GetPlayerData()->NumPlayer == 2) {
+				App->entitymanager->CreateEntity(EntityType::COIN, 1173, 442);
+				App->entitymanager->CreateEntity(EntityType::COIN, 1395, 510);
+			}
+			App->entitymanager->CreateEntity(EntityType::COIN, 2416, 818);
+			App->entitymanager->CreateEntity(EntityType::COIN, 3057, 538);
+			App->entitymanager->CreateEntity(EntityType::COIN, 3445, 608);
+			App->entitymanager->CreateEntity(EntityType::COIN, 3833, 608);
+			App->entitymanager->CreateEntity(EntityType::COIN, 4385, 405);
+			App->entitymanager->CreateEntity(EntityType::COIN, 5015, 640);
+			App->entitymanager->CreateEntity(EntityType::COIN, 5580, 660);
+			App->entitymanager->CreateEntity(EntityType::COIN, 6170, 545);
+			App->entitymanager->CreateEntity(EntityType::COIN, 7340, 680);
+			App->entitymanager->CreateEntity(EntityType::COIN, 8200, 825);
+			App->entitymanager->CreateEntity(EntityType::COIN, 9140, 680);
+			App->entitymanager->CreateEntity(EntityType::COIN, 9947, 615);
+			App->entitymanager->CreateEntity(EntityType::COIN, 10500, 685);
+
 		}
 		if (KnowMap == 1) {
 			App->entitymanager->CreateEntity(EntityType::SPIDER, 1300, 300);

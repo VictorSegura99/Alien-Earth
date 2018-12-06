@@ -460,6 +460,7 @@
     </Platforms>
     <Coin>
       <sprites>textures/coins.png</sprites>
+      <CoinFx>audio/fx/Coin.wav</CoinFx>
     </Coin>
   </entity_manager>
 
