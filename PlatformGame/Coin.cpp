@@ -22,7 +22,7 @@ Coin::Coin(int x, int y)
 	config = App->LoadConfig(config_file);
 	coin = config.child("entity_manager").child("Coin");
 	sprites = coin.child("sprites").text().as_string();
-	CoinFx = config.child("DeathFx2").text().as_string();
+	CoinFx = coin.child("CoinFx").text().as_string();
 	coinfx = App->audio->LoadFx(CoinFx.GetString());
 	texture = App->tex->Load(sprites.GetString());
 
