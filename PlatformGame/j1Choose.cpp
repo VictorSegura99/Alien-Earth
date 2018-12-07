@@ -75,7 +75,7 @@ bool j1Choose::Start()
 	App->render->camera.y = 0;
 	start = false;
 
-
+	App->audio->PlayMusic(App->scene->SongMenu.GetString());
 
 	ScreenStart = App->tex->Load(file_texture.GetString());
 	yellow = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[0].GetString());
@@ -161,6 +161,7 @@ bool j1Choose::PostUpdate()
 			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 			App->entitymanager->ActiveGame = true;
 			App->entitymanager->GetPlayerData()->Start();
+			App->audio->PlayMusic(App->scene->Song.GetString());
 			App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
 			App->scene->SpawnEnemies();
 			App->entitymanager->GetPlayerData()->SetUI();
@@ -745,6 +746,7 @@ void j1Choose::HacksMenu(float dt)
 
 void j1Choose::StartLevel()
 {
+	Mix_FadeOutMusic(1000);
 	App->ui_manager->DeleteAllUI();
 	if (App->scene->KnowMap == 0)
 		App->entitymanager->GetPlayerData()->Intro = true;

@@ -37,11 +37,13 @@ public:
 	bool Save(pugi::xml_node&) const;
 
 	void SpawnEnemies();
+	void ChooseMusic();
 
 public:
 	int KnowMap = 0; // KnowMap == 0 Map1 is working // KnowMap == 1 Map2 is working  
 	p2List<p2SString*> map_name;
 	p2SString Song;
+	p2SString SongMenu;
 	//Entity* player = nullptr;
 	SDL_Texture* TutorialJeff;
 	SDL_Texture* TutorialJane;

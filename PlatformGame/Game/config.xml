@@ -29,6 +29,7 @@
      <mapname name="Map1.tmx"></mapname>
      <mapname name="Map2.tmx"></mapname>
      <song>audio/music/Level1.ogg</song>
+     <songmenu>audio/music/Menu.ogg</songmenu>
      <tutorialJeff>textures/TutorialJeff.png</tutorialJeff>
      <tutorialJane>textures/TutorialJane.png</tutorialJane>
      <tutorialJerry>textures/TutorialJerry.png</tutorialJerry>
