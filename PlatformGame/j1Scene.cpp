@@ -280,74 +280,56 @@ void j1Scene::CreatePauseMenu()
 	else checkboxSOUND->pressed = false;
 	labelSOUND = App->ui_manager->CreateLabel(100, 250, "SOUND", 50, true, imagePAUSE);
 	*/
-
-	imagePAUSE = App->ui_manager->CreateImage(100, 80, true);
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
+	image = App->ui_manager->CreateImage(0, 0, false);
+	image->SetSpritesData({ 0,1158,1024,768 });
+	imagePAUSE = App->ui_manager->CreateImage(170, 60, true);
 	imagePAUSE->SetSpritesData({ 758,0,705,671 });
-	labelPAUSE = App->ui_manager->CreateLabel(imagePAUSE->width / 2,  50, "PAUSE", 60, false, imagePAUSE);
+	buttonRESUME = App->ui_manager->CreateButton(120, 140, 1, imagePAUSE, "RESUME", 30);
+	buttonGOMAINMENU = App->ui_manager->CreateButton(400, 140, 1, imagePAUSE, "RETURN MAIN MENU", 30);
+	sliderVOLUMEMUSIC = App->ui_manager->CreateSlider(380, 452, App->audio->volume, imagePAUSE);
+	labelMUSICVOLUME = App->ui_manager->CreateLabel(100, 450, "MUSIC VOLUME", 50, true, imagePAUSE);
+	sliderVOLUMEFX = App->ui_manager->CreateSlider(380, 552, App->audio->fxvolume, imagePAUSE);
+	labelVOLUMEFX = App->ui_manager->CreateLabel(100, 550, "FX VOLUME", 50, true, imagePAUSE);
+	labelPAUSE = App->ui_manager->CreateLabel(imagePAUSE->width / 2, 50, "PAUSE", 60, true, imagePAUSE);
 	labelPAUSE->Local_pos.x -= labelPAUSE->width / 2;
-	buttonRESUME = App->ui_manager->CreateButton(120, 100, 2, imagePAUSE, "RESUME", 30);
-	//buttonRESUME->SetPos(120, 100);
-
-	buttonRESUME->SetPos(buttonRESUME->label->Local_pos.x - 80, buttonRESUME->label->Local_pos.y);
-
+	labelGENERALSOUND = App->ui_manager->CreateLabel(100, 350, "GENERAL SOUND", 50, true, imagePAUSE);
+	sliderGENERALSOUND = App->ui_manager->CreateSlider(380, 352, 50, imagePAUSE);
+	checkboxSOUND = App->ui_manager->CreateCheckBox(380, 257, imagePAUSE);
+	if (!App->audio->NoAudio)
+		checkboxSOUND->pressed = true;
+	else checkboxSOUND->pressed = false;
+	labelSOUND = App->ui_manager->CreateLabel(100, 250, "SOUND", 50, true, imagePAUSE);
 }
 
 void j1Scene::PauseMenu(float dt)
 {
-
-
 	
-
-
-	/*if (!Positioned && !MenuDone) { //MENU GOING UP
-		imagePAUSE->Local_pos.y -= 1000 * dt;
-		if (imagePAUSE->Scree_pos.y <= -App->render->camera.y + 80) {
-			Positioned = true;
-			//buttonGOBACKSETTINGS->pressed = false;
-			MenuDone = true;
-		}
+	if (buttonRESUME->pressed) {
+		DeletePauseMenu();
+		GamePaused = false;
 	}
-	if (!Positioned && MenuDone) { //MENU GOING DOWN
-
-		imagePAUSE->Local_pos.y += 2000 * dt;
-		if (imagePAUSE->Local_pos.y >= -App->render->camera.y + 1225) {
-			MenuDone = false;
-			GamePaused = false;
-			DeletePauseMenu();
-		}
+	if (buttonGOMAINMENU->pressed) {
+		App->fade->FadeToBlack(3.0f);
+		CanStart = true;
+		App->ui_manager->DeleteAllUI();
 	}
-	if (MenuDone) { //MENU LOGIC BUTTONS
-		iPoint mouse;
-		App->input->GetMousePosition(mouse.x, mouse.y);
-		LOG("POSITION X %i POSITION Y %i", buttonRESUME->Scree_pos.x, buttonRESUME->Scree_pos.y);
-		LOG("MOUSE X %i MOUSE Y %i", mouse.x, mouse.y);
-		//buttonRESUME->SetPos(294, 48);
-		if (buttonRESUME->pressed) {
-			Positioned = false;
-		}
-		/*if (buttonRESUME->pressed) {
-			Positioned = false;
-		}
-		if (buttonGOMAINMENU->pressed) {
-			App->fade->FadeToBlack(3.0f);
-			CanStart = true;
-			App->ui_manager->DeleteAllUI();
-		}
-		if (checkboxSOUND->pressed) {
-			App->audio->NoAudio = false;
-			sliderGENERALSOUND->NoUse = false;
-			sliderVOLUMEMUSIC->NoUse = false;
-			sliderVOLUMEFX->NoUse = false;
-			App->audio->general = sliderGENERALSOUND->Value;
-			App->audio->volume = sliderVOLUMEMUSIC->Value;
-			App->audio->fxvolume = sliderVOLUMEFX->Value;
-		}
-		else {
-			App->audio->NoAudio = true;
-			sliderGENERALSOUND->NoUse = true;
-			sliderVOLUMEMUSIC->NoUse = true;
-			sliderVOLUMEFX->NoUse = true;
-		}*/
+	if (checkboxSOUND->pressed) {
+		App->audio->NoAudio = false;
+		sliderGENERALSOUND->NoUse = false;
+		sliderVOLUMEMUSIC->NoUse = false;
+		sliderVOLUMEFX->NoUse = false;
+		App->audio->general = sliderGENERALSOUND->Value;
+		App->audio->volume = sliderVOLUMEMUSIC->Value;
+		App->audio->fxvolume = sliderVOLUMEFX->Value;
+	}
+	else {
+		App->audio->NoAudio = true;
+		sliderGENERALSOUND->NoUse = true;
+		sliderVOLUMEMUSIC->NoUse = true;
+		sliderVOLUMEFX->NoUse = true;
+	}
 }
 
 
@@ -355,7 +337,6 @@ void j1Scene::PauseMenu(float dt)
 
 void j1Scene::DeletePauseMenu()
 {
-	/*
 	App->ui_manager->DeleteUI_Element(imagePAUSE);
 	App->ui_manager->DeleteUI_Element(buttonRESUME);
 	App->ui_manager->DeleteUI_Element(buttonGOMAINMENU);
@@ -370,13 +351,10 @@ void j1Scene::DeletePauseMenu()
 	App->ui_manager->DeleteUI_Element(sliderGENERALSOUND);
 	App->ui_manager->DeleteUI_Element(checkboxSOUND);
 	App->ui_manager->DeleteUI_Element(labelSOUND);
-	*/
-
-	App->ui_manager->DeleteUI_Element(imagePAUSE);
-	App->ui_manager->DeleteUI_Element(labelPAUSE);
-	App->ui_manager->DeleteUI_Element(buttonRESUME);
-
-
+	App->ui_manager->DeleteUI_Element(sliderGENERALSOUND->image);
+	App->ui_manager->DeleteUI_Element(sliderVOLUMEFX->image);
+	App->ui_manager->DeleteUI_Element(sliderVOLUMEMUSIC->image);
+	App->ui_manager->DeleteUI_Element(image);
 }
 
 

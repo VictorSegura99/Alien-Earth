@@ -75,6 +75,7 @@ public:
 	UI_Element* labelGENERALSOUND = nullptr;
 	UI_Element* checkboxSOUND = nullptr;
 	UI_Element* labelSOUND = nullptr;
+	UI_Element* image = nullptr;
 	int x = 170;
 	int y = 950;
 	bool Positioned = false;

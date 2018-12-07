@@ -18,7 +18,7 @@ public:
 	void LookLimits();
 
 private:
-	UI_Element* image = nullptr;
+
 	bool repeat2 = true;
 	int distance;
 	iPoint mouse_pos;
