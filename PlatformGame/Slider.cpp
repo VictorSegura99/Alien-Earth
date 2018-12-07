@@ -23,7 +23,7 @@ Slider::Slider(int x, int y, int SliderPos, UI_Element* parent) : UI_Element(x, 
 	image->CanBeMoved = false;
 	image->SetSpritesData({ 553,89,200,49 });
 	image->type = SLIDER;
-	Scree_pos.y = y + image->height / 2 - height / 2;
+	Scree_pos.y = y + image->height / 2 - height / 2 -1000;
 	Value = SliderPos;
 	int RelPos = image->width - 15;
 	
