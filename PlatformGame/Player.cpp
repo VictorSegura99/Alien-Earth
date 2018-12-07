@@ -270,10 +270,10 @@ bool Player::Load(pugi::xml_node& player)
 	position.x = player.child("position").attribute("x").as_float();
 	position.y = player.child("position").attribute("y").as_float() - 50.0f;
 	God = player.child("god").attribute("value").as_bool();
+	lives = player.child("lives").attribute("value").as_int();
 	
-	
-	ChangePlayer(player.child("NumPlayer").attribute("value").as_int());
-	
+	ChangePlayer(player.child("NumPlayer").attribute("value").as_int(), true);
+	Lives();
 	App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 	
 
@@ -285,6 +285,7 @@ bool Player::Save(pugi::xml_node& player) const
 	player.child("position").append_attribute("y") = position.y;
 	player.append_child("god").append_attribute("value") = God;
 	player.append_child("NumPlayer").append_attribute("value") = NumPlayer;
+	player.append_child("lives").append_attribute("value") = lives;
 
 	return true;
 }

@@ -147,7 +147,7 @@ bool j1Choose::PostUpdate()
 	BROFILER_CATEGORY("Menu: PostUpdate", Profiler::Color::Aquamarine);
 	bool ret = true;
 	if (!GameOn) {
-		if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN || Exit)
+		if (Exit)
 			ret = false;
 	}
 	if (GoStart) {

@@ -117,6 +117,10 @@ bool j1Scene::Update(float dt)
 	}
 	App->map->Draw();
 
+	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) {
+
+	}
+		
 	return true;
 }
 
@@ -126,8 +130,6 @@ bool j1Scene::PostUpdate()
 	BROFILER_CATEGORY("Scene: PostUpdate", Profiler::Color::LightYellow);
 	bool ret = true;
 
-	if(App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		ret = false;
 	if (CanStart && App->fade->current_step == App->fade->fade_from_black) {
 		App->entitymanager->GetPlayerData()->lives = 3;
 		CanStart = false;
