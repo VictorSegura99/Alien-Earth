@@ -103,14 +103,14 @@ void UI_Element::SetPos(int x, int y)
 
 void UI_Element::SetSpritesData(SDL_Rect Idle, SDL_Rect Hover, SDL_Rect Pressed)
 {
-	if (type != IMAGE) {
+	if (type != IMAGE && type != PLAYERUI) {
 		NoPressedNoMouseOn = Idle;
 		MouseOn = Hover;
 		this->Pressed = Pressed;
 		width = Hover.w;
 		height = Hover.h;
 	}
-	else if (type == IMAGE) {
+	else  {
 		png_pos = Idle;
 		width = Idle.w;
 		height = Idle.h;

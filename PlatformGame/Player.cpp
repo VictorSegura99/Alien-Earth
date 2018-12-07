@@ -1131,21 +1131,37 @@ void Player::SetUI()
 {
 	//LIVES
 	live = App->ui_manager->CreateImage(900, 22, false);
-	if (NumPlayer == 0)
+	live->type = PLAYERUI;
+	if (NumPlayer == 0) {
 		live->SetSpritesData({ 425,977,47,47 });
-	else if (NumPlayer==1)
+	}
+	else if (NumPlayer == 1) {
 		live->SetSpritesData({ 473,977,47,47 });
-	else if (NumPlayer == 2)
+	}
+		
+	else if (NumPlayer == 2) {
 		live->SetSpritesData({ 521,977,47,47 });
+	}
+		
 	livenumber = App->ui_manager->CreateImage(950, 17, false);
-	if (lives == 3)
+	livenumber->type = PLAYERUI;
+	if (lives == 3) {
 		livenumber->SetSpritesData({ 1252,1950,47,50 });
-	else if (lives == 2)
+	}
+		
+	else if (lives == 2) {
 		livenumber->SetSpritesData({ 1303,1950,47,50 });
-	else if (lives == 1)
+	}
+		
+	else if (lives == 1) {
 		livenumber->SetSpritesData({ 1355,1950,36,50 });
-	else if (lives == 0)
+	}
+		
+	else if (lives == 0) {
 		livenumber->SetSpritesData({ 1399,1950,47,50 });
+	
+	}
+		
 	//
 }
 

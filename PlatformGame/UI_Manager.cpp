@@ -53,7 +53,10 @@ bool UI_Manager::Update(float dt)
 		if (elements[i] != nullptr && elements[i]->type != LABEL && elements[i]->type != BUTTON && elements[i]->type != SLIDER && elements[i]->type != CHECKBOX)
 			elements[i]->Draw(dt, atlas);
 	}
-
+	for (int i = 0; i < elements.Count(); i++) {
+		if (elements[i] != nullptr && elements[i]->type == PLAYERUI)
+			elements[i]->Draw(dt, atlas);
+	}
 	for (int i = 0; i < elements.Count(); i++) {
 		if (elements[i] != nullptr && elements[i]->type == BUTTON)
 			elements[i]->Draw(dt, atlas);

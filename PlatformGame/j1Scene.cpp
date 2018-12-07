@@ -307,8 +307,8 @@ void j1Scene::PauseMenu(float dt)
 {
 	
 	if (buttonRESUME->pressed) {
-		App->ui_manager->DeleteAllUI();
-		App->entitymanager->GetPlayerData()->SetUI();
+		App->ui_manager->DeleteAllUIExeptPlayer();
+		//App->entitymanager->GetPlayerData()->SetUI();
 		GamePaused = false;
 	}
 	if (buttonGOMAINMENU->pressed) {
