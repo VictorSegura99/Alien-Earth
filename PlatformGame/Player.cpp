@@ -11,7 +11,7 @@
 #include "EntityManager.h"
 #include "j1Timer.h"
 #include "j1Scene.h"
-#include "j1Choose.h"
+#include "j1Menu.h"
 #include "Player.h"
 #include "j1Particles.h"
 #include "UI_Element.h"
@@ -608,8 +608,8 @@ void Player::Die()//What happens when the player die
 		if (App->scene->KnowMap == 1) {
 			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 		}
+		lives -= 1;
 		Spawn();
-
 	}
 }
 
@@ -622,14 +622,13 @@ void Player::Fall()//What happens when the player falls
 	if (App->scene->KnowMap == 1) {
 		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 	}
-	
+	lives -= 1;
 	Spawn();
 
 }
 
 void Player::Spawn()
 {
-	lives -= 1;
 	if (lives >= 0) {
 		Lives();
 		NoInput = false;
@@ -664,6 +663,7 @@ void Player::Spawn()
 	}
 	
 }
+
 void Player::ChangeLiveSprite()
 {
 	if (NumPlayer == 0)
@@ -673,6 +673,7 @@ void Player::ChangeLiveSprite()
 	else if (NumPlayer == 2)
 		live->SetSpritesData({ 521,977,47,47 });
 }
+
 Animation Player::LoadPushbacks(int playernumber, pugi::xml_node& config, p2SString NameAnim) const
 {
 	p2SString XML_Name_Player_Anims;

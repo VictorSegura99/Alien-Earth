@@ -14,7 +14,7 @@
 #include "Entity.h"
 #include "EntityManager.h"
 #include "j1Collision.h"
-#include "j1Choose.h"
+#include "j1Menu.h"
 #include "j1FadeToBlack.h"
 
 #include "Brofiler/Brofiler.h"
@@ -41,6 +41,7 @@ bool j1Scene::Awake(pugi::xml_node& config)
 		map_name.add(data);
 	}
 	Song = config.child("song").text().as_string();
+	SongMenu = config.child("songmenu").text().as_string();
 	tutorial[0] = config.child("tutorialJeff").text().as_string();
 	tutorial[1] = config.child("tutorialJane").text().as_string();
 	tutorial[2] = config.child("tutorialJerry").text().as_string();
@@ -54,7 +55,6 @@ bool j1Scene::Start()
 {
 	BROFILER_CATEGORY("Scene: Start", Profiler::Color::LightYellow);
 	//App->map->Load(map_name.start->data->GetString());
-	App->audio->PlayMusic(Song.GetString());
 	//active = false;
 	TutorialJeff = App->tex->Load(tutorial[0].GetString());
 	TutorialJane = App->tex->Load(tutorial[1].GetString());
@@ -143,12 +143,12 @@ bool j1Scene::PostUpdate()
 		App->scene->active = false;
 		App->collision->active = false;
 		App->map->active = false;
-		App->choose->start = false;
-		App->choose->GameOn = false;
+		App->menu->start = false;
+		App->menu->GameOn = false;
 		App->entitymanager->GetPlayerData()->Intro = true;
 		App->entitymanager->GetPlayerData()->NoInput = false;
 		App->entitymanager->GetPlayerData()->DeleteUI();
-		App->choose->Start();
+		App->menu->Start();
 	}
 	return ret;
 }
@@ -209,6 +209,8 @@ void j1Scene::SpawnEnemies()
 				App->entitymanager->CreateEntity(EntityType::COIN, 1173, 442);
 				App->entitymanager->CreateEntity(EntityType::COIN, 1395, 510);
 			}
+			if(App->entitymanager->GetPlayerData()->NumPlayer == 2|| App->entitymanager->GetPlayerData()->NumPlayer == 1)
+				App->entitymanager->CreateEntity(EntityType::COIN, 1850, 552);
 			App->entitymanager->CreateEntity(EntityType::COIN, 2416, 818);
 			App->entitymanager->CreateEntity(EntityType::COIN, 3057, 538);
 			App->entitymanager->CreateEntity(EntityType::COIN, 3445, 608);
@@ -222,7 +224,6 @@ void j1Scene::SpawnEnemies()
 			App->entitymanager->CreateEntity(EntityType::COIN, 9140, 680);
 			App->entitymanager->CreateEntity(EntityType::COIN, 9947, 615);
 			App->entitymanager->CreateEntity(EntityType::COIN, 10500, 685);
-
 		}
 		if (KnowMap == 1) {
 			App->entitymanager->CreateEntity(EntityType::SPIDER, 1300, 300);
@@ -230,12 +231,31 @@ void j1Scene::SpawnEnemies()
 			App->entitymanager->CreateEntity(EntityType::BAT, 3500, 300);
 			App->entitymanager->CreateEntity(EntityType::BAT, 7500, 700);
 			App->entitymanager->CreateEntity(EntityType::SPIDER, 6600, 700);
+
+			//Coins
+			App->entitymanager->CreateEntity(EntityType::COIN, 768, 330);
+			App->entitymanager->CreateEntity(EntityType::COIN, 1274, 540);
+			App->entitymanager->CreateEntity(EntityType::COIN, 1677, 679);
+			App->entitymanager->CreateEntity(EntityType::COIN, 2381, 688);
+			App->entitymanager->CreateEntity(EntityType::COIN, 2878, 900);
+			App->entitymanager->CreateEntity(EntityType::COIN, 3300, 777);
+			App->entitymanager->CreateEntity(EntityType::COIN, 3918, 692);
+			App->entitymanager->CreateEntity(EntityType::COIN, 3090, 480);
+			App->entitymanager->CreateEntity(EntityType::COIN, 4247, 126);
+			App->entitymanager->CreateEntity(EntityType::COIN, 4450, 600);
+			App->entitymanager->CreateEntity(EntityType::COIN, 4930, 969);
+			App->entitymanager->CreateEntity(EntityType::COIN, 5530, 342);
+			App->entitymanager->CreateEntity(EntityType::COIN, 6730, 905);
+			App->entitymanager->CreateEntity(EntityType::COIN, 7537, 900);
+			App->entitymanager->CreateEntity(EntityType::COIN, 8210, 712);
+			App->entitymanager->CreateEntity(EntityType::COIN, 10014, 1034);
 		}
 	}
 	if (KnowMap == 0) {
 		App->entitymanager->CreateEntity(EntityType::MOVING_PLATFORM, 7480, 900);
 		App->entitymanager->CreateEntity(EntityType::MOVING_PLATFORM, 8300, 900);
 	}
+
 }
 
 void j1Scene::CreatePauseMenu()
@@ -358,3 +378,6 @@ void j1Scene::DeletePauseMenu()
 
 
 }
+
+
+

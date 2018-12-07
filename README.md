@@ -75,6 +75,7 @@ Laser sfx: https://www.zapsplat.com/music/laser-noise-synth-vintage-12/
 SpiderDeath and Bat death sfx: https://freesound.org/people/columbia23/sounds/395395/
 Bomb Jump sfx: http://soundbible.com/1414-Batman-Punch.html
 Background Music: https://www.bensound.com/royalty-free-music/track/retro-soul
+Menu Music: https://www.youtube.com/watch?v=XVHVFwwuOa0&ab_channel=RossBugden-Music
 Menu Font: https://www.dafont.com/es/sunday-afternoon.font
 Spacebar Sprite: https://www.facebook.com/suepeisueba/
 

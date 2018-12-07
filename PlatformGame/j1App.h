@@ -17,7 +17,7 @@ class j1Scene;
 class j1Map;
 class j1Collision;
 class EntityManager;
-class j1Choose;
+class j1Menu;
 class j1Particles;
 class j1PathFinding;
 class UI_Manager;
@@ -99,7 +99,7 @@ public:
 	j1Map*				map;
 	j1Collision*		collision;
 	EntityManager*		entitymanager;
-	j1Choose*			choose;
+	j1Menu*				menu;
 	j1Particles*		particles;
 	j1PathFinding*		pathfinding;
 	UI_Manager*			ui_manager;

@@ -14,7 +14,7 @@
 #include "j1App.h"
 #include "EntityManager.h"
 #include "j1Collision.h"
-#include "j1Choose.h"
+#include "j1Menu.h"
 #include "j1Particles.h"
 #include "j1Pathfinding.h"
 #include "UI_Manager.h"
@@ -38,7 +38,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	map = new j1Map();
 	collision = new j1Collision();
 	entitymanager = new EntityManager();
-	choose = new j1Choose();
+	menu = new j1Menu();
 	particles = new j1Particles();
 	pathfinding = new j1PathFinding();
 	ui_manager = new UI_Manager();
@@ -61,11 +61,11 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(collision);
 
 	
-	
+
 	AddModule(particles);
 	AddModule(entitymanager);
 	AddModule(ui_manager);
-	AddModule(choose);
+	AddModule(menu);
 	AddModule(fade);
 	// render last to swap buffer
 	AddModule(render);
