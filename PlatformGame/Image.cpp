@@ -10,8 +10,8 @@
 Image::Image(int x, int y, bool WantToBeMoved, UI_Element* parent) : UI_Element(x, y, parent)
 {
 	if (!WantToBeMoved) {
-		Distance.x = Local_pos.x - (-App->render->camera.x);
-		Distance.y = Local_pos.y - (-App->render->camera.y);
+		Distance.x = Scree_pos.x - (-App->render->camera.x);
+		Distance.y = Scree_pos.y - (-App->render->camera.y);
 	}
 	this->WantToBeMoved = WantToBeMoved;
 	width = WIDTH;
@@ -27,8 +27,8 @@ Image::~Image()
 bool Image::Update(float dt)
 {
 	if (!WantToBeMoved) {
-		Local_pos.x = (-App->render->camera.x) + Distance.x;
-		Local_pos.y = (-App->render->camera.y) + Distance.y;
+		Scree_pos.x = (-App->render->camera.x) + Distance.x;
+		Scree_pos.y = (-App->render->camera.y) + Distance.y;
 	}
 
 	return true;
