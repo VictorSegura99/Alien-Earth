@@ -480,7 +480,7 @@ void j1Choose::CreateSettingsButtons()
 	labelVOLUMEFX = App->ui_manager->CreateLabel(100, 550, "FX VOLUME", 50, true, imageSETTINGS);
 	labelSETTINGS = App->ui_manager->CreateLabel(imageSETTINGS->width / 2, 50, "SETTINGS", 60, true, imageSETTINGS);
 	labelSETTINGS->Local_pos.x -= labelSETTINGS->width / 2;
-	labelGENERALSOUND = App->ui_manager->CreateLabel(100, 350, "GENERAL SOUND", App->audio->general, true, imageSETTINGS);
+	labelGENERALSOUND = App->ui_manager->CreateLabel(100, 350, "GENERAL SOUND", 50, true, imageSETTINGS);
 	sliderGENERALSOUND = App->ui_manager->CreateSlider(380, 352, 50, imageSETTINGS);
 	checkboxSOUND = App->ui_manager->CreateCheckBox(380, 257, imageSETTINGS);
 	if (!App->audio->NoAudio)

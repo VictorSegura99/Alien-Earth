@@ -5,6 +5,7 @@
 #include "Entity.h"
 
 struct SDL_Texture;
+class UI_Element;
 
 class j1Scene : public j1Module
 {
@@ -37,6 +38,9 @@ public:
 	bool Save(pugi::xml_node&) const;
 
 	void SpawnEnemies();
+	void CreatePauseMenu();
+	void PauseMenu(float dt);
+	void DeletePauseMenu();
 
 public:
 	int KnowMap = 0; // KnowMap == 0 Map1 is working // KnowMap == 1 Map2 is working  
@@ -52,6 +56,25 @@ public:
 	bool WantToSpawnEnemies = true;
 	bool GamePaused = false;
 	
+	//MENU PAUSA
+
+	UI_Element* imagePAUSE = nullptr;
+	UI_Element* buttonRESUME = nullptr;
+	UI_Element* buttonGOMAINMENU = nullptr;
+	UI_Element* sliderVOLUMEMUSIC = nullptr;
+	UI_Element* labelMUSICVOLUME = nullptr;
+	UI_Element* sliderVOLUMEFX = nullptr;
+	UI_Element* labelPAUSE = nullptr;
+	UI_Element* labelVOLUMEFX = nullptr;
+	UI_Element* sliderGENERALSOUND = nullptr;
+	UI_Element* labelGENERALSOUND = nullptr;
+	UI_Element* checkboxSOUND = nullptr;
+	UI_Element* labelSOUND = nullptr;
+	int x = 170;
+	int y = 950;
+	bool Positioned = false;
+	bool MenuDone = false;
+
 };
 
 #endif // __j1SCENE_H__

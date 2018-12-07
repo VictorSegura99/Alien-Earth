@@ -6,6 +6,7 @@
 #include "j1Input.h"
 #include "UI_Manager.h"
 #include "j1Audio.h"
+#include "j1Window.h"
 
 UI_Element::UI_Element()
 {
@@ -30,7 +31,8 @@ UI_Element::UI_Element(int x, int y, UI_Element* parent) : Local_pos(x,y), paren
 
 
 	if (parent == nullptr) {
-		Scree_pos = Local_pos;
+		Scree_pos.x = x + -App->render->camera.x;
+		Scree_pos.y = y + -App->render->camera.y;
 	}
 	else {
 		Scree_pos.x = parent->Scree_pos.x + Local_pos.x;
@@ -60,11 +62,11 @@ bool UI_Element::CleanUp()
 void UI_Element::Draw(float dt, SDL_Texture* texture)
 {
 	if (parent == nullptr) {
-		Scree_pos = Local_pos;
+		Scree_pos.x = Local_pos.x + -App->render->camera.x;
+		Scree_pos.y = Local_pos.y + -App->render->camera.y;
 	}
 	else {
-		Scree_pos.x = parent->Scree_pos.x + Local_pos.x;
-		Scree_pos.y = parent->Scree_pos.y + Local_pos.y;
+		SetPos(parent->Scree_pos.x + Local_pos.x, parent->Scree_pos.y + Local_pos.y);
 	}
 	if (WantToRender) {
 		if (type != LABEL)
@@ -87,6 +89,13 @@ bool UI_Element::IsMouseOn()
 		return true;
 	}
 	return false;
+}
+
+void UI_Element::SetPos(int x, int y)
+{
+	Scree_pos.x = x + -App->render->camera.x;
+	Scree_pos.y = y + -App->render->camera.y;
+ 	int i = 0;
 }
 
 void UI_Element::SetSpritesData(SDL_Rect Idle, SDL_Rect Hover, SDL_Rect Pressed)

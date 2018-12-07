@@ -28,8 +28,7 @@ Button::Button(int x, int y, int type, UI_Element* parent, p2SString name, int s
 }
 
 Button::~Button()
-{
-	
+{	
 }
 
 bool Button::Update(float dt)
