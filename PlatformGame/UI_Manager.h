@@ -43,6 +43,7 @@ public:
 	void DeleteSliders();
 	void DeleteAllUI();
 	bool DeleteUI_Element(UI_Element* element);
+	void DeleteAllUIExeptPlayer();
 
 private:
 

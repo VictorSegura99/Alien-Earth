@@ -263,4 +263,17 @@ bool UI_Manager::DeleteUI_Element(UI_Element * element)
 	return true;
 }
 
+void UI_Manager::DeleteAllUIExeptPlayer()
+{
+	for (int i = elements.Count() - 1; i >= 0; --i)
+	{
+		if (elements[i] != nullptr && elements[i]->type != PLAYERUI) {
+			elements[i]->CleanUp();
+			delete(elements[i]);
+			elements[i] = nullptr;
+			elements.RemoveAt(i);
+		}
+	}
+}
+
 

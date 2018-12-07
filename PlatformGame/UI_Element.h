@@ -18,7 +18,8 @@ enum UI_Elements
 	CHECKBOX,
 	IMAGE,
 	LABEL,
-	SLIDER
+	SLIDER,
+	PLAYERUI
 };
 
 

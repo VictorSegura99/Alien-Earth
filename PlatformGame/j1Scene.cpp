@@ -307,7 +307,8 @@ void j1Scene::PauseMenu(float dt)
 {
 	
 	if (buttonRESUME->pressed) {
-		DeletePauseMenu();
+		App->ui_manager->DeleteAllUI();
+		App->entitymanager->GetPlayerData()->SetUI();
 		GamePaused = false;
 	}
 	if (buttonGOMAINMENU->pressed) {
@@ -331,9 +332,6 @@ void j1Scene::PauseMenu(float dt)
 		sliderVOLUMEFX->NoUse = true;
 	}
 }
-
-
-
 
 void j1Scene::DeletePauseMenu()
 {
