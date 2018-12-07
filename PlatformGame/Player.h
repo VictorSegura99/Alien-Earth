@@ -59,8 +59,9 @@ public:
 	void Die();
 	void Fall();
 	void Spawn();
+	void ChangeLiveSprite();
 	Animation LoadPushbacks(int playernumber, pugi::xml_node&, p2SString NameAnim) const;
-	void ChangePlayer(const int playernumber);
+	void ChangePlayer(const int playernumber, bool InGame = false);
 	void GoJump(float dt);
 	void GoSwim(float dt);
 	void GoClimb(float dt);

@@ -189,7 +189,7 @@ bool Player::Update(float dt)
 	DT = dt;
 
 	Camera(dt);
-	Lives();
+	
 
 	if (!God && !Intro) {
 		if (!TouchingGround && !dashing && !CanSwim) {
@@ -251,13 +251,13 @@ bool Player::PostUpdate()
 	BROFILER_CATEGORY("Player: PostUpdate", Profiler::Color::Green);
 	if (!Intro) {
 		if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) {
-			ChangePlayer(0);
+			ChangePlayer(0, true);
 		}
 		if (App->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) {
-			ChangePlayer(1);
+			ChangePlayer(1, true);
 		}
 		if (App->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) {
-			ChangePlayer(2);
+			ChangePlayer(2, true);
 		}
 	}
 	return true;
@@ -289,6 +289,7 @@ bool Player::Save(pugi::xml_node& player) const
 }
 void Player::Draw(float dt)
 {
+		
 		if (App->scene->KnowMap == 0) {
 			switch (NumPlayer) {
 			case 0:
@@ -597,7 +598,6 @@ void Player::Die()//What happens when the player die
 		if (App->scene->KnowMap == 1) {
 			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 		}
-		lives -= 1;
 		Spawn();
 
 	}
@@ -612,13 +612,15 @@ void Player::Fall()//What happens when the player falls
 	if (App->scene->KnowMap == 1) {
 		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 	}
-	lives -= 1;
+	
 	Spawn();
 
 }
 
 void Player::Spawn()
 {
+	lives -= 1;
+	Lives();
 	NoInput = false;
 	CanJump = true;
 	CanClimb = false;
@@ -637,6 +639,15 @@ void Player::Spawn()
 	Death[NumPlayer].current_frame = 0.0f;
 	Death[NumPlayer].loops = 0;
 	App->scene->SpawnEnemies();
+}
+void Player::ChangeLiveSprite()
+{
+	if (NumPlayer == 0)
+		live->SetSpritesData({ 425,977,47,47 });
+	else if (NumPlayer == 1)
+		live->SetSpritesData({ 473,977,47,47 });
+	else if (NumPlayer == 2)
+		live->SetSpritesData({ 521,977,47,47 });
 }
 Animation Player::LoadPushbacks(int playernumber, pugi::xml_node& config, p2SString NameAnim) const
 {
@@ -668,7 +679,7 @@ Animation Player::LoadPushbacks(int playernumber, pugi::xml_node& config, p2SStr
 	return anim;
 }
 
-void Player::ChangePlayer(const int playernumber)
+void Player::ChangePlayer(const int playernumber, bool InGame)
 {
 	BROFILER_CATEGORY("Player: ChangePlayer", Profiler::Color::Blue);
 	if (NumPlayer != playernumber || texture == nullptr ) {
@@ -676,6 +687,8 @@ void Player::ChangePlayer(const int playernumber)
 		texture = App->tex->Load(sprites_name[playernumber].GetString());
 		App->collision->ColliderCleanUpPlayer();
 		NumPlayer = playernumber;
+		if (InGame)
+			ChangeLiveSprite();
 		current_animation = &idle[NumPlayer];
 		switch (playernumber) {
 		case 0:
@@ -1099,6 +1112,16 @@ void Player::SetUI()
 	else if (NumPlayer == 2)
 		live->SetSpritesData({ 521,977,47,47 });
 	livenumber = App->ui_manager->CreateImage(950, 17, false);
+	if (lives == 3)
+		livenumber->SetSpritesData({ 1252,1950,47,50 });
+	else if (lives == 2)
+		livenumber->SetSpritesData({ 1303,1950,47,50 });
+	else if (lives == 1)
+		livenumber->SetSpritesData({ 1355,1950,36,50 });
+	else if (lives == 0)
+		livenumber->SetSpritesData({ 1399,1950,47,50 });
+	else
+		livenumber->SetSpritesData({ NULL });
 	
 }
 
@@ -1148,7 +1171,7 @@ void Player::Dash::ResetDashAnims()
 }
 
 void Player::Lives() {
-
+	
 	if(lives<0){
 		App->fade->FadeToBlack(3.0f);
 		App->scene->CanStart = true;
