@@ -21,10 +21,11 @@ public:
 	
 	virtual bool Start() { return true; };
 	virtual bool PreUpdate() { return true; };
-	virtual bool Update(float dt) { return true; };
+	virtual bool Update(float dt);
 	virtual bool PostUpdate() { return true; };
 	virtual bool CleanUp() { return true; };
 	virtual bool Awake(pugi::xml_node&) { return true; };
+
 	virtual void Draw(float dt);
 	virtual bool Load(pugi::xml_node&) { return true; };
 	virtual bool Save(pugi::xml_node&) const { return true; };

@@ -50,7 +50,7 @@ public:
 	bool CanStart = false;
 	Entity* bat1 = nullptr;
 	bool WantToSpawnEnemies = true;
-
+	bool GamePaused = false;
 	
 };
 

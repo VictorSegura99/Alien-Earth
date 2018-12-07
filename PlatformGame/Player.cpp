@@ -145,103 +145,107 @@ bool Player::Start()
 bool Player::PreUpdate() //Here we preload the input functions to determine the state of the player
 {
 	BROFILER_CATEGORY("Player: PreUpdate", Profiler::Color::Green);
-	if (!God&&!Intro) {
-		if (!NoInput) {
-			if (!dashing) {
+	if (!App->scene->GamePaused) {
+		if (!God && !Intro) {
+			if (!NoInput) {
+				if (!dashing) {
+					WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
+					WalkRight = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
+				}
+				GoUp = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
+				GoDown = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
+				Hability = App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN;
+				if (!God)
+					Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
+				else Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT;
+				if (!WalkLeft && !WalkRight && !CanSwim && !CanClimb)
+					Idle = true;
+				else
+					Idle = false;
+			}
+		}
+		else if (God && !Intro)
+		{
+			if (!NoInput) {
 				WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
 				WalkRight = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
+				if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+					position.y -= 500.0f*DT;
+				if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+					position.y += 500.0f*DT;
+				if (!WalkLeft && !WalkRight && !CanSwim && !CanClimb)
+					Idle = true;
+				else
+					Idle = false;
 			}
-			GoUp = App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT;
-			GoDown = App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT;
-			Hability = App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN;
-			if (!God)
-				Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN;
-			else Jump = App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT;
-			if (!WalkLeft && !WalkRight && !CanSwim && !CanClimb)
-				Idle = true;
-			else
-				Idle = false;
+		}
+		if (!Intro) {
+			if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+				God = !God;
 		}
 	}
-	else if (God && !Intro)
-	{
-		if (!NoInput) {
-			WalkLeft = App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT;
-			WalkRight = App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT;
-			if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-				position.y -= 500.0f*DT;
-			if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-				position.y += 500.0f*DT;
-			if (!WalkLeft && !WalkRight && !CanSwim && !CanClimb)
-				Idle = true;
-			else
-				Idle = false;
-		}
-	}
-	if (!Intro) {
-		if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
-			God = !God;
-	}
+
 	return true;
 }
 bool Player::Update(float dt)
 {
 	BROFILER_CATEGORY("Player: Update", Profiler::Color::Green);
 	DT = dt;
+	if (!App->scene->GamePaused) {
+		Camera(dt);
 
-	Camera(dt);
-	
 
-	if (!God && !Intro) {
-		if (!TouchingGround && !dashing && !CanSwim) {
-			acceleration.y = gravity * dt;
-			LOG("Acceleration %f", acceleration.y);
+		if (!God && !Intro) {
+			if (!TouchingGround && !dashing && !CanSwim) {
+				acceleration.y = gravity * dt;
+				LOG("Acceleration %f", acceleration.y);
+			}
+			else
+				acceleration.y = 0;
+			position.x += velocity.x;
+			position.y -= velocity.y + acceleration.y;
 		}
-		else
-			acceleration.y = 0;
-		position.x += velocity.x;
-		position.y -= velocity.y + acceleration.y;
-	}
-	else if (Intro) {
-		position.y -= IntroFall * dt;
-		App->audio->PlayFx(ovnifx);
-	}
-	
-	if (!dashing) {
+		else if (Intro) {
+			position.y -= IntroFall * dt;
+			App->audio->PlayFx(ovnifx);
+		}
+
+		if (!dashing) {
+			if (NumPlayer == 0)
+				DoubleJump(dt);
+			GoJump(dt);
+			GoSwim(dt);
+			GoClimb(dt);
+			Move_Left_Right(dt);
+			if (NumPlayer == 1)
+				ShootLaser(dt);
+		}
+		if (NumPlayer == 2)
+			DoDash(dt);
 		if (NumPlayer == 0)
-			DoubleJump(dt);
-		GoJump(dt);
-		GoSwim(dt);
-		GoClimb(dt);
-		Move_Left_Right(dt);
-		if (NumPlayer == 1)
-			ShootLaser(dt);
+			BottomFall(dt);
+
+		if (death && !God) {
+			death = false;
+			Die();
+		}
+		if (fall && !God) {
+			fall = false;
+			if (NumPlayer == 0 || NumPlayer == 2)
+				App->audio->PlayFx(deathfx2);
+			else
+				App->audio->PlayFx(deathfx);
+			Fall();
+		}
+
+		if (coll != nullptr)
+			coll->SetPos(position.x, position.y);
+
+		LOG("Position X: %f", position.x);
+		LOG("Position Y: %f", position.y);
+
+		TouchingGround = false;
 	}
-	if (NumPlayer == 2)
-		DoDash(dt);
-	if (NumPlayer == 0)
-		BottomFall(dt);
-
-	if (death && !God) {
-		death = false;
-		Die();
-	}
-	if (fall && !God) {
-		fall = false;
-		if (NumPlayer == 0 || NumPlayer == 2)
-			App->audio->PlayFx(deathfx2);
-		else
-			App->audio->PlayFx(deathfx);
-		Fall();
-	}
-
-	if (coll != nullptr)
-		coll->SetPos(position.x, position.y);
-
-	LOG("Position X: %f", position.x);
-	LOG("Position Y: %f", position.y);
-
-	TouchingGround = false;
 
 
 	return true;
@@ -250,7 +254,7 @@ bool Player::Update(float dt)
 bool Player::PostUpdate()
 {
 	BROFILER_CATEGORY("Player: PostUpdate", Profiler::Color::Green);
-	if (!Intro) {
+	if (!Intro && !App->scene->GamePaused) {
 		if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) {
 			ChangePlayer(0, true);
 		}
@@ -314,14 +318,18 @@ void Player::Draw(float dt)
 			}
 		}
 		if (current_animation == &dashR.FinishDash) {
-			App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame(dt)));
+			if (!App->scene->GamePaused)
+				App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->GetCurrentFrame(dt)));
+			else App->render->Blit(texture, position.x - playerwidth, position.y, &(current_animation->frames[current_animation->SeeCurrentFrame()]));
 		}
 		else {
-			App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
+			if (!App->scene->GamePaused)
+				App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
+			else App->render->Blit(texture, position.x, position.y, &(current_animation->frames[current_animation->SeeCurrentFrame()]));
 		}
 		if (God) {
 			if (current_animation == &GoRight[NumPlayer] || current_animation == &idle[NumPlayer] || current_animation == &jumpR[NumPlayer] || current_animation == &Climb[NumPlayer] || current_animation == &ClimbIdle[NumPlayer] || current_animation == &SwimRight[NumPlayer])
-				App->render->Blit(Godmode, position.x - ringpositionx, position.y - ringpositiony);
+					App->render->Blit(Godmode, position.x - ringpositionx, position.y - ringpositiony);
 			else if (current_animation == &GoLeft[NumPlayer] || current_animation == &idle2[NumPlayer] || current_animation == &jumpL[NumPlayer] || current_animation == &SwimLeft[NumPlayer])
 				App->render->Blit(Godmode, position.x + ringpositionx, position.y - ringpositiony, NULL, SDL_FLIP_HORIZONTAL);
 		}

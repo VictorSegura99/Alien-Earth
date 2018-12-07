@@ -27,10 +27,15 @@ const Collider * Entity::GetCollider() const
 	return coll;
 }
 
+bool Entity::Update(float dt)
+{
+	return true;
+}
+
 void Entity::Draw(float dt)
 {
 	
-	
+
 }
 
 void Entity::OnCollision(Collider* c2)

@@ -12,6 +12,7 @@
 #include "j1Pathfinding.h"
 #include "j1Map.h"
 #include "j1Audio.h"
+#include "j1Scene.h"
 
 Spider::Spider(int x, int y) : Entity(x,y)
 {
@@ -81,67 +82,69 @@ bool Spider::PostUpdate()
 bool Spider::Update(float dt)
 {
 	BROFILER_CATEGORY("Spider: Update", Profiler::Color::Green);
-	if (coll == nullptr)
-		coll = App->collision->AddCollider({ 0,0,72,53 }, COLLIDER_ENEMY_SPIDER, (j1Module*)App->entitymanager);
-	coll->SetPos(position.x, position.y);
-	if (!TouchingGround && !death) {
-		acceleration.y = gravity * dt;
-	}
-	else
-		acceleration.y = 0;
-	position.y -= velocity.y + acceleration.y;
-	AnimationLogic();
+	if (!App->scene->GamePaused) {
+		if (coll == nullptr)
+			coll = App->collision->AddCollider({ 0,0,72,53 }, COLLIDER_ENEMY_SPIDER, (j1Module*)App->entitymanager);
+		coll->SetPos(position.x, position.y);
+		if (!TouchingGround && !death) {
+			acceleration.y = gravity * dt;
+		}
+		else
+			acceleration.y = 0;
+		position.y -= velocity.y + acceleration.y;
+		AnimationLogic();
 
-	float x = App->entitymanager->GetPlayerData()->position.x;
-	float y = App->entitymanager->GetPlayerData()->position.y;
-	if (!death) {
-		if (position.x - x < range && x - position.x < range) {
-			iPoint origin = App->map->WorldToMap(position.x, position.y);
-			iPoint destination = App->map->WorldToMap(App->entitymanager->GetPlayerData()->position.x, App->entitymanager->GetPlayerData()->position.y - App->entitymanager->GetPlayerData()->coll->rect.h);
-			if (position.DistanceTo(App->entitymanager->GetPlayerData()->position)) {
-				App->pathfinding->CreatePath(origin, destination);
-				const p2DynArray<iPoint>* entity_path = App->pathfinding->GetLastPath();
-				for (int i = 0; i < entity_path->Count(); i++) {
-					PATH.PushBack(*entity_path->At(i));
+		float x = App->entitymanager->GetPlayerData()->position.x;
+		float y = App->entitymanager->GetPlayerData()->position.y;
+		if (!death) {
+			if (position.x - x < range && x - position.x < range) {
+				iPoint origin = App->map->WorldToMap(position.x, position.y);
+				iPoint destination = App->map->WorldToMap(App->entitymanager->GetPlayerData()->position.x, App->entitymanager->GetPlayerData()->position.y - App->entitymanager->GetPlayerData()->coll->rect.h);
+				if (position.DistanceTo(App->entitymanager->GetPlayerData()->position)) {
+					App->pathfinding->CreatePath(origin, destination);
+					const p2DynArray<iPoint>* entity_path = App->pathfinding->GetLastPath();
+					for (int i = 0; i < entity_path->Count(); i++) {
+						PATH.PushBack(*entity_path->At(i));
+					}
+				}
+				if (PATH.Count() > 1) {
+					velocity.x = -Speed;
+				}
+				if (App->entitymanager->GetPlayerData()->position.x < position.x) {
+					position.x += velocity.x * dt;
+				}
+				else {
+					position.x += -velocity.x * dt;
 				}
 			}
-			if (PATH.Count() > 1) {
-				velocity.x = -Speed;
-			}
-			if (App->entitymanager->GetPlayerData()->position.x < position.x) {
-				position.x += velocity.x * dt;
-			}
 			else {
-				position.x += -velocity.x * dt;
-			}
-		}
-		else {
-			iPoint origin = App->map->WorldToMap(position.x, position.y);
-			iPoint destination = App->map->WorldToMap(original_pos.x, original_pos.y);
-			x = original_pos.x;
-			y = original_pos.y;
-			fPoint originalpos{ x,y };
-			if (position.DistanceTo(originalpos)) {
-				App->pathfinding->CreatePath(origin, destination);
-				const p2DynArray<iPoint>* entity_path = App->pathfinding->GetLastPath();
-				for (int i = 0; i < entity_path->Count(); i++) {
-					PATH.PushBack(*entity_path->At(i));
+				iPoint origin = App->map->WorldToMap(position.x, position.y);
+				iPoint destination = App->map->WorldToMap(original_pos.x, original_pos.y);
+				x = original_pos.x;
+				y = original_pos.y;
+				fPoint originalpos{ x,y };
+				if (position.DistanceTo(originalpos)) {
+					App->pathfinding->CreatePath(origin, destination);
+					const p2DynArray<iPoint>* entity_path = App->pathfinding->GetLastPath();
+					for (int i = 0; i < entity_path->Count(); i++) {
+						PATH.PushBack(*entity_path->At(i));
+					}
+				}
+				if (PATH.Count() > 1) {
+					velocity.x = -60;
+				}
+				if (originalpos.x < position.x) {
+					position.x += velocity.x * dt;
+				}
+				else {
+					position.x += -velocity.x * dt;
 				}
 			}
-			if (PATH.Count() > 1) {
-				velocity.x = -60;
-			}
-			if (originalpos.x < position.x) {
-				position.x += velocity.x * dt;
-			}
-			else {
-				position.x += -velocity.x * dt;
-			}
 		}
+		if (position.x + 100 < -App->render->camera.x)
+			App->entitymanager->DeleteEntity(this);
+		TouchingGround = false;
 	}
-	if (position.x + 100< -App->render->camera.x)
-		App->entitymanager->DeleteEntity(this);
-	TouchingGround = false;
 	return true;
 }
 bool Spider::Load(pugi::xml_node & spider)
@@ -160,8 +163,9 @@ bool Spider::Save(pugi::xml_node & spider) const
 
 void Spider::Draw(float dt)
 {
-
+	if (App->scene->GamePaused)
 		App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
+	else App->render->Blit(texture, position.x, position.y, &(current_animation->frames[current_animation->SeeCurrentFrame()]));
 	
 }
 

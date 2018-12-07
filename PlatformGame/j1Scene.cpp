@@ -118,7 +118,7 @@ bool j1Scene::Update(float dt)
 	App->map->Draw();
 
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) {
-
+		GamePaused = !GamePaused;
 	}
 		
 	return true;

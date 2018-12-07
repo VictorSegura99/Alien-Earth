@@ -6,6 +6,7 @@
 #include "PugiXml\src\pugixml.hpp"
 #include "j1Collision.h"
 #include "EntityManager.h"
+#include "j1Scene.h"
 #include "j1Pathfinding.h"
 #include "Player.h"
 #include "p2DynArray.h"
@@ -78,74 +79,76 @@ bool Bat::PostUpdate()
 bool Bat::Update(float dt)
 {
 	BROFILER_CATEGORY("Bat: Update", Profiler::Color::Green);
+	if (!App->scene->GamePaused) {
+		AnimationLogic();
 
-	AnimationLogic();
+		float x = App->entitymanager->GetPlayerData()->position.x;
+		float y = App->entitymanager->GetPlayerData()->position.y;
 
-	float x = App->entitymanager->GetPlayerData()->position.x;
-	float y = App->entitymanager->GetPlayerData()->position.y;
-
-	if (position.x - x < 400 && x - position.x < 400 && !death) {
-		iPoint origin = App->map->WorldToMap(position.x, position.y);
-		iPoint destination = App->map->WorldToMap(App->entitymanager->GetPlayerData()->position.x, App->entitymanager->GetPlayerData()->position.y - App->entitymanager->GetPlayerData()->coll->rect.h);
-		if (position.DistanceTo(App->entitymanager->GetPlayerData()->position)) {
-			App->pathfinding->CreatePath(origin, destination);
-			const p2DynArray<iPoint>* path = App->pathfinding->GetLastPath();
-			for (int i = 0; i < path->Count(); i++) {
-				PATH.PushBack(*path->At(i));
+		if (position.x - x < 400 && x - position.x < 400 && !death) {
+			iPoint origin = App->map->WorldToMap(position.x, position.y);
+			iPoint destination = App->map->WorldToMap(App->entitymanager->GetPlayerData()->position.x, App->entitymanager->GetPlayerData()->position.y - App->entitymanager->GetPlayerData()->coll->rect.h);
+			if (position.DistanceTo(App->entitymanager->GetPlayerData()->position)) {
+				App->pathfinding->CreatePath(origin, destination);
+				const p2DynArray<iPoint>* path = App->pathfinding->GetLastPath();
+				for (int i = 0; i < path->Count(); i++) {
+					PATH.PushBack(*path->At(i));
+				}
+			}
+			if (PATH.Count() > 1) {
+				velocity.x = -Speed;
+				velocity.y = Speed;
+			}
+			if (App->entitymanager->GetPlayerData()->position.x < position.x) {
+				position.x += velocity.x * dt;
+			}
+			else {
+				position.x += -velocity.x * dt;
+			}
+			if (App->entitymanager->GetPlayerData()->position.y > position.y) {
+				position.y += velocity.y * dt;
+			}
+			if (App->entitymanager->GetPlayerData()->position.y < position.y) {
+				position.y -= velocity.y * dt;
 			}
 		}
-		if (PATH.Count() > 1) {
-			velocity.x = -Speed;
-			velocity.y = Speed;
-		}
-		if (App->entitymanager->GetPlayerData()->position.x < position.x) {
-			position.x += velocity.x * dt;
-		}
 		else {
-			position.x += -velocity.x * dt;
-		}
-		if (App->entitymanager->GetPlayerData()->position.y > position.y) {
-			position.y += velocity.y * dt;
-		}
-		if (App->entitymanager->GetPlayerData()->position.y < position.y) {
-			position.y -= velocity.y * dt;
-		}
-	}
-	else {
-		iPoint origin = App->map->WorldToMap(position.x, position.y);
-		iPoint destination = App->map->WorldToMap(original_pos.x, original_pos.y);
-		x = original_pos.x;
-		y = original_pos.y;
-		fPoint originalpos{ x,y };
-		if (position.DistanceTo(originalpos)) {
-			App->pathfinding->CreatePath(origin, destination);
-			const p2DynArray<iPoint>* path = App->pathfinding->GetLastPath();
-			for (int i = 0; i < path->Count(); i++) {
-				PATH.PushBack(*path->At(i));
+			iPoint origin = App->map->WorldToMap(position.x, position.y);
+			iPoint destination = App->map->WorldToMap(original_pos.x, original_pos.y);
+			x = original_pos.x;
+			y = original_pos.y;
+			fPoint originalpos{ x,y };
+			if (position.DistanceTo(originalpos)) {
+				App->pathfinding->CreatePath(origin, destination);
+				const p2DynArray<iPoint>* path = App->pathfinding->GetLastPath();
+				for (int i = 0; i < path->Count(); i++) {
+					PATH.PushBack(*path->At(i));
+				}
+			}
+			if (PATH.Count() > 1) {
+				velocity.x = -Speed;
+				velocity.y = Speed;
+			}
+			if (original_pos.x < position.x) {
+				position.x += velocity.x * dt;
+			}
+			else {
+				position.x += -velocity.x * dt;
+			}
+			if (original_pos.y > position.y) {
+				position.y += velocity.y * dt;
+			}
+			if (original_pos.y < position.y) {
+				position.y -= velocity.y * dt;
 			}
 		}
-		if (PATH.Count() > 1) {
-			velocity.x = -Speed;
-			velocity.y = Speed;
+		if (death) {
+			position.y += gravity * dt;
 		}
-		if (original_pos.x < position.x) {
-			position.x += velocity.x * dt;
-		}
-		else {
-			position.x += -velocity.x * dt;
-		}
-		if (original_pos.y > position.y) {
-			position.y += velocity.y * dt;
-		}
-		if (original_pos.y < position.y) {
-			position.y -= velocity.y * dt;
-		}
+		if (position.x + range < -App->render->camera.x)
+			App->entitymanager->DeleteEntity(this);
 	}
-	if (death) {
-		position.y += gravity * dt;
-	}
-	if (position.x + range < -App->render->camera.x)
-		App->entitymanager->DeleteEntity(this);
+	
 
 	return true;
 }
@@ -166,10 +169,13 @@ bool Bat::Save(pugi::xml_node & Bat) const
 
 void Bat::Draw(float dt)
 {
-	if (current_animation == &DieLeft || current_animation == &DieRight)
-		App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)), SDL_FLIP_VERTICAL);
-	else if (!death)
-		App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
+	if (!App->scene->GamePaused) {
+		if (current_animation == &DieLeft || current_animation == &DieRight)
+			App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)), SDL_FLIP_VERTICAL);
+		else if (!death)
+			App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
+	}
+	else App->render->Blit(texture, position.x, position.y, &(current_animation->frames[current_animation->SeeCurrentFrame()]));
 	if (firsttime) {
 		firsttime = false;
 		coll = App->collision->AddCollider({ 0,0,70,47 }, COLLIDER_ENEMY_BAT, (j1Module*)App->entitymanager);

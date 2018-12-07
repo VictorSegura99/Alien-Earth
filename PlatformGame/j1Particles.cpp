@@ -3,6 +3,7 @@
 #include "j1App.h"
 #include "j1Textures.h"
 #include "j1Render.h"
+#include "j1Scene.h"
 #include "j1Particles.h"
 #include "j1Audio.h"
 #include "j1Particles.h"
@@ -77,19 +78,27 @@ bool j1Particles::Update(float dt)
 		if (p == nullptr)
 			continue;
 
-		if (p->Update() == false)
-		{
-			delete p;
-			active[i] = nullptr;
-		}
-		else if (SDL_GetTicks() >= p->born)
-		{
-			App->render->Blit(App->entitymanager->GetPlayerData()->texture, p->position.x, p->position.y, &(p->anim.GetCurrentFrame(App->entitymanager->GetPlayerData()->DT)));
-			if (p->fx_played == false)
+			if (p->Update() == false && !App->scene->GamePaused)
 			{
-				p->fx_played = true;
+				delete p;
+				active[i] = nullptr;
 			}
-		}
+			
+			else if (SDL_GetTicks() >= p->born)
+			{
+				if (!App->scene->GamePaused)
+					App->render->Blit(App->entitymanager->GetPlayerData()->texture, p->position.x, p->position.y, &(p->anim.GetCurrentFrame(App->entitymanager->GetPlayerData()->DT)));
+				else {
+					p->born = SDL_GetTicks();
+					App->render->Blit(App->entitymanager->GetPlayerData()->texture, p->position.x, p->position.y, &(p->anim.frames[p->anim.SeeCurrentFrame()]));
+				}
+				if (p->fx_played == false)
+				{
+					p->fx_played = true;
+				}
+			}
+		
+		
 	}
 
 	return true;
@@ -105,8 +114,11 @@ void j1Particles::AddParticle(const Particle& particle, int x, int y, COLLIDER_T
 			p->born = SDL_GetTicks() + delay;
 			p->position.x = x;
 			p->position.y = y;
-			if (collider_type != COLLIDER_NONE)
+			if (collider_type != COLLIDER_NONE) {
 				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(App->entitymanager->GetPlayerData()->DT), collider_type, this);
+
+			}
+				
 			active[i] = p;
 			break;
 		}
@@ -152,18 +164,24 @@ Particle::~Particle()
 bool Particle::Update()
 {
 	bool ret = true;
-
-	if (life > 0)
+	
+	
+	if (life > 0 && !App->scene->GamePaused)
 	{
 		if ((SDL_GetTicks() - born) > life)
 			ret = false;
 	}
 	else
-		if (anim.Finished())
+		if (anim.Finished() && !App->scene->GamePaused)
 			ret = false;
+	if (!App->scene->GamePaused) {
+		position.x += (speed.x * App->entitymanager->GetPlayerData()->DT);
+		position.y += (speed.y * App->entitymanager->GetPlayerData()->DT);
+	}
+	
+	
 
-	position.x += (speed.x * App->entitymanager->GetPlayerData()->DT);
-	position.y += (speed.y * App->entitymanager->GetPlayerData()->DT);
+
 
 	if (collider != nullptr)
 		collider->SetPos(position.x, position.y);
