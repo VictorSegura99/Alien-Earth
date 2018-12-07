@@ -11,7 +11,7 @@
 #include "EntityManager.h"
 #include "j1Timer.h"
 #include "j1Scene.h"
-#include "j1Choose.h"
+#include "j1Menu.h"
 #include "Player.h"
 #include "j1Particles.h"
 #include "UI_Element.h"

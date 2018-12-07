@@ -37,9 +37,6 @@
     <ClCompile Include="j1Window.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="j1Choose.cpp">
-      <Filter>Modules</Filter>
-    </ClCompile>
     <ClCompile Include="j1PerfTimer.cpp">
       <Filter>Modules\timer</Filter>
     </ClCompile>
@@ -100,6 +97,9 @@
     <ClCompile Include="Coin.cpp">
       <Filter>Modules\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="j1Menu.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PugiXml\src\pugixml.hpp">
@@ -154,9 +154,6 @@
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="j1Map.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="j1Choose.h">
       <Filter>Modules</Filter>
     </ClInclude>
     <ClInclude Include="j1PerfTimer.h">
@@ -221,6 +218,9 @@
     </ClInclude>
     <ClInclude Include="Coin.h">
       <Filter>Modules\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Menu.h">
+      <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

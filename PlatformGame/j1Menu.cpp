@@ -8,7 +8,7 @@
 #include "j1Window.h"
 #include "j1Map.h"
 #include "j1Scene.h"
-#include "j1Choose.h"
+#include "j1Menu.h"
 #include "Player.h"
 #include "j1Collision.h"
 #include "Entity.h"
@@ -21,17 +21,17 @@
 
 #include "Brofiler/Brofiler.h"
 
-j1Choose::j1Choose() : j1Module()
+j1Menu::j1Menu() : j1Module()
 {
 	name.create("choose");
 }
 
 // Destructor
-j1Choose::~j1Choose()
+j1Menu::~j1Menu()
 {}
 
 // Called before render is available
-bool j1Choose::Awake(pugi::xml_node& config)
+bool j1Menu::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Scene");
 	file_texture = config.child("Start").text().as_string();
@@ -64,7 +64,7 @@ bool j1Choose::Awake(pugi::xml_node& config)
 }
 
 // Called before the first frame
-bool j1Choose::Start()
+bool j1Menu::Start()
 {
 	App->scene->active = false;
 	//App->player->active = false;
@@ -97,7 +97,7 @@ bool j1Choose::Start()
 }
 
 // Called each loop iteration
-bool j1Choose::PreUpdate()
+bool j1Menu::PreUpdate()
 {
 	BROFILER_CATEGORY("Menu: PreUpdate", Profiler::Color::Aquamarine);
 	App->input->GetMousePosition(mouse.x, mouse.y);
@@ -115,7 +115,7 @@ bool j1Choose::PreUpdate()
 }
 
 // Called each loop iteration
-bool j1Choose::Update(float dt)
+bool j1Menu::Update(float dt)
 {
 	BROFILER_CATEGORY("Menu: Update", Profiler::Color::Aquamarine);
 	if (start) {
@@ -142,7 +142,7 @@ bool j1Choose::Update(float dt)
 }
 
 // Called each loop iteration
-bool j1Choose::PostUpdate()
+bool j1Menu::PostUpdate()
 {
 	BROFILER_CATEGORY("Menu: PostUpdate", Profiler::Color::Aquamarine);
 	bool ret = true;
@@ -187,14 +187,14 @@ bool j1Choose::PostUpdate()
 }
 
 // Called before quitting
-bool j1Choose::CleanUp()
+bool j1Menu::CleanUp()
 {
 	App->tex->UnLoad(ScreenStart);
 	LOG("Freeing scene");
 	return true;
 }
 
-Animation j1Choose::LoadGigantAliensAnimations(int playernumber, pugi::xml_node& config, p2SString NameAnim) const
+Animation j1Menu::LoadGigantAliensAnimations(int playernumber, pugi::xml_node& config, p2SString NameAnim) const
 {
 	p2SString XML_Name_Player_Anims;
 	SDL_Rect rect;
@@ -226,7 +226,7 @@ Animation j1Choose::LoadGigantAliensAnimations(int playernumber, pugi::xml_node&
 
 
 //MENU
-void j1Choose::CreateIntro()
+void j1Menu::CreateIntro()
 {
 	Background = App->ui_manager->CreateImage(0, 0, false);
 	Background->SetSpritesData({ 0,1158,1024,768 });
@@ -236,7 +236,7 @@ void j1Choose::CreateIntro()
 	sentence->SetSpritesData({ 0,1105,268,35 });
 }
 
-void j1Choose::CreateMainMenu()
+void j1Menu::CreateMainMenu()
 {
 	AlreadyChoosen = false;
 	MainTitle = App->ui_manager->CreateImage((App->win->width / 2) - (844 / 2), 70, false);
@@ -250,7 +250,7 @@ void j1Choose::CreateMainMenu()
 	buttonEXIT = App->ui_manager->CreateButton(400, 670, 1, nullptr, "EXIT", 30);
 }
 
-void j1Choose::MainMenu()
+void j1Menu::MainMenu()
 {
 	if (buttonSTART->pressed) {
 		WantToDisappearMainMenu(true);
@@ -320,7 +320,7 @@ void j1Choose::MainMenu()
 }
 
 
-void j1Choose::WantToDisappearMainMenu(bool Disappear)
+void j1Menu::WantToDisappearMainMenu(bool Disappear)
 {
 	if (Disappear) {
 		buttonSTART->NoUse = true;
@@ -354,7 +354,7 @@ void j1Choose::WantToDisappearMainMenu(bool Disappear)
 	}
 }
 
-void j1Choose::CreateButtonsTypePlayer()
+void j1Menu::CreateButtonsTypePlayer()
 {
 	CHOOSE = App->ui_manager->CreateImage((App->win->width / 2) - (608 / 2), 70, false);
 	CHOOSE->SetSpritesData({ 0,1928,608,72 });
@@ -378,7 +378,7 @@ void j1Choose::CreateButtonsTypePlayer()
 	buttonGOBACK->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
 }
 
-void j1Choose::MenuChoosePlayer(float dt)
+void j1Menu::MenuChoosePlayer(float dt)
 {
 	if (buttonJEFF->mouseOn) {
 		App->render->Blit(yellow, (App->win->width / 4) - (195 / 2), 265, &(YellowWalk.GetCurrentFrame(dt)));
@@ -425,7 +425,7 @@ void j1Choose::MenuChoosePlayer(float dt)
 
 }
 
-void j1Choose::WantToDisappearButtonsTypePlayer(bool Disappear)
+void j1Menu::WantToDisappearButtonsTypePlayer(bool Disappear)
 {
 	if (Disappear) {
 		CHOOSE->WantToRender = false;
@@ -465,7 +465,7 @@ void j1Choose::WantToDisappearButtonsTypePlayer(bool Disappear)
 	}
 }
 
-void j1Choose::CreateSettingsButtons()
+void j1Menu::CreateSettingsButtons()
 {
 	SettingMenuDone = false;
 	imageSETTINGS = App->ui_manager->CreateImage(170, 1000, true);
@@ -493,7 +493,7 @@ void j1Choose::CreateSettingsButtons()
 }
 
 
-void j1Choose::SettingsMenu(float dt)
+void j1Menu::SettingsMenu(float dt)
 {
 	Title->NoRenderLabel = true;
 	sentence->NoRenderLabel = true;
@@ -584,7 +584,7 @@ void j1Choose::SettingsMenu(float dt)
 	}
 }
 
-void j1Choose::CreatehacksButtons()
+void j1Menu::CreatehacksButtons()
 {
 	HacksMenuDone = false;
 	imageHACKS = App->ui_manager->CreateImage(170, -700, true);
@@ -605,7 +605,7 @@ void j1Choose::CreatehacksButtons()
 	
 }
 
-void j1Choose::CreateCredits()
+void j1Menu::CreateCredits()
 {
 
 	imageCREDITS = App->ui_manager->CreateImage(10, 880, true);
@@ -617,7 +617,7 @@ void j1Choose::CreateCredits()
 	buttonVICTORGIT = App->ui_manager->CreateButton(60, 1950, 1, imageCREDITS, "VICTOR'S GITHUB",30);
 }
 
-void j1Choose::Credits(float dt)
+void j1Menu::Credits(float dt)
 {
 	if (buttonGOBACKCREDITS->Scree_pos.y <= 30) {
 		if (buttonGOBACKCREDITS->pressed) {
@@ -644,7 +644,7 @@ void j1Choose::Credits(float dt)
 
 }
 
-void j1Choose::DeleteCredits()
+void j1Menu::DeleteCredits()
 {
 	App->ui_manager->DeleteUI_Element(imageCREDITS);
 	App->ui_manager->DeleteUI_Element(buttonGOBACKCREDITS);
@@ -656,7 +656,7 @@ void j1Choose::DeleteCredits()
 	App->ui_manager->DeleteUI_Element(buttonGITHUB->label);
 }
 
-void j1Choose::HacksMenu(float dt)
+void j1Menu::HacksMenu(float dt)
 {
 	Title->NoRenderLabel = true;
 	sentence->NoRenderLabel = true;
@@ -744,7 +744,7 @@ void j1Choose::HacksMenu(float dt)
 	}
 }
 
-void j1Choose::StartLevel()
+void j1Menu::StartLevel()
 {
 	Mix_FadeOutMusic(1000);
 	App->ui_manager->DeleteAllUI();

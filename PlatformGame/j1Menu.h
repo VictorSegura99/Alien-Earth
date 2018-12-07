@@ -1,5 +1,5 @@
-#ifndef __J1CHOOSE_H__
-#define __J1CHOOSE_H__
+#ifndef __J1MENU_H__
+#define __J1MENU_H__
 
 #include "j1Module.h"
 #include "p2Animation.h"
@@ -9,14 +9,14 @@ struct SDL_Texture;
 struct SDL_Rect;
 class UI_Element;
 
-class j1Choose : public j1Module
+class j1Menu : public j1Module
 {
 public:
 
-	j1Choose();
+	j1Menu();
 
 	// Destructor
-	virtual ~j1Choose();
+	virtual ~j1Menu();
 
 	// Called before render is available
 	bool Awake(pugi::xml_node&);

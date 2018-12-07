@@ -12,7 +12,7 @@
 #include "Entity.h"
 #include "EntityManager.h"
 #include "j1Collision.h"
-#include "j1Choose.h"
+#include "j1Menu.h"
 #include "j1FadeToBlack.h"
 
 #include "Brofiler/Brofiler.h"
@@ -138,12 +138,12 @@ bool j1Scene::PostUpdate()
 		App->scene->active = false;
 		App->collision->active = false;
 		App->map->active = false;
-		App->choose->start = false;
-		App->choose->GameOn = false;
+		App->menu->start = false;
+		App->menu->GameOn = false;
 		App->entitymanager->GetPlayerData()->Intro = true;
 		App->entitymanager->GetPlayerData()->NoInput = false;
 		App->entitymanager->GetPlayerData()->DeleteUI();
-		App->choose->Start();
+		App->menu->Start();
 	}
 	return ret;
 }
