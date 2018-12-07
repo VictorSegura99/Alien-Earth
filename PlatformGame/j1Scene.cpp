@@ -119,7 +119,7 @@ bool j1Scene::Update(float dt)
 	}
 	App->map->Draw();
 
-	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) {
+	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && !GamePaused) {
 		CreatePauseMenu();
 		GamePaused = true;
 	}
@@ -307,8 +307,7 @@ void j1Scene::PauseMenu(float dt)
 {
 	
 	if (buttonRESUME->pressed) {
-		App->ui_manager->DeleteAllUIExeptPlayer();
-		//App->entitymanager->GetPlayerData()->SetUI();
+		DeletePauseMenu();
 		GamePaused = false;
 	}
 	if (buttonGOMAINMENU->pressed) {
@@ -332,6 +331,9 @@ void j1Scene::PauseMenu(float dt)
 		sliderVOLUMEFX->NoUse = true;
 	}
 }
+
+
+
 
 void j1Scene::DeletePauseMenu()
 {
