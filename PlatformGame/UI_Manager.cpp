@@ -11,6 +11,9 @@
 #include "Slider.h"
 #include "Image.h"
 
+#include "Brofiler/Brofiler.h"
+
+
 UI_Manager::UI_Manager()
 {
 
@@ -37,7 +40,7 @@ bool UI_Manager::Start()
 
 bool UI_Manager::Update(float dt)
 {
-
+	BROFILER_CATEGORY("UI: Update", Profiler::Color::LightPink);
 	if (App->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
 		debug_draw = !debug_draw;
 	}

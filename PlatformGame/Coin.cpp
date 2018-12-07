@@ -70,7 +70,8 @@ void Coin::Draw(float dt)
 		coll = App->collision->AddCollider({ x,y,47,47 }, COLLIDER_COIN, (j1Module*)App->entitymanager);
 		firsttime = false;
 	}
-	App->render->Blit(texture, position.x, position.y, &(anim->GetCurrentFrame(dt)));
+	if (anim != nullptr)
+		App->render->Blit(texture, position.x, position.y, &(anim->GetCurrentFrame(dt)));
 
 }
 

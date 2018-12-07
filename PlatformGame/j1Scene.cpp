@@ -204,6 +204,8 @@ void j1Scene::SpawnEnemies()
 				App->entitymanager->CreateEntity(EntityType::COIN, 1173, 442);
 				App->entitymanager->CreateEntity(EntityType::COIN, 1395, 510);
 			}
+			if(App->entitymanager->GetPlayerData()->NumPlayer == 2|| App->entitymanager->GetPlayerData()->NumPlayer == 1)
+				App->entitymanager->CreateEntity(EntityType::COIN, 1850, 552);
 			App->entitymanager->CreateEntity(EntityType::COIN, 2416, 818);
 			App->entitymanager->CreateEntity(EntityType::COIN, 3057, 538);
 			App->entitymanager->CreateEntity(EntityType::COIN, 3445, 608);

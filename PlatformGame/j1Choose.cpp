@@ -627,13 +627,13 @@ void j1Choose::Credits(float dt)
 			WantToDisappearMainMenu(false);
 		}
 		if (buttonGITHUB->pressed) {
-			ShellExecute(NULL, "open", "https://github.com/VictorSegura99/Alien-Earth", NULL, NULL, NULL);
+			ShellExecute(NULL, "open", "https://github.com/VictorSegura99/Alien-Earth", NULL, NULL, SW_SHOWNORMAL);
 		}
 		if (buttonORIOLGIT->pressed) {
-			ShellExecute(NULL, "open", "https://github.com/OriolCS2", NULL, NULL, NULL);
+			ShellExecute(NULL, "open", "https://github.com/OriolCS2", NULL, NULL, SW_SHOWNORMAL);
 		}
 		if (buttonVICTORGIT->pressed) {
-			ShellExecute(NULL, "open", "https://github.com/VictorSegura99", NULL, NULL, NULL);
+			ShellExecute(NULL, "open", "https://github.com/VictorSegura99", NULL, NULL, SW_SHOWNORMAL);
 		}
 	}
 	else {
