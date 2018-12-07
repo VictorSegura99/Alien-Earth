@@ -25,6 +25,7 @@ Label::Label(int x, int y, p2SString name, int size, bool CanBeMoved, UI_Element
 		tex = App->fonts->Print(name.GetString(), App->fonts->InitialMenu);
 		App->fonts->CalcSize(name.GetString(), width, height, App->fonts->InitialMenu);
 	}
+
 }
 
 Label::~Label()

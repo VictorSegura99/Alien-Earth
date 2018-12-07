@@ -53,7 +53,7 @@ public:
 	pugi::xml_node		UI_node;
 
 	
-
+	UI_Element * label = nullptr;
 	
 
 	bool pressed = false;

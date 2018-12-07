@@ -21,8 +21,8 @@ public:
 	virtual ~Button();
 	bool Update(float dt);
 
-private:
-	UI_Element * label = nullptr;
+public:
+	
 	int type = -1;
 	unsigned int fXOn;
 	int label_pos;

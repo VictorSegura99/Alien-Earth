@@ -117,7 +117,6 @@ UI_Element * UI_Manager::CreateButton(int x, int y, int type, UI_Element* parent
 
 	return ret;
 }
-
 UI_Element * UI_Manager::CreateCheckBox(int x, int y, UI_Element* parent)
 {
 	UI_Element* ret = nullptr;

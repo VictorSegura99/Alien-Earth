@@ -620,8 +620,7 @@ void j1Choose::Credits(float dt)
 {
 	if (buttonGOBACKCREDITS->Scree_pos.y <= 30) {
 		if (buttonGOBACKCREDITS->pressed) {
-			App->ui_manager->DeleteUI_Element(imageCREDITS);
-			App->ui_manager->DeleteUI_Element(buttonGOBACKCREDITS);
+			DeleteCredits();
 			CreateCredits();
 			InCredits = false;
 			InMainMenu = true;
@@ -642,6 +641,18 @@ void j1Choose::Credits(float dt)
 	}
 		
 
+}
+
+void j1Choose::DeleteCredits()
+{
+	App->ui_manager->DeleteUI_Element(imageCREDITS);
+	App->ui_manager->DeleteUI_Element(buttonGOBACKCREDITS);
+	App->ui_manager->DeleteUI_Element(buttonGITHUB);
+	App->ui_manager->DeleteUI_Element(buttonORIOLGIT);
+	App->ui_manager->DeleteUI_Element(buttonVICTORGIT);
+	App->ui_manager->DeleteUI_Element(buttonVICTORGIT->label);
+	App->ui_manager->DeleteUI_Element(buttonORIOLGIT->label);
+	App->ui_manager->DeleteUI_Element(buttonGITHUB->label);
 }
 
 void j1Choose::HacksMenu(float dt)
