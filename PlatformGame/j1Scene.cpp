@@ -129,6 +129,7 @@ bool j1Scene::PostUpdate()
 	if(App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
 	if (CanStart && App->fade->current_step == App->fade->fade_from_black) {
+		App->entitymanager->GetPlayerData()->lives = 3;
 		CanStart = false;
 		App->entitymanager->DeleteEnemies();
 		App->entitymanager->ActiveGame = false;

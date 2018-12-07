@@ -620,25 +620,39 @@ void Player::Fall()//What happens when the player falls
 void Player::Spawn()
 {
 	lives -= 1;
-	Lives();
-	NoInput = false;
-	CanJump = true;
-	CanClimb = false;
-	CanSwim = false;
-	Death[NumPlayer].current_frame = 0.0f;
-	Death[NumPlayer].loops = 0;
-	current_animation = &idle[NumPlayer];
-	if (App->scene->KnowMap == 0) {
-		position.x = App->entitymanager->positionSpawnMap1.x;
-		position.y = App->entitymanager->positionSpawnMap1.y;
+	if (lives >= 0) {
+		Lives();
+		NoInput = false;
+		CanJump = true;
+		CanClimb = false;
+		CanSwim = false;
+		Death[NumPlayer].current_frame = 0.0f;
+		Death[NumPlayer].loops = 0;
+		current_animation = &idle[NumPlayer];
+		if (App->scene->KnowMap == 0) {
+			position.x = App->entitymanager->positionSpawnMap1.x;
+			position.y = App->entitymanager->positionSpawnMap1.y;
+		}
+		if (App->scene->KnowMap == 1) {
+			position.x = App->entitymanager->positionStartMap2.x;
+			position.y = App->entitymanager->positionStartMap2.y;
+		}
+		Death[NumPlayer].current_frame = 0.0f;
+		Death[NumPlayer].loops = 0;
+		App->scene->SpawnEnemies();
 	}
-	if (App->scene->KnowMap == 1) {
-		position.x = App->entitymanager->positionStartMap2.x;
-		position.y = App->entitymanager->positionStartMap2.y;
+	else {
+		//current_animation = &idle[NumPlayer];
+		NoInput = true;
+		App->scene->KnowMap = 0;
+		App->fade->FadeToBlack(3.0f);
+		App->audio->PlayFx(winningfx);
+		TouchingGround = true;
+		WalkLeft = false;
+		WalkRight = false;
+		App->scene->CanStart = true;
 	}
-	Death[NumPlayer].current_frame = 0.0f;
-	Death[NumPlayer].loops = 0;
-	App->scene->SpawnEnemies();
+	
 }
 void Player::ChangeLiveSprite()
 {
@@ -1104,6 +1118,7 @@ void Player::Gravity(float dt)
 
 void Player::SetUI()
 {
+	//LIVES
 	live = App->ui_manager->CreateImage(900, 22, false);
 	if (NumPlayer == 0)
 		live->SetSpritesData({ 425,977,47,47 });
@@ -1120,9 +1135,7 @@ void Player::SetUI()
 		livenumber->SetSpritesData({ 1355,1950,36,50 });
 	else if (lives == 0)
 		livenumber->SetSpritesData({ 1399,1950,47,50 });
-	else
-		livenumber->SetSpritesData({ NULL });
-	
+	//
 }
 
 void Player::DeleteUI()
@@ -1171,12 +1184,7 @@ void Player::Dash::ResetDashAnims()
 }
 
 void Player::Lives() {
-	
-	if(lives<0){
-		App->fade->FadeToBlack(3.0f);
-		App->scene->CanStart = true;
-		lives = 3;
-	}
+
 	//Numbers
 	if (lives == 3)
 		livenumber->SetSpritesData({ 1252,1950,47,50 });
