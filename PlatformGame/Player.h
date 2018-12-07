@@ -186,7 +186,7 @@ public:
 	float TimeBetweenShoot = 0.0f;
 	float IntroFall;
 
-	int lives = 3;
+	int lives = 0;
 	int startmap2 = 0;
 	int maxYcam = 0;
 	int minYcam = 0;

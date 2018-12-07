@@ -18,7 +18,7 @@ Button::Button(int x, int y, int type, UI_Element* parent, p2SString name, int s
 	width = WIDTH;
 	height = HEIGHT;
 	if (name != "NONE") {
-		label = App->ui_manager->CreateLabel(Local_pos.x + width / 2, Local_pos.y + height / 2, name, size, true);
+		label = App->ui_manager->CreateLabel( WIDTH/2, HEIGHT/2, name, size, true, this);
 		label->Local_pos.x -= label->width / 2;
 		label->Local_pos.y -= label->height / 2;
 		label_pos = label->Local_pos.y;

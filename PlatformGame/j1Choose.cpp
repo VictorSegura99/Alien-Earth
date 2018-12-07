@@ -467,7 +467,7 @@ void j1Choose::WantToDisappearButtonsTypePlayer(bool Disappear)
 void j1Choose::CreateSettingsButtons()
 {
 	SettingMenuDone = false;
-	imageSETTINGS = App->ui_manager->CreateImage(170, 1300, true);
+	imageSETTINGS = App->ui_manager->CreateImage(170, 1000, true);
 	imageSETTINGS->SetSpritesData({ 758,0,705,671 });
 	imageSETTINGS->type = BUTTON;
 	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(37, 40, 3, imageSETTINGS);
@@ -608,14 +608,17 @@ void j1Choose::CreateCredits()
 {
 
 	imageCREDITS = App->ui_manager->CreateImage(10, 880, true);
-	imageCREDITS->SetSpritesData({ 1480,0,1200,1720 });
+	imageCREDITS->SetSpritesData({ 1480,0,1000,1360 });
 	buttonGOBACKCREDITS = App->ui_manager->CreateButton(40, 1400, 1, imageCREDITS);
 	buttonGOBACKCREDITS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
+	buttonGITHUB = App->ui_manager->CreateButton(60, 1550, 1, imageCREDITS,"GAME'S GITHUB", 30);
+	buttonORIOLGIT = App->ui_manager->CreateButton(750, 1750, 1, imageCREDITS,"ORIOL'S GITHUB", 30);
+	buttonVICTORGIT = App->ui_manager->CreateButton(60, 1950, 1, imageCREDITS, "VICTOR'S GITHUB",30);
 }
 
 void j1Choose::Credits(float dt)
 {
-	if (buttonGOBACKCREDITS->Scree_pos.y <= 50) {
+	if (buttonGOBACKCREDITS->Scree_pos.y <= 30) {
 		if (buttonGOBACKCREDITS->pressed) {
 			App->ui_manager->DeleteUI_Element(imageCREDITS);
 			App->ui_manager->DeleteUI_Element(buttonGOBACKCREDITS);
@@ -624,9 +627,21 @@ void j1Choose::Credits(float dt)
 			InMainMenu = true;
 			WantToDisappearMainMenu(false);
 		}
+		if (buttonGITHUB->pressed) {
+			ShellExecute(NULL, "open", "https://github.com/VictorSegura99/Alien-Earth", NULL, NULL, NULL);
+		}
+		if (buttonORIOLGIT->pressed) {
+			ShellExecute(NULL, "open", "https://github.com/OriolCS2", NULL, NULL, NULL);
+		}
+		if (buttonVICTORGIT->pressed) {
+			ShellExecute(NULL, "open", "https://github.com/VictorSegura99", NULL, NULL, NULL);
+		}
 	}
-	else 
+	else {
 		imageCREDITS->Local_pos.y -= 200 * dt;
+	}
+		
+
 }
 
 void j1Choose::HacksMenu(float dt)

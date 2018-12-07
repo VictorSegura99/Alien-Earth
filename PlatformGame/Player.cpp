@@ -78,6 +78,7 @@ bool Player::Awake(pugi::xml_node& config)
 	TutorialY1 = player.child("TutorialY1").attribute("value").as_int();
 	TutorialY2 = player.child("TutorialY2").attribute("value").as_int();
 	TimeBetweenShoot = player.child("TimeBetweenShoot").attribute("value").as_float();
+	lives = player.child("lives").attribute("value").as_int();
 
 	for (int numplayer = 0; numplayer < 3; ++numplayer) {
 		idle[numplayer] = LoadPushbacks(numplayer, player, "idle");

@@ -168,6 +168,10 @@ public:
 	//CREDITS
 	UI_Element* imageCREDITS = nullptr;
 	UI_Element* buttonGOBACKCREDITS = nullptr;
+	UI_Element* buttonGITHUB = nullptr;
+	UI_Element* buttonORIOLGIT = nullptr;
+	UI_Element* buttonVICTORGIT = nullptr;
+
 
 
 	//PLAYER UI
