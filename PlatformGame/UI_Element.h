@@ -56,7 +56,7 @@ public:
 	
 	UI_Element * label = nullptr;
 	
-
+	bool CanBeMoved = true;
 	bool pressed = false;
 	bool mouseOn = false;
 

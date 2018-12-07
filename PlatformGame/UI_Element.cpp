@@ -93,9 +93,12 @@ bool UI_Element::IsMouseOn()
 
 void UI_Element::SetPos(int x, int y)
 {
-	Scree_pos.x = x + -App->render->camera.x;
-	Scree_pos.y = y + -App->render->camera.y;
- 	int i = 0;
+	if (CanBeMoved && type != SLIDER) {
+		Scree_pos.x = x + -App->render->camera.x;
+		Scree_pos.y = y + -App->render->camera.y;
+	}
+	else Scree_pos.y = y + -App->render->camera.y;
+	
 }
 
 void UI_Element::SetSpritesData(SDL_Rect Idle, SDL_Rect Hover, SDL_Rect Pressed)
