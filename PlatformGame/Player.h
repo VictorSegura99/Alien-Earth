@@ -121,6 +121,7 @@ public:
 	p2SString SpiderDeathFx;
 	p2SString WinningFx;
 	p2SString OvniFx;
+	p2SString LoseFx;
 
 	SDL_Texture* Godmode;
 	SDL_Texture* IntroLight;
@@ -139,7 +140,7 @@ public:
 	unsigned int spiderdeathfx;
 	unsigned int winningfx;
 	unsigned int ovnifx;
-
+	unsigned int losefx;
 	
 	bool PlayerLeft = false;
 	bool PlayerRight = false;

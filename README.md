@@ -64,6 +64,7 @@ Sprites from: https://opengameart.org/content/platformer-art-complete-pack-often
 UI sprites: https://opengameart.org/content/pixel-ui-pack-750-assets
 Intro sfx: https://freesound.org/people/GameAudio/sounds/220210/
 Death sfx: https://www.zapsplat.com/music/balloon-pop/
+Lose sfx: https://www.zapsplat.com/music/multimedia-processed-male-voice-says-you-lose/
 Death sfx 2: http://soundbible.com/1454-Pain.html
 Spider sfx: https://freesound.org/people/spookymodem/sounds/202108/
 Jump sfx: http://soundbible.com/1601-Mario-Jumping.html
