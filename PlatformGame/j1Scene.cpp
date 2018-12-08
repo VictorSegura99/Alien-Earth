@@ -264,25 +264,6 @@ void j1Scene::SpawnEnemies()
 void j1Scene::CreatePauseMenu()
 {
 	
-	/*imagePAUSE = App->ui_manager->CreateImage(-App->render->camera.x + 170, -App->render->camera.y + 1000, true);
-	imagePAUSE->SetSpritesData({ 758,0,705,671 });
-	imagePAUSE->type = BUTTON;
-	buttonRESUME = App->ui_manager->CreateButton(120, 140, 1, imagePAUSE, "RESUME", 30);
-	buttonGOMAINMENU = App->ui_manager->CreateButton(400, 140, 1, imagePAUSE, "RETURN MAIN MENU", 30);
-	sliderVOLUMEMUSIC = App->ui_manager->CreateSlider(380, 452, App->audio->volume, imagePAUSE);
-	labelMUSICVOLUME = App->ui_manager->CreateLabel(100, 450, "MUSIC VOLUME", 50, true, imagePAUSE);
-	sliderVOLUMEFX = App->ui_manager->CreateSlider(380, 552, App->audio->fxvolume, imagePAUSE);
-	labelVOLUMEFX = App->ui_manager->CreateLabel(100, 550, "FX VOLUME", 50, true, imagePAUSE);
-	labelPAUSE = App->ui_manager->CreateLabel(imagePAUSE->width / 2, 50, "PAUSE", 60, true, imagePAUSE);
-	labelPAUSE->Local_pos.x -= labelPAUSE->width / 2;
-	labelGENERALSOUND = App->ui_manager->CreateLabel(100, 350, "GENERAL SOUND", 50, true, imagePAUSE);
-	sliderGENERALSOUND = App->ui_manager->CreateSlider(380, 352, 50, imagePAUSE);
-	checkboxSOUND = App->ui_manager->CreateCheckBox(380, 257, imagePAUSE);
-	if (!App->audio->NoAudio)
-		checkboxSOUND->pressed = true;
-	else checkboxSOUND->pressed = false;
-	labelSOUND = App->ui_manager->CreateLabel(100, 250, "SOUND", 50, true, imagePAUSE);
-	*/
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 	image = App->ui_manager->CreateImage(0, 0, false);
@@ -291,14 +272,14 @@ void j1Scene::CreatePauseMenu()
 	imagePAUSE->SetSpritesData({ 758,0,705,671 });
 	buttonRESUME = App->ui_manager->CreateButton(120, 140, 1, imagePAUSE, "RESUME", 30);
 	buttonGOMAINMENU = App->ui_manager->CreateButton(400, 140, 1, imagePAUSE, "RETURN MAIN MENU", 30);
-	sliderVOLUMEMUSIC = App->ui_manager->CreateSlider(380, 452, App->audio->volume, imagePAUSE);
+	sliderVOLUMEMUSIC = App->ui_manager->CreateSlider(380, 463, App->audio->volume, imagePAUSE);
 	labelMUSICVOLUME = App->ui_manager->CreateLabel(100, 450, "MUSIC VOLUME", 50, true, imagePAUSE);
-	sliderVOLUMEFX = App->ui_manager->CreateSlider(380, 552, App->audio->fxvolume, imagePAUSE);
+	sliderVOLUMEFX = App->ui_manager->CreateSlider(380, 563, App->audio->fxvolume, imagePAUSE);
 	labelVOLUMEFX = App->ui_manager->CreateLabel(100, 550, "FX VOLUME", 50, true, imagePAUSE);
 	labelPAUSE = App->ui_manager->CreateLabel(imagePAUSE->width / 2, 50, "PAUSE", 60, true, imagePAUSE);
 	labelPAUSE->Local_pos.x -= labelPAUSE->width / 2;
 	labelGENERALSOUND = App->ui_manager->CreateLabel(100, 350, "GENERAL SOUND", 50, true, imagePAUSE);
-	sliderGENERALSOUND = App->ui_manager->CreateSlider(380, 352, 50, imagePAUSE);
+	sliderGENERALSOUND = App->ui_manager->CreateSlider(380, 363, 50, imagePAUSE);
 	checkboxSOUND = App->ui_manager->CreateCheckBox(380, 257, imagePAUSE);
 	if (!App->audio->NoAudio)
 		checkboxSOUND->pressed = true;

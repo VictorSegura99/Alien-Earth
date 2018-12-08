@@ -471,14 +471,14 @@ void j1Menu::CreateSettingsButtons()
 	buttonGOBACKSETTINGS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
 	checkboxFPS = App->ui_manager->CreateCheckBox(380, 157, imageSETTINGS);
 	labelFPS = App->ui_manager->CreateLabel(100, 150, "CAP FPS TO 30", 50, true, imageSETTINGS);
-	sliderVOLUMEMUSIC = App->ui_manager->CreateSlider(380, 452, App->audio->volume, imageSETTINGS);
+	sliderVOLUMEMUSIC = App->ui_manager->CreateSlider(380, 463, App->audio->volume, imageSETTINGS);
 	labelMUSICVOLUME = App->ui_manager->CreateLabel(100, 450, "MUSIC VOLUME", 50, true, imageSETTINGS);
-	sliderVOLUMEFX = App->ui_manager->CreateSlider(380, 552, App->audio->fxvolume, imageSETTINGS);
+	sliderVOLUMEFX = App->ui_manager->CreateSlider(380, 563, App->audio->fxvolume, imageSETTINGS);
 	labelVOLUMEFX = App->ui_manager->CreateLabel(100, 550, "FX VOLUME", 50, true, imageSETTINGS);
 	labelSETTINGS = App->ui_manager->CreateLabel(imageSETTINGS->width / 2, 50, "SETTINGS", 60, true, imageSETTINGS);
 	labelSETTINGS->Local_pos.x -= labelSETTINGS->width / 2;
 	labelGENERALSOUND = App->ui_manager->CreateLabel(100, 350, "GENERAL SOUND", 50, true, imageSETTINGS);
-	sliderGENERALSOUND = App->ui_manager->CreateSlider(380, 352, 50, imageSETTINGS);
+	sliderGENERALSOUND = App->ui_manager->CreateSlider(380, 363, 50, imageSETTINGS);
 	checkboxSOUND = App->ui_manager->CreateCheckBox(380, 257, imageSETTINGS);
 	if (!App->audio->NoAudio)
 		checkboxSOUND->pressed = true;
