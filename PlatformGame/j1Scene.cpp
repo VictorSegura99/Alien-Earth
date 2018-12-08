@@ -313,7 +313,7 @@ void j1Scene::PauseMenu(float dt)
 		StartTimer = true;
 		App->ui_manager->DeleteAllUIExeptPlayer();
 		imageNUMBER3 = App->ui_manager->CreateImage(App->win->Width / 2, App->win->Height / 2, false);
-		imageNUMBER3->SetSpritesData({ 1584,1963,27,42 });
+		imageNUMBER3->SetSpritesData({ 1584,1963,29,42 });
 		imageNUMBER3->Local_pos.x -= imageNUMBER3->width / 2;
 		imageNUMBER3->Local_pos.y -= imageNUMBER3->height / 2;
 	}
