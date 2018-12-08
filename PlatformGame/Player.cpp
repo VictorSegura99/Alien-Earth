@@ -51,6 +51,7 @@ bool Player::Awake(pugi::xml_node& config)
 	BombJumpfx = player.child("BombJumpFx").text().as_string();
 	SpiderDeathFx = player.child("SpiderDeathFx").text().as_string();
 	WinningFx = player.child("WinningFx").text().as_string();
+	LoseFx = player.child("LoseFx").text().as_string();
 	finalmapplayer = player.child("finalmapplayer").attribute("value").as_int();
 	finalmap = player.child("finalmap").attribute("value").as_int();
 	startmap2 = player.child("startmap2").attribute("value").as_int();
@@ -127,7 +128,7 @@ bool Player::Start()
 	spiderdeathfx = App->audio->LoadFx(SpiderDeathFx.GetString());
 	winningfx = App->audio->LoadFx(WinningFx.GetString());
 	ovnifx = App->audio->LoadFx(OvniFx.GetString());
-
+	losefx = App->audio->LoadFx(LoseFx.GetString());
 
 	position.x = App->entitymanager->positionStartMap1.x;
 	position.y = App->entitymanager->positionStartMap1.y;
@@ -657,13 +658,15 @@ void Player::Spawn()
 			NoInput = true;
 			App->scene->KnowMap = 0;
 			App->fade->FadeToBlack(3.0f);
-			App->audio->PlayFx(winningfx);
+			App->audio->PlayFx(losefx);
 			TouchingGround = true;
 			WalkLeft = false;
 			WalkRight = false;
 			App->scene->CanStart = true;
+			App->scene->KnowMap = 0;
 		}
 	}
+
 	
 	
 }
