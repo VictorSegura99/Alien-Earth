@@ -733,6 +733,7 @@ void j1Menu::HacksMenu(float dt)
 		}
 		if (checkboxSTARTLEVEL2->pressed && App->scene->KnowMap != 1) {
 			App->scene->KnowMap = 1;
+			App->entitymanager->GetPlayerData()->Intro = false;
 		}
 		if (!checkboxSTARTLEVEL2->pressed && App->scene->KnowMap != 0) {
 			App->scene->KnowMap = 0;
