@@ -412,6 +412,9 @@ void j1App::SaveGame(const char* file) const
 
 	want_to_save = true;
 	save_game.create(file);
+	WantToLoad = true;
+	CanLoad = true;
+
 }
 
 // ---------------------------------------

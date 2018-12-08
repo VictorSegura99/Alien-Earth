@@ -60,7 +60,7 @@ bool MovingPlatform::Update(float dt)
 		}
 		if (MoveLeft) {
 			position.x -= Speed * dt;
-			if (SDL_GetTicks() - StartTime > 2260) {
+			if (SDL_GetTicks() - StartTime > 2275) {
 				App->entitymanager->GetPlayerData()->PlayerLeft = false;
 				App->entitymanager->GetPlayerData()->PlayerRight = true;
 				MoveRight = true;

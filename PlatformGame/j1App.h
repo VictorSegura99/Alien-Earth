@@ -106,7 +106,7 @@ public:
 	j1FadeToBlack*		fade;
 	j1Fonts*			fonts;
 
-	bool CanLoad;
+	mutable bool CanLoad;
 
 private:
 
@@ -117,7 +117,7 @@ private:
 	p2SString			title;
 	p2SString			organization;
 
-	bool				WantToLoad = true;
+	mutable bool		WantToLoad = true;
 	mutable bool		want_to_save = false;
 	bool				want_to_load = false;
 	p2SString			load_game;
