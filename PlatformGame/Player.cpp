@@ -231,10 +231,13 @@ bool Player::Update(float dt)
 		}
 		if (fall && !God) {
 			fall = false;
-			if (NumPlayer == 0 || NumPlayer == 2)
-				App->audio->PlayFx(deathfx2);
-			else
-				App->audio->PlayFx(deathfx);
+			if (lives > 0) {
+				if (NumPlayer == 0 || NumPlayer == 2)
+					App->audio->PlayFx(deathfx2);
+				else
+					App->audio->PlayFx(deathfx);
+			}
+			
 			Fall();
 		}
 
@@ -595,7 +598,7 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 void Player::Die()//What happens when the player die
 {
 	current_animation = &Death[NumPlayer];
-	if (Death[NumPlayer].SeeCurrentFrame() == 1)
+	if (Death[NumPlayer].SeeCurrentFrame() == 1 && lives > 0)
 		if (NumPlayer == 0 || NumPlayer == 2)
 			App->audio->PlayFx(deathfx2);
 		else
@@ -714,28 +717,29 @@ Animation Player::LoadPushbacks(int playernumber, pugi::xml_node& config, p2SStr
 void Player::ChangePlayer(const int playernumber, bool InGame)
 {
 	BROFILER_CATEGORY("Player: ChangePlayer", Profiler::Color::Blue);
-	if (NumPlayer != playernumber || texture == nullptr ) {
-		App->tex->UnLoad(texture);
-		texture = App->tex->Load(sprites_name[playernumber].GetString());
-		App->collision->ColliderCleanUpPlayer();
-		NumPlayer = playernumber;
-		if (InGame)
-			ChangeLiveSprite();
-		current_animation = &idle[NumPlayer];
-		switch (playernumber) {
-		case 0:
-			coll = App->collision->AddCollider({ 0, 0, playerwidth, playerheight }, COLLIDER_PLAYER, (j1Module*)App->entitymanager);
-			break;
-		case 1:
-			position.y -= 17;
-			coll = App->collision->AddCollider({ 0, 0, 67, 93 }, COLLIDER_PLAYER, (j1Module*)App->entitymanager);
-			break;
-		case 2:
-			position.y -= 17;
-			coll = App->collision->AddCollider({ 0, 0, 67, 93 }, COLLIDER_PLAYER, (j1Module*)App->entitymanager);
-			break;
-		}
+	
+	App->tex->UnLoad(texture);
+	texture = App->tex->Load(sprites_name[playernumber].GetString());
+	App->collision->ColliderCleanUpPlayer();
+	NumPlayer = playernumber;
+	if (InGame)
+		ChangeLiveSprite();
+	switch (playernumber) {
+	case 0:
+		position.y -= 17;
+		coll = App->collision->AddCollider({ 0, 0, playerwidth, playerheight }, COLLIDER_PLAYER, (j1Module*)App->entitymanager);
+		break;
+	case 1:
+		position.y -= 17;
+		coll = App->collision->AddCollider({ 0, 0, 67, 93 }, COLLIDER_PLAYER, (j1Module*)App->entitymanager);
+		break;
+	case 2:
+		position.y -= 17;
+		coll = App->collision->AddCollider({ 0, 0, 67, 93 }, COLLIDER_PLAYER, (j1Module*)App->entitymanager);
+		break;
 	}
+	TouchingGround = false;
+	current_animation = &idle[NumPlayer];
 }
 
 void Player::GoJump(float dt)
