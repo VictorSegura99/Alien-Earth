@@ -117,6 +117,7 @@ bool j1Scene::Update(float dt)
 			CanStart = true;
 		}
 	}
+	
 	App->map->Draw();
 
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && !GamePaused) {
@@ -149,6 +150,7 @@ bool j1Scene::PostUpdate()
 		App->entitymanager->GetPlayerData()->NoInput = false;
 		App->entitymanager->GetPlayerData()->DeleteUI();
 		App->menu->Start();
+		KnowMap = 0;
 		GamePaused = false;
 	}
 	return ret;

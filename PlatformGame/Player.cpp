@@ -628,40 +628,43 @@ void Player::Fall()//What happens when the player falls
 
 void Player::Spawn()
 {
-	if (lives >= 0) {
-		Lives();
-		NoInput = false;
-		CanJump = true;
-		CanClimb = false;
-		CanSwim = false;
-		Death[NumPlayer].current_frame = 0.0f;
-		Death[NumPlayer].loops = 0;
-		current_animation = &idle[NumPlayer];
-		if (App->scene->KnowMap == 0) {
-			position.x = App->entitymanager->positionSpawnMap1.x;
-			position.y = App->entitymanager->positionSpawnMap1.y;
+	if (!App->scene->CanStart) {
+		if (lives >= 0) {
+			Lives();
+			NoInput = false;
+			CanJump = true;
+			CanClimb = false;
+			CanSwim = false;
+			Death[NumPlayer].current_frame = 0.0f;
+			Death[NumPlayer].loops = 0;
+			current_animation = &idle[NumPlayer];
+			if (App->scene->KnowMap == 0) {
+				position.x = App->entitymanager->positionSpawnMap1.x;
+				position.y = App->entitymanager->positionSpawnMap1.y;
+			}
+			if (App->scene->KnowMap == 1) {
+				position.x = App->entitymanager->positionStartMap2.x;
+				position.y = App->entitymanager->positionStartMap2.y;
+			}
+			Death[NumPlayer].current_frame = 0.0f;
+			Death[NumPlayer].loops = 0;
+			App->scene->SpawnEnemies();
 		}
-		if (App->scene->KnowMap == 1) {
-			position.x = App->entitymanager->positionStartMap2.x;
-			position.y = App->entitymanager->positionStartMap2.y;
+		else {
+			//current_animation = &idle[NumPlayer];
+			Death[NumPlayer].current_frame = 0.0f;
+			Death[NumPlayer].loops = 0;
+			NoInput = true;
+			App->scene->KnowMap = 0;
+			App->fade->FadeToBlack(3.0f);
+			App->audio->PlayFx(winningfx);
+			TouchingGround = true;
+			WalkLeft = false;
+			WalkRight = false;
+			App->scene->CanStart = true;
 		}
-		Death[NumPlayer].current_frame = 0.0f;
-		Death[NumPlayer].loops = 0;
-		App->scene->SpawnEnemies();
 	}
-	else {
-		//current_animation = &idle[NumPlayer];
-		Death[NumPlayer].current_frame = 0.0f;
-		Death[NumPlayer].loops = 0;
-		NoInput = true;
-		App->scene->KnowMap = 0;
-		App->fade->FadeToBlack(3.0f);
-		App->audio->PlayFx(winningfx);
-		TouchingGround = true;
-		WalkLeft = false;
-		WalkRight = false;
-		App->scene->CanStart = true;
-	}
+	
 	
 }
 

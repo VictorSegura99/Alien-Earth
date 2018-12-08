@@ -71,8 +71,7 @@ bool j1Menu::Start()
 	App->collision->active = false;
 	App->map->active = false;
 	GameOn = false;
-	App->render->camera.x = 0;
-	App->render->camera.y = 0;
+	
 	start = false;
 
 	App->audio->PlayMusic(App->scene->SongMenu.GetString());
@@ -92,6 +91,9 @@ bool j1Menu::Start()
 	CreateCredits();
 	WantToDisappearMainMenu(true);
 	WantToDisappearButtonsTypePlayer(true);
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
+	App->scene->KnowMap = 0;
 	
 	return true;
 }
