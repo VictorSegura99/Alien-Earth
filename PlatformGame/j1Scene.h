@@ -76,8 +76,13 @@ public:
 	UI_Element* checkboxSOUND = nullptr;
 	UI_Element* labelSOUND = nullptr;
 	UI_Element* image = nullptr;
-	int x = 170;
-	int y = 950;
+	UI_Element* imageNUMBER3 = nullptr;
+	UI_Element* imageNUMBER2 = nullptr;
+	UI_Element* imageNUMBER1 = nullptr;
+
+	int Number = 3;
+	bool StartTimer = false;
+	int StartTime = 0;
 	bool Positioned = false;
 	bool MenuDone = false;
 

@@ -191,10 +191,9 @@ bool Player::Update(float dt)
 {
 	BROFILER_CATEGORY("Player: Update", Profiler::Color::Green);
 	DT = dt;
-	if (!App->scene->GamePaused) {
+	if (!App->scene->GamePaused || App->scene->StartTimer)
 		Camera(dt);
-
-
+	if (!App->scene->GamePaused) {
 		if (!God && !Intro) {
 			if (!TouchingGround && !dashing && !CanSwim) {
 				acceleration.y = gravity * dt;

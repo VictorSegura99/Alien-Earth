@@ -53,7 +53,6 @@ bool Button::Update(float dt)
 			}
 			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_UP) {
 				pressed = true; 
-				
 			}
 		}
 		else {
@@ -63,6 +62,8 @@ bool Button::Update(float dt)
 			mouseOn = false;
 		}
 	}
+	if (!IsMouseOn())
+		pressed = false;
 	if (!WantToRender) {
 		if (label != nullptr)
 			label->WantToRender = false;

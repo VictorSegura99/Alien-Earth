@@ -307,8 +307,14 @@ void j1Scene::PauseMenu(float dt)
 {
 	
 	if (buttonRESUME->pressed) {
-		DeletePauseMenu();
-		GamePaused = false;
+		buttonRESUME->pressed = false;
+		StartTime = SDL_GetTicks();
+		StartTimer = true;
+		App->ui_manager->DeleteAllUIExeptPlayer();
+		imageNUMBER3 = App->ui_manager->CreateImage(App->win->Width / 2, App->win->Height / 2, false);
+		imageNUMBER3->SetSpritesData({ 1584,1963,27,42 });
+		imageNUMBER3->Local_pos.x -= imageNUMBER3->width / 2;
+		imageNUMBER3->Local_pos.y -= imageNUMBER3->height / 2;
 	}
 	if (buttonGOMAINMENU->pressed) {
 		App->fade->FadeToBlack(3.0f);
@@ -329,6 +335,33 @@ void j1Scene::PauseMenu(float dt)
 		sliderGENERALSOUND->NoUse = true;
 		sliderVOLUMEMUSIC->NoUse = true;
 		sliderVOLUMEFX->NoUse = true;
+	}
+
+	if (StartTimer) {
+		if (SDL_GetTicks() - StartTime > 1000) {
+			Number -= 1;
+			StartTime = SDL_GetTicks();
+			if (Number == 2) {
+				App->ui_manager->DeleteUI_Element(imageNUMBER3);
+				imageNUMBER2 = App->ui_manager->CreateImage(App->win->Width / 2, App->win->Height / 2, false);
+				imageNUMBER2->SetSpritesData({ 1552,1963,31,42 });
+				imageNUMBER2->Local_pos.x -= imageNUMBER2->width / 2;
+				imageNUMBER2->Local_pos.y -= imageNUMBER2->height / 2;
+			}
+			if (Number == 1) {
+				App->ui_manager->DeleteUI_Element(imageNUMBER2);
+				imageNUMBER1 = App->ui_manager->CreateImage(App->win->Width / 2, App->win->Height / 2, false);
+				imageNUMBER1->SetSpritesData({ 1524,1963,26,42 });
+				imageNUMBER1->Local_pos.x -= imageNUMBER1->width / 2;
+				imageNUMBER1->Local_pos.y -= imageNUMBER1->height / 2;
+			}
+			if (Number == 0) {
+				App->ui_manager->DeleteUI_Element(imageNUMBER1);
+				GamePaused = false;
+			}
+				
+			
+		}
 	}
 }
 
@@ -355,6 +388,7 @@ void j1Scene::DeletePauseMenu()
 	App->ui_manager->DeleteUI_Element(sliderVOLUMEFX->image);
 	App->ui_manager->DeleteUI_Element(sliderVOLUMEMUSIC->image);
 	App->ui_manager->DeleteUI_Element(image);
+	buttonRESUME->pressed = false;
 }
 
 
