@@ -149,6 +149,7 @@ bool j1Scene::PostUpdate()
 		App->entitymanager->GetPlayerData()->NoInput = false;
 		App->entitymanager->GetPlayerData()->DeleteUI();
 		App->menu->Start();
+		GamePaused = false;
 	}
 	return ret;
 }

@@ -65,6 +65,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(particles);
 	AddModule(entitymanager);
 	AddModule(ui_manager);
+	
 	AddModule(menu);
 	AddModule(fade);
 	// render last to swap buffer
