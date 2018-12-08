@@ -192,10 +192,6 @@ void j1Scene::SpawnEnemies()
 	BROFILER_CATEGORY("Scene: Spawn", Profiler::Color::LightYellow);
 	if (WantToSpawnEnemies) {
 		if (KnowMap == 0) {
-
-			//Platforms
-			App->entitymanager->CreateEntity(EntityType::MOVING_PLATFORM, 7480, 900);
-			App->entitymanager->CreateEntity(EntityType::MOVING_PLATFORM, 8300, 900);
 			//Enemies
 			App->entitymanager->CreateEntity(EntityType::BAT, 6000, 600);
 			App->entitymanager->CreateEntity(EntityType::SPIDER, 6800, 400);
@@ -203,35 +199,6 @@ void j1Scene::SpawnEnemies()
 			App->entitymanager->CreateEntity(EntityType::BAT, 9500, 600);
 			App->entitymanager->CreateEntity(EntityType::SPIDER, 10500, 450);
 
-			//Coins
-			if (App->entitymanager->GetPlayerData()->NumPlayer == 0) {
-				App->entitymanager->CreateEntity(EntityType::COIN, 1173, 442);
-				App->entitymanager->CreateEntity(EntityType::COIN, 1395, 305);
-				App->entitymanager->CreateEntity(EntityType::COIN, 1395, 525);
-			}
-			if (App->entitymanager->GetPlayerData()->NumPlayer == 1) {
-				App->entitymanager->CreateEntity(EntityType::COIN, 1175, 465);
-				App->entitymanager->CreateEntity(EntityType::COIN, 1333, 518);
-			}
-			if (App->entitymanager->GetPlayerData()->NumPlayer == 2) {
-				App->entitymanager->CreateEntity(EntityType::COIN, 1173, 442);
-				App->entitymanager->CreateEntity(EntityType::COIN, 1395, 510);
-			}
-			if(App->entitymanager->GetPlayerData()->NumPlayer == 2|| App->entitymanager->GetPlayerData()->NumPlayer == 1)
-				App->entitymanager->CreateEntity(EntityType::COIN, 1850, 552);
-			App->entitymanager->CreateEntity(EntityType::COIN, 2416, 818);
-			App->entitymanager->CreateEntity(EntityType::COIN, 3057, 538);
-			App->entitymanager->CreateEntity(EntityType::COIN, 3445, 608);
-			App->entitymanager->CreateEntity(EntityType::COIN, 3833, 608);
-			App->entitymanager->CreateEntity(EntityType::COIN, 4385, 405);
-			App->entitymanager->CreateEntity(EntityType::COIN, 5015, 640);
-			App->entitymanager->CreateEntity(EntityType::COIN, 5580, 660);
-			App->entitymanager->CreateEntity(EntityType::COIN, 6170, 545);
-			App->entitymanager->CreateEntity(EntityType::COIN, 7340, 680);
-			App->entitymanager->CreateEntity(EntityType::COIN, 8200, 825);
-			App->entitymanager->CreateEntity(EntityType::COIN, 9140, 680);
-			App->entitymanager->CreateEntity(EntityType::COIN, 9947, 615);
-			App->entitymanager->CreateEntity(EntityType::COIN, 10500, 685);
 		}
 		if (KnowMap == 1) {
 			App->entitymanager->CreateEntity(EntityType::SPIDER, 1300, 300);
@@ -240,28 +207,59 @@ void j1Scene::SpawnEnemies()
 			App->entitymanager->CreateEntity(EntityType::BAT, 7500, 700);
 			App->entitymanager->CreateEntity(EntityType::SPIDER, 6600, 700);
 
-			//Coins
-			App->entitymanager->CreateEntity(EntityType::COIN, 768, 330);
-			App->entitymanager->CreateEntity(EntityType::COIN, 1274, 540);
-			App->entitymanager->CreateEntity(EntityType::COIN, 1677, 679);
-			App->entitymanager->CreateEntity(EntityType::COIN, 2381, 688);
-			App->entitymanager->CreateEntity(EntityType::COIN, 2878, 900);
-			App->entitymanager->CreateEntity(EntityType::COIN, 3300, 777);
-			App->entitymanager->CreateEntity(EntityType::COIN, 3918, 692);
-			App->entitymanager->CreateEntity(EntityType::COIN, 3090, 480);
-			App->entitymanager->CreateEntity(EntityType::COIN, 4247, 126);
-			App->entitymanager->CreateEntity(EntityType::COIN, 4450, 600);
-			App->entitymanager->CreateEntity(EntityType::COIN, 4930, 969);
-			App->entitymanager->CreateEntity(EntityType::COIN, 5530, 342);
-			App->entitymanager->CreateEntity(EntityType::COIN, 6730, 905);
-			App->entitymanager->CreateEntity(EntityType::COIN, 7537, 900);
-			App->entitymanager->CreateEntity(EntityType::COIN, 8210, 712);
-			App->entitymanager->CreateEntity(EntityType::COIN, 10014, 1034);
 		}
 	}
 	if (KnowMap == 0) {
+
 		App->entitymanager->CreateEntity(EntityType::MOVING_PLATFORM, 7480, 900);
 		App->entitymanager->CreateEntity(EntityType::MOVING_PLATFORM, 8300, 900);
+		//Coins
+		if (App->entitymanager->GetPlayerData()->NumPlayer == 0) {
+			App->entitymanager->CreateEntity(EntityType::COIN, 1173, 442);
+			App->entitymanager->CreateEntity(EntityType::COIN, 1395, 305);
+			App->entitymanager->CreateEntity(EntityType::COIN, 1395, 525);
+		}
+		if (App->entitymanager->GetPlayerData()->NumPlayer == 1) {
+			App->entitymanager->CreateEntity(EntityType::COIN, 1175, 465);
+			App->entitymanager->CreateEntity(EntityType::COIN, 1333, 518);
+		}
+		if (App->entitymanager->GetPlayerData()->NumPlayer == 2) {
+			App->entitymanager->CreateEntity(EntityType::COIN, 1173, 442);
+			App->entitymanager->CreateEntity(EntityType::COIN, 1395, 510);
+		}
+		if (App->entitymanager->GetPlayerData()->NumPlayer == 2 || App->entitymanager->GetPlayerData()->NumPlayer == 1)
+			App->entitymanager->CreateEntity(EntityType::COIN, 1850, 552);
+		App->entitymanager->CreateEntity(EntityType::COIN, 2416, 818);
+		App->entitymanager->CreateEntity(EntityType::COIN, 3057, 538);
+		App->entitymanager->CreateEntity(EntityType::COIN, 3445, 608);
+		App->entitymanager->CreateEntity(EntityType::COIN, 3833, 608);
+		App->entitymanager->CreateEntity(EntityType::COIN, 4385, 405);
+		App->entitymanager->CreateEntity(EntityType::COIN, 5015, 640);
+		App->entitymanager->CreateEntity(EntityType::COIN, 5580, 660);
+		App->entitymanager->CreateEntity(EntityType::COIN, 6170, 545);
+		App->entitymanager->CreateEntity(EntityType::COIN, 7340, 680);
+		App->entitymanager->CreateEntity(EntityType::COIN, 8200, 825);
+		App->entitymanager->CreateEntity(EntityType::COIN, 9140, 680);
+		App->entitymanager->CreateEntity(EntityType::COIN, 9947, 615);
+		App->entitymanager->CreateEntity(EntityType::COIN, 10500, 685);
+	}
+	if (KnowMap == 1) {
+		App->entitymanager->CreateEntity(EntityType::COIN, 768, 330);
+		App->entitymanager->CreateEntity(EntityType::COIN, 1274, 540);
+		App->entitymanager->CreateEntity(EntityType::COIN, 1677, 679);
+		App->entitymanager->CreateEntity(EntityType::COIN, 2381, 688);
+		App->entitymanager->CreateEntity(EntityType::COIN, 2878, 900);
+		App->entitymanager->CreateEntity(EntityType::COIN, 3300, 777);
+		App->entitymanager->CreateEntity(EntityType::COIN, 3918, 692);
+		App->entitymanager->CreateEntity(EntityType::COIN, 3090, 480);
+		App->entitymanager->CreateEntity(EntityType::COIN, 4247, 126);
+		App->entitymanager->CreateEntity(EntityType::COIN, 4450, 600);
+		App->entitymanager->CreateEntity(EntityType::COIN, 4930, 969);
+		App->entitymanager->CreateEntity(EntityType::COIN, 5530, 342);
+		App->entitymanager->CreateEntity(EntityType::COIN, 6730, 905);
+		App->entitymanager->CreateEntity(EntityType::COIN, 7537, 900);
+		App->entitymanager->CreateEntity(EntityType::COIN, 8210, 712);
+		App->entitymanager->CreateEntity(EntityType::COIN, 10014, 1034);
 	}
 
 }
@@ -307,6 +305,7 @@ void j1Scene::PauseMenu(float dt)
 		imageNUMBER3->Local_pos.y -= imageNUMBER3->height / 2;
 	}
 	if (buttonGOMAINMENU->pressed) {
+		StartTimer = true;
 		App->fade->FadeToBlack(3.0f);
 		CanStart = true;
 		App->ui_manager->DeleteAllUI();
@@ -327,9 +326,7 @@ void j1Scene::PauseMenu(float dt)
 		sliderVOLUMEFX->NoUse = true;
 	}
 
-	if (StartTimer) {
-		int i = SDL_GetTicks();
-		i = SDL_GetTicks();
+	if (StartTimer && !CanStart) {
 		if (SDL_GetTicks() - StartTime > 1000) {
 			Number -= 1;
 			StartTime = SDL_GetTicks();

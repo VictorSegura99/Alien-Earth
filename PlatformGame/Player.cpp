@@ -587,6 +587,7 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		App->scene->KnowMap = 0;
 		App->fade->FadeToBlack(3.0f);
 		App->audio->PlayFx(winningfx);
+		current_animation = &idle[NumPlayer];
 		TouchingGround = true;
 		WalkLeft = false;
 		WalkRight = false;
@@ -740,6 +741,7 @@ void Player::ChangePlayer(const int playernumber, bool InGame)
 	}
 	TouchingGround = false;
 	current_animation = &idle[NumPlayer];
+	
 }
 
 void Player::GoJump(float dt)

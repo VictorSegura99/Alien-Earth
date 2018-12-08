@@ -165,6 +165,7 @@ bool j1App::Start()
 	PERF_PEEK(ptimer);
 
 	App->render->surface=App->tex->LoadMouse("textures/pointer.png");
+	LoadGame("save_game.xml", false);
 	return ret;
 }
 

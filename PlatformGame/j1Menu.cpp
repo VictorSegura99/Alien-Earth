@@ -259,11 +259,21 @@ void j1Menu::MainMenu()
 	}
 	if (buttonCONTINUE->pressed) {
 		App->LoadGame("save_game.xml", false);
-		if (App->CanLoad) {
+		if (App->CanLoad == true) {
 			App->ui_manager->DeleteAllUI();
 			App->entitymanager->GetPlayerData()->Intro = false;
 			App->fade->FadeToBlack(3.0f);
 			GoStartSaved = true;
+		}
+		else {
+			imageCONTINUE = App->ui_manager->CreateImage(300, 400, false);
+			imageCONTINUE->SetSpritesData({ 1068,1158,207,86 });
+			buttonSTART->NoUse = true;
+			buttonCONTINUE->NoUse = true;
+			buttonSETTINGS->NoUse = true;
+			buttonHACKS->NoUse = true;
+			buttonEXIT->NoUse = true;
+			buttonCREDITS->NoUse = true;
 		}
 		
 	}
@@ -593,7 +603,7 @@ void j1Menu::CreatehacksButtons()
 	checkboxNOENEMIES = App->ui_manager->CreateCheckBox(380, 257, imageHACKS);
 	labelNOENEMIES = App->ui_manager->CreateLabel(100, 250, "NO ENEMIES", 50, true, imageHACKS);
 	checkboxSTARTLEVEL2 = App->ui_manager->CreateCheckBox(380, 357, imageHACKS);
-	labelSTARTLEVEL2 = App->ui_manager->CreateLabel(100, 350, "START IN LEVEL 2", 50, true, imageHACKS);
+	labelSTARTLEVEL2 = App->ui_manager->CreateLabel(100, 350, "START AT LEVEL 2", 50, true, imageHACKS);
 	labelHACKS = App->ui_manager->CreateLabel(imageHACKS->width / 2, 50, "HACKS", 60, true, imageHACKS);
 	labelHACKS->Local_pos.x -= labelHACKS->width / 2;
 

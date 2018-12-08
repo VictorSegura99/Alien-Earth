@@ -201,7 +201,7 @@ public:
 	int playerheight = 0;
 	int finalmapplayer = 0;
 	int finalmap = 0;
-	int NumPlayer = 900;
+	int NumPlayer = 0;
 	int ringpositionx = 0;
 	int ringpositiony = 0;
 	int TutorialX = 0;
