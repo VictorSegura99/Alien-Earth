@@ -29,7 +29,6 @@ UI_Element::UI_Element(int x, int y, UI_Element* parent) : Local_pos(x,y), paren
 	fxPressed = App->audio->LoadFx(FXPRESSED.GetString());
 	//IMPORTANT
 
-
 	if (parent == nullptr) {
 		Scree_pos.x = x + -App->render->camera.x;
 		Scree_pos.y = y + -App->render->camera.y;
@@ -61,11 +60,11 @@ bool UI_Element::CleanUp()
 
 void UI_Element::Draw(float dt, SDL_Texture* texture)
 {
-	if (parent == nullptr) {
+	if (parent == nullptr && this->type != PLAYERUI) {
 		Scree_pos.x = Local_pos.x;
 		Scree_pos.y = Local_pos.y;
 	}
-	else {
+	else if (this->type != PLAYERUI){
 		SetPos(parent->Scree_pos.x + Local_pos.x, parent->Scree_pos.y + Local_pos.y);
 	}
 	if (WantToRender) {
