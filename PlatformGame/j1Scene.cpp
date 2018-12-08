@@ -338,6 +338,8 @@ void j1Scene::PauseMenu(float dt)
 	}
 
 	if (StartTimer) {
+		int i = SDL_GetTicks();
+		i = SDL_GetTicks();
 		if (SDL_GetTicks() - StartTime > 1000) {
 			Number -= 1;
 			StartTime = SDL_GetTicks();
@@ -356,7 +358,9 @@ void j1Scene::PauseMenu(float dt)
 				imageNUMBER1->Local_pos.y -= imageNUMBER1->height / 2;
 			}
 			if (Number == 0) {
+				Number = 3;
 				App->ui_manager->DeleteUI_Element(imageNUMBER1);
+				StartTimer = false;
 				GamePaused = false;
 			}
 				
