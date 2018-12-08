@@ -128,6 +128,7 @@ public:
 
 	UI_Element* live;
 	UI_Element* livenumber;
+	UI_Element* tutorial;
 
 	unsigned int jumpfx;
 	unsigned int waterfx;

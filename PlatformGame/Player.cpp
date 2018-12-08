@@ -1136,8 +1136,19 @@ void Player::Gravity(float dt)
 
 void Player::SetUI()
 {
+	//Tutorials
+	tutorial = App->ui_manager->CreateImage(1400, 300, false);
+	tutorial->type = PLAYERUI;
+	if (NumPlayer == 0)
+		tutorial->SetSpritesData({ 2700,525,602,363 });
+	else if (NumPlayer == 1)
+		tutorial->SetSpritesData({ 2700,0,522,274 });
+	else if (NumPlayer == 2)
+		tutorial->SetSpritesData({ 2700,274,539,251 });
+
+
 	//LIVES
-	live = App->ui_manager->CreateImage(900, 22, false);
+	live = App->ui_manager->CreateImage(900, 22, true);
 	live->type = PLAYERUI;
 	if (NumPlayer == 0) {
 		live->SetSpritesData({ 425,977,47,47 });
@@ -1150,7 +1161,7 @@ void Player::SetUI()
 		live->SetSpritesData({ 521,977,47,47 });
 	}
 		
-	livenumber = App->ui_manager->CreateImage(950, 17, false);
+	livenumber = App->ui_manager->CreateImage(950, 17, true);
 	livenumber->type = PLAYERUI;
 	if (lives == 3) {
 		livenumber->SetSpritesData({ 1252,1950,47,50 });

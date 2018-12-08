@@ -62,8 +62,8 @@ bool UI_Element::CleanUp()
 void UI_Element::Draw(float dt, SDL_Texture* texture)
 {
 	if (parent == nullptr) {
-		Scree_pos.x = Local_pos.x + -App->render->camera.x;
-		Scree_pos.y = Local_pos.y + -App->render->camera.y;
+		Scree_pos.x = Local_pos.x;
+		Scree_pos.y = Local_pos.y;
 	}
 	else {
 		SetPos(parent->Scree_pos.x + Local_pos.x, parent->Scree_pos.y + Local_pos.y);
