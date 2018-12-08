@@ -163,7 +163,7 @@ bool Spider::Save(pugi::xml_node & spider) const
 
 void Spider::Draw(float dt)
 {
-	if (App->scene->GamePaused)
+	if (!App->scene->GamePaused)
 		App->render->Blit(texture, position.x, position.y, &(current_animation->GetCurrentFrame(dt)));
 	else App->render->Blit(texture, position.x, position.y, &(current_animation->frames[current_animation->SeeCurrentFrame()]));
 	
@@ -214,10 +214,11 @@ Animation Spider::LoadPushbacks(pugi::xml_node &config, p2SString NameAnim) cons
 }
 
 void Spider::AnimationLogic() {
+
 	if (App->entitymanager->GetPlayerData()->position.x + 5 <= position.x && !death) {
 		current_animation = &GoLeft;
 	}
-	else if (App->entitymanager->GetPlayerData()->position.x > position.x && !death) {
+	if (App->entitymanager->GetPlayerData()->position.x > position.x && !death) {
 		current_animation = &GoRight;
 	}
 	if (death) {

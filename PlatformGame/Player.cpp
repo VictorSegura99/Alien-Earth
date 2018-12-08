@@ -651,6 +651,8 @@ void Player::Spawn()
 	}
 	else {
 		//current_animation = &idle[NumPlayer];
+		Death[NumPlayer].current_frame = 0.0f;
+		Death[NumPlayer].loops = 0;
 		NoInput = true;
 		App->scene->KnowMap = 0;
 		App->fade->FadeToBlack(3.0f);
