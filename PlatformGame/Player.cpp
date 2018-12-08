@@ -231,10 +231,13 @@ bool Player::Update(float dt)
 		}
 		if (fall && !God) {
 			fall = false;
-			if (NumPlayer == 0 || NumPlayer == 2)
-				App->audio->PlayFx(deathfx2);
-			else
-				App->audio->PlayFx(deathfx);
+			if (lives > 0) {
+				if (NumPlayer == 0 || NumPlayer == 2)
+					App->audio->PlayFx(deathfx2);
+				else
+					App->audio->PlayFx(deathfx);
+			}
+			
 			Fall();
 		}
 
@@ -595,7 +598,7 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 void Player::Die()//What happens when the player die
 {
 	current_animation = &Death[NumPlayer];
-	if (Death[NumPlayer].SeeCurrentFrame() == 1)
+	if (Death[NumPlayer].SeeCurrentFrame() == 1 && lives > 0)
 		if (NumPlayer == 0 || NumPlayer == 2)
 			App->audio->PlayFx(deathfx2);
 		else
