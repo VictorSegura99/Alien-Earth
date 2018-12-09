@@ -699,12 +699,18 @@ void Player::Spawn()
 
 void Player::ChangeLiveSprite()
 {
-	if (NumPlayer == 0)
-		live->SetSpritesData({ 425,977,47,47 });
-	else if (NumPlayer == 1)
-		live->SetSpritesData({ 473,977,47,47 });
-	else if (NumPlayer == 2)
-		live->SetSpritesData({ 521,977,47,47 });
+	if (NumPlayer == 0) {
+		live->SetSpritesData({ 1156,1103,63,63 });
+		CoinUI->SetSpritesData({ 1156,1165,63,65 });
+	}
+	else if (NumPlayer == 1) {
+		live->SetSpritesData({ 1220,1103,63,63 });
+		CoinUI->SetSpritesData({ 1220,1165,63,65 });
+	}
+	else if (NumPlayer == 2) {
+		live->SetSpritesData({ 1284,1103,63,63 });
+		CoinUI->SetSpritesData({ 1284,1165,63,65 });
+	}
 }
 
 Animation Player::LoadPushbacks(int playernumber, pugi::xml_node& config, p2SString NameAnim) const
@@ -1168,12 +1174,24 @@ void Player::SetUI()
 
 	//Coins
 	Coins.create("%i", App->scene->NumberCoins);
-	NumCoins = App->ui_manager->CreateLabel(20, 20, Coins.GetString(), 50, false);
-
+	NumCoins = App->ui_manager->CreateLabel(90, 27, Coins.GetString(), 50, false);
+	//NumCoins->type = PLAYERUI;
+	CoinUI = App->ui_manager->CreateImage(20, 20, false);
+	CoinUI->type = PLAYERUI;
+	if (NumPlayer == 0) {
+		CoinUI->SetSpritesData({ 1156,1165,63,65 });
+	}
+	else if (NumPlayer == 1) {
+		CoinUI->SetSpritesData({ 1220,1165,63,65 });
+	}
+	else if (NumPlayer == 2) {
+		CoinUI->SetSpritesData({ 1284,1165,63,65 });
+	}
 	//Time
 	CurrentTime = SDL_GetTicks();
 	StringTime.create("%i:%i:%i", Hours, Min, (CurrentTime - TimeSinceStarted) / 1000);
 	TimeStart = App->ui_manager->CreateLabel(App->win->Width/2, 30, StringTime.GetString(), 50, false);
+	//TimeStart->type = PLAYERUI;
 	TimeStart->Scree_pos.x -= TimeStart->width / 2;
 
 	//Tutorials
@@ -1188,20 +1206,20 @@ void Player::SetUI()
 
 
 	//LIVES
-	live = App->ui_manager->CreateImage(900, 22, false);
+	live = App->ui_manager->CreateImage(882, 20, false);
 	live->type = PLAYERUI;
 	if (NumPlayer == 0) {
-		live->SetSpritesData({ 425,977,47,47 });
+		live->SetSpritesData({ 1156,1103,63,63 });
 	}
 	else if (NumPlayer == 1) {
-		live->SetSpritesData({ 473,977,47,47 });
+		live->SetSpritesData({ 1220,1103,63,63 });
 	}
 		
 	else if (NumPlayer == 2) {
-		live->SetSpritesData({ 521,977,47,47 });
+		live->SetSpritesData({ 1284,1103,63,63 });
 	}
 		
-	livenumber = App->ui_manager->CreateImage(950, 17, false);
+	livenumber = App->ui_manager->CreateImage(950, 25, false);
 	livenumber->type = PLAYERUI;
 	if (lives == 3) {
 		livenumber->SetSpritesData({ 1252,1950,47,50 });

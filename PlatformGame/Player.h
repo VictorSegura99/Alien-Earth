@@ -139,6 +139,7 @@ public:
 	UI_Element* tutorial = nullptr;
 	UI_Element* TimeStart = nullptr;
 	UI_Element* NumCoins = nullptr;
+	UI_Element* CoinUI = nullptr;
 
 	p2SString Coins;
 	p2SString StringTime;
