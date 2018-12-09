@@ -11,7 +11,7 @@
 #include "Slider.h"
 #include "Image.h"
 
-#include "Brofiler/Brofiler.h"
+#include "Brofiler/Brofiler.h"		
 
 
 UI_Manager::UI_Manager()

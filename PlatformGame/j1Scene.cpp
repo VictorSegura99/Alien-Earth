@@ -290,7 +290,7 @@ void j1Scene::PauseMenu(float dt)
 		StartTime = SDL_GetTicks();
 		StartTimer = true;
 		App->ui_manager->DeleteAllUIExeptPlayer();
-		imageNUMBER3 = App->ui_manager->CreateImage(App->win->Width / 2, App->win->Height / 2, false);
+		imageNUMBER3 = App->ui_manager->CreateImage(App->win->Width / 2, App->win->Height / 2-100, false);
 		imageNUMBER3->type = PLAYERUIIMAGE;
 		imageNUMBER3->SetSpritesData({ 1584,1963,29,44 });
 		imageNUMBER3->Local_pos.x -= imageNUMBER3->width / 2;
@@ -327,7 +327,7 @@ void j1Scene::PauseMenu(float dt)
 			StartTime = SDL_GetTicks();
 			if (Number == 2) {
 				App->ui_manager->DeleteUI_Element(imageNUMBER3);
-				imageNUMBER2 = App->ui_manager->CreateImage(App->win->Width / 2, App->win->Height / 2, true);
+				imageNUMBER2 = App->ui_manager->CreateImage(App->win->Width / 2, App->win->Height / 2-100, true);
 				imageNUMBER2->type = PLAYERUIIMAGE;
 				imageNUMBER2->SetSpritesData({ 1552,1963,31,42 });
 				imageNUMBER2->Local_pos.x -= imageNUMBER2->width / 2;
@@ -335,7 +335,7 @@ void j1Scene::PauseMenu(float dt)
 			}
 			if (Number == 1) {
 				App->ui_manager->DeleteUI_Element(imageNUMBER2);
-				imageNUMBER1 = App->ui_manager->CreateImage(App->win->Width / 2, App->win->Height / 2, true);
+				imageNUMBER1 = App->ui_manager->CreateImage(App->win->Width / 2, App->win->Height / 2-100, true);
 				imageNUMBER1->type = PLAYERUIIMAGE;
 				imageNUMBER1->SetSpritesData({ 1524,1963,26,42 });
 				imageNUMBER1->Local_pos.x -= imageNUMBER1->width / 2;
