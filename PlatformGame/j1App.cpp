@@ -60,11 +60,10 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(fonts);
 	AddModule(collision);
 
-	
 
 	AddModule(particles);
-	AddModule(entitymanager);
 	AddModule(ui_manager);
+	AddModule(entitymanager);
 	
 	AddModule(menu);
 	AddModule(fade);

@@ -42,9 +42,6 @@ bool j1Scene::Awake(pugi::xml_node& config)
 	}
 	Song = config.child("song").text().as_string();
 	SongMenu = config.child("songmenu").text().as_string();
-	tutorial[0] = config.child("tutorialJeff").text().as_string();
-	tutorial[1] = config.child("tutorialJane").text().as_string();
-	tutorial[2] = config.child("tutorialJerry").text().as_string();
 	bool ret = true;
 	
 	return ret;
@@ -56,10 +53,6 @@ bool j1Scene::Start()
 	BROFILER_CATEGORY("Scene: Start", Profiler::Color::LightYellow);
 	//App->map->Load(map_name.start->data->GetString());
 	//active = false;
-	TutorialJeff = App->tex->Load(tutorial[0].GetString());
-	TutorialJane = App->tex->Load(tutorial[1].GetString());
-	TutorialJerry = App->tex->Load(tutorial[2].GetString());
-	
 	return true;
 }
 
@@ -167,9 +160,6 @@ bool j1Scene::PostUpdate()
 bool j1Scene::CleanUp()
 {
 	//App->collision->Disable();
-	App->tex->UnLoad(TutorialJane);
-	App->tex->UnLoad(TutorialJeff);
-	App->tex->UnLoad(TutorialJerry);
 	LOG("Freeing scene");
 	return true;
 }

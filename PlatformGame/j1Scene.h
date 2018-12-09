@@ -52,10 +52,6 @@ public:
 	p2SString Song;
 	p2SString SongMenu;
 	//Entity* player = nullptr;
-	SDL_Texture* TutorialJeff;
-	SDL_Texture* TutorialJane;
-	SDL_Texture* TutorialJerry;
-	p2SString tutorial[3];
 	bool CanStart = false;
 	Entity* bat1 = nullptr;
 	bool WantToSpawnEnemies = true;

@@ -317,20 +317,6 @@ bool Player::Save(pugi::xml_node& player) const
 }
 void Player::Draw(float dt)
 {
-		
-		if (App->scene->KnowMap == 0) {
-			switch (NumPlayer) {
-			case 0:
-				App->render->Blit(App->scene->TutorialJeff, TutorialX, TutorialY1);
-				break;
-			case 1:
-				App->render->Blit(App->scene->TutorialJane, TutorialX, TutorialY2);
-				break;
-			case 2:
-				App->render->Blit(App->scene->TutorialJerry, TutorialX, TutorialY2);
-				break;
-			}
-		}
 		if (Intro) {
 			App->render->DrawQuad({ -App->render->camera.x,-App->render->camera.y,App->render->camera.w,App->render->camera.h }, 0, 0, 0, 150);
 			if (!OvniCanMove)
@@ -971,8 +957,6 @@ void Player::Camera(float dt)
 		OvniCanMove = true;
 		App->render->camera.y = -position.y + (App->render->camera.h / 2);
 	}
-	if (-App->render->camera.x >= position.x) //PLAYER CAN NOT GO BACK
-		position.x += SpeedWalk * dt;
 }
 
 void Player::DoDash(float dt)
@@ -1196,7 +1180,7 @@ void Player::SetUI()
 	//TimeStart->Scree_pos.x -= 200;
 
 	//Tutorials
-	tutorial = App->ui_manager->CreateImage(1400, 300, true);
+	tutorial = App->ui_manager->CreateImage(1002, 250, true);
 	tutorial->type = PLAYERUIIMAGE;
 	if (NumPlayer == 0)
 		tutorial->SetSpritesData({ 2700,525,602,363 });
