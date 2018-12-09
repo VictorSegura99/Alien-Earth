@@ -1190,9 +1190,9 @@ void Player::SetUI()
 	//Time
 	CurrentTime = SDL_GetTicks();
 	StringTime.create("%i:%i:%i", Hours, Min, (CurrentTime - TimeSinceStarted) / 1000);
-	TimeStart = App->ui_manager->CreateLabel(App->win->Width/2, 30, StringTime.GetString(), 50, false);
+	TimeStart = App->ui_manager->CreateLabel(App->win->Width/2 - 48, 27, StringTime.GetString(), 50, false);
 	TimeStart->type = PLAYERUILABEL;
-	TimeStart->Scree_pos.x -= TimeStart->width / 2;
+	//TimeStart->Scree_pos.x -= 200;
 
 	//Tutorials
 	tutorial = App->ui_manager->CreateImage(1400, 300, true);
