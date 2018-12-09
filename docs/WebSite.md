@@ -1,4 +1,4 @@
-# Development Platform Game
+ï»¿# Development Platform Game
 _____________
 GAME
 
@@ -53,7 +53,7 @@ Third Assigment:
 - Animation Cinematic Intro
 _____________
 AUTHORS
-- Víctor Segura Blanco (Github: https://github.com/VictorSegura99)
+- VÃ­ctor Segura Blanco (Github: https://github.com/VictorSegura99)
 - Oriol Capdevila Salinas (Github: https://github.com/OriolCS2)
 
 Our Repository: https://github.com/VictorSegura99/Development-Platform-Game
@@ -85,7 +85,7 @@ ACHIVEMENTS by each member:
 
 First Assigment:
 
-- Víctor Segura:
+- VÃ­ctor Segura:
 - - Maps Creation in Tiled
 - - Maps 1 and 2 Levels Desing
 - - Colliders 
@@ -102,7 +102,7 @@ First Assigment:
 
 Second Assigment:
 
-- Víctor Segura:
+- VÃ­ctor Segura:
 - - Camera
 - - Bat
 - - Dash
@@ -130,7 +130,7 @@ LICENSE:
 
 MIT License
 
-Copyright (c) [2018] [Víctor Segura Blanco; Oriol Capdevila Salinas]
+Copyright (c) [2018] [VÃ­ctor Segura Blanco; Oriol Capdevila Salinas]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
