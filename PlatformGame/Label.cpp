@@ -14,8 +14,8 @@ Label::Label(int x, int y, p2SString name, int size, bool CanBeMoved, UI_Element
 	this->CanBeMoved = CanBeMoved;
 	this->name = name;
 	if (!CanBeMoved) {
-		Distance.x = Local_pos.x - (-App->render->camera.x);
-		Distance.y = Local_pos.y - (-App->render->camera.y);
+		Distance.x = Scree_pos.x - (-App->render->camera.x);
+		Distance.y = Scree_pos.y - (-App->render->camera.y);
 		App->fonts->PlayerUI = App->fonts->Load(App->fonts->path, size);
 		tex = App->fonts->Print(name.GetString(), App->fonts->PlayerUI);
 		App->fonts->CalcSize(name.GetString(), width, height, App->fonts->PlayerUI);
@@ -36,8 +36,8 @@ Label::~Label()
 bool Label::Update(float dt)
 {
 	if (!CanBeMoved) {
-		Local_pos.x = (-App->render->camera.x) + Distance.x;
-		Local_pos.y = (-App->render->camera.y) + Distance.y;
+		Scree_pos.x = (-App->render->camera.x) + Distance.x;
+		Scree_pos.y = (-App->render->camera.y) + Distance.y;
 	}
 
 	return true;

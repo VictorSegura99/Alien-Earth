@@ -54,7 +54,11 @@ bool UI_Manager::Update(float dt)
 			elements[i]->Draw(dt, atlas);
 	}
 	for (int i = 0; i < elements.Count(); i++) {
-		if (elements[i] != nullptr && elements[i]->type == PLAYERUI)
+		if (elements[i] != nullptr && elements[i]->type == PLAYERUIIMAGE)
+			elements[i]->Draw(dt, atlas);
+	}
+	for (int i = 0; i < elements.Count(); i++) {
+		if (elements[i] != nullptr && elements[i]->type == PLAYERUILABEL)
 			elements[i]->Draw(dt, atlas);
 	}
 	for (int i = 0; i < elements.Count(); i++) {
@@ -270,7 +274,7 @@ void UI_Manager::DeleteAllUIExeptPlayer()
 {
 	for (int i = elements.Count() - 1; i >= 0; --i)
 	{
-		if (elements[i] != nullptr && elements[i]->type != PLAYERUI) {
+		if (elements[i] != nullptr && elements[i]->type != PLAYERUIIMAGE && elements[i]->type != PLAYERUILABEL) {
 			elements[i]->CleanUp();
 			delete(elements[i]);
 			elements[i] = nullptr;

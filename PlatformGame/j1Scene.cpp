@@ -300,13 +300,8 @@ void j1Scene::PauseMenu(float dt)
 		StartTime = SDL_GetTicks();
 		StartTimer = true;
 		App->ui_manager->DeleteAllUIExeptPlayer();
-		//App->entitymanager->GetPlayerData()->CurrentTime = SDL_GetTicks();
-		App->entitymanager->GetPlayerData()->Coins.create("%i", NumberCoins);
-		App->entitymanager->GetPlayerData()->NumCoins = App->ui_manager->CreateLabel(90, 27, App->entitymanager->GetPlayerData()->Coins.GetString(), 50, false);
-		App->entitymanager->GetPlayerData()->StringTime.create("%i : %i : %i", App->entitymanager->GetPlayerData()->Hours, App->entitymanager->GetPlayerData()->Min, (App->entitymanager->GetPlayerData()->CurrentTime - App->entitymanager->GetPlayerData()->TimeSinceStarted) / 1000);
-		App->entitymanager->GetPlayerData()->TimeStart = App->ui_manager->CreateLabel(App->win->Width / 2, 30, App->entitymanager->GetPlayerData()->StringTime.GetString(), 50, false);
 		imageNUMBER3 = App->ui_manager->CreateImage(App->win->Width / 2, App->win->Height / 2, false);
-		imageNUMBER3->type = PLAYERUI;
+		imageNUMBER3->type = PLAYERUIIMAGE;
 		imageNUMBER3->SetSpritesData({ 1584,1963,29,44 });
 		imageNUMBER3->Local_pos.x -= imageNUMBER3->width / 2;
 		imageNUMBER3->Local_pos.y -= imageNUMBER3->height / 2;
@@ -343,7 +338,7 @@ void j1Scene::PauseMenu(float dt)
 			if (Number == 2) {
 				App->ui_manager->DeleteUI_Element(imageNUMBER3);
 				imageNUMBER2 = App->ui_manager->CreateImage(App->win->Width / 2, App->win->Height / 2, true);
-				imageNUMBER2->type = PLAYERUI;
+				imageNUMBER2->type = PLAYERUIIMAGE;
 				imageNUMBER2->SetSpritesData({ 1552,1963,31,42 });
 				imageNUMBER2->Local_pos.x -= imageNUMBER2->width / 2;
 				imageNUMBER2->Local_pos.y -= imageNUMBER2->height / 2;
@@ -351,7 +346,7 @@ void j1Scene::PauseMenu(float dt)
 			if (Number == 1) {
 				App->ui_manager->DeleteUI_Element(imageNUMBER2);
 				imageNUMBER1 = App->ui_manager->CreateImage(App->win->Width / 2, App->win->Height / 2, true);
-				imageNUMBER1->type = PLAYERUI;
+				imageNUMBER1->type = PLAYERUIIMAGE;
 				imageNUMBER1->SetSpritesData({ 1524,1963,26,42 });
 				imageNUMBER1->Local_pos.x -= imageNUMBER1->width / 2;
 				imageNUMBER1->Local_pos.y -= imageNUMBER1->height / 2;

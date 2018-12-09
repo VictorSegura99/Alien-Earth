@@ -1175,9 +1175,9 @@ void Player::SetUI()
 	//Coins
 	Coins.create("%i", App->scene->NumberCoins);
 	NumCoins = App->ui_manager->CreateLabel(90, 27, Coins.GetString(), 50, false);
-	//NumCoins->type = PLAYERUI;
+	NumCoins->type = PLAYERUILABEL;
 	CoinUI = App->ui_manager->CreateImage(20, 20, false);
-	CoinUI->type = PLAYERUI;
+	CoinUI->type = PLAYERUIIMAGE;
 	if (NumPlayer == 0) {
 		CoinUI->SetSpritesData({ 1156,1165,63,65 });
 	}
@@ -1191,12 +1191,12 @@ void Player::SetUI()
 	CurrentTime = SDL_GetTicks();
 	StringTime.create("%i:%i:%i", Hours, Min, (CurrentTime - TimeSinceStarted) / 1000);
 	TimeStart = App->ui_manager->CreateLabel(App->win->Width/2, 30, StringTime.GetString(), 50, false);
-	//TimeStart->type = PLAYERUI;
+	TimeStart->type = PLAYERUILABEL;
 	TimeStart->Scree_pos.x -= TimeStart->width / 2;
 
 	//Tutorials
 	tutorial = App->ui_manager->CreateImage(1400, 300, true);
-	tutorial->type = PLAYERUI;
+	tutorial->type = PLAYERUIIMAGE;
 	if (NumPlayer == 0)
 		tutorial->SetSpritesData({ 2700,525,602,363 });
 	else if (NumPlayer == 1)
@@ -1207,7 +1207,7 @@ void Player::SetUI()
 
 	//LIVES
 	live = App->ui_manager->CreateImage(882, 20, false);
-	live->type = PLAYERUI;
+	live->type = PLAYERUIIMAGE;
 	if (NumPlayer == 0) {
 		live->SetSpritesData({ 1156,1103,63,63 });
 	}
@@ -1220,7 +1220,7 @@ void Player::SetUI()
 	}
 		
 	livenumber = App->ui_manager->CreateImage(950, 25, false);
-	livenumber->type = PLAYERUI;
+	livenumber->type = PLAYERUIIMAGE;
 	if (lives == 3) {
 		livenumber->SetSpritesData({ 1252,1950,47,50 });
 	}

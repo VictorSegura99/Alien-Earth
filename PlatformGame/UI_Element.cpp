@@ -63,15 +63,15 @@ bool UI_Element::CleanUp()
 
 void UI_Element::Draw(float dt, SDL_Texture* texture)
 {
-	if (parent == nullptr && this->type != PLAYERUI) {
+	if (parent == nullptr && this->type != PLAYERUIIMAGE && this->type != PLAYERUILABEL) {
 		Scree_pos.x = Local_pos.x;
 		Scree_pos.y = Local_pos.y;
 	}
-	else if (this->type != PLAYERUI){
+	else if (this->type != PLAYERUIIMAGE && this->type != PLAYERUILABEL){
 		SetPos(parent->Scree_pos.x + Local_pos.x, parent->Scree_pos.y + Local_pos.y);
 	}
 	if (WantToRender) {
-		if (type != LABEL)
+		if (type != LABEL && type != PLAYERUILABEL)
 			App->render->Blit(texture, Scree_pos.x, Scree_pos.y, &(png_pos));
 		else {
 			App->render->Blit(tex, Scree_pos.x, Scree_pos.y, NULL);
@@ -105,7 +105,7 @@ void UI_Element::SetPos(int x, int y)
 
 void UI_Element::SetSpritesData(SDL_Rect Idle, SDL_Rect Hover, SDL_Rect Pressed)
 {
-	if (type != IMAGE && type != PLAYERUI) {
+	if (type != IMAGE && type != PLAYERUIIMAGE && type != PLAYERUILABEL) {
 		NoPressedNoMouseOn = Idle;
 		MouseOn = Hover;
 		this->Pressed = Pressed;
