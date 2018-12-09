@@ -4,8 +4,11 @@
 #include "j1Textures.h"
 #include "p2SString.h"
 #include "j1Input.h"
+#include "j1Fonts.h"
 #include "UI_Manager.h"
 #include "j1Audio.h"
+#include "SDL_TTF\include\SDL_ttf.h"
+#pragma comment( lib, "SDL_ttf/libx86/SDL2_ttf.lib" )
 #include "j1Window.h"
 
 UI_Element::UI_Element()
@@ -115,4 +118,13 @@ void UI_Element::SetSpritesData(SDL_Rect Idle, SDL_Rect Hover, SDL_Rect Pressed)
 		height = Idle.h;
 	}
 
+}
+
+void UI_Element::ChangeLabel(p2SString label, int size)
+{
+	if (App->fonts->Time == nullptr)
+		App->fonts->Time = App->fonts->Load(App->fonts->path, size);
+	App->tex->UnLoad(tex);
+	tex = App->fonts->Print(label.GetString(), App->fonts->Time);
+	App->fonts->CalcSize(label.GetString(), width, height, App->fonts->Time);
 }

@@ -140,6 +140,8 @@ bool Player::Start()
 	current_animation = &idle[NumPlayer];
 
 	
+	TimeSinceStarted = SDL_GetTicks();
+
 	
 	return ret;
 }
@@ -192,8 +194,11 @@ bool Player::Update(float dt)
 {
 	BROFILER_CATEGORY("Player: Update", Profiler::Color::Green);
 	DT = dt;
-	if (!App->scene->GamePaused || App->scene->StartTimer)
+	
+	if (!App->scene->GamePaused || App->scene->StartTimer) {
 		Camera(dt);
+	}
+
 	if (!App->scene->GamePaused) {
 		if (!God && !Intro) {
 			if (!TouchingGround && !dashing && !CanSwim) {
@@ -224,7 +229,7 @@ bool Player::Update(float dt)
 			DoDash(dt);
 		if (NumPlayer == 0)
 			BottomFall(dt);
-
+		TIME();
 		if (death && !God) {
 			death = false;
 			Die();
@@ -1142,6 +1147,13 @@ void Player::Gravity(float dt)
 
 void Player::SetUI()
 {
+
+
+	CurrentTime = SDL_GetTicks();
+	StringTime.create("%i:%i:%i", Hours, Min, (CurrentTime - TimeSinceStarted) / 1000);
+	TimeStart = App->ui_manager->CreateLabel(500, 700, StringTime.GetString(), 30, false);
+	
+
 	//Tutorials
 	tutorial = App->ui_manager->CreateImage(1400, 300, true);
 	tutorial->type = PLAYERUI;
@@ -1185,8 +1197,7 @@ void Player::SetUI()
 		livenumber->SetSpritesData({ 1399,1950,47,50 });
 	
 	}
-		
-	//
+
 }
 
 void Player::DeleteUI()
@@ -1247,4 +1258,24 @@ void Player::Lives() {
 		livenumber->SetSpritesData({ 1399,1950,47,50 });
 	else
 		livenumber->SetSpritesData({ NULL });
+}
+
+void Player::TIME()
+{
+	
+	CurrentTime = SDL_GetTicks();
+	if ((CurrentTime - TimeSinceStarted) / 1000 >= 60) {
+		Min++;
+		TimeSinceStarted = CurrentTime = SDL_GetTicks();
+	}
+	if (Min >= 60) {
+		Hours++;
+		Min = 0;
+	}
+	StringTime.create("%i:%i:%i", Hours, Min, (CurrentTime - TimeSinceStarted) / 1000);
+	TimeStart->ChangeLabel(StringTime.GetString(), 30);
+	
+
+
+
 }

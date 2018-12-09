@@ -265,17 +265,6 @@ void j1Menu::MainMenu()
 			App->fade->FadeToBlack(3.0f);
 			GoStartSaved = true;
 		}
-		else {
-			imageCONTINUE = App->ui_manager->CreateImage(300, 400, false);
-			imageCONTINUE->SetSpritesData({ 1068,1158,207,86 });
-			buttonSTART->NoUse = true;
-			buttonCONTINUE->NoUse = true;
-			buttonSETTINGS->NoUse = true;
-			buttonHACKS->NoUse = true;
-			buttonEXIT->NoUse = true;
-			buttonCREDITS->NoUse = true;
-		}
-		
 	}
 	if (buttonSETTINGS->pressed) {
 		SettingMenuDone = false;

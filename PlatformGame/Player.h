@@ -4,6 +4,7 @@
 #include "p2Animation.h"
 #include "p2Point.h"
 #include "Entity.h"
+#include "j1PerfTimer.h"
 
 class UI_Element;
 
@@ -76,6 +77,8 @@ public:
 	void DeleteUI();
 	void CheckWhatToDoWhenCollidingWithEnemy(Collider * c2);
 	void Lives();
+	void TIME();
+
 
 private:
 	float startDash;
@@ -123,12 +126,21 @@ public:
 	p2SString OvniFx;
 	p2SString LoseFx;
 
+
+	int TimeSinceStarted;
+	int CurrentTime;
+
 	SDL_Texture* Godmode;
 	SDL_Texture* IntroLight;
 
 	UI_Element* live;
 	UI_Element* livenumber;
 	UI_Element* tutorial;
+	UI_Element* TimeStart = nullptr;
+
+	p2SString StringTime;
+	int Min = 0;
+	int Hours = 0;
 
 	unsigned int jumpfx;
 	unsigned int waterfx;

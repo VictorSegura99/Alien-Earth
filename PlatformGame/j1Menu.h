@@ -134,11 +134,6 @@ public:
 	UI_Element* JANENAME = nullptr;
 	UI_Element* JERRYNAME = nullptr;
 
-	//CONTINUE
-	UI_Element* imageCONTINUE = nullptr;
-	UI_Element* labelCANT = nullptr;
-	UI_Element* buttonGOBACKCONTINUE = nullptr;
-
 	//SETTINGS
 	UI_Element* buttonGOBACKSETTINGS = nullptr;
 	UI_Element* imageSETTINGS = nullptr;
