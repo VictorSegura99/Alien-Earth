@@ -1173,8 +1173,6 @@ void Player::Gravity(float dt)
 
 void Player::SetUI()
 {
-
-
 	//Coins
 	Coins.create("%i", App->scene->NumberCoins);
 	NumCoins = App->ui_manager->CreateLabel(90, 27, Coins.GetString(), 50, false);
@@ -1193,7 +1191,7 @@ void Player::SetUI()
 	//Time
 	CurrentTime = SDL_GetTicks();
 	StringTime.create("%i:%i:%i", Hours, Min, (CurrentTime - TimeSinceStarted) / 1000);
-	TimeStart = App->ui_manager->CreateLabel(App->win->Width/2 - 48, 27, StringTime.GetString(), 50, false);
+	TimeStart = App->ui_manager->CreateLabel(App->win->Width/2-73, 27, StringTime.GetString(), 50, false);
 	TimeStart->type = PLAYERUILABEL;
 	//TimeStart->Scree_pos.x -= 200;
 
@@ -1315,7 +1313,14 @@ void Player::TIME()
 		Hours++;
 		Min = 0;
 	}
-	StringTime.create("%i : %i : %i", Hours, Min, (CurrentTime - TimeSinceStarted) / 1000);
+	if (Min > 9&&((CurrentTime - TimeSinceStarted) / 1000)>9)
+		StringTime.create("0%i : %i : %i", Hours, Min, (CurrentTime - TimeSinceStarted) / 1000);
+	else if (Min > 9 && ((CurrentTime - TimeSinceStarted) / 1000) <= 9)
+		StringTime.create("0%i : %i : 0%i", Hours, Min, (CurrentTime - TimeSinceStarted) / 1000);
+	else if (Min <= 9 && ((CurrentTime - TimeSinceStarted) / 1000) <= 9)
+		StringTime.create("0%i : 0%i : 0%i", Hours, Min, (CurrentTime - TimeSinceStarted) / 1000);
+	else 
+		StringTime.create("0%i : 0%i : %i", Hours, Min, (CurrentTime - TimeSinceStarted) / 1000);
 	TimeStart->ChangeLabel(StringTime.GetString(), 50);
 	
 
