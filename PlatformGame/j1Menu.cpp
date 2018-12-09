@@ -73,7 +73,7 @@ bool j1Menu::Start()
 	GameOn = false;
 	
 	start = false;
-
+	App->ui_manager->DeleteAllUI();
 	App->audio->PlayMusic(App->scene->SongMenu.GetString());
 	App->scene->StartTimer = false;
 	ScreenStart = App->tex->Load(file_texture.GetString());

@@ -83,6 +83,7 @@ public:
 	int Delay = 0;
 	int Paused = 0;
 
+	int NumberCoins = 0;
 
 	int Number = 3;
 	bool StartTimer = false;

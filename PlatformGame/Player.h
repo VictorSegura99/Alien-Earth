@@ -78,6 +78,7 @@ public:
 	void CheckWhatToDoWhenCollidingWithEnemy(Collider * c2);
 	void Lives();
 	void TIME();
+	void CountCoins();
 
 
 private:
@@ -133,11 +134,13 @@ public:
 	SDL_Texture* Godmode;
 	SDL_Texture* IntroLight;
 
-	UI_Element* live;
-	UI_Element* livenumber;
-	UI_Element* tutorial;
+	UI_Element* live = nullptr;
+	UI_Element* livenumber = nullptr;
+	UI_Element* tutorial = nullptr;
 	UI_Element* TimeStart = nullptr;
+	UI_Element* NumCoins = nullptr;
 
+	p2SString Coins;
 	p2SString StringTime;
 	int Min = 0;
 	int Hours = 0;

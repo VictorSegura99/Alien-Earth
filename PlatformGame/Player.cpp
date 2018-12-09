@@ -288,6 +288,8 @@ bool Player::Load(pugi::xml_node& player)
 	Hours = player.child("Hours").attribute("value").as_int();
 	App->scene->Delay = player.child("Delay").attribute("value").as_int();
 	App->scene->Delay += SDL_GetTicks() - SaveDelay;
+	App->scene->NumberCoins = player.child("NumCoins").attribute("value").as_int();
+	CountCoins();
 	ChangePlayer(player.child("NumPlayer").attribute("value").as_int(), true);
 	Lives();
 	App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
@@ -305,7 +307,7 @@ bool Player::Save(pugi::xml_node& player) const
 	player.append_child("Min").append_attribute("value") = Min;
 	player.append_child("Hours").append_attribute("Hours") = lives;
 	player.append_child("Delay").append_attribute("value") = App->scene->Delay;
-
+	player.append_child("NumCoins").append_attribute("value") = App->scene->NumberCoins;
 	SaveDelay = SDL_GetTicks();
 
 	return true;
@@ -612,6 +614,7 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 
 void Player::Die()//What happens when the player die
 {
+	
 	current_animation = &Death[NumPlayer];
 	if (Death[NumPlayer].SeeCurrentFrame() == 1 && lives > 0)
 		if (NumPlayer == 0 || NumPlayer == 2)
@@ -628,11 +631,14 @@ void Player::Die()//What happens when the player die
 		}
 		lives -= 1;
 		Spawn();
+		App->scene->NumberCoins = 0;
+		CountCoins();
 	}
 }
 
 void Player::Fall()//What happens when the player falls
 {
+	
 	App->entitymanager->DeleteEnemies();
 	if (App->scene->KnowMap == 0) {
 		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
@@ -642,6 +648,8 @@ void Player::Fall()//What happens when the player falls
 	}
 	lives -= 1;
 	Spawn();
+	App->scene->NumberCoins = 0;
+	CountCoins();
 
 }
 
@@ -1158,6 +1166,11 @@ void Player::SetUI()
 {
 
 
+	//Coins
+	Coins.create("%i", App->scene->NumberCoins);
+	NumCoins = App->ui_manager->CreateLabel(20, 20, Coins.GetString(), 50, false);
+
+	//Time
 	CurrentTime = SDL_GetTicks();
 	StringTime.create("%i:%i:%i", Hours, Min, (CurrentTime - TimeSinceStarted) / 1000);
 	TimeStart = App->ui_manager->CreateLabel(App->win->Width/2, 30, StringTime.GetString(), 50, false);
@@ -1287,4 +1300,11 @@ void Player::TIME()
 
 
 
+}
+
+void Player::CountCoins()
+{
+
+	Coins.create("%i", App->scene->NumberCoins);
+	NumCoins->ChangeLabel(Coins.GetString(), 50);
 }

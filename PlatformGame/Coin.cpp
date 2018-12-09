@@ -4,6 +4,7 @@
 #include "j1Render.h"
 #include "j1Collision.h"
 #include "Player.h"
+#include "j1Scene.h"
 #include "EntityManager.h"
 #include "j1App.h"
 #include "j1Audio.h"
@@ -85,6 +86,8 @@ bool Coin::CleanUp()
 
 void Coin::OnCollision(Collider * c2)
 {
+	App->scene->NumberCoins++;
+	App->entitymanager->GetPlayerData()->CountCoins();
 	App->audio->PlayFx(coinfx);
 	coll->to_delete = true;
 	App->entitymanager->DeleteEntity(this);
