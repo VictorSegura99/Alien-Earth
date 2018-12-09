@@ -155,6 +155,8 @@ public:
 	unsigned int ovnifx;
 	unsigned int losefx;
 	
+	mutable int SaveDelay = 0;
+
 	bool PlayerLeft = false;
 	bool PlayerRight = false;
 

@@ -284,7 +284,10 @@ bool Player::Load(pugi::xml_node& player)
 	position.y = player.child("position").attribute("y").as_float() - 50.0f;
 	God = player.child("god").attribute("value").as_bool();
 	lives = player.child("lives").attribute("value").as_int();
-	
+	Min = player.child("Min").attribute("value").as_int();
+	Hours = player.child("Hours").attribute("value").as_int();
+	App->scene->Delay = player.child("Delay").attribute("value").as_int();
+	App->scene->Delay += SDL_GetTicks() - SaveDelay;
 	ChangePlayer(player.child("NumPlayer").attribute("value").as_int(), true);
 	Lives();
 	App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
@@ -299,6 +302,11 @@ bool Player::Save(pugi::xml_node& player) const
 	player.append_child("god").append_attribute("value") = God;
 	player.append_child("NumPlayer").append_attribute("value") = NumPlayer;
 	player.append_child("lives").append_attribute("value") = lives;
+	player.append_child("Min").append_attribute("value") = Min;
+	player.append_child("Hours").append_attribute("Hours") = lives;
+	player.append_child("Delay").append_attribute("value") = App->scene->Delay;
+
+	SaveDelay = SDL_GetTicks();
 
 	return true;
 }

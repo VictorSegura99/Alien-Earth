@@ -301,8 +301,8 @@ void j1Scene::PauseMenu(float dt)
 		StartTimer = true;
 		App->ui_manager->DeleteAllUIExeptPlayer();
 		//App->entitymanager->GetPlayerData()->CurrentTime = SDL_GetTicks();
-		App->entitymanager->GetPlayerData()->StringTime.create("%i:%i:%i", App->entitymanager->GetPlayerData()->Hours, App->entitymanager->GetPlayerData()->Min, (App->entitymanager->GetPlayerData()->CurrentTime - App->entitymanager->GetPlayerData()->TimeSinceStarted) / 1000);
-		App->entitymanager->GetPlayerData()->TimeStart = App->ui_manager->CreateLabel(500, 700, App->entitymanager->GetPlayerData()->StringTime.GetString(), 30, false);
+		App->entitymanager->GetPlayerData()->StringTime.create("%i : %i : %i", App->entitymanager->GetPlayerData()->Hours, App->entitymanager->GetPlayerData()->Min, (App->entitymanager->GetPlayerData()->CurrentTime - App->entitymanager->GetPlayerData()->TimeSinceStarted) / 1000);
+		App->entitymanager->GetPlayerData()->TimeStart = App->ui_manager->CreateLabel(App->win->Width / 2, 30, App->entitymanager->GetPlayerData()->StringTime.GetString(), 50, false);
 		imageNUMBER3 = App->ui_manager->CreateImage(App->win->Width / 2, App->win->Height / 2, false);
 		imageNUMBER3->type = PLAYERUI;
 		imageNUMBER3->SetSpritesData({ 1584,1963,29,44 });
