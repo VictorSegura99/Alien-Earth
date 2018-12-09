@@ -142,7 +142,10 @@ bool Player::Start()
 
 	
 	TimeSinceStarted = SDL_GetTicks();
-
+	Min = 0;
+	Hours = 0;
+	App->scene->NumberCoins = 0;
+	//CurrentTime = SDL_GetTicks();
 	
 	return ret;
 }
@@ -473,9 +476,9 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 		if (position.y + playerHeight < c2->rect.y)
 		{
 			if (PlayerLeft)
-				position.x -= 100 * DT;
+				position.x -= 200 * DT;
 			if (PlayerRight)
-				position.x += 100 * DT;
+				position.x += 200 * DT;
 			velocity.y = 0;
 			if (current_animation == &BottomRight.anim || current_animation == &BottomRight.anim) {
 				App->audio->PlayFx(bombjumpfx);
