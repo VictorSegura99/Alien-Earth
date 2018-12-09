@@ -3,6 +3,7 @@
 #include "j1App.h"
 #include "j1Input.h"
 #include "j1Render.h"
+#include "j1Window.h"
 #include "j1Textures.h"
 #include "j1FadeToBlack.h"
 #include "j1Map.h"
@@ -1151,8 +1152,8 @@ void Player::SetUI()
 
 	CurrentTime = SDL_GetTicks();
 	StringTime.create("%i:%i:%i", Hours, Min, (CurrentTime - TimeSinceStarted) / 1000);
-	TimeStart = App->ui_manager->CreateLabel(500, 700, StringTime.GetString(), 30, false);
-	
+	TimeStart = App->ui_manager->CreateLabel(App->win->Width/2, 30, StringTime.GetString(), 50, false);
+	TimeStart->Scree_pos.x -= TimeStart->width / 2;
 
 	//Tutorials
 	tutorial = App->ui_manager->CreateImage(1400, 300, true);
@@ -1263,7 +1264,7 @@ void Player::Lives() {
 void Player::TIME()
 {
 	
-	CurrentTime = SDL_GetTicks();
+	CurrentTime = SDL_GetTicks() - App->scene->Delay;
 	if ((CurrentTime - TimeSinceStarted) / 1000 >= 60) {
 		Min++;
 		TimeSinceStarted = CurrentTime = SDL_GetTicks();
@@ -1272,8 +1273,8 @@ void Player::TIME()
 		Hours++;
 		Min = 0;
 	}
-	StringTime.create("%i:%i:%i", Hours, Min, (CurrentTime - TimeSinceStarted) / 1000);
-	TimeStart->ChangeLabel(StringTime.GetString(), 30);
+	StringTime.create("%i : %i : %i", Hours, Min, (CurrentTime - TimeSinceStarted) / 1000);
+	TimeStart->ChangeLabel(StringTime.GetString(), 50);
 	
 
 

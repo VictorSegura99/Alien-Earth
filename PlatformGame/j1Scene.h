@@ -80,6 +80,10 @@ public:
 	UI_Element* imageNUMBER2 = nullptr;
 	UI_Element* imageNUMBER1 = nullptr;
 
+	int Delay = 0;
+	int Paused = 0;
+
+
 	int Number = 3;
 	bool StartTimer = false;
 	int StartTime = 0;

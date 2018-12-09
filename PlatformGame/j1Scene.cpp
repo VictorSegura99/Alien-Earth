@@ -113,6 +113,7 @@ bool j1Scene::Update(float dt)
 			App->entitymanager->GetPlayerData()->Spawn();
 		}
 		if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN) {
+			Delay = 0;
 			App->fade->FadeToBlack(3.0f);
 			CanStart = true;
 		}
@@ -121,6 +122,7 @@ bool j1Scene::Update(float dt)
 	App->map->Draw();
 
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && !GamePaused) {
+		Paused = SDL_GetTicks();
 		CreatePauseMenu();
 		GamePaused = true;
 	}
@@ -308,9 +310,11 @@ void j1Scene::PauseMenu(float dt)
 		imageNUMBER3->Local_pos.y -= imageNUMBER3->height / 2;
 	}
 	if (buttonGOMAINMENU->pressed) {
+		Delay = 0;
 		StartTimer = true;
 		App->fade->FadeToBlack(3.0f);
 		CanStart = true;
+		buttonGOMAINMENU->pressed = false;
 		App->ui_manager->DeleteAllUI();
 	}
 	if (checkboxSOUND->pressed) {
@@ -352,8 +356,10 @@ void j1Scene::PauseMenu(float dt)
 			if (Number == 0) {
 				Number = 3;
 				App->ui_manager->DeleteUI_Element(imageNUMBER1);
+				Delay += SDL_GetTicks() - Paused;
 				StartTimer = false;
 				GamePaused = false;
+				
 			}
 				
 			

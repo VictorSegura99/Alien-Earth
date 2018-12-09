@@ -75,7 +75,7 @@ bool j1Menu::Start()
 	start = false;
 
 	App->audio->PlayMusic(App->scene->SongMenu.GetString());
-
+	App->scene->StartTimer = false;
 	ScreenStart = App->tex->Load(file_texture.GetString());
 	yellow = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[0].GetString());
 	pink = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[1].GetString());
