@@ -11,6 +11,12 @@ TEAM PHOTO
 <img src="https://www.google.es/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwiXvKPQ_ZTfAhUpyIUKHRXODsYQjRx6BAgBEAU&url=https%3A%2F%2Fwww.elmundodelperro.net%2Fnoticia%2F2750%2Fdogo-argentino%2Fconvivencia-con-un-dogo-argentino.html&psig=AOvVaw2m2vsAA3kpaOsarulduFtM&ust=1544521641597099" width="400">
 </p>
 
+_____________
+AUTHORS
+- [Víctor Segura Blanco](https://github.com/VictorSegura99)
+- [Oriol Capdevila Salinas](https://github.com/OriolCS2)
+
+
 ACHIVEMENTS by each member:
 
 First Assigment:
@@ -115,11 +121,6 @@ Second Assigment:
 Third Assigment:
 
 - Animation Cinematic Intro
-
-_____________
-AUTHORS
-- [Víctor Segura Blanco](https://github.com/VictorSegura99)
-- [Oriol Capdevila Salinas](https://github.com/OriolCS2)
 
 _____________
 CREDITS
