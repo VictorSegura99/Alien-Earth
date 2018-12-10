@@ -1,6 +1,6 @@
-Alien Earth is a 2D Platform Game for PC made by Oriol Capdevila and Víctor Segura for the subject of VideoGame Development in the University of CITM, Terrassa.
+Alien Earth is a 2D Platform Game for PC made by Oriol Capdevila and Víctor Segura for the subject of VideoGame Development at CITM University, Terrassa.
 
-It consist of 3 little aliens, every one of them with different powers and strengths that explore thw world they are on.
+It consist of 3 little aliens, every one of them with different powers and strengths that explore the world they are on.
 
 ___________________________________________________
 TEAM PHOTO
