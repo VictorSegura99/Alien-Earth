@@ -54,14 +54,17 @@ Second Assigment:
     - Pathfinding
     - Menu Logic
     - FPS & dt Logic
+    
 _____________
 GAME
 - [Repository ALIEN EARTH](https://github.com/VictorSegura99/Alien-Earth)
 - [Last Release ALIEN EARTH](https://github.com/VictorSegura99/Alien-Earth/releases)
+
 _____________
 ALIEN EARTH TRAILER
 <iframe width="854" height="480" src="https://www.youtube.com/embed/y1xUT7QJ-mA" frameborder="0" allow="autoplay; encrypted-media" 
 allowfullscreen> </iframe>
+
 _____________
 CONTROLS:
 - D: Move to the right.
@@ -115,10 +118,9 @@ Third Assigment:
 
 _____________
 AUTHORS
-- Víctor Segura Blanco (Github: https://github.com/VictorSegura99)
-- Oriol Capdevila Salinas (Github: https://github.com/OriolCS2)
+- [Víctor Segura Blanco](https://github.com/VictorSegura99)
+- [Oriol Capdevila Salinas](https://github.com/OriolCS2)
 
-Our Repository: https://github.com/VictorSegura99/Development-Platform-Game
 _____________
 CREDITS
 
