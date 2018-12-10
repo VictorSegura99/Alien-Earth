@@ -42,9 +42,9 @@ Second Assigment:
 
 - Initial Menu+Choose Menu.
 - 3 Different Characters with unique habilities.
-    - Yellow Alien(Jeff): Double Jump+Bomb Jump(only when previous doble jump).
-    - Pink Alien(Jane): Shoots Laser.
-    - Blue Alien(Jerry): Dash
+- - Yellow Alien(Jeff): Double Jump+Bomb Jump(only when previous doble jump).
+- - Pink Alien(Jane): Shoots Laser.
+- - Blue Alien(Jerry): Dash
 - Movement Platforms.
 
 Third Assigment:
@@ -85,44 +85,44 @@ ACHIVEMENTS by each member:
 First Assigment:
 
 - Víctor Segura:
-    - Maps Creation in Tiled
-    - Maps 1 and 2 Levels Desing
-    - Colliders 
-    - Art: All Animations and Spritesheets
-    - ReadMe and Management 
-    - Godmode
+- - Maps Creation in Tiled
+- - Maps 1 and 2 Levels Desing
+- - Colliders 
+- - Art: All Animations and Spritesheets
+- - ReadMe and Management 
+- - Godmode
 
 - Oriol Capdevila:
-    - Colliders Logic
-    - XML Logic and Creation
-    - Levels Change Logic
-    - Parallax
-    - Save&Load
+- - Colliders Logic
+- - XML Logic and Creation
+- - Levels Change Logic
+- - Parallax
+- - Save&Load
 
 Second Assigment:
 
 - Víctor Segura:
-    - Camera
-    - Bat
-    - Dash
-    - Menu Sprites and Animations
-    - Tutorials
-    - Particles
-    - Art: All Animations and Spritesheets
-    - Framerate Cap
-    - Brofile
-    - ReadMe and Management 
+- - Camera
+- - Bat
+- - Dash
+- - Menu Sprites and Animations
+- - Tutorials
+- - Particles
+- - Art: All Animations and Spritesheets
+- - Framerate Cap
+- - Brofile
+- - ReadMe and Management 
 
 - Oriol Capdevila:
-    - Entity System
-    - UML
-    - Spider
-    - Moving Platform
-    - Double Jump
-    - Laser
-    - Pathfinding
-    - Menu Logic
-    - FPS & dt Logic
+- - Entity System
+- - UML
+- - Spider
+- - Moving Platform
+- - Double Jump
+- - Laser
+- - Pathfinding
+- - Menu Logic
+- - FPS & dt Logic
 
 _____________
 LICENSE:
