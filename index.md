@@ -1,7 +1,67 @@
 ﻿# Alien Earth
 _____________
 Alien Earth is a 2D Platform Game for PC made by Oriol Capdevila and Víctor Segura for the subject of VideoGame Development in the University of CITM, Terrassa.
+
 It consist of 3 little aliens, every one of them with different powers and strengths that explore thw world they are on.
+
+___________________________________________________
+TEAM PHOTO
+
+<p align="center">
+<img src="https://www.google.es/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwiXvKPQ_ZTfAhUpyIUKHRXODsYQjRx6BAgBEAU&url=https%3A%2F%2Fwww.elmundodelperro.net%2Fnoticia%2F2750%2Fdogo-argentino%2Fconvivencia-con-un-dogo-argentino.html&psig=AOvVaw2m2vsAA3kpaOsarulduFtM&ust=1544521641597099" width="400">
+</p>
+
+ACHIVEMENTS by each member:
+
+First Assigment:
+
+- Víctor Segura:
+    - Maps Creation in Tiled
+    - Maps 1 and 2 Levels Desing
+    - Colliders 
+    - Art: All Animations and Spritesheets
+    - ReadMe and Management 
+    - Godmode
+
+- Oriol Capdevila:
+    - Colliders Logic
+    - XML Logic and Creation
+    - Levels Change Logic
+    - Parallax
+    - Save&Load
+
+Second Assigment:
+
+- Víctor Segura:
+    - Camera
+    - Bat
+    - Dash
+    - Menu Sprites and Animations
+    - Tutorials
+    - Particles
+    - Art: All Animations and Spritesheets
+    - Framerate Cap
+    - Brofile
+    - ReadMe and Management 
+
+- Oriol Capdevila:
+    - Entity System
+    - UML
+    - Spider
+    - Moving Platform
+    - Double Jump
+    - Laser
+    - Pathfinding
+    - Menu Logic
+    - FPS & dt Logic
+_____________
+GAME
+- [Repository ALIEN EARTH](https://github.com/VictorSegura99/Alien-Earth)
+- [Last Release ALIEN EARTH](https://github.com/VictorSegura99/Alien-Earth/releases)
+_____________
+ALIEN EARTH TRAILER
+<iframe width="854" height="480" src="https://www.youtube.com/embed/y1xUT7QJ-mA" frameborder="0" allow="autoplay; encrypted-media" 
+allowfullscreen> </iframe>
 _____________
 CONTROLS:
 - D: Move to the right.
@@ -99,51 +159,6 @@ Menu Music: https://www.youtube.com/watch?v=XVHVFwwuOa0&ab_channel=RossBugden-Mu
 Menu Font: https://www.dafont.com/es/sunday-afternoon.font
 
 Spacebar Sprite: https://www.facebook.com/suepeisueba/
-
-_____________
-ACHIVEMENTS by each member:
-
-First Assigment:
-
-- Víctor Segura:
-    - Maps Creation in Tiled
-    - Maps 1 and 2 Levels Desing
-    - Colliders 
-    - Art: All Animations and Spritesheets
-    - ReadMe and Management 
-    - Godmode
-
-- Oriol Capdevila:
-    - Colliders Logic
-    - XML Logic and Creation
-    - Levels Change Logic
-    - Parallax
-    - Save&Load
-
-Second Assigment:
-
-- Víctor Segura:
-    - Camera
-    - Bat
-    - Dash
-    - Menu Sprites and Animations
-    - Tutorials
-    - Particles
-    - Art: All Animations and Spritesheets
-    - Framerate Cap
-    - Brofile
-    - ReadMe and Management 
-
-- Oriol Capdevila:
-    - Entity System
-    - UML
-    - Spider
-    - Moving Platform
-    - Double Jump
-    - Laser
-    - Pathfinding
-    - Menu Logic
-    - FPS & dt Logic
 
 _____________
 LICENSE:
