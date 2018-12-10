@@ -1,5 +1,3 @@
-﻿# Alien Earth
-_____________
 Alien Earth is a 2D Platform Game for PC made by Oriol Capdevila and Víctor Segura for the subject of VideoGame Development in the University of CITM, Terrassa.
 
 It consist of 3 little aliens, every one of them with different powers and strengths that explore thw world they are on.
@@ -125,43 +123,42 @@ Third Assigment:
 _____________
 CREDITS
 
-Sprites from: https://opengameart.org/content/platformer-art-complete-pack-often-updated
+[SPRITES](https://opengameart.org/content/platformer-art-complete-pack-often-updated)
 
-UI sprites: https://opengameart.org/content/pixel-ui-pack-750-assets
+[UI SPRITES](https://opengameart.org/content/pixel-ui-pack-750-assets)
 
-Intro sfx: https://freesound.org/people/GameAudio/sounds/220210/
+[SPACEBAR SPRITE](https://www.facebook.com/suepeisueba/)
 
-Death sfx: https://www.zapsplat.com/music/balloon-pop/
+[FONT](https://www.dafont.com/es/sunday-afternoon.font)
 
-Lose sfx: https://www.zapsplat.com/music/multimedia-processed-male-voice-says-you-lose/
+SFX:
+- [INTRO](https://freesound.org/people/GameAudio/sounds/220210)
 
-Death sfx 2: http://soundbible.com/1454-Pain.html
+- [DEATH](http://soundbible.com/1454-Pain.html)
 
-Spider sfx: https://freesound.org/people/spookymodem/sounds/202108/
+- [LOSE](https://www.zapsplat.com/music/multimedia-processed-male-voice-says-you-lose)
 
-Jump sfx: http://soundbible.com/1601-Mario-Jumping.html
+- [JUMP](http://soundbible.com/1601-Mario-Jumping.html)
 
-Choose sfx: https://freesound.org/people/GameAudio/sounds/220182/
+- [CHOOSE](https://freesound.org/people/GameAudio/sounds/220182/)
 
-Ovni sfx: http://soundbible.com/147-UFO-Landing.html
+- [OVNI](http://soundbible.com/147-UFO-Landing.html)
 
-Coin fx: https://www.zapsplat.com/music/game-tone-collect-coin-or-treasure-1/
+- [COIN](https://www.zapsplat.com/music/game-tone-collect-coin-or-treasure-1/)
 
-Water sfx: http://soundbible.com/1148-Bubbling.html
+- [WATER](http://soundbible.com/1148-Bubbling.html)
 
-Laser sfx: https://www.zapsplat.com/music/laser-noise-synth-vintage-12/
+- [LASER](https://www.zapsplat.com/music/laser-noise-synth-vintage-12/)
 
-SpiderDeath and Bat death sfx: https://freesound.org/people/columbia23/sounds/395395/
+- [ENEMY DEATH](https://freesound.org/people/columbia23/sounds/395395/)
 
-Bomb Jump sfx: http://soundbible.com/1414-Batman-Punch.html
+- [BOMB JUMP](http://soundbible.com/1414-Batman-Punch.html)
 
-Background Music: https://www.bensound.com/royalty-free-music/track/retro-soul
+MUSIC:
 
-Menu Music: https://www.youtube.com/watch?v=XVHVFwwuOa0&ab_channel=RossBugden-Music
+- [BACKGROUND](https://www.bensound.com/royalty-free-music/track/retro-soul)
 
-Menu Font: https://www.dafont.com/es/sunday-afternoon.font
-
-Spacebar Sprite: https://www.facebook.com/suepeisueba/
+- [MENU](https://www.youtube.com/watch?v=XVHVFwwuOa0&ab_channel=RossBugden-Music)
 
 _____________
 LICENSE:
