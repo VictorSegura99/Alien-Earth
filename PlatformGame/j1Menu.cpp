@@ -71,7 +71,7 @@ bool j1Menu::Start()
 	App->collision->active = false;
 	App->map->active = false;
 	GameOn = false;
-	
+	AlreadyChoosen = false;
 	start = false;
 	App->ui_manager->DeleteAllUI();
 	App->audio->PlayMusic(App->scene->SongMenu.GetString());
@@ -375,48 +375,51 @@ void j1Menu::CreateButtonsTypePlayer()
 
 void j1Menu::MenuChoosePlayer(float dt)
 {
-	if (buttonJEFF->mouseOn) {
-		App->render->Blit(yellow, (App->win->width / 4) - (195 / 2), 265, &(YellowWalk.GetCurrentFrame(dt)));
-		App->render->Blit(pink, (App->win->width / 4) * 2 - (160/ 2), 265, &(PinkStand.GetCurrentFrame(dt)));
-		App->render->Blit(blue, (App->win->width / 4) * 3 - (169 / 2), 265, &(BlueStand.GetCurrentFrame(dt)));
-		if (buttonJEFF->pressed && !AlreadyChoosen) {
-			AlreadyChoosen = true;
-			playernumber = PlayerNumber1;
-			StartLevel();
+	if (!AlreadyChoosen) {
+		if (buttonJEFF->mouseOn) {
+			App->render->Blit(yellow, (App->win->width / 4) - (195 / 2), 265, &(YellowWalk.GetCurrentFrame(dt)));
+			App->render->Blit(pink, (App->win->width / 4) * 2 - (160 / 2), 265, &(PinkStand.GetCurrentFrame(dt)));
+			App->render->Blit(blue, (App->win->width / 4) * 3 - (169 / 2), 265, &(BlueStand.GetCurrentFrame(dt)));
+			if (buttonJEFF->pressed && !AlreadyChoosen) {
+				AlreadyChoosen = true;
+				playernumber = PlayerNumber1;
+				StartLevel();
+			}
+		}
+		else if (buttonJANE->mouseOn) {
+			App->render->Blit(yellow, (App->win->width / 4) - (184 / 2), 265, &(YellowStand.GetCurrentFrame(dt)));
+			App->render->Blit(blue, (App->win->width / 4) * 3 - (168 / 2), 265, &(BlueStand.GetCurrentFrame(dt)));
+			App->render->Blit(pink, (App->win->width / 4) * 2 - (168 / 2), 265, &(PinkWalk.GetCurrentFrame(dt)));
+			if (buttonJANE->pressed && !AlreadyChoosen) {
+				AlreadyChoosen = true;
+				playernumber = PlayerNumber2;
+				StartLevel();
+			}
+		}
+		else if (buttonJERRY->mouseOn) {
+			App->render->Blit(yellow, (App->win->width / 4) - (184 / 2), 265, &(YellowStand.GetCurrentFrame(dt)));
+			App->render->Blit(pink, (App->win->width / 4) * 2 - (160 / 2), 265, &(PinkStand.GetCurrentFrame(dt)));
+			App->render->Blit(blue, (App->win->width / 4) * 3 - (163 / 2), 265, &(BlueWalk.GetCurrentFrame(dt)));
+			if (buttonJERRY->pressed && !AlreadyChoosen) {
+				AlreadyChoosen = true;
+				playernumber = PlayerNumber3;
+				StartLevel();
+			}
+		}
+		else {
+			App->render->Blit(yellow, (App->win->width / 4) - (184 / 2), 265, &(YellowStand.GetCurrentFrame(dt)));
+			App->render->Blit(pink, (App->win->width / 4) * 2 - (160 / 2), 265, &(PinkStand.GetCurrentFrame(dt)));
+			App->render->Blit(blue, (App->win->width / 4) * 3 - (168 / 2), 265, &(BlueStand.GetCurrentFrame(dt)));
+			repeat = false;
+		}
+		if (buttonGOBACK->pressed) {
+			WantToDisappearButtonsTypePlayer(true);
+			WantToDisappearMainMenu(false);
+			StartChoosing = false;
+			InMainMenu = true;
 		}
 	}
-	else if (buttonJANE->mouseOn) {
-		App->render->Blit(yellow, (App->win->width / 4) - (184 / 2), 265, &(YellowStand.GetCurrentFrame(dt)));
-		App->render->Blit(blue, (App->win->width / 4) * 3 - (168/2), 265, &(BlueStand.GetCurrentFrame(dt)));
-		App->render->Blit(pink, (App->win->width / 4) * 2 - (168 / 2), 265, &(PinkWalk.GetCurrentFrame(dt)));
-		if (buttonJANE->pressed && !AlreadyChoosen) {
-			AlreadyChoosen = true;
-			playernumber = PlayerNumber2;
-			StartLevel();
-		}
-	}
-	else if (buttonJERRY->mouseOn) {
-		App->render->Blit(yellow, (App->win->width / 4) - (184 / 2), 265, &(YellowStand.GetCurrentFrame(dt)));
-		App->render->Blit(pink, (App->win->width / 4) * 2 - (160 / 2), 265, &(PinkStand.GetCurrentFrame(dt)));
-		App->render->Blit(blue, (App->win->width / 4) * 3 - (163/2), 265, &(BlueWalk.GetCurrentFrame(dt)));
-		if (buttonJERRY->pressed && !AlreadyChoosen) {
-			AlreadyChoosen = true;
-			playernumber = PlayerNumber3;
-			StartLevel();
-		}
-	}
-	else {
-		App->render->Blit(yellow, (App->win->width / 4) - (184 / 2), 265, &(YellowStand.GetCurrentFrame(dt)));
-		App->render->Blit(pink, (App->win->width / 4) * 2 - (160 / 2), 265, &(PinkStand.GetCurrentFrame(dt)));
-		App->render->Blit(blue, (App->win->width / 4) * 3 - (168 / 2), 265, &(BlueStand.GetCurrentFrame(dt)));
-		repeat = false;
-	}
-	if (buttonGOBACK->pressed) {
-		WantToDisappearButtonsTypePlayer(true);
-		WantToDisappearMainMenu(false);
-		StartChoosing = false;
-		InMainMenu = true;
-	}
+	
 
 }
 
