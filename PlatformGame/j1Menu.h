@@ -169,9 +169,11 @@ public:
 	UI_Element* imageCREDITS = nullptr;
 	UI_Element* buttonGOBACKCREDITS = nullptr;
 	UI_Element* buttonGITHUB = nullptr;
+	UI_Element* buttonWEBSITE = nullptr;
 	UI_Element* buttonORIOLGIT = nullptr;
 	UI_Element* buttonVICTORGIT = nullptr;
-
+	UI_Element* AlienVictor = nullptr;
+	UI_Element* AlienOriol = nullptr;
 
 
 	//PLAYER UI

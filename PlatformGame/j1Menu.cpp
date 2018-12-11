@@ -602,14 +602,18 @@ void j1Menu::CreatehacksButtons()
 
 void j1Menu::CreateCredits()
 {
-
 	imageCREDITS = App->ui_manager->CreateImage(10, 880, true);
 	imageCREDITS->SetSpritesData({ 1480,0,1000,1360 });
 	buttonGOBACKCREDITS = App->ui_manager->CreateButton(40, 1400, 1, imageCREDITS);
 	buttonGOBACKCREDITS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
-	buttonGITHUB = App->ui_manager->CreateButton(60, 1550, 1, imageCREDITS,"GAME'S GITHUB", 30);
-	buttonORIOLGIT = App->ui_manager->CreateButton(750, 1750, 1, imageCREDITS,"ORIOL'S GITHUB", 30);
-	buttonVICTORGIT = App->ui_manager->CreateButton(60, 1950, 1, imageCREDITS, "VICTOR'S GITHUB",30);
+	AlienVictor = App->ui_manager->CreateImage(App->win->width / 4 - 125, 1600, true, imageCREDITS);
+	AlienVictor->SetSpritesData({ 0,2056,250,345 });
+	AlienOriol = App->ui_manager->CreateImage(App->win->width / 4*3 - 125, 1600, true, imageCREDITS);
+	AlienOriol->SetSpritesData({ 259,2057,245,344 });
+ 	buttonGITHUB = App->ui_manager->CreateButton(App->win->width / 4*2-90, 1800, 1, imageCREDITS,"GAME'S GITHUB", 30);
+	buttonWEBSITE = App->ui_manager->CreateButton(App->win->width / 4 * 2 - 90, 1700, 1, imageCREDITS, "GAME'S WEBSITE", 30);
+	buttonORIOLGIT = App->ui_manager->CreateButton(App->win->width / 4*3 - 100, 2000, 1, imageCREDITS,"ORIOL'S GITHUB", 30);
+	buttonVICTORGIT = App->ui_manager->CreateButton(App->win->width/4 - 100, 2000, 1, imageCREDITS, "VICTOR'S GITHUB",30);
 }
 
 void j1Menu::Credits(float dt)
@@ -630,6 +634,9 @@ void j1Menu::Credits(float dt)
 		}
 		if (buttonVICTORGIT->pressed) {
 			ShellExecute(NULL, "open", "https://github.com/VictorSegura99", NULL, NULL, SW_SHOWNORMAL);
+		}
+		if (buttonWEBSITE->pressed) {
+			ShellExecute(NULL, "open", "https://victorsegura99.github.io/Alien-Earth/", NULL, NULL, SW_SHOWNORMAL);
 		}
 	}
 	else {
