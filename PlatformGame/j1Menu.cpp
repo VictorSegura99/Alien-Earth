@@ -656,6 +656,10 @@ void j1Menu::DeleteCredits()
 	App->ui_manager->DeleteUI_Element(buttonVICTORGIT->label);
 	App->ui_manager->DeleteUI_Element(buttonORIOLGIT->label);
 	App->ui_manager->DeleteUI_Element(buttonGITHUB->label);
+	App->ui_manager->DeleteUI_Element(buttonWEBSITE);
+	App->ui_manager->DeleteUI_Element(AlienOriol);
+	App->ui_manager->DeleteUI_Element(AlienVictor);
+	App->ui_manager->DeleteUI_Element(buttonWEBSITE->label);
 }
 
 void j1Menu::HacksMenu(float dt)
