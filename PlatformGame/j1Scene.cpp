@@ -45,6 +45,7 @@ bool j1Scene::Awake(pugi::xml_node& config)
 	}
 	Song = config.child("song").text().as_string();
 	SongMenu = config.child("songmenu").text().as_string();
+	coins4life=config.child("coins4life").attribute("value").as_int();
 	bool ret = true;
 	
 	return ret;
@@ -389,7 +390,7 @@ void j1Scene::DeletePauseMenu()
 
 void j1Scene::CoinsLogic()
 {
-	if (NumberCoins >= 15) {
+	if (NumberCoins >= coins4life) {
 		App->entitymanager->GetPlayerData()->lives++;
 		App->entitymanager->GetPlayerData()->Lives();
 		NumberCoins = 0;
