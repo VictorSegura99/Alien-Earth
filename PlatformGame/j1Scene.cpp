@@ -139,7 +139,7 @@ bool j1Scene::PostUpdate()
 	bool ret = true;
 
 	if (CanStart && App->fade->current_step == App->fade->fade_from_black) {
-		App->entitymanager->GetPlayerData()->lives = 3;
+		App->entitymanager->GetPlayerData()->lifes = 3;
 		CanStart = false;
 		App->entitymanager->DeleteEnemies();
 		App->entitymanager->ActiveGame = false;
@@ -391,8 +391,8 @@ void j1Scene::DeletePauseMenu()
 void j1Scene::CoinsLogic()
 {
 	if (NumberCoins >= coins4life) {
-		App->entitymanager->GetPlayerData()->lives++;
-		App->entitymanager->GetPlayerData()->Lives();
+		App->entitymanager->GetPlayerData()->lifes++;
+		App->entitymanager->GetPlayerData()->Lifes();
 		NumberCoins = 0;
 		App->entitymanager->GetPlayerData()->CountCoins();
 	}
