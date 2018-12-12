@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="160" height="21" tilewidth="70" tileheight="70" infinite="0" nextlayerid="11" nextobjectid="183">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="160" height="21" tilewidth="70" tileheight="70" infinite="0" nextlayerid="11" nextobjectid="187">
  <tileset firstgid="1" name="tiles_spritesheet" tilewidth="70" tileheight="70" spacing="2" tilecount="522" columns="18">
   <image source="tiles_spritesheet.png" width="1294" height="2086"/>
   <terraintypes>
@@ -20794,19 +20794,29 @@
   </object>
  </objectgroup>
  <objectgroup id="10" name="Enemies">
-  <object id="164" x="649" y="199" width="67" height="73">
-   <properties>
-    <property name="Enemy" value="Spider"/>
-   </properties>
-  </object>
-  <object id="165" x="800.5" y="101.5" width="67" height="73">
+  <object id="165" x="3362.5" y="319.5" width="67" height="73">
    <properties>
     <property name="Enemy" value="Bat"/>
    </properties>
   </object>
-  <object id="166" x="606.5" y="313.5" width="67" height="73">
+  <object id="183" x="1406.5" y="495.5" width="67" height="73">
    <properties>
-    <property name="Enemy" value="Platform"/>
+    <property name="Enemy" value="Spider"/>
+   </properties>
+  </object>
+  <object id="184" x="1856.5" y="633.5" width="67" height="73">
+   <properties>
+    <property name="Enemy" value="Spider"/>
+   </properties>
+  </object>
+  <object id="185" x="6536.5" y="907.5" width="67" height="73">
+   <properties>
+    <property name="Enemy" value="Spider"/>
+   </properties>
+  </object>
+  <object id="186" x="7560.5" y="583.5" width="67" height="73">
+   <properties>
+    <property name="Enemy" value="Bat"/>
    </properties>
   </object>
  </objectgroup>
