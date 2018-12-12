@@ -21,6 +21,7 @@ Slider::Slider(int x, int y, int SliderPos, UI_Element* parent) : UI_Element(x, 
 	png_pos = NoPressedNoMouseOn;
 
 	image = App->ui_manager->CreateImage(0, 0, true, this);
+	//this->Parent.PushBack(image);
 	image->CanBeMoved = false;
 	image->SetSpritesData({ 553,89,200,49 });
 	image->type = SLIDER;

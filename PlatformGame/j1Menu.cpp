@@ -234,7 +234,6 @@ void j1Menu::CreateMainMenu()
 	AlreadyChoosen = false;
 	MainTitle = App->ui_manager->CreateImage((App->win->width / 2) - (844 / 2), 70, false);
 	MainTitle->SetSpritesData({ 401,784,844	,165 });
-	MainTitle->type = BUTTON;
 	buttonSTART = App->ui_manager->CreateButton(400, 270, 1, Background, "START", 30);
 	buttonCONTINUE = App->ui_manager->CreateButton(400, 350, 1, Background, "CONTINUE", 30);
 	buttonSETTINGS = App->ui_manager->CreateButton(400, 430, 1, Background, "SETTINGS", 30);
@@ -350,16 +349,12 @@ void j1Menu::CreateButtonsTypePlayer()
 {
 	CHOOSE = App->ui_manager->CreateImage((App->win->width / 2) - (608 / 2), 70, false);
 	CHOOSE->SetSpritesData({ 0,1928,608,72 });
-	CHOOSE->type = BUTTON;
 	JEFFNAME = App->ui_manager->CreateImage((App->win->width / 4) - (68 / 2), 620, false);
 	JEFFNAME->SetSpritesData({ 611,1928,68,38 });
-	JEFFNAME->type = BUTTON;
 	JANENAME = App->ui_manager->CreateImage((App->win->width / 4) * 2 - (72 / 2), 620, false);
 	JANENAME->SetSpritesData({ 681,1928,72,38 });
-	JANENAME->type = BUTTON;
 	JERRYNAME = App->ui_manager->CreateImage((App->win->width / 4) * 3 - (92 / 2), 620, false);
 	JERRYNAME->SetSpritesData({ 754,1928,92,38 });
-	JERRYNAME->type = BUTTON;
 	buttonJEFF = App->ui_manager->CreateButton((App->win->width / 4)-112, 159, 2);
 	buttonJEFF->SetSpritesData({ 0,0,0,0 }, { 0,0,225,441 }, { 0,0,225,441 });
 	buttonJANE = App->ui_manager->CreateButton((App->win->width / 4)*2 - 112, 159, 2);
@@ -465,7 +460,6 @@ void j1Menu::CreateSettingsButtons()
 	SettingMenuDone = false;
 	imageSETTINGS = App->ui_manager->CreateImage(170, 1000, true);
 	imageSETTINGS->SetSpritesData({ 758,0,705,671 });
-	imageSETTINGS->type = BUTTON;
 	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(37, 40, 3, imageSETTINGS);
 	buttonGOBACKSETTINGS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
 	checkboxFPS = App->ui_manager->CreateCheckBox(380, 157, imageSETTINGS);
@@ -490,44 +484,9 @@ void j1Menu::CreateSettingsButtons()
 
 void j1Menu::SettingsMenu(float dt)
 {
-	Title->NoRenderLabel = true;
-	sentence->NoRenderLabel = true;
-	if (imageSETTINGS->Local_pos.y <= buttonEXIT->Local_pos.y + buttonEXIT->height) {
-		buttonEXIT->WantToRender = false;
-	}
-	if (imageSETTINGS->Local_pos.y <= buttonHACKS->Local_pos.y + buttonHACKS->height) {
-		buttonHACKS->WantToRender = false;
-	}
-	if (imageSETTINGS->Local_pos.y <= buttonCREDITS->Local_pos.y + buttonCREDITS->height) {
-		buttonCREDITS->WantToRender = false;
-	}
-	if (imageSETTINGS->Local_pos.y <= buttonSETTINGS->Local_pos.y + buttonSETTINGS->height) {
-		buttonSETTINGS->WantToRender = false;
-	}
-	if (imageSETTINGS->Local_pos.y <= buttonCONTINUE->Local_pos.y + buttonCONTINUE->height) {
-		buttonCONTINUE->WantToRender = false;
-	}
-	if (imageSETTINGS->Local_pos.y <= buttonSTART->Local_pos.y + buttonSTART->height) {
-		buttonSTART->WantToRender = false;
-	}
-	if (imageSETTINGS->Local_pos.y >= buttonEXIT->Local_pos.y) {
-		buttonEXIT->WantToRender = true;
-	}
-	if (imageSETTINGS->Local_pos.y >= buttonCREDITS->Local_pos.y) {
-		buttonCREDITS->WantToRender = true;
-	}
-	if (imageSETTINGS->Local_pos.y >= buttonHACKS->Local_pos.y) {
-		buttonHACKS->WantToRender = true;
-	}
-	if (imageSETTINGS->Local_pos.y >= buttonSETTINGS->Local_pos.y) {
-		buttonSETTINGS->WantToRender = true;
-	}
-	if (imageSETTINGS->Local_pos.y >= buttonCONTINUE->Local_pos.y) {
-		buttonCONTINUE->WantToRender = true;
-	}
-	if (imageSETTINGS->Local_pos.y >= buttonSTART->Local_pos.y) {
-		buttonSTART->WantToRender = true;
-	}
+	//Title->NoRenderLabel = true;
+	//sentence->NoRenderLabel = true;
+	
 	if (!Positioned && !SettingMenuDone) { //MENU GOING UP
 		imageSETTINGS->Local_pos.y -= 1000 * dt;
 		if (imageSETTINGS->Local_pos.y <= 100) {
@@ -584,7 +543,6 @@ void j1Menu::CreatehacksButtons()
 	HacksMenuDone = false;
 	imageHACKS = App->ui_manager->CreateImage(170, -700, true);
 	imageHACKS->SetSpritesData({ 758,0,705,671 });
-	imageHACKS->type = BUTTON;
 	buttonGOBACKHACKS = App->ui_manager->CreateButton(37, 40, 3, imageHACKS);
 	buttonGOBACKHACKS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
 	labelGODMODE = App->ui_manager->CreateLabel(100, 150, "GODMODE", 50, true, imageHACKS);
@@ -664,44 +622,7 @@ void j1Menu::DeleteCredits()
 
 void j1Menu::HacksMenu(float dt)
 {
-	Title->NoRenderLabel = true;
-	sentence->NoRenderLabel = true;
-	if (imageHACKS->Local_pos.y + imageHACKS->height >= buttonEXIT->Local_pos.y) {
-		buttonEXIT->WantToRender = false;
-	}
-	if (imageHACKS->Local_pos.y + imageHACKS->height >= buttonHACKS->Local_pos.y) {
-		buttonHACKS->WantToRender = false;
-	}
-	if (imageHACKS->Local_pos.y + imageHACKS->height >= buttonCREDITS->Local_pos.y) {
-		buttonCREDITS->WantToRender = false;
-	}
-	if (imageHACKS->Local_pos.y + imageHACKS->height >= buttonSETTINGS->Local_pos.y) {
-		buttonSETTINGS->WantToRender = false;
-	}
-	if (imageHACKS->Local_pos.y + imageHACKS->height >= buttonCONTINUE->Local_pos.y) {
-		buttonCONTINUE->WantToRender = false;
-	}
-	if (imageHACKS->Local_pos.y + imageHACKS->height >= buttonSTART->Local_pos.y) {
-		buttonSTART->WantToRender = false;
-	}
-	if (imageHACKS->Local_pos.y + imageHACKS->height <= buttonEXIT->Local_pos.y) {
-		buttonEXIT->WantToRender = true;
-	}
-	if (imageHACKS->Local_pos.y + imageHACKS->height <= buttonCREDITS->Local_pos.y) {
-		buttonCREDITS->WantToRender = true;
-	}
-	if (imageHACKS->Local_pos.y + imageHACKS->height <= buttonHACKS->Local_pos.y) {
-		buttonHACKS->WantToRender = true;
-	}
-	if (imageHACKS->Local_pos.y + imageHACKS->height <= buttonSETTINGS->Local_pos.y) {
-		buttonSETTINGS->WantToRender = true;
-	}
-	if (imageHACKS->Local_pos.y + imageHACKS->height <= buttonCONTINUE->Local_pos.y) {
-		buttonCONTINUE->WantToRender = true;
-	}
-	if (imageHACKS->Local_pos.y + imageHACKS->height <= buttonSTART->Local_pos.y) {
-		buttonSTART->WantToRender = true;
-	}
+	
 	if (!positioned && !HacksMenuDone) { //MENU GOING UP
 		imageHACKS->Local_pos.y += 1000 * dt;
 		if (imageHACKS->Local_pos.y + imageHACKS->height >= 700) {
