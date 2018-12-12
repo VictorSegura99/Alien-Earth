@@ -1175,19 +1175,26 @@ void Player::SetUI()
 	//Time
 	CurrentTime = SDL_GetTicks();
 	StringTime.create("%i:%i:%i", Hours, Min, (CurrentTime - TimeSinceStarted) / 1000);
-	TimeStart = App->ui_manager->CreateLabel(App->win->Width/2-73, 27, StringTime.GetString(), 50, false);
+	TimeStart = App->ui_manager->CreateLabel(App->win->Width / 2 - 73, 27, StringTime.GetString(), 50, false);
 	TimeStart->type = PLAYERUILABEL;
 	//TimeStart->Scree_pos.x -= 200;
 
 	//Tutorials
-	tutorial = App->ui_manager->CreateImage(1002, 250, true);
-	tutorial->type = PLAYERUIIMAGE;
-	if (NumPlayer == 0)
+	if (NumPlayer == 0) {
+		tutorial = App->ui_manager->CreateImage(1002, 250, true);
+		tutorial->type = PLAYERUIIMAGE;
 		tutorial->SetSpritesData({ 2700,525,602,363 });
-	else if (NumPlayer == 1)
+	}
+	else if (NumPlayer == 1) {
+		tutorial = App->ui_manager->CreateImage(1006, 365, true);
+		tutorial->type = PLAYERUIIMAGE;
 		tutorial->SetSpritesData({ 2700,0,522,274 });
-	else if (NumPlayer == 2)
+	}
+	else if (NumPlayer == 2) {
+		tutorial = App->ui_manager->CreateImage(1006, 340, true);
+		tutorial->type = PLAYERUIIMAGE;
 		tutorial->SetSpritesData({ 2700,274,539,251 });
+	}
 
 
 	//LIVES
