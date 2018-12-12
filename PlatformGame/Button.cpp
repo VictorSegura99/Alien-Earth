@@ -10,7 +10,7 @@
 
 
 
-Button::Button(int x, int y, int type, UI_Element* parent, p2SString name, int size) : UI_Element(x, y, parent)
+Button::Button(int x, int y, UI_Element* parent, p2SString name, int size) : UI_Element(x, y, parent)
 {
 
 	NoPressedNoMouseOn = { IDLE };
@@ -73,10 +73,7 @@ bool Button::Update(float dt)
 		if (label != nullptr)
 			label->WantToRender = true;
 	}
-	if (NoRenderLabel) {
-		if (label != nullptr)
-			label->WantToRender = false;
-	}
+
 	return true;
 }
 

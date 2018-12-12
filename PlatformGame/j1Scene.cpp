@@ -198,8 +198,8 @@ void j1Scene::CreatePauseMenu()
 	image->SetSpritesData({ 0,1158,1024,768 });
 	imagePAUSE = App->ui_manager->CreateImage(170, 60, true);
 	imagePAUSE->SetSpritesData({ 758,0,705,671 });
-	buttonRESUME = App->ui_manager->CreateButton(120, 120, 1, imagePAUSE, "RESUME", 30);
-	buttonGOMAINMENU = App->ui_manager->CreateButton(400, 120, 1, imagePAUSE, "RETURN MAIN MENU", 30);
+	buttonRESUME = App->ui_manager->CreateButton(120, 120, imagePAUSE, "RESUME", 30);
+	buttonGOMAINMENU = App->ui_manager->CreateButton(400, 120, imagePAUSE, "RETURN MAIN MENU", 30);
 	sliderVOLUMEMUSIC = App->ui_manager->CreateSlider(380, 463, App->audio->volume, imagePAUSE);
 	labelMUSICVOLUME = App->ui_manager->CreateLabel(100, 450, "MUSIC VOLUME", 50, true, imagePAUSE);
 	sliderVOLUMEFX = App->ui_manager->CreateSlider(380, 563, App->audio->fxvolume, imagePAUSE);
@@ -209,7 +209,7 @@ void j1Scene::CreatePauseMenu()
 	labelGENERALSOUND = App->ui_manager->CreateLabel(100, 350, "GENERAL SOUND", 50, true, imagePAUSE);
 	sliderGENERALSOUND = App->ui_manager->CreateSlider(380, 363, 50, imagePAUSE);
 	checkboxSOUND = App->ui_manager->CreateCheckBox(380, 257, imagePAUSE);
-	buttonSAVE = App->ui_manager->CreateButton(260, 190, 2, imagePAUSE,"SAVE GAME",30);
+	buttonSAVE = App->ui_manager->CreateButton(260, 190, imagePAUSE,"SAVE GAME",30);
 	App->render->camera.y = 0;
 	if (!App->audio->NoAudio)
 		checkboxSOUND->pressed = true;

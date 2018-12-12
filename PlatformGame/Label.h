@@ -15,6 +15,7 @@ public:
 	bool Update(float dt);
 	void ChangeLabel(p2SString label, int size);
 public:
+	
 	p2SString name;
 	iPoint Distance;
 	bool CanBeMoved = false;

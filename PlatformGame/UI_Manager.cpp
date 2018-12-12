@@ -97,11 +97,11 @@ bool UI_Manager::Save(pugi::xml_node &) const
 	return true;
 }
 
-Button * UI_Manager::CreateButton(int x, int y, int type, UI_Element* parent, p2SString name, int size)
+Button * UI_Manager::CreateButton(int x, int y, UI_Element* parent, p2SString name, int size)
 {
 	Button* ret = nullptr;
 	
-	ret = new Button(x, y, type, parent, name, size);
+	ret = new Button(x, y, parent, name, size);
 	ret->type = BUTTON;
 
 	if (ret != nullptr)
@@ -162,69 +162,6 @@ Slider * UI_Manager::CreateSlider(int x, int y, int SliderPos, UI_Element* paren
 	return ret;
 }
 
-void UI_Manager::DeleteButtons()
-{
-	for (int i = elements.Count() - 1; i >= 0; --i)
-	{
-		if (elements[i] != nullptr && elements[i]->type == BUTTON) {
-			elements[i]->CleanUp();
-			delete(elements[i]);
-			elements[i] = nullptr;
-			elements.RemoveAt(i);
-		}
-	}
-}
-void UI_Manager::DeleteCheckBoxes()
-{
-	for (int i = elements.Count() - 1; i >= 0; --i)
-	{
-		if (elements[i] != nullptr && elements[i]->type == CHECKBOX) {
-			elements[i]->CleanUp();
-			delete(elements[i]);
-			elements[i] = nullptr;
-			elements.RemoveAt(i);
-		}
-	}
-}
-
-void UI_Manager::DeleteImages()
-{
-	for (int i = elements.Count() - 1; i >= 0; --i)
-	{
-		if (elements[i] != nullptr && elements[i]->type == IMAGE) {
-			elements[i]->CleanUp();
-			delete(elements[i]);
-			elements[i] = nullptr;
-			elements.RemoveAt(i);
-		}
-	}
-}
-
-void UI_Manager::DeleteLabels()
-{
-	for (int i = elements.Count() - 1; i >= 0; --i)
-	{
-		if (elements[i] != nullptr && elements[i]->type == LABEL) {
-			elements[i]->CleanUp();
-			delete(elements[i]);
-			elements[i] = nullptr;
-			elements.RemoveAt(i);
-		}
-	}
-}
-
-void UI_Manager::DeleteSliders()
-{
-	for (int i = elements.Count() - 1; i >= 0; --i)
-	{
-		if (elements[i] != nullptr && elements[i]->type == SLIDER) {
-			elements[i]->CleanUp();
-			delete(elements[i]);
-			elements[i] = nullptr;
-			elements.RemoveAt(i);
-		}
-	}
-}
 
 void UI_Manager::DeleteAllUI()
 {

@@ -234,12 +234,12 @@ void j1Menu::CreateMainMenu()
 	AlreadyChoosen = false;
 	MainTitle = App->ui_manager->CreateImage((App->win->width / 2) - (844 / 2), 70, false);
 	MainTitle->SetSpritesData({ 401,784,844	,165 });
-	buttonSTART = App->ui_manager->CreateButton(400, 270, 1, Background, "START", 30);
-	buttonCONTINUE = App->ui_manager->CreateButton(400, 350, 1, Background, "CONTINUE", 30);
-	buttonSETTINGS = App->ui_manager->CreateButton(400, 430, 1, Background, "SETTINGS", 30);
-	buttonHACKS = App->ui_manager->CreateButton(400, 510, 1, Background, "HACKS", 30);
-	buttonCREDITS = App->ui_manager->CreateButton(400, 590, 1, Background, "CREDITS", 30);
-	buttonEXIT = App->ui_manager->CreateButton(400, 670, 1, Background, "EXIT", 30);
+	buttonSTART = App->ui_manager->CreateButton(400, 270, Background, "START", 30);
+	buttonCONTINUE = App->ui_manager->CreateButton(400, 350, Background, "CONTINUE", 30);
+	buttonSETTINGS = App->ui_manager->CreateButton(400, 430, Background, "SETTINGS", 30);
+	buttonHACKS = App->ui_manager->CreateButton(400, 510, Background, "HACKS", 30);
+	buttonCREDITS = App->ui_manager->CreateButton(400, 590, Background, "CREDITS", 30);
+	buttonEXIT = App->ui_manager->CreateButton(400, 670, Background, "EXIT", 30);
 }
 
 void j1Menu::MainMenu()
@@ -355,13 +355,13 @@ void j1Menu::CreateButtonsTypePlayer()
 	JANENAME->SetSpritesData({ 681,1928,72,38 });
 	JERRYNAME = App->ui_manager->CreateImage((App->win->width / 4) * 3 - (92 / 2), 620, false);
 	JERRYNAME->SetSpritesData({ 754,1928,92,38 });
-	buttonJEFF = App->ui_manager->CreateButton((App->win->width / 4)-112, 159, 2);
+	buttonJEFF = App->ui_manager->CreateButton((App->win->width / 4)-112, 159);
 	buttonJEFF->SetSpritesData({ 0,0,0,0 }, { 0,0,225,441 }, { 0,0,225,441 });
-	buttonJANE = App->ui_manager->CreateButton((App->win->width / 4)*2 - 112, 159, 2);
+	buttonJANE = App->ui_manager->CreateButton((App->win->width / 4)*2 - 112, 159);
 	buttonJANE->SetSpritesData({ 0,0,0,0 }, { 0,0,225,441 }, { 0,0,225,441 });
-	buttonJERRY = App->ui_manager->CreateButton((App->win->width / 4) *3-112, 159, 2);
+	buttonJERRY = App->ui_manager->CreateButton((App->win->width / 4) *3-112, 159);
 	buttonJERRY->SetSpritesData({ 0,0,0,0	}, { 0,0,225,441 }, { 0,0,225,441 });
-	buttonGOBACK = App->ui_manager->CreateButton(50, 25, 3);
+	buttonGOBACK = App->ui_manager->CreateButton(50, 25);
 	buttonGOBACK->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
 }
 
@@ -460,7 +460,7 @@ void j1Menu::CreateSettingsButtons()
 	SettingMenuDone = false;
 	imageSETTINGS = App->ui_manager->CreateImage(170, 1000, true);
 	imageSETTINGS->SetSpritesData({ 758,0,705,671 });
-	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(37, 40, 3, imageSETTINGS);
+	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(37, 40, imageSETTINGS);
 	buttonGOBACKSETTINGS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
 	checkboxFPS = App->ui_manager->CreateCheckBox(380, 157, imageSETTINGS);
 	labelFPS = App->ui_manager->CreateLabel(100, 150, "CAP FPS TO 30", 50, true, imageSETTINGS);
@@ -541,7 +541,7 @@ void j1Menu::CreatehacksButtons()
 	HacksMenuDone = false;
 	imageHACKS = App->ui_manager->CreateImage(170, -700, true);
 	imageHACKS->SetSpritesData({ 758,0,705,671 });
-	buttonGOBACKHACKS = App->ui_manager->CreateButton(37, 40, 3, imageHACKS);
+	buttonGOBACKHACKS = App->ui_manager->CreateButton(37, 40, imageHACKS);
 	buttonGOBACKHACKS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
 	labelGODMODE = App->ui_manager->CreateLabel(100, 150, "GODMODE", 50, true, imageHACKS);
 	checkboxGODMODE = App->ui_manager->CreateCheckBox(380, 157, imageHACKS);
@@ -561,7 +561,7 @@ void j1Menu::CreateCredits()
 {
 	imageCREDITS = App->ui_manager->CreateImage(10, 880, true);
 	imageCREDITS->SetSpritesData({ 1480,0,1000,1360 });
-	buttonGOBACKCREDITS = App->ui_manager->CreateButton(40, 1400, 1, imageCREDITS);
+	buttonGOBACKCREDITS = App->ui_manager->CreateButton(40, 1400, imageCREDITS);
 	buttonGOBACKCREDITS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
 	CreditsTitle = App->ui_manager->CreateImage(App->win->width / 2 - 234, 1420, true, imageCREDITS);
 	CreditsTitle->SetSpritesData({ 422,958,468,143 });
@@ -569,10 +569,10 @@ void j1Menu::CreateCredits()
 	AlienVictor->SetSpritesData({ 0,2056,250,345 });
 	AlienOriol = App->ui_manager->CreateImage(App->win->width / 4*3 - 125, 1600, true, imageCREDITS);
 	AlienOriol->SetSpritesData({ 259,2057,245,344 });
- 	buttonGITHUB = App->ui_manager->CreateButton(App->win->width / 4*2-90, 1800, 1, imageCREDITS,"GAME'S GITHUB", 30);
-	buttonWEBSITE = App->ui_manager->CreateButton(App->win->width / 4 * 2 - 90, 1700, 1, imageCREDITS, "GAME'S WEBSITE", 30);
-	buttonORIOLGIT = App->ui_manager->CreateButton(App->win->width / 4*3 - 100, 2000, 1, imageCREDITS,"ORIOL'S GITHUB", 30);
-	buttonVICTORGIT = App->ui_manager->CreateButton(App->win->width/4 - 100, 2000, 1, imageCREDITS, "VICTOR'S GITHUB",30);
+ 	buttonGITHUB = App->ui_manager->CreateButton(App->win->width / 4*2-90, 1800, imageCREDITS,"GAME'S GITHUB", 30);
+	buttonWEBSITE = App->ui_manager->CreateButton(App->win->width / 4 * 2 - 90, 1700, imageCREDITS, "GAME'S WEBSITE", 30);
+	buttonORIOLGIT = App->ui_manager->CreateButton(App->win->width / 4*3 - 100, 2000, imageCREDITS,"ORIOL'S GITHUB", 30);
+	buttonVICTORGIT = App->ui_manager->CreateButton(App->win->width/4 - 100, 2000, imageCREDITS, "VICTOR'S GITHUB",30);
 }
 
 void j1Menu::Credits(float dt)
