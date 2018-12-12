@@ -162,69 +162,6 @@ Slider * UI_Manager::CreateSlider(int x, int y, int SliderPos, UI_Element* paren
 	return ret;
 }
 
-void UI_Manager::DeleteButtons()
-{
-	for (int i = elements.Count() - 1; i >= 0; --i)
-	{
-		if (elements[i] != nullptr && elements[i]->type == BUTTON) {
-			elements[i]->CleanUp();
-			delete(elements[i]);
-			elements[i] = nullptr;
-			elements.RemoveAt(i);
-		}
-	}
-}
-void UI_Manager::DeleteCheckBoxes()
-{
-	for (int i = elements.Count() - 1; i >= 0; --i)
-	{
-		if (elements[i] != nullptr && elements[i]->type == CHECKBOX) {
-			elements[i]->CleanUp();
-			delete(elements[i]);
-			elements[i] = nullptr;
-			elements.RemoveAt(i);
-		}
-	}
-}
-
-void UI_Manager::DeleteImages()
-{
-	for (int i = elements.Count() - 1; i >= 0; --i)
-	{
-		if (elements[i] != nullptr && elements[i]->type == IMAGE) {
-			elements[i]->CleanUp();
-			delete(elements[i]);
-			elements[i] = nullptr;
-			elements.RemoveAt(i);
-		}
-	}
-}
-
-void UI_Manager::DeleteLabels()
-{
-	for (int i = elements.Count() - 1; i >= 0; --i)
-	{
-		if (elements[i] != nullptr && elements[i]->type == LABEL) {
-			elements[i]->CleanUp();
-			delete(elements[i]);
-			elements[i] = nullptr;
-			elements.RemoveAt(i);
-		}
-	}
-}
-
-void UI_Manager::DeleteSliders()
-{
-	for (int i = elements.Count() - 1; i >= 0; --i)
-	{
-		if (elements[i] != nullptr && elements[i]->type == SLIDER) {
-			elements[i]->CleanUp();
-			delete(elements[i]);
-			elements[i] = nullptr;
-			elements.RemoveAt(i);
-		}
-	}
-}
 
 void UI_Manager::DeleteAllUI()
 {

@@ -40,11 +40,6 @@ public:
 	Label* CreateLabel(int x, int y, p2SString name, int size, bool CanBeMoved, UI_Element* parent = nullptr);
 	Slider* CreateSlider(int x, int y, int SliderPos, UI_Element* parent = nullptr);
 	
-	void DeleteButtons();
-	void DeleteCheckBoxes();
-	void DeleteImages();
-	void DeleteLabels();
-	void DeleteSliders();
 	void DeleteAllUI();
 	bool DeleteUI_Element(UI_Element* element);
 	void DeleteAllUIExeptPlayer();
