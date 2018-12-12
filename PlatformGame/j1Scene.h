@@ -45,7 +45,7 @@ public:
 	void PauseMenu(float dt);
 	void DeletePauseMenu();
 
-
+	void CoinsLogic();
 
 
 public:

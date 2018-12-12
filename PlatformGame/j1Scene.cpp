@@ -113,7 +113,8 @@ bool j1Scene::Update(float dt)
 			CanStart = true;
 		}
 	}
-	
+
+	CoinsLogic();
 	App->map->Draw();
 
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && !GamePaused) {
@@ -124,6 +125,8 @@ bool j1Scene::Update(float dt)
 	if (GamePaused) {
 		PauseMenu(dt);
 	}
+
+
 	return true;
 }
 
@@ -383,5 +386,13 @@ void j1Scene::DeletePauseMenu()
 	buttonRESUME->pressed = false;
 }
 
-
+void j1Scene::CoinsLogic()
+{
+	if (NumberCoins >= 10) {
+		App->entitymanager->GetPlayerData()->lives++;
+		App->entitymanager->GetPlayerData()->Lives();
+		NumberCoins = 0;
+		App->entitymanager->GetPlayerData()->CountCoins();
+	}
+}
 

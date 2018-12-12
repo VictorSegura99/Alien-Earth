@@ -684,8 +684,6 @@ void Player::Spawn()
 			App->scene->KnowMap = 0;
 		}
 	}
-
-	
 	
 }
 
@@ -1317,7 +1315,6 @@ void Player::TIME()
 
 void Player::CountCoins()
 {
-
 	Coins.create("%i", App->scene->NumberCoins);
 	NumCoins->ChangeLabel(Coins.GetString(), 50);
 }
