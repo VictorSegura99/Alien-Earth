@@ -1221,7 +1221,15 @@ void Player::SetUI()
 		
 	lifenumber = App->ui_manager->CreateImage(950, 25, false);
 	lifenumber->type = PLAYERUIIMAGE;
-	if (lifes == 3) {
+	if (lifes == 5) {
+		lifenumber->SetSpritesData({ 1252,1884,47,50 });
+	}
+
+	else if (lifes == 4) {
+		lifenumber->SetSpritesData({ 1303,1884,48,50 });
+	}
+
+	else if (lifes == 3) {
 		lifenumber->SetSpritesData({ 1252,1950,47,50 });
 	}
 		
@@ -1229,10 +1237,10 @@ void Player::SetUI()
 		lifenumber->SetSpritesData({ 1303,1950,47,50 });
 	}
 		
-	else if (lifes == 1) {
+	else if (lifes == 1) {	
 		lifenumber->SetSpritesData({ 1355,1950,36,50 });
 	}
-		
+	
 	else if (lifes == 0) {
 		lifenumber->SetSpritesData({ 1399,1950,47,50 });
 	
@@ -1288,7 +1296,15 @@ void Player::Dash::ResetDashAnims()
 void Player::Lifes() {
 
 	//Numbers
-	if (lifes == 3)
+	if (lifes == 5) {
+		lifenumber->SetSpritesData({ 1252,1884,47,50 });
+	}
+
+	else if (lifes == 4) {
+		lifenumber->SetSpritesData({ 1303,1884,48,50 });
+	}
+
+	else if (lifes == 3)
 		lifenumber->SetSpritesData({ 1252,1950,47,50 });
 	else if (lifes == 2)
 		lifenumber->SetSpritesData({ 1303,1950,47,50 });
