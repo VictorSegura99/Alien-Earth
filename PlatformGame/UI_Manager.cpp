@@ -97,9 +97,9 @@ bool UI_Manager::Save(pugi::xml_node &) const
 	return true;
 }
 
-UI_Element * UI_Manager::CreateButton(int x, int y, int type, UI_Element* parent, p2SString name, int size)
+Button * UI_Manager::CreateButton(int x, int y, int type, UI_Element* parent, p2SString name, int size)
 {
-	UI_Element* ret = nullptr;
+	Button* ret = nullptr;
 	
 	ret = new Button(x, y, type, parent, name, size);
 	ret->type = BUTTON;

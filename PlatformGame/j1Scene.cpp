@@ -3,6 +3,7 @@
 #include "j1App.h"
 #include "j1Input.h"
 #include "j1Textures.h"
+#include "Button.h"
 #include "j1Audio.h"
 #include "j1Render.h"
 #include "j1Window.h"
@@ -365,28 +366,7 @@ void j1Scene::PauseMenu(float dt)
 
 
 
-void j1Scene::DeletePauseMenu()
-{
-	App->ui_manager->DeleteUI_Element(imagePAUSE);
-	App->ui_manager->DeleteUI_Element(buttonRESUME);
-	App->ui_manager->DeleteUI_Element(buttonGOMAINMENU);
-	App->ui_manager->DeleteUI_Element(buttonGOMAINMENU->label);
-	App->ui_manager->DeleteUI_Element(buttonRESUME->label);
-	App->ui_manager->DeleteUI_Element(sliderVOLUMEMUSIC);
-	App->ui_manager->DeleteUI_Element(labelMUSICVOLUME);
-	App->ui_manager->DeleteUI_Element(sliderVOLUMEFX);
-	App->ui_manager->DeleteUI_Element(labelVOLUMEFX);
-	App->ui_manager->DeleteUI_Element(labelPAUSE);
-	App->ui_manager->DeleteUI_Element(labelGENERALSOUND);
-	App->ui_manager->DeleteUI_Element(sliderGENERALSOUND);
-	App->ui_manager->DeleteUI_Element(checkboxSOUND);
-	App->ui_manager->DeleteUI_Element(labelSOUND);
-	App->ui_manager->DeleteUI_Element(sliderGENERALSOUND->image);
-	App->ui_manager->DeleteUI_Element(sliderVOLUMEFX->image);
-	App->ui_manager->DeleteUI_Element(sliderVOLUMEMUSIC->image);
-	App->ui_manager->DeleteUI_Element(image);
-	buttonRESUME->pressed = false;
-}
+
 
 void j1Scene::CoinsLogic()
 {

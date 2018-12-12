@@ -10,6 +10,7 @@ struct SDL_Texture;
 class CheckBox;
 struct SDL_Rect;
 class Slider;
+class Button;
 class UI_Element;
 
 class j1Menu : public j1Module
@@ -119,27 +120,27 @@ public:
 
 	//INITIAL MENU
 	Image* MainTitle = nullptr;
-	UI_Element* buttonSTART = nullptr;
-	UI_Element* buttonCONTINUE = nullptr;
-	UI_Element* buttonSETTINGS = nullptr;
-	UI_Element* buttonHACKS = nullptr;
-	UI_Element* buttonCREDITS = nullptr;
-	UI_Element* buttonEXIT = nullptr;
+	Button* buttonSTART = nullptr;
+	Button* buttonCONTINUE = nullptr;
+	Button* buttonSETTINGS = nullptr;
+	Button* buttonHACKS = nullptr;
+	Button* buttonCREDITS = nullptr;
+	Button* buttonEXIT = nullptr;
 
 
 	//CHOOSING PLAYER
-	UI_Element* buttonJEFF = nullptr;
-	UI_Element* buttonJANE = nullptr;
-	UI_Element* buttonJERRY = nullptr;
-	UI_Element* buttonGOBACK = nullptr;
+	Button* buttonJEFF = nullptr;
+	Button* buttonJANE = nullptr;
+	Button* buttonJERRY = nullptr;
+	Button* buttonGOBACK = nullptr;
 	Image* CHOOSE = nullptr;
 	Image* JEFFNAME = nullptr;
 	Image* JANENAME = nullptr;
 	Image* JERRYNAME = nullptr;
 
 	//SETTINGS
-	UI_Element* buttonGOBACKSETTINGS = nullptr;
-	UI_Element* imageSETTINGS = nullptr;
+	Button* buttonGOBACKSETTINGS = nullptr;
+	Image* imageSETTINGS = nullptr;
 	CheckBox* checkboxFPS = nullptr;
 	UI_Element* labelFPS = nullptr;
 	SDL_Texture* Settings = nullptr;
@@ -160,7 +161,7 @@ public:
 
 	//HACKS
 	UI_Element* labelHACKS = nullptr;
-	UI_Element* buttonGOBACKHACKS = nullptr;
+	Button* buttonGOBACKHACKS = nullptr;
 	Image* imageHACKS = nullptr;
 	CheckBox* checkboxSTARTLEVEL2 = nullptr;
 	CheckBox* checkboxNOENEMIES = nullptr;
@@ -170,11 +171,11 @@ public:
 
 	//CREDITS
 	Image* imageCREDITS = nullptr;	
-	UI_Element* buttonGOBACKCREDITS = nullptr;
-	UI_Element* buttonGITHUB = nullptr;
-	UI_Element* buttonWEBSITE = nullptr;
-	UI_Element* buttonORIOLGIT = nullptr;
-	UI_Element* buttonVICTORGIT = nullptr;
+	Button* buttonGOBACKCREDITS = nullptr;
+	Button* buttonGITHUB = nullptr;
+	Button* buttonWEBSITE = nullptr;
+	Button* buttonORIOLGIT = nullptr;
+	Button* buttonVICTORGIT = nullptr;
 	Image* AlienVictor = nullptr;
 	Image* AlienOriol = nullptr;
 

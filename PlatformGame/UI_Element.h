@@ -61,7 +61,7 @@ public:
 	pugi::xml_node		UI_node;
 
 	p2DynArray<UI_Element*> Son;
-	p2DynArray<UI_Element*> Parent;
+
 
 	UI_Element * label = nullptr;
 	
