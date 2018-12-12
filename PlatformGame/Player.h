@@ -151,6 +151,8 @@ public:
 	int Min = 0;
 	int Hours = 0;
 
+	bool Lifehack = false;
+
 	unsigned int jumpfx;
 	unsigned int waterfx;
 	unsigned int deathfx;

@@ -485,14 +485,12 @@ void j1Menu::CreateSettingsButtons()
 
 void j1Menu::SettingsMenu(float dt)
 {
-	//Title->NoRenderLabel = true;
-	//sentence->NoRenderLabel = true;
+
 	
 	if (!Positioned && !SettingMenuDone) { //MENU GOING UP
 		imageSETTINGS->Local_pos.y -= 1000 * dt;
 		if (imageSETTINGS->Local_pos.y <= 100) {
 			Positioned = true;
-			//buttonGOBACKSETTINGS->pressed = false;
 			SettingMenuDone = true;
 		}
 	}
@@ -554,7 +552,8 @@ void j1Menu::CreatehacksButtons()
 	labelSTARTLEVEL2 = App->ui_manager->CreateLabel(100, 350, "START AT LEVEL 2", 50, true, imageHACKS);
 	labelHACKS = App->ui_manager->CreateLabel(imageHACKS->width / 2, 50, "HACKS", 60, true, imageHACKS);
 	labelHACKS->Local_pos.x -= labelHACKS->width / 2;
-
+	labelCANTLOSELIFE = App->ui_manager->CreateLabel(100, 450, "ALWAYS IN 3 LIFES", 50, true, imageHACKS);
+	checkboxCANTLOSELIFE = App->ui_manager->CreateCheckBox(380, 457, imageHACKS);
 
 	
 }
@@ -614,7 +613,6 @@ void j1Menu::HacksMenu(float dt)
 		imageHACKS->Local_pos.y += 1000 * dt;
 		if (imageHACKS->Local_pos.y + imageHACKS->height >= 700) {
 			positioned = true;
-			buttonGOBACKHACKS->pressed = false;
 			HacksMenuDone = true;
 		}
 	}
@@ -655,6 +653,12 @@ void j1Menu::HacksMenu(float dt)
 		}
 		if (!checkboxSTARTLEVEL2->pressed && App->scene->KnowMap != 0) {
 			App->scene->KnowMap = 0;
+		}
+		if (checkboxCANTLOSELIFE->pressed && !App->entitymanager->GetPlayerData()->Lifehack) {
+			App->entitymanager->GetPlayerData()->Lifehack = true;
+		}
+		if (!checkboxCANTLOSELIFE->pressed && App->entitymanager->GetPlayerData()->Lifehack) {
+			App->entitymanager->GetPlayerData()->Lifehack = false;
 		}
 	}
 }

@@ -624,7 +624,8 @@ void Player::Die()//What happens when the player die
 		if (App->scene->KnowMap == 1) {
 			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 		}
-		lifes -= 1;
+		if (!Lifehack)
+			lifes -= 1;
 		Spawn();
 		App->scene->NumberCoins = 0;
 		CountCoins();
@@ -641,7 +642,8 @@ void Player::Fall()//What happens when the player falls
 	if (App->scene->KnowMap == 1) {
 		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 	}
-	lifes -= 1;
+	if (!Lifehack)
+		lifes -= 1;
 	Spawn();
 	App->scene->NumberCoins = 0;
 	CountCoins();

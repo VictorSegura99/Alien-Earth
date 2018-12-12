@@ -168,6 +168,9 @@ public:
 	CheckBox* checkboxNOENEMIES = nullptr;
 	Label* labelSTARTLEVEL2 = nullptr;
 	Label* labelNOENEMIES = nullptr;
+	CheckBox* checkboxCANTLOSELIFE = nullptr;
+	Label* labelCANTLOSELIFE = nullptr;
+
 
 
 	//CREDITS

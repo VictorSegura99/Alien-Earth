@@ -269,7 +269,6 @@ void j1Scene::CreatePauseMenu()
 {
 	
 	App->render->camera.x = 0;
-	App->render->camera.y = 0;
 	image = App->ui_manager->CreateImage(0, 0, false);
 	image->SetSpritesData({ 0,1158,1024,768 });
 	imagePAUSE = App->ui_manager->CreateImage(170, 60, true);
@@ -286,6 +285,7 @@ void j1Scene::CreatePauseMenu()
 	sliderGENERALSOUND = App->ui_manager->CreateSlider(380, 363, 50, imagePAUSE);
 	checkboxSOUND = App->ui_manager->CreateCheckBox(380, 257, imagePAUSE);
 	buttonSAVE = App->ui_manager->CreateButton(260, 190, 2, imagePAUSE,"SAVE GAME",30);
+	App->render->camera.y = 0;
 	if (!App->audio->NoAudio)
 		checkboxSOUND->pressed = true;
 	else checkboxSOUND->pressed = false;
