@@ -127,9 +127,9 @@ UI_Element * UI_Manager::CreateButton(int x, int y, int type, UI_Element* parent
 
 	return ret;
 }
-UI_Element * UI_Manager::CreateCheckBox(int x, int y, UI_Element* parent)
+CheckBox * UI_Manager::CreateCheckBox(int x, int y, UI_Element* parent)
 {
-	UI_Element* ret = nullptr;
+	CheckBox* ret = nullptr;
 
 	ret = new CheckBox(x, y, parent);
 	ret->type = CHECKBOX;
@@ -271,19 +271,6 @@ bool UI_Manager::DeleteUI_Element(UI_Element * element)
 	return true;
 }
 
-bool UI_Manager::DeleteImage(Image * image)
-{
-	for (int i = elements.Count() - 1; i >= 0; --i)
-	{
-		if (elements[i] == image) {
-			elements[i]->CleanUp();
-			delete(elements[i]);
-			elements[i] = nullptr;
-			elements.RemoveAt(i);
-		}
-	}
-	return true;
-}
 
 void UI_Manager::DeleteAllUIExeptPlayer()
 {

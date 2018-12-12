@@ -12,6 +12,7 @@
 #include "UI_Element.h"
 #include "j1Scene.h"
 #include "Player.h"
+#include "CheckBox.h"
 #include "Entity.h"
 #include "EntityManager.h"
 #include "j1Collision.h"
@@ -331,7 +332,7 @@ void j1Scene::PauseMenu(float dt)
 			Number -= 1;
 			StartTime = SDL_GetTicks();
 			if (Number == 2) {
-				App->ui_manager->DeleteImage(imageNUMBER3);
+				App->ui_manager->DeleteUI_Element(imageNUMBER3);
 				imageNUMBER2 = App->ui_manager->CreateImage(App->win->Width / 2, App->win->Height / 2-100, true);
 				imageNUMBER2->type = PLAYERUIIMAGE;
 				imageNUMBER2->SetSpritesData({ 1552,1963,31,42 });
@@ -339,7 +340,7 @@ void j1Scene::PauseMenu(float dt)
 				imageNUMBER2->Local_pos.y -= imageNUMBER2->height / 2;
 			}
 			if (Number == 1) {
-				App->ui_manager->DeleteImage(imageNUMBER2);
+				App->ui_manager->DeleteUI_Element(imageNUMBER2);
 				imageNUMBER1 = App->ui_manager->CreateImage(App->win->Width / 2, App->win->Height / 2-100, true);
 				imageNUMBER1->type = PLAYERUIIMAGE;
 				imageNUMBER1->SetSpritesData({ 1524,1963,26,42 });
@@ -348,7 +349,7 @@ void j1Scene::PauseMenu(float dt)
 			}
 			if (Number == 0) {
 				Number = 3;
-				App->ui_manager->DeleteImage(imageNUMBER1);
+				App->ui_manager->DeleteUI_Element(imageNUMBER1);
 				Delay += SDL_GetTicks() - Paused;
 				StartTimer = false;
 				GamePaused = false;
