@@ -5,7 +5,7 @@ It consist of 3 little aliens, every one of them with different powers and stren
 ___________________________________________________
 TEAM PHOTO
 
-![alt text](https://github.com/VictorSegura99/Alien-Earth)
+![alt text](https://github.com/VictorSegura99/Alien_Earth/blob/master/PlatformGame/Docs/20181212_114736.jpg)
 
 _____________
 AUTHORS
