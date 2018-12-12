@@ -8,6 +8,7 @@
 class Image;
 struct SDL_Texture;
 struct SDL_Rect;
+class Slider;
 class UI_Element;
 
 class j1Menu : public j1Module
@@ -141,14 +142,14 @@ public:
 	UI_Element* checkboxFPS = nullptr;
 	UI_Element* labelFPS = nullptr;
 	SDL_Texture* Settings = nullptr;
-	UI_Element* sliderVOLUMEMUSIC = nullptr;
+	Slider* sliderVOLUMEMUSIC = nullptr;
 	UI_Element* labelMUSICVOLUME = nullptr;
-	UI_Element* sliderVOLUMEFX = nullptr;
+	Slider* sliderVOLUMEFX = nullptr;
 	UI_Element* labelSETTINGS = nullptr;
 	UI_Element* labelVOLUMEFX = nullptr;
 	UI_Element* labelGODMODE = nullptr;
 	UI_Element* checkboxGODMODE = nullptr;
-	UI_Element* sliderGENERALSOUND = nullptr;
+	Slider* sliderGENERALSOUND = nullptr;
 	UI_Element* labelGENERALSOUND = nullptr;
 	UI_Element* checkboxSOUND = nullptr;
 	UI_Element* labelSOUND = nullptr;

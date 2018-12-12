@@ -16,6 +16,7 @@
 #include "EntityManager.h"
 #include "j1Collision.h"
 #include "j1Menu.h"
+#include "Slider.h"
 #include "j1FadeToBlack.h"
 
 #include "Brofiler/Brofiler.h"
@@ -361,7 +362,7 @@ void j1Scene::PauseMenu(float dt)
 
 void j1Scene::DeletePauseMenu()
 {
-	App->ui_manager->DeleteImage(imagePAUSE);
+	App->ui_manager->DeleteUI_Element(imagePAUSE);
 	App->ui_manager->DeleteUI_Element(buttonRESUME);
 	App->ui_manager->DeleteUI_Element(buttonGOMAINMENU);
 	App->ui_manager->DeleteUI_Element(buttonGOMAINMENU->label);
@@ -375,10 +376,10 @@ void j1Scene::DeletePauseMenu()
 	App->ui_manager->DeleteUI_Element(sliderGENERALSOUND);
 	App->ui_manager->DeleteUI_Element(checkboxSOUND);
 	App->ui_manager->DeleteUI_Element(labelSOUND);
-	App->ui_manager->DeleteImage(sliderGENERALSOUND->image);
-	App->ui_manager->DeleteImage(sliderVOLUMEFX->image);
-	App->ui_manager->DeleteImage(sliderVOLUMEMUSIC->image);
-	App->ui_manager->DeleteImage(image);
+	App->ui_manager->DeleteUI_Element(sliderGENERALSOUND->image);
+	App->ui_manager->DeleteUI_Element(sliderVOLUMEFX->image);
+	App->ui_manager->DeleteUI_Element(sliderVOLUMEMUSIC->image);
+	App->ui_manager->DeleteUI_Element(image);
 	buttonRESUME->pressed = false;
 }
 

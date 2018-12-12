@@ -7,6 +7,7 @@
 struct SDL_Texture;
 class UI_Element;
 class Image;
+class Slider;
 
 class j1Scene : public j1Module
 {
@@ -63,12 +64,12 @@ public:
 	Image* imagePAUSE = nullptr;
 	UI_Element* buttonRESUME = nullptr;
 	UI_Element* buttonGOMAINMENU = nullptr;
-	UI_Element* sliderVOLUMEMUSIC = nullptr;
+	Slider* sliderVOLUMEMUSIC = nullptr;
 	UI_Element* labelMUSICVOLUME = nullptr;
-	UI_Element* sliderVOLUMEFX = nullptr;
+	Slider* sliderVOLUMEFX = nullptr;
 	UI_Element* labelPAUSE = nullptr;
 	UI_Element* labelVOLUMEFX = nullptr;
-	UI_Element* sliderGENERALSOUND = nullptr;
+	Slider* sliderGENERALSOUND = nullptr;
 	UI_Element* labelGENERALSOUND = nullptr;
 	UI_Element* checkboxSOUND = nullptr;
 	UI_Element* labelSOUND = nullptr;
