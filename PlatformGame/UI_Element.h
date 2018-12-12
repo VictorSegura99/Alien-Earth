@@ -45,10 +45,10 @@ public:
 	virtual bool Save(pugi::xml_node&) const { return true; };
 	void SetPos(int x, int y);
 	void SetSpritesData(SDL_Rect Idle, SDL_Rect Hover = { 0,0,0,0 }, SDL_Rect Pressed = { 0,0,0,0 });
-	void ChangeLabel(p2SString label, int size);
+	
 
 public:
-	Image * image = nullptr;
+	
 	SDL_Texture * tex = nullptr;
 	iPoint Local_pos;
 	iPoint Scree_pos;
@@ -57,14 +57,11 @@ public:
 	int width;
 	SDL_Rect png_pos = { 0,0,0,0 };
 	UI_Elements type = UI_Elements::NON_TYPE;
-	//
-	pugi::xml_node		UI_node;
+	
+	pugi::xml_node	UI_node;
 
 	p2DynArray<UI_Element*> Son;
 
-
-	UI_Element * label = nullptr;
-	
 	bool CanBeMoved = true;
 	bool pressed = false;
 	bool mouseOn = false;
@@ -82,7 +79,7 @@ public:
 	bool WantToRender = true;
 	bool NoUse = false;
 	bool NoRenderLabel = false;
-	float Value = -1;
+
 };
 
 #endif

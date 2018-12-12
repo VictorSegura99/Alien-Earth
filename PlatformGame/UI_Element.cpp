@@ -7,8 +7,7 @@
 #include "j1Fonts.h"
 #include "UI_Manager.h"
 #include "j1Audio.h"
-#include "SDL_TTF\include\SDL_ttf.h"
-#pragma comment( lib, "SDL_ttf/libx86/SDL2_ttf.lib" )
+
 #include "j1Window.h"
 
 UI_Element::UI_Element()
@@ -25,7 +24,7 @@ UI_Element::UI_Element(int x, int y, UI_Element* parent) : Local_pos(x,y), paren
 	UI_node = config.child("UI");
 
 	
-	//ELS AUDIOS NO S'HAN DE CARREGAR AQUI, S'HA DE FER COM LA TEXTURA I CARREGAR-LA AL UI_MANAGER
+	//I THINK AUDIOS SHOULDN'T BE LOADED HERE, BUT I'M NOT SURE :/ 
 	FXON = UI_node.child("FXON").text().as_string();
 	FXPRESSED = UI_node.child("FXPRESSED").text().as_string();
 	fxOn = App->audio->LoadFx(FXON.GetString());
@@ -106,7 +105,7 @@ void UI_Element::SetPos(int x, int y)
 
 void UI_Element::SetSpritesData(SDL_Rect Idle, SDL_Rect Hover, SDL_Rect Pressed)
 {
-	if (type != IMAGE && type != PLAYERUIIMAGE && type != PLAYERUILABEL) {
+	if (type != IMAGE && type != PLAYERUIIMAGE) {
 		NoPressedNoMouseOn = Idle;
 		MouseOn = Hover;
 		this->Pressed = Pressed;
@@ -121,11 +120,4 @@ void UI_Element::SetSpritesData(SDL_Rect Idle, SDL_Rect Hover, SDL_Rect Pressed)
 
 }
 
-void UI_Element::ChangeLabel(p2SString label, int size)
-{
-	if (App->fonts->Time == nullptr)
-		App->fonts->Time = App->fonts->Load(App->fonts->path, size);
-	App->tex->UnLoad(tex);
-	tex = App->fonts->Print(label.GetString(), App->fonts->Time);
-	App->fonts->CalcSize(label.GetString(), width, height, App->fonts->Time);
-}
+

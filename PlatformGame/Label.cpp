@@ -42,3 +42,12 @@ bool Label::Update(float dt)
 
 	return true;
 }
+
+void Label::ChangeLabel(p2SString label, int size)
+{
+	if (App->fonts->Time == nullptr)
+		App->fonts->Time = App->fonts->Load(App->fonts->path, size);
+	App->tex->UnLoad(tex);
+	tex = App->fonts->Print(label.GetString(), App->fonts->Time);
+	App->fonts->CalcSize(label.GetString(), width, height, App->fonts->Time);
+}

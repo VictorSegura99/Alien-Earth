@@ -13,6 +13,7 @@ public:
 	Label(int x, int y, p2SString name, int size, bool CanBeMoved, UI_Element* parent = nullptr);
 	virtual ~Label();
 	bool Update(float dt);
+	void ChangeLabel(p2SString label, int size);
 public:
 	p2SString name;
 	iPoint Distance;

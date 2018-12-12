@@ -16,7 +16,8 @@ public:
 	virtual ~Slider();
 	bool Update(float dt);
 	void LookLimits();
-
+	float Value = -1;
+	Image * image = nullptr;
 private:
 
 	bool repeat2 = true;

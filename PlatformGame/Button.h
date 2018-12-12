@@ -7,6 +7,8 @@
 #include "p2SString.h"
 #include "PugiXml\src\pugixml.hpp"
 
+class Label;
+
 #define IDLE 349,102,190,49 
 #define MOUSEON 349,50,190,49 
 #define PRESSED  349,0,190,49 
@@ -22,7 +24,7 @@ public:
 	bool Update(float dt);
 
 public:
-	
+	Label * label = nullptr;
 	int type = -1;
 	unsigned int fXOn;
 	int label_pos;
