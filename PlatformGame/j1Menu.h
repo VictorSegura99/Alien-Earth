@@ -5,6 +5,7 @@
 #include "p2Animation.h"
 #include "p2Point.h"
 
+class Image;
 struct SDL_Texture;
 struct SDL_Rect;
 class UI_Element;
@@ -110,12 +111,12 @@ public:
 	unsigned int introfx;
 
 	//START MENU
-	UI_Element* Background = nullptr;
-	UI_Element* Title = nullptr;
-	UI_Element* sentence = nullptr;
+	Image* Background = nullptr;
+	Image* Title = nullptr;
+	Image* sentence = nullptr;
 
 	//INITIAL MENU
-	UI_Element* MainTitle = nullptr;
+	Image* MainTitle = nullptr;
 	UI_Element* buttonSTART = nullptr;
 	UI_Element* buttonCONTINUE = nullptr;
 	UI_Element* buttonSETTINGS = nullptr;
@@ -129,10 +130,10 @@ public:
 	UI_Element* buttonJANE = nullptr;
 	UI_Element* buttonJERRY = nullptr;
 	UI_Element* buttonGOBACK = nullptr;
-	UI_Element* CHOOSE = nullptr;
-	UI_Element* JEFFNAME = nullptr;
-	UI_Element* JANENAME = nullptr;
-	UI_Element* JERRYNAME = nullptr;
+	Image* CHOOSE = nullptr;
+	Image* JEFFNAME = nullptr;
+	Image* JANENAME = nullptr;
+	Image* JERRYNAME = nullptr;
 
 	//SETTINGS
 	UI_Element* buttonGOBACKSETTINGS = nullptr;
@@ -158,7 +159,7 @@ public:
 	//HACKS
 	UI_Element* labelHACKS = nullptr;
 	UI_Element* buttonGOBACKHACKS = nullptr;
-	UI_Element* imageHACKS = nullptr;
+	Image* imageHACKS = nullptr;
 	UI_Element* checkboxSTARTLEVEL2 = nullptr;
 	UI_Element* checkboxNOENEMIES = nullptr;
 	UI_Element* labelSTARTLEVEL2 = nullptr;
@@ -166,19 +167,18 @@ public:
 
 
 	//CREDITS
-	UI_Element* imageCREDITS = nullptr;
+	Image* imageCREDITS = nullptr;
 	UI_Element* buttonGOBACKCREDITS = nullptr;
 	UI_Element* buttonGITHUB = nullptr;
 	UI_Element* buttonWEBSITE = nullptr;
 	UI_Element* buttonORIOLGIT = nullptr;
 	UI_Element* buttonVICTORGIT = nullptr;
-	UI_Element* AlienVictor = nullptr;
-	UI_Element* AlienOriol = nullptr;
-
+	Image* AlienVictor = nullptr;
+	Image* AlienOriol = nullptr;
 
 	//PLAYER UI
 
-	UI_Element* image = nullptr;
+	Image* image = nullptr;
 	UI_Element* label = nullptr;
 
 	// 

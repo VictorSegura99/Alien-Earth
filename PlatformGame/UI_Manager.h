@@ -9,6 +9,7 @@
 
 
 class UI_Element;
+class Image;
 struct SDL_Texture;
 
 class UI_Manager : public j1Module
@@ -32,7 +33,7 @@ public:
 
 	UI_Element* CreateButton(int x, int y, int type, UI_Element* parent = nullptr, p2SString name = "NONE", int size = 0);
 	UI_Element* CreateCheckBox(int x, int y, UI_Element* parent = nullptr);
-	UI_Element* CreateImage(int x, int y, bool WantToBeMoved, UI_Element* parent = nullptr);
+	Image* CreateImage(int x, int y, bool WantToBeMoved, UI_Element* parent = nullptr);
 	UI_Element* CreateLabel(int x, int y, p2SString name, int size, bool CanBeMoved, UI_Element* parent = nullptr);
 	UI_Element* CreateSlider(int x, int y, int SliderPos, UI_Element* parent = nullptr);
 	
@@ -43,6 +44,7 @@ public:
 	void DeleteSliders();
 	void DeleteAllUI();
 	bool DeleteUI_Element(UI_Element* element);
+	bool DeleteImage(Image* image);
 	void DeleteAllUIExeptPlayer();
 
 private:

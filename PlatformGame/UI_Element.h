@@ -9,6 +9,8 @@
 #include "PugiXml\src\pugixml.hpp"
 #include "j1PerfTimer.h"
 
+
+class Image;
 struct SDL_Texture;
 enum UI_Elements
 {
@@ -45,7 +47,7 @@ public:
 	void ChangeLabel(p2SString label, int size);
 
 public:
-	UI_Element * image = nullptr;
+	Image * image = nullptr;
 	SDL_Texture * tex = nullptr;
 	iPoint Local_pos;
 	iPoint Scree_pos;

@@ -35,14 +35,8 @@ bool j1Menu::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Scene");
 	file_texture = config.child("Start").text().as_string();
-	MinY_ChooseRect = config.child("MinY_ChooseRect").attribute("value").as_int();
-	MaxY_ChooseRect = config.child("MaxY_ChooseRect").attribute("value").as_int();
-	MinX_RectChoosePlayer1 = config.child("MinX_RectChoosePlayer1").attribute("value").as_int();
-	MaxX_RectChoosePlayer1 = config.child("MaxX_RectChoosePlayer1").attribute("value").as_int();
-	MinX_RectChoosePlayer2 = config.child("MinX_RectChoosePlayer2").attribute("value").as_int();
-	MaxX_RectChoosePlayer2 = config.child("MaxX_RectChoosePlayer2").attribute("value").as_int();
-	MinX_RectChoosePlayer3 = config.child("MinX_RectChoosePlayer3").attribute("value").as_int();
-	MaxX_RectChoosePlayer3 = config.child("MaxX_RectChoosePlayer3").attribute("value").as_int();
+
+	
 	PlayerNumber1 = config.child("PlayerNumber1").attribute("value").as_int();
 	PlayerNumber2 = config.child("PlayerNumber2").attribute("value").as_int();
 	PlayerNumber3 = config.child("PlayerNumber3").attribute("value").as_int();

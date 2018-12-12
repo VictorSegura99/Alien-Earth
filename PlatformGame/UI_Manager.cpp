@@ -140,9 +140,10 @@ UI_Element * UI_Manager::CreateCheckBox(int x, int y, UI_Element* parent)
 	return ret;
 }
 
-UI_Element * UI_Manager::CreateImage(int x, int y, bool WantToBeMoved, UI_Element* parent)
+
+Image * UI_Manager::CreateImage(int x, int y, bool WantToBeMoved, UI_Element * parent)
 {
-	UI_Element* ret = nullptr;
+	Image* ret = nullptr;
 
 	ret = new Image(x, y, WantToBeMoved, parent);
 	ret->type = IMAGE;
@@ -261,6 +262,20 @@ bool UI_Manager::DeleteUI_Element(UI_Element * element)
 	for (int i = elements.Count() - 1; i >= 0; --i)
 	{
 		if (elements[i] == element) {
+			elements[i]->CleanUp();
+			delete(elements[i]);
+			elements[i] = nullptr;
+			elements.RemoveAt(i);
+		}
+	}
+	return true;
+}
+
+bool UI_Manager::DeleteImage(Image * image)
+{
+	for (int i = elements.Count() - 1; i >= 0; --i)
+	{
+		if (elements[i] == image) {
 			elements[i]->CleanUp();
 			delete(elements[i]);
 			elements[i] = nullptr;

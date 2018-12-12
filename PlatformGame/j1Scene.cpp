@@ -8,6 +8,7 @@
 #include "j1Window.h"
 #include "j1Map.h"
 #include "UI_Manager.h"
+#include "Image.h"
 #include "UI_Element.h"
 #include "j1Scene.h"
 #include "Player.h"
@@ -326,7 +327,7 @@ void j1Scene::PauseMenu(float dt)
 			Number -= 1;
 			StartTime = SDL_GetTicks();
 			if (Number == 2) {
-				App->ui_manager->DeleteUI_Element(imageNUMBER3);
+				App->ui_manager->DeleteImage(imageNUMBER3);
 				imageNUMBER2 = App->ui_manager->CreateImage(App->win->Width / 2, App->win->Height / 2-100, true);
 				imageNUMBER2->type = PLAYERUIIMAGE;
 				imageNUMBER2->SetSpritesData({ 1552,1963,31,42 });
@@ -334,7 +335,7 @@ void j1Scene::PauseMenu(float dt)
 				imageNUMBER2->Local_pos.y -= imageNUMBER2->height / 2;
 			}
 			if (Number == 1) {
-				App->ui_manager->DeleteUI_Element(imageNUMBER2);
+				App->ui_manager->DeleteImage(imageNUMBER2);
 				imageNUMBER1 = App->ui_manager->CreateImage(App->win->Width / 2, App->win->Height / 2-100, true);
 				imageNUMBER1->type = PLAYERUIIMAGE;
 				imageNUMBER1->SetSpritesData({ 1524,1963,26,42 });
@@ -343,7 +344,7 @@ void j1Scene::PauseMenu(float dt)
 			}
 			if (Number == 0) {
 				Number = 3;
-				App->ui_manager->DeleteUI_Element(imageNUMBER1);
+				App->ui_manager->DeleteImage(imageNUMBER1);
 				Delay += SDL_GetTicks() - Paused;
 				StartTimer = false;
 				GamePaused = false;
@@ -360,7 +361,7 @@ void j1Scene::PauseMenu(float dt)
 
 void j1Scene::DeletePauseMenu()
 {
-	App->ui_manager->DeleteUI_Element(imagePAUSE);
+	App->ui_manager->DeleteImage(imagePAUSE);
 	App->ui_manager->DeleteUI_Element(buttonRESUME);
 	App->ui_manager->DeleteUI_Element(buttonGOMAINMENU);
 	App->ui_manager->DeleteUI_Element(buttonGOMAINMENU->label);
@@ -374,10 +375,10 @@ void j1Scene::DeletePauseMenu()
 	App->ui_manager->DeleteUI_Element(sliderGENERALSOUND);
 	App->ui_manager->DeleteUI_Element(checkboxSOUND);
 	App->ui_manager->DeleteUI_Element(labelSOUND);
-	App->ui_manager->DeleteUI_Element(sliderGENERALSOUND->image);
-	App->ui_manager->DeleteUI_Element(sliderVOLUMEFX->image);
-	App->ui_manager->DeleteUI_Element(sliderVOLUMEMUSIC->image);
-	App->ui_manager->DeleteUI_Element(image);
+	App->ui_manager->DeleteImage(sliderGENERALSOUND->image);
+	App->ui_manager->DeleteImage(sliderVOLUMEFX->image);
+	App->ui_manager->DeleteImage(sliderVOLUMEMUSIC->image);
+	App->ui_manager->DeleteImage(image);
 	buttonRESUME->pressed = false;
 }
 

@@ -5,6 +5,7 @@
 #include "p2Log.h"
 #include "UI_Manager.h"
 #include "j1Audio.h"
+#include "Image.h"
 #include "j1Input.h"
 
 Slider::Slider(int x, int y, int SliderPos, UI_Element* parent) : UI_Element(x, y, parent)
