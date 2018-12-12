@@ -157,7 +157,6 @@ bool j1Menu::PostUpdate()
 			App->entitymanager->GetPlayerData()->Start();
 			App->audio->PlayMusic(App->scene->Song.GetString());
 			App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
-			App->scene->SpawnEnemies();
 			App->entitymanager->GetPlayerData()->SetUI();
 			GameOn = true;
 		}

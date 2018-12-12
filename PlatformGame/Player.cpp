@@ -672,7 +672,6 @@ void Player::Spawn()
 			}
 			Death[NumPlayer].current_frame = 0.0f;
 			Death[NumPlayer].loops = 0;
-			App->scene->SpawnEnemies();
 		}
 		else {
 			//current_animation = &idle[NumPlayer];

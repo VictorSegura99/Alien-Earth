@@ -5,6 +5,7 @@
 #include "j1Textures.h"
 #include "j1Map.h"
 #include "j1Collision.h"
+#include "j1Scene.h"
 #include "EntityManager.h"
 #include <math.h>
 #include "j1Pathfinding.h"
@@ -315,6 +316,7 @@ bool j1Map::Load(const char* file_name)
 	}
 	LoadPlayerProperties();
 	LoadCoins();
+	LoadEnemies();
 	if(ret == true)
 	{
 		LOG("Successfully parsed map XML file: %s", file_name);
@@ -590,7 +592,6 @@ bool j1Map::LoadObjects(pugi::xml_node & node, ObjectGroup* obj)
 
 bool j1Map::LoadPlayerProperties()
 {
-	
 	p2List_item<ObjectGroup*>* item = data.object_layers.start;
 	p2List_item<ObjectData*>* item2;
 
@@ -637,6 +638,37 @@ bool j1Map::LoadCoins()
 		item = item->next;
 	}
 
+	return true;
+}
+
+bool j1Map::LoadEnemies()
+{
+	
+	p2List_item<ObjectGroup*>* item = data.object_layers.start;
+	p2List_item<ObjectData*>* item2;
+
+	while (item != NULL) {
+		if (item->data->name == "Enemies") {
+			item2 = item->data->objects.start;
+			while (item2 != NULL) {
+				if (App->scene->WantToSpawnEnemies) {
+					if (item2->data->name == "Bat") {
+						App->entitymanager->CreateEntity(EntityType::BAT, item2->data->x, item2->data->y);
+					}
+					if (item2->data->name == "Spider") {
+						App->entitymanager->CreateEntity(EntityType::SPIDER, item2->data->x, item2->data->y);
+					}
+				}
+				if (item2->data->name == "Platform") {
+					App->entitymanager->CreateEntity(EntityType::MOVING_PLATFORM, item2->data->x, item2->data->y);
+				}
+				item2 = item2->next;
+			}
+		}
+		item = item->next;
+	}
+	
+	
 	return true;
 }
 
