@@ -519,6 +519,8 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 			TouchingGround = true;
 			CanClimb = false;
 			CanJump = false;
+			IsJumping = false;
+			IsJumping2 = false;
 		}
 		break;
 	case COLLIDER_GROUND_WATER:
@@ -1181,21 +1183,24 @@ void Player::SetUI()
 	//TimeStart->Scree_pos.x -= 200;
 
 	//Tutorials
-	if (NumPlayer == 0) {
-		tutorial = App->ui_manager->CreateImage(1002, 250, true);
-		tutorial->type = PLAYERUIIMAGE;
-		tutorial->SetSpritesData({ 2700,525,602,363 });
+	if (App->scene->KnowMap == 0) {
+		if (NumPlayer == 0) {
+			tutorial = App->ui_manager->CreateImage(1002, 250, true);
+			tutorial->type = PLAYERUIIMAGE;
+			tutorial->SetSpritesData({ 2700,525,602,363 });
+		}
+		else if (NumPlayer == 1) {
+			tutorial = App->ui_manager->CreateImage(1006, 365, true);
+			tutorial->type = PLAYERUIIMAGE;
+			tutorial->SetSpritesData({ 2700,0,522,274 });
+		}
+		else if (NumPlayer == 2) {
+			tutorial = App->ui_manager->CreateImage(1006, 340, true);
+			tutorial->type = PLAYERUIIMAGE;
+			tutorial->SetSpritesData({ 2700,274,539,251 });
+		}
 	}
-	else if (NumPlayer == 1) {
-		tutorial = App->ui_manager->CreateImage(1006, 365, true);
-		tutorial->type = PLAYERUIIMAGE;
-		tutorial->SetSpritesData({ 2700,0,522,274 });
-	}
-	else if (NumPlayer == 2) {
-		tutorial = App->ui_manager->CreateImage(1006, 340, true);
-		tutorial->type = PLAYERUIIMAGE;
-		tutorial->SetSpritesData({ 2700,274,539,251 });
-	}
+
 
 
 	//LIVES

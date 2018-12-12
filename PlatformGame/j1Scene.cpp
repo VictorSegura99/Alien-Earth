@@ -389,7 +389,7 @@ void j1Scene::DeletePauseMenu()
 
 void j1Scene::CoinsLogic()
 {
-	if (NumberCoins >= 10) {
+	if (NumberCoins >= 15) {
 		App->entitymanager->GetPlayerData()->lives++;
 		App->entitymanager->GetPlayerData()->Lives();
 		NumberCoins = 0;
