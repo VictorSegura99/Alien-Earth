@@ -67,6 +67,7 @@ public:
 	Image* imagePAUSE = nullptr;
 	Button* buttonRESUME = nullptr;
 	Button* buttonGOMAINMENU = nullptr;
+	Button* buttonSAVE = nullptr;
 	Slider* sliderVOLUMEMUSIC = nullptr;
 	Label* labelMUSICVOLUME = nullptr;
 	Slider* sliderVOLUMEFX = nullptr;
