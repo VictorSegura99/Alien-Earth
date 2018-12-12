@@ -19,14 +19,12 @@ class Label;
 class Button : public UI_Element {
 public:
 
-	Button(int x, int y, int type, UI_Element* parent = nullptr, p2SString name = "NONE", int size = 0);
+	Button(int x, int y, UI_Element* parent = nullptr, p2SString name = "NONE", int size = 0);
 	virtual ~Button();
 	bool Update(float dt);
 
 public:
 	Label * label = nullptr;
-	int type = -1;
-	unsigned int fXOn;
 	int label_pos;
 
 };

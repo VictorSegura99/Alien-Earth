@@ -34,7 +34,7 @@ public:
 
 	bool Save(pugi::xml_node&) const;
 
-	Button* CreateButton(int x, int y, int type, UI_Element* parent = nullptr, p2SString name = "NONE", int size = 0);
+	Button* CreateButton(int x, int y, UI_Element* parent = nullptr, p2SString name = "NONE", int size = 0);
 	CheckBox* CreateCheckBox(int x, int y, UI_Element* parent = nullptr);
 	Image* CreateImage(int x, int y, bool WantToBeMoved, UI_Element* parent = nullptr);
 	Label* CreateLabel(int x, int y, p2SString name, int size, bool CanBeMoved, UI_Element* parent = nullptr);
@@ -51,9 +51,7 @@ private:
 	p2SString sprite;
 
 public:
-
 	bool debug_draw = false;
-	
 };
 
 #endif

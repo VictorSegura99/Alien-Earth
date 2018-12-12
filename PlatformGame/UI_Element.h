@@ -49,7 +49,6 @@ public:
 
 public:
 	
-	SDL_Texture * tex = nullptr;
 	iPoint Local_pos;
 	iPoint Scree_pos;
 	UI_Element* parent = nullptr;
@@ -59,7 +58,7 @@ public:
 	UI_Elements type = UI_Elements::NON_TYPE;
 	
 	pugi::xml_node	UI_node;
-
+	SDL_Texture * tex = nullptr;
 	p2DynArray<UI_Element*> Son;
 
 	bool CanBeMoved = true;
@@ -78,7 +77,7 @@ public:
 	bool repeataudio = true;
 	bool WantToRender = true;
 	bool NoUse = false;
-	bool NoRenderLabel = false;
+	
 
 };
 
