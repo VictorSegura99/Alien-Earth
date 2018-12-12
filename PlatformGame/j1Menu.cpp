@@ -14,6 +14,7 @@
 #include "Entity.h"
 #include "j1FadeToBlack.h"
 #include "Slider.h"
+#include "CheckBox.h"
 #include "EntityManager.h"
 #include "Button.h"
 #include "UI_Element.h"

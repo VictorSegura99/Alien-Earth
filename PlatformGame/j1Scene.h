@@ -7,6 +7,7 @@
 struct SDL_Texture;
 class UI_Element;
 class Image;
+class CheckBox;
 class Slider;
 
 class j1Scene : public j1Module
@@ -71,7 +72,7 @@ public:
 	UI_Element* labelVOLUMEFX = nullptr;
 	Slider* sliderGENERALSOUND = nullptr;
 	UI_Element* labelGENERALSOUND = nullptr;
-	UI_Element* checkboxSOUND = nullptr;
+	CheckBox* checkboxSOUND = nullptr;
 	UI_Element* labelSOUND = nullptr;
 	Image* image = nullptr;
 	Image* imageNUMBER3 = nullptr;

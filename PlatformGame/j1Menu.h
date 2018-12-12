@@ -7,6 +7,7 @@
 
 class Image;
 struct SDL_Texture;
+class CheckBox;
 struct SDL_Rect;
 class Slider;
 class UI_Element;
@@ -139,7 +140,7 @@ public:
 	//SETTINGS
 	UI_Element* buttonGOBACKSETTINGS = nullptr;
 	UI_Element* imageSETTINGS = nullptr;
-	UI_Element* checkboxFPS = nullptr;
+	CheckBox* checkboxFPS = nullptr;
 	UI_Element* labelFPS = nullptr;
 	SDL_Texture* Settings = nullptr;
 	Slider* sliderVOLUMEMUSIC = nullptr;
@@ -148,10 +149,10 @@ public:
 	UI_Element* labelSETTINGS = nullptr;
 	UI_Element* labelVOLUMEFX = nullptr;
 	UI_Element* labelGODMODE = nullptr;
-	UI_Element* checkboxGODMODE = nullptr;
+	CheckBox* checkboxGODMODE = nullptr;
 	Slider* sliderGENERALSOUND = nullptr;
 	UI_Element* labelGENERALSOUND = nullptr;
-	UI_Element* checkboxSOUND = nullptr;
+	CheckBox* checkboxSOUND = nullptr;
 	UI_Element* labelSOUND = nullptr;
 	int x = 170;
 	int y = 950;
@@ -161,8 +162,8 @@ public:
 	UI_Element* labelHACKS = nullptr;
 	UI_Element* buttonGOBACKHACKS = nullptr;
 	Image* imageHACKS = nullptr;
-	UI_Element* checkboxSTARTLEVEL2 = nullptr;
-	UI_Element* checkboxNOENEMIES = nullptr;
+	CheckBox* checkboxSTARTLEVEL2 = nullptr;
+	CheckBox* checkboxNOENEMIES = nullptr;
 	UI_Element* labelSTARTLEVEL2 = nullptr;
 	UI_Element* labelNOENEMIES = nullptr;
 
