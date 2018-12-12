@@ -5,9 +5,7 @@ It consist of 3 little aliens, every one of them with different powers and stren
 ___________________________________________________
 TEAM PHOTO
 
-<p align="center">
-<img src="https://www.google.es/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwiXvKPQ_ZTfAhUpyIUKHRXODsYQjRx6BAgBEAU&url=https%3A%2F%2Fwww.elmundodelperro.net%2Fnoticia%2F2750%2Fdogo-argentino%2Fconvivencia-con-un-dogo-argentino.html&psig=AOvVaw2m2vsAA3kpaOsarulduFtM&ust=1544521641597099" width="400">
-</p>
+![alt text](https://github.com/VictorSegura99/Alien-Earth)
 
 _____________
 AUTHORS
