@@ -66,7 +66,7 @@ GAME
 
 _____________
 ALIEN EARTH TRAILER
-<iframe width="1024" height="768" src="https://youtu.be/W7yO9g4pL_E" frameborder="0" allow="autoplay; encrypted-media" 
+<iframe width="1024" height="768" src="https://www.youtube.com/watch?v=W7yO9g4pL_E" frameborder="0" allow="autoplay; encrypted-media" 
 allowfullscreen> </iframe>
 
 _____________
