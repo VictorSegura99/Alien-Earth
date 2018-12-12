@@ -314,6 +314,7 @@ bool j1Map::Load(const char* file_name)
 		data.object_layers.add(set);
 	}
 	LoadPlayerProperties();
+	LoadCoins();
 	if(ret == true)
 	{
 		LOG("Successfully parsed map XML file: %s", file_name);
@@ -615,6 +616,27 @@ bool j1Map::LoadPlayerProperties()
 		item = item->next;
 	}
 	
+	return true;
+}
+
+bool j1Map::LoadCoins()
+{
+	p2List_item<ObjectGroup*>* item = data.object_layers.start;
+	p2List_item<ObjectData*>* item2;
+
+	while (item != NULL) {
+		if (item->data->name == "Coins") {
+			item2 = item->data->objects.start;
+			while (item2 != NULL) {
+				if (item2->data->name == "Coin") {
+					App->entitymanager->CreateEntity(EntityType::COIN, item2->data->x, item2->data->y);
+				}
+				item2 = item2->next;
+			}
+		}
+		item = item->next;
+	}
+
 	return true;
 }
 

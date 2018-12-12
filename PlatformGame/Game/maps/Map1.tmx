@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="160" height="17" tilewidth="70" tileheight="70" nextobjectid="393">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="160" height="17" tilewidth="70" tileheight="70" nextobjectid="400">
  <properties>
   <property name="NoDraw" type="int" value="0"/>
  </properties>
@@ -16826,6 +16826,33 @@
   <object id="392" x="700.833" y="443.833" width="31" height="33">
    <properties>
     <property name="name" value="Position2_Player_Start_Map1"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Coins">
+  <object id="393" x="1896" y="559" width="46" height="51">
+   <properties>
+    <property name="Object" value="Coin"/>
+   </properties>
+  </object>
+  <object id="396" x="1212" y="548.5" width="46" height="51">
+   <properties>
+    <property name="Object" value="Coin"/>
+   </properties>
+  </object>
+  <object id="397" x="1622" y="546.5" width="46" height="51">
+   <properties>
+    <property name="Object" value="Coin"/>
+   </properties>
+  </object>
+  <object id="398" x="2450" y="845.5" width="46" height="51">
+   <properties>
+    <property name="Object" value="Coin"/>
+   </properties>
+  </object>
+  <object id="399" x="3055" y="557.5" width="46" height="51">
+   <properties>
+    <property name="Object" value="Coin"/>
    </properties>
   </object>
  </objectgroup>

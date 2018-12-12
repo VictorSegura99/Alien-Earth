@@ -215,6 +215,7 @@ void j1Scene::SpawnEnemies()
 		App->entitymanager->CreateEntity(EntityType::MOVING_PLATFORM, 7480, 900);
 		App->entitymanager->CreateEntity(EntityType::MOVING_PLATFORM, 8300, 900);
 		//Coins
+		/*
 		if (App->entitymanager->GetPlayerData()->NumPlayer == 0) {
 			App->entitymanager->CreateEntity(EntityType::COIN, 1173, 442);
 			App->entitymanager->CreateEntity(EntityType::COIN, 1395, 305);
@@ -243,8 +244,8 @@ void j1Scene::SpawnEnemies()
 		App->entitymanager->CreateEntity(EntityType::COIN, 9140, 680);
 		App->entitymanager->CreateEntity(EntityType::COIN, 9947, 615);
 		App->entitymanager->CreateEntity(EntityType::COIN, 10500, 685);
-	}
-	if (KnowMap == 1) {
+	}*/
+	/*if (KnowMap == 1) {
 		App->entitymanager->CreateEntity(EntityType::COIN, 768, 330);
 		App->entitymanager->CreateEntity(EntityType::COIN, 1274, 540);
 		App->entitymanager->CreateEntity(EntityType::COIN, 1677, 679);
@@ -261,8 +262,8 @@ void j1Scene::SpawnEnemies()
 		App->entitymanager->CreateEntity(EntityType::COIN, 7537, 900);
 		App->entitymanager->CreateEntity(EntityType::COIN, 8210, 712);
 		App->entitymanager->CreateEntity(EntityType::COIN, 10014, 1034);
+	}*/
 	}
-
 }
 
 void j1Scene::CreatePauseMenu()
