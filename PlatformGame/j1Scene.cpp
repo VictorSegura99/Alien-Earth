@@ -8,13 +8,16 @@
 #include "j1Window.h"
 #include "j1Map.h"
 #include "UI_Manager.h"
+#include "Image.h"
 #include "UI_Element.h"
 #include "j1Scene.h"
 #include "Player.h"
+#include "CheckBox.h"
 #include "Entity.h"
 #include "EntityManager.h"
 #include "j1Collision.h"
 #include "j1Menu.h"
+#include "Slider.h"
 #include "j1FadeToBlack.h"
 
 #include "Brofiler/Brofiler.h"
@@ -111,7 +114,8 @@ bool j1Scene::Update(float dt)
 			CanStart = true;
 		}
 	}
-	
+
+	CoinsLogic();
 	App->map->Draw();
 
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && !GamePaused) {
@@ -122,6 +126,8 @@ bool j1Scene::Update(float dt)
 	if (GamePaused) {
 		PauseMenu(dt);
 	}
+
+
 	return true;
 }
 
@@ -381,5 +387,13 @@ void j1Scene::DeletePauseMenu()
 	buttonRESUME->pressed = false;
 }
 
-
+void j1Scene::CoinsLogic()
+{
+	if (NumberCoins >= 10) {
+		App->entitymanager->GetPlayerData()->lives++;
+		App->entitymanager->GetPlayerData()->Lives();
+		NumberCoins = 0;
+		App->entitymanager->GetPlayerData()->CountCoins();
+	}
+}
 

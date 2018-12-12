@@ -75,18 +75,24 @@ bool EntityManager::Update(float dt)
 {
 	BROFILER_CATEGORY("EntityManager: Update", Profiler::Color::Green);
 	if (ActiveGame) {
+		
 		for (int i = 0; i < entities.Count(); i++) {
-			if (entities[i] != nullptr)
+			if (entities[i] != nullptr && entities[i]->type == PLAYER)
 				entities[i]->Update(dt);
 		}
 		for (int i = 0; i < entities.Count(); i++) {
 			if (entities[i] != nullptr && entities[i]->type != PLAYER)
-				entities[i]->Draw(dt);
+				entities[i]->Update(dt);
 		}
 		for (int i = 0; i < entities.Count(); i++) {
 			if (entities[i] != nullptr && entities[i]->type == PLAYER)
 				entities[i]->Draw(dt);
 		}
+		for (int i = 0; i < entities.Count(); i++) {
+			if (entities[i] != nullptr && entities[i]->type != PLAYER)
+				entities[i]->Draw(dt);
+		}
+		
 	}
 	
 	return true;
@@ -151,13 +157,14 @@ Entity* EntityManager::CreateEntity(EntityType type, int x, int y)
 			ret->type = MOVING_PLATFORM;
 			break;
 		}
-		case EntityType::PLAYER: {ret = new Player();
-			ret->type = PLAYER;
-			break; }
 		case EntityType::COIN: {
 			ret = new Coin(x, y);
 			ret->type = COIN;
 			break;
+		case EntityType::PLAYER: {ret = new Player();
+			ret->type = PLAYER;
+			break; }
+	
 		}
 		}
 		if (ret != nullptr)

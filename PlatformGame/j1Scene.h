@@ -6,6 +6,9 @@
 
 struct SDL_Texture;
 class UI_Element;
+class Image;
+class CheckBox;
+class Slider;
 
 class j1Scene : public j1Module
 {
@@ -43,7 +46,7 @@ public:
 	void PauseMenu(float dt);
 	void DeletePauseMenu();
 
-
+	void CoinsLogic();
 
 
 public:
@@ -59,22 +62,22 @@ public:
 	
 	//MENU PAUSA
 
-	UI_Element* imagePAUSE = nullptr;
+	Image* imagePAUSE = nullptr;
 	UI_Element* buttonRESUME = nullptr;
 	UI_Element* buttonGOMAINMENU = nullptr;
-	UI_Element* sliderVOLUMEMUSIC = nullptr;
+	Slider* sliderVOLUMEMUSIC = nullptr;
 	UI_Element* labelMUSICVOLUME = nullptr;
-	UI_Element* sliderVOLUMEFX = nullptr;
+	Slider* sliderVOLUMEFX = nullptr;
 	UI_Element* labelPAUSE = nullptr;
 	UI_Element* labelVOLUMEFX = nullptr;
-	UI_Element* sliderGENERALSOUND = nullptr;
+	Slider* sliderGENERALSOUND = nullptr;
 	UI_Element* labelGENERALSOUND = nullptr;
-	UI_Element* checkboxSOUND = nullptr;
+	CheckBox* checkboxSOUND = nullptr;
 	UI_Element* labelSOUND = nullptr;
-	UI_Element* image = nullptr;
-	UI_Element* imageNUMBER3 = nullptr;
-	UI_Element* imageNUMBER2 = nullptr;
-	UI_Element* imageNUMBER1 = nullptr;
+	Image* image = nullptr;
+	Image* imageNUMBER3 = nullptr;
+	Image* imageNUMBER2 = nullptr;
+	Image* imageNUMBER1 = nullptr;
 
 	int Delay = 0;
 	int Paused = 0;

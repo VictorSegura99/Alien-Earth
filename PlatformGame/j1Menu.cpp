@@ -13,6 +13,8 @@
 #include "j1Collision.h"
 #include "Entity.h"
 #include "j1FadeToBlack.h"
+#include "Slider.h"
+#include "CheckBox.h"
 #include "EntityManager.h"
 #include "Button.h"
 #include "UI_Element.h"
@@ -35,14 +37,8 @@ bool j1Menu::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Scene");
 	file_texture = config.child("Start").text().as_string();
-	MinY_ChooseRect = config.child("MinY_ChooseRect").attribute("value").as_int();
-	MaxY_ChooseRect = config.child("MaxY_ChooseRect").attribute("value").as_int();
-	MinX_RectChoosePlayer1 = config.child("MinX_RectChoosePlayer1").attribute("value").as_int();
-	MaxX_RectChoosePlayer1 = config.child("MaxX_RectChoosePlayer1").attribute("value").as_int();
-	MinX_RectChoosePlayer2 = config.child("MinX_RectChoosePlayer2").attribute("value").as_int();
-	MaxX_RectChoosePlayer2 = config.child("MaxX_RectChoosePlayer2").attribute("value").as_int();
-	MinX_RectChoosePlayer3 = config.child("MinX_RectChoosePlayer3").attribute("value").as_int();
-	MaxX_RectChoosePlayer3 = config.child("MaxX_RectChoosePlayer3").attribute("value").as_int();
+
+	
 	PlayerNumber1 = config.child("PlayerNumber1").attribute("value").as_int();
 	PlayerNumber2 = config.child("PlayerNumber2").attribute("value").as_int();
 	PlayerNumber3 = config.child("PlayerNumber3").attribute("value").as_int();
@@ -71,7 +67,7 @@ bool j1Menu::Start()
 	App->collision->active = false;
 	App->map->active = false;
 	GameOn = false;
-	
+	AlreadyChoosen = false;
 	start = false;
 	App->ui_manager->DeleteAllUI();
 	App->audio->PlayMusic(App->scene->SongMenu.GetString());
@@ -375,48 +371,51 @@ void j1Menu::CreateButtonsTypePlayer()
 
 void j1Menu::MenuChoosePlayer(float dt)
 {
-	if (buttonJEFF->mouseOn) {
-		App->render->Blit(yellow, (App->win->width / 4) - (195 / 2), 265, &(YellowWalk.GetCurrentFrame(dt)));
-		App->render->Blit(pink, (App->win->width / 4) * 2 - (160/ 2), 265, &(PinkStand.GetCurrentFrame(dt)));
-		App->render->Blit(blue, (App->win->width / 4) * 3 - (169 / 2), 265, &(BlueStand.GetCurrentFrame(dt)));
-		if (buttonJEFF->pressed && !AlreadyChoosen) {
-			AlreadyChoosen = true;
-			playernumber = PlayerNumber1;
-			StartLevel();
+	if (!AlreadyChoosen) {
+		if (buttonJEFF->mouseOn) {
+			App->render->Blit(yellow, (App->win->width / 4) - (195 / 2), 265, &(YellowWalk.GetCurrentFrame(dt)));
+			App->render->Blit(pink, (App->win->width / 4) * 2 - (160 / 2), 265, &(PinkStand.GetCurrentFrame(dt)));
+			App->render->Blit(blue, (App->win->width / 4) * 3 - (169 / 2), 265, &(BlueStand.GetCurrentFrame(dt)));
+			if (buttonJEFF->pressed && !AlreadyChoosen) {
+				AlreadyChoosen = true;
+				playernumber = PlayerNumber1;
+				StartLevel();
+			}
+		}
+		else if (buttonJANE->mouseOn) {
+			App->render->Blit(yellow, (App->win->width / 4) - (184 / 2), 265, &(YellowStand.GetCurrentFrame(dt)));
+			App->render->Blit(blue, (App->win->width / 4) * 3 - (168 / 2), 265, &(BlueStand.GetCurrentFrame(dt)));
+			App->render->Blit(pink, (App->win->width / 4) * 2 - (168 / 2), 265, &(PinkWalk.GetCurrentFrame(dt)));
+			if (buttonJANE->pressed && !AlreadyChoosen) {
+				AlreadyChoosen = true;
+				playernumber = PlayerNumber2;
+				StartLevel();
+			}
+		}
+		else if (buttonJERRY->mouseOn) {
+			App->render->Blit(yellow, (App->win->width / 4) - (184 / 2), 265, &(YellowStand.GetCurrentFrame(dt)));
+			App->render->Blit(pink, (App->win->width / 4) * 2 - (160 / 2), 265, &(PinkStand.GetCurrentFrame(dt)));
+			App->render->Blit(blue, (App->win->width / 4) * 3 - (163 / 2), 265, &(BlueWalk.GetCurrentFrame(dt)));
+			if (buttonJERRY->pressed && !AlreadyChoosen) {
+				AlreadyChoosen = true;
+				playernumber = PlayerNumber3;
+				StartLevel();
+			}
+		}
+		else {
+			App->render->Blit(yellow, (App->win->width / 4) - (184 / 2), 265, &(YellowStand.GetCurrentFrame(dt)));
+			App->render->Blit(pink, (App->win->width / 4) * 2 - (160 / 2), 265, &(PinkStand.GetCurrentFrame(dt)));
+			App->render->Blit(blue, (App->win->width / 4) * 3 - (168 / 2), 265, &(BlueStand.GetCurrentFrame(dt)));
+			repeat = false;
+		}
+		if (buttonGOBACK->pressed) {
+			WantToDisappearButtonsTypePlayer(true);
+			WantToDisappearMainMenu(false);
+			StartChoosing = false;
+			InMainMenu = true;
 		}
 	}
-	else if (buttonJANE->mouseOn) {
-		App->render->Blit(yellow, (App->win->width / 4) - (184 / 2), 265, &(YellowStand.GetCurrentFrame(dt)));
-		App->render->Blit(blue, (App->win->width / 4) * 3 - (168/2), 265, &(BlueStand.GetCurrentFrame(dt)));
-		App->render->Blit(pink, (App->win->width / 4) * 2 - (168 / 2), 265, &(PinkWalk.GetCurrentFrame(dt)));
-		if (buttonJANE->pressed && !AlreadyChoosen) {
-			AlreadyChoosen = true;
-			playernumber = PlayerNumber2;
-			StartLevel();
-		}
-	}
-	else if (buttonJERRY->mouseOn) {
-		App->render->Blit(yellow, (App->win->width / 4) - (184 / 2), 265, &(YellowStand.GetCurrentFrame(dt)));
-		App->render->Blit(pink, (App->win->width / 4) * 2 - (160 / 2), 265, &(PinkStand.GetCurrentFrame(dt)));
-		App->render->Blit(blue, (App->win->width / 4) * 3 - (163/2), 265, &(BlueWalk.GetCurrentFrame(dt)));
-		if (buttonJERRY->pressed && !AlreadyChoosen) {
-			AlreadyChoosen = true;
-			playernumber = PlayerNumber3;
-			StartLevel();
-		}
-	}
-	else {
-		App->render->Blit(yellow, (App->win->width / 4) - (184 / 2), 265, &(YellowStand.GetCurrentFrame(dt)));
-		App->render->Blit(pink, (App->win->width / 4) * 2 - (160 / 2), 265, &(PinkStand.GetCurrentFrame(dt)));
-		App->render->Blit(blue, (App->win->width / 4) * 3 - (168 / 2), 265, &(BlueStand.GetCurrentFrame(dt)));
-		repeat = false;
-	}
-	if (buttonGOBACK->pressed) {
-		WantToDisappearButtonsTypePlayer(true);
-		WantToDisappearMainMenu(false);
-		StartChoosing = false;
-		InMainMenu = true;
-	}
+	
 
 }
 
@@ -656,6 +655,10 @@ void j1Menu::DeleteCredits()
 	App->ui_manager->DeleteUI_Element(buttonVICTORGIT->label);
 	App->ui_manager->DeleteUI_Element(buttonORIOLGIT->label);
 	App->ui_manager->DeleteUI_Element(buttonGITHUB->label);
+	App->ui_manager->DeleteUI_Element(buttonWEBSITE);
+	App->ui_manager->DeleteUI_Element(AlienOriol);
+	App->ui_manager->DeleteUI_Element(AlienVictor);
+	App->ui_manager->DeleteUI_Element(buttonWEBSITE->label);
 }
 
 void j1Menu::HacksMenu(float dt)

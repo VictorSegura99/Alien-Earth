@@ -127,9 +127,9 @@ UI_Element * UI_Manager::CreateButton(int x, int y, int type, UI_Element* parent
 
 	return ret;
 }
-UI_Element * UI_Manager::CreateCheckBox(int x, int y, UI_Element* parent)
+CheckBox * UI_Manager::CreateCheckBox(int x, int y, UI_Element* parent)
 {
-	UI_Element* ret = nullptr;
+	CheckBox* ret = nullptr;
 
 	ret = new CheckBox(x, y, parent);
 	ret->type = CHECKBOX;
@@ -140,9 +140,10 @@ UI_Element * UI_Manager::CreateCheckBox(int x, int y, UI_Element* parent)
 	return ret;
 }
 
-UI_Element * UI_Manager::CreateImage(int x, int y, bool WantToBeMoved, UI_Element* parent)
+
+Image * UI_Manager::CreateImage(int x, int y, bool WantToBeMoved, UI_Element * parent)
 {
-	UI_Element* ret = nullptr;
+	Image* ret = nullptr;
 
 	ret = new Image(x, y, WantToBeMoved, parent);
 	ret->type = IMAGE;
@@ -166,9 +167,9 @@ UI_Element * UI_Manager::CreateLabel(int x, int y, p2SString name, int size, boo
 	return ret;
 }
 
-UI_Element * UI_Manager::CreateSlider(int x, int y, int SliderPos, UI_Element* parent)
+Slider * UI_Manager::CreateSlider(int x, int y, int SliderPos, UI_Element* parent)
 {
-	UI_Element* ret = nullptr;
+	Slider* ret = nullptr;
 
 	ret = new Slider(x, y, SliderPos, parent);
 	ret->type = SLIDER;
@@ -269,6 +270,7 @@ bool UI_Manager::DeleteUI_Element(UI_Element * element)
 	}
 	return true;
 }
+
 
 void UI_Manager::DeleteAllUIExeptPlayer()
 {

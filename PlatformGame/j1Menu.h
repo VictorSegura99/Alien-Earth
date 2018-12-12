@@ -5,8 +5,11 @@
 #include "p2Animation.h"
 #include "p2Point.h"
 
+class Image;
 struct SDL_Texture;
+class CheckBox;
 struct SDL_Rect;
+class Slider;
 class UI_Element;
 
 class j1Menu : public j1Module
@@ -110,12 +113,12 @@ public:
 	unsigned int introfx;
 
 	//START MENU
-	UI_Element* Background = nullptr;
-	UI_Element* Title = nullptr;
-	UI_Element* sentence = nullptr;
+	Image* Background = nullptr;
+	Image* Title = nullptr;
+	Image* sentence = nullptr;
 
 	//INITIAL MENU
-	UI_Element* MainTitle = nullptr;
+	Image* MainTitle = nullptr;
 	UI_Element* buttonSTART = nullptr;
 	UI_Element* buttonCONTINUE = nullptr;
 	UI_Element* buttonSETTINGS = nullptr;
@@ -129,27 +132,27 @@ public:
 	UI_Element* buttonJANE = nullptr;
 	UI_Element* buttonJERRY = nullptr;
 	UI_Element* buttonGOBACK = nullptr;
-	UI_Element* CHOOSE = nullptr;
-	UI_Element* JEFFNAME = nullptr;
-	UI_Element* JANENAME = nullptr;
-	UI_Element* JERRYNAME = nullptr;
+	Image* CHOOSE = nullptr;
+	Image* JEFFNAME = nullptr;
+	Image* JANENAME = nullptr;
+	Image* JERRYNAME = nullptr;
 
 	//SETTINGS
 	UI_Element* buttonGOBACKSETTINGS = nullptr;
 	UI_Element* imageSETTINGS = nullptr;
-	UI_Element* checkboxFPS = nullptr;
+	CheckBox* checkboxFPS = nullptr;
 	UI_Element* labelFPS = nullptr;
 	SDL_Texture* Settings = nullptr;
-	UI_Element* sliderVOLUMEMUSIC = nullptr;
+	Slider* sliderVOLUMEMUSIC = nullptr;
 	UI_Element* labelMUSICVOLUME = nullptr;
-	UI_Element* sliderVOLUMEFX = nullptr;
+	Slider* sliderVOLUMEFX = nullptr;
 	UI_Element* labelSETTINGS = nullptr;
 	UI_Element* labelVOLUMEFX = nullptr;
 	UI_Element* labelGODMODE = nullptr;
-	UI_Element* checkboxGODMODE = nullptr;
-	UI_Element* sliderGENERALSOUND = nullptr;
+	CheckBox* checkboxGODMODE = nullptr;
+	Slider* sliderGENERALSOUND = nullptr;
 	UI_Element* labelGENERALSOUND = nullptr;
-	UI_Element* checkboxSOUND = nullptr;
+	CheckBox* checkboxSOUND = nullptr;
 	UI_Element* labelSOUND = nullptr;
 	int x = 170;
 	int y = 950;
@@ -158,27 +161,26 @@ public:
 	//HACKS
 	UI_Element* labelHACKS = nullptr;
 	UI_Element* buttonGOBACKHACKS = nullptr;
-	UI_Element* imageHACKS = nullptr;
-	UI_Element* checkboxSTARTLEVEL2 = nullptr;
-	UI_Element* checkboxNOENEMIES = nullptr;
+	Image* imageHACKS = nullptr;
+	CheckBox* checkboxSTARTLEVEL2 = nullptr;
+	CheckBox* checkboxNOENEMIES = nullptr;
 	UI_Element* labelSTARTLEVEL2 = nullptr;
 	UI_Element* labelNOENEMIES = nullptr;
 
 
 	//CREDITS
-	UI_Element* imageCREDITS = nullptr;
+	Image* imageCREDITS = nullptr;
 	UI_Element* buttonGOBACKCREDITS = nullptr;
 	UI_Element* buttonGITHUB = nullptr;
 	UI_Element* buttonWEBSITE = nullptr;
 	UI_Element* buttonORIOLGIT = nullptr;
 	UI_Element* buttonVICTORGIT = nullptr;
-	UI_Element* AlienVictor = nullptr;
-	UI_Element* AlienOriol = nullptr;
-
+	Image* AlienVictor = nullptr;
+	Image* AlienOriol = nullptr;
 
 	//PLAYER UI
 
-	UI_Element* image = nullptr;
+	Image* image = nullptr;
 	UI_Element* label = nullptr;
 
 	// 

@@ -146,6 +146,9 @@ bool Player::Start()
 	Hours = 0;
 	App->scene->NumberCoins = 0;
 	//CurrentTime = SDL_GetTicks();
+
+	Death[NumPlayer].loops = 0;
+	Death[NumPlayer].current_frame = 0.0f;
 	
 	return ret;
 }
@@ -681,8 +684,6 @@ void Player::Spawn()
 			App->scene->KnowMap = 0;
 		}
 	}
-
-	
 	
 }
 
@@ -1321,7 +1322,6 @@ void Player::TIME()
 
 void Player::CountCoins()
 {
-
 	Coins.create("%i", App->scene->NumberCoins);
 	NumCoins->ChangeLabel(Coins.GetString(), 50);
 }
