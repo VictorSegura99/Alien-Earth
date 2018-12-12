@@ -10,6 +10,7 @@
 #include "j1PerfTimer.h"
 
 
+
 class Image;
 struct SDL_Texture;
 enum UI_Elements
@@ -59,7 +60,9 @@ public:
 	//
 	pugi::xml_node		UI_node;
 
-	
+	p2DynArray<UI_Element*> Son;
+	p2DynArray<UI_Element*> Parent;
+
 	UI_Element * label = nullptr;
 	
 	bool CanBeMoved = true;

@@ -92,7 +92,6 @@ iPoint j1Map::WorldToMap(int x, int y) const
 	{
 		ret.x = x / data.tile_width;
 		ret.y = y / data.tile_height;
-		int i = 0;
 	}
 	else if (data.type == MAPTYPE_ISOMETRIC)
 	{

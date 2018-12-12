@@ -79,11 +79,12 @@ bool j1Menu::Start()
 	Settings = App->tex->Load("textures/Settings.png");
 	choosefx = App->audio->LoadFx(ChooseFx.GetString());
 	introfx = App->audio->LoadFx(IntroFx.GetString());
+	CreateIntro();
 	CreateButtonsTypePlayer();
 	CreateMainMenu();
 	CreateSettingsButtons();
 	CreatehacksButtons();
-	CreateIntro();
+	
 	CreateCredits();
 	WantToDisappearMainMenu(true);
 	WantToDisappearButtonsTypePlayer(true);
@@ -234,12 +235,12 @@ void j1Menu::CreateMainMenu()
 	MainTitle = App->ui_manager->CreateImage((App->win->width / 2) - (844 / 2), 70, false);
 	MainTitle->SetSpritesData({ 401,784,844	,165 });
 	MainTitle->type = BUTTON;
-	buttonSTART = App->ui_manager->CreateButton(400, 270, 1, nullptr, "START", 30);
-	buttonCONTINUE = App->ui_manager->CreateButton(400, 350, 1, nullptr, "CONTINUE", 30);
-	buttonSETTINGS = App->ui_manager->CreateButton(400, 430, 1, nullptr, "SETTINGS", 30);
-	buttonHACKS = App->ui_manager->CreateButton(400, 510, 1, nullptr, "HACKS", 30);
-	buttonCREDITS = App->ui_manager->CreateButton(400, 590, 1, nullptr, "CREDITS", 30);
-	buttonEXIT = App->ui_manager->CreateButton(400, 670, 1, nullptr, "EXIT", 30);
+	buttonSTART = App->ui_manager->CreateButton(400, 270, 1, Background, "START", 30);
+	buttonCONTINUE = App->ui_manager->CreateButton(400, 350, 1, Background, "CONTINUE", 30);
+	buttonSETTINGS = App->ui_manager->CreateButton(400, 430, 1, Background, "SETTINGS", 30);
+	buttonHACKS = App->ui_manager->CreateButton(400, 510, 1, Background, "HACKS", 30);
+	buttonCREDITS = App->ui_manager->CreateButton(400, 590, 1, Background, "CREDITS", 30);
+	buttonEXIT = App->ui_manager->CreateButton(400, 670, 1, Background, "EXIT", 30);
 }
 
 void j1Menu::MainMenu()

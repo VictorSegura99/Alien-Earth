@@ -50,42 +50,24 @@ bool UI_Manager::Update(float dt)
 			elements[i]->Update(dt);
 	}
 	for (int i = 0; i < elements.Count(); i++) {
-		if (elements[i] != nullptr && elements[i]->type != LABEL && elements[i]->type != BUTTON && elements[i]->type != SLIDER && elements[i]->type != CHECKBOX)
+		if (elements[i] != nullptr && elements[i]->parent == nullptr) {
 			elements[i]->Draw(dt, atlas);
+			for (int j = 0; j < elements[i]->Son.Count(); j++) {
+				elements[i]->Son[j]->Draw(dt, atlas);
+				for (int k = 0; k < elements[i]->Son[j]->Son.Count(); k++) {
+					elements[i]->Son[j]->Son[k]->Draw(dt, atlas);
+				}
+			}
+		}
 	}
-	for (int i = 0; i < elements.Count(); i++) {
-		if (elements[i] != nullptr && elements[i]->type == PLAYERUIIMAGE)
-			elements[i]->Draw(dt, atlas);
-	}
-	for (int i = 0; i < elements.Count(); i++) {
-		if (elements[i] != nullptr && elements[i]->type == PLAYERUILABEL)
-			elements[i]->Draw(dt, atlas);
-	}
-	for (int i = 0; i < elements.Count(); i++) {
-		if (elements[i] != nullptr && elements[i]->type == BUTTON)
-			elements[i]->Draw(dt, atlas);
-	}
-	for (int i = 0; i < elements.Count(); i++) {
-		if (elements[i] != nullptr && elements[i]->type == CHECKBOX)
-			elements[i]->Draw(dt, atlas);
-	}
-	for (int i = 0; i < elements.Count(); i++) {
-		if (elements[i] != nullptr && elements[i]->type == SLIDER)
-			elements[i]->Draw(dt, atlas);
-	}
-
-	for (int i = 0; i < elements.Count(); i++) {
-		if (elements[i] != nullptr && elements[i]->type == LABEL)
-			elements[i]->Draw(dt, atlas);
-	}
-
+	
 
 	return true;
 }
 
 bool UI_Manager::CleanUp()
 {
-	//App->tex->UnLoad(atlas);
+	
 	for (int i = elements.Count() - 1; i >= 0; --i)
 	{
 		if (elements[i] != nullptr) {
@@ -270,7 +252,6 @@ bool UI_Manager::DeleteUI_Element(UI_Element * element)
 	}
 	return true;
 }
-
 
 void UI_Manager::DeleteAllUIExeptPlayer()
 {

@@ -39,6 +39,7 @@ UI_Element::UI_Element(int x, int y, UI_Element* parent) : Local_pos(x,y), paren
 	else {
 		Scree_pos.x = parent->Scree_pos.x + Local_pos.x;
 		Scree_pos.y = parent->Scree_pos.y + Local_pos.y;
+		parent->Son.PushBack(this);
 	}
 	
 }
