@@ -136,9 +136,9 @@ Image * UI_Manager::CreateImage(int x, int y, bool WantToBeMoved, UI_Element * p
 	return ret;
 }
 
-UI_Element * UI_Manager::CreateLabel(int x, int y, p2SString name, int size, bool CanBeMoved, UI_Element* parent)
+Label * UI_Manager::CreateLabel(int x, int y, p2SString name, int size, bool CanBeMoved, UI_Element* parent)
 {
-	UI_Element* ret = nullptr;
+	Label* ret = nullptr;
 
 	ret = new Label(x, y, name, size, CanBeMoved, parent);
 	ret->type = LABEL;

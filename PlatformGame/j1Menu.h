@@ -10,6 +10,7 @@ struct SDL_Texture;
 class CheckBox;
 struct SDL_Rect;
 class Slider;
+class Label;
 class Button;
 class UI_Element;
 
@@ -142,31 +143,31 @@ public:
 	Button* buttonGOBACKSETTINGS = nullptr;
 	Image* imageSETTINGS = nullptr;
 	CheckBox* checkboxFPS = nullptr;
-	UI_Element* labelFPS = nullptr;
+	Label* labelFPS = nullptr;
 	SDL_Texture* Settings = nullptr;
 	Slider* sliderVOLUMEMUSIC = nullptr;
-	UI_Element* labelMUSICVOLUME = nullptr;
+	Label* labelMUSICVOLUME = nullptr;
 	Slider* sliderVOLUMEFX = nullptr;
-	UI_Element* labelSETTINGS = nullptr;
-	UI_Element* labelVOLUMEFX = nullptr;
-	UI_Element* labelGODMODE = nullptr;
+	Label* labelSETTINGS = nullptr;
+	Label* labelVOLUMEFX = nullptr;
+	Label* labelGODMODE = nullptr;
 	CheckBox* checkboxGODMODE = nullptr;
 	Slider* sliderGENERALSOUND = nullptr;
-	UI_Element* labelGENERALSOUND = nullptr;
+	Label* labelGENERALSOUND = nullptr;
 	CheckBox* checkboxSOUND = nullptr;
-	UI_Element* labelSOUND = nullptr;
+	Label* labelSOUND = nullptr;
 	int x = 170;
 	int y = 950;
 	
 
 	//HACKS
-	UI_Element* labelHACKS = nullptr;
+	Label* labelHACKS = nullptr;
 	Button* buttonGOBACKHACKS = nullptr;
 	Image* imageHACKS = nullptr;
 	CheckBox* checkboxSTARTLEVEL2 = nullptr;
 	CheckBox* checkboxNOENEMIES = nullptr;
-	UI_Element* labelSTARTLEVEL2 = nullptr;
-	UI_Element* labelNOENEMIES = nullptr;
+	Label* labelSTARTLEVEL2 = nullptr;
+	Label* labelNOENEMIES = nullptr;
 
 
 	//CREDITS
@@ -182,7 +183,7 @@ public:
 	//PLAYER UI
 
 	Image* image = nullptr;
-	UI_Element* label = nullptr;
+	Label* label = nullptr;
 
 	// 
 	

@@ -10,6 +10,7 @@
 #include "j1Collision.h"
 #include "j1Audio.h"
 #include "EntityManager.h"
+#include "Label.h"
 #include "j1Timer.h"
 #include "j1Scene.h"
 #include "j1Menu.h"

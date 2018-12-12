@@ -7,6 +7,11 @@
 #include "j1PerfTimer.h"
 
 class UI_Element;
+class Button;
+class Slider;
+class Image;
+class Label;
+class CheckBox;
 
 class Player : public Entity
 {
@@ -134,12 +139,12 @@ public:
 	SDL_Texture* Godmode;
 	SDL_Texture* IntroLight;
 
-	UI_Element* life = nullptr;
-	UI_Element* lifenumber = nullptr;
-	UI_Element* tutorial = nullptr;
-	UI_Element* TimeStart = nullptr;
-	UI_Element* NumCoins = nullptr;
-	UI_Element* CoinUI = nullptr;
+	Image* life = nullptr;
+	Image* lifenumber = nullptr;
+	Image* tutorial = nullptr;
+	Label* TimeStart = nullptr;
+	Label* NumCoins = nullptr;
+	Image* CoinUI = nullptr;
 
 	p2SString Coins;
 	p2SString StringTime;

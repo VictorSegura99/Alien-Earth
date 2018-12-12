@@ -7,6 +7,7 @@
 struct SDL_Texture;
 class UI_Element;
 class Image;
+class Label;
 class CheckBox;
 class Button;
 class Slider;
@@ -67,14 +68,14 @@ public:
 	Button* buttonRESUME = nullptr;
 	Button* buttonGOMAINMENU = nullptr;
 	Slider* sliderVOLUMEMUSIC = nullptr;
-	UI_Element* labelMUSICVOLUME = nullptr;
+	Label* labelMUSICVOLUME = nullptr;
 	Slider* sliderVOLUMEFX = nullptr;
-	UI_Element* labelPAUSE = nullptr;
-	UI_Element* labelVOLUMEFX = nullptr;
+	Label* labelPAUSE = nullptr;
+	Label* labelVOLUMEFX = nullptr;
 	Slider* sliderGENERALSOUND = nullptr;
-	UI_Element* labelGENERALSOUND = nullptr;
+	Label* labelGENERALSOUND = nullptr;
 	CheckBox* checkboxSOUND = nullptr;
-	UI_Element* labelSOUND = nullptr;
+	Label* labelSOUND = nullptr;
 	Image* image = nullptr;
 	Image* imageNUMBER3 = nullptr;
 	Image* imageNUMBER2 = nullptr;

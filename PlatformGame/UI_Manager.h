@@ -10,6 +10,7 @@
 class Button;
 class UI_Element;
 class Image;
+class Label;
 class Slider;
 class CheckBox;
 struct SDL_Texture;
@@ -36,7 +37,7 @@ public:
 	Button* CreateButton(int x, int y, int type, UI_Element* parent = nullptr, p2SString name = "NONE", int size = 0);
 	CheckBox* CreateCheckBox(int x, int y, UI_Element* parent = nullptr);
 	Image* CreateImage(int x, int y, bool WantToBeMoved, UI_Element* parent = nullptr);
-	UI_Element* CreateLabel(int x, int y, p2SString name, int size, bool CanBeMoved, UI_Element* parent = nullptr);
+	Label* CreateLabel(int x, int y, p2SString name, int size, bool CanBeMoved, UI_Element* parent = nullptr);
 	Slider* CreateSlider(int x, int y, int SliderPos, UI_Element* parent = nullptr);
 	
 	void DeleteButtons();

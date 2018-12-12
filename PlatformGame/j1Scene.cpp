@@ -15,6 +15,7 @@
 #include "Player.h"
 #include "CheckBox.h"
 #include "Entity.h"
+#include "Label.h"
 #include "EntityManager.h"
 #include "j1Collision.h"
 #include "j1Menu.h"
