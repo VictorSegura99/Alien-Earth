@@ -21,14 +21,13 @@ Slider::Slider(int x, int y, int SliderPos, UI_Element* parent) : UI_Element(x, 
 	png_pos = NoPressedNoMouseOn;
 
 	image = App->ui_manager->CreateImage(0, 0, true, this);
-	//this->Parent.PushBack(image);
-	image->CanBeMoved = false;
+	
 	image->SetSpritesData({ 553,89,200,49 });
 	image->type = SLIDER;
 	Scree_pos.y = y + image->height / 2 - height / 2;
 	Value = SliderPos;
-	int RelPos = image->width - 15;
 	
+
 	Scree_pos.x = ((((Value / (100 / 78.5))+1)*image->width) / 100) + 5 + image->Scree_pos.x;
 }
 

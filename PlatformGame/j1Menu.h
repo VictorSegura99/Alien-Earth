@@ -54,7 +54,7 @@ public:
 	void CreatehacksButtons();
 	void CreateCredits();
 	void Credits(float dt);
-	void DeleteCredits();
+
 
 public:
 

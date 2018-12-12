@@ -241,15 +241,28 @@ void UI_Manager::DeleteAllUI()
 
 bool UI_Manager::DeleteUI_Element(UI_Element * element)
 {
-	for (int i = elements.Count() - 1; i >= 0; --i)
-	{
+
+	for (int i = 0; i < elements.Count(); i++) {
 		if (elements[i] == element) {
+			for (int j = 0; j < elements[i]->Son.Count(); j++) {
+				for (int k = 0; k < elements[i]->Son[j]->Son.Count(); k++) {
+					elements[i]->Son[j]->Son[k]->CleanUp();
+					delete (elements[i]->Son[j]->Son[k]);
+					elements[i]->Son[j]->Son[k] = nullptr;
+					elements[i]->Son[j]->Son.RemoveAt(k);
+				}
+				elements[i]->Son[j]->CleanUp();
+				delete (elements[i]->Son[j]);
+				elements[i]->Son[j] = nullptr;
+				elements[i]->Son.RemoveAt(j);
+			}
 			elements[i]->CleanUp();
 			delete(elements[i]);
 			elements[i] = nullptr;
 			elements.RemoveAt(i);
 		}
 	}
+
 	return true;
 }
 
