@@ -76,7 +76,7 @@ public:
 	void SetUI();
 	void DeleteUI();
 	void CheckWhatToDoWhenCollidingWithEnemy(Collider * c2);
-	void Lives();
+	void Lifes();
 	void TIME();
 	void CountCoins();
 
@@ -134,8 +134,8 @@ public:
 	SDL_Texture* Godmode;
 	SDL_Texture* IntroLight;
 
-	UI_Element* live = nullptr;
-	UI_Element* livenumber = nullptr;
+	UI_Element* life = nullptr;
+	UI_Element* lifenumber = nullptr;
 	UI_Element* tutorial = nullptr;
 	UI_Element* TimeStart = nullptr;
 	UI_Element* NumCoins = nullptr;
@@ -206,7 +206,7 @@ public:
 	float TimeBetweenShoot = 0.0f;
 	float IntroFall;
 
-	int lives = 0;
+	int lifes = 0;
 	int startmap2 = 0;
 	int maxYcam = 0;
 	int minYcam = 0;

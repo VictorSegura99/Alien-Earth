@@ -169,7 +169,7 @@ public:
 
 
 	//CREDITS
-	Image* imageCREDITS = nullptr;
+	Image* imageCREDITS = nullptr;	
 	UI_Element* buttonGOBACKCREDITS = nullptr;
 	UI_Element* buttonGITHUB = nullptr;
 	UI_Element* buttonWEBSITE = nullptr;

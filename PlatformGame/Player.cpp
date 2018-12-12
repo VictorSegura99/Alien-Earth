@@ -80,7 +80,7 @@ bool Player::Awake(pugi::xml_node& config)
 	TutorialY1 = player.child("TutorialY1").attribute("value").as_int();
 	TutorialY2 = player.child("TutorialY2").attribute("value").as_int();
 	TimeBetweenShoot = player.child("TimeBetweenShoot").attribute("value").as_float();
-	lives = player.child("lives").attribute("value").as_int();
+	lifes = player.child("lifes").attribute("value").as_int();
 
 	for (int numplayer = 0; numplayer < 3; ++numplayer) {
 		idle[numplayer] = LoadPushbacks(numplayer, player, "idle");
@@ -243,7 +243,7 @@ bool Player::Update(float dt)
 		}
 		if (fall && !God) {
 			fall = false;
-			if (lives > 0) {
+			if (lifes > 0) {
 				if (NumPlayer == 0 || NumPlayer == 2)
 					App->audio->PlayFx(deathfx2);
 				else
@@ -289,7 +289,7 @@ bool Player::Load(pugi::xml_node& player)
 	position.x = player.child("position").attribute("x").as_float();
 	position.y = player.child("position").attribute("y").as_float() - 50.0f;
 	God = player.child("god").attribute("value").as_bool();
-	lives = player.child("lives").attribute("value").as_int();
+	lifes = player.child("lives").attribute("value").as_int();
 	Min = player.child("Min").attribute("value").as_int();
 	Hours = player.child("Hours").attribute("value").as_int();
 	App->scene->Delay = player.child("Delay").attribute("value").as_int();
@@ -297,7 +297,7 @@ bool Player::Load(pugi::xml_node& player)
 	App->scene->NumberCoins = player.child("NumCoins").attribute("value").as_int();
 	CountCoins();
 	ChangePlayer(player.child("NumPlayer").attribute("value").as_int(), true);
-	Lives();
+	Lifes();
 	App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 	
 
@@ -309,9 +309,9 @@ bool Player::Save(pugi::xml_node& player) const
 	player.child("position").append_attribute("y") = position.y;
 	player.append_child("god").append_attribute("value") = God;
 	player.append_child("NumPlayer").append_attribute("value") = NumPlayer;
-	player.append_child("lives").append_attribute("value") = lives;
+	player.append_child("lifes").append_attribute("value") = lifes;
 	player.append_child("Min").append_attribute("value") = Min;
-	player.append_child("Hours").append_attribute("Hours") = lives;
+	player.append_child("Hours").append_attribute("Hours") = Hours;
 	player.append_child("Delay").append_attribute("value") = App->scene->Delay;
 	player.append_child("NumCoins").append_attribute("value") = App->scene->NumberCoins;
 	SaveDelay = SDL_GetTicks();
@@ -519,6 +519,8 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 			TouchingGround = true;
 			CanClimb = false;
 			CanJump = false;
+			IsJumping = false;
+			IsJumping2 = false;
 		}
 		break;
 	case COLLIDER_GROUND_WATER:
@@ -608,7 +610,7 @@ void Player::Die()//What happens when the player die
 {
 	
 	current_animation = &Death[NumPlayer];
-	if (Death[NumPlayer].SeeCurrentFrame() == 1 && lives > 0)
+	if (Death[NumPlayer].SeeCurrentFrame() == 1 && lifes > 0)
 		if (NumPlayer == 0 || NumPlayer == 2)
 			App->audio->PlayFx(deathfx2);
 		else
@@ -621,7 +623,7 @@ void Player::Die()//What happens when the player die
 		if (App->scene->KnowMap == 1) {
 			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 		}
-		lives -= 1;
+		lifes -= 1;
 		Spawn();
 		App->scene->NumberCoins = 0;
 		CountCoins();
@@ -638,7 +640,7 @@ void Player::Fall()//What happens when the player falls
 	if (App->scene->KnowMap == 1) {
 		App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
 	}
-	lives -= 1;
+	lifes -= 1;
 	Spawn();
 	App->scene->NumberCoins = 0;
 	CountCoins();
@@ -648,8 +650,8 @@ void Player::Fall()//What happens when the player falls
 void Player::Spawn()
 {
 	if (!App->scene->CanStart) {
-		if (lives >= 0) {
-			Lives();
+		if (lifes >= 0) {
+			Lifes();
 			NoInput = false;
 			CanJump = true;
 			CanClimb = false;
@@ -690,15 +692,15 @@ void Player::Spawn()
 void Player::ChangeLiveSprite()
 {
 	if (NumPlayer == 0) {
-		live->SetSpritesData({ 1156,1103,63,63 });
+		life->SetSpritesData({ 1156,1103,63,63 });
 		CoinUI->SetSpritesData({ 1156,1165,63,65 });
 	}
 	else if (NumPlayer == 1) {
-		live->SetSpritesData({ 1220,1103,63,63 });
+		life->SetSpritesData({ 1220,1103,63,63 });
 		CoinUI->SetSpritesData({ 1220,1165,63,65 });
 	}
 	else if (NumPlayer == 2) {
-		live->SetSpritesData({ 1284,1103,63,63 });
+		life->SetSpritesData({ 1284,1103,63,63 });
 		CoinUI->SetSpritesData({ 1284,1165,63,65 });
 	}
 }
@@ -1176,51 +1178,61 @@ void Player::SetUI()
 	//Time
 	CurrentTime = SDL_GetTicks();
 	StringTime.create("%i:%i:%i", Hours, Min, (CurrentTime - TimeSinceStarted) / 1000);
-	TimeStart = App->ui_manager->CreateLabel(App->win->Width/2-73, 27, StringTime.GetString(), 50, false);
+	TimeStart = App->ui_manager->CreateLabel(App->win->Width / 2 - 73, 27, StringTime.GetString(), 50, false);
 	TimeStart->type = PLAYERUILABEL;
 	//TimeStart->Scree_pos.x -= 200;
 
 	//Tutorials
-	tutorial = App->ui_manager->CreateImage(1002, 250, true);
-	tutorial->type = PLAYERUIIMAGE;
-	if (NumPlayer == 0)
-		tutorial->SetSpritesData({ 2700,525,602,363 });
-	else if (NumPlayer == 1)
-		tutorial->SetSpritesData({ 2700,0,522,274 });
-	else if (NumPlayer == 2)
-		tutorial->SetSpritesData({ 2700,274,539,251 });
+	if (App->scene->KnowMap == 0) {
+		if (NumPlayer == 0) {
+			tutorial = App->ui_manager->CreateImage(1002, 250, true);
+			tutorial->type = PLAYERUIIMAGE;
+			tutorial->SetSpritesData({ 2700,525,602,363 });
+		}
+		else if (NumPlayer == 1) {
+			tutorial = App->ui_manager->CreateImage(1006, 365, true);
+			tutorial->type = PLAYERUIIMAGE;
+			tutorial->SetSpritesData({ 2700,0,522,274 });
+		}
+		else if (NumPlayer == 2) {
+			tutorial = App->ui_manager->CreateImage(1006, 340, true);
+			tutorial->type = PLAYERUIIMAGE;
+			tutorial->SetSpritesData({ 2700,274,539,251 });
+		}
+	}
+
 
 
 	//LIVES
-	live = App->ui_manager->CreateImage(882, 20, false);
-	live->type = PLAYERUIIMAGE;
+	life = App->ui_manager->CreateImage(882, 20, false);
+	life->type = PLAYERUIIMAGE;
 	if (NumPlayer == 0) {
-		live->SetSpritesData({ 1156,1103,63,63 });
+		life->SetSpritesData({ 1156,1103,63,63 });
 	}
 	else if (NumPlayer == 1) {
-		live->SetSpritesData({ 1220,1103,63,63 });
+		life->SetSpritesData({ 1220,1103,63,63 });
 	}
 		
 	else if (NumPlayer == 2) {
-		live->SetSpritesData({ 1284,1103,63,63 });
+		life->SetSpritesData({ 1284,1103,63,63 });
 	}
 		
-	livenumber = App->ui_manager->CreateImage(950, 25, false);
-	livenumber->type = PLAYERUIIMAGE;
-	if (lives == 3) {
-		livenumber->SetSpritesData({ 1252,1950,47,50 });
+	lifenumber = App->ui_manager->CreateImage(950, 25, false);
+	lifenumber->type = PLAYERUIIMAGE;
+	if (lifes == 3) {
+		lifenumber->SetSpritesData({ 1252,1950,47,50 });
 	}
 		
-	else if (lives == 2) {
-		livenumber->SetSpritesData({ 1303,1950,47,50 });
+	else if (lifes == 2) {
+		lifenumber->SetSpritesData({ 1303,1950,47,50 });
 	}
 		
-	else if (lives == 1) {
-		livenumber->SetSpritesData({ 1355,1950,36,50 });
+	else if (lifes == 1) {
+		lifenumber->SetSpritesData({ 1355,1950,36,50 });
 	}
 		
-	else if (lives == 0) {
-		livenumber->SetSpritesData({ 1399,1950,47,50 });
+	else if (lifes == 0) {
+		lifenumber->SetSpritesData({ 1399,1950,47,50 });
 	
 	}
 
@@ -1228,8 +1240,8 @@ void Player::SetUI()
 
 void Player::DeleteUI()
 {
-	App->ui_manager->DeleteUI_Element(live);
-	App->ui_manager->DeleteUI_Element(livenumber);
+	App->ui_manager->DeleteUI_Element(life);
+	App->ui_manager->DeleteUI_Element(lifenumber);
 
 }
 
@@ -1271,19 +1283,19 @@ void Player::Dash::ResetDashAnims()
 
 }
 
-void Player::Lives() {
+void Player::Lifes() {
 
 	//Numbers
-	if (lives == 3)
-		livenumber->SetSpritesData({ 1252,1950,47,50 });
-	else if (lives == 2)
-		livenumber->SetSpritesData({ 1303,1950,47,50 });
-	else if (lives == 1)
-		livenumber->SetSpritesData({ 1355,1950,36,50 });
-	else if (lives == 0)
-		livenumber->SetSpritesData({ 1399,1950,47,50 });
+	if (lifes == 3)
+		lifenumber->SetSpritesData({ 1252,1950,47,50 });
+	else if (lifes == 2)
+		lifenumber->SetSpritesData({ 1303,1950,47,50 });
+	else if (lifes == 1)
+		lifenumber->SetSpritesData({ 1355,1950,36,50 });
+	else if (lifes == 0)
+		lifenumber->SetSpritesData({ 1399,1950,47,50 });
 	else
-		livenumber->SetSpritesData({ NULL });
+		lifenumber->SetSpritesData({ NULL });
 }
 
 void Player::TIME()

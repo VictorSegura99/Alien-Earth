@@ -59,7 +59,7 @@ public:
 	Entity* bat1 = nullptr;
 	bool WantToSpawnEnemies = true;
 	bool GamePaused = false;
-	
+	int coins4life = 0;
 	//MENU PAUSA
 
 	Image* imagePAUSE = nullptr;
