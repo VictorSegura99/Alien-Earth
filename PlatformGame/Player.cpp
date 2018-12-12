@@ -146,6 +146,9 @@ bool Player::Start()
 	Hours = 0;
 	App->scene->NumberCoins = 0;
 	//CurrentTime = SDL_GetTicks();
+
+	Death[NumPlayer].loops = 0;
+	Death[NumPlayer].current_frame = 0.0f;
 	
 	return ret;
 }
