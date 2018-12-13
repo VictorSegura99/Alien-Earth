@@ -92,7 +92,6 @@ bool EntityManager::Update(float dt)
 			if (entities[i] != nullptr && entities[i]->type != PLAYER)
 				entities[i]->Draw(dt);
 		}
-		
 	}
 	
 	return true;

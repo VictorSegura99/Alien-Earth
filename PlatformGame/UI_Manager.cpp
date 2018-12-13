@@ -71,13 +71,12 @@ bool UI_Manager::CleanUp()
 	for (int i = elements.Count() - 1; i >= 0; --i)
 	{
 		if (elements[i] != nullptr) {
-			elements[i]->CleanUp();
 			delete(elements[i]);
 			elements[i] = nullptr;
 			elements.RemoveAt(i);
 		}
 	}
-
+	
 	elements.Clear();
 
 	return true;

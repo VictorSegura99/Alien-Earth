@@ -91,7 +91,7 @@ bool Spider::Update(float dt)
 		}
 		else
 			acceleration.y = 0;
-		position.y -= velocity.y + acceleration.y;
+		position.y -= acceleration.y;
 		AnimationLogic();
 
 		float x = App->entitymanager->GetPlayerData()->position.x;
