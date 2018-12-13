@@ -149,13 +149,14 @@ private:
 	bool LoadLayer(pugi::xml_node& node, map_layer* layer);
 	bool LoadObjects(pugi::xml_node& node, ObjectGroup* Obj);
 	bool LoadPlayerProperties();
-	bool LoadCoins();
-	bool LoadEnemies();
+
 	bool LoadProperties(pugi::xml_node& node, Properties& properties);
 
 public:
 
 	MapData data;
+	bool LoadCoins();
+	bool LoadEnemies();
 
 private:
 

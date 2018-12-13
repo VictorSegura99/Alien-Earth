@@ -154,6 +154,8 @@ bool j1Menu::PostUpdate()
 			App->collision->active = !App->collision->active;
 			App->map->active = !App->map->active;
 			App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
+			App->map->LoadEnemies();
+			App->map->LoadCoins();
 			App->entitymanager->ActiveGame = true;
 			App->entitymanager->GetPlayerData()->Start();
 			App->audio->PlayMusic(App->scene->Song.GetString());
@@ -172,7 +174,8 @@ bool j1Menu::PostUpdate()
 			App->scene->active = !App->scene->active;
 			App->collision->active = !App->collision->active;
 			App->map->active = !App->map->active;
-			App->scene->KnowMap = 0;
+			App->entitymanager->DeleteEnemies();
+			CanLoad = false;
 			App->entitymanager->ActiveGame = true;
 			App->LoadGame("save_game.xml", true);
 			App->entitymanager->GetPlayerData()->SetUI();

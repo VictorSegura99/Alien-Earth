@@ -18,14 +18,41 @@
 	<particles />
 	<entity_manager>
 		<spider>
-			<position x="10604.499" y="748.633362" />
+			<position x="7074.31982" y="761.233337" />
+		</spider>
+		<spider>
+			<position x="10604.3213" y="764.233337" />
 		</spider>
 		<bat>
-			<position x="5812.57959" y="589.974792" />
+			<position x="5919" y="565" />
+		</bat>
+		<bat>
+			<position x="7692" y="332" />
 		</bat>
 		<bat>
 			<position x="9507" y="541" />
 		</bat>
+		<coin>
+			<position x="2450" y="845" />
+		</coin>
+		<coin>
+			<position x="3055" y="557" />
+		</coin>
+		<coin>
+			<position x="1858" y="557" />
+		</coin>
+		<coin>
+			<position x="1267" y="521" />
+		</coin>
+		<coin>
+			<position x="1594" y="526" />
+		</coin>
+		<coin>
+			<position x="3442" y="614" />
+		</coin>
+		<coin>
+			<position x="4393" y="446" />
+		</coin>
 		<coin>
 			<position x="5577" y="664" />
 		</coin>
@@ -45,23 +72,29 @@
 			<position x="10531" y="712" />
 		</coin>
 		<coin>
+			<position x="3875" y="640" />
+		</coin>
+		<coin>
 			<position x="9135" y="694" />
 		</coin>
+		<coin>
+			<position x="5021" y="684" />
+		</coin>
 		<player>
-			<position x="5672.07959" y="727.09491" />
+			<position x="913.800293" y="549.199707" />
 			<god value="false" />
 			<NumPlayer value="0" />
-			<lifes value="0" />
-			<Min value="1" />
+			<lifes value="3" />
+			<Min value="0" />
 			<Hours Hours="0" />
-			<Delay value="0" />
-			<NumCoins value="9" />
+			<Delay value="16928" />
+			<NumCoins value="0" />
 		</player>
 	</entity_manager>
 	<UI />
 	<choose />
 	<:anonymous />
 	<renderer>
-		<camera x="-5160" y="-328" />
+		<camera x="-401" y="-165" />
 	</renderer>
 </game_state>

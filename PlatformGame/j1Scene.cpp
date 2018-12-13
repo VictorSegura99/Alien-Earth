@@ -80,10 +80,13 @@ bool j1Scene::Update(float dt)
 		App->SaveGame("save_game.xml");
 	
 	if (App->entitymanager->GetPlayerData()->NextMap) {
+		App->entitymanager->DeleteEnemies();
 		App->entitymanager->GetPlayerData()->NextMap = false;
 		KnowMap = 1;
 		App->ui_manager->DeleteUI_Element(App->entitymanager->GetPlayerData()->tutorial);
 		App->map->ChangeMap(map_name[KnowMap]);
+		App->map->LoadEnemies();
+		App->map->LoadCoins();
 		App->entitymanager->GetPlayerData()->Spawn();
 	}
 	if (!App->entitymanager->GetPlayerData()->Intro) {
@@ -93,6 +96,8 @@ bool j1Scene::Update(float dt)
 			App->entitymanager->DeleteEnemies();
 			KnowMap = 0;
 			App->map->ChangeMap(map_name[KnowMap]);
+			App->map->LoadEnemies();
+			App->map->LoadCoins();
 			App->entitymanager->GetPlayerData()->Spawn();
 			if (App->entitymanager->GetPlayerData()->tutorial == nullptr)
 				App->entitymanager->GetPlayerData()->SetTutorials();
@@ -105,12 +110,16 @@ bool j1Scene::Update(float dt)
 					App->entitymanager->GetPlayerData()->SetTutorials();
 				App->entitymanager->DeleteEnemies();
 				App->map->ChangeMap(map_name[KnowMap]);
+				App->map->LoadEnemies();
+				App->map->LoadCoins();
 				App->entitymanager->GetPlayerData()->Spawn();
 			}
 			else if (KnowMap == 1) {
 				App->ui_manager->DeleteUI_Element(App->entitymanager->GetPlayerData()->tutorial);
 				App->entitymanager->DeleteEnemies();
 				App->map->ChangeMap(map_name[KnowMap]);
+				App->map->LoadEnemies();
+				App->map->LoadCoins();
 				App->entitymanager->GetPlayerData()->Spawn();
 			}
 		}
@@ -119,6 +128,8 @@ bool j1Scene::Update(float dt)
 			KnowMap = 1;
 			App->ui_manager->DeleteUI_Element(App->entitymanager->GetPlayerData()->tutorial);
 			App->map->ChangeMap(map_name[KnowMap]);
+			App->map->LoadEnemies();
+			App->map->LoadCoins();
 			App->entitymanager->GetPlayerData()->Spawn();
 		}
 		if (App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN) {
@@ -162,11 +173,6 @@ bool j1Scene::PostUpdate()
 		App->menu->GameOn = false;
 		App->entitymanager->GetPlayerData()->Intro = true;
 		App->entitymanager->GetPlayerData()->NoInput = false;
-		App->entitymanager->GetPlayerData()->IsJumping = false;
-		App->entitymanager->GetPlayerData()->IsJumping2 = false;
-		App->entitymanager->GetPlayerData()->CanJump = false;
-		App->entitymanager->GetPlayerData()->CanJump2 = false;
-		App->entitymanager->GetPlayerData()->CanSwim = false;
 		App->menu->Start();
 		KnowMap = 0;
 		GamePaused = false;

@@ -104,6 +104,7 @@ public:
 	bool AlreadyChoosen = false;
 	bool Exit = false;
 	bool InSettings = false;
+	bool CanLoad = true;
 	bool Positioned = false;
 	bool SettingMenuDone = false;
 	bool InHacks = false;

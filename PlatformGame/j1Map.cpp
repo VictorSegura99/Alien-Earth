@@ -4,6 +4,7 @@
 #include "j1Render.h"
 #include "j1Textures.h"
 #include "j1Map.h"
+#include "j1Menu.h"
 #include "j1Collision.h"
 #include "j1Scene.h"
 #include "EntityManager.h"
@@ -315,8 +316,7 @@ bool j1Map::Load(const char* file_name)
 		data.object_layers.add(set);
 	}
 	LoadPlayerProperties();
-	LoadCoins();
-	LoadEnemies();
+
 	if(ret == true)
 	{
 		LOG("Successfully parsed map XML file: %s", file_name);
