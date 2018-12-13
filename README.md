@@ -59,7 +59,7 @@ AUTHORS
 - Víctor Segura Blanco (Github: https://github.com/VictorSegura99)
 - Oriol Capdevila Salinas (Github: https://github.com/OriolCS2)
 
-Our Repository: https://github.com/VictorSegura99/Development-Platform-Game
+Our Repository: https://github.com/VictorSegura99/Alien_Earth
 
 Game Trailer: https://www.youtube.com/watch?v=G1NoxKnEdlY
 _____________
@@ -103,6 +103,7 @@ Menu Font: https://www.dafont.com/es/sunday-afternoon.font
 
 Spacebar Sprite: https://www.facebook.com/suepeisueba/
 
+Trailer Song: https://www.youtube.com/watch?v=eThl2vUnx3g&ab_channel=1-Minute-Music
 _____________
 ACHIVEMENTS by each member:
 

@@ -61,7 +61,8 @@ _____________
 GAME
 - [Repository ALIEN EARTH](https://github.com/VictorSegura99/Alien-Earth)
 - [Last Release ALIEN EARTH](https://github.com/VictorSegura99/Alien-Earth/releases)
-
+<a href="https://github.com/VictorSegura99/Alien_Earth/releases/download/0.6/Alien.Earth.v0.6.zip" download>
+- [DOWNLOAD THE GAME]
 _____________
 ALIEN EARTH TRAILER
 <iframe width="1024" height="768" src="https://www.youtube.com/embed/G1NoxKnEdlY" frameborder="0" allow="autoplay; encrypted-media" 
@@ -162,7 +163,8 @@ MUSIC:
 - [MENU](https://www.youtube.com/watch?v=XVHVFwwuOa0&ab_channel=RossBugden-Music)
 
 - [TRAILER](https://www.youtube.com/watch?v=eThl2vUnx3g&ab_channel=1-Minute-Music)
-_____________
+
+____________
 LICENSE:
 
 MIT License
