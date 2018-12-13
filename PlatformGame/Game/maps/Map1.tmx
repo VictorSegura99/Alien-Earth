@@ -16845,12 +16845,12 @@
     <property name="Object" value="Coin"/>
    </properties>
   </object>
-  <object id="456" x="1126.02" y="476.727" width="46" height="51">
+  <object id="456" x="1267.02" y="521.727" width="46" height="51">
    <properties>
     <property name="Object" value="Coin"/>
    </properties>
   </object>
-  <object id="457" x="1378.02" y="526.727" width="46" height="51">
+  <object id="457" x="1594.02" y="526.727" width="46" height="51">
    <properties>
     <property name="Object" value="Coin"/>
    </properties>

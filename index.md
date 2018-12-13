@@ -2,6 +2,7 @@
 
 It consist of 3 little aliens, every one of them with different powers and strengths that explore the world they are on.
 
+The Team is a young Developer pair formed by Oriol Capdevila and Víctor Segura.
 ___________________________________________________
 TEAM PHOTO
 
@@ -56,6 +57,26 @@ Second Assigment:
     - Pathfinding
     - Menu Logic
     - FPS & dt Logic
+
+Third Assignemnt:
+
+- Oriol Capdevila:
+    - UI Manager and Elements Logic
+    - Main Menu
+    - Settings Menu
+    - Hacks
+    - Pause Menu
+
+- Víctor Segura:
+    - Intro Menu
+    - Credits Menu
+    - All Player UI (Lifes, Coins Count and Time)
+    - Coins
+    - Animated Intro
+    - All Art, Sfx And Music related
+    - Website
+    - Trailer
+
     
 _____________
 GAME
@@ -71,6 +92,9 @@ ALIEN EARTH TRAILER
 allowfullscreen> </iframe>
 
 _____________
+
+If you get 15 Coins you get 1 live!
+
 CONTROLS:
 - D: Move to the right.
 - A: Move to the left.

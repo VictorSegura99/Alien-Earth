@@ -1,6 +1,8 @@
 ﻿# Alien Earth
 _____________
 
+If you get 15 Coins you Get 1 Live!
+
 CONTROLS:
 - D: Move to the right.
 - A: Move to the left.
@@ -149,6 +151,25 @@ Second Assigment:
     - Pathfinding
     - Menu Logic
     - FPS & dt Logic
+
+Third Assignemnt:
+
+- Oriol Capdevila:
+    - UI Manager and Elements Logic
+    - Main Menu
+    - Settings Menu
+    - Hacks
+    - Pause Menu
+
+- Víctor Segura:
+    - Intro Menu
+    - Credits Menu
+    - All Player UI (Lifes, Coins Count and Time)
+    - Coins
+    - Animated Intro
+    - All Art, Sfx And Music related
+    - Website
+    - Trailer
 
 _____________
 LICENSE:
