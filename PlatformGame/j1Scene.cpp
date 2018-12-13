@@ -82,24 +82,33 @@ bool j1Scene::Update(float dt)
 	if (App->entitymanager->GetPlayerData()->NextMap) {
 		App->entitymanager->GetPlayerData()->NextMap = false;
 		KnowMap = 1;
+		App->ui_manager->DeleteUI_Element(App->entitymanager->GetPlayerData()->tutorial);
 		App->map->ChangeMap(map_name[KnowMap]);
 		App->entitymanager->GetPlayerData()->Spawn();
 	}
 	if (!App->entitymanager->GetPlayerData()->Intro) {
 		if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
+			App->render->camera.x = 0;
+			App->render->camera.y = 0;
 			App->entitymanager->DeleteEnemies();
 			KnowMap = 0;
 			App->map->ChangeMap(map_name[KnowMap]);
 			App->entitymanager->GetPlayerData()->Spawn();
-
+			if (App->entitymanager->GetPlayerData()->tutorial == nullptr)
+				App->entitymanager->GetPlayerData()->SetTutorials();
 		}
 		if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
 			if (KnowMap == 0) {
+				App->render->camera.x = 0;
+				App->render->camera.y = 0;
+				if (App->entitymanager->GetPlayerData()->tutorial == nullptr)
+					App->entitymanager->GetPlayerData()->SetTutorials();
 				App->entitymanager->DeleteEnemies();
 				App->map->ChangeMap(map_name[KnowMap]);
 				App->entitymanager->GetPlayerData()->Spawn();
 			}
 			else if (KnowMap == 1) {
+				App->ui_manager->DeleteUI_Element(App->entitymanager->GetPlayerData()->tutorial);
 				App->entitymanager->DeleteEnemies();
 				App->map->ChangeMap(map_name[KnowMap]);
 				App->entitymanager->GetPlayerData()->Spawn();
@@ -108,6 +117,7 @@ bool j1Scene::Update(float dt)
 		if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
 			App->entitymanager->DeleteEnemies();
 			KnowMap = 1;
+			App->ui_manager->DeleteUI_Element(App->entitymanager->GetPlayerData()->tutorial);
 			App->map->ChangeMap(map_name[KnowMap]);
 			App->entitymanager->GetPlayerData()->Spawn();
 		}

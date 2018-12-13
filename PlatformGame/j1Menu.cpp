@@ -162,6 +162,8 @@ bool j1Menu::PostUpdate()
 			App->audio->PlayMusic(App->scene->Song.GetString());
 			App->entitymanager->GetPlayerData()->ChangePlayer(playernumber);
 			App->entitymanager->GetPlayerData()->SetUI();
+			if (App->scene->KnowMap == 0)
+				App->entitymanager->GetPlayerData()->SetTutorials();
 			GameOn = true;
 		}
 	}
@@ -177,6 +179,8 @@ bool j1Menu::PostUpdate()
 			App->entitymanager->ActiveGame = true;
 			App->LoadGame("save_game.xml", true);
 			App->entitymanager->GetPlayerData()->SetUI();
+			if (App->scene->KnowMap == 0)
+				App->entitymanager->GetPlayerData()->SetTutorials();
 			GameOn = true;
 		}
 	}
