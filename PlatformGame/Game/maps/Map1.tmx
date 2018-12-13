@@ -16937,7 +16937,7 @@
     <property name="Enemy" value="Platform"/>
    </properties>
   </object>
-  <object id="476" x="8365.44" y="900" width="57" height="62">
+  <object id="476" x="8342.44" y="900" width="57" height="62">
    <properties>
     <property name="Enemy" value="Platform"/>
    </properties>
