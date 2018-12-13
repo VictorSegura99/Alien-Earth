@@ -54,6 +54,7 @@ Third Assigment:
 - Menu Hacks and All Hacks Logic
 - Animated Transition
 - Countdown After Pause
+- Direct Download link of the game on website
 _____________
 AUTHORS
 - Víctor Segura Blanco (Github: https://github.com/VictorSegura99)

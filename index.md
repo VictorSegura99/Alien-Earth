@@ -120,6 +120,7 @@ Third Assigment:
 - Menu Hacks and All Hacks Logic
 - Animated Transition
 - Countdown After Pause
+- Direct Download Link on Website
 
 _____________
 CREDITS
