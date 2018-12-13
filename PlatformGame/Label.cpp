@@ -16,12 +16,14 @@ Label::Label(int x, int y, p2SString name, int size, bool CanBeMoved, UI_Element
 	if (!CanBeMoved) {
 		Distance.x = Scree_pos.x - (-App->render->camera.x);
 		Distance.y = Scree_pos.y - (-App->render->camera.y);
-		App->fonts->PlayerUI = App->fonts->Load(App->fonts->path, size);
+		if (App->fonts->PlayerUI == nullptr)
+			App->fonts->PlayerUI = App->fonts->Load(App->fonts->path, size);
 		tex = App->fonts->Print(name.GetString(), App->fonts->PlayerUI);
 		App->fonts->CalcSize(name.GetString(), width, height, App->fonts->PlayerUI);
 	}
 	else {
-		App->fonts->InitialMenu = App->fonts->Load(App->fonts->path, size);
+		if (App->fonts->InitialMenu == nullptr)
+			App->fonts->InitialMenu = App->fonts->Load(App->fonts->path, size);
 		tex = App->fonts->Print(name.GetString(), App->fonts->InitialMenu);
 		App->fonts->CalcSize(name.GetString(), width, height, App->fonts->InitialMenu);
 	}
@@ -30,7 +32,7 @@ Label::Label(int x, int y, p2SString name, int size, bool CanBeMoved, UI_Element
 
 Label::~Label()
 {
-	//TTF_CloseFont(App->fonts->InitialMenu);
+	App->tex->UnLoad(tex);
 }
 
 bool Label::Update(float dt)

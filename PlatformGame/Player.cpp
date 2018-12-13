@@ -1256,12 +1256,7 @@ void Player::SetUI()
 
 }
 
-void Player::DeleteUI()
-{
-	App->ui_manager->DeleteUI_Element(life);
-	App->ui_manager->DeleteUI_Element(lifenumber);
 
-}
 
 void Player::CheckWhatToDoWhenCollidingWithEnemy(Collider * c2)
 {
@@ -1353,6 +1348,7 @@ void Player::TIME()
 
 void Player::CountCoins()
 {
+
 	Coins.create("%i", App->scene->NumberCoins);
 	NumCoins->ChangeLabel(Coins.GetString(), 50);
 }
