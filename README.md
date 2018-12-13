@@ -57,6 +57,7 @@ Third Assigment:
 - Animated Transition
 - Countdown After Pause
 - Direct Download link of the game on website
+- Enemies on TML
 _____________
 AUTHORS
 - Víctor Segura Blanco (Github: https://github.com/VictorSegura99)
@@ -160,6 +161,7 @@ Third Assignemnt:
     - Settings Menu
     - Hacks
     - Pause Menu
+    - Player UI: Coins Count and Time
 
 - Víctor Segura:
     - Intro Menu

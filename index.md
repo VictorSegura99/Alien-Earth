@@ -66,6 +66,7 @@ Third Assignemnt:
     - Settings Menu
     - Hacks
     - Pause Menu
+    - Player UI: Coins Count and Time
 
 - Víctor Segura:
     - Intro Menu
@@ -76,7 +77,6 @@ Third Assignemnt:
     - All Art, Sfx And Music related
     - Website
     - Trailer
-
     
 _____________
 GAME
@@ -148,7 +148,7 @@ Third Assigment:
 - Animated Transition
 - Countdown After Pause
 - Direct Download Link on Website
-
+- Enemies on TML
 _____________
 CREDITS
 
