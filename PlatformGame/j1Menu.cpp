@@ -63,6 +63,8 @@ bool j1Menu::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool j1Menu::Start()
 {
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
 	App->scene->active = false;
 	//App->player->active = false;
 	App->collision->active = false;
@@ -92,8 +94,7 @@ bool j1Menu::Start()
 	CreateCredits();
 	WantToDisappearMainMenu(true);
 	WantToDisappearButtonsTypePlayer(true);
-	App->render->camera.x = 0;
-	App->render->camera.y = 0;
+	
 	App->scene->KnowMap = 0;
 	
 	return true;
