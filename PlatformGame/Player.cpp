@@ -689,6 +689,8 @@ void Player::Spawn()
 			}
 			Death[NumPlayer].current_frame = 0.0f;
 			Death[NumPlayer].loops = 0;
+			App->map->LoadEnemies();
+			App->map->LoadCoins();
 		}
 		else {
 			//current_animation = &idle[NumPlayer];
