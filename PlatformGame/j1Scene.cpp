@@ -293,11 +293,6 @@ void j1Scene::PauseMenu(float dt)
 	}
 }
 
-
-
-
-
-
 void j1Scene::CoinsLogic()
 {
 	if (NumberCoins >= coins4life) {

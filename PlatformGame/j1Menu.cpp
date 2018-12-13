@@ -563,6 +563,8 @@ void j1Menu::CreateCredits()
 	imageCREDITS->SetSpritesData({ 1480,0,1000,1360 });
 	buttonGOBACKCREDITS = App->ui_manager->CreateButton(40, 1400, imageCREDITS);
 	buttonGOBACKCREDITS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
+	CreditsTitle = App->ui_manager->CreateImage(App->win->width / 2 - 234, 1420, true, imageCREDITS);
+	CreditsTitle->SetSpritesData({ 422,958,468,143 });
 	AlienVictor = App->ui_manager->CreateImage(App->win->width / 4 - 125, 1600, true, imageCREDITS);
 	AlienVictor->SetSpritesData({ 0,2056,250,345 });
 	AlienOriol = App->ui_manager->CreateImage(App->win->width / 4*3 - 125, 1600, true, imageCREDITS);

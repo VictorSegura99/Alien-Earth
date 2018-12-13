@@ -174,6 +174,7 @@ public:
 
 
 	//CREDITS
+	Image* CreditsTitle = nullptr;
 	Image* imageCREDITS = nullptr;	
 	Button* buttonGOBACKCREDITS = nullptr;
 	Button* buttonGITHUB = nullptr;
