@@ -57,6 +57,7 @@ AUTHORS
 - Oriol Capdevila Salinas (Github: https://github.com/OriolCS2)
 
 Our Repository: https://github.com/VictorSegura99/Development-Platform-Game
+Game Trailer: https://www.youtube.com/watch?v=G1NoxKnEdlY
 _____________
 CREDITS
 
