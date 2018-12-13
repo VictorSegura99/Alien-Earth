@@ -44,9 +44,9 @@ bool j1Fonts::CleanUp()
 	LOG("Freeing True Type fonts and library");
 	p2List_item<TTF_Font*>* item;
 
-	for(item = fonts.start; item != NULL; item = item->next)
+	for(item = fonts.start; item != nullptr; item = item->next)
 	{
-		if (item->data != NULL)
+		if (item->data != nullptr)
 			TTF_CloseFont(item->data);
 	}
 

@@ -53,10 +53,13 @@ bool UI_Manager::Update(float dt)
 		if (elements[i] != nullptr && elements[i]->parent == nullptr) {
 			elements[i]->Draw(dt, atlas);
 			for (int j = 0; j < elements[i]->Son.Count(); j++) {
-				elements[i]->Son[j]->Draw(dt, atlas);
+				if (elements[i]->Son[j]->type != SLIDER)
+					elements[i]->Son[j]->Draw(dt, atlas);
 				for (int k = 0; k < elements[i]->Son[j]->Son.Count(); k++) {
 					elements[i]->Son[j]->Son[k]->Draw(dt, atlas);
 				}
+				if (elements[i]->Son[j]->type == SLIDER)
+					elements[i]->Son[j]->Draw(dt, atlas);
 			}
 		}
 	}

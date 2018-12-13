@@ -7,6 +7,7 @@
 #include "j1Audio.h"
 #include "j1Input.h"
 #include "j1Fonts.h"
+#include "SDL_TTF\include\SDL_ttf.h"
 
 
 Label::Label(int x, int y, p2SString name, int size, bool CanBeMoved, UI_Element* parent) : UI_Element (x,y, parent)
@@ -16,14 +17,16 @@ Label::Label(int x, int y, p2SString name, int size, bool CanBeMoved, UI_Element
 	if (!CanBeMoved) {
 		Distance.x = Scree_pos.x - (-App->render->camera.x);
 		Distance.y = Scree_pos.y - (-App->render->camera.y);
-		if (App->fonts->PlayerUI == nullptr)
+		if (App->fonts->PlayerUI == nullptr) {
 			App->fonts->PlayerUI = App->fonts->Load(App->fonts->path, size);
+		}
 		tex = App->fonts->Print(name.GetString(), App->fonts->PlayerUI);
 		App->fonts->CalcSize(name.GetString(), width, height, App->fonts->PlayerUI);
 	}
 	else {
-		if (App->fonts->InitialMenu == nullptr)
-			App->fonts->InitialMenu = App->fonts->Load(App->fonts->path, size);
+
+		//TTF_CloseFont(App->fonts->InitialMenu);
+		App->fonts->InitialMenu = App->fonts->Load(App->fonts->path, size);
 		tex = App->fonts->Print(name.GetString(), App->fonts->InitialMenu);
 		App->fonts->CalcSize(name.GetString(), width, height, App->fonts->InitialMenu);
 	}

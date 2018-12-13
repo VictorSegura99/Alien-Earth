@@ -75,7 +75,6 @@ bool j1Menu::Start()
 		yellow = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[0].GetString());
 		pink = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[1].GetString());
 		blue = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[2].GetString());
-		Settings = App->tex->Load("textures/Settings.png");
 		choosefx = App->audio->LoadFx(ChooseFx.GetString());
 		introfx = App->audio->LoadFx(IntroFx.GetString());
 		App->scene->TexCharged = true;
@@ -112,8 +111,6 @@ bool j1Menu::PreUpdate()
 		App->ui_manager->DeleteUI_Element(Title);
 		App->ui_manager->DeleteUI_Element(sentence);
 		WantToDisappearMainMenu(false);
-		//CreateMainMenuButtons();
-		//CreateButtons();
 	}
 	return true;
 }
