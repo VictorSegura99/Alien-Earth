@@ -4,9 +4,9 @@
 	<window />
 	<textures />
 	<audio>
-		<volume value="89" />
-		<fxvolume value="68" />
-		<general value="49" />
+		<volume value="90" />
+		<fxvolume value="70" />
+		<general value="50" />
 	</audio>
 	<map />
 	<scene>
@@ -16,38 +16,16 @@
 	<fonts />
 	<:anonymous />
 	<particles />
-	<UI />
 	<entity_manager>
 		<spider>
-			<position x="7071.73975" y="755.600037" />
+			<position x="10604.499" y="748.633362" />
 		</spider>
-		<spider>
-			<position x="10601.7393" y="758.600037" />
-		</spider>
+		<bat>
+			<position x="5812.57959" y="589.974792" />
+		</bat>
 		<bat>
 			<position x="9507" y="541" />
 		</bat>
-		<coin>
-			<position x="2450" y="845" />
-		</coin>
-		<coin>
-			<position x="3055" y="557" />
-		</coin>
-		<coin>
-			<position x="1858" y="557" />
-		</coin>
-		<coin>
-			<position x="1126" y="476" />
-		</coin>
-		<coin>
-			<position x="1378" y="526" />
-		</coin>
-		<coin>
-			<position x="3442" y="614" />
-		</coin>
-		<coin>
-			<position x="4393" y="446" />
-		</coin>
 		<coin>
 			<position x="5577" y="664" />
 		</coin>
@@ -67,28 +45,23 @@
 			<position x="10531" y="712" />
 		</coin>
 		<coin>
-			<position x="3875" y="640" />
-		</coin>
-		<coin>
 			<position x="9135" y="694" />
 		</coin>
-		<coin>
-			<position x="5021" y="684" />
-		</coin>
 		<player>
-			<position x="877.750244" y="549.399719" />
+			<position x="5672.07959" y="727.09491" />
 			<god value="false" />
 			<NumPlayer value="0" />
-			<lifes value="3" />
-			<Min value="0" />
+			<lifes value="0" />
+			<Min value="1" />
 			<Hours Hours="0" />
 			<Delay value="0" />
-			<NumCoins value="0" />
+			<NumCoins value="9" />
 		</player>
 	</entity_manager>
+	<UI />
 	<choose />
 	<:anonymous />
 	<renderer>
-		<camera x="0" y="0" />
+		<camera x="-5160" y="-328" />
 	</renderer>
 </game_state>
