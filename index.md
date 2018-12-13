@@ -3,6 +3,7 @@
 It consist of 3 little aliens, every one of them with different powers and strengths that explore the world they are on.
 
 The Team is a young Developer pair formed by Oriol Capdevila and Víctor Segura.
+
 ___________________________________________________
 TEAM PHOTO
 
@@ -79,7 +80,51 @@ Third Assignemnt:
     - Trailer
     
 _____________
+SYSTEMS
+
+Main Systems:
+- Entity Manager
+	- Bat
+	- Spider
+	- Player
+	- Coins
+	- Moving Platform
+- UI Manager
+	- Button
+	- Slider
+	- Image
+	- Label
+	- CheckBox
+
+INNOVATIONS:
+
+First Assigment:
+
+- Climb ladders and ropes.
+- Swim through water.
+
+Second Assigment:
+
+- Initial Menu+Choose Menu.
+- 3 Different Characters with unique habilities.
+    - Yellow Alien(Jeff): Double Jump+Bomb Jump(only when previous doble jump).
+    - Pink Alien(Jane): Shoots Laser.
+    - Blue Alien(Jerry): Dash
+- Movement Platforms.
+
+Third Assigment:
+
+- Animation Cinematic Intro
+- Menu Hacks and All Hacks Logic
+- Animated Transition
+- Countdown After Pause
+- Direct Download Link on Website
+- Enemies Loaded on TMX
+- Coins Loaded on TMX
+
+_____________
 GAME
+
 - [Repository ALIEN EARTH](https://github.com/VictorSegura99/Alien-Earth)
 - [Last Release ALIEN EARTH](https://github.com/VictorSegura99/Alien-Earth/releases)
 
@@ -125,30 +170,6 @@ DEBUG KEYS:
 - 2: Change to Jane.
 - 3: Change to Jerry.
 
-INNOVATIONS:
-
-First Assigment:
-
-- Climb ladders and ropes.
-- Swim through water.
-
-Second Assigment:
-
-- Initial Menu+Choose Menu.
-- 3 Different Characters with unique habilities.
-    - Yellow Alien(Jeff): Double Jump+Bomb Jump(only when previous doble jump).
-    - Pink Alien(Jane): Shoots Laser.
-    - Blue Alien(Jerry): Dash
-- Movement Platforms.
-
-Third Assigment:
-
-- Animation Cinematic Intro
-- Menu Hacks and All Hacks Logic
-- Animated Transition
-- Countdown After Pause
-- Direct Download Link on Website
-- Enemies on TML
 _____________
 CREDITS
 

@@ -57,7 +57,8 @@ Third Assigment:
 - Animated Transition
 - Countdown After Pause
 - Direct Download link of the game on website
-- Enemies on TML
+- Enemies Load on TMX
+- Coins Loaded on TMX
 _____________
 AUTHORS
 - Víctor Segura Blanco (Github: https://github.com/VictorSegura99)
