@@ -117,6 +117,9 @@ Second Assigment:
 Third Assigment:
 
 - Animation Cinematic Intro
+- Menu Hacks and All Hacks Logic
+- Animated Transition
+- Countdown After Pause
 
 _____________
 CREDITS
