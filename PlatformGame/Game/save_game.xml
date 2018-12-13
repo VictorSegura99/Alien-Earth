@@ -19,68 +19,71 @@
 	<UI />
 	<entity_manager>
 		<spider>
-			<position x="6801.74023" y="733.233337" />
+			<position x="7071.73975" y="755.600037" />
+		</spider>
+		<spider>
+			<position x="10601.7393" y="758.600037" />
 		</spider>
 		<bat>
-			<position x="6000" y="600" />
-		</bat>
-		<bat>
-			<position x="8000" y="400" />
-		</bat>
-		<bat>
-			<position x="9500" y="600" />
+			<position x="9507" y="541" />
 		</bat>
 		<coin>
-			<position x="1395" y="525" />
+			<position x="2450" y="845" />
 		</coin>
 		<coin>
-			<position x="2416" y="818" />
+			<position x="3055" y="557" />
 		</coin>
 		<coin>
-			<position x="3057" y="538" />
+			<position x="1858" y="557" />
 		</coin>
 		<coin>
-			<position x="3445" y="608" />
+			<position x="1126" y="476" />
 		</coin>
 		<coin>
-			<position x="3833" y="608" />
+			<position x="1378" y="526" />
 		</coin>
 		<coin>
-			<position x="4385" y="405" />
+			<position x="3442" y="614" />
 		</coin>
 		<coin>
-			<position x="5015" y="640" />
+			<position x="4393" y="446" />
 		</coin>
 		<coin>
-			<position x="5580" y="660" />
+			<position x="5577" y="664" />
 		</coin>
 		<coin>
-			<position x="6170" y="545" />
+			<position x="6175" y="548" />
 		</coin>
 		<coin>
-			<position x="7340" y="680" />
+			<position x="7367" y="702" />
 		</coin>
 		<coin>
-			<position x="8200" y="825" />
+			<position x="8201" y="822" />
 		</coin>
 		<coin>
-			<position x="9140" y="680" />
+			<position x="9955" y="634" />
 		</coin>
 		<coin>
-			<position x="9947" y="615" />
+			<position x="10531" y="712" />
 		</coin>
 		<coin>
-			<position x="10500" y="685" />
+			<position x="3875" y="640" />
+		</coin>
+		<coin>
+			<position x="9135" y="694" />
+		</coin>
+		<coin>
+			<position x="5021" y="684" />
 		</coin>
 		<player>
-			<position x="1391.20129" y="286.8013" />
+			<position x="877.750244" y="549.399719" />
 			<god value="false" />
 			<NumPlayer value="0" />
 			<lifes value="3" />
 			<Min value="0" />
 			<Hours Hours="0" />
 			<Delay value="0" />
-			<NumCoins value="2" />
+			<NumCoins value="0" />
 		</player>
 	</entity_manager>
 	<choose />

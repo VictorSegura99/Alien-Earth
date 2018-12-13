@@ -70,16 +70,20 @@ bool j1Menu::Start()
 	GameOn = false;
 	AlreadyChoosen = false;
 	start = false;
-	App->ui_manager->DeleteAllUI();
+	if (!App->scene->TexCharged) {
+		ScreenStart = App->tex->Load(file_texture.GetString());
+		yellow = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[0].GetString());
+		pink = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[1].GetString());
+		blue = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[2].GetString());
+		Settings = App->tex->Load("textures/Settings.png");
+		choosefx = App->audio->LoadFx(ChooseFx.GetString());
+		introfx = App->audio->LoadFx(IntroFx.GetString());
+		App->scene->TexCharged = true;
+	}
+
 	App->audio->PlayMusic(App->scene->SongMenu.GetString());
 	App->scene->StartTimer = false;
-	ScreenStart = App->tex->Load(file_texture.GetString());
-	yellow = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[0].GetString());
-	pink = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[1].GetString());
-	blue = App->tex->Load(App->entitymanager->GetPlayerData()->sprites_name[2].GetString());
-	Settings = App->tex->Load("textures/Settings.png");
-	choosefx = App->audio->LoadFx(ChooseFx.GetString());
-	introfx = App->audio->LoadFx(IntroFx.GetString());
+	
 	CreateIntro();
 	CreateButtonsTypePlayer();
 	CreateMainMenu();

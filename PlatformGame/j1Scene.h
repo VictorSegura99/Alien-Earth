@@ -60,6 +60,7 @@ public:
 	bool CanStart = false;
 	Entity* bat1 = nullptr;
 	bool WantToSpawnEnemies = true;
+	bool TexCharged = false;
 	bool GamePaused = false;
 	int coins4life = 0;
 	//MENU PAUSA

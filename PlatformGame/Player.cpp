@@ -119,26 +119,34 @@ bool Player::Start()
 	BROFILER_CATEGORY("Player: Start", Profiler::Color::DarkGreen)
 	bool ret = true;
 	auxGravity = gravity;
-	jumpfx = App->audio->LoadFx(JumpFx.GetString());
-	waterfx = App->audio->LoadFx(WaterFx.GetString());
-	deathfx = App->audio->LoadFx(DeathFx.GetString());
-	deathfx2 = App->audio->LoadFx(DeathFx2.GetString());
-	ladderfx = App->audio->LoadFx(LadderFx.GetString());
-	laserfx = App->audio->LoadFx(LaserFx.GetString());
-	dashfx = App->audio->LoadFx(DashFx.GetString());
-	bombjumpfx = App->audio->LoadFx(BombJumpfx.GetString());
-	spiderdeathfx = App->audio->LoadFx(SpiderDeathFx.GetString());
-	winningfx = App->audio->LoadFx(WinningFx.GetString());
-	ovnifx = App->audio->LoadFx(OvniFx.GetString());
-	losefx = App->audio->LoadFx(LoseFx.GetString());
+
+
+	if (!AllCharged) {
+		jumpfx = App->audio->LoadFx(JumpFx.GetString());
+		waterfx = App->audio->LoadFx(WaterFx.GetString());
+		deathfx = App->audio->LoadFx(DeathFx.GetString());
+		deathfx2 = App->audio->LoadFx(DeathFx2.GetString());
+		ladderfx = App->audio->LoadFx(LadderFx.GetString());
+		laserfx = App->audio->LoadFx(LaserFx.GetString());
+		dashfx = App->audio->LoadFx(DashFx.GetString());
+		bombjumpfx = App->audio->LoadFx(BombJumpfx.GetString());
+		spiderdeathfx = App->audio->LoadFx(SpiderDeathFx.GetString());
+		winningfx = App->audio->LoadFx(WinningFx.GetString());
+		ovnifx = App->audio->LoadFx(OvniFx.GetString());
+		losefx = App->audio->LoadFx(LoseFx.GetString());
+
+		Godmode = App->tex->Load(godmode.GetString());
+		IntroLight = App->tex->Load(introlight.GetString());
+
+	}
+
+	AllCharged = true;
 
 	position.x = App->entitymanager->positionStartMap1.x;
 	position.y = App->entitymanager->positionStartMap1.y;
 
 
-	Godmode = App->tex->Load(godmode.GetString());
-	IntroLight= App->tex->Load(introlight.GetString());
-
+	
 	current_animation = &idle[NumPlayer];
 
 	
@@ -1348,3 +1356,4 @@ void Player::CountCoins()
 	Coins.create("%i", App->scene->NumberCoins);
 	NumCoins->ChangeLabel(Coins.GetString(), 50);
 }
+

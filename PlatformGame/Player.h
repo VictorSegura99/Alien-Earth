@@ -86,6 +86,7 @@ public:
 	void CountCoins();
 
 
+
 private:
 	float startDash;
 	float DashTime;
@@ -168,6 +169,7 @@ public:
 	
 	mutable int SaveDelay = 0;
 
+	bool AllCharged = false;
 	bool PlayerLeft = false;
 	bool PlayerRight = false;
 

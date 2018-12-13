@@ -157,7 +157,6 @@ bool j1Scene::PostUpdate()
 		App->entitymanager->GetPlayerData()->CanJump = false;
 		App->entitymanager->GetPlayerData()->CanJump2 = false;
 		App->entitymanager->GetPlayerData()->CanSwim = false;
-		App->entitymanager->GetPlayerData()->DeleteUI();
 		App->menu->Start();
 		KnowMap = 0;
 		GamePaused = false;
@@ -239,9 +238,9 @@ void j1Scene::PauseMenu(float dt)
 		Delay = 0;
 		StartTimer = true;
 		App->fade->FadeToBlack(3.0f);
-		CanStart = true;
-		buttonGOMAINMENU->pressed = false;
 		App->ui_manager->DeleteAllUI();
+		CanStart = true;
+		
 	}
 	if (checkboxSOUND->pressed) {
 		App->audio->NoAudio = false;
