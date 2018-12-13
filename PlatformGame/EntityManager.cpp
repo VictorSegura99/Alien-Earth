@@ -239,6 +239,9 @@ bool EntityManager::Load(pugi::xml_node& load)
 		CreateEntity(EntityType::COIN, coin.child("position").attribute("x").as_float(), coin.child("position").attribute("y").as_float());
 	}
 
+	CreateEntity(EntityType::MOVING_PLATFORM, 7556, 900);
+	CreateEntity(EntityType::MOVING_PLATFORM, 8342, 900);
+
 	return ret;
 }
 
