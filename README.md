@@ -51,6 +51,9 @@ Second Assigment:
 Third Assigment:
 
 - Animation Cinematic Intro
+- Menu Hacks and All Hacks Logic
+- Animated Transition
+- Countdown After Pause
 _____________
 AUTHORS
 - Víctor Segura Blanco (Github: https://github.com/VictorSegura99)
