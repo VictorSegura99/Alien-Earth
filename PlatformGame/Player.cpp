@@ -1356,9 +1356,6 @@ void Player::TIME()
 		StringTime.create("0%i : 0%i : %i", Hours, Min, (CurrentTime - TimeSinceStarted) / 1000);
 	TimeStart->ChangeLabel(StringTime.GetString(), 50);
 	
-
-
-
 }
 
 void Player::CountCoins()
