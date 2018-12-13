@@ -62,7 +62,7 @@ GAME
 - [Repository ALIEN EARTH](https://github.com/VictorSegura99/Alien-Earth)
 - [Last Release ALIEN EARTH](https://github.com/VictorSegura99/Alien-Earth/releases)
 <a href="https://github.com/VictorSegura99/Alien_Earth/releases/download/0.6/Alien.Earth.v0.6.zip" download>
-[DOWNLOAD THE GAME]</a>
+DOWNLOAD THE GAME</a>
 
 _____________
 ALIEN EARTH TRAILER
