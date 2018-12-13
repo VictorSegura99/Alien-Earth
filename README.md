@@ -51,12 +51,17 @@ Second Assigment:
 Third Assigment:
 
 - Animation Cinematic Intro
+- Menu Hacks and All Hacks Logic
+- Animated Transition
+- Countdown After Pause
 _____________
 AUTHORS
 - Víctor Segura Blanco (Github: https://github.com/VictorSegura99)
 - Oriol Capdevila Salinas (Github: https://github.com/OriolCS2)
 
 Our Repository: https://github.com/VictorSegura99/Development-Platform-Game
+
+Game Trailer: https://www.youtube.com/watch?v=G1NoxKnEdlY
 _____________
 CREDITS
 

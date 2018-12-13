@@ -5,7 +5,7 @@ It consist of 3 little aliens, every one of them with different powers and stren
 ___________________________________________________
 TEAM PHOTO
 
-![alt text](https://github.com/VictorSegura99/Alien_Earth/blob/master/PlatformGame/Docs/20181212_114736.jpg)
+![alt text](https://raw.githubusercontent.com/VictorSegura99/Alien_Earth/master/PlatformGame/Docs/20181212_114736.jpg)
 
 _____________
 AUTHORS
@@ -64,7 +64,7 @@ GAME
 
 _____________
 ALIEN EARTH TRAILER
-<iframe width="1024" height="768" src="https://www.youtube.com/embed/W7yO9g4pL_E" frameborder="0" allow="autoplay; encrypted-media" 
+<iframe width="1024" height="768" src="https://www.youtube.com/embed/G1NoxKnEdlY" frameborder="0" allow="autoplay; encrypted-media" 
 allowfullscreen> </iframe>
 
 _____________
@@ -117,6 +117,9 @@ Second Assigment:
 Third Assigment:
 
 - Animation Cinematic Intro
+- Menu Hacks and All Hacks Logic
+- Animated Transition
+- Countdown After Pause
 
 _____________
 CREDITS
