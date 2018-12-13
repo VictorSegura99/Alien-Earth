@@ -258,7 +258,7 @@ void j1Scene::PauseMenu(float dt)
 		CanStart = true;
 		
 	}
-	if (checkboxSOUND->pressed) {
+	if (checkboxSOUND->pressed && App->audio->NoAudio) {
 		App->audio->NoAudio = false;
 		sliderGENERALSOUND->NoUse = false;
 		sliderVOLUMEMUSIC->NoUse = false;
@@ -267,7 +267,7 @@ void j1Scene::PauseMenu(float dt)
 		App->audio->volume = sliderVOLUMEMUSIC->Value;
 		App->audio->fxvolume = sliderVOLUMEFX->Value;
 	}
-	else {
+	else if (!checkboxSOUND->pressed && !App->audio->NoAudio){
 		App->audio->NoAudio = true;
 		sliderGENERALSOUND->NoUse = true;
 		sliderVOLUMEMUSIC->NoUse = true;
