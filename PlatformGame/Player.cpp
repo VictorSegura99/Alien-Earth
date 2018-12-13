@@ -528,8 +528,17 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 			TouchingGround = true;
 			CanClimb = false;
 			CanJump = false;
+			CanJump2 = false;
+			current_animation = &SwimRight[NumPlayer];
 			IsJumping = false;
 			IsJumping2 = false;
+			CanDash = false;
+			BottomLeft.IsFalling = false;
+			BottomRight.IsFalling = false;
+			Falling = false;
+			FallingJump2 = false;
+			//cameraon = true;
+			CanDoAnotherJump = false;
 		}
 		break;
 	case COLLIDER_GROUND_WATER:
