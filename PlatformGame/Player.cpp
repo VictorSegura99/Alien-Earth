@@ -298,9 +298,9 @@ bool Player::Load(pugi::xml_node& player)
 	position.x = player.child("position").attribute("x").as_float();
 	position.y = player.child("position").attribute("y").as_float() - 50.0f;
 	God = player.child("god").attribute("value").as_bool();
-	lifes = player.child("lives").attribute("value").as_int();
+	lifes = player.child("lifes").attribute("value").as_int();
 	Min = player.child("Min").attribute("value").as_int();
-	Hours = player.child("Hours").attribute("value").as_int();
+	Hours = player.child("Hours").attribute("Hours").as_int();
 	App->scene->Delay = player.child("Delay").attribute("value").as_int();
 	App->scene->Delay += SDL_GetTicks() - SaveDelay;
 	App->scene->NumberCoins = player.child("NumCoins").attribute("value").as_int();

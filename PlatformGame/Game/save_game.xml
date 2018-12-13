@@ -18,10 +18,10 @@
 	<particles />
 	<entity_manager>
 		<spider>
-			<position x="7074.31982" y="761.233337" />
+			<position x="7073.47949" y="757.766663" />
 		</spider>
 		<spider>
-			<position x="10604.3213" y="764.233337" />
+			<position x="10603.4834" y="760.766663" />
 		</spider>
 		<bat>
 			<position x="5919" y="565" />
@@ -81,13 +81,13 @@
 			<position x="5021" y="684" />
 		</coin>
 		<player>
-			<position x="913.800293" y="549.199707" />
+			<position x="864.100159" y="547.999817" />
 			<god value="false" />
 			<NumPlayer value="0" />
 			<lifes value="3" />
 			<Min value="0" />
 			<Hours Hours="0" />
-			<Delay value="16928" />
+			<Delay value="0" />
 			<NumCoins value="0" />
 		</player>
 	</entity_manager>
@@ -95,6 +95,6 @@
 	<choose />
 	<:anonymous />
 	<renderer>
-		<camera x="-401" y="-165" />
+		<camera x="-352" y="-163" />
 	</renderer>
 </game_state>
