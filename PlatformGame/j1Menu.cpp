@@ -588,11 +588,11 @@ void j1Menu::Credits(float dt)
 {
 	if (buttonGOBACKCREDITS->Scree_pos.y <= 30) {
 		if (buttonGOBACKCREDITS->pressed) {
-			App->ui_manager->DeleteUI_Element(imageCREDITS);
-			CreateCredits();
+			imageCREDITS->Local_pos.y = 880;
 			InCredits = false;
 			InMainMenu = true;
 			WantToDisappearMainMenu(false);
+			
 		}
 		if (buttonGITHUB->pressed) {
 			ShellExecute(NULL, "open", "https://github.com/VictorSegura99/Alien_Earth", NULL, NULL, SW_SHOWNORMAL);
