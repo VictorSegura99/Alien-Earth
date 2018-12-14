@@ -45,7 +45,8 @@ public:
 	virtual bool Save(pugi::xml_node&) const { return true; };
 	void SetPos(int x, int y);
 	void SetSpritesData(SDL_Rect Idle, SDL_Rect Hover = { 0,0,0,0 }, SDL_Rect Pressed = { 0,0,0,0 });
-	
+	void Draggable();
+	void LookLimitsDrag();
 
 public:
 	
@@ -64,7 +65,9 @@ public:
 	bool CanBeMoved = true;
 	bool pressed = false;
 	bool mouseOn = false;
-
+	bool draggable = false;
+	iPoint mouse;
+	bool BeingDragged = false;
 	unsigned int fxOn;
 	unsigned int fxPressed;
 

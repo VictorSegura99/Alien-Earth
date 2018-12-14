@@ -471,6 +471,7 @@ void j1Menu::CreateSettingsButtons()
 	imageSETTINGS->SetSpritesData({ 758,0,705,671 });
 	buttonGOBACKSETTINGS = App->ui_manager->CreateButton(37, 40, imageSETTINGS);
 	buttonGOBACKSETTINGS->SetSpritesData({ 559,0,39,31 }, { 652,0,39,31 }, { 608,0,39,28 });
+	buttonGOBACKSETTINGS->draggable = true;
 	checkboxFPS = App->ui_manager->CreateCheckBox(380, 157, imageSETTINGS);
 	labelFPS = App->ui_manager->CreateLabel(100, 150, "CAP FPS TO 30", 50, true, imageSETTINGS);
 	sliderVOLUMEMUSIC = App->ui_manager->CreateSlider(380, 463, App->audio->volume, imageSETTINGS);
