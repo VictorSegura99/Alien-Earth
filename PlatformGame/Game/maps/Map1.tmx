@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="160" height="17" tilewidth="70" tileheight="70" infinite="0" nextlayerid="11" nextobjectid="478">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="160" height="17" tilewidth="70" tileheight="70" infinite="0" nextobjectid="478">
  <properties>
   <property name="NoDraw" type="int" value="0"/>
  </properties>
  <tileset firstgid="1" name="tiles_spritesheet" tilewidth="70" tileheight="70" spacing="2" tilecount="522" columns="18">
   <image source="tiles_spritesheet.png" width="1294" height="2086"/>
  </tileset>
- <layer id="1" name="Capa de patrones 4" width="160" height="17">
+ <layer name="Capa de patrones 4" width="160" height="17">
   <properties>
    <property name="speed" type="float" value="1"/>
   </properties>
@@ -2733,7 +2733,7 @@
    <tile gid="239"/>
   </data>
  </layer>
- <layer id="2" name="parallax" width="160" height="17">
+ <layer name="parallax" width="160" height="17">
   <properties>
    <property name="NoDraw" type="int" value="0"/>
    <property name="speed" type="float" value="0.2"/>
@@ -5461,7 +5461,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="3" name="Main" width="160" height="17">
+ <layer name="Main" width="160" height="17">
   <properties>
    <property name="NoDraw" type="int" value="0"/>
    <property name="speed" type="float" value="1"/>
@@ -8189,7 +8189,7 @@
    <tile gid="225"/>
   </data>
  </layer>
- <layer id="4" name="Details" width="160" height="17">
+ <layer name="Details" width="160" height="17">
   <properties>
    <property name="NoDraw" type="int" value="0"/>
    <property name="speed" type="float" value="1"/>
@@ -10917,7 +10917,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="5" name="Water" width="160" height="17" opacity="0.8">
+ <layer name="Water" width="160" height="17" opacity="0.8">
   <properties>
    <property name="NoDraw" type="int" value="0"/>
    <property name="speed" type="float" value="1"/>
@@ -13645,7 +13645,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="6" name="Walkable" width="160" height="17" opacity="0.42">
+ <layer name="Walkable" width="160" height="17" opacity="0.42">
   <properties>
    <property name="Navigation" type="int" value="1"/>
    <property name="NoDraw" type="int" value="1"/>
@@ -16374,7 +16374,7 @@
    <tile/>
   </data>
  </layer>
- <objectgroup id="7" name="Collider">
+ <objectgroup name="Collider">
   <properties>
    <property name="speed" type="float" value="1"/>
   </properties>
@@ -16814,7 +16814,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="8" name="Player">
+ <objectgroup name="Player">
   <properties>
    <property name="speed" type="float" value="1"/>
   </properties>
@@ -16829,7 +16829,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="9" name="Coins">
+ <objectgroup name="Coins">
   <object id="398" x="2450" y="845.5" width="46" height="51">
    <properties>
     <property name="Object" value="Coin"/>
@@ -16911,13 +16911,13 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="10" name="Enemies">
-  <object id="471" x="7073.59" y="662.061" width="71" height="88">
+ <objectgroup name="Enemies">
+  <object id="471" x="7069.59" y="450.061" width="71" height="88">
    <properties>
     <property name="Enemy" value="Spider"/>
    </properties>
   </object>
-  <object id="472" x="10603.9" y="665.091" width="71" height="88">
+  <object id="472" x="10611.9" y="425.091" width="71" height="88">
    <properties>
     <property name="Enemy" value="Spider"/>
    </properties>

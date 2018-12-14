@@ -689,6 +689,7 @@ void Player::Spawn()
 			}
 			Death[NumPlayer].current_frame = 0.0f;
 			Death[NumPlayer].loops = 0;
+			App->entitymanager->DeleteEnemies();
 			App->map->LoadEnemies();
 			App->map->LoadCoins();
 		}

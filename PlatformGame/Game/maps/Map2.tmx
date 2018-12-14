@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="160" height="21" tilewidth="70" tileheight="70" infinite="0" nextlayerid="11" nextobjectid="187">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="160" height="21" tilewidth="70" tileheight="70" infinite="0" nextobjectid="187">
  <tileset firstgid="1" name="tiles_spritesheet" tilewidth="70" tileheight="70" spacing="2" tilecount="522" columns="18">
   <image source="tiles_spritesheet.png" width="1294" height="2086"/>
   <terraintypes>
@@ -10,7 +10,7 @@
   <tile id="375" terrain="0,0,0,0"/>
   <tile id="393" terrain="0,0,0,0"/>
  </tileset>
- <layer id="1" name="Capa de patrones 4" width="160" height="21" offsetx="-0.130435" offsety="-280.005">
+ <layer name="Capa de patrones 4" width="160" height="21" offsetx="-0.130435" offsety="-280.005">
   <properties>
    <property name="speed" type="float" value="1"/>
   </properties>
@@ -3377,7 +3377,7 @@
    <tile gid="238"/>
   </data>
  </layer>
- <layer id="2" name="parallax" width="160" height="21">
+ <layer name="parallax" width="160" height="21">
   <properties>
    <property name="speed" type="float" value="0.2"/>
   </properties>
@@ -6744,7 +6744,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="3" name="Capa de Patrones 1" width="160" height="21">
+ <layer name="Capa de Patrones 1" width="160" height="21">
   <properties>
    <property name="speed" type="float" value="1"/>
   </properties>
@@ -10111,7 +10111,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="4" name="Capa de patrones 2" width="160" height="21">
+ <layer name="Capa de patrones 2" width="160" height="21">
   <properties>
    <property name="speed" type="float" value="1"/>
   </properties>
@@ -13478,7 +13478,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="5" name="Capa de patrones 3" width="160" height="21" opacity="0.6">
+ <layer name="Capa de patrones 3" width="160" height="21" opacity="0.6">
   <properties>
    <property name="speed" type="float" value="1"/>
   </properties>
@@ -16845,7 +16845,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="6" name="Walkable" width="160" height="21" opacity="0.4">
+ <layer name="Walkable" width="160" height="21" opacity="0.4">
   <properties>
    <property name="Navigation" type="int" value="1"/>
    <property name="NoDraw" type="int" value="1"/>
@@ -20214,7 +20214,7 @@
    <tile/>
   </data>
  </layer>
- <objectgroup id="7" name="Collider">
+ <objectgroup name="Collider">
   <object id="2" x="-3.66667" y="420.333" width="843" height="66.6667">
    <properties>
     <property name="Type" type="int" value="2"/>
@@ -20701,7 +20701,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="8" name="Player">
+ <objectgroup name="Player">
   <properties>
    <property name="speed" type="float" value="1"/>
   </properties>
@@ -20711,7 +20711,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="9" name="Coins">
+ <objectgroup name="Coins">
   <object id="162" x="752" y="355" width="38" height="48">
    <properties>
     <property name="Object" value="Coin"/>
@@ -20793,23 +20793,23 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="10" name="Enemies">
+ <objectgroup name="Enemies">
   <object id="165" x="3362.5" y="319.5" width="67" height="73">
    <properties>
     <property name="Enemy" value="Bat"/>
    </properties>
   </object>
-  <object id="183" x="1406.5" y="495.5" width="67" height="73">
+  <object id="183" x="1405.5" y="355.5" width="67" height="73">
    <properties>
     <property name="Enemy" value="Spider"/>
    </properties>
   </object>
-  <object id="184" x="1856.5" y="633.5" width="67" height="73">
+  <object id="184" x="1854.5" y="495.5" width="67" height="73">
    <properties>
     <property name="Enemy" value="Spider"/>
    </properties>
   </object>
-  <object id="185" x="6536.5" y="907.5" width="67" height="73">
+  <object id="185" x="6536.5" y="707.5" width="67" height="73">
    <properties>
     <property name="Enemy" value="Spider"/>
    </properties>

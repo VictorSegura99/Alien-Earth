@@ -86,12 +86,15 @@ bool Spider::Update(float dt)
 		if (coll == nullptr)
 			coll = App->collision->AddCollider({ 0,0,72,53 }, COLLIDER_ENEMY_SPIDER, (j1Module*)App->entitymanager);
 		coll->SetPos(position.x, position.y);
-		if (!TouchingGround && !death) {
+		if (!TouchingGround) {
 			acceleration.y = gravity * dt;
 		}
 		else
 			acceleration.y = 0;
+		//if (death)
+			//acceleration.y = 0;
 		position.y -= acceleration.y;
+		TouchingGround = false;
 		AnimationLogic();
 
 		float x = App->entitymanager->GetPlayerData()->position.x;
@@ -143,7 +146,7 @@ bool Spider::Update(float dt)
 		}
 		if (position.x + 100 < -App->render->camera.x)
 			App->entitymanager->DeleteEntity(this);
-		TouchingGround = false;
+		
 	}
 	return true;
 }
