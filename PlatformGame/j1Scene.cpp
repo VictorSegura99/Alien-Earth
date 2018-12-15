@@ -320,8 +320,24 @@ void j1Scene::TutorialCoin(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
 		CoinPause = false;
 		GamePaused = false;
+		App->ui_manager->DeleteUI_Element(App->entitymanager->GetPlayerData()->FirstCCoin);
 	}
 
+}
+
+void j1Scene::SetTutorialCoin()
+{
+	App->entitymanager->GetPlayerData()->FirstCCoin = App->ui_manager->CreateImage(App->win->width / 2 - 134, App->win->height / 2 - 52, false);
+	App->entitymanager->GetPlayerData()->FirstCCoin->type = PLAYERUIIMAGE;
+	if (App->entitymanager->GetPlayerData()->NumPlayer == 0) {
+		App->entitymanager->GetPlayerData()->FirstCCoin->SetSpritesData({ 1122,1235,267,104 });
+	}
+	if (App->entitymanager->GetPlayerData()->NumPlayer == 1) {
+		App->entitymanager->GetPlayerData()->FirstCCoin->SetSpritesData({ 1122,1342,267,104 });
+	}
+	if (App->entitymanager->GetPlayerData()->NumPlayer == 2) {
+		App->entitymanager->GetPlayerData()->FirstCCoin->SetSpritesData({ 1122,1449,267,104 });
+	}
 }
 
 void j1Scene::CoinsLogic()

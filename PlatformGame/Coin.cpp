@@ -97,5 +97,6 @@ void Coin::OnCollision(Collider * c2)
 		App->menu->FirstCoin = false;
 		App->scene->GamePaused = true;
 		App->scene->CoinPause = true;
+		App->scene->SetTutorialCoin();
 	}
 }

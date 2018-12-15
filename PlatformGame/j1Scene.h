@@ -47,7 +47,7 @@ public:
 	void CreatePauseMenu();
 	void PauseMenu(float dt);
 	void TutorialCoin(float dt);
-
+	void SetTutorialCoin();
 	void CoinsLogic();
 
 

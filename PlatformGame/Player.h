@@ -146,7 +146,7 @@ public:
 	Label* TimeStart = nullptr;
 	Label* NumCoins = nullptr;
 	Image* CoinUI = nullptr;
-	Image* FirstCoin = nullptr;
+	Image* FirstCCoin = nullptr;
 
 	p2SString Coins;
 	p2SString StringTime;
