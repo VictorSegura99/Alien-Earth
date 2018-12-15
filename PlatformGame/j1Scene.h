@@ -46,7 +46,7 @@ public:
 
 	void CreatePauseMenu();
 	void PauseMenu(float dt);
-	
+	void TutorialCoin(float dt);
 
 	void CoinsLogic();
 
@@ -62,6 +62,8 @@ public:
 	bool WantToSpawnEnemies = true;
 	bool TexCharged = false;
 	bool GamePaused = false;
+	bool InPause = false;
+	bool CoinPause = false;
 	int coins4life = 0;
 	//MENU PAUSA
 

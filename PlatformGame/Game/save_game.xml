@@ -11,6 +11,8 @@
 	<map />
 	<scene>
 		<KnowMap value="0" />
+		<GamePaused value="false" />
+		<FirstCoin value="false" />
 	</scene>
 	<pathfinding />
 	<fonts />
@@ -18,11 +20,44 @@
 	<particles />
 	<entity_manager>
 		<spider>
-			<position x="10602.6855" y="752.100037" />
+			<position x="7065.01953" y="740.833313" />
+		</spider>
+		<spider>
+			<position x="10607.0195" y="745.833313" />
 		</spider>
 		<bat>
-			<position x="9507" y="541" />
+			<position x="5919" y="565" />
 		</bat>
+		<bat>
+			<position x="7692" y="332" />
+		</bat>
+		<coin>
+			<position x="2450" y="845" />
+		</coin>
+		<coin>
+			<position x="3055" y="557" />
+		</coin>
+		<coin>
+			<position x="1858" y="557" />
+		</coin>
+		<coin>
+			<position x="1594" y="526" />
+		</coin>
+		<coin>
+			<position x="3442" y="614" />
+		</coin>
+		<coin>
+			<position x="4393" y="446" />
+		</coin>
+		<coin>
+			<position x="5577" y="664" />
+		</coin>
+		<coin>
+			<position x="6175" y="548" />
+		</coin>
+		<coin>
+			<position x="7367" y="702" />
+		</coin>
 		<coin>
 			<position x="8201" y="822" />
 		</coin>
@@ -33,23 +68,29 @@
 			<position x="10531" y="712" />
 		</coin>
 		<coin>
+			<position x="3875" y="640" />
+		</coin>
+		<coin>
 			<position x="9135" y="694" />
 		</coin>
+		<coin>
+			<position x="5021" y="684" />
+		</coin>
 		<player>
-			<position x="7769.51221" y="823.45282" />
+			<position x="1364.2511" y="523.068298" />
 			<god value="false" />
 			<NumPlayer value="0" />
-			<lifes value="2" />
+			<lifes value="3" />
 			<Min value="0" />
 			<Hours Hours="0" />
-			<Delay value="0" />
-			<NumCoins value="12" />
+			<Delay value="9953" />
+			<NumCoins value="1" />
 		</player>
 	</entity_manager>
 	<UI />
 	<choose />
 	<:anonymous />
 	<renderer>
-		<camera x="-7257" y="-418" />
+		<camera x="-852" y="-139" />
 	</renderer>
 </game_state>

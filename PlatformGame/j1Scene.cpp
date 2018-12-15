@@ -146,11 +146,14 @@ bool j1Scene::Update(float dt)
 		Paused = SDL_GetTicks();
 		CreatePauseMenu();
 		GamePaused = true;
+		InPause = true;
 	}
-	if (GamePaused) {
+	if (InPause) {
 		PauseMenu(dt);
 	}
-
+	if (CoinPause) {
+		TutorialCoin(dt);
+	}
 
 	return true;
 }
@@ -176,6 +179,7 @@ bool j1Scene::PostUpdate()
 		App->menu->Start();
 		KnowMap = 0;
 		GamePaused = false;
+		InPause = false;
 	}
 	return ret;
 }
@@ -191,14 +195,16 @@ bool j1Scene::CleanUp()
 bool j1Scene::Load(pugi::xml_node & scene)
 {
 	KnowMap = scene.child("KnowMap").attribute("value").as_int();
-
+	GamePaused = scene.child("GamePaused").attribute("value").as_bool();
+	App->menu->FirstCoin = scene.child("FirstCoin").attribute("value").as_bool();
 	return true;
 }
 
 bool j1Scene::Save(pugi::xml_node & scene) const
 {
 	scene.append_child("KnowMap").append_attribute("value") = KnowMap;
-
+	scene.append_child("GamePaused").append_attribute("value") = GamePaused;
+	scene.append_child("FirstCoin").append_attribute("value") = App->menu->FirstCoin;
 
 	return true;
 }
@@ -300,12 +306,22 @@ void j1Scene::PauseMenu(float dt)
 				Delay += SDL_GetTicks() - Paused;
 				StartTimer = false;
 				GamePaused = false;
+				InPause = false;
 				
 			}
 				
 			
 		}
 	}
+}
+
+void j1Scene::TutorialCoin(float dt)
+{
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
+		CoinPause = false;
+		GamePaused = false;
+	}
+
 }
 
 void j1Scene::CoinsLogic()

@@ -96,7 +96,7 @@ bool j1Menu::Start()
 	WantToDisappearButtonsTypePlayer(true);
 	
 	App->scene->KnowMap = 0;
-	
+	FirstCoin = true;
 	return true;
 }
 

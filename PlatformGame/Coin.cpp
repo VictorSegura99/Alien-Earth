@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "j1Scene.h"
 #include "EntityManager.h"
+#include "j1Menu.h"
 #include "j1App.h"
 #include "j1Audio.h"
 
@@ -86,9 +87,15 @@ bool Coin::CleanUp()
 
 void Coin::OnCollision(Collider * c2)
 {
+
 	App->scene->NumberCoins++;
 	App->entitymanager->GetPlayerData()->CountCoins();
 	App->audio->PlayFx(coinfx);
 	coll->to_delete = true;
 	App->entitymanager->DeleteEntity(this);
+	if (App->menu->FirstCoin) {
+		App->menu->FirstCoin = false;
+		App->scene->GamePaused = true;
+		App->scene->CoinPause = true;
+	}
 }

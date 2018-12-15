@@ -112,6 +112,8 @@ public:
 	bool HacksMenuDone = false;
 	bool InCredits = false;
 
+	bool FirstCoin = true;
+
 	unsigned int choosefx;
 	unsigned int introfx;
 
