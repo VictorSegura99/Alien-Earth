@@ -1197,6 +1197,9 @@ void Player::SetUI()
 	else if (NumPlayer == 2) {
 		CoinUI->SetSpritesData({ 1284,1165,63,65 });
 	}
+	FirstCoin = App->ui_manager->CreateImage(App->win->width / 2 - 134, App->win->height / 2 - 52, false);
+	FirstCoin->type = PLAYERUIIMAGE;
+	FirstCoin->SetSpritesData({ 1122,1235,267,104 });
 	//Time
 	CurrentTime = SDL_GetTicks();
 	StringTime.create("%i:%i:%i", Hours, Min, (CurrentTime - TimeSinceStarted) / 1000);
