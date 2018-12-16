@@ -128,7 +128,7 @@ GAME
 - [Repository ALIEN EARTH](https://github.com/VictorSegura99/Alien-Earth)
 - [Last Release ALIEN EARTH](https://github.com/VictorSegura99/Alien-Earth/releases)
 
-<a href="https://github.com/VictorSegura99/Alien_Earth/releases/download/0.9.5/Alien.Earth.0.9.5.zip" download>
+<a href="https://github.com/VictorSegura99/Alien_Earth/releases/download/1.0/Alien.Earth.1.0.zip" download>
 DOWNLOAD THE GAME</a>
 
 _____________
