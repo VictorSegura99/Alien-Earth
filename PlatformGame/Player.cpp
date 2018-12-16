@@ -302,13 +302,12 @@ bool Player::Load(pugi::xml_node& player)
 	Min = player.child("Min").attribute("value").as_int();
 	Hours = player.child("Hours").attribute("Hours").as_int();
 	App->scene->Delay = player.child("Delay").attribute("value").as_int();
-	App->scene->Delay += SDL_GetTicks() - SaveDelay;
 	App->scene->NumberCoins = player.child("NumCoins").attribute("value").as_int();
 	CountCoins();
 	ChangePlayer(player.child("NumPlayer").attribute("value").as_int(), true);
 	Lifes();
 	App->map->ChangeMap(App->scene->map_name[App->scene->KnowMap]);
-	
+	LoadDelay = SDL_GetTicks() - SaveDelay;
 
 	return true;
 }
@@ -1360,10 +1359,12 @@ void Player::Lifes() {
 void Player::TIME()
 {
 	
-	CurrentTime = SDL_GetTicks() - App->scene->Delay;
+	CurrentTime = SDL_GetTicks() - App->scene->Delay -  LoadDelay;
 	if ((CurrentTime - TimeSinceStarted) / 1000 >= 60) {
 		Min++;
-		TimeSinceStarted = CurrentTime = SDL_GetTicks();
+		TimeSinceStarted = SDL_GetTicks();
+		LoadDelay = 0;
+		App->scene->Delay = 0;
 	}
 	if (Min >= 60) {
 		Hours++;

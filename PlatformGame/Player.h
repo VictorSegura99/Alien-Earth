@@ -169,6 +169,7 @@ public:
 	unsigned int losefx;
 	
 	mutable int SaveDelay = 0;
+	int LoadDelay = 0;
 
 	bool AllCharged = false;
 	bool PlayerLeft = false;
