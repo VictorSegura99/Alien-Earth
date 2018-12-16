@@ -1361,7 +1361,7 @@ void Player::TIME()
 {
 	
 	CurrentTime = SDL_GetTicks() - App->scene->Delay -  LoadDelay;
-	if ((CurrentTime - TimeSinceStarted) / 1000 >= 59) {
+	if ((CurrentTime - TimeSinceStarted) / 1000 >= 60) {
 		Min++;
 		TimeSinceStarted = SDL_GetTicks();
 		LoadDelay = 0;
