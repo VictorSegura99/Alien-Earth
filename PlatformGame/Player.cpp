@@ -624,6 +624,25 @@ void Player::OnCollision(Collider * c2) //this determine what happens when the p
 	}
 }
 
+void Player::FirstInit()
+{
+
+	position.x = App->entitymanager->positionStartMap1.x;
+	position.y = App->entitymanager->positionStartMap1.y;
+
+	current_animation = &idle[NumPlayer];
+
+
+	TimeSinceStarted = SDL_GetTicks();
+	Min = 0;
+	Hours = 0;
+	App->scene->NumberCoins = 0;
+	//CurrentTime = SDL_GetTicks();
+
+	Death[NumPlayer].loops = 0;
+	Death[NumPlayer].current_frame = 0.0f;
+}
+
 void Player::Die()//What happens when the player die
 {
 	

@@ -61,7 +61,7 @@ public:
 	bool CleanUp();
 	void OnCollision(Collider* c2);
 
-
+	void FirstInit();
 	void Die();
 	void Fall();
 	void Spawn();

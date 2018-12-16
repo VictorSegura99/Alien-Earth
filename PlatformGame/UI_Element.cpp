@@ -66,19 +66,13 @@ void UI_Element::Draw(float dt, SDL_Texture* texture)
 	
 
 	if (parent == nullptr && this->type != PLAYERUIIMAGE && this->type != PLAYERUILABEL) {
-		if (!BeingDragged) {
-			Scree_pos.x = Local_pos.x;
-			Scree_pos.y = Local_pos.y;
-		}
+		Scree_pos.x = Local_pos.x;
+		Scree_pos.y = Local_pos.y;
+		
 		
 	}
 	else if (this->type != PLAYERUIIMAGE && this->type != PLAYERUILABEL){
-		if (!BeingDragged) {
-			SetPos(parent->Scree_pos.x + Local_pos.x, parent->Scree_pos.y + Local_pos.y);
-		}
-	}
-	if (draggable) {
-		Draggable();
+		SetPos(parent->Scree_pos.x + Local_pos.x, parent->Scree_pos.y + Local_pos.y);
 	}
 	if (WantToRender) {
 		if (type != LABEL && type != PLAYERUILABEL)
@@ -130,46 +124,6 @@ void UI_Element::SetSpritesData(SDL_Rect Idle, SDL_Rect Hover, SDL_Rect Pressed)
 
 }
 
-void UI_Element::Draggable()
-{
-	if (parent != nullptr) {
-		if (IsMouseOn() && App->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_REPEAT) {
-			BeingDragged = true;
-			iPoint distance;
-			App->input->GetMousePosition(mouse.x, mouse.y);
-			distance.x = mouse.x - Scree_pos.x;
-			distance.y = mouse.y - Scree_pos.y;
-			Scree_pos.x = mouse.x - distance.x;
-			Scree_pos.y = mouse.y - distance.y;
-			LookLimitsDrag();
-		}
-	}
-	else if (IsMouseOn()) {
-		iPoint distance;
-		App->input->GetMousePosition(mouse.x, mouse.y);
-		distance.x = mouse.x - Scree_pos.x;
-		distance.y = mouse.y - Scree_pos.y;
-		Scree_pos.x = mouse.x - distance.x;
-		Scree_pos.y = mouse.y - distance.y;
-	}
-}
 
-void UI_Element::LookLimitsDrag()
-{
-
-	if (Scree_pos.x <= parent->Scree_pos.x) {
-		Scree_pos.x = parent->Scree_pos.x;
-	}
-	if (Scree_pos.x + width >= parent->Scree_pos.x + parent->width) {
-		Scree_pos.x = -width + parent->Scree_pos.x + parent->width;
-	}
-	if (Scree_pos.y <= parent->Scree_pos.y) {
-		Scree_pos.y = parent->Scree_pos.y;
-	}
-	if (Scree_pos.y + height >= parent->Scree_pos.y + parent->height) {
-		Scree_pos.y = -height + parent->Scree_pos.y + parent->height;
-	}
-
-}
 
 
