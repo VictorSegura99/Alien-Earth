@@ -195,7 +195,7 @@ bool j1Scene::CleanUp()
 bool j1Scene::Load(pugi::xml_node & scene)
 {
 	KnowMap = scene.child("KnowMap").attribute("value").as_int();
-	GamePaused = scene.child("GamePaused").attribute("value").as_bool();
+	//GamePaused = scene.child("GamePaused").attribute("value").as_bool();
 	App->menu->FirstCoin = scene.child("FirstCoin").attribute("value").as_bool();
 	return true;
 }
@@ -203,7 +203,7 @@ bool j1Scene::Load(pugi::xml_node & scene)
 bool j1Scene::Save(pugi::xml_node & scene) const
 {
 	scene.append_child("KnowMap").append_attribute("value") = KnowMap;
-	scene.append_child("GamePaused").append_attribute("value") = GamePaused;
+	//scene.append_child("GamePaused").append_attribute("value") = GamePaused;
 	scene.append_child("FirstCoin").append_attribute("value") = App->menu->FirstCoin;
 
 	return true;
