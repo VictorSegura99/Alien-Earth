@@ -82,14 +82,14 @@ Third Assignemnt:
 _____________
 SYSTEMS
 
-Main Systems:
-- Entity Manager
+The Main Core Systems of our Game are:
+- Entity Manager: A module that organizes every entity and uses a factory method to create new ones. Every entity inherates from a parent class named Entity. The entities managed managed are by this system are:
 	- Bat
 	- Spider
 	- Player
 	- Coins
 	- Moving Platform
-- UI Manager
+- UI Manager: A module that organizes every UI element and uses a factory method to create new ones. Every element inherates from a parent class named Ui_Element. The UI elements managed are by this system are:
 	- Button
 	- Slider
 	- Image
